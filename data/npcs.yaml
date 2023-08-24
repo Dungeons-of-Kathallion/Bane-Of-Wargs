@@ -1,11 +1,19 @@
 Old Man:
+  name: "Old Man"
   cost value: 1.3
   speech:
-  - "Hi!" # paragraph 1
-  - "Bye!" # paragraph 2
+  - "Hi! I hope you're doing great today! For me it's pretty okay."
+  - "Woud you like to by somes of my drinks or items? I have plenty of of them. I also can buy you Beef, Porkchop, Chicken or Raw Samlon if you want!"
   sells:
     drinks:
     - Beer
+    - Purple Elixir
     items:
-    - None
+    - Beef
+    - Porkchop
+  buys:
+    items:
+    - Beef
+    - Porkchop
+    - Raw Salmon
   description: "An old man you found in the plains"

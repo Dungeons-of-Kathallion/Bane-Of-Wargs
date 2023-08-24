@@ -10,16 +10,16 @@ held leggings: Old Pants
 held shield: " "
 inventory slots: 9
 inventory slots remaining: 4
-elapsed time seconds: 0.
-elapsed time game days: 0.
+elapsed time seconds: 0
+elapsed time game days: 0
 used keys:
 - None
+visited zones:
+- Kathallion Plains
 met npcs names:
 - Old Man
 visited points:
 - 0
-visited zones:
-- Dungeon Entrance
 enemies list:
 - None
 inventory:
@@ -33,7 +33,7 @@ max health: 15
 x: 0
 xp: 0
 y: 0
-map zone: "Dungeon Entrance"
+map zone: "Kathallion Plains"
 taken items:
 - None
 defeated enemies:

@@ -1,0 +1,12 @@
+   $BLACK#############
+   ##         ##
+   #  ~~   ~~  #
+   #  $BLUE()   ()  $BLACK#
+   $WHITE(     $BLACK^     $WHITE)
+    |          |
+    |  $RED{===}  $WHITE|
+     \       /
+    /  -----  \
+ ---  $BLUE|@\ /@|  $WHITE---
+/     $BLUE|@@@@@|     $WHITE\
+      $BLUE|@/ \@|$WHITE
