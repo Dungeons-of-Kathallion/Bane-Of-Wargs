@@ -1,0 +1,164 @@
+# Generic enemies
+Slime:
+  plural: "Slimes"
+  damage:
+    min damage: 1
+    max damage: 3
+  health:
+    min spawning health: 3
+    max spawning health: 7
+    max health level: 7
+  agility: 0.87
+  inventory:
+  - Wooden Stick
+  - Slime
+  description: "Slimes are agile and annoying monsters."
+Goblin:
+  plural: "Goblins"
+  damage:
+    min damage: 1
+    max damage: 5
+  health:
+    min spawning health: 3
+    max spawning health: 8
+    max health level: 8
+  agility: 0.7
+  inventory:
+  - Knife
+  - Beef
+  - Chicken
+  - Raw Salmon
+  - Bone
+  - Wooden Stick
+  - Orc Iron Leggings
+  - Orc Shredded Chestplate
+  description: "The Goblin may be an easy enemy to beat, but in groups, they can be very annoying to deal with."
+Orc:
+  plural: "Yrch"
+  damage:
+    min damage: 1
+    max damage: 4
+  health:
+    min spawning health: 4
+    max spawning health: 6
+    max health level: 6
+  agility: 0.95
+  inventory:
+  - Knife
+  - Raw Salmon
+  - Bone
+  - Spear
+  - Dagger
+  - Orc Iron Leggings
+  - Orc Shredded Chestplate
+  - Orc Bow
+  description: "Yrch are the smaller and swifter version of the Goblins. Even if they have low health, they are fast and hard to hit because of their agility."
+Orc Archer:
+  plural: "Yrch Archer"
+  damage:
+    min damage: 1
+    max damage: 5
+  health:
+    min spawning health: 3
+    max spawning health: 7
+    max health level: 7
+  agility: 0.85
+  inventory:
+  - Knife
+  - Raw Salmon
+  - Bone
+  - Spear
+  - Dagger
+  - Orc Iron Leggings
+  - Orc Bow
+  - Orc Bag
+  - Orc Shield
+  - Wooden Stick
+  description: "The Yrch are specialized in bows and are not different from other Yrch."
+Warg:
+  plural: "Wargs"
+  damage:
+    min damage: 2
+    max damage: 5
+  health:
+    min spawning health: 3
+    max spawning health: 9
+    max health level: 9
+  agility: 1.05
+  inventory:
+  - Beef
+  - Bone
+  - Porkchop
+  - Wolf Skin
+  - Wolf Fur
+  - Wolf Skull
+  description: "Wargs are deadly wolves that can easily outcome any adventurer that is not awarded of them. They are fast and they can deal important amount of damage while they have great health."
+Cavern Troll:
+  plural: "Cavern Trolls"
+  damage:
+    min damage: 3
+    max damage: 8
+  health:
+    min spawning health: 6
+    max spawning health: 11
+    max health level: 11
+  agility: .35
+  inventory:
+  - Beef
+  - Porkchop
+  - Bone
+  - Wolf Fur
+  - Mace
+  - Spear
+  description: "Cavern Trolls are powerful but slow enemies. They can deal huge amounts of damages but they are quit easy to dodge."
+# Black enemies
+Black Orc:
+  plural: "Black Yrch"
+  damage:
+    min damage: 2
+    max damage: 5
+  health:
+    min spawning health: 6
+    max spawning health: 9
+    max health level: 9
+  agility: .58
+  inventory:
+  - Beef
+  - Prokchop
+  - Bone
+  - Spear
+  - Orc Shredded Chestplate
+  - Orc Bag
+  - Warg Fur Shield
+  description: "Black Yrch are an old species of the Yrch, which are way more powerful, but you won't see them often during your journey.'"
+Dark Marksman:
+  plural: "Dark Marksmen"
+  damage:
+    min damage: 1
+    max damage: 7
+  health:
+    min spawning health: 5
+    max spawning health: 8
+    max health level: 8
+  agility: .68
+  inventory:
+  - Prokchop
+  - Raw Salmon
+  - Bone
+  - Orc Bags
+  - Orc Iron Leggings
+  - Orc Bow
+  description: "Dark Marksman are specialized Black Yrch in arching and are able to be swift and shoot you from long distances"
+Doomed Horror:
+  plural: "Doomed Horrors"
+  damage:
+    min damage: 0
+    max damage: 2
+  health:
+    min spawning health: 8
+    max spawning health: 11
+    max health level: 11
+  agility: .35
+  inventory:
+  - Wooden Stick
+  description: "Doomed Horrors were once men, which are now cursed to anguish in the evil dungeons, roaming them to strike all enemies. They are slow and deal low damages but they have high health."

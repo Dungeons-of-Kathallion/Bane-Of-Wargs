@@ -1,0 +1,11 @@
+Old Man:
+  cost value: 1.3
+  speech:
+  - "Hi!" # paragraph 1
+  - "Bye!" # paragraph 2
+  sells:
+    drinks:
+    - Beer
+    items:
+    - None
+  description: "An old man you found in the plains"

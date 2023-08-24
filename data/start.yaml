@@ -1,0 +1,42 @@
+cheat: 0
+health: 10
+armor protection: 0.95
+agility: 0.8
+gold: 15
+held item: Sword
+held chestplate: Leather Jacket
+held boots: Leather Boots
+held leggings: Old Pants
+held shield: " "
+inventory slots: 9
+inventory slots remaining: 4
+elapsed time seconds: 0
+elapsed time game days: 0
+used keys:
+- None
+met npcs names:
+- Old Man
+visited points:
+- 0
+visited zones:
+- Dungeon Entrance
+enemies list:
+- None
+inventory:
+- Sword
+- Healing Potion
+- Leather Jacket
+- Leather Boots
+- Old Pants
+- Stretched Bag
+max health: 15
+x: 0
+xp: 0
+y: 0
+map zone: "Dungeon Entrance"
+taken items:
+- None
+defeated enemies:
+- None
+met npcs:
+- None

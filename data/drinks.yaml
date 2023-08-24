@@ -1,0 +1,13 @@
+Beer:
+  gold: 2.4
+  healing level: 9
+  description: "A good odd beer. It can restores lot of health."
+Purple Elixir:
+  gold: 6.2
+  healing level: 12
+  description: "Purple Elixirs are expensive drinks but all great adventurers use them to get their health back."
+Green Elixir:
+  gold: 8.2
+  healing level: "max health"
+  description: "Green Elixirs are powerful potions that can restores all of your health."
+
