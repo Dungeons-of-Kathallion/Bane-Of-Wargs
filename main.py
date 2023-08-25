@@ -1019,9 +1019,10 @@ def run(play):
 
                 enemy_items_number = len(enemy_total_inventory)
                 choosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
-                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory)
+                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
+                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
                 if not already_encountered:
-                    battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists)
+                    battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
                     already_encountered = True
                 battle.fight(player, item, enemy, map, map_location, enemies_remaining, lists)
                 enemies_remaining -= 1
