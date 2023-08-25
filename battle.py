@@ -35,6 +35,27 @@ def print_separator(character):
         count += 1
     sys.stdout.write('\n')
 
+def calculate_player_risk(player, item, enemies_remaining, enemy_critical_hit, choosen_enemy, enemy):
+    # get all stats
+    player_hp = player["health"]
+    player_agi = player["agility"]
+    player_prot = player["armor protection"]
+    player_av_dmg = ( item[player["held item"]]["damage"] + 1 ) / 2
+    player_def = item[player["held item"]]["defense"]
+    player_critic_ch = item[player["held item"]]["critical hit chance"]
+    player_health_cap = "0" # placeholder
+    enemies_number = enemies_remaining
+
+    # get differences between player and enemy
+    hp_diff = player_hp - enemy_health
+    agi_diff = player_agi - enemy_agility
+    av_dmg_diff = player_av_dmg - ( ( enemy_max_damage + enemy_min_damage ) / 2 )
+    critic_ch_diff = player_critic_ch - enemy[choosen_enemy]["damage"]["critical hit chance"]
+
+    # compute percentage of defeat chance
+    defeat_percentage = ( ( ( ( hp_diff / 1.4) + ( agi_diff / 1.2 ) + ( player_prot / 1.1 ) + ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) + ( critic_ch_diff / 0.7 ) ) * ( player_health_cap / 15.24 ) ) * ( enemies_number / 1.5 ) )
+    e = input(defeat_percentage)
+
 def encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -120,7 +141,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
 
     print(" ")
 
-def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory):
+def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining):
     global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage
     # load enemy stat
 
@@ -131,6 +152,7 @@ def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_e
     enemy_health = random.randint(choosen_enemy["health"]["min spawning health"], choosen_enemy["health"]["max spawning health"])
     enemy_max_damage = choosen_enemy["damage"]["max damage"]
     enemy_min_damage = choosen_enemy["damage"]["min damage"]
+    enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
     enemy_damage = 0
     enemy_agility = choosen_enemy["agility"]
 
@@ -289,11 +311,18 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     damage = round(damage)
                     defend = 0
                     player_dodged = False
+                    enemy_critical_hit = False
                     player_dodge_chance = round(random.uniform(0.10, player_agility), 2)
-                    if player_dodge_chance > round(random.uniform(.50, .90), 2):
+                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(0.03, critical_hit_chance * 2.8), 2)
+                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula:
+                        enemy_critical_hit = True
+                        print("Your enemy dealt a critical hit!")
+                    elif player_dodge_chance > round(random.uniform(.50, .90), 2):
                         player_dodged = True
                         print("You dodged your enemy attack!")
                     if damage > 0 and not player_dodged:
+                        if enemy_critical_hit:
+                            damage = damage * 2
                         player["health"] -= damage
                         print("The enemy dealt ", str(damage), " points of damage.")
                     print(" ")

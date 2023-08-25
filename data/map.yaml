@@ -1,49 +1,19 @@
-# positive y means north
-# negative "   "   south
-# positive x means east
-# negative "   "   west
-
 coordinate count: 9
 point0:
   x: 0
   y: 0
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
+  map zone: "Dungeon Entrance"
   item:
-  - Beef
+  - None
   enemy: 0
   npc:
   - None
   blocked:
-  - South
-  - East
-  - West
+  - None
 point1:
   x: 0
   y: 1
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
-  enemy: 0
-  npc:
-  - None
-  blocked:
-  - East
-point2:
-  x: -1
-  y: 1
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
+  map zone: "Dungeon Entrance"
   item:
   - None
   enemy: 1
@@ -51,83 +21,49 @@ point2:
   npc:
   - None
   blocked:
-  - North
+  - East
   - West
+point2:
+  x: 0
+  y: -1
+  map zone: "Dungeon Entrance"
+  item:
+  - None
+  enemy: 0
+  npc:
+  - None
+  blocked:
   - South
 point3:
-  x: 0
-  y: 2
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
+  x: 1
+  y: 0
+  map zone: "Dungeon Entrance"
   item:
-  - Spear
-  enemy: 0
-  npc:
-  - None
-  blocked:
-  - West
-point4:
-  x: 0
-  y: 3
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
+  - Map
   enemy: 0
   npc:
   - None
   blocked:
   - North
+  - South
   - East
+point4:
+  x: -1
+  y: 0
+  map zone: "Dungeon Entrance"
+  item:
+  - Axe
+  enemy: 0
+  npc:
+  - None
+  blocked:
+  - North
+  - South
+  - West
 point5:
   x: -1
-  y: 3
-  map zone: "Kathallion Village"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
-  enemy: 3
-  enemy type: generic
-  npc:
-  - None
-  blocked:
-  - North
-  - South
-point6:
-  x: 1
-  y: 2
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - Broken Shield
-  - Beef
-  enemy: 3
-  enemy type: black
-  npc:
-  - None
-  blocked:
-  - North
-  - South
-point7:
-  x: 2
-  y: 2
-  map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
+  y: -1
+  map zone: "Dungeon Entrance"
   item:
   - None
   enemy: 0
@@ -136,21 +72,42 @@ point7:
   blocked:
   - North
   - South
-  - East
-point8:
-  x: -2
-  y: 3
-  map zone: "Kathallion Hostel"
-  key:
-    required keys:
-    - None
-    remove key: False
+  - West
+point6:
+  x: 1
+  y: -1
+  map zone: "Dungeon Entrance"
   item:
   - None
+  enemy: 1
+  enemy type: generic
+  npc:
+  - None
+  blocked:
+  - North
+  - South
+point7:
+  x: 2
+  y: -1
+  map zone: "First Zone"
+  item:
+  - Note1
   enemy: 0
   npc:
   - None
   blocked:
   - North
   - South
-  - West
+point8:
+  x: 3
+  y: -1
+  map zone: "First Zone"
+  item:
+  - Shield
+  enemy: 2
+  npc:
+  - None
+  enemy type: black
+  blocked:
+  - East
+  - South
