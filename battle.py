@@ -35,28 +35,62 @@ def print_separator(character):
         count += 1
     sys.stdout.write('\n')
 
-def calculate_player_risk(player, item, enemies_remaining, enemy_critical_hit, choosen_enemy, enemy):
+def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy):
     # get all stats
     player_hp = player["health"]
     player_agi = player["agility"]
     player_prot = player["armor protection"]
     player_av_dmg = ( item[player["held item"]]["damage"] + 1 ) / 2
-    player_def = item[player["held item"]]["defense"]
+    player_def = item[player["held item"]]["defend"]
     player_critic_ch = item[player["held item"]]["critical hit chance"]
-    player_health_cap = "0" # placeholder
+    player_health_cap = 1 # placeholder
     enemies_number = enemies_remaining
+    enemy_health = random.randint(choosen_enemy["health"]["min spawning health"], choosen_enemy["health"]["max spawning health"])
+    enemy_agility = choosen_enemy["agility"]
+    enemy_max_damage = choosen_enemy["damage"]["max damage"]
+    enemy_min_damage = choosen_enemy["damage"]["min damage"]
+    enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
+
+    # calculate player health capabilities (how many HP the player can restore)
+    count = 0
+    player_inventory = player["inventory"]
+    player_inventory_len = len(player_inventory) - 1
+    current_item_health_restoration = 0
+    item_health_bonus = 0
+    while count < player_inventory_len:
+
+        selected_item = player_inventory[count]
+
+        if item[selected_item]["type"] == "Food" or item[selected_item]["type"] == "Consumable":
+            item_health_restoration = item[selected_item]["healing level"]
+            item_health_bonus = item[selected_item]["max bonus"]
+            if item_health_restoration == "max level":
+                current_item_health_restoration = player["max health"]
+            else:
+                current_item_health_restoration = int(item_health_restoration)
+            if item_health_bonus != 0:
+                item_health_bonus = int(item[selected_item]["max bonus"]) / 2
+
+
+        player_health_cap += current_item_health_restoration
+        player_health_cap += item_health_bonus
+
+        count += 1
 
     # get differences between player and enemy
     hp_diff = player_hp - enemy_health
     agi_diff = player_agi - enemy_agility
     av_dmg_diff = player_av_dmg - ( ( enemy_max_damage + enemy_min_damage ) / 2 )
-    critic_ch_diff = player_critic_ch - enemy[choosen_enemy]["damage"]["critical hit chance"]
+    critic_ch_diff = player_critic_ch - enemy_critical_chance
 
     # compute percentage of defeat chance
-    defeat_percentage = ( ( ( ( hp_diff / 1.4) + ( agi_diff / 1.2 ) + ( player_prot / 1.1 ) + ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) + ( critic_ch_diff / 0.7 ) ) * ( player_health_cap / 15.24 ) ) * ( enemies_number / 1.5 ) )
-    e = input(defeat_percentage)
+    defeat_percentage = ( ( ( ( hp_diff / 1.4) - ( agi_diff / 1.2 ) - ( player_prot / 1.1 ) - ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) - ( critic_ch_diff / 0.1 ) ) * ( player_health_cap / 15.24 ) ) * ( enemies_number / 1.5 ) )
+    defeat_percentage = round(defeat_percentage, 0)
+    defeat_percentage = int(defeat_percentage)
 
-def encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists):
+    return defeat_percentage
+
+def encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage):
     # import stats
     global turn, defend, fighting, already_encountered
     global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, choosen_item
@@ -64,6 +98,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
     print(" ") # do not merge with possible actions text
     # load and create enemies list type
 
+    health_color = COLOR_GREEN
     enemies_number = enemies_remaining
 
     text = '='
@@ -73,6 +108,34 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
         print("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
     else:
         print("You find a/an " + str(enemy_singular) + " on your way.")
+
+    # player stats updates
+    risk = defeat_percentage
+
+    # display
+    bars = 10
+    remaining_risk_symbol = "█"
+    lost_risk_symbol = "_"
+
+    remaining_risk_bars = round(risk / 100 * bars)
+    lost_risk_bars = bars - remaining_risk_bars
+
+    # print HP stats and possible actions for the player
+
+    if risk > 0.80 * 100:
+        health_color = COLOR_STYLE_BRIGHT + COLOR_RED
+    elif risk > 0.60 * 100:
+        health_color = COLOR_RED
+    elif risk > 0.45 * 100:
+        health_color = COLOR_YELLOW
+    elif risk > 0.30 * 100:
+        health_color = COLOR_GREEN
+    else:
+        health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
+
+    sys.stdout.write(f"RISK: {risk} / 100\n")
+    sys.stdout.write(f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n")
+    sys.stdout.flush()
 
     print("[R]un Away, [F]ight, [U]se Item? ")
 

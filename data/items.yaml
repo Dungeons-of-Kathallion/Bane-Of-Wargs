@@ -63,7 +63,7 @@ Spear:
   gold: 8.75
   critical hit chance: .13
   description: "The spear is a fast and agile weapon that lets you attack your enemy without letting them the time to attack you."
-# Conumables
+# Consumables
 Healing Potion:
   type: "Consumable"
   max bonus: 5
