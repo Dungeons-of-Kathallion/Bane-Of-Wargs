@@ -1,6 +1,109 @@
-Dungeon Entrance:
-  name: "Dungeon Entrance"
-  description: "This is the entrance of the Dungeon Of Kathallion."
-First Zone:
-  name: "First Zone"
-  description: "The first zone."
+Kathallion Plains:
+  name: "Kathallion Plains"
+  description: "The plains nearby to the Dungeon Of Kathallion."
+  type: plains
+  map:
+    map full: " x__________x\n \
+  |$GREEN,,_,,,,$YELLOWo$GREEN_,$WHITE|\n \
+  |$GREEN,,$YELLOWo$GREEN__,,_,,$WHITE|\n \
+  |$GREEN,,,_,,$YELLOWo$GREEN,_,$WHITE|\n \
+  |$YELLOWo$GREEN_,,,_,,,,$WHITE|\n \
+  x__________x"
+    map raw: " x__________x\n \
+  |,,_,,,,o_,|\n \
+  |,,o__,,_,,|\n \
+  |,,,_,,o,_,|\n \
+  |o_,,,_,,,,|\n \
+  x__________x"
+Kathallion Village:
+  name: "Kathallion Village"
+  description: "The village in the plains of Kathallion."
+  type: village
+  news:
+  - "A"
+  - "B"
+  - "C"
+  - "D"
+  - "E"
+  - "F"
+  - "G"
+  - "H"
+  - "I"
+  map:
+    map raw: " x__________x\n \
+  |o__----__o|\n \
+  | ||    || |\n \
+  | ||    || |\n \
+  |;||;;;;||;|\n \
+  x__________x"
+    map full: " x__________x\n \
+  |o__----__o|\n \
+  | $GREEN|$WHITE|    |$GREEN|$WHITE |\n \
+  | $GREEN|$WHITE|    $GREEN|$WHITE| |\n \
+  |$YELLOW;$WHITE|$GREEN|;$RED;;$YELLOW;$GREEN||;$WHITE|\n \
+  x__________x"
+  content:
+    hostels:
+      - Kathallion Hostel
+
+Kathallion Hostel:
+  name: "Kathallion Hostel"
+  type: hostel
+  location: 5
+  cost value: 0.9
+  sleep gold: 7
+  description: "The Kathallion Hostel is a nice place to be and you can find amazing people."
+  news:
+  - "A"
+  - "B"
+  - "C"
+  - "D"
+  - "E"
+  - "F"
+  - "G"
+  - "H"
+  - "I"
+  sells:
+    drinks:
+    - Beer
+    - Green Elixir
+    items:
+    - Porkchop
+    - Raw Salmon
+    - Sword
+    - Beef
+    - Bow
+    - Healing Potion
+    - Knight Boots
+    - Shield
+  buys:
+    items:
+    - Broken Shield
+    - Orc Bow
+    - Knife
+    - Dagger
+    - Mace
+    - Spear
+    - Wolf Fur
+    - Broken Shield
+    - Orc Iron Leggings
+    - Orc Shredded Chestplate
+    - Orc Shield
+    - Bone
+    - Slime
+    - Wolf Skull
+    - Wolf Skin
+    - Chicken
+  map:
+    map raw: " x__________x\n \
+  |  ______  |\n \
+  | I||||||I |\n \
+  |I||----||I|\n \
+  | ||--0-|| |\n \
+  x__________x"
+    map full: " x__________x\n \
+  |  $BROWN______  $WHITE|\n \
+  | $BROWNI||||||I $WHITE|\n \
+  |$BROWNI||----||I$WHITE|\n \
+  | $BROWN||--$GRAY0$BROWN-|| $WHITE|\n \
+  x__________x"
