@@ -64,7 +64,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
         if item[selected_item]["type"] == "Food" or item[selected_item]["type"] == "Consumable":
             item_health_restoration = item[selected_item]["healing level"]
             item_health_bonus = item[selected_item]["max bonus"]
-            if item_health_restoration == "max level":
+            if item_health_restoration == "max health":
                 current_item_health_restoration = player["max health"]
             else:
                 current_item_health_restoration = int(item_health_restoration)
@@ -84,9 +84,14 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
     critic_ch_diff = player_critic_ch - enemy_critical_chance
 
     # compute percentage of defeat chance
-    defeat_percentage = ( ( ( ( hp_diff / 1.4) - ( agi_diff / 1.2 ) - ( player_prot / 1.1 ) - ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) - ( critic_ch_diff / 0.1 ) ) * ( player_health_cap / 15.24 ) ) * ( enemies_number / 1.5 ) )
+    defeat_percentage = ( ( ( ( hp_diff / 1.4) - ( agi_diff / 1.2 ) - ( player_prot / 1.1 ) - ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) - ( critic_ch_diff / 0.08 ) ) / ( player_health_cap / 20 ) ) * ( enemies_number / 1.5 ) )
     defeat_percentage = round(defeat_percentage, 0)
     defeat_percentage = int(defeat_percentage)
+
+    if defeat_percentage > 100:
+        defeat_percentage = 100
+    elif defeat_percentage < 0:
+        defeat_percentage = 0
 
     return defeat_percentage
 
@@ -229,8 +234,6 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
     armor_protection = player["armor protection"]
     player_agility = player["agility"]
     # load and create enemies list type
-
-    enemies_number = map["point" + str(map_location)]["enemy"]
 
     enemy_max_health = enemy_health
 

@@ -1,16 +1,32 @@
 start dialog:
   phrases:
   - "Hey! Welcome to this cool and beautiful game. I hope you'll have fun playing it."
-  - "Find villages, fight monsters, equip and upgrade yourself with looted items and protect people for monsters!"
-  - "Also, don't forget to explore the map! It is very big. If you're to annoyed with the vanilla plot and items, you can try to find plugins and install them!"
+  - "Find villages, fight monsters, equip and upgrade yourself with looted items and protect people from monsters!"
+  - "Also, don't forget to explore the map! It is very big. If you're too annoyed with the vanilla plot and items, you can try to find plugins and install them!"
   - "Or even create your own plugin and be creative!"
-  use action: False
+  use actions: False
+
+test dialog:
+  phrases:
+  - "When we were young, the future was so bright"
+  - "The old neighborhood was so alive"
+  - "And every kid on the whole damn street"
+  - "Was gonna make it big and not be beat"
+  - "Now the neighborhood's cracked and torn"
+  - "The kids are grown up, but their lives are worn"
+  - "How can one little street swallow so many lives?"
+  - "Chances thrown"
+  - "Nothing's free"
+  use actions: True
   actions:
     give item:
     - None
     health modification:
       diminution: 0
       augmentation: 0
+      max health:
+        diminution: 0
+        augmentation: 0
     gold modification:
       diminution: 0
       augmentation: 0

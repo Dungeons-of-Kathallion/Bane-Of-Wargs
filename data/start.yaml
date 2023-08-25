@@ -14,7 +14,7 @@ elapsed time seconds: 0
 elapsed time game days: 0
 start dialog:
   dialog: start dialog
-  heard start dialog: false
+  heard start dialog: False
 heard dialogs:
 - None
 used keys:

@@ -463,7 +463,7 @@ def print_zone_map(zone_name):
         if count == 1:
             print(line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE + str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_BLUE+ str(player["max health"]) + COLOR_RESET_ALL)
         if count == 2:
-            print(line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(len(player["inventory"])) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL)
+            print(line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL)
         if count == 3:
             print(line + " ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL)
         if count == 4:
@@ -536,6 +536,88 @@ def print_enemy_thumbnail(enemy):
         print(line)
         count += 1
 
+def check_for_key(direction):
+    if direction == "north":
+        for i in range(0, map["coordinate count"]):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"], point_i["y"] - 1
+            # print(i, point_x, point_y, player)
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "south":
+        for i in range(0, map["coordinate count"]):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"], point_i["y"] + 1
+            # print(i, point_x, point_y, player)
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "east":
+        for i in range(0, map["coordinate count"]):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"] - 1, point_i["y"]
+            # print(i, point_x, point_y, player)
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "west":
+        for i in range(0, map["coordinate count"]):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"] + 1, point_i["y"]
+            # print(i, point_x, point_y, player)
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    if "key" in map["point" + str(future_map_location)]:
+        text = '='
+        print_separator(text)
+
+        text = "You need the following key(s) to enter this location, if you decide to use it, you may loose it:"
+        print_long_string(text)
+
+        keys_list = str(map["point" + str(future_map_location)]["key"]["required keys"])
+        keys_list = keys_list.replace("'", '')
+        keys_list = keys_list.replace("[", ' -')
+        keys_list = keys_list.replace("]", '')
+        keys_list = keys_list.replace(", ", '\n -')
+
+        keys_len = len(map["point" + str(future_map_location)]["key"]["required keys"])
+
+        text = '='
+        print_separator(text)
+
+        options = ['Continue', 'Leave']
+        choice = enquiries.choose('', options)
+
+        count = 0
+
+        have_necessary_keys = True
+
+        if choice == 'Continue':
+            while count < ( keys_len ) and have_necessary_keys == True:
+
+                choosen_key = map["point" + str(future_map_location)]["key"]["required keys"][int(count)]
+
+                if choosen_key not in player["inventory"]:
+                    have_necessary_keys = False
+                else:
+                    if map["point" + str(future_map_location)]["key"]["remove key"] == True:
+                        player["inventory"].remove(choosen_key)
+
+                count += 1
+
+            if not have_necessary_keys:
+                print(" ")
+                text = COLOR_YELLOW + "You don't have the necessary key(s) to enter this locations"
+                print_long_string(text)
+                time.sleep(1.5)
+            if have_necessary_keys:
+                if direction == "north":
+                    player["y"] += 1
+                elif direction == "south":
+                    player["y"] -= 1
+                elif direction == "east":
+                    player["x"] += 1
+                elif direction == "west":
+                    player["x"] -= 1
+
 def print_separator(character):
     count = 0
 
@@ -561,6 +643,35 @@ def print_long_string(text):
     # this is just because at the beginning too a `\n` character gets added
     new_input = new_input[1:]
     print(str(new_input))
+
+def print_dialog(dialog_name):
+    dialog_name = dialog[str(dialog_name)]
+    dialog_len = len(dialog_name["phrases"])
+    count = 0
+    while count < dialog_len:
+        text = str(dialog_name["phrases"][int(count)])
+        print_speech_text_effect(text)
+        count += 1
+    if dialog_name["use actions"] == True:
+        given_items = dialog_name["actions"]["give item"]
+        given_items_len = len(given_items)
+        if "give item" in dialog_name["actions"] and player["inventory slots remaining"] > given_items_len:
+            count = 0
+            while count < given_items_len:
+                selected_item = given_items[count]
+                player["inventory"].append(selected_item)
+                count += 1
+        if "health modification" in dialog_name["actions"]:
+            if "diminution" in dialog_name["health modification"]:
+                player["health"] -= dialog_name["health modification"]["diminution"]
+            if "augmentation" in dialog_name["health modification"]:
+                player["health"] += dialog_name["health modification"]["augmentation"]
+            if "max health" in dialog_name["health modification"]:
+                if "diminution" in dialog_name["health modification"]["max health"]:
+                    player["max health"] -= dialog_name["health modification"]["max health"]["diminution"]
+                if "augmentation" in dialog_name["health modification"]["max health"]:
+                    player["max health"] += dialog_name["health modification"]["max health"]["augmentation"]
+
 
 # gameplay here:
 def run(play):
@@ -783,15 +894,11 @@ def run(play):
 
         # player start dialog
         if player["start dialog"]["heard start dialog"] == False:
-            start_dialog = dialog[player["start dialog"]["dialog"]]
-            start_dialog_len = len(start_dialog["phrases"])
-            count = 0
-            while count < start_dialog_len:
-                text = str(start_dialog["phrases"][int(count)])
-                print_speech_text_effect(text)
-                count += 1
+            print_dialog(player["start dialog"]["dialog"])
             text = '='
             print_separator(text)
+
+            player["start dialog"]["heard start dialog"] = True
 
         is_in_village = False
         is_in_hostel = False
@@ -802,6 +909,12 @@ def run(play):
             choose_rand_news = random.randint(0, ( village_news_len - 1 ))
             choose_rand_news = village_news[int(choose_rand_news)]
             print(choose_rand_news)
+            text = '='
+            print_separator(text)
+        if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
+            dialog_name = map["point" + str(map_location)]["dialog"]
+            print_dialog(dialog_name)
+            player["heard dialogs"].append(map_location)
             text = '='
             print_separator(text)
         if zone[map_zone]["type"] == "village":
@@ -844,7 +957,7 @@ def run(play):
             text = '='
             print_separator(text)
         print("")
-        if "None" not in map["point" + str(map_location)]["item"] and map_location not in player["taken items"]:
+        if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
             map_items = str(map["point" + str(map_location)]["item"])
             map_items = map_items.replace('[', '')
             map_items = map_items.replace(']', '')
@@ -852,7 +965,7 @@ def run(play):
             take_item = "There are these items on the ground: " + map_items
             print(take_item)
             print("")
-        if "None" not in map["point" + str(map_location)]["npc"] and map_location not in player["met npcs"]:
+        if "npc" in map["point" + str(map_location)] and map_location not in player["met npcs"]:
             current_npc = str(map["point" + str(map_location)]["npc"])
             current_npc = current_npc.replace('[', '')
             current_npc = current_npc.replace(']', '')
@@ -971,7 +1084,7 @@ def run(play):
                 os.system('clear')
                 """
 
-        if map["point" + str(map_location)]["enemy"] > 0 and map_location not in player["defeated enemies"]:
+        if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             enemies_remaining = map["point" + str(map_location)]["enemy"]
             already_encountered = False
             while enemies_remaining > 0:
@@ -1020,21 +1133,13 @@ def run(play):
                 print(" ")
                 player["defeated enemies"].append(map_location)
             else:
-                if player["cheat"] < 3:
-                    cheatcode = input("What is the not-die code? ")
-                    if cheatcode == "43590":
-                        player["cheat"] += 1
-                        player["health"] = player["max health"]
-                    else:
-                        player = start_player
-                        play = 0
-                        return play
-                else:
-                    print("You've cheated too much! No more lives!")
-                    time.sleep(1)
-                    player = start_player
-                    play = 0
-                    return play
+                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reseted." + COLOR_RESET_ALL
+                print_long_string(text)
+                finished = input()
+                player = start_player
+                play = 0
+                return play
+
         elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > 0.7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "village":
             enemies_remaining = random.randint(1, 4)
             already_encountered = False
@@ -1083,102 +1188,47 @@ def run(play):
                             player["inventory"].append(choosen_item)
                 print(" ")
             else:
-                if player["cheat"] < 3:
-                    cheatcode = input("What is the not-die code? ")
-                    if cheatcode == "43590":
-                        player["cheat"] += 1
-                        player["health"] = player["max health"]
-                    else:
-                        player = start_player
-                        play = 0
-                        return play
-                else:
-                    print("You've cheated too much! No more lives!")
-                    time.sleep(1)
-                    player = start_player
-                    play = 0
-                    return play
+                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reseted." + COLOR_RESET_ALL
+                print_long_string(text)
+                finished = input()
+                player = start_player
+                play = 0
+                return play
         command = input("> ")
         print(" ")
         if command.lower().startswith('go'):
             print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
         elif command.lower().startswith('n'):
-            for i in range(0, map["coordinate count"]):
-                point_i = map["point" + str(i)]
-                point_x, point_y = point_i["x"], point_i["y"] - 1
-                # print(i, point_x, point_y, player)
-                if point_x == player["x"] and point_y == player["y"]:
-                    future_map_location = i
             if "North" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
-            elif "None" not in map["point" + str(future_map_location)]["key"]["required keys"]:
-                text = '='
-                print_separator(text)
-
-                text = "You need the following key(s) to enter this location, if you decide to use it, you may loose it:"
-                print_long_string(text)
-
-                keys_list = str(map["point" + str(future_map_location)]["key"]["required keys"])
-                keys_list = keys_list.replace("'", '')
-                keys_list = keys_list.replace("[", ' -')
-                keys_list = keys_list.replace("]", '')
-                keys_list = keys_list.replace(", ", '\n -')
-
-                keys_len = len(map["point" + str(future_map_location)]["key"]["required keys"])
-
-                text = '='
-                print_separator(text)
-
-                options = ['Continue', 'Leave']
-                choice = enquiries.choose('', options)
-
-                count = 0
-
-                have_necessary_keys = True
-
-                if choice == 'Continue':
-                    while count < ( keys_len ) and have_necessary_keys == True:
-
-                        choosen_key = map["point" + str(future_map_location)]["key"]["required keys"][int(count)]
-
-                        if choosen_key not in player["inventory"]:
-                            have_necessary_keys = False
-                        else:
-                            if map["point" + str(future_map_location)]["key"]["remove key"] == True:
-                                player["inventory"].remove(choosen_key)
-
-                        count += 1
-
-                    if not have_necessary_keys:
-                        print(" ")
-                        text = COLOR_YELLOW + "You don't have the necessary key(s) to enter this locations"
-                        print_long_string(text)
-                        time.sleep(1.5)
-                    if have_necessary_keys:
-                        player["y"] += 1
-
-                text = '='
-                print_separator(text)
+            elif "key" in map["point" + str(map_location)]:
+                check_for_key("north")
             else:
                 player["y"] += 1
         elif command.lower().startswith('s'):
             if "South" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
+            elif "key" in map["point" + str(map_location)]:
+                check_for_key("south")
             else:
                 player["y"] -= 1
         elif command.lower().startswith('e'):
             if "East" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
+            elif "key" in map["point" + str(map_location)]:
+                check_for_key("east")
             else:
                 player["x"] += 1
         elif command.lower().startswith('w'):
             if "West" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
+            elif "key" in map["point" + str(map_location)]:
+                check_for_key("west")
             else:
                 player["x"] -= 1
         elif command.lower().startswith('d'):
@@ -1422,7 +1472,7 @@ def run(play):
                         player["held item"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Chestplate":
                         player["held chestplate"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Leggins":
+                    elif item[which_item]["type"] == "Armor Piece: Leggings":
                         player["held leggings"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Boots":
                         player["held boots"] = which_item
@@ -1559,16 +1609,17 @@ def run(play):
                 print("You do not have a map.")
                 print(" ")
             finished = input(" ")
-        elif command in map["point" + str(map_location)]["item"]:
-            if command in player["inventory"] and item[command]["type"] == "Utility":
-                print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
-                time.sleep(1.5)
-            elif player["inventory slots remaining"] == 0:
-                print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
-                time.sleep(1.5)
-            else:
-                player["inventory"].append(command)
-                player["taken items"].append(map_location)
+        elif "item" in map["point" + str(map_location)]:
+            if command in map["point" + str(map_location)]["item"]:
+                if command in player["inventory"] and item[command]["type"] == "Utility":
+                    print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
+                    time.sleep(1.5)
+                elif player["inventory slots remaining"] == 0:
+                    print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
+                    time.sleep(1.5)
+                else:
+                    player["inventory"].append(command)
+                    player["taken items"].append(map_location)
         elif command.lower().startswith('q'):
             print(separator)
             play = 0

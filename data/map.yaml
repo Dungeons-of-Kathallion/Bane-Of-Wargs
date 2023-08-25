@@ -8,15 +8,9 @@ point0:
   x: 0
   y: 0
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
+  dialog: test dialog
   item:
-  - Beef
-  enemy: 0
-  npc:
-  - None
+  - Axe
   blocked:
   - South
   - East
@@ -25,31 +19,14 @@ point1:
   x: 0
   y: 1
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
-  enemy: 0
-  npc:
-  - None
   blocked:
   - East
 point2:
   x: -1
   y: 1
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
   enemy: 1
   enemy type: generic
-  npc:
-  - None
   blocked:
   - North
   - West
@@ -58,30 +35,12 @@ point3:
   x: 0
   y: 2
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - Spear
-  enemy: 0
-  npc:
-  - None
   blocked:
   - West
 point4:
   x: 0
   y: 3
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
-  enemy: 0
-  npc:
-  - None
   blocked:
   - North
   - East
@@ -89,16 +48,8 @@ point5:
   x: -1
   y: 3
   map zone: "Kathallion Village"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
   enemy: 3
   enemy type: generic
-  npc:
-  - None
   blocked:
   - North
   - South
@@ -106,17 +57,11 @@ point6:
   x: 1
   y: 2
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
   item:
   - Broken Shield
   - Beef
   enemy: 3
   enemy type: black
-  npc:
-  - None
   blocked:
   - North
   - South
@@ -124,13 +69,6 @@ point7:
   x: 2
   y: 2
   map zone: "Kathallion Plains"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
-  enemy: 0
   npc:
   - Old Man
   blocked:
@@ -141,15 +79,6 @@ point8:
   x: -2
   y: 3
   map zone: "Kathallion Hostel"
-  key:
-    required keys:
-    - None
-    remove key: False
-  item:
-  - None
-  enemy: 0
-  npc:
-  - None
   blocked:
   - North
   - South
