@@ -8,7 +8,7 @@ See [this](https://github.com/lumbar527/Dungeons-of-Kathallion/wiki/Running_the_
 
 ## Python Module Requirements
 
-[enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/).
+[enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/).
 
 ## Progress
 

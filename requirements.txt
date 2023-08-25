@@ -1,5 +1,5 @@
 enquiries
 fade
-gitpython
+GitPython
 colorama
-pyyaml
+PyYaml
