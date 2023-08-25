@@ -144,6 +144,9 @@ while menu:
 
                 with open("data/zone.yaml") as f:
                     zone = yaml.safe_load(f)
+
+                with open("data/dialog.yaml") as f:
+                    dialog = yaml.safe_load(f)
             else:
 
                 what_plugin = preferences["latest preset"]["plugin"]
@@ -176,6 +179,9 @@ while menu:
 
                 with open("plugins/" + what_plugin + "/zone.yaml") as f:
                     zone = yaml.safe_load(f)
+
+                with open("plugins/" + what_plugin + "/dialog.yaml") as f:
+                    dialog = yaml.safe_load(f)
 
             open_save = preferences["latest preset"]["save"]
             save_file = "saves/save_" + open_save + ".yaml"
@@ -231,6 +237,9 @@ while menu:
 
             with open("plugins/" + what_plugin + "/zone.yaml") as f:
                 zone = yaml.safe_load(f)
+
+            with open("plugins/" + what_plugin + "/dialog.yaml") as f:
+                dialog = yaml.safe_load(f)
         else:
             preferences["latest preset"]["type"] = "vanilla"
             preferences["latest preset"]["plugin"] == "none"
@@ -257,6 +266,9 @@ while menu:
 
             with open("data/zone.yaml") as f:
                 zone = yaml.safe_load(f)
+
+            with open("data/dialog.yaml") as f:
+                dialog = yaml.safe_load(f)
 
         if using_latest_preset == False:
             text = "Please select an action:"
@@ -768,6 +780,18 @@ def run(play):
 
         text = '='
         print_separator(text)
+
+        # player start dialog
+        if player["start dialog"]["heard start dialog"] == False:
+            start_dialog = dialog[player["start dialog"]["dialog"]]
+            start_dialog_len = len(start_dialog["phrases"])
+            count = 0
+            while count < start_dialog_len:
+                text = str(start_dialog["phrases"][int(count)])
+                print_speech_text_effect(text)
+                count += 1
+            text = '='
+            print_separator(text)
 
         is_in_village = False
         is_in_hostel = False
