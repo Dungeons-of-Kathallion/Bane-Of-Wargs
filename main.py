@@ -400,6 +400,11 @@ def search(x, y):
         # print(i, point_x, point_y, player)
         if point_x == player["x"] and point_y == player["y"]:
             map_location = i
+            if map_location == None:
+                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: You are in an undefined location. This could have been the result of using or not using a plugin." + COLOR_RESET_ALL)
+                time.sleep(2)
+                os.system('clear')
+                exit(1)
             return map_location
 
 def add_gold(amount):
