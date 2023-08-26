@@ -84,7 +84,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
     critic_ch_diff = player_critic_ch - enemy_critical_chance
 
     # compute percentage of defeat chance
-    defeat_percentage = ( ( ( ( hp_diff / 1.4) - ( agi_diff / 1.2 ) - ( player_prot / 1.1 ) - ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) - ( critic_ch_diff / 0.08 ) ) / ( player_health_cap / 20 ) ) * ( enemies_number / 1.5 ) )
+    defeat_percentage = ( ( ( ( hp_diff / 1.4) - ( agi_diff / 1.2 ) - ( player_prot / 1.1 ) - ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) - ( critic_ch_diff / 0.08 ) ) / ( player_health_cap / 38 ) ) * ( enemies_number / 1.5 ) )
     defeat_percentage = round(defeat_percentage, 0)
     defeat_percentage = int(defeat_percentage)
 
