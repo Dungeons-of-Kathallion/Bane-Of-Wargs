@@ -89,7 +89,9 @@ def print_speech_text_effect(text):
             sys.stdout.flush()
             time.sleep(round(random.uniform(.05, .1), 2))
     else:
-        print(new_input)
+        for character in new_input:
+            sys.stdout.write(character)
+            sys.stdout.flush()
 
 
 def exit_game():
