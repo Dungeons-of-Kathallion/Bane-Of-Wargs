@@ -667,14 +667,15 @@ def print_dialog(current_dialog):
         count += 1
     if current_dialog["use actions"] == True:
         actions = current_dialog["actions"]
-        if "give item" in actions and player["inventory slots remaining"] > given_items_len:
-            given_items = actions["give item"]
-            given_items_len = len(given_items)
-            count = 0
-            while count < given_items_len:
-                selected_item = given_items[count]
-                player["inventory"].append(selected_item)
-                count += 1
+        if "give item" in actions:
+            if player["inventory slots remaining"] > given_items_len:
+                given_items = actions["give item"]
+                given_items_len = len(given_items)
+                count = 0
+                while count < given_items_len:
+                    selected_item = given_items[count]
+                    player["inventory"].append(selected_item)
+                    count += 1
         if "health modification" in actions:
             if "diminution" in actions["health modification"]:
                 player["health"] -= actions["health modification"]["diminution"]
