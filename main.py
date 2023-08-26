@@ -1618,10 +1618,13 @@ def run(play):
                                     time.sleep(.25)
                                     print("Sleeping... zzz", end='\r')
                                     time.sleep(.25)
+                                    player["health"] += random.randint(1, 7)
                                     loading -= 1
                                 day_time = float( float(round(player["elapsed time game days"] + 1, 0)) + .25 )
                                 player["elapsed time game days"] = float( float(round(player["elapsed time game days"] + 1, 0)) + .25 )
                                 continue_hostel_actions = False
+                                if player["health"] > player["max health"]:
+                                    player["health"] = player["max health"]
                             else:
                                 print(COLOR_YELLOW + "You don't own enough gold to sleep here." + COLOR_RESET_ALL)
                     elif choice == 'Buy Drink':
