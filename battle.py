@@ -205,6 +205,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             print_separator(text)
     else:
         print("'" + startup_action + "' is not a valid option")
+        fighting = True
 
 
     print(" ")
