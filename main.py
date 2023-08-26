@@ -83,10 +83,13 @@ def print_speech_text_effect(text):
         if i % 54 == 0:
             new_input += '\n'
         new_input += letter
-    for character in new_input:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(round(random.uniform(.05, .1), 2))
+    if preferences["speed up"] != False:
+        for character in new_input:
+            sys.stdout.write(character)
+            sys.stdout.flush()
+            time.sleep(round(random.uniform(.05, .1), 2))
+    else:
+        print(new_input)
 
 
 def exit_game():
@@ -768,42 +771,43 @@ def generate_random_uuid():
 
 # gameplay here:
 def run(play):
-    print(separator)
-    print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Reserved keys:" + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "N: "+ COLOR_RESET_ALL + "Go north" + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "S: "+ COLOR_RESET_ALL + "Go south" + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "E: " + COLOR_RESET_ALL + "Go east" + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "W: " + COLOR_RESET_ALL + "Go west" + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Access to your diary.")
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items. When in this view, type the name of an item to examine it." + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View mounts. When in this view, type the name of the mount to examine it." + COLOR_RESET_ALL)
-    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit game")
-    print(" ")
-    print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
-    print("If you find an item on the ground, type the name of the item to take it.")
-    print("Some items have special triggers, which will often be stated in the description. Others can only be activated in certain situations, like in combat.")
-    print(separator)
-    print(" ")
+    if preferences["speed up"] != True:
+        print(separator)
+        print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Reserved keys:" + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "N: "+ COLOR_RESET_ALL + "Go north" + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "S: "+ COLOR_RESET_ALL + "Go south" + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "E: " + COLOR_RESET_ALL + "Go east" + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "W: " + COLOR_RESET_ALL + "Go west" + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Access to your diary.")
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items. When in this view, type the name of an item to examine it." + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View mounts. When in this view, type the name of the mount to examine it." + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit game")
+        print(" ")
+        print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
+        print("If you find an item on the ground, type the name of the item to take it.")
+        print("Some items have special triggers, which will often be stated in the description. Others can only be activated in certain situations, like in combat.")
+        print(separator)
+        print(" ")
 
-    loading = 4
-    while loading > 0:
-        print("Loading game... ▅▃▁", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▅▅▃", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▅▅▅", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▃▅▅", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▁▃▅", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▃▅▅", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▅▅▃", end='\r')
-        time.sleep(.15)
-        print("Loading game... ▅▅▁", end='\r')
-        time.sleep(.15)
-        loading -= 1
+        loading = 4
+        while loading > 0:
+            print("Loading game... ▅▃▁", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▅▅▃", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▅▅▅", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▃▅▅", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▁▃▅", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▃▅▅", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▅▅▃", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▅▅▁", end='\r')
+            time.sleep(.15)
+            loading -= 1
 
     # Mapping stuff
 
