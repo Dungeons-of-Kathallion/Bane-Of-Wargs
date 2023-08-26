@@ -1775,17 +1775,16 @@ def run(play):
                 print("You do not have a map.")
                 print(" ")
             finished = input(" ")
-        elif "item" in map["point" + str(map_location)]:
-            if command in map["point" + str(map_location)]["item"]:
-                if command in player["inventory"] and item[command]["type"] == "Utility":
-                    print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
-                    time.sleep(1.5)
-                elif player["inventory slots remaining"] == 0:
-                    print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
-                    time.sleep(1.5)
-                else:
-                    player["inventory"].append(command)
-                    player["taken items"].append(map_location)
+        elif "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
+            if command in player["inventory"] and item[command]["type"] == "Utility":
+                print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
+                time.sleep(1.5)
+            elif player["inventory slots remaining"] == 0:
+                print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
+                time.sleep(1.5)
+            else:
+                player["inventory"].append(command)
+                player["taken items"].append(map_location)
         elif command == "q" or command == "Q":
             print(separator)
             play = 0

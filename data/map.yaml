@@ -3,7 +3,7 @@
 # positive x means east
 # negative "   "   west
 
-coordinate count: 9
+coordinate count: 10
 point0:
   x: 0
   y: 0
@@ -81,7 +81,7 @@ point8:
   blocked:
   - North
   - South
-point 9:
+point9:
   x: -3
   y: 3
   map zone: "Kathallion Warg Stable"
