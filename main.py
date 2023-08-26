@@ -83,7 +83,7 @@ def print_speech_text_effect(text):
         if i % 54 == 0:
             new_input += '\n'
         new_input += letter
-    if preferences["speed up"] != False:
+    if preferences["speed up"] == False:
         for character in new_input:
             sys.stdout.write(character)
             sys.stdout.flush()
