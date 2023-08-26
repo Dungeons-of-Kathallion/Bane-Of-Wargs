@@ -86,7 +86,7 @@ def print_speech_text_effect(text):
     for character in new_input:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(.05)
+        time.sleep(round(random.uniform(.05, .1), 2))
 
 
 def exit_game():
@@ -337,8 +337,9 @@ while menu:
                 with open(save_name_backup, "w") as f:
                     f.write(dumped)
                 save_file = save_name
+                with open(save_file) as f:
+                    player = yaml.safe_load(f)
                 play = 1
-                time.sleep(.5)
                 menu = False
 
     elif choice == 'Manage Saves':
@@ -1701,7 +1702,7 @@ def run(play):
                 print(COLOR_YELLOW + "You cannot find any near hostel." + COLOR_RESET_ALL)
                 time.sleep(1.5)
         elif command.lower().startswith('y'):
-            if "mounts" in player:
+            if "mounts" in player and player["mounts"] != '':
                 text = '='
                 print_separator(text)
                 if "current mount" in player:
@@ -1785,10 +1786,9 @@ def run(play):
                 else:
                     player["inventory"].append(command)
                     player["taken items"].append(map_location)
-        elif command.lower().startswith('q'):
+        elif command == "q" or command == "Q":
             print(separator)
             play = 0
-            return play
         else:
             print("'" + command + "' is not a valid command")
             time.sleep(2)
