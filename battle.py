@@ -166,7 +166,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             print_separator(text)
             fighting = True
     elif startup_action.lower().startswith('f'):
-            pass
+            fighting = True
     elif startup_action.lower().startswith('u'):
         player_inventory = str(player["inventory"])
         player_inventory = player_inventory.replace("'", '')
@@ -412,6 +412,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     sys.stdout.flush()
                     print("\n")
                     player["xp"] += enemy_max * enemy_max_damage / 3
+                    player["mounts"][player["current mount"]]["level"] += round(random.uniform(0.05, 0.50), 3)
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
                     still_playing = False

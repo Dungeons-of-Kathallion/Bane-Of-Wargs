@@ -1,0 +1,10 @@
+Warg:
+  name: Warg
+  plural: Wargs
+  stable:
+    required stable: Warg Stable
+    stable slot usage: 3
+  stats:
+    agility addition: 0.35
+    resistance addition: 0.15
+  description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."

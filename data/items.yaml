@@ -58,7 +58,7 @@ Mace:
 Spear:
   type: "Weapon"
   damage: 7
-  defend: 6
+  defend: 14
   agility: .2
   gold: 8.75
   critical hit chance: .13

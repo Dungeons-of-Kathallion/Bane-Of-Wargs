@@ -147,6 +147,9 @@ while menu:
 
                 with open("data/dialog.yaml") as f:
                     dialog = yaml.safe_load(f)
+
+                with open("data/mounts.yaml") as f:
+                    mounts = yaml.safe_load(f)
             else:
 
                 what_plugin = preferences["latest preset"]["plugin"]
@@ -182,6 +185,9 @@ while menu:
 
                 with open("plugins/" + what_plugin + "/dialog.yaml") as f:
                     dialog = yaml.safe_load(f)
+
+                with open("plugins/" + what_plugin + "/mounts.yaml") as f:
+                    mounts = yaml.safe_load(f)
 
             open_save = preferences["latest preset"]["save"]
             save_file = "saves/save_" + open_save + ".yaml"
@@ -240,6 +246,9 @@ while menu:
 
             with open("plugins/" + what_plugin + "/dialog.yaml") as f:
                 dialog = yaml.safe_load(f)
+
+            with open("plugins/" + what_plugin + "/mounts.yaml") as f:
+                mounts = yaml.safe_load(f)
         else:
             preferences["latest preset"]["type"] = "vanilla"
             preferences["latest preset"]["plugin"] == "none"
@@ -269,6 +278,9 @@ while menu:
 
             with open("data/dialog.yaml") as f:
                 dialog = yaml.safe_load(f)
+
+            with open("data/mounts.yaml") as f:
+                mounts = yaml.safe_load(f)
 
         if using_latest_preset == False:
             text = "Please select an action:"
@@ -746,6 +758,11 @@ def print_dialog(current_dialog):
                 else:
                     player["health"] += drinks[selected_drink]["healing level"]
 
+def generate_random_uuid():
+    import uuid
+    random_uuid = uuid.uuid4()
+    return random_uuid
+
 
 # gameplay here:
 def run(play):
@@ -757,6 +774,7 @@ def run(play):
     print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "W: " + COLOR_RESET_ALL + "Go west" + COLOR_RESET_ALL)
     print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Access to your diary.")
     print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items. When in this view, type the name of an item to examine it." + COLOR_RESET_ALL)
+    print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View mounts. When in this view, type the name of the mount to examine it." + COLOR_RESET_ALL)
     print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit game")
     print(" ")
     print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
@@ -845,8 +863,10 @@ def run(play):
                 count += 1
 
         global_armor_protection = round(global_armor_protection, 2)
+        if player["current mount"] in player["mounts"]:
+            global_armor_protection += player["mounts"][player["current mount"]]["stats"]["resistance addition"]
 
-        player["armor protection"] = global_armor_protection
+        player["armor protection"] = round(global_armor_protection, 2)
 
         # calculate player agility and
         # write it to the save file
@@ -882,7 +902,11 @@ def run(play):
                 count += 1
 
         global_agility = round(global_agility, 2)
-        player["agility"] = global_agility
+
+        if player["current mount"] in player["mounts"]:
+            global_agility += player["mounts"][player["current mount"]]["stats"]["agility addition"]
+
+        player["agility"] = round(global_agility, 2)
 
         # calculate remaining inventory slots
         # and write it to the save files
@@ -1675,6 +1699,70 @@ def run(play):
 
             else:
                 print(COLOR_YELLOW + "You cannot find any near hostel." + COLOR_RESET_ALL)
+                time.sleep(1.5)
+        elif command.lower().startswith('y'):
+            if "mounts" in player:
+                text = '='
+                print_separator(text)
+                if "current mount" in player:
+                    current_mount_uuid = str(player["current mount"])
+                    print("RIDDED MOUNT: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + player["mounts"][current_mount_uuid]["name"] + COLOR_RESET_ALL + " (" + player["mounts"][current_mount_uuid]["mount"] + ")")
+                mounts_list_len = len(player["mounts"])
+                mounts_names_list = []
+                count = 0
+                while count < mounts_list_len:
+                    selected_mount = list(player["mounts"])[count]
+                    selected_mount = str(selected_mount)
+                    mounts_names_list.append(str(player["mounts"][selected_mount]["name"]))
+                    count += 1
+                mounts_names_list_str = str(mounts_names_list)
+                mounts_names_list_str = mounts_names_list_str.replace("'", '')
+                mounts_names_list_str = mounts_names_list_str.replace("[", ' -')
+                mounts_names_list_str = mounts_names_list_str.replace("]", '')
+                mounts_names_list_str = mounts_names_list_str.replace(", ", '\n -')
+                print(" ")
+                print("OWNED MOUNTS:")
+                print(mounts_names_list_str)
+                text = '='
+                print_separator(text)
+                which_mount = input("> ")
+                if which_mount in mounts_names_list:
+                    text = '='
+                    print_separator(text)
+
+                    # get what uuid is related to the mount name entered
+                    mounts_list_len = len(player["mounts"])
+                    count = 0
+                    while count < mounts_list_len:
+                        selected_mount = list(player["mounts"])[count]
+                        selected_mount = str(selected_mount)
+                        if str(player["mounts"][selected_mount]["name"]) == which_mount:
+                            which_mount_data = player["mounts"][selected_mount]
+                        count += 1
+
+                    print("GIVEN NAME: " + which_mount_data["name"])
+                    print("MOUNT: " + mounts[which_mount_data["mount"]]["name"])
+                    print("PLURAL: " + mounts[which_mount_data["mount"]]["plural"])
+                    print(" ")
+
+                    print("STATS:")
+                    print("  LEVEL: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(int(round(which_mount_data["level"], 0))) + COLOR_RESET_ALL)
+                    print("  AGILITY ADDITION: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(which_mount_data["stats"]["agility addition"]) + COLOR_RESET_ALL)
+                    print("  RESISTANCE ADDITION: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(which_mount_data["stats"]["resistance addition"]) + COLOR_RESET_ALL)
+                    print(" ")
+
+                    text = "DESCRIPTION: " + mounts[which_mount_data["mount"]]["description"]
+                    print_long_string(text)
+
+                    text = '='
+                    print_separator(text)
+
+                    finished = input("")
+                else:
+                    print(COLOR_YELLOW + "You don't have any mounts named like that." + COLOR_RESET_ALL)
+                    time.sleep(1.5)
+            else:
+                print(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
                 time.sleep(1.5)
         elif command.lower().startswith('m'):
             if "Map" in player["inventory"]:
