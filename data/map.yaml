@@ -82,4 +82,11 @@ point8:
   blocked:
   - North
   - South
+point 9:
+  x: -3
+  y: 3
+  map zone: "Kathallion Warg Stable"
+  blocked:
+  - North
+  - South
   - West

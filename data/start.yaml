@@ -1,10 +1,11 @@
 cheat: 0
 health: 40
 armor protection: 0.95
+current mount: ''
 agility: 0.8
 gold: 15
 held item: Sword
-held chestplate: Warg Fur
+held chestplate: Wolf Fur
 held boots: Leather Boots
 held leggings: Old Pants
 held shield: " "
@@ -30,7 +31,7 @@ enemies list:
 inventory:
 - Dagger
 - Healing Potion
-- Warg Fur
+- Wolf Fur
 - Leather Boots
 - Old Pants
 - Stretched Bag

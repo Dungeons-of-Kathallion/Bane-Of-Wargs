@@ -183,6 +183,11 @@ Raw Salmon:
   healing level: 2
   gold: 3.2
   description: "A raw salmon may not be the best thing to eat but it's always better than nothing."
+Bread:
+  type: "Food"
+  max bonus: 0
+  healing level: 6
+  gold: 3.4
 # Misc
 Bone:
   type: "Misc"
@@ -204,7 +209,15 @@ Slime:
   type: "Misc"
   gold: 1.2
   description: "While slime may seems useless, it's actually used in many elixirs recipes."
-# Kees
+Hay Bale:
+  type: "Misc"
+  gold: 3.4
+  description: "Hay Bales are the only food that Kathallion horses accepts to eat, with Wheat of course."
+Wheat:
+  type: "Misc"
+  gold: 0.7
+  description: "Wheat are very useful in the Kathallion civilizations. It is used to feed horses, make Hay Bales but mostly, cook bread."
+# Keys
 Warg Key:
   type: "Key"
   description: "A key that opens any warg stable."

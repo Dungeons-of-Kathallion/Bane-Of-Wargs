@@ -1000,13 +1000,13 @@ def run(play):
 
         is_in_village = False
         is_in_hostel = False
-        if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel":
+        if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable":
             print("NEWS:")
             village_news = zone[map_zone]["news"]
             village_news_len = len(village_news)
             choose_rand_news = random.randint(0, ( village_news_len - 1 ))
             choose_rand_news = village_news[int(choose_rand_news)]
-            print(choose_rand_news)
+            print_long_string(choose_rand_news)
             text = '='
             print_separator(text)
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
