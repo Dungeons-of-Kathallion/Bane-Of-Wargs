@@ -129,3 +129,16 @@ Kathallion Warg Stable:
       mounts:
       - Warg
       - Horse
+  map:
+    map raw: " x__________x\n \
+  |  ______  |\n \
+  | I||||||I |\n \
+  |I||----||I|\n \
+  | ||--0-|| |\n \
+  x__________x"
+    map full: " x__________x\n \
+  |  $BROWN______  $WHITE|\n \
+  | $BROWNI||||||I $WHITE|\n \
+  |$BROWNI||----||I$WHITE|\n \
+  | $BROWN||--$GRAY0$BROWN-|| $WHITE|\n \
+  x__________x"
