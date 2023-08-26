@@ -644,33 +644,107 @@ def print_long_string(text):
     new_input = new_input[1:]
     print(str(new_input))
 
-def print_dialog(dialog_name):
-    dialog_name = dialog[str(dialog_name)]
-    dialog_len = len(dialog_name["phrases"])
+def print_dialog(current_dialog):
+    current_dialog = dialog[str(current_dialog)]
+    dialog_len = len(current_dialog["phrases"])
     count = 0
     while count < dialog_len:
-        text = str(dialog_name["phrases"][int(count)])
+        text = str(current_dialog["phrases"][int(count)])
         print_speech_text_effect(text)
         count += 1
-    if dialog_name["use actions"] == True:
-        given_items = dialog_name["actions"]["give item"]
-        given_items_len = len(given_items)
-        if "give item" in dialog_name["actions"] and player["inventory slots remaining"] > given_items_len:
+    if current_dialog["use actions"] == True:
+        actions = current_dialog["actions"]
+        if "give item" in actions and player["inventory slots remaining"] > given_items_len:
+            given_items = actions["give item"]
+            given_items_len = len(given_items)
             count = 0
             while count < given_items_len:
                 selected_item = given_items[count]
                 player["inventory"].append(selected_item)
                 count += 1
-        if "health modification" in dialog_name["actions"]:
-            if "diminution" in dialog_name["health modification"]:
-                player["health"] -= dialog_name["health modification"]["diminution"]
-            if "augmentation" in dialog_name["health modification"]:
-                player["health"] += dialog_name["health modification"]["augmentation"]
-            if "max health" in dialog_name["health modification"]:
-                if "diminution" in dialog_name["health modification"]["max health"]:
-                    player["max health"] -= dialog_name["health modification"]["max health"]["diminution"]
-                if "augmentation" in dialog_name["health modification"]["max health"]:
-                    player["max health"] += dialog_name["health modification"]["max health"]["augmentation"]
+        if "health modification" in actions:
+            if "diminution" in actions["health modification"]:
+                player["health"] -= actions["health modification"]["diminution"]
+            if "augmentation" in actions["health modification"]:
+                player["health"] += actions["health modification"]["augmentation"]
+            if "max health" in actions["health modification"]:
+                if "diminution" in actions["health modification"]["max health"]:
+                    player["max health"] -= actions["health modification"]["max health"]["diminution"]
+                if "augmentation" in actions["health modification"]["max health"]:
+                    player["max health"] += actions["health modification"]["max health"]["augmentation"]
+        if "gold modification" in actions:
+            if "diminution" in actions["gold modification"]:
+                player["gold"] -= actions["gold modification"]["diminution"]
+            if "augmentation" in actions["gold modification"]:
+                player["gold"] += actions["gold modification"]["augmentation"]
+        if "remove item" in actions:
+            removed_items = actions["remove item"]
+            removed_items_len = len(removed_items)
+            count = 0
+            while count < removed_items_len:
+                selected_item = removed_items[count]
+                player["inventory"].remove(selected_item)
+                count += 1
+        if "add to diary" in actions:
+            if "known zones" in actions["add to diary"]:
+                added_visited_zones = actions["add to diary"]["known zones"]
+                added_visited_zones_len = len(added_visited_zones)
+                count = 0
+                while count < added_visited_zones_len:
+                    selected_zone = added_visited_zones[count]
+                    player["visited zones"].append(selected_zone)
+                    count += 1
+            if "known enemies" in actions["add to diary"]:
+                added_known_enemies = actions["add to diary"]["known enemies"]
+                added_known_enemies_len = len(added_known_enemies)
+                count = 0
+                while count < added_known_enemies_len:
+                    selected_enemy = added_known_enemies[count]
+                    player["enemies list"].append(selected_enemy)
+                    count += 1
+            if "known npcs" in actions["add to diary"]:
+                added_known_npcs = actions["add to diary"]["known npcs"]
+                added_known_npcs_len = len(added_known_npcs)
+                count = 0
+                while count < added_known_npcs_len:
+                    selected_npc = added_known_npcs[count]
+                    player["met npcs name"].append(selected_npc)
+                    count += 1
+        if "remove to diary" in actions:
+            if "known zones" in actions["remove to diary"]:
+                removed_visited_zones = actions["remove to diary"]["known zones"]
+                removed_visited_zones_len = len(removed_visited_zones)
+                count = 0
+                while count < removed_visited_zones_len:
+                    selected_zone = removed_visited_zones[count]
+                    player["visited zones"].remove(selected_zone)
+                    count += 1
+            if "known enemies" in actions["remove to diary"]:
+                removed_known_enemies = actions["remove to diary"]["known enemies"]
+                removed_known_enemies_len = len(removed_known_enemies)
+                count = 0
+                while count < removed_known_enemies_len:
+                    selected_enemy = removed_known_npcs[count]
+                    player["enemies list"].remove(selected_enemy)
+                    count += 1
+            if "known npcs" in actions["remove to diary"]:
+                removed_known_npcs = actions["remove to diary"]["known npcs"]
+                removed_known_npcs_len = len(removed_known_npcs)
+                count = 0
+                while count < removed_known_npcs_len:
+                    selected_npc = removed_known_npcs[count]
+                    player["met npcs name"].append(selected_npc)
+                    count += 1
+        if "use drink" in actions:
+            used_drinks = actions["use drink"]
+            used_drinks_len = len(used_drinks)
+            count = 0
+            while count < used_drinks_len:
+                selected_drink = used_drinks_len[count]
+                if drinks[selected_drink]["healing level"] == "max health":
+                    player["health"] = player["max health"]
+                else:
+                    player["health"] += drinks[selected_drink]["healing level"]
 
 
 # gameplay here:
@@ -912,8 +986,8 @@ def run(play):
             text = '='
             print_separator(text)
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
-            dialog_name = map["point" + str(map_location)]["dialog"]
-            print_dialog(dialog_name)
+            current_dialog = map["point" + str(map_location)]["dialog"]
+            print_dialog(current_dialog)
             player["heard dialogs"].append(map_location)
             text = '='
             print_separator(text)

@@ -39,5 +39,12 @@ test dialog:
       - None
       known npcs:
       - None
+    remove to diary:
+      known zones:
+      - None
+      known enemies:
+      - None
+      known npcs:
+      - None
     use drink:
     - None
