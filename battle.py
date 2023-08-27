@@ -298,6 +298,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                 if action.lower().startswith('a'):
                     print(" ")
                     # attack formula
+                    global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
                     enemy_dodge_chance = round(random.uniform(0.10, enemy_agility), 2)
@@ -305,7 +306,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     if enemy_dodge_chance > round(random.uniform(.50, .90), 2):
                         enemy_dodged = True
                         print("Your enemy dodged your attack!")
-                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula:
+                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
                         player_critical_hit = True
                         print("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
@@ -381,7 +382,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     enemy_critical_hit = False
                     player_dodge_chance = round(random.uniform(0.10, player_agility), 2)
                     critical_hit_chance_formula = round(critical_hit_chance / random.uniform(0.03, critical_hit_chance * 2.8), 2)
-                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula:
+                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
                         enemy_critical_hit = True
                         print("Your enemy dealt a critical hit!")
                     elif player_dodge_chance > round(random.uniform(.50, .90), 2):

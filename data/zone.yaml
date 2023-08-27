@@ -70,6 +70,7 @@ Kathallion Hostel:
     - Healing Potion
     - Knight Boots
     - Shield
+    - Bread
   buys:
     items:
     - Broken Shield
@@ -107,6 +108,8 @@ Kathallion Warg Stable:
   type: stable
   cost value: 0.7
   location: 9
+  training gold: 3
+  deposit gold: 0.15
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -120,15 +123,17 @@ Kathallion Warg Stable:
       mounts:
       - Warg
       - Horse
+      drinks:
+      - None
       items:
       - Porkchop
       - Chicken
       - Beef
       - Hay Bale
-    buys:
-      mounts:
-      - Warg
-      - Horse
+      - Bread
+    stables:
+    - Warg Stable
+    - Horse Stable
   map:
     map raw: " x__________x\n \
   |  ______  |\n \

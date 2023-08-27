@@ -171,3 +171,19 @@ Doomed Horror:
   inventory:
   - Wooden Stick
   description: "Doomed Horrors were once men, which are now cursed to anguish in the evil dungeons, roaming them to strike all enemies. They are slow and deal low damages but they have high health."
+# Dragon bosses
+Balrog:
+  plural: "Balrogs"
+  damage:
+    min damage: 3
+    max damage: 17
+    critical hit chance: 0.6
+  health:
+    min spawning health: 45
+    max spawning health: 80
+    max health level: 80
+  agility: .15
+  inventory:
+  - Balrog Horn
+  - Flaming Whip
+  description: "Balrogs are extremely deadly dragons that can produce huge amounts of flame and heat around them. Their weapon is the Flaming Whip, a deadly weapon. Balrogs are one of the most powerful monsters in the world."

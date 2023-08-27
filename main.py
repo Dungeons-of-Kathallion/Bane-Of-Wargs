@@ -783,6 +783,7 @@ def run(play):
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Access to your diary.")
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items. When in this view, type the name of an item to examine it." + COLOR_RESET_ALL)
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View mounts. When in this view, type the name of the mount to examine it." + COLOR_RESET_ALL)
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit game")
         print(" ")
         print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
@@ -824,6 +825,11 @@ def run(play):
 
         # clear text
         os.system('clear')
+
+        # update player ridded mount location:
+        if player["current mount"] in player["mounts"]:
+            map_location = search(player["x"], player["y"])
+            player["mounts"][player["current mount"]]["location"] = "point" + str(map_location)
 
         # calculate day time
         day_time = "PLACEHOLDER" # .25 = morning .50 = day .75 = evening .0 = night
@@ -1008,6 +1014,7 @@ def run(play):
 
         is_in_village = False
         is_in_hostel = False
+        is_in_stable = False
         if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable":
             print("NEWS:")
             village_news = zone[map_zone]["news"]
@@ -1025,6 +1032,58 @@ def run(play):
             print_separator(text)
         if zone[map_zone]["type"] == "village":
             is_in_village = True
+        if zone[map_zone]["type"] == "stable":
+            is_in_stable = True
+            current_stable = zone[map_zone]
+            print(str(current_stable["name"]) + ":")
+            text = current_stable["description"]
+            print_long_string(text)
+            print(" ")
+            print("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["deposit gold"]) + COLOR_RESET_ALL)
+            print("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
+            options = ['Train Mount', '']
+            if "None" not in current_stable["stable"]["sells"]["mounts"]:
+                print("MOUNTS SELLS:")
+                count = 0
+                stable_mounts = current_stable["stable"]["sells"]["mounts"]
+                stable_mounts_len = len(stable_mounts)
+                while count < stable_mounts_len:
+                    current_mount = str(current_stable["stable"]["sells"]["mounts"][int(count)])
+                    print(" -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2)) + COLOR_RESET_ALL)
+                    count += 1
+            if "None" not in current_stable["stable"]["sells"]["items"]:
+                options += ['Buy Item']
+                print("ITEMS SELLS:")
+                count = 0
+                stable_items = current_stable["stable"]["sells"]["items"]
+                stable_items_len = len(stable_items)
+                while count < stable_items_len:
+                    current_mount = str(current_stable["stable"]["sells"]["items"][int(count)])
+                    print(" -" + current_stable["stable"]["sells"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_mount]["gold"] * current_stable["cost value"], 2)) + COLOR_RESET_ALL)
+                    count += 1
+            print(" ")
+            deposited_mounts_num = 0
+            count = 0
+            mounts_list_len = len(player["mounts"])
+            deposited_mounts_names = []
+            while count < mounts_list_len:
+                    selected_mount = list(player["mounts"])[count]
+                    selected_mount = str(selected_mount)
+                    if player["mounts"][selected_mount]["location"] == "point" + str(map_location) and player["mounts"][selected_mount]["is deposited"] == True:
+                        deposited_mounts_num += 1
+                        deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
+                    count += 1
+            deposited_mounts_names = str(deposited_mounts_names)
+            deposited_mounts_names = deposited_mounts_names.replace('[', '(')
+            deposited_mounts_names = deposited_mounts_names.replace(']', COLOR_RESET_ALL + ')')
+            deposited_mounts_names = deposited_mounts_names.replace("'", COLOR_GREEN + COLOR_STYLE_BRIGHT)
+            deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL)
+            if deposited_mounts_num == 0:
+                print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL)
+            else:
+                print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL + " " + deposited_mounts_names)
+            text = '='
+            print_separator(text)
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
             current_hostel = zone[map_zone]
@@ -1160,16 +1219,28 @@ def run(play):
                         player["inventory slots remaining"] -= 1
                         add_gold(str( item[which_item]["gold"] * npcs[current_npc]["cost value"] ))
                         player["inventory"].remove(which_item)
-                        if which_item == player["held item"]:
-                            player["held item"] = " "
-                        if which_item == player["held chestplate"]:
-                            player["held chestplate"] = " "
-                        if which_item == player["held boots"]:
-                            player["held boots"] = " "
-                        if which_item == player["held leggings"]:
-                            player["held leggings"] = " "
-                        if which_item == player["held shield"]:
-                            player["held shield"] = " "
+                        which_item_number_inventory = 0
+                        count = 0
+                        p = True
+                        while p:
+                            if count >= len(player["inventory"]) + 1:
+                                p = False
+                            else:
+                                selected_item = player["inventory"][count - 1]
+                                if str(selected_item) == str(which_item):
+                                    which_item_number_inventory += 1
+                            count += 1
+                        if which_item_number_inventory <= 1:
+                            if which_item == player["held item"]:
+                                player["held item"] = " "
+                            if which_item == player["held chestplate"]:
+                                player["held chestplate"] = " "
+                            if which_item == player["held boots"]:
+                                player["held boots"] = " "
+                            if which_item == player["held leggings"]:
+                                player["held leggings"] = " "
+                            if which_item == player["held shield"]:
+                                player["held shield"] = " "
                     else:
                         text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative or because you don't own that item." + COLOR_RESET_ALL
                         print_long_string(text)
@@ -1524,7 +1595,8 @@ def run(play):
             print_separator(text)
             print("ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(player["armor protection"]) + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + "More it's higher, the less you'll take damages in fights" + COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
             print("AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["agility"]) + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" + COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
-            print("CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[player["held item"]]["critical hit chance"]) + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to deal critical attacks" + COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
+            if player["held item"] != " ":
+                print("CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[player["held item"]]["critical hit chance"]) + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to deal critical attacks" + COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
             print(" ")
             # equipment
             if player["held item"] != " ":
@@ -1597,20 +1669,32 @@ def run(play):
                                 print(" ")
                         else:
                             player["inventory"].remove(which_item)
-                            if which_item == player["held item"]:
-                                player["held item"] = " "
-                            if which_item == player["held chestplate"]:
-                                player["held chestplate"] = " "
-                            if which_item == player["held boots"]:
-                                player["held boots"] = " "
-                            if which_item == player["held leggings"]:
-                                player["held leggings"] = " "
-                            if which_item == player["held shield"]:
-                                player["held shield"] = " "
+                            which_item_number_inventory = 0
+                            count = 0
+                            p = True
+                            while p:
+                                if count >= len(player["inventory"]) + 1:
+                                    p = False
+                                else:
+                                    selected_item = player["inventory"][count - 1]
+                                    if str(selected_item) == str(which_item):
+                                        which_item_number_inventory += 1
+                                count += 1
+                            if which_item_number_inventory <= 1:
+                                if which_item == player["held item"]:
+                                    player["held item"] = " "
+                                if which_item == player["held chestplate"]:
+                                    player["held chestplate"] = " "
+                                if which_item == player["held boots"]:
+                                    player["held boots"] = " "
+                                if which_item == player["held leggings"]:
+                                    player["held leggings"] = " "
+                                if which_item == player["held shield"]:
+                                    player["held shield"] = " "
             else:
                 print(COLOR_YELLOW + "You do not have that item." + COLOR_RESET_ALL)
                 time.sleep(1.5)
-        elif command.lower().startswith('h'):
+        elif command.lower().startswith('z'):
             if zone[map_zone]["type"] == "hostel":
                 text = '='
                 print_separator(text)
@@ -1628,6 +1712,8 @@ def run(play):
                     if choice == 'Sleep':
                         print("Are you sure you want to spend the night here? It will ")
                         ask = input("cost you " + str(zone[map_zone]["sleep gold"]) + " gold (y/n) ")
+                        text = '='
+                        print_separator(text)
                         if ask.lower().startswith('y'):
                             if int(player["gold"]) > int(zone[map_zone]["sleep gold"]):
                                 remove_gold(int(zone[map_zone]["sleep gold"]))
@@ -1689,24 +1775,54 @@ def run(play):
                             player["inventory slots remaining"] -= 1
                             add_gold(str( item[which_item]["gold"] * zone[map_zone]["cost value"] ))
                             player["inventory"].remove(which_item)
-                            if which_item == player["held item"]:
-                                player["held item"] = " "
-                            if which_item == player["held chestplate"]:
-                                player["held chestplate"] = " "
-                            if which_item == player["held boots"]:
-                                player["held boots"] = " "
-                            if which_item == player["held leggings"]:
-                                player["held leggings"] = " "
-                            if which_item == player["held shield"]:
-                                player["held shield"] = " "
+                            which_item_number_inventory = 0
+                            count = 0
+                            p = True
+                            while p:
+                                if count >= len(player["inventory"]) + 1:
+                                    p = False
+                                else:
+                                    selected_item = player["inventory"][count - 1]
+                                    if str(selected_item) == str(which_item):
+                                        which_item_number_inventory += 1
+                                count += 1
+                            if which_item_number_inventory <= 1:
+                                if which_item == player["held item"]:
+                                    player["held item"] = " "
+                                if which_item == player["held chestplate"]:
+                                    player["held chestplate"] = " "
+                                if which_item == player["held boots"]:
+                                    player["held boots"] = " "
+                                if which_item == player["held leggings"]:
+                                    player["held leggings"] = " "
+                                if which_item == player["held shield"]:
+                                    player["held shield"] = " "
                         else:
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative or because you don't own that item." + COLOR_RESET_ALL
                             print_long_string(text)
                     else:
                         continue_hostel_actions = False
-
+            elif zone[map_zone]["type"] == "stable":
+                options = ["Train Mount", "Deposit Mount", "Ride Mount"]
+                if "None" not in zone[map_zone]["stable"]["sells"]["mounts"]:
+                    options += ["Buy Mount"]
+                if "None" not in zone[map_zone]["stable"]["sells"]["drinks"]:
+                    options += ["Buy Drink"]
+                if "None" not in zone[map_zone]["stable"]["sells"]["items"]:
+                    options += ["Buy Item"]
+                options += ["Exit"]
+                active_stable_menu = True
+                text = '='
+                print_separator(text)
+                while active_stable_menu:
+                    action = enquiries.choose('', options)
+                    if action == 'Train Mount':
+                        # get player mounts at that position
+                        pass
+                    else:
+                        active_stable_menu = False
             else:
-                print(COLOR_YELLOW + "You cannot find any near hostel." + COLOR_RESET_ALL)
+                print(COLOR_YELLOW + "You cannot find any near hostel, stable or church." + COLOR_RESET_ALL)
                 time.sleep(1.5)
         elif command.lower().startswith('y'):
             if "mounts" in player and player["mounts"] != '':
@@ -1748,9 +1864,19 @@ def run(play):
                             which_mount_data = player["mounts"][selected_mount]
                         count += 1
 
+                    print_enemy_thumbnail(str(mounts[which_mount_data["mount"]]["name"]))
+                    print(" ")
+
                     print("GIVEN NAME: " + which_mount_data["name"])
                     print("MOUNT: " + mounts[which_mount_data["mount"]]["name"])
                     print("PLURAL: " + mounts[which_mount_data["mount"]]["plural"])
+                    print(" ")
+
+                    which_mount_location = "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map[which_mount_data["location"]]["x"]) + COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map[which_mount_data["location"]]["y"]) + COLOR_RESET_ALL + ")"
+                    print("LOCATION: " + which_mount_location)
+                    if which_mount_data["is deposited"] == True:
+                        print("STABLE: " + str(map[which_mount_data["location"]]["map zone"]))
+                        print("DEPOSITED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(which_mount_data["deposited day"]) + COLOR_RESET_ALL)
                     print(" ")
 
                     print("STATS:")
