@@ -424,7 +424,8 @@ while menu:
 # funcion to search through the map file
 def search(x, y):
     global map_location
-    for i in range(0, map["coordinate count"]):
+    map_point_count = int(len(list(map))) - 1
+    for i in range(0, map_point_count):
         point_i = map["point" + str(i)]
         point_x, point_y = point_i["x"], point_i["y"]
         # print(i, point_x, point_y, player)
@@ -555,29 +556,30 @@ def print_enemy_thumbnail(enemy):
         count += 1
 
 def check_for_key(direction):
+    map_point_count = int(len(list(map))) - 1
     if direction == "north":
-        for i in range(0, map["coordinate count"]):
+        for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"], point_i["y"] - 1
             # print(i, point_x, point_y, player)
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     elif direction == "south":
-        for i in range(0, map["coordinate count"]):
+        for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"], point_i["y"] + 1
             # print(i, point_x, point_y, player)
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     elif direction == "east":
-        for i in range(0, map["coordinate count"]):
+        for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"] - 1, point_i["y"]
             # print(i, point_x, point_y, player)
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     elif direction == "west":
-        for i in range(0, map["coordinate count"]):
+        for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"] + 1, point_i["y"]
             # print(i, point_x, point_y, player)
@@ -1500,6 +1502,7 @@ def run(play):
                     print_separator(text)
 
                     print_enemy_thumbnail(which_enemy)
+                    print(" ")
 
                     print("NAME: " + which_enemy)
 

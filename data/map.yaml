@@ -3,7 +3,6 @@
 # positive x means east
 # negative "   "   west
 
-coordinate count: 10
 point0:
   x: 0
   y: 0
