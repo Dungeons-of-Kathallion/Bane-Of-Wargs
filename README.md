@@ -4,7 +4,10 @@ A text adventure game about exploring a new fantastic world. You can battle mons
 
 ## To Play
 
-![Snap](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/f25cc971-8ec4-41ed-aa94-81458f6a4c0b)
+```
+pip install -r requirements.txt
+python main.py
+```
 
 ## Python Module Requirements
 
