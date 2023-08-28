@@ -1344,7 +1344,7 @@ def run(play):
                 play = 0
                 return play
 
-        elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > 0.7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "village":
+        elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > 0.7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village":
             enemies_remaining = random.randint(1, 4)
             already_encountered = False
             while enemies_remaining > 0:
