@@ -5,8 +5,12 @@ start dialog:
   - "Also, don't forget to explore the map! It is very big. If you're too annoyed with the vanilla plot and items, you can try to find plugins and install them!"
   - "Or even create your own plugin and be creative!"
   use actions: False
+  scene: Title1
 
 test dialog:
+  to display:
+    player attributes:
+    - test
   phrases:
   - "When we were young, the future was so bright"
   - "The old neighborhood was so alive"
@@ -17,8 +21,11 @@ test dialog:
   - "How can one little street swallow so many lives?"
   - "Chances thrown"
   - "Nothing's free"
+  scene: Warg
   use actions: True
   actions:
+    add attributes:
+    - None
     give item:
     - None
     health modification:

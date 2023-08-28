@@ -1,11 +1,11 @@
-           %&%&(&
-      &&&%&&@&@&&%
-  /&%@&&&&&%@&@&&&&
-  &&&%@&&@&#@&&%%%%&&&&
- @&@&#%&%%%&&&&%&@%%@%%&@%
-    &%@@%@@@@%@@@%%#&%&@&@@
-  %,#%@%@   %@@@%@# @&@@&@%@
-        .&  ,@%&   %    %
-       #%#   %%   &@   @%
-      &&    /&*
-          @&&
+           $GRAY%$BROWN&$GRAY%$BROWN&$GRAY($BROWN&$GRAY
+      $BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY%$BROWN&$GRAY$BROWN&$GRAY@$BROWN&$GRAY@$BROWN&$GRAY$BROWN&$GRAY%
+  /$BROWN&$GRAY%@$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY%@$BROWN&$GRAY@$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY
+  $BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY%@$BROWN&$GRAY$BROWN&$GRAY@$BROWN&$GRAY#@$BROWN&$GRAY$BROWN&$GRAY%%%%$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY
+ @$BROWN&$GRAY@$BROWN&$GRAY#%$BROWN&$GRAY%%%$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY$BROWN&$GRAY%$BROWN&$GRAY@%%@%%$BROWN&$GRAY@%
+    $BROWN&$GRAY%@@%@@@@%@@@%%#$BROWN&$GRAY%$BROWN&$GRAY@$BROWN&$GRAY@@
+  %,#%@%@   %@@@%@# @$BROWN&$GRAY@@$BROWN&$GRAY@%@
+        .$BROWN&$GRAY  ,@%$BROWN&$GRAY   %    %
+       #%#   %%   $BROWN&$GRAY@   @%
+      $BROWN&$GRAY$BROWN&$GRAY    /$BROWN&$GRAY*
+          @$BROWN&$GRAY$BROWN&$GRAY$WHITE

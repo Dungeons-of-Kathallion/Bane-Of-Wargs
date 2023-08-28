@@ -1,13 +1,13 @@
-             \                  /
-    _________))                ((__________
-   /.-------./\\    \    /    //\.--------.\
-  //#######//##\\   ))  ((   //##\\########\\
- //#######//###((  ((    ))  ))###\\########\\
-((#######((#####\\  \\  //  //#####))########))
- \##' `###\######\\  \)(/  //######/####' `##/
-  )'    ``#)'  `##\`->oo<-'/##'  `(#''     `(
-          (       ``\`..'/''       )
-                     \""(
+             $RED\                  /
+    $WHITE_________$RED))                (($WHITE__________
+   $YELLOW/$WHITE.-------.$RED/\\$WHITE    $YELLOW\    /$WHITE    $RED//\$WHITE.--------.$YELLOW\
+  $YELLOW//$BLACK#######$WHITE$RED//$BLACK##$WHITE$RED\\$WHITE   $YELLOW))  (($WHITE   $RED//$BLACK##$WHITE$RED\\$BLACK########$WHITE$YELLOW\\$WHITE
+ $YELLOW//$BLACK#######$WHITE$RED//$BLACK###$WHITE$RED(($WHITE  $YELLOW((    ))$WHITE  $RED))$BLACK###$WHITE$RED\\$BLACK########$WHITE$YELLOW\\$WHITE
+$YELLOW(($BLACK#######$WHITE$RED(($BLACK#####$WHITE$RED\\$WHITE  $YELLOW\\  //$WHITE  $RED//$BLACK#####$WHITE$RED))$BLACK########$WHITE$YELLOW))$WHITE
+ \$BLACK##$WHITE' `$BLACK###$WHITE$RED\$BLACK######$WHITE$RED\\$WHITE  $YELLOW\)(/$WHITE  $RED//$BLACK######$WHITE$RED/$BLACK####$WHITE' `$BLACK##$WHITE/
+  )'    ``$BLACK#$WHITE)'  `$BLACK##$WHITE$RED\$WHITE`->$REDoo$WHITE<-'$RED/$BLACK##$WHITE'  `($BLACK#$WHITE''     `(
+          (       ``$RED\`..'/$WHITE''       )
+                     $RED\""(
                       `- )
                       / /
                      ( /\
@@ -16,4 +16,4 @@
                         )
                        /
                       (
-                      `
+                      `$WHITE

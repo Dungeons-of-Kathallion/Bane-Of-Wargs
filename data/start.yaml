@@ -13,6 +13,8 @@ inventory slots: 9
 inventory slots remaining: 4
 elapsed time seconds: 0.
 elapsed time game days: 0.
+attributes:
+- None
 mounts: ''
 start dialog:
   dialog: start dialog

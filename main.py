@@ -424,14 +424,14 @@ while menu:
 # funcion to search through the map file
 def search(x, y):
     global map_location
-    map_point_count = int(len(list(map))) - 1
+    map_point_count = int(len(list(map)))
     for i in range(0, map_point_count):
         point_i = map["point" + str(i)]
         point_x, point_y = point_i["x"], point_i["y"]
         # print(i, point_x, point_y, player)
         if point_x == player["x"] and point_y == player["y"]:
             map_location = i
-            if map_location == None:
+            if map_location == "None":
                 print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: You are in an undefined location. This could have been the result of using or not using a plugin." + COLOR_RESET_ALL)
                 time.sleep(2)
                 os.system('clear')
@@ -667,6 +667,13 @@ def print_long_string(text):
 def print_dialog(current_dialog):
     current_dialog = dialog[str(current_dialog)]
     dialog_len = len(current_dialog["phrases"])
+    if "scene" in current_dialog:
+        if preferences["latest preset"]["type"] == 'vanilla':
+            with open('imgs/' + str(current_dialog["scene"]) + '.txt') as f:
+                print(f.read())
+        else:
+            with open('plugins/' + str(preferences["latest preset"]["plugin"]) + '/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
+                print(f.read())
     count = 0
     while count < dialog_len:
         text = str(current_dialog["phrases"][int(count)])
@@ -675,14 +682,20 @@ def print_dialog(current_dialog):
     if current_dialog["use actions"] == True:
         actions = current_dialog["actions"]
         if "give item" in actions:
-            if player["inventory slots remaining"] > given_items_len:
-                given_items = actions["give item"]
-                given_items_len = len(given_items)
-                count = 0
-                while count < given_items_len:
-                    selected_item = given_items[count]
-                    player["inventory"].append(selected_item)
-                    count += 1
+            given_items = actions["give item"]
+            given_items_len = len(given_items)
+            count = 0
+            while count < given_items_len:
+                selected_item = given_items[count]
+                player["inventory"].append(selected_item)
+                count += 1
+        if "add attributes" in actions:
+            count = 0
+            added_attributes = actions["add attributes"]
+            added_attributes_len = len(added_attributes)
+            while count < added_attributes_len:
+                selected_attribute = added_attributes[count]
+                player["attributes"].append(selected_attribute)
         if "health modification" in actions:
             if "diminution" in actions["health modification"]:
                 player["health"] -= actions["health modification"]["diminution"]
@@ -1028,10 +1041,22 @@ def run(play):
             print_separator(text)
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
             current_dialog = map["point" + str(map_location)]["dialog"]
-            print_dialog(current_dialog)
-            player["heard dialogs"].append(map_location)
-            text = '='
-            print_separator(text)
+            if "to display" in dialog[str(current_dialog)]:
+                if "player attributes" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_attributes = dialog[str(current_dialog)]["to display"]["player attributes"]
+                    required_attributes_len = len(required_attributes)
+                    has_required_attributes = True
+                    while count < required_attributes_len and has_required_attributes == True:
+                        selected_attribute = required_attributes[count]
+                        if selected_attribute not in player["attributes"]:
+                            has_required_attributes = False
+                        count += 1
+            if has_required_attributes:
+                print_dialog(current_dialog)
+                player["heard dialogs"].append(map_location)
+                text = '='
+                print_separator(text)
         if zone[map_zone]["type"] == "village":
             is_in_village = True
         if zone[map_zone]["type"] == "stable":
