@@ -196,6 +196,7 @@ Bread:
   max bonus: 0
   healing level: 6
   gold: 3.4
+  description: "Bread is a great food and energy source for adventurers. It is cheap and full of energy."
 # Misc
 Bone:
   type: "Misc"
