@@ -1670,6 +1670,8 @@ def run(play):
                 print_separator(text)
                 if str(item[which_item]["type"]) == 'Armor Piece: Chestplate' or str(item[which_item]["type"]) == 'Weapon' or str(item[which_item]["type"]) == 'Armor Piece: Leggings' or str(item[which_item]["type"]) == 'Armor Piece: Boots' or str(item[which_item]["type"]) == 'Armor Piece: Shield':
                     options = ['Equip', 'Get Rid', 'Exit']
+                elif str(item[which_item]["type"]) == 'Consumable' or str(item[which_item]["type"]) == 'Food':
+                    options = ['Consume', 'Get Rid', 'Exit']
                 else:
                     options = ['Get Rid', 'Exit']
                 choice = enquiries.choose('', options)
@@ -1684,6 +1686,13 @@ def run(play):
                         player["held boots"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Shield":
                         player["held shield"] = which_item
+                elif choice == 'Consume':
+                    if item[which_item]["healing level"] == "max health":
+                        player["health"] = player["max health"]
+                    else:
+                        player["health"] += item[which_item]["healing level"]
+                        player["max health"] += item[which_item]["max bonus"]
+                    player["inventory"].remove(which_item)
                 elif choice == 'Get Rid':
                     text = "You won't be able to get this item back if your throw it away. Are you sure you want to throw away this item"
                     print_long_string(text)
@@ -1844,9 +1853,30 @@ def run(play):
                 print_separator(text)
                 while active_stable_menu:
                     action = enquiries.choose('', options)
-                    if action == 'Train Mount':
-                        # get player mounts at that position
-                        pass
+                    if action == 'Buy Item':
+                        which_item = input("Which item do you want to buy? ")
+                        if which_item in zone[map_zone]["stable"]["sells"]["items"] and ( item[which_item]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
+                            if player["inventory slots remaining"] > 0:
+                                player["inventory slots remaining"] -= 1
+                                player["inventory"].append(which_item)
+                                remove_gold(str( item[which_item]["gold"] * zone[map_zone]["cost value"] ))
+                            else:
+                                text = COLOR_YELLOW + "You cannot buy that items because it would cause your inventory slots to be negative." + COLOR_RESET_ALL
+                                print_long_string(text)
+                        else:
+                            text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
+                            print_long_string(text)
+                    elif action == 'Buy Drink':
+                        which_drink = input("Which drink do you want to buy? ")
+                        if which_drink in zone[map_zone]["stable"]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
+                            remove_gold(str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ))
+                        else:
+                            text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
+                            print_long_string(text)
+                        if drinks[which_drink]["healing level"] == "max health":
+                            player["health"] = player["max health"]
+                        else:
+                            player["health"] += drinks[which_drink]["healing level"]
                     else:
                         active_stable_menu = False
             else:
