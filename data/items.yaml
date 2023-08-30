@@ -4,9 +4,32 @@ Sword:
   damage: 5
   defend: 6
   agility: .1
-  gold: 2.65
+  gold: 7.65
   critical hit chance: .05
   description: "Your generic sword."
+Broadsword:
+  type: "Weapon"
+  damage: 7
+  defend: 6
+  agility: .04
+  gold: 12.98
+  critical hit chance: .09
+  description: "The Broadsword is a large sword and powerful sword that not anyone can use well."
+Long Sword:
+  type: "Weapon"
+  damage: 6
+  defend: 8
+  agility: .08
+  gold: 13.78
+  critical hit chance: .05
+  description: "A very long sword that is very practical to defend yourself from monsters."
+Rapier:
+  type: "Weapon"
+  damage: 6
+  defend: 7
+  agility: .08
+  critical hit chance: .03
+  description: "A long, thin sword with an elaborate hilt and a flexible blade."
 Bow:
   type: "Weapon"
   damage: 4
