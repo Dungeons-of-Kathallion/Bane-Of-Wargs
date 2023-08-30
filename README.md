@@ -1,6 +1,5 @@
-# Dungeons-of-Kathallion
-
-A text adventure game about exploring a new fantastic world. You can battle monsters, pick up weapons, and discover hidden secrets.
+# Bane Of Wargs
+A python text-game engine with the ability to create mods with anything in it, with no limitation
 
 ## To Play
 
