@@ -8,6 +8,7 @@ import enquiries
 import fade
 import subprocess
 import git
+import readline
 from git import Repo
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
@@ -411,10 +412,14 @@ while menu:
     elif choice == 'Check Update':
         text = "Checking for updates..."
         print_speech_text_effect(text)
-        repo = Repo('.git')
-        assert not repo.bare
-        git = repo.git
-        git.pull()
+        try:
+            repo = Repo('.git')
+            assert not repo.bare
+            git = repo.git
+            git.pull()
+        except:
+            print(COLOR_RED + "ERROR: Could not update repo: somthign went wrong when pulling. Please try to pull the repo manually on the command line" + COLOR_RESET_ALL)
+            time.sleep(5)
         text = "Finished Updating."
         print_speech_text_effect(text)
     else:
@@ -431,12 +436,8 @@ def search(x, y):
         # print(i, point_x, point_y, player)
         if point_x == player["x"] and point_y == player["y"]:
             map_location = i
-            if map_location == "None":
-                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: You are in an undefined location. This could have been the result of using or not using a plugin." + COLOR_RESET_ALL)
-                time.sleep(2)
-                os.system('clear')
-                exit(1)
             return map_location
+
 
 def add_gold(amount):
     player_gold = player["gold"]
@@ -783,6 +784,11 @@ def print_dialog(current_dialog):
 def generate_random_uuid():
     import uuid
     random_uuid = uuid.uuid4()
+    random_uuid = str(random_uuid)
+    random_uuid = random_uuid.replace('UUID', '')
+    random_uuid = random_uuid.replace('(', '')
+    random_uuid = random_uuid.replace(')', '')
+    random_uuid = random_uuid.replace("'", '')
     return random_uuid
 
 
@@ -970,6 +976,13 @@ def run(play):
 
 
         map_location = search(player["x"], player["y"])
+        # check player map location
+        if map_location == None:
+            text = COLOR_RED + COLOR_STYLE_BRIGHT + "FATAL ERROR: You are in an undefined location. This could have been the result of using or not using a plugin. Verify you are using the right plugin for this save or manullay modify your player coordinates in the 'Manage Saves' in the main menu. The game will close in 10 secs." + COLOR_RESET_ALL
+            print_long_string(text)
+            time.sleep(10)
+            os.system('clear')
+            exit(1)
         map_zone = map["point" + str(map_location)]["map zone"]
 
         # add current player location and map
@@ -1008,9 +1021,9 @@ def run(play):
         else:
             print( "                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
         if "East" not in map["point" + str(map_location)]["blocked"]:
-            print("You can go East ►" + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "H: " + COLOR_RESET_ALL + "Enter hostel if you're near one")
+            print("You can go East ►" + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Interact with zone (hostel...)")
         else:
-            print("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "H: " + COLOR_RESET_ALL + "Enter hostel if you're near one")
+            print("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Interact with zone (hostel...)")
         if "West" not in map["point" + str(map_location)]["blocked"]:
             print("You can go West ◄" + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save")
         else:
@@ -1030,7 +1043,8 @@ def run(play):
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
-        if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable":
+        is_in_stable_blacksmith = False
+        if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable" or zone[map_zone]["type"] == "blacksmith":
             print("NEWS:")
             village_news = zone[map_zone]["news"]
             village_news_len = len(village_news)
@@ -1059,6 +1073,68 @@ def run(play):
                 print_separator(text)
         if zone[map_zone]["type"] == "village":
             is_in_village = True
+        if zone[map_zone]["type"] == "blacksmith":
+            is_in_blacksmith = True
+            current_black_smith = zone[map_zone]
+            print(str(current_black_smith["name"]) + ":")
+            text = current_black_smith["description"]
+            print_long_string(text)
+            print("")
+            if "None" not in current_black_smith["blacksmith"]["buys"]:
+                print("WEAPON BUYS:")
+                count = 0
+                weapon_buys = current_black_smith["blacksmith"]["buys"]
+                weapon_buys_len = len(weapon_buys)
+                while count < weapon_buys_len:
+                    current_weapon = str(current_black_smith["blacksmith"]["buys"][int(count)])
+                    print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL)
+                    count += 1
+            if "None" not in current_black_smith["blacksmith"]["orders"]:
+                print("WEAPON ORDERS:")
+                count = 0
+                weapon_orders = current_black_smith["blacksmith"]["orders"]
+                weapon_orders_len = len(weapon_orders)
+                while count < weapon_orders_len:
+                    """
+                    selected_mount = list(player["mounts"])[count]
+                    selected_mount = str(selected_mount)
+                    mounts_names_list.append(str(player["mounts"][selected_mount]["name"]))
+                    """
+                    current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
+                    current_weapon_materials = current_black_smith["blacksmith"]["orders"][current_weapon]["needed materials"]
+                    count2 = 0
+                    global_current_weapon_materials = []
+                    current_weapon_materials_num = len(current_weapon_materials)
+                    while count2 < current_weapon_materials_num:
+                        current_material = current_weapon_materials[count2]
+
+                        global_current_weapon_materials += [current_material]
+
+                        count2 += 1
+
+                    count2 = 0
+                    count3 = 0
+
+                    while count2 < len(global_current_weapon_materials):
+                        current_material = global_current_weapon_materials[count2]
+                        current_material_number = str(global_current_weapon_materials.count(current_material))
+
+                        if global_current_weapon_materials.count(current_material) > 1:
+                            while count3 < global_current_weapon_materials.count(current_material):
+                                global_current_weapon_materials.remove(current_material)
+                                count3 += 1
+                            global_current_weapon_materials = [sub.replace(current_material, current_material + "X" + current_material_number) for sub in global_current_weapon_materials]
+
+                        count2 += 1
+
+                    global_current_weapon_materials = str(global_current_weapon_materials)
+                    global_current_weapon_materials = global_current_weapon_materials.replace("'", '')
+                    global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
+                    global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
+                    print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + global_current_weapon_materials + COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
+                    count += 1
+            text = '='
+            print_separator(text)
         if zone[map_zone]["type"] == "stable":
             is_in_stable = True
             current_stable = zone[map_zone]
@@ -1220,13 +1296,13 @@ def run(play):
                     which_drink = input("Which drink do you want to buy from him? ")
                     if which_drink in npcs[current_npc]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
                         remove_gold(str( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ))
+                        if drinks[which_drink]["healing level"] == "max health":
+                            player["health"] = player["max health"]
+                        else:
+                            player["health"] += drinks[which_drink]["healing level"]
                     else:
                         text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
                         print_long_string(text)
-                    if drinks[which_drink]["healing level"] == "max health":
-                        player["health"] = player["max health"]
-                    else:
-                        player["health"] += drinks[which_drink]["healing level"]
                 elif choice == 'Buy Item':
                     which_item = input("Which item do you want to buy from him? ")
                     if which_item in npcs[current_npc]["sells"]["items"] and ( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
@@ -1344,7 +1420,7 @@ def run(play):
                 play = 0
                 return play
 
-        elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > 0.7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village":
+        elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > 0.7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village" and zone[map_zone]["type"] != "blacksmith":
             enemies_remaining = random.randint(1, 4)
             already_encountered = False
             while enemies_remaining > 0:
@@ -1461,14 +1537,26 @@ def run(play):
                     print_zone_map_alone(which_zone)
                     print("NAME: " + zone[which_zone]["name"])
                     if zone[which_zone]["type"] == "village":
+                        village_point = zone[which_zone]["location"]
+                        village_coordinates = "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(village_point)]["x"]) + COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(village_point)]["y"]) + COLOR_RESET_ALL + ")"
+                        print("LOCATION: " + village_coordinates)
                         content_hostels = str(zone[which_zone]["content"]["hostels"])
                         content_hostels = content_hostels.replace('[', '')
                         content_hostels = content_hostels.replace(']', '')
                         content_hostels = content_hostels.replace("'", '')
                         text = "HOSTELS: " + content_hostels
                         print_long_string(text)
+                        content_blacksmiths = str(zone[which_zone]["content"]["blacksmiths"])
+                        content_blacksmiths = content_blacksmiths.replace('[', '')
+                        content_blacksmiths = content_blacksmiths.replace(']', '')
+                        content_blacksmiths = content_blacksmiths.replace("'", '')
+                        text = "BLACKSMITHS: " + content_blacksmiths
+                        print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
+                        hostel_point = zone[which_zone]["location"]
+                        hostel_coordinates = "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(hostel_point)]["x"]) + COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(hostel_point)]["y"]) + COLOR_RESET_ALL + ")"
+                        print("LOCATION: " + hostel_coordinates)
                         print("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_hostel["sleep gold"]) + COLOR_RESET_ALL)
                         if "None" not in current_hostel["sells"]["drinks"]:
                             print("DRINKS SELLS:")
@@ -1496,6 +1584,106 @@ def run(play):
                             while count < hostel_items_len:
                                 current_item = str(current_hostel["buys"]["items"][int(count)])
                                 print(" -" + current_hostel["buys"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) + COLOR_RESET_ALL)
+                                count += 1
+                    elif zone[which_zone]["type"] == "stable":
+                        current_stable = zone[which_zone]
+                        stable_point = zone[which_zone]["location"]
+                        stable_coordinates = "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(stable_point)]["x"]) + COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(stable_point)]["y"]) + COLOR_RESET_ALL + ")"
+                        print("LOCATION: " + stable_coordinates)
+                        print("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["deposit gold"]) + COLOR_RESET_ALL)
+                        print("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
+                        options = ['Train Mount', '']
+                        if "None" not in current_stable["stable"]["sells"]["mounts"]:
+                            print("MOUNTS SELLS:")
+                            count = 0
+                            stable_mounts = current_stable["stable"]["sells"]["mounts"]
+                            stable_mounts_len = len(stable_mounts)
+                            while count < stable_mounts_len:
+                                current_mount = str(current_stable["stable"]["sells"]["mounts"][int(count)])
+                                print(" -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2)) + COLOR_RESET_ALL)
+                                count += 1
+                        if "None" not in current_stable["stable"]["sells"]["items"]:
+                            options += ['Buy Item']
+                            print("ITEMS SELLS:")
+                            count = 0
+                            stable_items = current_stable["stable"]["sells"]["items"]
+                            stable_items_len = len(stable_items)
+                            while count < stable_items_len:
+                                current_mount = str(current_stable["stable"]["sells"]["items"][int(count)])
+                                print(" -" + current_stable["stable"]["sells"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_mount]["gold"] * current_stable["cost value"], 2)) + COLOR_RESET_ALL)
+                                count += 1
+                        deposited_mounts_num = 0
+                        count = 0
+                        mounts_list_len = len(player["mounts"])
+                        deposited_mounts_names = []
+                        while count < mounts_list_len:
+                                selected_mount = list(player["mounts"])[count]
+                                selected_mount = str(selected_mount)
+                                if player["mounts"][selected_mount]["location"] == "point" + str(stable_point) and player["mounts"][selected_mount]["is deposited"] == True:
+                                    deposited_mounts_num += 1
+                                    deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
+                                count += 1
+                        deposited_mounts_names = str(deposited_mounts_names)
+                        deposited_mounts_names = deposited_mounts_names.replace('[', '(')
+                        deposited_mounts_names = deposited_mounts_names.replace(']', COLOR_RESET_ALL + ')')
+                        deposited_mounts_names = deposited_mounts_names.replace("'", COLOR_GREEN + COLOR_STYLE_BRIGHT)
+                        deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL)
+                        if deposited_mounts_num == 0:
+                            print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL)
+                        else:
+                            print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL + " " + deposited_mounts_names)
+                    elif zone[which_zone]["type"] == "blacksmith":
+                        current_black_smith = zone[which_zone]
+                        blacksmith_point = zone[which_zone]["location"]
+                        black_smith_coordinates = "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(blacksmith_point)]["x"]) + COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(blacksmith_point)]["y"]) + COLOR_RESET_ALL + ")"
+                        print("LOCATION: " + black_smith_coordinates)
+                        if "None" not in current_black_smith["blacksmith"]["buys"]:
+                            print("WEAPON BUYS:")
+                            count = 0
+                            weapon_buys = current_black_smith["blacksmith"]["buys"]
+                            weapon_buys_len = len(weapon_buys)
+                            while count < weapon_buys_len:
+                                current_weapon = str(current_black_smith["blacksmith"]["buys"][int(count)])
+                                print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL)
+                                count += 1
+                        if "None" not in current_black_smith["blacksmith"]["orders"]:
+                            print("WEAPON ORDERS:")
+                            count = 0
+                            weapon_orders = current_black_smith["blacksmith"]["orders"]
+                            weapon_orders_len = len(weapon_orders)
+                            while count < weapon_orders_len:
+                                current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
+                                current_weapon_materials = current_black_smith["blacksmith"]["orders"][current_weapon]["needed materials"]
+                                count2 = 0
+                                global_current_weapon_materials = []
+                                current_weapon_materials_num = len(current_weapon_materials)
+                                while count2 < current_weapon_materials_num:
+                                    current_material = current_weapon_materials[count2]
+
+                                    global_current_weapon_materials += [current_material]
+
+                                    count2 += 1
+
+                                count2 = 0
+                                count3 = 0
+
+                                while count2 < len(global_current_weapon_materials):
+                                    current_material = global_current_weapon_materials[count2]
+                                    current_material_number = str(global_current_weapon_materials.count(current_material))
+
+                                    if global_current_weapon_materials.count(current_material) > 1:
+                                        while count3 < global_current_weapon_materials.count(current_material):
+                                            global_current_weapon_materials.remove(current_material)
+                                            count3 += 1
+                                        global_current_weapon_materials = [sub.replace(current_material, current_material + "X" + current_material_number) for sub in global_current_weapon_materials]
+
+                                    count2 += 1
+
+                                global_current_weapon_materials = str(global_current_weapon_materials)
+                                global_current_weapon_materials = global_current_weapon_materials.replace("'", '')
+                                global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
+                                global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
+                                print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + global_current_weapon_materials + COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
                                 count += 1
                     text = "DESCRIPTION: " + zone[which_zone]["description"]
                     print_long_string(text)
@@ -1657,8 +1845,12 @@ def run(play):
                 text = "DESCRIPTION: " + item[which_item]["description"]
                 print_long_string(text)
                 if item[which_item]["type"] == "Armor Piece: Chestplate" or item[which_item]["type"] == "Armor Piece: Boots" or item[which_item]["type"] == "Armor Piece: Leggings" or item[which_item]["type"] == "Armor Piece: Shield":
-                    print("             Armor pieces can protect you in fights, more the armor protection is higher, the more it protects you.")
+                    text = "             Armor pieces can protect you in fights, more the armor protection is higher, the more it protects you."
+                    print_long_string(text)
                     print("ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(item[which_item]["armor protection"]) + COLOR_RESET_ALL)
+                if item[which_item]["type"] == "Metal":
+                    text = "              Metals are items that you buy in village forges that you often use to order weapons in blacksmith."
+                    print_long_string(text)
                 if item[which_item]["type"] == "Weapon":
                     print("DAMAGE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["damage"]) + COLOR_RESET_ALL)
                     print("DEFENSE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["defend"]) + COLOR_RESET_ALL)
@@ -1786,13 +1978,13 @@ def run(play):
                         which_drink = input("Which drink do you want to buy? ")
                         if which_drink in zone[map_zone]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             remove_gold(str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ))
+                            if drinks[which_drink]["healing level"] == "max health":
+                                player["health"] = player["max health"]
+                            else:
+                                player["health"] += drinks[which_drink]["healing level"]
                         else:
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
                             print_long_string(text)
-                        if drinks[which_drink]["healing level"] == "max health":
-                            player["health"] = player["max health"]
-                        else:
-                            player["health"] += drinks[which_drink]["healing level"]
                     elif choice == 'Buy Item':
                         which_item = input("Which item do you want to buy? ")
                         if which_item in zone[map_zone]["sells"]["items"] and ( item[which_item]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
@@ -1870,17 +2062,144 @@ def run(play):
                         which_drink = input("Which drink do you want to buy? ")
                         if which_drink in zone[map_zone]["stable"]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             remove_gold(str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ))
+                            if drinks[which_drink]["healing level"] == "max health":
+                                player["health"] = player["max health"]
+                            else:
+                                player["health"] += drinks[which_drink]["healing level"]
                         else:
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
                             print_long_string(text)
-                        if drinks[which_drink]["healing level"] == "max health":
-                            player["health"] = player["max health"]
-                        else:
-                            player["health"] += drinks[which_drink]["healing level"]
                     else:
                         active_stable_menu = False
+            elif zone[map_zone]["type"] == "blacksmith":
+                text = '='
+                print_separator(text)
+
+                options = ['Sell Weapon', 'Order Weapon', 'Check Order', 'Exit']
+                continue_blacksmith_actions = True
+                while continue_blacksmith_actions:
+                    action = enquiries.choose('', options)
+                    if action == 'Sell Weapon':
+                        which_weapon = input("Which weapon do you want to sell? ")
+                        if which_weapon in zone[map_zone]["blacksmith"]["buys"] and which_weapon in player["inventory"]:
+                            add_gold(str( item[which_weapon]["gold"] * zone[map_zone]["cost value"] ))
+                            player["inventory"].remove(which_weapon)
+                        else:
+                            text = COLOR_YELLOW + "You cannot sell that weapon because you dont own any of that weapon." + COLOR_RESET_ALL
+                            print_long_string(text)
+                    elif action == 'Order Weapon':
+                        which_weapon = input("Which weapon do you want to order? ")
+                        if which_weapon in zone[map_zone]["blacksmith"]["orders"] and player["gold"] > zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]:
+                            required_items = False
+                            count = 0
+                            required_items_number = 0
+                            fake_player_inventory = player["inventory"]
+                            while count < len(fake_player_inventory):
+                                selected_item = fake_player_inventory[count]
+                                if selected_item in zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"]:
+                                    required_items_number += 1
+                                count += 1
+                            if required_items_number == len(zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"]):
+                                required_items = True
+                            if required_items == True:
+                                remove_gold(str( item[which_weapon]["gold"] * zone[map_zone]["cost value"] ))
+                                count = 0
+                                remaining_items_to_remove = len(zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"])
+                                while count < len(player["inventory"]) and remaining_items_to_remove != 0:
+                                    selected_item = zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"][count]
+                                    player["inventory"].remove(selected_item)
+                                    remaining_items_to_remove -= 1
+                                    count += 1
+                                order_uuid = generate_random_uuid()
+                                order_dict = {
+                                    "paid gold": zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"],
+                                    "ordered weapon": which_weapon,
+                                    "ordered day": player["elapsed time game days"],
+                                    "ordered blacksmith": zone[map_zone]["name"],
+                                    "time needed": zone[map_zone]["blacksmith"]["orders"][which_weapon]["time needed"],
+                                    "has taken back order": "false"
+                                }
+                                player["orders"][order_uuid] = order_dict
+                                text = "You'll be able to get your finished order in " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(zone[map_zone]["blacksmith"]["orders"][which_weapon]["time needed"]) + COLOR_RESET_ALL + " days."
+                                print_long_string(text)
+                            else:
+                                text = COLOR_YELLOW + "You cannot order that weapon because you dont have the necessary items." + COLOR_RESET_ALL
+                                print_long_string(text)
+                        else:
+                            text = COLOR_YELLOW + "You cannot order that weapon because you dont own enough money." + COLOR_RESET_ALL
+                            print_long_string(text)
+                    elif action == 'Check Order':
+                        player_orders = player["orders"]
+                        player_orders_numbers = len(list(player_orders))
+                        player_orders_to_collect = []
+                        player_orders_number = []
+                        count = 0
+                        while count < player_orders_numbers:
+                            skip = False
+                            selected_order_name = list(player_orders)[count]
+                            if selected_order_name == "None":
+                                skip = True
+                            if not skip:
+                                selected_order = player["orders"][selected_order_name]
+                                try:
+                                    ordered_blacksmith = selected_order["ordered blacksmith"]
+                                    ordered_weapon = selected_order["ordered weapon"]
+                                except:
+                                    print(ordered_blacksmith, ordered_weapon)
+                                if ordered_blacksmith == zone[map_zone]["name"]:
+                                    ordered_weapon_syntax = ordered_weapon + " (" + str(count) + ")"
+                                    player_orders_to_collect += [ordered_weapon_syntax]
+                                    player_orders_number += [str(count)]
+                            count += 1
+                        player_orders_to_collect = str(player_orders_to_collect)
+                        player_orders_to_collect = player_orders_to_collect.replace("'", '')
+                        player_orders_to_collect = player_orders_to_collect.replace("[", ' -')
+                        player_orders_to_collect = player_orders_to_collect.replace("]", '')
+                        player_orders_to_collect = player_orders_to_collect.replace(", ", '\n -')
+                        print("ORDERS:")
+                        print(player_orders_to_collect)
+                        text = '='
+                        print_separator(text)
+                        which_order = input("> ")
+                        if which_order in player_orders_number:
+                            current_order_uuid = str(list(player["orders"])[int(which_order)])
+                            text = '='
+                            print_separator(text)
+
+                            time_left = round(player["orders"][current_order_uuid]["ordered day"] + player["orders"][current_order_uuid]["time needed"] - player["elapsed time game days"], 1)
+                            if time_left <= 0:
+                                time_left = "READY TO COLLECT"
+                            print("ORDERED WEAPON: " + COLOR_RED + str(player["orders"][current_order_uuid]["ordered weapon"]) + COLOR_RESET_ALL)
+                            print("PAID GOLD: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(player["orders"][current_order_uuid]["paid gold"], 1)) + COLOR_RESET_ALL)
+                            print("ORDERED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(round(player["orders"][current_order_uuid]["ordered day"], 1)) + COLOR_RESET_ALL)
+                            print("TIME LEFT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(time_left) + COLOR_RESET_ALL)
+
+                            text = '='
+                            print_separator(text)
+                            options_order = ['Cancel Order']
+                            if time_left == "READY TO COLLECT":
+                                options_order += ['Collect Order']
+                            options_order += ['Exit']
+                            action = enquiries.choose('', options_order)
+                            if action == 'Cancel Order':
+                                text = "Are you sure you want to cancel this orders? You will receive 75% of the gold you paid and you won't be able"
+                                print_long_string(text)
+                                ask =input(" to get your given items back. (y/n)")
+                                if ask.lower().startswith('y'):
+                                    # give player 75% of paid gold
+                                    add_gold(player["orders"][current_order_uuid]["paid gold"] * ( 75 / 100 ))
+                                    # remove order from player orders
+                                    player["orders"].pop(current_order_uuid)
+                            if action == 'Collect Order':
+                                player["inventory"].append(str(player["orders"][current_order_uuid]["ordered weapon"]))
+                                # remove order from player orders
+                                player["orders"].pop(current_order_uuid)
+                        else:
+                            print(COLOR_YELLOW + "You don't have this order currently at this place." + COLOR_RESET_ALL)
+                    else:
+                        continue_blacksmith_actions = False
             else:
-                print(COLOR_YELLOW + "You cannot find any near hostel, stable or church." + COLOR_RESET_ALL)
+                print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith or church." + COLOR_RESET_ALL)
                 time.sleep(1.5)
         elif command.lower().startswith('y'):
             if "mounts" in player and player["mounts"] != '':

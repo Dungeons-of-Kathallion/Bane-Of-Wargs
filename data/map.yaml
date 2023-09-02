@@ -87,4 +87,11 @@ point9:
   blocked:
   - North
   - South
+point10:
+  x: -4
+  y: 3
+  map zone: "James Blacksmith"
+  blocked:
+  - North
+  - South
   - West

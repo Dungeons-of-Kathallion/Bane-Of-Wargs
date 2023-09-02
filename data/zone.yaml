@@ -15,10 +15,12 @@ Kathallion Plains:
   |,,,_,,o,_,|\n \
   |o_,,,_,,,,|\n \
   x__________x"
+
 Kathallion Village:
   name: "Kathallion Village"
   description: "The village in the plains of Kathallion."
   type: village
+  location: 5
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
@@ -41,7 +43,9 @@ Kathallion Village:
   x__________x"
   content:
     hostels:
-      - Kathallion Hostel
+    - Kathallion Hostel
+    blacksmiths:
+    - James Blacksmith
 
 Kathallion Hostel:
   name: "Kathallion Hostel"
@@ -102,6 +106,65 @@ Kathallion Hostel:
   |$BROWNI||----||I$WHITE|\n \
   | $BROWN||--$GRAY0$BROWN-|| $WHITE|\n \
   x__________x"
+
+James Blacksmith:
+  name: "James Blacksmith"
+  type: blacksmith
+  cost value: 1
+  location: 10
+  description: "Welcome to James Blacksmith! You can here sell metals to make money, but metals and order many type of swords!"
+  news:
+  - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
+  - "You should checkout the hostel in the village! They sell items for great prices!"
+  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
+  - "..."
+  - "Hey I'm Jo... Ooh, You don't care..."
+  map:
+    map raw: " x__________x\n \
+  |  * *  *  |\n \
+  | ______0__|\n \
+  | (((((()))|\n \
+  | ((((I-I))|\n \
+  x__________x"
+    map full: " x__________x\n \
+  |  $PURPLE* *  *  $WHITE|\n \
+  | $BLUE______$GRAY0$BLUE__$WHITE|\n \
+  | $BLUE(((((()))$WHITE|\n \
+  | $BLUE(((($GRAYI-I$BLUE))$WHITE|\n \
+  x__________x"
+  blacksmith:
+    buys:
+    - Sword
+    - Long Sword
+    - Spear
+    - Axe
+    orders:
+      Sword:
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Wooden Stick
+        gold: 3.4
+        time needed: 2.7
+      Spear:
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Raw Iron
+        - Wooden Stick
+        - Bone
+        gold: 5.7
+        time needed: 3.7
+      Broadsword:
+        needed materials:
+        - Raw Silver
+        - Raw Iron
+        - Raw Iron
+        - Wooden Stick
+        - Bone
+        gold: 8.6
+        time needed: 4.7
 
 Kathallion Warg Stable:
   name: "Kathallion Warg Stable"

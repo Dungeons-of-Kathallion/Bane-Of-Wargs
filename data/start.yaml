@@ -15,7 +15,10 @@ elapsed time seconds: 0.
 elapsed time game days: 0.
 attributes:
 - None
-mounts: ''
+orders:
+  None: none
+mounts:
+  None: none
 start dialog:
   dialog: start dialog
   heard start dialog: False
