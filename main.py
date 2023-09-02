@@ -106,6 +106,13 @@ menu = True
 
 # main menu start
 while menu:
+    check_file_preferences = os.path.isfile("preferences.yaml")
+    if check_file_preferences == False:
+        with open("default preferences.yaml") as f:
+            default_preferences = yaml.safe_load(f)
+            dumped = yaml.dump(default_preferences)
+        with open("preferences.yaml", "w") as f:
+            f.write(dumped)
     with open('preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
     # try to update game
