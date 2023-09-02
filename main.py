@@ -108,7 +108,16 @@ menu = True
 while menu:
     with open('preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
-    time.sleep(.5)
+    # try to update game
+    if preferences["auto update"]:
+        try:
+            repo = Repo('.git')
+            assert not repo.bare
+            git = repo.git
+            git.pull()
+        except:
+            pass
+    else: time.sleep(.5)
     os.system('clear')
     print_title()
 
@@ -418,7 +427,7 @@ while menu:
             git = repo.git
             git.pull()
         except:
-            print(COLOR_RED + "ERROR: Could not update repo: somthign went wrong when pulling. Please try to pull the repo manually on the command line" + COLOR_RESET_ALL)
+            print(COLOR_RED + "ERROR: Could not update repo: somthing went wrong when pulling. Please try to pull the repo manually on the command line" + COLOR_RESET_ALL)
             time.sleep(5)
         text = "Finished Updating."
         print_speech_text_effect(text)
