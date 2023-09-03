@@ -867,6 +867,8 @@ def detect_weapon_next_upgrade_items(item_name):
     # get next weapon upgrade needed items
     if weapon_next_upgrade_name != None:
         weapon_next_upgrade_items = item[str(weapon_next_upgrade_name)]["for this upgrade"]
+    else:
+        weapon_next_upgrade_items = "None"
 
     # format so that for example: Raw Iron, Raw Iron become Raw IronX2
     count = 0
