@@ -123,15 +123,15 @@ James Blacksmith:
   map:
     map raw: " x__________x\n \
   |  * *  *  |\n \
-  | ______0__|\n \
-  | (((((()))|\n \
-  | ((((I-I))|\n \
+  |_______0__|\n \
+  |((((((()))|\n \
+  |(((((I-I))|\n \
   x__________x"
     map full: " x__________x\n \
   |  $PURPLE* *  *  $WHITE|\n \
-  | $BLUE______$GRAY0$BLUE__$WHITE|\n \
-  | $BLUE(((((()))$WHITE|\n \
-  | $BLUE(((($GRAYI-I$BLUE))$WHITE|\n \
+  |$BLUE_______$GRAY0$BLUE__$WHITE|\n \
+  |$BLUE((((((()))$WHITE|\n \
+  |$BLUE((((($GRAYI-I$BLUE))$WHITE|\n \
   x__________x"
   blacksmith:
     buys:
@@ -139,6 +139,10 @@ James Blacksmith:
     - Long Sword
     - Spear
     - Axe
+    upgrades:
+      Broadsword:
+        time needed: 2.7
+        gold: 7.9
     orders:
       Sword:
         needed materials:
