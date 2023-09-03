@@ -807,6 +807,91 @@ def generate_random_uuid():
     random_uuid = random_uuid.replace("'", '')
     return random_uuid
 
+def check_for_item(item_name):
+    item_exist = False
+    if str(item_name) in list(item):
+        item_exist = True
+    return item_exist
+
+def check_weapon_max_upgrade(item_name):
+    weapon_next_upgrade_name = str(item_name)
+    item_data = item[item_name]
+    further_upgrade = True
+
+    while further_upgrade:
+        item_data = item[weapon_next_upgrade_name]
+        # get logical weapon new upgrade name
+        weapon_already_upgraded = False
+        if "(" in str(item_name):
+            weapon_already_upgraded = True
+
+        if not weapon_already_upgraded:
+            weapon_next_upgrade_name = str(item_name), "(1)"
+        else:
+            weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
+
+        # check if the next upgrade actually exist
+        item_upgrade_exist = check_for_item(weapon_next_upgrade_name)
+        if not item_upgrade_exist:
+            further_upgrade = False
+
+    # correct max upgrade count
+    weapon_next_upgrade_name_count = weapon_next_upgrade_name
+    listOfWords = weapon_next_upgrade_name_count.split("(", 1)
+    if len(listOfWords) > 0:
+        weapon_next_upgrade_name_count = listOfWords[1]
+    weapon_next_upgrade_name_count = int(weapon_next_upgrade_name_count.replace(")", ""))
+    weapon_next_upgrade_name_count -= 1
+
+    return weapon_next_upgrade_name_count
+
+def detect_weapon_next_upgrade_items(item_name):
+    weapon_next_upgrade_name = str(item_name)
+    item_data = item[item_name]
+    weapon_already_upgraded = False
+
+    # get logical weapon new upgrade name
+    if "(" in str(item_name):
+        weapon_already_upgraded = True
+
+    if not weapon_already_upgraded:
+        weapon_next_upgrade_name = str(item_name), "(1)"
+    else:
+        weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
+
+    # check if the next upgrade actually exist
+    item_upgrade_exist = check_for_item(weapon_next_upgrade_name)
+    if not item_upgrade_exist:
+        weapon_next_upgrade_name = None
+
+    # get next weapon upgrade needed items
+    if weapon_next_upgrade_name != None:
+        weapon_next_upgrade_items = item[str(weapon_next_upgrade_name)]["for this upgrade"]
+
+    # format so that for example: Raw Iron, Raw Iron become Raw IronX2
+    count = 0
+    while count < len(weapon_next_upgrade_items):
+        current_item = str(list(weapon_next_upgrade_items)[0])
+        current_item_number = weapon_next_upgrade_items.count(current_item)
+
+        count2 = 0
+        if current_item_number > 1:
+            while count2 < current_item_number - 1:
+                weapon_next_upgrade_items.remove(current_item)
+                count2 += 1
+            weapon_next_upgrade_items = [sub.replace(current_item, current_item + "X" + str(current_item_number)) for sub in weapon_next_upgrade_items]
+
+        count += 1
+
+    # convert list to string and
+    # format the string to look better
+
+    weapon_next_upgrade_items = str(weapon_next_upgrade_items)
+    weapon_next_upgrade_items = weapon_next_upgrade_items.replace("'", '')
+    weapon_next_upgrade_items = weapon_next_upgrade_items.replace("[", '')
+    weapon_next_upgrade_items = weapon_next_upgrade_items.replace("]", '')
+
+    return weapon_next_upgrade_items
 
 # gameplay here:
 def run(play):
@@ -831,21 +916,23 @@ def run(play):
 
         loading = 4
         while loading > 0:
-            print("Loading game... ▅▃▁", end='\r')
+            print("Loading game... ▁▁▁", end='\r')
             time.sleep(.15)
-            print("Loading game... ▅▅▃", end='\r')
-            time.sleep(.15)
-            print("Loading game... ▅▅▅", end='\r')
-            time.sleep(.15)
-            print("Loading game... ▃▅▅", end='\r')
+            print("Loading game... ▁▁▃", end='\r')
             time.sleep(.15)
             print("Loading game... ▁▃▅", end='\r')
             time.sleep(.15)
             print("Loading game... ▃▅▅", end='\r')
             time.sleep(.15)
+            print("Loading game... ▅▅▅", end='\r')
+            time.sleep(.15)
             print("Loading game... ▅▅▃", end='\r')
             time.sleep(.15)
-            print("Loading game... ▅▅▁", end='\r')
+            print("Loading game... ▅▃▁", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▃▁▁", end='\r')
+            time.sleep(.15)
+            print("Loading game... ▁▁▁", end='\r')
             time.sleep(.15)
             loading -= 1
 
@@ -1059,7 +1146,7 @@ def run(play):
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
-        is_in_stable_blacksmith = False
+        is_in_blacksmith = False
         if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable" or zone[map_zone]["type"] == "blacksmith":
             print("NEWS:")
             village_news = zone[map_zone]["news"]
@@ -1111,11 +1198,6 @@ def run(play):
                 weapon_orders = current_black_smith["blacksmith"]["orders"]
                 weapon_orders_len = len(weapon_orders)
                 while count < weapon_orders_len:
-                    """
-                    selected_mount = list(player["mounts"])[count]
-                    selected_mount = str(selected_mount)
-                    mounts_names_list.append(str(player["mounts"][selected_mount]["name"]))
-                    """
                     current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
                     current_weapon_materials = current_black_smith["blacksmith"]["orders"][current_weapon]["needed materials"]
                     count2 = 0
@@ -1856,7 +1938,10 @@ def run(play):
             if which_item in player["inventory"]:
                 text = '='
                 print_separator(text)
-                print("NAME: " + which_item)
+                if item[which_item]["type"] == "Weapon":
+                    print("NAME: " + item[which_item]["display name"])
+                else:
+                    print("NAME: " + which_item)
                 print("TYPE: " + item[which_item]["type"])
                 text = "DESCRIPTION: " + item[which_item]["description"]
                 print_long_string(text)
@@ -1868,6 +1953,9 @@ def run(play):
                     text = "              Metals are items that you buy in village forges that you often use to order weapons in blacksmith."
                     print_long_string(text)
                 if item[which_item]["type"] == "Weapon":
+                    item_next_upgrade = detect_weapon_next_upgrade_items(which_item)
+                    print("UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" + str(check_weapon_max_upgrade(str(which_item))))
+                    print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print("DAMAGE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["damage"]) + COLOR_RESET_ALL)
                     print("DEFENSE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["defend"]) + COLOR_RESET_ALL)
                     print("CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(item[which_item]["critical hit chance"]) + COLOR_RESET_ALL)
