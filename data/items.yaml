@@ -1,13 +1,49 @@
 # Weapons
-Sword:
+Sword: &generic_sword
+  display name: "Sword"
+  upgrade tier: 0
   type: "Weapon"
   damage: 5
   defend: 6
   agility: .1
   gold: 7.65
   critical hit chance: .05
-  description: "Your generic sword."
-Broadsword:
+  description: "A generic sword."
+Sword (1):
+  << : *generic_sword
+  upgrade tier: 1
+  damage: 6.4
+  defend: 7
+  agility: .12
+  critical hit chance: .065
+  for this upgrade:
+  - Raw Wood
+  - Raw Iron
+Sword (2):
+  << : *generic_sword
+  upgrade tier: 2
+  damage: 7.2
+  defend: 7.6
+  agility: .125
+  critical hit chance: .071
+  for this upgrade:
+  - Raw Wood
+  - Raw Bronze
+  - Raw Iron
+Sword (3):
+  << : *generic_sword
+  upgrade tier: 3
+  damage: 7.4
+  defend: 7.7
+  agility: .129
+  critical hit chance: .072
+  for this upgrade:
+  - Raw Silver
+  - Raw Copper
+  - Raw Copper
+Broadsword: &broadsword
+  display name: "Broadsword"
+  upgrade tier: 0
   type: "Weapon"
   damage: 7
   defend: 6
@@ -15,7 +51,33 @@ Broadsword:
   gold: 12.98
   critical hit chance: .09
   description: "The Broadsword is a large sword and powerful sword that not anyone can use well."
-Long Sword:
+Broadsword (1):
+  << : *broadsword
+  upgrade tier: 1
+  damage: 8
+  defend: 7
+  agility: .045
+  critical hit chance: .095
+  for this upgrade:
+  - Raw Iron
+  - Raw Iron
+  - Raw Iron
+  - Raw Bronze
+Broadsword (2):
+  << : *broadsword
+  upgrade tier: 2
+  damage: 9.3
+  defend: 7.6
+  agility: 0.48
+  critical hit chance: .1
+  for this upgrade:
+  - Raw Iron
+  - Raw Iron
+  - Raw Copper
+  - Raw Silver
+Long Sword: &long_sword
+  display name: "Long Sword"
+  upgrade tier: 0
   type: "Weapon"
   damage: 6
   defend: 8
@@ -23,21 +85,87 @@ Long Sword:
   gold: 13.78
   critical hit chance: .05
   description: "A very long sword that is very practical to defend yourself from monsters."
-Rapier:
+Long Sword (1):
+  << : *long_sword
+  upgrade tier: 1
+  damage: 6.7
+  defend: 8
+  agility: .085
+  critical hit chance: .0625
+  for this upgrade:
+  - Raw Wood
+  - Raw Wood
+  - Raw Bronze
+  - Flexible Steel
+Long Sword (2):
+  << : *long_sword
+  upgrade tier: 2
+  damage: 7
+  defend: 8
+  agility: .094
+  critical hit chance: .0645
+  for this upgrade:
+  - Raw Bronze
+  - Raw Bronze
+  - Raw Bronze
+  - Flexible Steel
+  - Flexible Steel
+Rapier: &Rapier
+  display name: "Rapier"
+  upgrade tier: 0
   type: "Weapon"
   damage: 6
   defend: 7
   agility: .19
   critical hit chance: .03
   description: "A long, thin sword with an elaborate hilt and a flexible blade."
-Bow:
+Rapier (1):
+  << : *Rapier
+  upgrade tier: 1
+  damage: 6.6
+  defend: 7.4
+  agility: .207
+  critical hit chance: .034
+  for this upgrade:
+  - Flexible Steel
+  - Raw Bronze
+  - Raw Silver
+Bow: &generic_bow
+  display name: "Bow"
+  upgrade tier: 0
   type: "Weapon"
   damage: 4
   defend: 9
   agility: .15
   gold: 3.2
   critical hit chance: .06
-  description: "A bow. Perfectly normal. You use it to shoot arrows."
+  description: "A generic bow."
+Bow (1):
+  << : *generic_bow
+  upgrade tier: 1
+  damage: 5.2
+  defend: 8.7
+  agility: .135
+  critical hit chance: .075
+  for this upgrade:
+  - Raw Wood
+  - Raw Wood
+  - Strong String
+Bow (2):
+  << : *generic_bow
+  upgrade tier: 2
+  damage: 5.7
+  defend: 9
+  agility: .145
+  critical hit chance: .087
+  for this upgrade:
+  - Raw Wood
+  - Raw Wood
+  - Raw Wood
+  - Raw Wood
+  - Bow String
+  - Bow String
+  - Flexible String
 Orc Bow:
   type: "Weapon"
   damage: 3
@@ -62,14 +190,28 @@ Dagger:
   gold: 1.85
   critical hit chance: .05
   description: "The daggers are a generic longer knife that is often used by Yrch."
-Axe:
+Dwarf Axe: &dwarf_axe
+  display name: "Dwarf Axe"
+  upgrade tier: 0
   type: "Weapon"
   damage: 7
   defend: 5
   agility: .05
   gold: 4.68
   critical hit chance: .085
-  description: "An ancient axe found in the dungeons. You wonder what happened to it's previous owner..."
+  description: "A generic dwarf axe used by the Dwarves. A slow but deadly weapon."
+Dwarf Axe (1):
+  << : *dwarf_axe
+  upgrade tier: 1
+  damage: 9
+  defend: 7.5
+  agility: .035
+  critical hit chance: .094
+  for this upgrade:
+  - Refined Steel
+  - Refined Steel
+  - Raw Silver
+  - Raw Bronze
 Mace:
   type: "Weapon"
   damage: 9
@@ -264,10 +406,35 @@ Note1:
 # Metals
 Raw Iron:
   type: "Metal"
-  description: "A bag with raw iron in it. Useful to create swords."
+  description: "A bag with raw iron in it. Useful to forge swords."
 Raw Copper:
   type: "Metal"
-  description: "A bag with raw copper in it. Useful to create swords."
+  description: "A bag with raw copper in it. Useful to forge swords."
 Raw Silver:
   type: "Metal"
-  description: "A bag with raw silver in it. Useful to create swords."
+  description: "A bag with raw silver in it. Useful to forge swords."
+Raw Bronze:
+  type: "Metal"
+  description: "A bag with raw bronze in it. Useful to forge swords."
+Steel:
+  type: "Metal"
+  description: "A bag with steel ingots in it. Useful to forge axes."
+Refined Steel:
+  type: "Metal"
+  description: "A bag with stronger steel ingots in it. Useful to forge axes or other heavy weapons."
+Flexible Steel:
+  type: "Metal"
+  description: "A bag with flexible steel ingots in it. Useful to forge flexible swords."
+# Primary Materials
+Raw Wood:
+  type: "Primary Material"
+  description: "A bag with raw oak, spruce and other random woods in it. Useful to make shields or swords."
+Bow String:
+  type: "Primary Material"
+  description: "A generic solid string used for making bows."
+Strong String:
+  type: "Primary Material"
+  description: "A generic hyper solid string used for making low-range but powerful-shot bows."
+Flexible String:
+  type: "Primary Material"
+  description: "A generic solid string used for making high-range bows."

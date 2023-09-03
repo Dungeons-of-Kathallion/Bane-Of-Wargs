@@ -8,7 +8,7 @@ point0:
   y: 0
   map zone: "Kathallion Plains"
   item:
-  - Axe
+  - Dwarf Axe
   blocked:
   - South
   - East
