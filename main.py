@@ -955,6 +955,9 @@ def run(play):
             map_location = search(player["x"], player["y"])
             player["mounts"][player["current mount"]]["location"] = "point" + str(map_location)
 
+        # always round to player health to an integer amount
+        player["health"] = int(round(player["health"]))
+
         # calculate day time
         day_time = "PLACEHOLDER" # .25 = morning .50 = day .75 = evening .0 = night
         day_time_decimal = "." + str(player["elapsed time game days"]).split(".",1)[1]
