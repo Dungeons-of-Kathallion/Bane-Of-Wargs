@@ -1193,7 +1193,7 @@ def run(play):
                     print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL)
                     count += 1
             if "None" not in current_black_smith["blacksmith"]["orders"]:
-                print("WEAPON ORDERS:")
+                print("EQUIPMENT ORDERS:")
                 count = 0
                 weapon_orders = current_black_smith["blacksmith"]["orders"]
                 weapon_orders_len = len(weapon_orders)
@@ -2179,20 +2179,20 @@ def run(play):
                 text = '='
                 print_separator(text)
 
-                options = ['Sell Weapon', 'Order Weapon', 'Check Order', 'Exit']
+                options = ['Sell Equipment', 'Order Equipment', 'Check Order', 'Exit']
                 continue_blacksmith_actions = True
                 while continue_blacksmith_actions:
                     action = enquiries.choose('', options)
-                    if action == 'Sell Weapon':
-                        which_weapon = input("Which weapon do you want to sell? ")
+                    if action == 'Sell Equipment':
+                        which_weapon = input("Which equipment do you want to sell? ")
                         if which_weapon in zone[map_zone]["blacksmith"]["buys"] and which_weapon in player["inventory"]:
                             add_gold(str( item[which_weapon]["gold"] * zone[map_zone]["cost value"] ))
                             player["inventory"].remove(which_weapon)
                         else:
-                            text = COLOR_YELLOW + "You cannot sell that weapon because you dont own any of that weapon." + COLOR_RESET_ALL
+                            text = COLOR_YELLOW + "You cannot sell that equipment because you dont own any of that weapon." + COLOR_RESET_ALL
                             print_long_string(text)
-                    elif action == 'Order Weapon':
-                        which_weapon = input("Which weapon do you want to order? ")
+                    elif action == 'Order Equipment':
+                        which_weapon = input("Which equipment do you want to order? ")
                         if which_weapon in zone[map_zone]["blacksmith"]["orders"] and player["gold"] > zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]:
                             required_items = False
                             count = 0
@@ -2227,7 +2227,7 @@ def run(play):
                                 text = "You'll be able to get your finished order in " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(zone[map_zone]["blacksmith"]["orders"][which_weapon]["time needed"]) + COLOR_RESET_ALL + " days."
                                 print_long_string(text)
                             else:
-                                text = COLOR_YELLOW + "You cannot order that weapon because you dont have the necessary items." + COLOR_RESET_ALL
+                                text = COLOR_YELLOW + "You cannot order that equipment because you dont have the necessary items." + COLOR_RESET_ALL
                                 print_long_string(text)
                         else:
                             text = COLOR_YELLOW + "You cannot order that weapon because you dont own enough money." + COLOR_RESET_ALL
@@ -2273,7 +2273,7 @@ def run(play):
                             time_left = round(player["orders"][current_order_uuid]["ordered day"] + player["orders"][current_order_uuid]["time needed"] - player["elapsed time game days"], 1)
                             if time_left <= 0:
                                 time_left = "READY TO COLLECT"
-                            print("ORDERED WEAPON: " + COLOR_RED + str(player["orders"][current_order_uuid]["ordered weapon"]) + COLOR_RESET_ALL)
+                            print("ORDERED EQUIPMENT: " + COLOR_RED + str(player["orders"][current_order_uuid]["ordered weapon"]) + COLOR_RESET_ALL)
                             print("PAID GOLD: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(player["orders"][current_order_uuid]["paid gold"], 1)) + COLOR_RESET_ALL)
                             print("ORDERED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(round(player["orders"][current_order_uuid]["ordered day"], 1)) + COLOR_RESET_ALL)
                             print("TIME LEFT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(time_left) + COLOR_RESET_ALL)
@@ -2286,7 +2286,7 @@ def run(play):
                             options_order += ['Exit']
                             action = enquiries.choose('', options_order)
                             if action == 'Cancel Order':
-                                text = "Are you sure you want to cancel this orders? You will receive 75% of the gold you paid and you won't be able"
+                                text = "Are you sure you want to cancel this order? You will receive 75% of the gold you paid and you won't be able"
                                 print_long_string(text)
                                 ask =input(" to get your given items back. (y/n)")
                                 if ask.lower().startswith('y'):
