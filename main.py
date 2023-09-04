@@ -813,6 +813,34 @@ def check_for_item(item_name):
         item_exist = True
     return item_exist
 
+def check_weapon_next_upgrade_name(item_name):
+    weapon_next_upgrade_name = str(item_name)
+    check_weapon_max_upgrade_number = check_weapon_max_upgrade(str(weapon_next_upgrade_name))
+    if item[weapon_next_upgrade_name]["upgrade tier"] == check_weapon_max_upgrade_number:
+        weapon_next_upgrade_name = None
+    else:
+        item_data = item[item_name]
+        further_upgrade = True
+        item_data = item[weapon_next_upgrade_name]
+        # get logical weapon new upgrade name
+        weapon_already_upgraded = False
+        if "(" in str(item_name):
+            weapon_already_upgraded = True
+
+        if not weapon_already_upgraded:
+            weapon_next_upgrade_name = str(item_name) + " (1)"
+        else:
+            weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
+
+        # check if the next upgrade actually exist
+        item_upgrade_exist = check_for_item(weapon_next_upgrade_name)
+        if not item_upgrade_exist:
+            further_upgrade = False
+
+        weapon_next_upgrade_name = str(weapon_next_upgrade_name)
+
+        return weapon_next_upgrade_name
+
 def check_weapon_max_upgrade(item_name):
     weapon_next_upgrade_name = str(item_name)
     item_data = item[item_name]
@@ -2184,7 +2212,7 @@ def run(play):
                 text = '='
                 print_separator(text)
 
-                options = ['Sell Equipment', 'Order Equipment', 'Check Order', 'Exit']
+                options = ['Sell Equipment', 'Order Equipment', 'Upgrade Equipment', 'Check Order', 'Exit']
                 continue_blacksmith_actions = True
                 while continue_blacksmith_actions:
                     action = enquiries.choose('', options)
@@ -2237,6 +2265,53 @@ def run(play):
                         else:
                             text = COLOR_YELLOW + "You cannot order that weapon because you dont own enough money." + COLOR_RESET_ALL
                             print_long_string(text)
+                    elif action == 'Upgrade Equipment':
+                        which_weapon = input("Which equipment do you want to upgrade? ")
+                        if which_weapon in player["inventory"]:
+                            item_next_upgrade_name = str(check_weapon_next_upgrade_name(which_weapon))
+                            if item_next_upgrade_name != None:
+                                if player["gold"] > item[item_next_upgrade_name]["gold"]:
+                                    required_items = False
+                                    count = 0
+                                    required_items_number = 0
+                                    fake_player_inventory = player["inventory"]
+                                    while count < len(fake_player_inventory):
+                                        selected_item = fake_player_inventory[count]
+                                        if selected_item in item[str(item_next_upgrade_name)]["for this upgrade"]:
+                                            required_items_number += 1
+                                        count += 1
+                                    if required_items_number == len(item[str(item_next_upgrade_name)]["for this upgrade"]):
+                                        required_items = True
+                                    if required_items == True:
+                                        remove_gold(str(item[item_next_upgrade_name]["gold"]))
+                                        player["inventory"].remove(which_weapon)
+                                        count = 0
+                                        remaining_items_to_remove = len(item[str(item_next_upgrade_name)]["for this upgrade"])
+                                        while count < len(player["inventory"]) and remaining_items_to_remove != 0:
+                                            selected_item = item[str(item_next_upgrade_name)]["for this upgrade"][count]
+                                            player["inventory"].remove(selected_item)
+                                            remaining_items_to_remove -= 1
+                                            count += 1
+                                        order_uuid = generate_random_uuid()
+                                        order_dict = {
+                                            "paid gold": item[str(item_next_upgrade_name)]["gold"],
+                                            "ordered weapon": str(item_next_upgrade_name),
+                                            "ordered day": player["elapsed time game days"],
+                                            "ordered blacksmith": zone[map_zone]["name"],
+                                            "time needed": round(random.uniform(55, 3.55), 2),
+                                            "has taken back order": "false"
+                                        }
+                                        player["orders"][order_uuid] = order_dict
+                                        text = "You'll be able to get your finished order in " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["orders"][order_uuid]["time needed"]) + COLOR_RESET_ALL + " days."
+                                        print_long_string(text)
+                                    else:
+                                        print(COLOR_YELLOW + "You don't own the necessary items to upgrade" + COLOR_RESET_ALL)
+                                else:
+                                    print(COLOR_YELLOW + "You don't have enough gold to upgrade." + COLOR_RESET_ALL)
+                            else:
+                                print(COLOR_YELLOW + "You cannot upgrade this equipment further." + COLOR_RESET_ALL)
+                        else:
+                            print(COLOR_YELLOW + "You don't own that equipment" + COLOR_RESET_ALL)
                     elif action == 'Check Order':
                         player_orders = player["orders"]
                         player_orders_numbers = len(list(player_orders))
@@ -2256,7 +2331,7 @@ def run(play):
                                 except:
                                     print(ordered_blacksmith, ordered_weapon)
                                 if ordered_blacksmith == zone[map_zone]["name"]:
-                                    ordered_weapon_syntax = ordered_weapon + " (" + str(count) + ")"
+                                    ordered_weapon_syntax = ordered_weapon + " {" + str(count) + "}"
                                     player_orders_to_collect += [ordered_weapon_syntax]
                                     player_orders_number += [str(count)]
                             count += 1

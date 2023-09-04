@@ -139,10 +139,6 @@ James Blacksmith:
     - Long Sword
     - Spear
     - Dwarf Axe
-    upgrades:
-      Broadsword:
-        time needed: 2.7
-        gold: 7.9
     orders:
       Sword:
         needed materials:
