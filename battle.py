@@ -150,6 +150,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
                 # else, the player attack
                 else:
                     # attack formula
+                    global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
                     player_critical_hit_chance = round(player_critical_hit_chance / random.uniform(0.03, player_critical_hit_chance * 2.8), 2)

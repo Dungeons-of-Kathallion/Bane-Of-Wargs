@@ -1312,13 +1312,17 @@ def run(play):
             count = 0
             mounts_list_len = len(player["mounts"])
             deposited_mounts_names = []
-            while count < mounts_list_len:
-                    selected_mount = list(player["mounts"])[count]
-                    selected_mount = str(selected_mount)
-                    if player["mounts"][selected_mount]["location"] == "point" + str(map_location) and player["mounts"][selected_mount]["is deposited"] == True:
-                        deposited_mounts_num += 1
-                        deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
-                    count += 1
+            if "None" not in list(player["mounts"]):
+                while count < mounts_list_len:
+                        selected_mount = list(player["mounts"])[count]
+                        selected_mount = str(selected_mount)
+                        if player["mounts"][selected_mount]["location"] == "point" + str(map_location) and player["mounts"][selected_mount]["is deposited"] == True:
+                            deposited_mounts_num += 1
+                            deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
+                        count += 1
+            else:
+                deposited_mounts_names = 0
+                deposited_mounts_num = 0
             deposited_mounts_names = str(deposited_mounts_names)
             deposited_mounts_names = deposited_mounts_names.replace('[', '(')
             deposited_mounts_names = deposited_mounts_names.replace(']', COLOR_RESET_ALL + ')')
@@ -1769,13 +1773,17 @@ def run(play):
                         count = 0
                         mounts_list_len = len(player["mounts"])
                         deposited_mounts_names = []
-                        while count < mounts_list_len:
-                                selected_mount = list(player["mounts"])[count]
-                                selected_mount = str(selected_mount)
-                                if player["mounts"][selected_mount]["location"] == "point" + str(stable_point) and player["mounts"][selected_mount]["is deposited"] == True:
-                                    deposited_mounts_num += 1
-                                    deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
-                                count += 1
+                        if "None" not in list(player["mounts"]):
+                            while count < mounts_list_len:
+                                    selected_mount = list(player["mounts"])[count]
+                                    selected_mount = str(selected_mount)
+                                    if player["mounts"][selected_mount]["location"] == "point" + str(map_location) and player["mounts"][selected_mount]["is deposited"] == True:
+                                        deposited_mounts_num += 1
+                                        deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
+                                    count += 1
+                        else:
+                            deposited_mounts_names = 0
+                            deposited_mounts_num = 0
                         deposited_mounts_names = str(deposited_mounts_names)
                         deposited_mounts_names = deposited_mounts_names.replace('[', '(')
                         deposited_mounts_names = deposited_mounts_names.replace(']', COLOR_RESET_ALL + ')')
