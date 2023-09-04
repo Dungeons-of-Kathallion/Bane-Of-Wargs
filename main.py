@@ -988,6 +988,18 @@ def run(play):
         # always round to player health to an integer amount
         player["health"] = int(round(player["health"]))
 
+        # update player equipment items
+        if player["held item"] not in player["inventory"]:
+            player["held item"] == " "
+        if player["held chestplate"] not in player["inventory"]:
+            player["held chestplate"] == " "
+        if player["held boots"] not in player["inventory"]:
+            player["held boots"] == " "
+        if player["held leggings"] not in player["inventory"]:
+            player["held leggings"] == " "
+        if player["held shield"] not in player["inventory"]:
+            player["held shield"] == " "
+
         # calculate day time
         day_time = "PLACEHOLDER" # .25 = morning .50 = day .75 = evening .0 = night
         day_time_decimal = "." + str(player["elapsed time game days"]).split(".",1)[1]
