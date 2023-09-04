@@ -2421,20 +2421,26 @@ def run(play):
                 print_separator(text)
                 if "current mount" in player:
                     current_mount_uuid = str(player["current mount"])
-                    print("RIDDED MOUNT: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + player["mounts"][current_mount_uuid]["name"] + COLOR_RESET_ALL + " (" + player["mounts"][current_mount_uuid]["mount"] + ")")
-                mounts_list_len = len(player["mounts"])
+                    if current_mount_uuid != ' ':
+                        print("RIDDED MOUNT: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + player["mounts"][current_mount_uuid]["name"] + COLOR_RESET_ALL + " (" + player["mounts"][current_mount_uuid]["mount"] + ")")
+                    else:
+                        print("RIDDED MOUNT: " + COLOR_RED + COLOR_STYLE_BRIGHT + "NONE" + COLOR_RESET_ALL)
                 mounts_names_list = []
                 count = 0
-                while count < mounts_list_len:
-                    selected_mount = list(player["mounts"])[count]
-                    selected_mount = str(selected_mount)
-                    mounts_names_list.append(str(player["mounts"][selected_mount]["name"]))
-                    count += 1
-                mounts_names_list_str = str(mounts_names_list)
-                mounts_names_list_str = mounts_names_list_str.replace("'", '')
-                mounts_names_list_str = mounts_names_list_str.replace("[", ' -')
-                mounts_names_list_str = mounts_names_list_str.replace("]", '')
-                mounts_names_list_str = mounts_names_list_str.replace(", ", '\n -')
+                if "None" not in list(player["mounts"]):
+                    mounts_list_len = len(player["mounts"])
+                    while count < mounts_list_len:
+                        selected_mount = list(player["mounts"])[count]
+                        selected_mount = str(selected_mount)
+                        mounts_names_list.append(str(player["mounts"][selected_mount]["name"]))
+                        count += 1
+                    mounts_names_list_str = str(mounts_names_list)
+                    mounts_names_list_str = mounts_names_list_str.replace("'", '')
+                    mounts_names_list_str = mounts_names_list_str.replace("[", ' -')
+                    mounts_names_list_str = mounts_names_list_str.replace("]", '')
+                    mounts_names_list_str = mounts_names_list_str.replace(", ", '\n -')
+                else:
+                    mounts_names_list_str = "NONE"
                 print(" ")
                 print("OWNED MOUNTS:")
                 print(mounts_names_list_str)
