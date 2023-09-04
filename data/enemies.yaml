@@ -177,7 +177,7 @@ Balrog:
   damage:
     min damage: 3
     max damage: 17
-    critical hit chance: 0.6
+    critical chance: 0.6
   health:
     min spawning health: 45
     max spawning health: 80

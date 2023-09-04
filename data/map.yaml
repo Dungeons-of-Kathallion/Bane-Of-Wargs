@@ -23,8 +23,6 @@ point2:
   x: -1
   y: 1
   map zone: "Kathallion Plains"
-  enemy: 1
-  enemy type: generic
   blocked:
   - North
   - West
@@ -46,8 +44,6 @@ point5:
   x: -1
   y: 3
   map zone: "Kathallion Village"
-  enemy: 3
-  enemy type: generic
   blocked:
   - North
   - South
@@ -58,8 +54,6 @@ point6:
   item:
   - Broken Shield
   - Beef
-  enemy: 3
-  enemy type: black
   blocked:
   - North
   - South

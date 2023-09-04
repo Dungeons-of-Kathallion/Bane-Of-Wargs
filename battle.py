@@ -40,7 +40,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
     player_hp = player["health"]
     player_agi = player["agility"]
     player_prot = player["armor protection"]
-    player_av_dmg = ( item[player["held item"]]["damage"] + 1 ) / 2
+    player_av_dmg = round(( item[player["held item"]]["damage"] + 1 + item[player["held item"]]["damage"] * item[player["held item"]]["critical hit chance"] * 2.3) / 2, 2 )
     player_def = item[player["held item"]]["defend"]
     player_critic_ch = item[player["held item"]]["critical hit chance"]
     player_health_cap = 1 # placeholder
@@ -50,6 +50,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
     enemy_max_damage = choosen_enemy["damage"]["max damage"]
     enemy_min_damage = choosen_enemy["damage"]["min damage"]
     enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
+    enemy_av_dmg = round(( enemy_max_damage + enemy_min_damage + enemy_max_damage * enemy_critical_chance * 1.8) / 2, 2 )
 
     # calculate player health capabilities (how many HP the player can restore)
     count = 0
@@ -76,22 +77,137 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
         player_health_cap += item_health_bonus
 
         count += 1
+    # get differences between player and enemy HP
+    hp_diff = ( (player_hp + player_health_cap + player_def * 1.5) - ( enemy_health * enemies_number ) )
 
-    # get differences between player and enemy
-    hp_diff = player_hp - enemy_health
-    agi_diff = player_agi - enemy_agility
-    av_dmg_diff = player_av_dmg - ( ( enemy_max_damage + enemy_min_damage ) / 2 )
-    critic_ch_diff = player_critic_ch - enemy_critical_chance
+    # dodge formula is if round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
+    # enemy agility / 1.15
+    # .6 / 1.15 =  0.5 # enemy agility
+    # 1.05 - 0.3 = # 75 true possibilities
+    # #enemy agility .5 - .3 = 0.2 # 20 false possibilities
+    # 75/75+20 = 75/95 # 75/95 true possibilities
+    # 75*100/95 # 78% dodge chance for player
+
+    # dodge chance calculation
+
+    # player
+    real_enemy_agility = enemy_agility / 1.15
+    player_true_dodge_possibilities = ( player_agi - 0.3 ) * 100
+    player_false_dodge_possibilities = ( real_enemy_agility - 0.3 ) * 100
+    player_total_possibilities = player_true_dodge_possibilities + player_false_dodge_possibilities
+
+    player_dodge_chance = round(( player_true_dodge_possibilities / player_total_possibilities) * 100)
+
+    # enemy
+    real_player_agility = player_agi / 1.15
+    enemy_true_dodge_possibilities = ( enemy_agility - 0.3 ) * 100
+    enemy_false_dodge_possibilities = ( real_player_agility - 0.3 ) * 100
+    enemy_total_possibilities = enemy_true_dodge_possibilities + enemy_false_dodge_possibilities
+
+    enemy_dodge_chance = round(( enemy_true_dodge_possibilities / enemy_total_possibilities ) * 100)
+
+    av_dmg_diff = player_av_dmg - enemy_av_dmg
+
+    '''
+    print("HP DIFF:", hp_diff)
+    print("AVERAGE DMG DIFF:", av_dmg_diff)
+    print("ENEMY DODGE CHANCE:", enemy_dodge_chance)
+    print("PLAYER DODGE CHANCE:", player_dodge_chance)
+    '''
+
+    # simulate fight 5 times to get stats
+    count = 0
+    player_turn = True
+    player_fake_health = player_health_cap + player_hp
+    player_fake_health_max = player_fake_health
+    player_fake_agility = player["agility"]
+    player_fake_armor_protection = player["armor protection"]
+    player_fake_agility = player["agility"]
+    player_critical_hit_chance = item[player["held item"]]["critical hit chance"]
+    player_fake_defend = item[player["held item"]]["defend"]
+    enemy_fake_critical_hit_chance = enemy_critical_chance
+    enemy_fake_health = enemy_health * enemies_number
+    enemies_count = enemies_number
+    player_deaths = 0
+    enemy_deaths = 0
+    while count < 5:
+        someone_died = False
+        # reset enemy health stats
+        player_fake_health = player_health_cap + player_hp
+        enemy_fake_health = enemy_health * enemies_number
+        enemies_count = enemies_number
+
+        while not someone_died:
+            while player_turn:
+                # if player health is less than 45% and random formula, defend
+                if player_fake_health > player_fake_health * ( 45 / 100 ) and round(random.uniform(.20, .60), 2) > .45:
+                    defend = 0
+                    defend += random.randint(0, int(item[player["held item"]]["defend"])) * player_fake_agility
+                    # defend formula
+                    player_fake_health+= random.randint(0, 3)
+                    if player_fake_health > player_fake_health_max:
+                        player_fake_health = player_fake_health_max
+                # else, the player attack
+                else:
+                    # attack formula
+                    enemy_dodged = False
+                    player_critical_hit = False
+                    player_critical_hit_chance = round(player_critical_hit_chance / random.uniform(0.03, player_critical_hit_chance * 2.8), 2)
+                    if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15:
+                        enemy_dodged = True
+                    if player_critical_hit_chance / random.uniform(.20, .35) < player_critical_hit_chance and not enemy_dodged:
+                        player_critical_hit = True
+                    if not enemy_dodged:
+                        player_damage = random.randint(1, int(item[player["held item"]]["damage"]))
+                        if player_critical_hit:
+                            player_damage = player_damage * 2
+                        enemy_fake_health -= player_damage
+
+                # if the enemy's dead
+                if enemy_fake_health <= 0:
+                    if enemies_count <= 0:
+                        someone_died = True
+                        enemy_deaths += 1
+                    else:
+                        enemies_count -= 1
+                        enemy_fake_health = enemy_health * enemies_number
+
+                player_turn = False
+            while not player_turn:
+                # if enemy is still alive
+                if enemy_health > 0:
+                    damage = random.randint(enemy_min_damage, enemy_max_damage) - player_fake_defend * ( player_fake_armor_protection * round(random.uniform(0.50, 0.90), 1) )
+                    damage = round(damage)
+                    defend = 0
+                    player_dodged = False
+                    enemy_critical_hit = False
+                    enemy_critical_hit_chance = round(enemy_fake_critical_hit_chance / random.uniform(0.03, enemy_fake_critical_hit_chance * 2.8), 2)
+                    critical_hit_chance_formula = round(enemy_critical_hit_chance / random.uniform(0.03, enemy_critical_hit_chance * 2.8), 2)
+                    if enemy_critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
+                        enemy_critical_hit = True
+                    elif round(random.uniform(.30, enemy_agility), 2) > enemy_agility / 1.15:
+                        player_dodged = True
+                    if damage > 0 and not player_dodged:
+                        if enemy_critical_hit:
+                            damage = damage * 2
+                        player_fake_health -= damage
+                    player_turn = True
+
+                # if the player's dead
+                if player_fake_health <= 0:
+                    someone_died = True
+                    player_deaths += 1
+
+
+        count += 1
 
     # compute percentage of defeat chance
-    defeat_percentage = ( ( ( ( hp_diff / 1.4) - ( agi_diff / 1.2 ) - ( player_prot / 1.1 ) - ( av_dmg_diff / 1.3 ) + ( player_def / 1.4 ) - ( critic_ch_diff / 0.5 ) ) / ( player_health_cap / 38 ) ) * ( enemies_number / 1.5 ) )
-    defeat_percentage = round(defeat_percentage, 0)
-    defeat_percentage = int(defeat_percentage)
+    defeat_percentage = round(player_deaths * 100 / 5)
 
     if defeat_percentage > 100:
         defeat_percentage = 100
-    elif defeat_percentage < 0:
-        defeat_percentage = 0
+    elif defeat_percentage <= 0:
+        defeat_percentage = random.randint(5, 15)
 
     return defeat_percentage
 
@@ -138,7 +254,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
     else:
         health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
 
-    sys.stdout.write(f"RISK: {risk} / 100\n")
+    sys.stdout.write(f"RISK: {risk}% \n")
     sys.stdout.write(f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n")
     sys.stdout.flush()
 
@@ -301,9 +417,8 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
-                    enemy_dodge_chance = round(random.uniform(0.10, enemy_agility), 2)
                     critical_hit_chance_formula = round(critical_hit_chance / random.uniform(0.03, critical_hit_chance * 2.8), 2)
-                    if enemy_dodge_chance > round(random.uniform(.50, .90), 2):
+                    if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15:
                         enemy_dodged = True
                         print("Your enemy dodged your attack!")
                     if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
@@ -380,12 +495,11 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
-                    player_dodge_chance = round(random.uniform(0.10, player_agility), 2)
                     critical_hit_chance_formula = round(critical_hit_chance / random.uniform(0.03, critical_hit_chance * 2.8), 2)
                     if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
                         enemy_critical_hit = True
                         print("Your enemy dealt a critical hit!")
-                    elif player_dodge_chance > round(random.uniform(.50, .90), 2):
+                    elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
                         player_dodged = True
                         print("You dodged your enemy attack!")
                     if damage > 0 and not player_dodged:
