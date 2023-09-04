@@ -45,7 +45,6 @@ point5:
   y: 3
   map zone: "Kathallion Village"
   blocked:
-  - North
   - South
 point6:
   x: 1
@@ -72,7 +71,6 @@ point8:
   y: 3
   map zone: "Kathallion Hostel"
   blocked:
-  - North
   - South
 point9:
   x: -3
@@ -89,3 +87,29 @@ point10:
   - North
   - South
   - West
+point11:
+  x: -1
+  y: 4
+  map zone: "Kathallion Village"
+  blocked:
+  - East
+point12:
+  x: -1
+  y: 5
+  map zone: "Kathallion Village"
+  blocked:
+  - North
+  - East
+point13:
+  x: -2
+  y: 4
+  map zone: "Kathallion Village"
+  blocked:
+  - West
+point14:
+  x: -2
+  y: 5
+  map zone: "Kathallion Village"
+  blocked:
+  - West
+  - North
