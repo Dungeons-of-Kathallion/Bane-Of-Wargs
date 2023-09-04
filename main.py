@@ -839,7 +839,7 @@ def check_weapon_next_upgrade_name(item_name):
 
         weapon_next_upgrade_name = str(weapon_next_upgrade_name)
 
-        return weapon_next_upgrade_name
+    return weapon_next_upgrade_name
 
 def check_weapon_max_upgrade(item_name):
     weapon_next_upgrade_name = str(item_name)
@@ -2281,7 +2281,7 @@ def run(play):
                         which_weapon = input("Which equipment do you want to upgrade? ")
                         if which_weapon in player["inventory"]:
                             item_next_upgrade_name = str(check_weapon_next_upgrade_name(which_weapon))
-                            if item_next_upgrade_name != None:
+                            if item_next_upgrade_name != 'None':
                                 if player["gold"] > item[item_next_upgrade_name]["gold"]:
                                     required_items = False
                                     count = 0
