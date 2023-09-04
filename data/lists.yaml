@@ -5,6 +5,9 @@ generic:
 - Warg
 - Cavern Troll
 - Slime
+warg raids:
+- Warg
+- White Warg
 black:
 - Black Orc
 - Dark Marksman

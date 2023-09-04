@@ -7,6 +7,33 @@ start dialog:
   use actions: False
   scene: Title1
 
+first village enter warg attack:
+  phrases:
+  - "You enter the village, but you cannot find any one in the streets."
+  - "You keep looking for people when you hear some noise and try to approach where it comes from."
+  - "You enter the village center place and you see every one of the village forming a circle. You look in the center and you see an angry warg."
+  - "One guy see you and shout out:\n `Hey guys! There's a knight to help' us!`"
+  - "You guess you can't get back now, you have to fight the warg."
+  scene: Warg
+  use actions: True
+  actions:
+    add attributes:
+    - "seen warg attacking village"
+
+guy seen you fighting gives you money:
+  to display:
+    player attributes:
+    - "seen warg attacking village"
+  phrases:
+  - "Hey! Aren't you the courageous knight who fought the Warg yesterday? Please accept these 7 gold coins and this tissue bag."
+  - "I want you now that you are welcome in this village!"
+  use actions: True
+  actions:
+    gold modification:
+      augmentation: 7
+    give item:
+    - Tissue Bag
+
 test dialog:
   to display:
     player attributes:

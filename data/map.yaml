@@ -44,6 +44,9 @@ point5:
   x: -1
   y: 3
   map zone: "Kathallion Village"
+  enemy: 1
+  enemy type: warg raids
+  dialog: first village enter warg attack
   blocked:
   - South
 point6:
@@ -91,6 +94,7 @@ point11:
   x: -1
   y: 4
   map zone: "Kathallion Village"
+  dialog: guy seen you fighting gives you money
   blocked:
   - East
 point12:

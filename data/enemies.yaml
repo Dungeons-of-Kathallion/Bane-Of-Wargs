@@ -98,6 +98,23 @@ Warg:
   - Wolf Fur
   - Wolf Skull
   description: "Wargs are deadly wolves that can easily outcome any adventurer that is not awarded of them. They are fast and they can deal important amount of damage while they have great health."
+White Warg:
+  plural: "White Wargs"
+  damage:
+    min damage: 3
+    max damage: 7
+    critical chance: 0.65
+  health:
+    min spawning health: 5
+    max spawning health: 11
+    max health level: 11
+  agility: 1.08
+  inventory:
+  - Porkchop
+  - Bone
+  - Wolf Skin
+  - Wolf Skull
+  - Beef
 Cavern Troll:
   plural: "Cavern Trolls"
   damage:

@@ -320,6 +320,11 @@ Stretched Bag:
   inventory slots: 9
   gold: 2.34
   description: "An old stretched bag that lets you transport 9 items."
+Tissue Bag:
+  type: "Bag"
+  inventory slots: 4
+  gold: 4.35
+  description: "A tissue but still strong bag to stores up to 4 items."
 Orc Bag:
   type: "Bag"
   inventory slots: 3
