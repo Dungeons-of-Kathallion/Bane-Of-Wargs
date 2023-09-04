@@ -201,12 +201,12 @@ Kathallion Warg Stable:
     map raw: " x__________x\n \
   |  ______  |\n \
   | I||||||I |\n \
-  |I||----||I|\n \
-  | ||--0-|| |\n \
+  | I|====|I |\n \
+  | I|==//|I |\n \
   x__________x"
     map full: " x__________x\n \
-  |  $BROWN______  $WHITE|\n \
-  | $BROWNI||||||I $WHITE|\n \
-  |$BROWNI||----||I$WHITE|\n \
-  | $BROWN||--$GRAY0$BROWN-|| $WHITE|\n \
+  |  $BROWN______$WHITE  |\n \
+  | $GRAYI$BROWN||||||$GRAYI$WHITE |\n \
+  |$GRAYII$BROWN|====|$GRAYII$WHITE|\n \
+  |$GRAYII$BROWN|==//|$GRAYII$WHITE|\n \
   x__________x"
