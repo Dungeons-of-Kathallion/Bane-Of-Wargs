@@ -687,10 +687,32 @@ def print_dialog(current_dialog):
     if "scene" in current_dialog:
         if preferences["latest preset"]["type"] == 'vanilla':
             with open('imgs/' + str(current_dialog["scene"]) + '.txt') as f:
-                print(f.read())
+                to_print = str(f.read())
+                to_print = to_print.replace('$RED', '\033[0;31m')
+                to_print = to_print.replace('$GREEN', '\033[0;32m')
+                to_print = to_print.replace('$YELLOW', '\033[0;33m')
+                to_print = to_print.replace('$BLUE', '\033[0;34m')
+                to_print = to_print.replace('$PURPLE', '\033[0;34m')
+                to_print = to_print.replace('$CYAN', '\033[0;36m')
+                to_print = to_print.replace('$WHITE', '\033[0;37m')
+                to_print = to_print.replace('$BLACK', '\033[0;30m')
+                to_print = to_print.replace('$BROWN', '\033[0;33m')
+                to_print = to_print.replace('$GRAY', '\033[1;30m')
+                print(to_print)
         else:
             with open('plugins/' + str(preferences["latest preset"]["plugin"]) + '/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
-                print(f.read())
+                to_print = str(f.read())
+                to_print = to_print.replace('$RED', '\033[0;31m')
+                to_print = to_print.replace('$GREEN', '\033[0;32m')
+                to_print = to_print.replace('$YELLOW', '\033[0;33m')
+                to_print = to_print.replace('$BLUE', '\033[0;34m')
+                to_print = to_print.replace('$PURPLE', '\033[0;34m')
+                to_print = to_print.replace('$CYAN', '\033[0;36m')
+                to_print = to_print.replace('$WHITE', '\033[0;37m')
+                to_print = to_print.replace('$BLACK', '\033[0;30m')
+                to_print = to_print.replace('$BROWN', '\033[0;33m')
+                to_print = to_print.replace('$GRAY', '\033[1;30m')
+                print(to_print)
     count = 0
     while count < dialog_len:
         text = str(current_dialog["phrases"][int(count)])
@@ -713,6 +735,7 @@ def print_dialog(current_dialog):
             while count < added_attributes_len:
                 selected_attribute = added_attributes[count]
                 player["attributes"].append(selected_attribute)
+                count += 1
         if "health modification" in actions:
             if "diminution" in actions["health modification"]:
                 player["health"] -= actions["health modification"]["diminution"]
@@ -1203,18 +1226,18 @@ def run(play):
             print_separator(text)
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
             current_dialog = map["point" + str(map_location)]["dialog"]
+            has_required_attributes = True
             if "to display" in dialog[str(current_dialog)]:
                 if "player attributes" in dialog[str(current_dialog)]["to display"]:
                     count = 0
                     required_attributes = dialog[str(current_dialog)]["to display"]["player attributes"]
                     required_attributes_len = len(required_attributes)
-                    has_required_attributes = True
                     while count < required_attributes_len and has_required_attributes == True:
                         selected_attribute = required_attributes[count]
                         if selected_attribute not in player["attributes"]:
                             has_required_attributes = False
                         count += 1
-            if has_required_attributes:
+            if has_required_attributes == True:
                 print_dialog(current_dialog)
                 player["heard dialogs"].append(map_location)
                 text = '='
