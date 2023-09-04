@@ -68,31 +68,11 @@ Kathallion Hostel:
     items:
     - Porkchop
     - Raw Salmon
-    - Sword
     - Beef
-    - Bow
-    - Healing Potion
-    - Knight Boots
-    - Shield
     - Bread
   buys:
     items:
-    - Broken Shield
-    - Orc Bow
-    - Knife
-    - Dagger
-    - Mace
-    - Spear
-    - Wolf Fur
-    - Broken Shield
-    - Orc Iron Leggings
-    - Orc Shredded Chestplate
-    - Orc Shield
-    - Bone
-    - Slime
-    - Wolf Skull
-    - Wolf Skin
-    - Chicken
+    - None
   map:
     map raw: " x__________x\n \
   |  ______  |\n \
