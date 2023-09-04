@@ -850,17 +850,17 @@ def check_weapon_max_upgrade(item_name):
         item_data = item[weapon_next_upgrade_name]
         # get logical weapon new upgrade name
         weapon_already_upgraded = False
-        if "(" in str(item_name):
+        if "(" in str(weapon_next_upgrade_name):
             weapon_already_upgraded = True
 
-        if not weapon_already_upgraded:
-            weapon_next_upgrade_name = str(item_name), "(1)"
+        if weapon_already_upgraded == False:
+            weapon_next_upgrade_name = str(item_name) + " (1)"
         else:
             weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
 
         # check if the next upgrade actually exist
         item_upgrade_exist = check_for_item(weapon_next_upgrade_name)
-        if not item_upgrade_exist:
+        if item_upgrade_exist == False:
             further_upgrade = False
 
     # correct max upgrade count
@@ -1619,7 +1619,17 @@ def run(play):
                 return play
         command = input("> ")
         print(" ")
-        if command.lower().startswith('go'):
+        if "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
+            if command in player["inventory"] and item[command]["type"] == "Utility":
+                print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
+                time.sleep(1.5)
+            elif player["inventory slots remaining"] == 0:
+                print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
+                time.sleep(1.5)
+            else:
+                player["inventory"].append(command)
+                player["taken items"].append(map_location)
+        elif command.lower().startswith('go'):
             print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
         elif command.lower().startswith('n'):
@@ -2481,16 +2491,6 @@ def run(play):
                 print("You do not have a map.")
                 print(" ")
             finished = input(" ")
-        elif "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
-            if command in player["inventory"] and item[command]["type"] == "Utility":
-                print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
-                time.sleep(1.5)
-            elif player["inventory slots remaining"] == 0:
-                print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
-                time.sleep(1.5)
-            else:
-                player["inventory"].append(command)
-                player["taken items"].append(map_location)
         elif command == "q" or command == "Q":
             print(separator)
             play = 0
