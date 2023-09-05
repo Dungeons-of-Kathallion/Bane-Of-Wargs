@@ -1,7 +1,7 @@
 Warg:
   name: Warg
   plural: Wargs
-  gold: 37.52
+  gold: 59.36
   feed:
     food:
     - Beef
@@ -21,6 +21,7 @@ Horse:
   gold: 54.23
   feed:
     food:
+    - Carrot
     - Hay Bale
     - Apple
     feed needs: 1.3
@@ -31,3 +32,35 @@ Horse:
     agility addition: 0.1
     resistance addition: 0.23
   description: "There are many different species of horses that you can find in the Kathallion Plains. This is a generic horse that you can find almost anywhere in the Kathallion Plains."
+Friesian Horse:
+  name: Friesian Horse
+  plural: Friesian Horses
+  gold: 74.35
+  feed:
+    food:
+    - Hay Bale
+    - Carrot
+    feed needs: 1.6
+  stable:
+    required stable: Horse Stable
+    stable slot usage: 5
+  stats:
+    agility addition: 0.14
+    resistance addition: 0.31
+  description: "Friesian Horses are breeds who are known for their docile ,energetic and swift high-stepping trot. They are often used by knights."
+Shire Horse:
+  name: Shire Horse
+  plural: Shire Horses
+  gold: 63.35
+  feed:
+    food:
+    - Hay Bale
+    - Carrot
+    feed needs: 1.6
+  stable:
+    required stable: Horse Stable
+    stable slot usage: 5
+  stats:
+    agility addition: 0.14
+    resistance addition: 0.31
+  description: "Shire Horses are tall horses that are often used by farmers to labor their lands. Despite that, they are also great horses for knights. "

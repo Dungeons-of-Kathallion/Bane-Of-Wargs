@@ -166,6 +166,8 @@ Kathallion Warg Stable:
       mounts:
       - Warg
       - Horse
+      - Friesian Horse
+      - Shire Horse
       drinks:
       - None
       items:

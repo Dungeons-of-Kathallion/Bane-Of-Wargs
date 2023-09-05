@@ -1,0 +1,19 @@
+                                 $GRAY|\    /|
+                              $BROWN___|$GRAY \,,/_/
+                           $BROWN---__/$GRAY \/    \
+                          $BROWN__--/$GRAY     $BLACK($BLUED$BLACK)$GRAY  \
+                          $BROWN_ -/$GRAY    (_      \
+                         $BROWN//$GRAY /       \_ $BROWN/ ==\$GRAY
+   __-------_____--___--/           / $BROWN\_ O o)$GRAY
+  /                                 /   $BROWN\==/$GRAY
+ /                                 /
+$BROWN||$GRAY          )                   \_/\
+$BROWN||$GRAY         /              _      /  |
+$BROWN|$GRAY |      /--______      ___\    /\  :
+$BROWN|$GRAY /   __-  - _/   ------    |  |   \ \
+ |   -  -   /                | |     \ )
+ |  |   -  |                 | )     | |
+  | |    | |                 | |    | |
+  | |    < |                 | |   $BROWN|_/$GRAY
+  < |    $BROWN/__\                <  \
+  $BROWN/__\                       /___\$WHITE

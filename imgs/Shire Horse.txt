@@ -1,0 +1,37 @@
+                                     $GRAY\       ,
+                                     |\$BROWN.--.$GRAY_/|
+                                    $BROWN/\ )  )\$GRAY\/
+                                   $BROWN/($GRAY   $BROWN\  /$GRAY \
+                                  $BROWN/($GRAY   J $BROWN`($GRAY   \
+                                 $BROWN/ )$GRAY | _\     /
+                                $BROWN/|)$GRAY  \  $BLUEO$GRAYJ    L
+                               $BROWN|  \$GRAY L \   L   L
+                              $BROWN/  \$GRAY  J  `. J   L
+                              $BROWN|  )$GRAY   L   \/   \
+                             $BROWN/  \$GRAY    J   (\   /
+           _....___         $BROWN|  \$GRAY      \   \```
+    $BROWN,..$GRAY_.-'        '''--...-$BROWN||\$GRAY     -. \   \
+  $BROWN.'.=.$GRAY'                    `         `.\ [ Y
+ $BROWN/   $GRAY/                                  \]  J
+$BROWNY / $GRAYY                                    Y   L
+$BROWN| | $GRAY|          \                         |   L
+$BROWN| | $GRAY|           Y                        A  J
+$BROWN|   $GRAYI           |                       /I\ /
+$BROWN|    $GRAY\          I             \        ( |]/|
+$BROWNJ     $GRAY\         /._           /        -tI/ |
+ $BROWNL     $GRAY)       /   /'-------'J           `'-:.
+ $BROWNJ   .$GRAY'      ,'  ,' $BROWN,     \$GRAY   `'-.__          \
+  $BROWN\ $GRAYT      ,'  ,'   $BROWN)\    /|$GRAY        ';'---$WHITE7   /$GRAY
+   $BROWN\$GRAY|    ,'L  Y$BROWN...-' / _.' /$GRAY         \   $WHITE/   /$GRAY
+    J   Y  |  J$BROWN    .'-'   /         $BROWN,--$WHITE.($GRAY   $WHITE/$GRAY
+     L  |  J   L$BROWN -'     .'         $BROWN/  |$GRAY    $WHITE/$GRAY\
+     |  J$BROWN.$GRAY  L  J$BROWN     .-;.-/$GRAY       $BROWN|    \ $WHITE.'$GRAY /
+     J   L$BROWN`-$GRAYJ   L$BROWN____,.-'`$GRAY        $BROWN|  _.-$GRAY'   |
+      $WHITEL  J   L  J$GRAY                  $BROWN``$GRAY  $WHITEJ    |$GRAY
+      $WHITEJ   L  |   L$GRAY                     $WHITEJ    |$GRAY
+       $WHITEL  J  L    \$GRAY                    $WHITEL    \$GRAY
+       $WHITE|   L  $BROWN) _.'\                    ) _.'\$GRAY
+       $WHITEL    \$BROWN('`    \                  ('`    \$GRAY
+        $BROWN) _.'\`-....'                   `-....'$GRAY
+       $BROWN('`    \
+        $BROWN`-.___/$WHITE

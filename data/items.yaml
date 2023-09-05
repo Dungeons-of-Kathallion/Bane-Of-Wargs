@@ -349,6 +349,12 @@ Apple:
   healing level: 1
   gold: 0.7
   description: "Apples are not great for energy but are easy to find."
+Carrot:
+  type: "Food"
+  max bonus: 0
+  healing level: 2
+  gold: 0.7
+  description: "Carrot are great food for horses but not for humans."
 Porkchop:
   type: "Food"
   max bonus: 0
