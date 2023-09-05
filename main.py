@@ -1350,7 +1350,7 @@ def run(play):
             deposited_mounts_names = deposited_mounts_names.replace('[', '(')
             deposited_mounts_names = deposited_mounts_names.replace(']', COLOR_RESET_ALL + ')')
             deposited_mounts_names = deposited_mounts_names.replace("'", COLOR_GREEN + COLOR_STYLE_BRIGHT)
-            deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL)
+            deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL + ',')
             if deposited_mounts_num == 0:
                 print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL)
             else:
@@ -1811,7 +1811,7 @@ def run(play):
                         deposited_mounts_names = deposited_mounts_names.replace('[', '(')
                         deposited_mounts_names = deposited_mounts_names.replace(']', COLOR_RESET_ALL + ')')
                         deposited_mounts_names = deposited_mounts_names.replace("'", COLOR_GREEN + COLOR_STYLE_BRIGHT)
-                        deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL)
+                        deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL + ',')
                         if deposited_mounts_num == 0:
                             print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL)
                         else:
@@ -2258,6 +2258,79 @@ def run(play):
                                 player["health"] += drinks[which_drink]["healing level"]
                         else:
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
+                            print_long_string(text)
+                    elif action == 'Deposit Mount':
+                        if player["current mount"] != " ":
+                            current_mount_uuid = str(player["current mount"])
+                            mount_data = player["mounts"][current_mount_uuid]
+                            ask = input("Do you want to deposit your current mount " + mount_data["name"] + " ? (y/n) ")
+                            if ask.lower().startswith('y'):
+                                player["current mount"] = " "
+                                player["mounts"][current_mount_uuid]["is deposited"] = True
+                                player["mounts"][current_mount_uuid]["deposited day"] = round(player["elapsed time game days"], 1)
+                                player["mounts"][current_mount_uuid]["location"] = str("point" + str(map_location))
+                            text = "="
+                            print_separator(text)
+                        else:
+                            print(COLOR_YELLOW + "You don't have any mounts to deposit here." + COLOR_RESET_ALL)
+                    elif action == 'Ride Mount':
+                        if player["current mount"] == " ":
+                            # get player total mounts at this place
+                            deposited_mounts_num = 0
+                            count = 0
+                            mounts_list_len = len(player["mounts"])
+                            deposited_mounts_names = []
+                            if "None" not in list(player["mounts"]):
+                                while count < mounts_list_len:
+                                        selected_mount = list(player["mounts"])[count]
+                                        selected_mount = str(selected_mount)
+                                        if player["mounts"][selected_mount]["location"] == "point" + str(map_location) and player["mounts"][selected_mount]["is deposited"] == True:
+                                            deposited_mounts_num += 1
+                                            deposited_mounts_names += [str(player["mounts"][selected_mount]["name"])]
+                                        count += 1
+                            else:
+                                deposited_mounts_names = None
+                                deposited_mounts_num = 0
+                            deposited_mounts_names_list = deposited_mounts_names
+                            deposited_mounts_names = str(deposited_mounts_names)
+                            deposited_mounts_names = deposited_mounts_names.replace("'", '')
+                            deposited_mounts_names = deposited_mounts_names.replace("[", ' -')
+                            deposited_mounts_names = deposited_mounts_names.replace("]", '')
+                            deposited_mounts_names = deposited_mounts_names.replace(", ", '\n -')
+                            print("MOUNTS AT THIS STABLE:")
+                            print(deposited_mounts_names)
+                            text = '='
+                            print_separator(text)
+                            which_mount = input("> ")
+                            if which_mount in deposited_mounts_names_list:
+                                # get what is the uuid of the mount of this name
+                                count = 0
+                                continue_searching = True
+                                which_mount_uuid = ""
+                                while count < len(list(player["mounts"])) and continue_searching == True:
+                                    selected_mount_uuid = list(player["mounts"])[count]
+                                    selected_mount_data = player["mounts"][selected_mount_uuid]
+                                    if selected_mount_data["name"] == which_mount:
+                                        continue_searching = False
+                                        which_mount_uuid = str(selected_mount_uuid)
+                                    count += 1
+                                mount_take_back_cost = round(( player["elapsed time game days"] - player["mounts"][which_mount_uuid]["deposited day"] ) * zone[map_zone]["deposit gold"], 2)
+                                print("If you take back this mount it will cost you " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(mount_take_back_cost) + COLOR_RESET_ALL + " gold. ")
+                                ask = input("(y/n) ")
+                                if player["gold"] > mount_take_back_cost:
+                                    if ask.lower().startswith('y'):
+                                        remove_gold(mount_take_back_cost)
+                                        player["current mount"] = str(which_mount_uuid)
+                                        player["mounts"][which_mount_uuid]["is deposited"] = False
+                                        player["mounts"][which_mount_uuid]["deposited day"] = 0
+                                        player["mounts"][which_mount_uuid]["location"] = "point" + str(map_location)
+                                else:
+                                    print(COLOR_YELLOW + "You don't own enough money to take back your mount." + COLOR_RESET_ALL)
+                            else:
+                                text = COLOR_YELLOW + "You don't own that mount or the mount isn't deposited at this current location" + COLOR_RESET_ALL
+                                print_long_string(text)
+                        else:
+                            text = COLOR_YELLOW + "You are currently already riding a mount. You need to deposit your current mount before riding an other one." + COLOR_RESET_ALL
                             print_long_string(text)
                     else:
                         active_stable_menu = False
