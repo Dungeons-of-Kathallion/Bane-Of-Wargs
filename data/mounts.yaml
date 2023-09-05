@@ -28,7 +28,6 @@ Horse:
     required stable: Horse Stable
     stale slot usage: 4
   stats:
-    agility addition:
-      agility addition: 0.1
+    agility addition: 0.1
     resistance addition: 0.23
   description: "There are many different species of horses that you can find in the Kathallion Plains. This is a generic horse that you can find almost anywhere in the Kathallion Plains."

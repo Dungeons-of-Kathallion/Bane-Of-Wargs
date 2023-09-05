@@ -2259,6 +2259,37 @@ def run(play):
                         else:
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
                             print_long_string(text)
+                    elif action == 'Buy Mount':
+                        which_mount = input("Which mount do you want to buy? ")
+                        if which_mount in zone[map_zone]["stable"]["sells"]["mounts"]:
+                            mount_cost = ( mounts[which_mount]["gold"] * zone[map_zone]["cost value"] )
+                            if mount_cost < player["gold"]:
+                                remove_gold(str(mount_cost))
+                                generated_mount_uuid = generate_random_uuid()
+                                print("How you mount should be named ?")
+                                new_mount_name = input("> ")
+                                mount_stats = {
+                                    "agility addition": mounts[which_mount]["stats"]["agility addition"],
+                                    "resistance addition": mounts[which_mount]["stats"]["resistance addition"]
+                                }
+                                mount_dict = {
+                                    "deposited day": round(player["elapsed time game days"], 2),
+                                    "is deposited": True,
+                                    "level": 0,
+                                    "location": "point" + str(map_location),
+                                    "mount": str(which_mount),
+                                    "name": str(new_mount_name),
+                                    "stats": mount_stats
+                                }
+                                player["mounts"][generated_mount_uuid] = mount_dict
+                                text = "Your mount is currently deposited at the " + zone[map_zone]["name"] + "\nYou can ride it whenever you want.'"
+                                print_speech_text_effect(text)
+                                text = '='
+                                print_separator(text)
+                            else:
+                                print(COLOR_YELLOW + "You don't own enough money to buy that mount" + COLOR_RESET_ALL)
+                        else:
+                            print(COLOR_YELLOW + "The current stable do not sell this mount" + COLOR_RESET_ALL)
                     elif action == 'Deposit Mount':
                         if player["current mount"] != " ":
                             current_mount_uuid = str(player["current mount"])
