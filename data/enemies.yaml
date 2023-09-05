@@ -115,6 +115,7 @@ White Warg:
   - Wolf Skin
   - Wolf Skull
   - Beef
+  description: "White Wargs are even bigger Wolves than came from Snowy Peaks. They are captains of the Wargs."
 Cavern Troll:
   plural: "Cavern Trolls"
   damage:
