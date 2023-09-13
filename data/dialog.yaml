@@ -20,7 +20,7 @@ first village enter warg attack:
     add attributes:
     - "seen warg attacking village"
 
-guy seen you fighting gives you money:
+guy saw you fighting gives you money:
   to display:
     player attributes:
     - "seen warg attacking village"
