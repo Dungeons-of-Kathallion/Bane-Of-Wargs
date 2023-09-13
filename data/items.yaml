@@ -167,6 +167,8 @@ Bow (2):
   - Bow String
   - Flexible String
 Orc Bow:
+  display name: "Orc Bow"
+  upgrade tier: 0
   type: "Weapon"
   damage: 3
   defend: 7
@@ -175,6 +177,8 @@ Orc Bow:
   critical hit chance: .07
   description: "Orc bows are less powerful than generic bows but are way more easy to use and transport."
 Knife:
+  display name: "Knife"
+  upgrade tier: 0
   type: "Weapon"
   damage: 3
   defend: 5
@@ -183,6 +187,8 @@ Knife:
   critical hit chance: .04
   description: "A simple knife. Fast and easy to use. Most goblins uses this weapon."
 Dagger:
+  display name: "Dagger"
+  upgrade tier: 0
   type: "Weapon"
   damage: 4
   defend: 4
@@ -213,6 +219,8 @@ Dwarf Axe (1):
   - Raw Silver
   - Raw Bronze
 Mace:
+  display name: "Mace"
+  upgrade tier: 0
   type: "Weapon"
   damage: 9
   defend: 2
@@ -221,6 +229,8 @@ Mace:
   critical hit chance: .17
   description: "A huge mace used by cavern trolls. It is an extremely damaging weapon but also a very slow weapon."
 Spear:
+  display name: "Spear"
+  upgrade tier: 0
   type: "Weapon"
   damage: 7
   defend: 14
@@ -229,6 +239,8 @@ Spear:
   critical hit chance: .13
   description: "The spear is a fast and agile weapon that lets you attack your enemy without letting them the time to attack you."
 Flaming Whip:
+  display name: "Flaming Whip"
+  upgrade tier: 0
   type: "Weapon"
   damage: 9
   defend: 7
