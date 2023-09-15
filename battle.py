@@ -138,6 +138,9 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
         enemies_count = enemies_number
 
         while not someone_died:
+            # to fix sometimes errors at line 187
+            global enemy_dodged
+            enemy_dodged = False
             while player_turn:
                 # if player health is less than 45% and random formula, defend
                 if player_fake_health > player_fake_health * ( 45 / 100 ) and round(random.uniform(.20, .60), 2) > .45:
@@ -150,7 +153,6 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
                 # else, the player attack
                 else:
                     # attack formula
-                    global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
                     player_critical_hit_chance = round(player_critical_hit_chance / random.uniform(0.03, player_critical_hit_chance * 2.8), 2)
