@@ -14,6 +14,11 @@ Warg:
   stats:
     agility addition: 0.35
     resistance addition: 0.15
+  levels:
+    max level: 25
+    level stat additions:
+      agility addition: 0.025
+      resistance addition: 0.015
   description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
 Horse:
   name: Horse

@@ -165,9 +165,6 @@ Kathallion Warg Stable:
     sells:
       mounts:
       - Warg
-      - Horse
-      - Friesian Horse
-      - Shire Horse
       drinks:
       - None
       items:
@@ -178,7 +175,6 @@ Kathallion Warg Stable:
       - Bread
     stables:
     - Warg Stable
-    - Horse Stable
   map:
     map raw: " x__________x\n \
   |  ______  |\n \
