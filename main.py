@@ -1008,7 +1008,14 @@ def run(play):
             map_location = search(player["x"], player["y"])
             player["mounts"][player["current mount"]]["location"] = "point" + str(map_location)
 
-        # always round to player health to an integer amount
+        # update player current mount stats following its level
+        if player["current mount"] in player["mounts"]:
+            current_mount_data = player["mounts"][str(player["current mount"])]
+            current_mount_type = str(current_mount_data["mount"])
+            player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
+            player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
+
+        # always round player health to an integer amount
         player["health"] = int(round(player["health"]))
 
         # update player equipment items
@@ -2609,7 +2616,7 @@ def run(play):
                     print(" ")
 
                     print("STATS:")
-                    print("  LEVEL: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(int(round(which_mount_data["level"], 0))) + COLOR_RESET_ALL)
+                    print("  LEVEL: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(int(round(which_mount_data["level"], 0))) + COLOR_RESET_ALL + "/" + str(int(round(mounts[str(which_mount_data["mount"])]["levels"]["max level"]))))
                     print("  AGILITY ADDITION: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(which_mount_data["stats"]["agility addition"]) + COLOR_RESET_ALL)
                     print("  RESISTANCE ADDITION: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(which_mount_data["stats"]["resistance addition"]) + COLOR_RESET_ALL)
                     print(" ")
