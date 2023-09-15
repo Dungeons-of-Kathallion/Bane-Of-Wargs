@@ -1,8 +1,8 @@
 cheat: 0
 health: 40
-armor protection: 0.95
+armor protection: .95
 current mount: ' '
-agility: 0.8
+agility: .8
 gold: 15
 held item: Dagger
 held chestplate: Wolf Fur
@@ -11,8 +11,8 @@ held leggings: Old Pants
 held shield: " "
 inventory slots: 9
 inventory slots remaining: 4
-elapsed time seconds: 0.
-elapsed time game days: 0.25
+elapsed time seconds: .
+elapsed time game days: .25
 attributes:
 - None
 orders:

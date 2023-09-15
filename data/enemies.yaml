@@ -4,12 +4,12 @@ Slime:
   damage:
     min damage: 1
     max damage: 3
-    critical chance: 0.1
+    critical chance: .1
   health:
     min spawning health: 3
     max spawning health: 7
     max health level: 7
-  agility: 0.87
+  agility: .87
   inventory:
   - Wooden Stick
   - Slime
@@ -19,12 +19,12 @@ Goblin:
   damage:
     min damage: 1
     max damage: 5
-    critical chance: 0.2
+    critical chance: .2
   health:
     min spawning health: 3
     max spawning health: 8
     max health level: 8
-  agility: 0.7
+  agility: .7
   inventory:
   - Knife
   - Beef
@@ -40,12 +40,12 @@ Orc:
   damage:
     min damage: 1
     max damage: 4
-    critical chance: 0.2
+    critical chance: .2
   health:
     min spawning health: 4
     max spawning health: 6
     max health level: 6
-  agility: 0.95
+  agility: .95
   inventory:
   - Knife
   - Raw Salmon
@@ -61,12 +61,12 @@ Orc Archer:
   damage:
     min damage: 1
     max damage: 5
-    critical chance: 0.3
+    critical chance: .3
   health:
     min spawning health: 3
     max spawning health: 7
     max health level: 7
-  agility: 0.85
+  agility: .85
   inventory:
   - Knife
   - Raw Salmon
@@ -84,7 +84,7 @@ Warg:
   damage:
     min damage: 2
     max damage: 5
-    critical chance: 0.4
+    critical chance: .4
   health:
     min spawning health: 3
     max spawning health: 9
@@ -103,7 +103,7 @@ White Warg:
   damage:
     min damage: 3
     max damage: 7
-    critical chance: 0.65
+    critical chance: .65
   health:
     min spawning health: 5
     max spawning health: 11
@@ -121,7 +121,7 @@ Cavern Troll:
   damage:
     min damage: 3
     max damage: 8
-    critical chance: 0.7
+    critical chance: .7
   health:
     min spawning health: 6
     max spawning health: 11
@@ -141,7 +141,7 @@ Black Orc:
   damage:
     min damage: 2
     max damage: 5
-    critical chance: 0.5
+    critical chance: .5
   health:
     min spawning health: 6
     max spawning health: 9
@@ -161,7 +161,7 @@ Dark Marksman:
   damage:
     min damage: 1
     max damage: 7
-    critical chance: 0.6
+    critical chance: .6
   health:
     min spawning health: 5
     max spawning health: 8
@@ -180,7 +180,7 @@ Doomed Horror:
   damage:
     min damage: 0
     max damage: 2
-    critical chance: 0.1
+    critical chance: .1
   health:
     min spawning health: 8
     max spawning health: 11
@@ -195,7 +195,7 @@ Balrog:
   damage:
     min damage: 3
     max damage: 17
-    critical chance: 0.6
+    critical chance: .6
   health:
     min spawning health: 45
     max spawning health: 80

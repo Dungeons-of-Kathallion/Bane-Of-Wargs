@@ -50,7 +50,7 @@ Kathallion Village:
 Kathallion Hostel:
   name: "Kathallion Hostel"
   type: hostel
-  cost value: 0.9
+  cost value: .9
   sleep gold: 7
   location: 8
   description: "The Kathallion Hostel is a nice place to be and you can find amazing people."
@@ -149,10 +149,10 @@ James Blacksmith:
 Kathallion Warg Stable:
   name: "Kathallion Warg Stable"
   type: stable
-  cost value: 0.7
+  cost value: .7
   location: 9
   training gold: 3
-  deposit gold: 0.15
+  deposit gold: .15
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"

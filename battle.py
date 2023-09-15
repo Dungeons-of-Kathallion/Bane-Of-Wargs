@@ -82,9 +82,9 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
 
     # dodge formula is if round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
     # enemy agility / 1.15
-    # .6 / 1.15 =  0.5 # enemy agility
-    # 1.05 - 0.3 = # 75 true possibilities
-    # #enemy agility .5 - .3 = 0.2 # 20 false possibilities
+    # .6 / 1.15 =  .5 # enemy agility
+    # 1.05 - .3 = # 75 true possibilities
+    # #enemy agility .5 - .3 = .2 # 20 false possibilities
     # 75/75+20 = 75/95 # 75/95 true possibilities
     # 75*100/95 # 78% dodge chance for player
 
@@ -92,16 +92,16 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
 
     # player
     real_enemy_agility = enemy_agility / 1.15
-    player_true_dodge_possibilities = ( player_agi - 0.3 ) * 100
-    player_false_dodge_possibilities = ( real_enemy_agility - 0.3 ) * 100
+    player_true_dodge_possibilities = ( player_agi - .3 ) * 100
+    player_false_dodge_possibilities = ( real_enemy_agility - .3 ) * 100
     player_total_possibilities = player_true_dodge_possibilities + player_false_dodge_possibilities
 
     player_dodge_chance = round(( player_true_dodge_possibilities / player_total_possibilities) * 100)
 
     # enemy
     real_player_agility = player_agi / 1.15
-    enemy_true_dodge_possibilities = ( enemy_agility - 0.3 ) * 100
-    enemy_false_dodge_possibilities = ( real_player_agility - 0.3 ) * 100
+    enemy_true_dodge_possibilities = ( enemy_agility - .3 ) * 100
+    enemy_false_dodge_possibilities = ( real_player_agility - .3 ) * 100
     enemy_total_possibilities = enemy_true_dodge_possibilities + enemy_false_dodge_possibilities
 
     enemy_dodge_chance = round(( enemy_true_dodge_possibilities / enemy_total_possibilities ) * 100)
@@ -155,7 +155,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
                     # attack formula
                     enemy_dodged = False
                     player_critical_hit = False
-                    player_critical_hit_chance = round(player_critical_hit_chance / random.uniform(0.03, player_critical_hit_chance * 2.8), 2)
+                    player_critical_hit_chance = round(player_critical_hit_chance / random.uniform(.03, player_critical_hit_chance * 2.8), 2)
                     if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15:
                         enemy_dodged = True
                     if player_critical_hit_chance / random.uniform(.20, .35) < player_critical_hit_chance and not enemy_dodged:
@@ -179,13 +179,13 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
             while not player_turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    damage = random.randint(enemy_min_damage, enemy_max_damage) - player_fake_defend * ( player_fake_armor_protection * round(random.uniform(0.50, 0.90), 1) )
+                    damage = random.randint(enemy_min_damage, enemy_max_damage) - player_fake_defend * ( player_fake_armor_protection * round(random.uniform(.50, .90), 1) )
                     damage = round(damage)
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
-                    enemy_critical_hit_chance = round(enemy_fake_critical_hit_chance / random.uniform(0.03, enemy_fake_critical_hit_chance * 2.8), 2)
-                    critical_hit_chance_formula = round(enemy_critical_hit_chance / random.uniform(0.03, enemy_critical_hit_chance * 2.8), 2)
+                    enemy_critical_hit_chance = round(enemy_fake_critical_hit_chance / random.uniform(.03, enemy_fake_critical_hit_chance * 2.8), 2)
+                    critical_hit_chance_formula = round(enemy_critical_hit_chance / random.uniform(.03, enemy_critical_hit_chance * 2.8), 2)
                     if enemy_critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
                         enemy_critical_hit = True
                     elif round(random.uniform(.30, enemy_agility), 2) > enemy_agility / 1.15:
@@ -246,13 +246,13 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
 
     # print HP stats and possible actions for the player
 
-    if risk > 0.80 * 100:
+    if risk > .80 * 100:
         health_color = COLOR_STYLE_BRIGHT + COLOR_RED
-    elif risk > 0.60 * 100:
+    elif risk > .60 * 100:
         health_color = COLOR_RED
-    elif risk > 0.45 * 100:
+    elif risk > .45 * 100:
         health_color = COLOR_YELLOW
-    elif risk > 0.30 * 100:
+    elif risk > .30 * 100:
         health_color = COLOR_GREEN
     else:
         health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
@@ -391,16 +391,16 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
 
                 # print HP stats and possible actions for the player
 
-                if player_health > 0.66 * player_max_health:
+                if player_health > .66 * player_max_health:
                     health_color = color_green
-                elif player_health > 0.33 * player_max_health:
+                elif player_health > .33 * player_max_health:
                     health_color = color_yellow
                 else:
                     health_color = color_red
 
-                if enemy_health > 0.66 * enemy_max_health:
+                if enemy_health > .66 * enemy_max_health:
                     health_color_enemy = color_blue
-                elif enemy_health > 0.33 * enemy_max_health:
+                elif enemy_health > .33 * enemy_max_health:
                     health_color_enemy = COLOR_CYAN
                 else:
                     health_color_enemy = COLOR_MAGENTA
@@ -420,7 +420,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
-                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(0.03, critical_hit_chance * 2.8), 2)
+                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(.03, critical_hit_chance * 2.8), 2)
                     if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15:
                         enemy_dodged = True
                         print("Your enemy dodged your attack!")
@@ -493,12 +493,12 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
             while not turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    damage = random.randint(enemy_min_damage, enemy_max_damage) - defend * ( armor_protection * round(random.uniform(0.50, 0.90), 1) )
+                    damage = random.randint(enemy_min_damage, enemy_max_damage) - defend * ( armor_protection * round(random.uniform(.50, .90), 1) )
                     damage = round(damage)
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
-                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(0.03, critical_hit_chance * 2.8), 2)
+                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(.03, critical_hit_chance * 2.8), 2)
                     if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
                         enemy_critical_hit = True
                         print("Your enemy dealt a critical hit!")
@@ -532,7 +532,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     print("\n")
                     player["xp"] += enemy_max * enemy_max_damage / 3
                     if player["current mount"] in player["mounts"]:
-                        player["mounts"][player["current mount"]]["level"] += round(random.uniform(0.05, 0.20), 3)
+                        player["mounts"][player["current mount"]]["level"] += round(random.uniform(.05, .20), 3)
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
                     still_playing = False

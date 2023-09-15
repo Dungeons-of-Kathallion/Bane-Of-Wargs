@@ -68,7 +68,7 @@ Broadsword (2):
   upgrade tier: 2
   damage: 9.3
   defend: 7.6
-  agility: 0.48
+  agility: .48
   critical hit chance: .1
   for this upgrade:
   - Raw Iron
@@ -224,7 +224,7 @@ Mace:
   type: "Weapon"
   damage: 9
   defend: 2
-  agility: -0.15
+  agility: -.15
   gold: 6.57
   critical hit chance: .17
   description: "A huge mace used by cavern trolls. It is an extremely damaging weapon but also a very slow weapon."
@@ -270,19 +270,19 @@ Leather Jacket:
   type: "Armor Piece: Chestplate"
   armor protection: .6
   agility: .2
-  gold: 0.6
+  gold: .6
   description: "A small jacket that may not protect you much but keeps you warm when it's cold."
 Leather Boots:
   type: "Armor Piece: Boots"
   armor protection: .1
   agility: .35
-  gold: 0.6
+  gold: .6
   description: "While these boots are dirty and wet, they grant you great mobility."
 Old Pants:
   type: "Armor Piece: Leggings"
   armor protection: .25
   agility: .25
-  gold: 0.6
+  gold: .6
   description: "An old pair of pants. It is large and very dirty."
 Broken Shield:
   type: "Armor Piece: Shield"
@@ -359,13 +359,13 @@ Apple:
   tpye: "Food"
   max bonus: 0
   healing level: 1
-  gold: 0.7
+  gold: .7
   description: "Apples are not great for energy but are easy to find."
 Carrot:
   type: "Food"
   max bonus: 0
   healing level: 2
-  gold: 0.7
+  gold: .7
   description: "Carrot are great food for horses but not for humans."
 Porkchop:
   type: "Food"
@@ -388,11 +388,11 @@ Bread:
 # Misc
 Bone:
   type: "Misc"
-  gold: 0.25
+  gold: .25
   description: "An old bone that seems to come from a great beast."
 Wooden Stick:
   type: "Misc"
-  gold: 0.12
+  gold: .12
   description: "Small stick made of wood. They often come from forest-destroying Goblins."
 Wolf Skin:
   type: "Misc"
@@ -412,7 +412,7 @@ Hay Bale:
   description: "Hay Bales are the only food that Kathallion horses accepts to eat, with Wheat of course."
 Wheat:
   type: "Misc"
-  gold: 0.7
+  gold: .7
   description: "Wheat are very useful in the Kathallion civilizations. It is used to feed horses, make Hay Bales but mostly, cook bread."
 Balrog Horn:
   type: "Misc"
