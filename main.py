@@ -2294,14 +2294,19 @@ def run(play):
                         if player["current mount"] != " ":
                             current_mount_uuid = str(player["current mount"])
                             mount_data = player["mounts"][current_mount_uuid]
-                            ask = input("Do you want to deposit your current mount " + mount_data["name"] + " ? (y/n) ")
-                            if ask.lower().startswith('y'):
-                                player["current mount"] = " "
-                                player["mounts"][current_mount_uuid]["is deposited"] = True
-                                player["mounts"][current_mount_uuid]["deposited day"] = round(player["elapsed time game days"], 1)
-                                player["mounts"][current_mount_uuid]["location"] = str("point" + str(map_location))
-                            text = "="
-                            print_separator(text)
+                            # check if required stables are in the stable attributes
+                            required_mount_stable = str(mounts[str(mount_data["mount"])]["stable"]["required stable"])
+                            if required_mount_stable in zone[map_zone]["stable"]["stables"]:
+                                ask = input("Do you want to deposit your current mount " + mount_data["name"] + " ? (y/n) ")
+                                if ask.lower().startswith('y'):
+                                    player["current mount"] = " "
+                                    player["mounts"][current_mount_uuid]["is deposited"] = True
+                                    player["mounts"][current_mount_uuid]["deposited day"] = round(player["elapsed time game days"], 1)
+                                    player["mounts"][current_mount_uuid]["location"] = str("point" + str(map_location))
+                                text = "="
+                                print_separator(text)
+                            else:
+                                print(COLOR_YELLOW + "This stable doesn't accept this type of mount." + COLOR_RESET_ALL)
                         else:
                             print(COLOR_YELLOW + "You don't have any mounts to deposit here." + COLOR_RESET_ALL)
                     elif action == 'Ride Mount':
