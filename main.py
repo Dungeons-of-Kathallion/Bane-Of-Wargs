@@ -1260,7 +1260,7 @@ def run(play):
             print_long_string(text)
             print("")
             if "None" not in current_black_smith["blacksmith"]["buys"]:
-                print("WEAPON BUYS:")
+                print("EQUIPMENT BUYS:")
                 count = 0
                 weapon_buys = current_black_smith["blacksmith"]["buys"]
                 weapon_buys_len = len(weapon_buys)
@@ -1830,7 +1830,7 @@ def run(play):
                         black_smith_coordinates = "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(blacksmith_point)]["x"]) + COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(blacksmith_point)]["y"]) + COLOR_RESET_ALL + ")"
                         print("LOCATION: " + black_smith_coordinates)
                         if "None" not in current_black_smith["blacksmith"]["buys"]:
-                            print("WEAPON BUYS:")
+                            print("EQUIPMENT BUYS:")
                             count = 0
                             weapon_buys = current_black_smith["blacksmith"]["buys"]
                             weapon_buys_len = len(weapon_buys)
