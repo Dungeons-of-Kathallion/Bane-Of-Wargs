@@ -2526,7 +2526,7 @@ def run(play):
                                             "ordered weapon": str(item_next_upgrade_name),
                                             "ordered day": player["elapsed time game days"],
                                             "ordered blacksmith": zone[map_zone]["name"],
-                                            "time needed": round(random.uniform(55, 3.55), 2),
+                                            "time needed": round(random.uniform(.55, 3.55), 2),
                                             "has taken back order": "false"
                                         }
                                         player["orders"][order_uuid] = order_dict
