@@ -20,6 +20,27 @@ Warg:
       agility addition: .025
       resistance addition: .015
   description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
+Bear:
+  name: Bear
+  plural: Bears
+  gold: 79.58
+  feed:
+    food:
+    - Beef
+    - Porkchop
+    feed needs: 3
+  stable:
+    required stable: Bear Stable
+    stable slot usage: 4
+  stats:
+    agility addition: -0.15
+    resistance addition: .25
+  levels:
+    max level: 8
+    level stat additions:
+      agility addition: .015
+      resistance addition: .15
+  description: "Bears are very big and powerful animals that are very hard to train; they required lot of work."
 Horse:
   name: Horse
   plural: Horses
