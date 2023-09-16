@@ -100,7 +100,7 @@ point11:
 point12:
   x: -1
   y: 5
-  map zone: "Kathallion Village"
+  map zone: "Pickaxe Forge"
   blocked:
   - North
   - East

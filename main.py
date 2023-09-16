@@ -1219,11 +1219,13 @@ def run(play):
 
             player["start dialog"]["heard start dialog"] = True
 
+        global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith, is_in_blacksmith
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
         is_in_blacksmith = False
-        if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable" or zone[map_zone]["type"] == "blacksmith":
+        is_in_forge = False
+        if zone[map_zone]["type"] == "village" or zone[map_zone]["type"] == "hostel" or zone[map_zone]["type"] == "stable" or zone[map_zone]["type"] == "blacksmith" or zone[map_zone]["type"] == "forge":
             print("NEWS:")
             village_news = zone[map_zone]["news"]
             village_news_len = len(village_news)
@@ -1252,6 +1254,33 @@ def run(play):
                 print_separator(text)
         if zone[map_zone]["type"] == "village":
             is_in_village = True
+        if zone[map_zone]["type"] == "forge":
+            is_in_forge = True
+            current_forge = zone[map_zone]
+            print(str(current_forge["name"]) + ":")
+            text = current_forge["description"]
+            print_long_string(text)
+            print(" ")
+            if "None" not in current_forge["forge"]["buys"]:
+                print("METAL BUYS:")
+                count = 0
+                metal_buys = current_forge["forge"]["buys"]
+                metal_buys_len = len(metal_buys)
+                while count < metal_buys_len:
+                    current_metal = str(metal_buys[count])
+                    print(" -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL)
+                    count += 1
+            if "None" not in current_forge["forge"]["sells"]:
+                print("METAL SELLS:")
+                count = 0
+                metal_sells = current_forge["forge"]["sells"]
+                metal_sells_len = len(metal_sells)
+                while count < metal_sells_len:
+                    current_metal = str(metal_sells[count])
+                    print(" -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL)
+                    count += 1
+            text = '='
+            print_separator(text)
         if zone[map_zone]["type"] == "blacksmith":
             is_in_blacksmith = True
             current_black_smith = zone[map_zone]
@@ -1265,7 +1294,7 @@ def run(play):
                 weapon_buys = current_black_smith["blacksmith"]["buys"]
                 weapon_buys_len = len(weapon_buys)
                 while count < weapon_buys_len:
-                    current_weapon = str(current_black_smith["blacksmith"]["buys"][int(count)])
+                    current_weapon = str(weapon_buys[int(count)])
                     print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL)
                     count += 1
             if "None" not in current_black_smith["blacksmith"]["orders"]:
@@ -1274,7 +1303,7 @@ def run(play):
                 weapon_orders = current_black_smith["blacksmith"]["orders"]
                 weapon_orders_len = len(weapon_orders)
                 while count < weapon_orders_len:
-                    current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
+                    current_weapon = str(list(weapon_orders)[int(count)])
                     current_weapon_materials = current_black_smith["blacksmith"]["orders"][current_weapon]["needed materials"]
                     count2 = 0
                     global_current_weapon_materials = []
@@ -1325,7 +1354,7 @@ def run(play):
                 stable_mounts = current_stable["stable"]["sells"]["mounts"]
                 stable_mounts_len = len(stable_mounts)
                 while count < stable_mounts_len:
-                    current_mount = str(current_stable["stable"]["sells"]["mounts"][int(count)])
+                    current_mount = str(stable_mounts[int(count)])
                     print(" -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2)) + COLOR_RESET_ALL)
                     count += 1
             if "None" not in current_stable["stable"]["sells"]["items"]:
@@ -1335,7 +1364,7 @@ def run(play):
                 stable_items = current_stable["stable"]["sells"]["items"]
                 stable_items_len = len(stable_items)
                 while count < stable_items_len:
-                    current_mount = str(current_stable["stable"]["sells"]["items"][int(count)])
+                    current_mount = str(stable_items[int(count)])
                     print(" -" + current_stable["stable"]["sells"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_mount]["gold"] * current_stable["cost value"], 2)) + COLOR_RESET_ALL)
                     count += 1
             print(" ")
@@ -1598,7 +1627,7 @@ def run(play):
                 play = 0
                 return play
 
-        elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > .7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village" and zone[map_zone]["type"] != "blacksmith":
+        elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > .7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village" and zone[map_zone]["type"] != "blacksmith" and zone[map_zone]["type"] != "forge":
             enemies_remaining = random.randint(1, 4)
             already_encountered = False
             while enemies_remaining > 0:
@@ -1876,6 +1905,30 @@ def run(play):
                                 global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
                                 global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
                                 print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + global_current_weapon_materials + COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
+                                count += 1
+                    elif zone[which_zone]["type"] == "forge":
+                        current_forge = zone[which_zone]
+                        print(str(current_forge["name"]) + ":")
+                        text = current_forge["description"]
+                        print_long_string(text)
+                        print(" ")
+                        if "None" not in current_forge["forge"]["buys"]:
+                            print("METAL BUYS:")
+                            count = 0
+                            metal_buys = current_forge["forge"]["buys"]
+                            metal_buys_len = len(metal_buys)
+                            while count < metal_buys_len:
+                                current_metal = str(metal_buys[count])
+                                print(" -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL)
+                                count += 1
+                        if "None" not in current_forge["forge"]["sells"]:
+                            print("METAL SELLS:")
+                            count = 0
+                            metal_sells = current_forge["forge"]["sells"]
+                            metal_sells_len = len(metal_sells)
+                            while count < metal_sells_len:
+                                current_metal = str(metal_sells[count])
+                                print(" -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL)
                                 count += 1
                     text = "DESCRIPTION: " + zone[which_zone]["description"]
                     print_long_string(text)
@@ -2557,8 +2610,51 @@ def run(play):
                             print(COLOR_YELLOW + "You don't have this order currently at this place." + COLOR_RESET_ALL)
                     else:
                         continue_blacksmith_actions = False
+            elif zone[map_zone]["type"] == "forge":
+                current_forge = zone[map_zone]
+                text = '='
+                print_separator(text)
+                options = []
+                if "None" not in current_forge["forge"]["buys"]:
+                    options += ['Sell Metals']
+                if "None" not in current_forge["forge"]["sells"]:
+                    options += ['Buy Metals']
+                options += ['Exit']
+                continue_forge_actions = True
+                while continue_forge_actions:
+                    choice = enquiries.choose('', options)
+                    if choice == 'Sell Metals':
+                        which_metal = input("Which metal do you want to sell? ")
+                        if which_metal in current_forge["forge"]["buys"]:
+                            metal_count = int(input("How many count of this metal you want to sell? "))
+                            if player["inventory"].count(which_metal) >= metal_count:
+                                add_gold(item[which_metal]["gold"] * current_forge["cost value"] * metal_count)
+                                count = 0
+                                while count < metal_count:
+                                    player["inventory"].remove(which_metal)
+                                    count += 1
+                            else:
+                                print(COLOR_YELLOW + "You don't own that many count of this metal" + COLOR_RESET_ALL)
+                        else:
+                            print(COLOR_YELLOW + "The current forge doesn't buys this metal" + COLOR_RESET_ALL)
+                    elif choice == 'Buy Metals':
+                        which_metal = input("Which metal do you want to buy? ")
+                        if which_metal in current_forge["forge"]["sells"]:
+                            metal_count = int(input("How many count of this metal you want to buy? "))
+                            if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
+                                remove_gold(item[which_metal]["gold"] * current_forge["cost value"] * metal_count)
+                                count = 0
+                                while count < metal_count:
+                                    player["inventory"].append(which_metal)
+                                    count += 1
+                            else:
+                                print(COLOR_YELLOW + "You don't own enough money to buy that many metal" + COLOR_RESET_ALL)
+                        else:
+                            print(COLOR_YELLOW + "The current forge doesn't sells this metal" + COLOR_RESET_ALL)
+                    else:
+                        continue_forge_actions = False
             else:
-                print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith or church." + COLOR_RESET_ALL)
+                print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge or church." + COLOR_RESET_ALL)
                 time.sleep(1.5)
         elif command.lower().startswith('y'):
             if "mounts" in player and player["mounts"] != '':

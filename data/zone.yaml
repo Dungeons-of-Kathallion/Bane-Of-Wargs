@@ -87,6 +87,44 @@ Kathallion Hostel:
   | $BROWN||--$GRAY0$BROWN-|| $WHITE|\n \
   x__________x"
 
+Pickaxe Forge:
+  name: "Pickaxe Forge"
+  type: forge
+  cost value: 1.15
+  location: 12
+  description: "At the Pickaxe Forge you'll be able to buy any metal at low prices for its low quality!"
+  news:
+  - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
+  - "You should checkout the hostel in the village! They sell items for great prices!"
+  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
+  - "..."
+  - "Hey I'm Jo... Ooh, You don't care..."
+  map:
+    map raw: " x__________x\n \
+  |*  *  {}  |\n \
+  |(--------)|\n \
+  |( ___ [] )|\n \
+  |(|░░░|[] )|\n \
+  x__________x"
+    map full: " x__________x\n \
+  |$BLUE*  *  $GRAY{}  $WHITE|\n \
+  |$GRAY(--------)$WHITE|\n \
+  |$GRAY( ___ $BROWN[]$GRAY )$WHITE|\n \
+  |$GRAY(|$RED░░░$GRAY|$BROWN[]$GRAY )$WHITE|\n \
+  x__________x"
+  forge:
+    buys:
+    - Raw Iron
+    sells:
+    - Raw Iron
+    - Raw Silver
+    - Raw Copper
+    - Raw Bronze
+    - Steel
+    - Refined Steel
+    - Flexible Steel
+
 James Blacksmith:
   name: "James Blacksmith"
   type: blacksmith

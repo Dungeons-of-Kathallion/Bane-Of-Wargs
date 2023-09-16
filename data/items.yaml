@@ -514,24 +514,31 @@ Note1:
 # Metals
 Raw Iron:
   type: "Metal"
+  gold: .6
   description: "A bag with raw iron in it. Useful to forge swords."
 Raw Copper:
   type: "Metal"
+  gold: .7
   description: "A bag with raw copper in it. Useful to forge swords."
 Raw Silver:
   type: "Metal"
+  gold: .95
   description: "A bag with raw silver in it. Useful to forge swords."
 Raw Bronze:
   type: "Metal"
+  gold: .55
   description: "A bag with raw bronze in it. Useful to forge swords."
 Steel:
   type: "Metal"
+  gold: .85
   description: "A bag with steel ingots in it. Useful to forge axes."
 Refined Steel:
   type: "Metal"
+  gold: .93
   description: "A bag with stronger steel ingots in it. Useful to forge axes or other heavy weapons."
 Flexible Steel:
   type: "Metal"
+  gold: .98
   description: "A bag with flexible steel ingots in it. Useful to forge flexible swords."
 # Primary Materials
 Raw Wood:
