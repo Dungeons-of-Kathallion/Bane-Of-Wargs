@@ -159,6 +159,7 @@ James Blacksmith:
     - Dwarf Axe
     - Chainmail Leggings
     - Knight Boots
+    - Dagger
     orders:
       Sword:
         needed materials:

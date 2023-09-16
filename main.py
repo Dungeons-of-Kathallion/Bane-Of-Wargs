@@ -2346,24 +2346,38 @@ def run(play):
                                 generated_mount_uuid = generate_random_uuid()
                                 print("How you mount should be named ?")
                                 new_mount_name = input("> ")
-                                mount_stats = {
-                                    "agility addition": mounts[which_mount]["stats"]["agility addition"],
-                                    "resistance addition": mounts[which_mount]["stats"]["resistance addition"]
-                                }
-                                mount_dict = {
-                                    "deposited day": round(player["elapsed time game days"], 2),
-                                    "is deposited": True,
-                                    "level": 0,
-                                    "location": "point" + str(map_location),
-                                    "mount": str(which_mount),
-                                    "name": str(new_mount_name),
-                                    "stats": mount_stats
-                                }
-                                player["mounts"][generated_mount_uuid] = mount_dict
-                                text = "Your mount is currently deposited at the " + zone[map_zone]["name"] + "\nYou can ride it whenever you want."
-                                print_speech_text_effect(text)
-                                text = '='
-                                print_separator(text)
+                                mounts_names_list = []
+                                count = 0
+                                if "None" not in list(player["mounts"]):
+                                    mounts_list_len = len(player["mounts"])
+                                    while count < mounts_list_len:
+                                        selected_mount = list(player["mounts"])[count]
+                                        selected_mount = str(selected_mount)
+                                        mounts_names_list.append(str(player["mounts"][selected_mount]["name"]))
+                                        count += 1
+                                if new_mount_name in mounts_names_list:
+                                    print(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
+                                    text = '='
+                                    print_separator(text)
+                                else:
+                                    mount_stats = {
+                                        "agility addition": mounts[which_mount]["stats"]["agility addition"],
+                                        "resistance addition": mounts[which_mount]["stats"]["resistance addition"]
+                                    }
+                                    mount_dict = {
+                                        "deposited day": round(player["elapsed time game days"], 2),
+                                        "is deposited": True,
+                                        "level": 0,
+                                        "location": "point" + str(map_location),
+                                        "mount": str(which_mount),
+                                        "name": str(new_mount_name),
+                                        "stats": mount_stats
+                                    }
+                                    player["mounts"][generated_mount_uuid] = mount_dict
+                                    text = "Your mount is currently deposited at the " + zone[map_zone]["name"] + "\nYou can ride it whenever you want."
+                                    print_speech_text_effect(text)
+                                    text = '='
+                                    print_separator(text)
                             else:
                                 print(COLOR_YELLOW + "You don't own enough money to buy that mount" + COLOR_RESET_ALL)
                         else:
@@ -2740,8 +2754,30 @@ def run(play):
 
                     text = '='
                     print_separator(text)
-
-                    finished = input("")
+                    options = ['Abandon', 'Rename', 'Exit']
+                    choice = enquiries.choose('', options)
+                    count = 0
+                    continue_action = True
+                    while count < len(list(player["mounts"])) and continue_action == True:
+                        selected_mount_uuid = str(list(player["mounts"])[count])
+                        if player["mounts"][selected_mount_uuid]["name"] == str(which_mount):
+                            mount_uuid = selected_mount_uuid
+                            continue_action = False
+                        count += 1
+                    if choice == 'Abandon':
+                        print("Are you sure you want to abandon this mount? You won't")
+                        ask = input(" be able to find him after that. (y/n) ")
+                        if ask.lower().startswith('y'):
+                            player["mounts"].pop(mount_uuid)
+                            player["current mount"] = " "
+                    elif choice == 'Rename':
+                        print("Select a new name for your mount")
+                        new_name = input("> ")
+                        if new_name in mounts_names_list:
+                            print(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
+                            time.sleep(1.5)
+                        else:
+                            player["mounts"][mount_uuid]["name"] = str(new_name)
                 else:
                     print(COLOR_YELLOW + "You don't have any mounts named like that." + COLOR_RESET_ALL)
                     time.sleep(1.5)
