@@ -906,7 +906,7 @@ def detect_weapon_next_upgrade_items(item_name):
         weapon_already_upgraded = True
 
     if not weapon_already_upgraded:
-        weapon_next_upgrade_name = str(item_name), "(1)"
+        weapon_next_upgrade_name = str(item_name) + " (1)"
     else:
         weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
 
@@ -2042,9 +2042,14 @@ def run(play):
                 if item[which_item]["type"] == "Armor Piece: Chestplate" or item[which_item]["type"] == "Armor Piece: Boots" or item[which_item]["type"] == "Armor Piece: Leggings" or item[which_item]["type"] == "Armor Piece: Shield":
                     text = "             Armor pieces can protect you in fights, more the armor protection is higher, the more it protects you."
                     print_long_string(text)
+                    item_next_upgrade = detect_weapon_next_upgrade_items(which_item)
+                    print("UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" + str(check_weapon_max_upgrade(str(which_item))))
+                    print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print("ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(item[which_item]["armor protection"]) + COLOR_RESET_ALL)
                 if item[which_item]["type"] == "Metal":
                     text = "              Metals are items that you buy in village forges that you often use to order weapons in blacksmith."
+                if item[which_item]["type"] == "Primary Material":
+                    text = "              Primary materials are items that you can find naturally but that you can also buy from many villages shops."
                     print_long_string(text)
                 if item[which_item]["type"] == "Weapon":
                     item_next_upgrade = detect_weapon_next_upgrade_items(which_item)

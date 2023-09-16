@@ -119,6 +119,8 @@ James Blacksmith:
     - Long Sword
     - Spear
     - Dwarf Axe
+    - Chainmail Leggings
+    - Knight Boots
     orders:
       Sword:
         needed materials:
@@ -145,6 +147,15 @@ James Blacksmith:
         - Bone
         gold: 8.6
         time needed: 4.7
+      Chainmail Leggings:
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Iron
+        - Raw Iron
+        - Raw Bronze
+        gold: 13.5
+        time needed: 8.69
 
 Kathallion Warg Stable:
   name: "Kathallion Warg Stable"

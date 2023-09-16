@@ -260,67 +260,152 @@ Map:
   type: "Utility"
   description: "It's a map of the dungeons! [Press 'M' to activate.]"
 # Armors
-Wolf Fur:
+Wolf Fur: &wolf_fur
+  display name: "Wolf Fur"
+  upgrade tier: 0
   type: "Armor Piece: Chestplate"
   armor protection: .3
   agility: .35
   gold: 1.25
   description: "A wolf fur that can also be used as a chestplate."
+Wolf Fur (1):
+  << : *wolf_fur
+  upgrade tier: 1
+  armor protection: .37
+  agility: .38
+  for this upgrade:
+  - Flexible Steel
 Leather Jacket:
+  upgrade tier: 0
   type: "Armor Piece: Chestplate"
   armor protection: .6
   agility: .2
   gold: .6
   description: "A small jacket that may not protect you much but keeps you warm when it's cold."
 Leather Boots:
+  upgrade tier: 0
   type: "Armor Piece: Boots"
   armor protection: .1
   agility: .35
   gold: .6
   description: "While these boots are dirty and wet, they grant you great mobility."
 Old Pants:
+  upgrade tier: 0
   type: "Armor Piece: Leggings"
   armor protection: .25
   agility: .25
   gold: .6
   description: "An old pair of pants. It is large and very dirty."
 Broken Shield:
+  upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .05
   agility: .1
   gold: 1.1
   description: "A sheild from ancient times, cloven in two and left for travelers to find."
-Knight Boots:
+Knight Boots: &knight_boots
+  display name: Knight Boots
+  upgrade tier: 0
   type: "Armor Piece: Boots"
   armor protection: .24
   agility: .2
-  gold: 2.45
+  gold: 13.45
   description: "The generic boots of any good knight."
+Knight Boots (1):
+  << : *knight_boots
+  upgrade tier: 1
+  armor protection: .27
+  agility: .18
+  for this upgrade:
+  - Raw Wood
+  - Raw Iron
+  - Raw Iron
+Knight Boots (2):
+  << : *knight_boots
+  upgrade tier: 2
+  armor protection: .29
+  agility: .165
+  for this upgrade:
+  - Raw Copper
+  - Raw Copper
+  - Raw Silver
+Chainmail Leggings: &chainmail_leggings
+  display name: "Chainmail Leggings"
+  upgrade tier: 0
+  type: "Armor Piece: Leggings"
+  armor protection: .31
+  agility: .17
+  gold: 19.53
+  description: "Chainmail leggings are light weight but strong and durable armor pieces. They are used by most knights."
+Chainmail Leggings (1):
+  << : *chainmail_leggings
+  upgrade tier: 1
+  armor protection: .36
+  agility: .15
+  for this upgrade:
+  - Raw Iron
+  - Raw Iron
+  - Raw Bronze
+Chainmail Leggings (2):
+  << : *chainmail_leggings
+  upgrade tier: 2
+  armor protection: .38
+  agility: .13
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+Chainmail Leggings (3):
+  << : *chainmail_leggings
+  upgrade tier: 3
+  armor protection: .38
+  agility: .145
+  for this upgrade:
+  - Steel
+  - Refined Steel
+  - Flexible Steel
+Chainmail Leggings (4):
+  << : *chainmail_leggings
+  upgrade tier: 4
+  armor protection: .38
+  agility: .1495
+  for this upgrade:
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
 Orc Iron Leggings:
+  upgrade tier: 0
   type: "Armor Piece: Leggings"
   armor protection: .32
   agility: .15
   gold: 5.68
   description: "The generics leggings of Goblins and Yrch. These leggings continue further along on your legs since Yrch and goblins don't wear boots.'"
 Orc Shredded Chestplate:
+  upgrade tier: 0
   type: "Armor Piece: Chestplate"
   armor protection: .32
   agility: .15
   gold: 8.65
   description: "The generic chestplate of Goblins and Yrch."
 Shield:
+  upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .1
   agility: .2
   gold: 3.2
   description: "While not very strong, this shield will serve you well in deflecting enemy attacks."
 Orc Shield:
+  upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .05
   agility: .35
   gold: 3.8
   description: "A shield built for weight; used by the Black Yrch."
 Warg Fur Shield:
+  upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .045
   agility: .15
