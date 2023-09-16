@@ -1012,8 +1012,6 @@ def run(play):
         if player["current mount"] in player["mounts"]:
             current_mount_data = player["mounts"][str(player["current mount"])]
             current_mount_type = str(current_mount_data["mount"])
-            print(current_mount_data)
-            print(type(current_mount_data["level"]))
             if current_mount_data["level"] >= 1:
                 player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
                 player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
