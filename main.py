@@ -1015,6 +1015,18 @@ def run(play):
             if current_mount_data["level"] >= 1:
                 player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
                 player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
+                
+        # verify if player worn equipment are in his inventory
+        if str(player["held item"]) not in player["player inventory"]:
+            player["held item"] = " "
+        if str(player["held chestplate"]) not in player["player inventory"]:
+            player["held chestplate"] = " "
+        if str(player["held leggings"]) not in player["player inventory"]:
+            player["held leggings"] = " "
+        if str(player["held boots"]) not in player["player inventory"]:
+            player["held boots"] = " "
+        if str(player["held shield"]) not in player["player inventory"]:
+            player["held shield"] = " "
 
         # always round player health to an integer amount
         player["health"] = int(round(player["health"]))
