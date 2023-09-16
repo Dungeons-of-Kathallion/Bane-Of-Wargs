@@ -2289,7 +2289,7 @@ def run(play):
                                     "stats": mount_stats
                                 }
                                 player["mounts"][generated_mount_uuid] = mount_dict
-                                text = "Your mount is currently deposited at the " + zone[map_zone]["name"] + "\nYou can ride it whenever you want.'"
+                                text = "Your mount is currently deposited at the " + zone[map_zone]["name"] + "\nYou can ride it whenever you want."
                                 print_speech_text_effect(text)
                                 text = '='
                                 print_separator(text)
