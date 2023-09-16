@@ -224,7 +224,7 @@ Mace:
   type: "Weapon"
   damage: 9
   defend: 2
-  agility: -.15
+  agility: -0.15
   gold: 6.57
   critical hit chance: .17
   description: "A huge mace used by cavern trolls. It is an extremely damaging weapon but also a very slow weapon."
