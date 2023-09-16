@@ -6,7 +6,7 @@
 point0:
   x: 0
   y: 0
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   item:
   - Dwarf Axe
   blocked:
@@ -16,13 +16,13 @@ point0:
 point1:
   x: 0
   y: 1
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   blocked:
   - East
 point2:
   x: -1
   y: 1
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   blocked:
   - North
   - West
@@ -30,20 +30,20 @@ point2:
 point3:
   x: 0
   y: 2
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   blocked:
   - West
 point4:
   x: 0
   y: 3
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   blocked:
   - North
   - East
 point5:
   x: -1
   y: 3
-  map zone: "Kathallion Village"
+  map zone: "Cocorico Village"
   enemy: 1
   enemy type: warg raids
   dialog: first village enter warg attack
@@ -52,7 +52,7 @@ point5:
 point6:
   x: 1
   y: 2
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   item:
   - Broken Shield
   - Beef
@@ -62,7 +62,7 @@ point6:
 point7:
   x: 2
   y: 2
-  map zone: "Kathallion Plains"
+  map zone: "Stall Fields"
   npc:
   - Old Man
   blocked:
@@ -72,13 +72,13 @@ point7:
 point8:
   x: -2
   y: 3
-  map zone: "Kathallion Hostel"
+  map zone: "Woodstack Hostel"
   blocked:
   - South
 point9:
   x: -3
   y: 3
-  map zone: "Kathallion Warg Stable"
+  map zone: "Clarc Warg Stable"
   blocked:
   - North
   - South
@@ -93,7 +93,7 @@ point10:
 point11:
   x: -1
   y: 4
-  map zone: "Kathallion Village"
+  map zone: "Cocorico Village"
   dialog: guy seen you fighting gives you money
   blocked:
   - East
@@ -107,13 +107,13 @@ point12:
 point13:
   x: -2
   y: 4
-  map zone: "Kathallion Village"
+  map zone: "Cocorico Village"
   blocked:
   - West
 point14:
   x: -2
   y: 5
-  map zone: "Kathallion Village"
+  map zone: "Cocorico Village"
   blocked:
   - West
   - North

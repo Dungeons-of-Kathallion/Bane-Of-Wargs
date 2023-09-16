@@ -1,7 +1,7 @@
-Kathallion Plains:
-  name: "Kathallion Plains"
-  description: "The plains nearby to the Dungeon Of Kathallion."
-  type: plains
+Stall Fields:
+  name: "Stall Fields"
+  description: "The great fields of the Stall Island."
+  type: fields
   map:
     map full: " x__________x\n \
   |$GREEN,,_,,,,$YELLOWo$GREEN_,$WHITE|\n \
@@ -16,9 +16,9 @@ Kathallion Plains:
   |o_,,,_,,,,|\n \
   x__________x"
 
-Kathallion Village:
-  name: "Kathallion Village"
-  description: "The village in the plains of Kathallion."
+Cocorico Village:
+  name: "Cocorico Village"
+  description: "The village in the Stall Fields. It offers tranquility and safeness."
   type: village
   location: 5
   news:
@@ -47,13 +47,13 @@ Kathallion Village:
     blacksmiths:
     - James Blacksmith
 
-Kathallion Hostel:
+Woodstack Hostel:
   name: "Kathallion Hostel"
   type: hostel
   cost value: .9
   sleep gold: 7
   location: 8
-  description: "The Kathallion Hostel is a nice place to be and you can find amazing people."
+  description: "The Woodstack Hostel is a nice place to be and you can find amazing people."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
@@ -196,8 +196,8 @@ James Blacksmith:
         gold: 13.5
         time needed: 8.69
 
-Kathallion Warg Stable:
-  name: "Kathallion Warg Stable"
+Clarc Warg Stable:
+  name: "Clarc Stable"
   type: stable
   cost value: .7
   location: 9
