@@ -36,6 +36,11 @@ Horse:
   stats:
     agility addition: .1
     resistance addition: .23
+  levels:
+    max level: 13
+    level stat additions:
+      agility addition: .015
+      resistance addition: .005
   description: "There are many different species of horses that you can find in the Kathallion Plains. This is a generic horse that you can find almost anywhere in the Kathallion Plains."
 Friesian Horse:
   name: Friesian Horse
@@ -52,6 +57,11 @@ Friesian Horse:
   stats:
     agility addition: .14
     resistance addition: .31
+  levels:
+    max level: 18
+    level stat additions:
+      agility addition: .016
+      resistance addition: .007
   description: "Friesian Horses are breeds who are known for their docile ,energetic and swift high-stepping trot. They are often used by knights."
 Shire Horse:
   name: Shire Horse
@@ -68,4 +78,9 @@ Shire Horse:
   stats:
     agility addition: .14
     resistance addition: .31
+  levels:
+    max level: 17
+    level stat additions:
+      agility addition: .015
+      resistance addition: .02
   description: "Shire Horses are tall horses that are often used by farmers to labor their lands. Despite that, they are also great horses for knights. "
