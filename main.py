@@ -2808,7 +2808,7 @@ def run(play):
         elapsed_time = end_time - start_time
         elapsed_time = round(elapsed_time, 2)
 
-        game_elapsed_time = .004167 * elapsed_time # 60 seconds irl = .25 days in-game
+        game_elapsed_time = .001389 * elapsed_time # 180 seconds irl = .25 days in-game
         game_elapsed_time = round(game_elapsed_time, 2)
 
         player["elapsed time seconds"] = elapsed_time + player["elapsed time seconds"]
