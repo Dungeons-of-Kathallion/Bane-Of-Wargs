@@ -92,7 +92,7 @@ Pickaxe Forge:
   type: forge
   cost value: 1.15
   location: 12
-  description: "At the Pickaxe Forge you'll be able to buy any metal at low prices for its low quality!"
+  description: "At the Pickaxe Forge you'll be able to buy any metal at low prices for its high quality!"
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
