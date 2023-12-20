@@ -2811,7 +2811,7 @@ def run(play):
         game_elapsed_time = .001389 * elapsed_time # 180 seconds irl = .25 days in-game
         game_elapsed_time = round(game_elapsed_time, 2)
 
-        player["elapsed time seconds"] = elapsed_time + player["elapsed time seconds"]
+        player["elapsed time seconds"] = float(elapsed_time) + float(player["elapsed time seconds"])
         player["elapsed time game days"] = game_elapsed_time + player["elapsed time game days"]
 
 if play == 1:

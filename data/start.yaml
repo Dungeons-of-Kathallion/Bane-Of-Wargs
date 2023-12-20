@@ -11,7 +11,7 @@ held leggings: Old Pants
 held shield: " "
 inventory slots: 9
 inventory slots remaining: 4
-elapsed time seconds: .
+elapsed time seconds: 1
 elapsed time game days: .25
 attributes:
 - None
@@ -27,7 +27,7 @@ heard dialogs:
 used keys:
 - None
 visited zones:
-- Kathallion Plains
+- Stall Fields
 met npcs names:
 - Old Man
 visited points:
