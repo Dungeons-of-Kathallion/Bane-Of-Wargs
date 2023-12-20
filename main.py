@@ -1,6 +1,7 @@
 import random
 import yaml
 import battle
+import train
 import os
 import sys
 import time
@@ -2402,8 +2403,15 @@ def run(play):
                                 print(COLOR_YELLOW + "This stable doesn't accept this type of mount." + COLOR_RESET_ALL)
                         else:
                             print(COLOR_YELLOW + "You don't have any mounts to deposit here." + COLOR_RESET_ALL)
+                    elif action == 'Train Mount':
+                        if player["current mount"] != ' ':
+                            current_mount_uuid = str(player["current mount"])
+                            train.training_loop(current_mount_uuid, player, item, mounts)
+                        else:
+                            text = COLOR_YELLOW + "You're not riding any mounts currently. You need to ride one to train it." + COLOR_RESET_ALL
+                            print_long_string(text)
                     elif action == 'Ride Mount':
-                        if player["current mount"] == " ":
+                        if player["current mount"] == ' ':
                             # get player total mounts at this place
                             deposited_mounts_num = 0
                             count = 0
