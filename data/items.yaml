@@ -441,7 +441,7 @@ Chicken:
   gold: 3.2
   description: "A generic cooked chicken leg that can restore your energy."
 Apple:
-  tpye: "Food"
+  type: "Food"
   max bonus: 0
   healing level: 1
   gold: .7
