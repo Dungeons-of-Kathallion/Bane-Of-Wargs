@@ -2,6 +2,14 @@ Beer:
   gold: 2.4
   healing level: 9
   description: "A good odd beer. It can restores lot of health."
+Whisky:
+  gold: 3.5
+  healing level: 11
+  description: "A good ood bottle of whisky. Great to relax and restore health."
+Wine:
+  gold: 3.4
+  healing level: 11
+  description: "A great drink for any human."
 Purple Elixir:
   gold: 6.2
   healing level: 12
@@ -10,4 +18,8 @@ Green Elixir:
   gold: 8.2
   healing level: "max health"
   description: "Green Elixirs are powerful potions that can restores all of your health."
+Suspicious Stew:
+  gold: 12.5
+  healing level: 16
+  description: "Why not try to drink this?"
 
