@@ -1015,7 +1015,7 @@ def run(play):
             if current_mount_data["level"] >= 1:
                 player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
                 player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
-                
+
         # verify if player worn equipment are in his inventory
         if str(player["held item"]) not in player["inventory"]:
             player["held item"] = " "
@@ -2295,7 +2295,7 @@ def run(play):
                                 if which_item == player["held shield"]:
                                     player["held shield"] = " "
                         else:
-                            text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative or because you don't own that item." + COLOR_RESET_ALL
+                            text = COLOR_YELLOW + "You cannot sell that items because you don't own any of this item." + COLOR_RESET_ALL
                             print_long_string(text)
                     else:
                         continue_hostel_actions = False
@@ -2476,7 +2476,7 @@ def run(play):
                             add_gold(str( item[which_weapon]["gold"] * zone[map_zone]["cost value"] ))
                             player["inventory"].remove(which_weapon)
                         else:
-                            text = COLOR_YELLOW + "You cannot sell that equipment because you dont own any of that weapon." + COLOR_RESET_ALL
+                            text = COLOR_YELLOW + "You cannot sell that equipment because you dont own any of that weapon or because the current blacksmith doesn't buy this weapon." + COLOR_RESET_ALL
                             print_long_string(text)
                     elif action == 'Order Equipment':
                         which_weapon = input("Which equipment do you want to order? ")
