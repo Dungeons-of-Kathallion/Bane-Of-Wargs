@@ -69,3 +69,10 @@ def check_yaml(file_path):
         schema = yamale.make_schema(file_schema)
         data = yamale.make_data(file_path)
         yamale.validate(schema, data)
+
+def examine(file_path):
+    try:
+        check_yaml(str(file_path))
+    except Exception as error:
+        print(COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + "A parsing error in a yaml file as been detected:\n" + COLOR_RESET_ALL + str(error))
+        exit(1)

@@ -1,6 +1,7 @@
 import random
 import yaml
 import battle
+import check_yaml
 import train
 import os
 import sys
@@ -10,6 +11,7 @@ import fade
 import subprocess
 import git
 import readline
+import traceback
 from git import Repo
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
@@ -117,6 +119,7 @@ while menu:
             f.write(dumped)
     with open('preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
+        check_yaml.examine('preferences.yaml')
     # try to update game
     if preferences["auto update"]:
         try:
@@ -147,33 +150,43 @@ while menu:
             if preferences["latest preset"]["type"] == 'vanilla':
                 with open("data/map.yaml") as f:
                     map = yaml.safe_load(f)
+                    check_yaml.examine('data/map.yaml')
 
                 with open("data/items.yaml") as f:
                     item = yaml.safe_load(f)
+                    check_yaml.examine('data/items.yaml')
 
                 with open("data/drinks.yaml") as f:
                     drinks = yaml.safe_load(f)
+                    check_yaml.examine('data/drinks.yaml')
 
                 with open("data/enemies.yaml") as f:
                     enemy = yaml.safe_load(f)
+                    check_yaml.examine('data/enemies.yaml')
 
                 with open("data/npcs.yaml") as f:
                     npcs = yaml.safe_load(f)
+                    check_yaml.examine('data/npcs.yaml')
 
                 with open("data/start.yaml") as f:
                     start_player = yaml.safe_load(f)
+                    check_yaml.examine('data/start.yaml')
 
                 with open("data/lists.yaml") as f:
                     lists = yaml.safe_load(f)
+                    check_yaml.examine('data/lists.yaml')
 
                 with open("data/zone.yaml") as f:
                     zone = yaml.safe_load(f)
+                    check_yaml.examine('data/zone.yaml')
 
                 with open("data/dialog.yaml") as f:
                     dialog = yaml.safe_load(f)
+                    check_yaml.examine('data/dialog.yaml')
 
                 with open("data/mounts.yaml") as f:
                     mounts = yaml.safe_load(f)
+                    check_yaml.examine('data/mounts.yaml')
             else:
 
                 what_plugin = preferences["latest preset"]["plugin"]
@@ -185,33 +198,43 @@ while menu:
                     exit(1)
                 with open("plugins/" + what_plugin + "/map.yaml") as f:
                     map = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/map.yaml")
 
                 with open("plugins/" + what_plugin + "/items.yaml") as f:
                     item = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/items.yaml")
 
                 with open("plugins/" + what_plugin + "/drinks.yaml") as f:
                     drinks = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/drinks.yaml")
 
                 with open("plugins/" + what_plugin + "/enemies.yaml") as f:
                     enemy = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/enemies.yaml")
 
                 with open("plugins/" + what_plugin + "/npcs.yaml") as f:
                     npcs = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/npcs.yaml")
 
                 with open("plugins/" + what_plugin + "/start.yaml") as f:
                     start_player = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/start.yaml")
 
                 with open("plugins/" + what_plugin + "/lists.yaml") as f:
                     lists = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/lists.yaml")
 
                 with open("plugins/" + what_plugin + "/zone.yaml") as f:
                     zone = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/zone.yaml")
 
                 with open("plugins/" + what_plugin + "/dialog.yaml") as f:
                     dialog = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/dialog.yaml")
 
                 with open("plugins/" + what_plugin + "/mounts.yaml") as f:
                     mounts = yaml.safe_load(f)
+                    check_yaml.examine("plugins/" + what_plugin + "/mounts.yaml")
 
             open_save = preferences["latest preset"]["save"]
             save_file = "saves/save_" + open_save + ".yaml"
@@ -222,6 +245,7 @@ while menu:
                 exit(1)
             with open(save_file) as f:
                 player = yaml.safe_load(f)
+                check_yaml.examine(save_file)
             play = 1
             menu = False
 
@@ -246,65 +270,85 @@ while menu:
                 exit(1)
             with open("plugins/" + what_plugin + "/map.yaml") as f:
                 map = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/map.yaml")
 
             with open("plugins/" + what_plugin + "/items.yaml") as f:
                 item = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/items.yaml")
 
             with open("plugins/" + what_plugin + "/drinks.yaml") as f:
                 drinks = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/drinks.yaml")
 
             with open("plugins/" + what_plugin + "/enemies.yaml") as f:
                 enemy = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/enemies.yaml")
 
             with open("plugins/" + what_plugin + "/npcs.yaml") as f:
                 npcs = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/npcs.yaml")
 
             with open("plugins/" + what_plugin + "/start.yaml") as f:
                 start_player = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/start.yaml")
 
             with open("plugins/" + what_plugin + "/lists.yaml") as f:
                 lists = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/lists.yaml")
 
             with open("plugins/" + what_plugin + "/zone.yaml") as f:
                 zone = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/zone.yaml")
 
             with open("plugins/" + what_plugin + "/dialog.yaml") as f:
                 dialog = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/dialog.yaml")
 
             with open("plugins/" + what_plugin + "/mounts.yaml") as f:
                 mounts = yaml.safe_load(f)
+                check_yaml.examine("plugins/" + what_plugin + "/mounts.yaml")
         else:
             preferences["latest preset"]["type"] = "vanilla"
             preferences["latest preset"]["plugin"] == "none"
             with open("data/map.yaml") as f:
                 map = yaml.safe_load(f)
+                check_yaml.examine('data/map.yaml')
 
             with open("data/items.yaml") as f:
                 item = yaml.safe_load(f)
+                check_yaml.examine('data/items.yaml')
 
             with open("data/drinks.yaml") as f:
                 drinks = yaml.safe_load(f)
+                check_yaml.examine('data/drinks.yaml')
 
             with open("data/enemies.yaml") as f:
                 enemy = yaml.safe_load(f)
+                check_yaml.examine('data/enemies.yaml')
 
             with open("data/npcs.yaml") as f:
                 npcs = yaml.safe_load(f)
+                check_yaml.examine('data/npcs.yaml')
 
             with open("data/start.yaml") as f:
                 start_player = yaml.safe_load(f)
+                check_yaml.examine('data/start.yaml')
 
             with open("data/lists.yaml") as f:
                 lists = yaml.safe_load(f)
+                check_yaml.examine('data/lists.yaml')
 
             with open("data/zone.yaml") as f:
                 zone = yaml.safe_load(f)
+                check_yaml.examine('data/zone.yaml')
 
             with open("data/dialog.yaml") as f:
                 dialog = yaml.safe_load(f)
+                check_yaml.examine('data/dialog.yaml')
 
             with open("data/mounts.yaml") as f:
                 mounts = yaml.safe_load(f)
+                check_yaml.examine('data/mounts.yaml')
 
         if using_latest_preset == False:
             text = "Please select an action:"
@@ -341,6 +385,7 @@ while menu:
                     exit(1)
                 with open(save_file) as f:
                     player = yaml.safe_load(f)
+                    check_yaml.examine(save_file)
                 play = 1
                 menu = False
             else:
