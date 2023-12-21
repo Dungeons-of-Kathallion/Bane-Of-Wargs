@@ -1,0 +1,5 @@
+type: str()
+max bonus: int()
+healing level: int()
+gold: num()
+description: str()

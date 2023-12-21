@@ -1,0 +1,8 @@
+display name: str(required=False)
+upgrade tier: int()
+type: str()
+armor protection: num()
+agility: num()
+gold: num()
+description: str()
+for this upgrade: list(str(), required=False)

@@ -114,6 +114,7 @@ Rapier: &Rapier
   display name: "Rapier"
   upgrade tier: 0
   type: "Weapon"
+  gold: 16.2
   damage: 6
   defend: 7
   agility: .19

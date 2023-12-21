@@ -1,0 +1,12 @@
+name: str()
+type: str()
+cost value: num()
+location: int()
+description: str()
+news: list(str())
+map:
+  map raw: str(required=False)
+  map full: str()
+blacksmith:
+  buys: list(str())
+  orders: any()

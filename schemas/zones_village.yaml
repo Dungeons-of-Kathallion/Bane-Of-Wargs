@@ -1,0 +1,11 @@
+name: str()
+description: str()
+type: str()
+location: int()
+news: list(str())
+map:
+  map raw: str(required=False)
+  map full: str()
+content:
+  hostels: list(str())
+  blacksmiths: list(str())

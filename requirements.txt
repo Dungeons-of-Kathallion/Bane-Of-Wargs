@@ -3,3 +3,4 @@ fade
 GitPython
 colorama
 PyYaml
+yamale

@@ -1,0 +1,4 @@
+type: str()
+inventory slots: int()
+gold: num()
+description: str()

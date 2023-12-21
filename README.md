@@ -11,7 +11,7 @@ python main.py
 ## Python Module Requirements
 
 All required modules are in the `requirements.txt` file.
-[enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/).
+[enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/).
 
 ## Progress
 

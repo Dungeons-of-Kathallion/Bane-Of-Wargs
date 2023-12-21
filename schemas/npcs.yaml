@@ -1,0 +1,9 @@
+name: str()
+cost value: num()
+speech: list(str())
+sells:
+  drinks: list(str())
+  items: list(str())
+buys:
+  items: list(str())
+description: str()

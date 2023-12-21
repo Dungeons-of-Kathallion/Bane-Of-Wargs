@@ -1,0 +1,12 @@
+plural: str()
+damage:
+  min damage: int()
+  max damage: int()
+  critical chance: num()
+health:
+  min spawning health: int()
+  max spawning health: int()
+  max health level: int()
+agility: num()
+inventory: list(str())
+description: str()

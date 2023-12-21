@@ -1,0 +1,3 @@
+gold: num()
+healing level: int(max=999)
+description: str()

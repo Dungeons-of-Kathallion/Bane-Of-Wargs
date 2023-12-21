@@ -1,0 +1,17 @@
+name: str()
+type: str()
+cost value: num()
+location: int()
+training gold: num()
+deposit gold: num()
+description: str()
+news: list(str())
+stable:
+  sells:
+    mounts: list(str())
+    drinks: list(str())
+    items: list(str())
+  stables: list(str())
+map:
+  map raw: str(required=False)
+  map full: str()
