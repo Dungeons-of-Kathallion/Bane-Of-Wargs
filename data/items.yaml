@@ -252,7 +252,7 @@ Flaming Whip:
 Healing Potion:
   type: "Consumable"
   max bonus: 5
-  healing level: "max health"
+  healing level: 999
   gold: 9.56
   description: "A generic healing potion that restores your health to it's max and gives it a bonus 5 to that maximum."
 # Utilities

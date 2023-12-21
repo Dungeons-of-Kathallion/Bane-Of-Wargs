@@ -16,7 +16,7 @@ Purple Elixir:
   description: "Purple Elixirs are expensive drinks but all great adventurers use them to get their health back."
 Green Elixir:
   gold: 8.2
-  healing level: "max health"
+  healing level: 999
   description: "Green Elixirs are powerful potions that can restores all of your health."
 Suspicious Stew:
   gold: 12.5

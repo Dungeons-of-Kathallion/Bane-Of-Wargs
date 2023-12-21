@@ -817,7 +817,7 @@ def print_dialog(current_dialog):
             count = 0
             while count < used_drinks_len:
                 selected_drink = used_drinks_len[count]
-                if drinks[selected_drink]["healing level"] == "max health":
+                if drinks[selected_drink]["healing level"] == 999:
                     player["health"] = player["max health"]
                 else:
                     player["health"] += drinks[selected_drink]["healing level"]
@@ -1517,7 +1517,7 @@ def run(play):
                     which_drink = input("Which drink do you want to buy from him? ")
                     if which_drink in npcs[current_npc]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
                         remove_gold(str( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ))
-                        if drinks[which_drink]["healing level"] == "max health":
+                        if drinks[which_drink]["healing level"] == 999:
                             player["health"] = player["max health"]
                         else:
                             player["health"] += drinks[which_drink]["healing level"]
@@ -1573,7 +1573,7 @@ def run(play):
                 """
                 if which_item in npcs[current_npc]["sells"]["drinks"] and drinks[which_item]["gold"] < player["gold"]:
                     remove_gold(str(drinks[which_item]["gold"]))
-                    if drinks[which_item]["healing level"] == "max health":
+                    if drinks[which_item]["healing level"] == 999:
                         player["health"] = player["max health"]
                     else:
                         player["health"] += drinks[which_item]["healing level"]
@@ -2149,7 +2149,7 @@ def run(play):
                     elif item[which_item]["type"] == "Armor Piece: Shield":
                         player["held shield"] = which_item
                 elif choice == 'Consume':
-                    if item[which_item]["healing level"] == "max health":
+                    if item[which_item]["healing level"] == 999:
                         player["health"] = player["max health"]
                     else:
                         player["health"] += item[which_item]["healing level"]
@@ -2248,7 +2248,7 @@ def run(play):
                         which_drink = input("Which drink do you want to buy? ")
                         if which_drink in zone[map_zone]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             remove_gold(str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ))
-                            if drinks[which_drink]["healing level"] == "max health":
+                            if drinks[which_drink]["healing level"] == 999:
                                 player["health"] = player["max health"]
                             else:
                                 player["health"] += drinks[which_drink]["healing level"]
@@ -2332,7 +2332,7 @@ def run(play):
                         which_drink = input("Which drink do you want to buy? ")
                         if which_drink in zone[map_zone]["stable"]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             remove_gold(str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ))
-                            if drinks[which_drink]["healing level"] == "max health":
+                            if drinks[which_drink]["healing level"] == 999:
                                 player["health"] = player["max health"]
                             else:
                                 player["health"] += drinks[which_drink]["healing level"]

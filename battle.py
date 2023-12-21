@@ -65,7 +65,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
         if item[selected_item]["type"] == "Food" or item[selected_item]["type"] == "Consumable":
             item_health_restoration = item[selected_item]["healing level"]
             item_health_bonus = item[selected_item]["max bonus"]
-            if item_health_restoration == "max health":
+            if item_health_restoration == 999:
                 current_item_health_restoration = player["max health"]
             else:
                 current_item_health_restoration = int(item_health_restoration)
@@ -298,7 +298,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
         # use item
         if item_input in player["inventory"]:
             if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
-                if item[item_input]["healing level"] == "max health":
+                if item[item_input]["healing level"] == 999:
                     player["health"] = player["max health"]
                 else:
                     player["health"] += item[item_input]["healing level"]
@@ -461,7 +461,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     # use item
                     if item_input in player["inventory"]:
                         if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
-                            if item[item_input]["healing level"] == "max health":
+                            if item[item_input]["healing level"] == 999:
                                 player["health"] = player["max health"]
                             else:
                                 player["health"] += item[item_input]["healing level"]
