@@ -64,7 +64,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
                 player["inventory"].remove(which_food)
                 player["xp"] += random.randint(1, 4)
                 if player["current mount"] in player["mounts"]:
-                        player["mounts"][player["current mount"]]["level"] += round(random.uniform(.02, .10), 3)
+                        player["mounts"][player["current mount"]]["level"] += round(random.uniform(.02, .10), 3) / mounts[current_mount_type]["feed"]["feed needs"]
             else:
                 text = COLOR_YELLOW + "You cannot feed your mount with this food or you don't own that food." + COLOR_RESET_ALL
                 print_long_string(text)
