@@ -1057,6 +1057,14 @@ def run(play):
             map_location = search(player["x"], player["y"])
             player["mounts"][player["current mount"]]["location"] = "point" + str(map_location)
 
+        # if player current mount level is higher than its max,
+        # set it back to its max level
+        if player["current mount"] in player["mounts"]:
+            current_mount_data = player["mounts"][str(player["current mount"])]
+            current_mount_type = str(current_mount_data["mount"])
+            if current_mount_data["level"] > mounts[current_mount_type]["levels"]["max level"]:
+                player["mounts"][str(player["current mount"])]["level"] = mounts[current_mount_type]["levels"]["max level"]
+
         # update player current mount stats following its level
         if player["current mount"] in player["mounts"]:
             current_mount_data = player["mounts"][str(player["current mount"])]
@@ -1064,6 +1072,7 @@ def run(play):
             if current_mount_data["level"] >= 1:
                 player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
                 player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
+
 
         # verify if player worn equipment are in his inventory
         if str(player["held item"]) not in player["inventory"]:
@@ -2453,7 +2462,7 @@ def run(play):
                     elif action == 'Train Mount':
                         if player["current mount"] != ' ':
                             current_mount_uuid = str(player["current mount"])
-                            train.training_loop(current_mount_uuid, player, item, mounts)
+                            train.training_loop(current_mount_uuid, player, item, mounts, zone[map_zone])
                         else:
                             text = COLOR_YELLOW + "You're not riding any mounts currently. You need to ride one to train it." + COLOR_RESET_ALL
                             print_long_string(text)
@@ -2804,6 +2813,27 @@ def run(play):
                     print("  AGILITY ADDITION: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(which_mount_data["stats"]["agility addition"]) + COLOR_RESET_ALL)
                     print("  RESISTANCE ADDITION: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(which_mount_data["stats"]["resistance addition"]) + COLOR_RESET_ALL)
                     print(" ")
+
+                    # get player possible feeding items
+                    current_mount_feeds = mounts[player["mounts"][str(player["current mount"])]["mount"]]["feed"]["food"]
+                    count = 0
+                    player_feeding_items = []
+                    while count < len(player["inventory"]):
+                        current_item = str(player["inventory"][count])
+                        if current_item in current_mount_feeds and current_item not in player_feeding_items:
+                            player_feeding_items += [current_item]
+
+                        count += 1
+                    player_feeding_items_text = str(player_feeding_items)
+                    if player_feeding_items == []:
+                        player_feeding_items_text = "['None']"
+                    player_feeding_items_text = player_feeding_items_text.replace("'", '')
+                    player_feeding_items_text = player_feeding_items_text.replace("[", ' -')
+                    player_feeding_items_text = player_feeding_items_text.replace("]", '')
+                    player_feeding_items_text = player_feeding_items_text.replace(", ", '\n -')
+                    print("FEEDING ITEMS:")
+                    print(player_feeding_items_text)
+                    print("")
 
                     text = "DESCRIPTION: " + mounts[which_mount_data["mount"]]["description"]
                     print_long_string(text)

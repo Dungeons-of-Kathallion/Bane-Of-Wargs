@@ -30,7 +30,7 @@ def print_separator(character):
         count += 1
     sys.stdout.write('\n')
 
-def training_loop(mount_uuid, player, item, mounts):
+def training_loop(mount_uuid, player, item, mounts, stable):
     still_training = True
     current_mount_type = str(player["mounts"][str(mount_uuid)]["mount"])
     current_mount_feeds = mounts[current_mount_type]["feed"]["food"]
@@ -69,6 +69,9 @@ def training_loop(mount_uuid, player, item, mounts):
                 text = COLOR_YELLOW + "You cannot feed your mount with this food or you don't own that food." + COLOR_RESET_ALL
                 print_long_string(text)
         elif choice == 'Train':
+            # get start time
+            start_time = time.time()
+
             loading = 15
             print(" ")
             while loading > 0:
@@ -91,5 +94,15 @@ def training_loop(mount_uuid, player, item, mounts):
                 player["mounts"][player["current mount"]]["level"] += round(random.uniform(.01, .09), 3)
                 player["xp"] += round(random.uniform(.01, .13), 1)
                 loading -= 1
+
+            # get end time
+            end_time = time.time()
+
+            # calculate elapsed time
+            elapsed_time = end_time - start_time
+            elapsed_time = round(elapsed_time, 2)
+            game_elapsed_time = .001389 * elapsed_time # 180 seconds irl = .25 days in-game
+            game_elapsed_time = round(game_elapsed_time, 2)
+            player["gold"] -= stable["training gold"] * game_elapsed_time
         else:
             still_training = False
