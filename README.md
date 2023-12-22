@@ -85,7 +85,7 @@ Just check the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-
 ## Progress
 
 Beta is out! Most of the planned engine features are developed!\n
-If you're interested by the game progress and development, check the wiki page about the [Goals]() of the game.
+If you're interested by the game progress and development, check the wiki page about the [Goals](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Game-Progression) of the game.
 
 ## Licensing
 
