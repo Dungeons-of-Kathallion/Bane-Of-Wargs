@@ -2815,18 +2815,8 @@ def run(play):
                     print(" ")
 
                     # get player possible feeding items
-                    current_mount_feeds = mounts[player["mounts"][str(player["current mount"])]["mount"]]["feed"]["food"]
-                    count = 0
-                    player_feeding_items = []
-                    while count < len(player["inventory"]):
-                        current_item = str(player["inventory"][count])
-                        if current_item in current_mount_feeds and current_item not in player_feeding_items:
-                            player_feeding_items += [current_item]
-
-                        count += 1
-                    player_feeding_items_text = str(player_feeding_items)
-                    if player_feeding_items == []:
-                        player_feeding_items_text = "['None']"
+                    current_mount_feeds = mounts[which_mount_data["mount"]]["feed"]["food"]
+                    player_feeding_items_text = str(current_mount_feeds)
                     player_feeding_items_text = player_feeding_items_text.replace("'", '')
                     player_feeding_items_text = player_feeding_items_text.replace("[", ' -')
                     player_feeding_items_text = player_feeding_items_text.replace("]", '')
