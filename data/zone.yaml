@@ -202,7 +202,7 @@ Clarc Warg Stable:
   type: stable
   cost value: .7
   location: 9
-  training gold: 3
+  training gold: 18
   deposit gold: .15
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."
   news:
