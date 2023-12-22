@@ -94,7 +94,7 @@ point11:
   x: -1
   y: 4
   map zone: "Cocorico Village"
-  dialog: guy seen you fighting gives you money
+  dialog: guy saw you fighting gives you money
   blocked:
   - East
 point12:
