@@ -3,6 +3,7 @@ import yaml
 import battle
 import check_yaml
 import train
+import map_item
 import os
 import sys
 import time
@@ -37,6 +38,7 @@ h, w, hp, wp = struct.unpack('HHHH',
     fcntl.ioctl(0, termios.TIOCGWINSZ,
     struct.pack('HHHH', 0, 0, 0, 0)))
 term_width = w
+term_height = h
 
 def print_title():
     if preferences["theme"] == "OFF":
@@ -489,7 +491,7 @@ while menu:
         os.system('clear')
         exit(1)
 
-# funcion to search through the map file
+# function to search through the map file
 def search(x, y):
     global map_location
     map_point_count = int(len(list(map)))
@@ -2840,10 +2842,7 @@ def run(play):
                 time.sleep(1.5)
         elif command.lower().startswith('m'):
             if "Map" in player["inventory"]:
-                print("**|**")
-                print("*[+]*")
-                print("**⊥**")
-                print(" ")
+                map_item.print_map(player, map, zone)
             else:
                 print("You do not have a map.")
                 print(" ")

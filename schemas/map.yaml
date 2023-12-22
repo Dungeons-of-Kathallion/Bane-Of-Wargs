@@ -1,5 +1,5 @@
-x: int()
-y: int()
+x: int(max=64, min=-64)
+y: int(max=64, min=-64)
 map zone: str()
 item: list(str(), required=False)
 blocked: list(str())
