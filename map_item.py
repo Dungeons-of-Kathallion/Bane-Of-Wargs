@@ -58,7 +58,7 @@ def get_zone_color(zone_type):
             zones_colors = yaml.safe_load(f)
             zone_code = zones_colors[str(zone_type)]
             if zone_code == 0:
-                zone_color = COLOR_YELLOW + COLOR_STYLE_BRIGHT
+                zone_color = COLOR_GREEN + COLOR_STYLE_BRIGHT
             elif zone_code == 1:
                 zone_color = COLOR_GREEN + COLOR_STYLE_BRIGHT
             elif zone_code == 2:
