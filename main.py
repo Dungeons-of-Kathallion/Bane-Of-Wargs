@@ -995,6 +995,18 @@ def detect_weapon_next_upgrade_items(item_name):
 
     return weapon_next_upgrade_items
 
+# check correct grammar for 'a' in front of a
+# certain word. will return the right text like this:
+# <a/an> <word>
+def a_an_check(word):
+    global to_return
+    vowels = ['a', 'e', 'i', 'o', 'u']
+    if word[0] in vowels:
+        to_return = "an " + word
+    else:
+        to_return = "a " + word
+    return to_return
+
 # gameplay here:
 def run(play):
     if preferences["speed up"] != True:
@@ -1672,7 +1684,7 @@ def run(play):
                 if choosen_item == "Gold":
                     print("Your enemy dropped some " + choosen_item)
                 else:
-                    print("Your enemy dropped a/an " + choosen_item)
+                    print("Your enemy dropped " + a_an_check(choosen_item))
                 options = ['Grab Item', 'Continue']
                 drop = enquiries.choose('', options)
                 text = '='
@@ -1728,7 +1740,7 @@ def run(play):
                 if choosen_item == "Gold":
                     print("Your enemy dropped some " + choosen_item)
                 else:
-                    print("Your enemy dropped a/an " + choosen_item)
+                    print("Your enemy dropped " + a_an_check(choosen_item))
                 options = ['Grab Item', 'Continue']
                 drop = enquiries.choose('', options)
                 text = '='
