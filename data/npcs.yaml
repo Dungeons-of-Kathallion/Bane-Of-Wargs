@@ -17,3 +17,24 @@ Old Man:
     - Porkchop
     - Raw Salmon
   description: "An old man you found in the plains"
+
+Jerry The Junk Seller:
+  name: "Jerry The Junk Seller"
+  cost value: 1.7
+  speech:
+  - "Hey my guy! Searchin' for good odd antiques?"
+  - "By the way, I just recently found an old rusted key. Maybe it's for a secret chest?"
+  sells:
+    drinks:
+    - Suspicious Stew
+    items:
+    - Old Rusted Key
+    - Knife
+    - Tissue Bag
+    - Bone
+    - Bow String
+    - Raw Wood
+  buys:
+    items:
+    - None
+  description: "This guys sells really bad stuff but sometimes it's really rare"

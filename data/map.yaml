@@ -261,6 +261,9 @@ point35:
   x: 4
   y: 3
   map zone: Stall Fields
+  npc:
+  - Jerry The Junk Seller
+  dialog: met Jerry The Junk Seller attribute
   blocked:
   - East
 
@@ -296,6 +299,7 @@ point40:
   x: -5
   y: 3
   map zone: Stall Fields
+  dialog: find another old rusted key in case
   blocked:
   - None
 

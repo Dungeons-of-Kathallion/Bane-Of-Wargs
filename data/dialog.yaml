@@ -33,3 +33,24 @@ guy saw you fighting gives you money:
       augmentation: 7
     give item:
     - Tissue Bag
+    
+met Jerry The Junk Seller attribute:
+  use actions: True
+  phrases:
+  - ""
+  actions:
+    add attributes:
+    - met jerry the junk seller
+    
+find another old rusted key in case:
+  to display:
+    player attributes:
+      - met jerry the junk seller
+  use actions: True
+  phrases:
+  - "You find another old rusted key on the ground. Looks exactly like the one Jerry The Junk Seller was talking about."
+  - "You take it in case, you never know..."
+  actions:
+    give item:
+    - Old Rusted Key
+
