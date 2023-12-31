@@ -508,6 +508,10 @@ Balrog Horn:
 Warg Key:
   type: "Key"
   description: "A key that opens any warg stable."
+Old Rusted Key:
+  type: "Key"
+  gold: 12.4
+  description: "An old rusted key you bought from Jerry The Junk Seller. Seems to be in a certain way useful."
 # Notes
 Note1:
   type: "Note"
@@ -544,13 +548,17 @@ Flexible Steel:
 # Primary Materials
 Raw Wood:
   type: "Primary Material"
+  gold: .29
   description: "A bag with raw oak, spruce and other random woods in it. Useful to make shields or swords."
 Bow String:
   type: "Primary Material"
+  gold: 5.7
   description: "A generic solid string used for making bows."
 Strong String:
   type: "Primary Material"
+  gold: 8.9
   description: "A generic hyper solid string used for making low-range but powerful-shot bows."
 Flexible String:
   type: "Primary Material"
+  gold: 8.9
   description: "A generic solid string used for making high-range bows."
