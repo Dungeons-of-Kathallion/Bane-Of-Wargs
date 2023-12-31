@@ -3,117 +3,434 @@
 # positive x means east
 # negative "   "   west
 
+# // Stall Fields
+
 point0:
   x: 0
   y: 0
-  map zone: "Stall Fields"
-  item:
-  - Dwarf Axe
+  map zone: Stall Fields
   blocked:
   - South
-  - East
-  - West
+
 point1:
   x: 0
   y: 1
-  map zone: "Stall Fields"
+  map zone: Stall Fields
   blocked:
-  - East
+  - None
+
 point2:
-  x: -1
-  y: 1
-  map zone: "Stall Fields"
+  x: 0
+  y: 2
+  map zone: Stall Fields
   blocked:
-  - North
-  - West
-  - South
+  - None
+
 point3:
   x: 0
-  y: 2
-  map zone: "Stall Fields"
+  y: 3
+  map zone: Cocorico Village
   blocked:
-  - West
+  - None
+
 point4:
   x: 0
-  y: 3
-  map zone: "Stall Fields"
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point5:
+  x: 0
+  y: 5
+  map zone: Stall Fields
   blocked:
   - North
-  - East
-point5:
-  x: -1
-  y: 3
-  map zone: "Cocorico Village"
-  enemy: 1
-  enemy type: warg raids
-  dialog: first village enter warg attack
-  blocked:
-  - South
+
 point6:
   x: 1
-  y: 2
-  map zone: "Stall Fields"
-  item:
-  - Broken Shield
-  - Beef
+  y: 0
+  map zone: Stall Fields
   blocked:
-  - North
   - South
+
 point7:
   x: 2
+  y: 0
+  map zone: Stall Fields
+  blocked:
+  - East
+  - South
+
+point8:
+  x: -1
+  y: 0
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point9:
+  x: -2
+  y: 0
+  map zone: Stall Fields
+  blocked:
+  - West
+  - South
+
+point10:
+  x: 1
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point11:
+  x: 2
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point12:
+  x: 3
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point13:
+  x: 4
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - East
+  - South
+
+point14:
+  x: -1
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point15:
+  x: -2
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point16:
+  x: -3
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point17:
+  x: -4
+  y: 1
+  map zone: Stall Fields
+  blocked:
+  - West
+  - South
+
+point18:
+  x: 1
   y: 2
-  map zone: "Stall Fields"
-  npc:
-  - Old Man
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point19:
+  x: 2
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point20:
+  x: 3
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point21:
+  x: 4
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point22:
+  x: 5
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point23:
+  x: 6
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - East
+  - South
+
+point24:
+  x: -1
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point25:
+  x: -2
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point26:
+  x: -3
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point27:
+  x: -4
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point28:
+  x: -5
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point29:
+  x: -6
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point30:
+  x: -7
+  y: 2
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point31:
+  x: -8
+  y: 2
+  map zone: Stall Fields
   blocked:
   - North
   - South
+  - West
+
+point32:
+  x: 1
+  y: 3
+  map zone: Cocorico Village
+  blocked:
+  - None
+
+point33:
+  x: 2
+  y: 3
+  map zone: Cocorico Village
+  blocked:
+  - None
+
+point34:
+  x: 3
+  y: 3
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point35:
+  x: 4
+  y: 3
+  map zone: Stall Fields
+  blocked:
   - East
-point8:
+
+point36:
+  x: -1
+  y: 3
+  map zone: Cocorico Village
+  blocked:
+  - None
+
+point37:
   x: -2
   y: 3
-  map zone: "Woodstack Hostel"
+  map zone: Clarc Warg Stable
   blocked:
-  - South
-point9:
+  - None
+
+point38:
   x: -3
   y: 3
-  map zone: "Clarc Warg Stable"
+  map zone: Stall Fields
   blocked:
-  - North
-  - South
-point10:
+  - None
+
+point39:
   x: -4
   y: 3
-  map zone: "James Blacksmith"
+  map zone: Stall Fields
   blocked:
-  - North
+  - None
+
+point40:
+  x: -5
+  y: 3
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point41:
+  x: -6
+  y: 3
+  map zone: Stall Fields
+  blocked:
+  - West
+
+point42:
+  x: 1
+  y: 4
+  map zone: James Blacksmith
+  blocked:
+  - None
+
+point43:
+  x: 2
+  y: 4
+  map zone: Pickaxe Forge
+  blocked:
+  - None
+
+point44:
+  x: 3
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point45:
+  x: 4
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point46:
+  x: 5
+  y: 4
+  map zone: Stall Fields
+  blocked:
   - South
-  - West
-point11:
+
+point47:
+  x: 6
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point48:
+  x: 7
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - South
+
+point49:
+  x: 8
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - South
+  - East
+
+point50:
   x: -1
   y: 4
-  map zone: "Cocorico Village"
-  dialog: guy saw you fighting gives you money
+  map zone: Woodstack Hostel
   blocked:
-  - East
-point12:
-  x: -1
+  - None
+
+point51:
+  x: -2
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point52:
+  x: -3
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point53:
+  x: -4
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - None
+
+point54:
+  x: -5
+  y: 4
+  map zone: Stall Fields
+  blocked:
+  - West
+
+point55:
+  x: 1
   y: 5
-  map zone: "Pickaxe Forge"
+  map zone: Stall Fields
   blocked:
   - North
-  - East
-point13:
-  x: -2
-  y: 4
-  map zone: "Cocorico Village"
+
+point56:
+  x: 2
+  y: 5
+  map zone: Stall Fields
   blocked:
-  - West
-point14:
+  - East
+  - North
+
+point57:
+  x: -1
+  y: 5
+  map zone: Stall Fields
+  blocked:
+  - North
+
+point58:
   x: -2
   y: 5
-  map zone: "Cocorico Village"
+  map zone: Stall Fields
+  blocked:
+  - North
+
+point59:
+  x: -3
+  y: 5
+  map zone: Stall Fields
   blocked:
   - West
   - North
