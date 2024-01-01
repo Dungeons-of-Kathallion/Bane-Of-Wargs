@@ -1,0 +1,8 @@
+latest preset:
+  plugin: str()
+  save: str()
+  type: str()
+speed up: bool()
+theme: str()
+title style: int(max=2, min=1)
+auto update: bool()

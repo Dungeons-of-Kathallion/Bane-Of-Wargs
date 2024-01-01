@@ -5,7 +5,7 @@ __pycache__
 __pycache__/**
 **/save_*
 **/~0*
-**/preferences.yaml
+/preferences.yaml
 wget-log
 .vscode
 .vscode/**
