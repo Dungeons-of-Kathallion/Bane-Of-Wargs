@@ -33,7 +33,7 @@ guy saw you fighting gives you money:
       augmentation: 7
     give item:
     - Tissue Bag
-    
+
 met Jerry The Junk Seller attribute:
   use actions: True
   phrases:
@@ -41,7 +41,7 @@ met Jerry The Junk Seller attribute:
   actions:
     add attributes:
     - met jerry the junk seller
-    
+
 find another old rusted key in case:
   to display:
     player attributes:
@@ -53,4 +53,11 @@ find another old rusted key in case:
   actions:
     give item:
     - Old Rusted Key
+
+generic steel gate blocking east:
+  use actions: False
+  phrases:
+  - "There is a strong steel gate blocking anyone wanting to go further east."
+  - "You must find the key to open it!"
+  scene: Steel Gate
 

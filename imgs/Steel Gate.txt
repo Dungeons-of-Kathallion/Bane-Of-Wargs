@@ -1,0 +1,28 @@
+$GRAY                                  {} {}
+                            !  !  II II  !  !
+                         !  I__I__II II__I__I  !
+                         I_/|--|--|| ||--|--|\_I
+        $YELLOW.-'"'-.$GRAY       ! /|_/|  |  || ||  |  |\_|\ !       .$YELLOW-'"'-.$GRAY
+       $YELLOW/===    \$GRAY      I//|  |  |  || ||  |  |  |\\I      $YELLOW/===    \$GRAY
+       $YELLOW\==     /$GRAY   ! /|/ |  |  |  || ||  |  |  | \|\ !   $YELLOW\==     /$GRAY
+        $YELLOW\__  _/$GRAY    I//|  |  |  |  || ||  |  |  |  |\\I    $YELLOW\__  _/$GRAY
+         $YELLOW_} {_$GRAY  ! /|/ |  |  |  |  || ||  |  |  |  | \|\ !  $YELLOW_} {_$GRAY
+        $YELLOW{_____}$GRAY I//|  |  |  |  |  || ||  |  |  |  |  |\\I $YELLOW{_____}$GRAY
+   $GREEN!  !  |=$GRAY  |=/|/ |  |  |  |  |  || ||  |  |  |  |  | \|\=|-  $GREEN|  !  ! $GRAY
+  $GREEN_I__I__|=$GRAY  ||/|  |  |  |  |  |  || ||  |  |  |  |  |  |\||   $GREEN|__I__I_$GRAY
+  $GREEN-|--|--|-$GRAY  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||=  $GREEN|--|--|-$GRAY
+  $GREEN_|__|__|$GRAY   ||_|__|__|__|__|__|__|| ||__|__|__|__|__|__|_||-  $GREEN|__|__|_$GRAY
+  $GREEN-|--|--|$GRAY   ||-|--|--|--|--|--|--|| ||--|--|--|--|--|--|-||   $GREEN|--|--|- $GRAY
+   $GREEN|  |  |=$GRAY  || |  |  |  |  |  |  $YELLOW#####$GRAY  |  |  |  |  |  | ||   $GREEN|  |  | $GRAY
+   $GREEN|  |  |$GRAY   || |  |  |  |  |  |  $YELLOW##  #$GRAY  |  |  |  |  |  | ||=  $GREEN|  |  | $GRAY
+   $GREEN|  |  |-$GRAY  || |  |  |  |  |  |  $YELLOW## ##$GRAY  |  |  |  |  |  | ||   $GREEN|  |  | $GRAY
+   $GREEN|  |  |$GRAY   || |  |  |  |  |  |  $YELLOW#####$GRAY  |  |  |  |  |  | ||=  $GREEN|  |  |$GRAY
+   $GREEN|  |  |=$GRAY  || |  |  |  |  |  |  $YELLOW#####$GRAY  |  |  |  |  |  | ||   $GREEN|  |  |$GRAY
+   $GREEN|  |  |$GRAY   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   $GREEN|  |  |$GRAY
+   $GREEN|  |  |$GRAY   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||-  $GREEN|  |  |$GRAY
+  $GREEN_|__|__|$GRAY   || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||=  $GREEN|__|__|_$GRAY
+  $GREEN-|--|--|=$GRAY  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||   $GREEN|--|--|-$GRAY
+  $GREEN_|__|__|$GRAY   ||_|__|__|__|__|__|__|| ||__|__|__|__|__|__|_||-  $GREEN|__|__|_$GRAY
+  $GREEN-|--|--|=$GRAY  ||-|--|--|--|--|--|--|| ||--|--|--|--|--|--|-||=  $GREEN|--|--|-$GRAY
+  $GREEN-|--|--|-$GRAY  || |  |  |  |  |  |  || ||  |  |  |  |  |  | ||-  $GREEN|  |  |$GRAY
+ $GREEN~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^~~~~~~~~~~~ $WHITE

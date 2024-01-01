@@ -3,7 +3,7 @@
 # positive x means east
 # negative "   "   west
 
-# // Stall Fields
+# // Stall Fields & Cocorico Village
 
 point0:
   x: 0
@@ -174,8 +174,9 @@ point23:
   x: 6
   y: 2
   map zone: Stall Fields
+  dialog: generic steel gate blocking east
   blocked:
-  - East
+  - North
   - South
 
 point24:
@@ -438,3 +439,17 @@ point59:
   blocked:
   - West
   - North
+
+# // The Goro Mounts
+
+point59:
+  x: 7
+  y: 2
+  map zone: The Edge Of Goro Mounts
+  key:
+    remove key: False
+    required keys:
+    - Old Rusted Key
+  blocked:
+  - North
+  - South

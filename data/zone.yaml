@@ -239,3 +239,21 @@ Clarc Warg Stable:
   |$GRAYII$BROWN|====|$GRAYII$WHITE|\n \
   |$GRAYII$BROWN|==//|$GRAYII$WHITE|\n \
   x__________x"
+
+The Edge Of Goro Mounts:
+  name: "The Edge Of Goro Mounts"
+  type: low mountains
+  description: "The very edge of the famous Goro Mounts. This place is known for its rich rocky ground. You'll find many mines here."
+  map:
+    map full: " x__________x\n \
+  |$GRAY▒$BLUE#$GRAY▒▒▒$GRAY@$GRAY▒▒▒▒$WHITE|\n \
+  |$GRAY▒▒$GRAY@$GRAY▒▒▒▒$GRAY@$GRAY▒▒$WHITE|\n \
+  |$GRAY▒$GRAY@$BLUE#$GRAY▒▒▒▒▒$GRAY@$GRAY▒$WHITE|\n \
+  |$GRAY#▒▒▒▒$GRAY@$GRAY▒$BLUE#$GRAY▒▒$WHITE|\n \
+  x__________x"
+    map raw: " x__________x\n \
+  |▒#▒▒▒@▒▒▒▒|\n \
+  |▒▒@▒▒▒▒@▒▒|\n \
+  |▒@#▒▒▒▒▒@▒|\n \
+  |#▒▒▒▒@▒#▒▒|\n \
+  x__________x"
