@@ -1319,6 +1319,9 @@ def run(play):
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
             current_dialog = map["point" + str(map_location)]["dialog"]
             has_required_attributes = True
+            has_required_locations = True
+            has_required_enemies = True
+            has_required_npcs = True
             if "to display" in dialog[str(current_dialog)]:
                 if "player attributes" in dialog[str(current_dialog)]["to display"]:
                     count = 0
@@ -1329,7 +1332,34 @@ def run(play):
                         if selected_attribute not in player["attributes"]:
                             has_required_attributes = False
                         count += 1
-            if has_required_attributes == True:
+                if "visited locations" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_locations = dialog[str(current_dialog)]["to display"]["visited locations"]
+                    required_locations_len = len(required_attributes)
+                    while count < required_locations_len and has_required_locations == True:
+                        selected_location = required_locations[count]
+                        if selected_location not in player["visited points"]:
+                            has_required_locations = False
+                        count += 1
+                if "known enemies" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_enemies = dialog[str(current_dialog)]["to display"]["known enemies"]
+                    required_enemies_len = len(required_enemies)
+                    while count < required_enemies_len and has_required_enemies == True:
+                        selected_enemy = required_enemies[count]
+                        if selected_enemy not in player["enemies list"]:
+                            has_required_enemies = False
+                        count += 1
+                if "known npcs" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_npcs = dialog[str(current_dialog)]["to display"]["known npcs"]
+                    required_npcs_len = len(required_npcs)
+                    while count < required_npcs_len and has_required_npcs == True:
+                        selected_npc = required_npcs[count]
+                        if selected_npc not in player["met npcs names"]:
+                            has_required_npcs = False
+                        count += 1
+            if has_required_attributes and has_required_locations and has_required_enemies and has_required_npcs:
                 print_dialog(current_dialog)
                 player["heard dialogs"].append(map_location)
                 text = '='
