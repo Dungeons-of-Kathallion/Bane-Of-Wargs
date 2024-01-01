@@ -483,7 +483,7 @@ while menu:
             git = repo.git
             git.pull()
         except:
-            print(COLOR_RED + "ERROR: Could not update repo: somthing went wrong when pulling. Please try to pull the repo manually on the command line" + COLOR_RESET_ALL)
+            print(COLOR_RED + "ERROR: Could not update repo: something went wrong when pulling. Please try to pull the repo manually on the command line" + COLOR_RESET_ALL)
             time.sleep(5)
         text = "Finished Updating."
         print_speech_text_effect(text)

@@ -74,5 +74,5 @@ def examine(file_path):
     try:
         check_yaml(str(file_path))
     except Exception as error:
-        print(COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + "A parsing error in a yaml file as been detected:\n" + COLOR_RESET_ALL + str(error))
+        print(COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error))
         exit(1)
