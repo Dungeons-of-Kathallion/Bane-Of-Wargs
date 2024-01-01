@@ -499,7 +499,7 @@ def search(x, y):
         point_i = map["point" + str(i)]
         point_x, point_y = point_i["x"], point_i["y"]
         # print(i, point_x, point_y, player)
-        if point_x == player["x"] and point_y == player["y"]:
+        if point_x == x and point_y == y:
             map_location = i
             return map_location
 
@@ -622,7 +622,7 @@ def print_enemy_thumbnail(enemy):
         count += 1
 
 def check_for_key(direction):
-    map_point_count = int(len(list(map))) - 1
+    map_point_count = int(len(list(map)))
     if direction == "north":
         for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
@@ -677,14 +677,14 @@ def check_for_key(direction):
         have_necessary_keys = True
 
         if choice == 'Continue':
-            while count < ( keys_len ) and have_necessary_keys == True:
+            while count < keys_len and have_necessary_keys == True:
 
                 choosen_key = map["point" + str(future_map_location)]["key"]["required keys"][int(count)]
 
                 if choosen_key not in player["inventory"]:
                     have_necessary_keys = False
                 else:
-                    if map["point" + str(future_map_location)]["key"]["remove key"] == True:
+                    if map["point" + str(future_map_location)]["key"]["remove key"]:
                         player["inventory"].remove(choosen_key)
 
                 count += 1
@@ -1809,34 +1809,38 @@ def run(play):
             print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
         elif command.lower().startswith('n'):
+            next_point = search(player["x"], player["y"] + 1)
             if "North" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
-            elif "key" in map["point" + str(map_location)]:
+            elif "key" in map["point" + str(next_point)]:
                 check_for_key("north")
             else:
                 player["y"] += 1
         elif command.lower().startswith('s'):
+            next_point = search(player["x"], player["y"] - 1)
             if "South" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
-            elif "key" in map["point" + str(map_location)]:
+            elif "key" in map["point" + str(next_point)]:
                 check_for_key("south")
             else:
                 player["y"] -= 1
         elif command.lower().startswith('e'):
+            next_point = search(player["x"] + 1, player["y"])
             if "East" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
-            elif "key" in map["point" + str(map_location)]:
+            elif "key" in map["point" + str(next_point)]:
                 check_for_key("east")
             else:
                 player["x"] += 1
         elif command.lower().startswith('w'):
+            next_point = search(player["x"] - 1, player["y"])
             if "West" in map["point" + str(map_location)]["blocked"]:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 time.sleep(1)
-            elif "key" in map["point" + str(map_location)]:
+            elif "key" in map["point" + str(next_point)]:
                 check_for_key("west")
             else:
                 player["x"] -= 1
