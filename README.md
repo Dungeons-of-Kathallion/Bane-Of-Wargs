@@ -67,6 +67,8 @@ python main.py
 ```
 **It's highly recommende to use a clean terminal in fullscreen for the best gameplay experience.**
 
+If you have any problems, check the full documentation on how to run the game fron nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md).
+
 ## Python Module Requirements
 
 Bane Of Wargs is a minimal game but you will have to install/updated some python modules.\n
