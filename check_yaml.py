@@ -35,7 +35,7 @@ def check_yaml(file_path):
     elif file_path.startswith('saves/'):
         file_type = 'saves'
     file_schema = str(f'schemas/{file_type}.yaml')
-    if file_type == 'drinks' or file_type == 'mounts' or file_type == 'map' or file_type == 'lists' or file_type == 'npcs' or file_type == 'enemies':
+    if file_type == 'drinks' or file_type == 'mounts' or file_type == 'map' or file_type == 'lists' or file_type == 'npcs' or file_type == 'enemies' or file_type == 'dialogs':
         count = 0
         file_len = int(len(list(file)))
         while count < file_len:
