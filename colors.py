@@ -1,6 +1,6 @@
 from colorama import Fore, Back, Style, init, deinit
 
-# initialize colorame
+# initialize colorama
 init()
 
 # import 'color palette'
