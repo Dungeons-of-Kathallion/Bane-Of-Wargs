@@ -655,7 +655,7 @@ def check_for_key(direction):
         text = '='
         print_separator(text)
 
-        text = "You need the following key(s) to enter this location, if you decide to use it, you may loose it:"
+        text = "You need the following key(s) to enter this location, if you decide to use them, you may loose them:"
         print_long_string(text)
 
         keys_list = str(map["point" + str(future_map_location)]["key"]["required keys"])
@@ -663,6 +663,8 @@ def check_for_key(direction):
         keys_list = keys_list.replace("[", ' -')
         keys_list = keys_list.replace("]", '')
         keys_list = keys_list.replace(", ", '\n -')
+
+        print(keys_list)
 
         keys_len = len(map["point" + str(future_map_location)]["key"]["required keys"])
 
