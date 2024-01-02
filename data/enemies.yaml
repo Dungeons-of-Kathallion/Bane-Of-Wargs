@@ -149,7 +149,7 @@ Black Orc:
   agility: .58
   inventory:
   - Beef
-  - Prokchop
+  - Porkchop
   - Bone
   - Spear
   - Orc Shredded Chestplate
@@ -168,10 +168,10 @@ Dark Marksman:
     max health level: 8
   agility: .68
   inventory:
-  - Prokchop
+  - Porkchop
   - Raw Salmon
   - Bone
-  - Orc Bags
+  - Orc Bag
   - Orc Iron Leggings
   - Orc Bow
   description: "Dark Marksman are specialized Black Yrch in arching and are able to be swift and shoot you from long distances"

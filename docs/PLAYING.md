@@ -37,7 +37,7 @@ Depending on your operation system or your distribution if you're running a linu
 ![python-optional-features-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-optional.png)
 6. Click **Next**.
 7. The **Advanced Options** dialog displays.
-![python-advanced-options-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-advanced.png)
+    ![python-advanced-options-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-advanced.png)
 
 * **Install for all users**: recommended if you’re not the only user on this computer.
 * **Associate files with Python**: recommended, because this option associates all the Python file types with the launcher or editor.
@@ -46,8 +46,8 @@ Depending on your operation system or your distribution if you're running a linu
 * **Precompile standard library**: not required, it might down the installation.
 * **Download debugging symbols and Download debug binaries**: recommended only if you plan to create C or C++ extensions.
 This program requires to check the **Add Python to environment variables**. Make note of the Python installation directory in case you need to reference it later.
-8. Click **Install** to start the installation
-9. After the installation is complete, a **Setup was successful** message displays.
+1. Click **Install** to start the installation
+2. After the installation is complete, a **Setup was successful** message displays.
 ![setup-was-successful-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-success.png)
 
 ##### 3 // Verify the Python Installation
