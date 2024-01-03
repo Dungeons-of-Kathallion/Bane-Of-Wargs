@@ -1,10 +1,15 @@
 import yamale
 import yaml
+import appdirs
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
 # initialize colorama
 init()
+
+# Create the variable for the program
+# to access the program config/data folder
+program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 def check_yaml(file_path):
     file_type = 'none'
@@ -34,7 +39,7 @@ def check_yaml(file_path):
         file_type = 'preferences'
     elif file_path.startswith('saves/'):
         file_type = 'saves'
-    file_schema = str(f'schemas/{file_type}.yaml')
+    file_schema = str(f'{program_dir}/game/schemas/{file_type}.yaml')
     if file_type == 'drinks' or file_type == 'mounts' or file_type == 'map' or file_type == 'lists' or file_type == 'npcs' or file_type == 'enemies' or file_type == 'dialogs':
         count = 0
         file_len = int(len(list(file)))
@@ -57,7 +62,7 @@ def check_yaml(file_path):
         while count < file_len:
             current_object_name = str(list(file)[count])
             current_object_data = file[str(list(file)[count])]
-            file_schema = str(f'schemas/{file_type}_{current_object_data["type"]}.yaml')
+            file_schema = str(f'{program_dir}/game/schemas/{file_type}_{current_object_data["type"]}.yaml')
 
             schema = yamale.make_schema(str(file_schema))
             data = yamale.make_data(content=str(current_object_data))
@@ -65,7 +70,7 @@ def check_yaml(file_path):
 
             count += 1
     elif file_type == 'preferences' or file_type == 'saves':
-        file_schema = f'schemas/{file_type}.yaml'
+        file_schema = f'{program_dir}/game/schemas/{file_type}.yaml'
         schema = yamale.make_schema(file_schema)
         data = yamale.make_data(file_path)
         yamale.validate(schema, data)

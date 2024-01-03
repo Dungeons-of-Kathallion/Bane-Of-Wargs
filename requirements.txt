@@ -4,3 +4,4 @@ GitPython
 colorama
 PyYaml
 yamale
+fsspec

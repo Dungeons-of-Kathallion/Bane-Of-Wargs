@@ -14,6 +14,8 @@ import git
 import readline
 import traceback
 import appdirs
+import shutil
+import fsspec
 from git import Repo
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
@@ -134,9 +136,17 @@ while menu:
         default_config_data = yaml.dump(default_config_data)
         with open(program_dir + '/preferences.yaml', 'w') as f:
             f.write(default_config_data)
-        # Create the plugins, saves folder in the config file
+        # Create the plugins, saves, game data folder in the config file
         os.mkdir(program_dir + "/plugins")
         os.mkdir(program_dir + "/saves")
+        os.mkdir(program_dir + "/game")
+    # Download game data from github master branch
+    # and install them (auto-update)
+    print("Download game data...")
+    print("This may take a few seconds, sorry for the waiting.")
+    destination = program_dir + '/game/schemas'
+    fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+    fs.get(fs.ls("schemas/"), destination)
     # Get player preferences
     with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)

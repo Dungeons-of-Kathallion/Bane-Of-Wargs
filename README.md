@@ -73,7 +73,7 @@ If you have any problems, check the full documentation on how to run the game fr
 
 Bane Of Wargs is a minimal game but you will have to install/updated some python modules.\n
 All required modules are in the `requirements.txt` file.
-[enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/).
+[enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html).
 
 ---
 
