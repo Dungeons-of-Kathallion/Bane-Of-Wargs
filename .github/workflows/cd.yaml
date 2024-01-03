@@ -14,6 +14,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+
+  install_python_and_pip:
+    name: Install Python And Pip
+    if: github.event_name == 'push'
+    runs-on: unbuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+    steps:
+      - name: Install Python & Pip
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
   
   cd_upload_artifacts_to_release:
     name: Upload
@@ -28,11 +41,6 @@ jobs:
           go install github.com/github-release/github-release@latest
           echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
-      - name: Install Python & Pip
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-          cache: 'pip'
       - name: Create Executable
         run: |
           git clone git@github.com:Dungeons-of-Kathallion/Bane-Of-Wargs.git
