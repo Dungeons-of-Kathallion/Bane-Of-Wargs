@@ -113,8 +113,8 @@ menu = True
 
 # main menu start
 while menu:
-    # Check if player has the config folder
-    # If not, create it
+    # Check if player has the config folder if
+    # not, create it with all its required content
     program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
     if os.path.exists(program_dir) == False:
         os.mkdir(program_dir)
@@ -125,6 +125,8 @@ while menu:
             default_config_data = yaml.dump(default_config_data)
         with open(program_dir + '/preferences.yaml', 'w') as f:
             f.write(default_config_data)
+        # Create the plugins folder in the config file
+        os.mkdir(program_dir + "/plugins")
     # Get player preferences
     with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
@@ -200,50 +202,50 @@ while menu:
 
                 what_plugin = preferences["latest preset"]["plugin"]
 
-                check_file = os.path.exists("plugins/" + what_plugin )
+                check_file = os.path.exists(program_dir + "/plugins/" + what_plugin )
                 if check_file == False:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
                     play = 0
                     exit(1)
-                with open("plugins/" + what_plugin + "/map.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
                     map = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/map.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/map.yaml")
 
-                with open("plugins/" + what_plugin + "/items.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/items.yaml") as f:
                     item = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/items.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/items.yaml")
 
-                with open("plugins/" + what_plugin + "/drinks.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/drinks.yaml") as f:
                     drinks = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/drinks.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/drinks.yaml")
 
-                with open("plugins/" + what_plugin + "/enemies.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/enemies.yaml") as f:
                     enemy = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/enemies.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/enemies.yaml")
 
-                with open("plugins/" + what_plugin + "/npcs.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/npcs.yaml") as f:
                     npcs = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/npcs.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/npcs.yaml")
 
-                with open("plugins/" + what_plugin + "/start.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
                     start_player = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/start.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
 
-                with open("plugins/" + what_plugin + "/lists.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
                     lists = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/lists.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/lists.yaml")
 
-                with open("plugins/" + what_plugin + "/zone.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/zone.yaml") as f:
                     zone = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/zone.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/zone.yaml")
 
-                with open("plugins/" + what_plugin + "/dialog.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/dialog.yaml") as f:
                     dialog = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/dialog.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/dialog.yaml")
 
-                with open("plugins/" + what_plugin + "/mounts.yaml") as f:
+                with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
                     mounts = yaml.safe_load(f)
-                    check_yaml.examine("plugins/" + what_plugin + "/mounts.yaml")
+                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
 
             open_save = preferences["latest preset"]["save"]
             save_file = "saves/save_" + open_save + ".yaml"
@@ -263,59 +265,57 @@ while menu:
             print_speech_text_effect(text)
             res = []
 
-            for search_for_saves in os.listdir('plugins/'):
+            for search_for_saves in os.listdir(program_dir + "/plugins/"):
                 res.append(search_for_saves)
-
-            res.remove('.gitkeep')
 
             what_plugin = input(COLOR_STYLE_BRIGHT + "Current plugins: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
             preferences["latest preset"]["type"] = "plugin"
             preferences["latest preset"]["plugin"] = what_plugin
 
-            check_file = os.path.exists("plugins/" + what_plugin )
+            check_file = os.path.exists(program_dir + "/plugins/" + what_plugin )
             if check_file == False:
                 print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
                 play = 0
                 exit(1)
-            with open("plugins/" + what_plugin + "/map.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
                 map = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/map.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/map.yaml")
 
-            with open("plugins/" + what_plugin + "/items.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/items.yaml") as f:
                 item = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/items.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/items.yaml")
 
-            with open("plugins/" + what_plugin + "/drinks.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/drinks.yaml") as f:
                 drinks = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/drinks.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/drinks.yaml")
 
-            with open("plugins/" + what_plugin + "/enemies.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/enemies.yaml") as f:
                 enemy = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/enemies.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/enemies.yaml")
 
-            with open("plugins/" + what_plugin + "/npcs.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/npcs.yaml") as f:
                 npcs = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/npcs.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/npcs.yaml")
 
-            with open("plugins/" + what_plugin + "/start.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
                 start_player = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/start.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
 
-            with open("plugins/" + what_plugin + "/lists.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
                 lists = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/lists.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/lists.yaml")
 
-            with open("plugins/" + what_plugin + "/zone.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/zone.yaml") as f:
                 zone = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/zone.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/zone.yaml")
 
-            with open("plugins/" + what_plugin + "/dialog.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/dialog.yaml") as f:
                 dialog = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/dialog.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/dialog.yaml")
 
-            with open("plugins/" + what_plugin + "/mounts.yaml") as f:
+            with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
                 mounts = yaml.safe_load(f)
-                check_yaml.examine("plugins/" + what_plugin + "/mounts.yaml")
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
         else:
             preferences["latest preset"]["type"] = "vanilla"
             preferences["latest preset"]["plugin"] == "none"
@@ -587,7 +587,7 @@ def print_npc_thumbnail(npc):
         with open('imgs/' + npc + ".txt") as f:
             to_print = str(f.read())
     else:
-        with open('plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + npc + ".txt") as f:
+        with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + npc + ".txt") as f:
             to_print = str(f.read())
     to_print = to_print.replace('$RED', '\033[0;31m')
     to_print = to_print.replace('$GREEN', '\033[0;32m')
@@ -610,7 +610,7 @@ def print_enemy_thumbnail(enemy):
         with open('imgs/' + enemy + ".txt") as f:
             to_print = str(f.read())
     else:
-        with open('plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + enemy + ".txt") as f:
+        with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + enemy + ".txt") as f:
             to_print = str(f.read())
     to_print = to_print.replace('$RED', '\033[0;31m')
     to_print = to_print.replace('$GREEN', '\033[0;32m')
@@ -758,7 +758,7 @@ def print_dialog(current_dialog):
                 to_print = to_print.replace('$GRAY', '\033[1;30m')
                 print(to_print)
         else:
-            with open('plugins/' + str(preferences["latest preset"]["plugin"]) + '/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
+            with open(program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) + '/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
                 to_print = str(f.read())
                 to_print = to_print.replace('$RED', '\033[0;31m')
                 to_print = to_print.replace('$GREEN', '\033[0;32m')
