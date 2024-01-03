@@ -374,7 +374,8 @@ while menu:
                 check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
         else:
             preferences["latest preset"]["type"] = "vanilla"
-            preferences["latest preset"]["plugin"] == "none"
+            preferences["latest preset"]["plugin"] = "none"
+            
             with open(program_dir + "/game/data/map.yaml") as f:
                 map = yaml.safe_load(f)
                 check_yaml.examine(program_dir + '/game/data/map.yaml')
@@ -462,6 +463,7 @@ while menu:
                 save_name = program_dir + "/saves/save_" + enter_save_name + ".yaml"
                 save_name_backup = program_dir + "/saves/~0 save_" + enter_save_name + ".yaml"
                 check_file = os.path.isfile(save_name)
+                preferences["latest preset"]["save"] = "/save_" + enter_save_name + ".yaml"
                 if check_file == True:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + save_name + "'" + " already exists" + COLOR_RESET_ALL)
                     play = 0
@@ -3015,7 +3017,7 @@ with open(save_name_backup, "w") as f:
 
 dumped = yaml.dump(preferences)
 
-with open(program_dir + 'preferences.yaml', 'w') as f:
+with open(program_dir + '/preferences.yaml', 'w') as f:
     f.write(dumped)
 
 # deinitialize colorame

@@ -28,7 +28,7 @@ def print_map(player, map, zone):
         if coord_x == -64:
             print("║", end="")
         if coord_x == player_x and coord_y == player_y:
-            print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "█" + COLOR_RESET_ALL, end="")
+            print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "¿" + COLOR_RESET_ALL, end="")
         else:
             print_color = COLOR_BLACK + '░'
             get_zone = True
