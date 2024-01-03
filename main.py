@@ -13,6 +13,7 @@ import subprocess
 import git
 import readline
 import traceback
+import appdirs
 from git import Repo
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
@@ -112,16 +113,22 @@ menu = True
 
 # main menu start
 while menu:
-    check_file_preferences = os.path.isfile("preferences.yaml")
-    if check_file_preferences == False:
-        with open("default preferences.yaml") as f:
-            default_preferences = yaml.safe_load(f)
-            dumped = yaml.dump(default_preferences)
-        with open("preferences.yaml", "w") as f:
-            f.write(dumped)
-    with open('preferences.yaml', 'r') as f:
+    # Check if player has the config folder
+    # If not, create it
+    program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
+    if os.path.exists(program_dir) == False:
+        os.mkdir(program_dir)
+        # Open default config file and store the text into
+        # a variable to write it into the user config file
+        with open('default preferences.yaml', 'r') as f:
+            default_config_data = yaml.safe_load(f)
+            default_config_data = yaml.dump(default_config_data)
+        with open(program_dir + '/preferences.yaml', 'w') as f:
+            f.write(default_config_data)
+    # Get player preferences
+    with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
-        check_yaml.examine('preferences.yaml')
+        check_yaml.examine(program_dir + '/preferences.yaml')
     # try to update game
     if preferences["auto update"]:
         try:
@@ -473,7 +480,7 @@ while menu:
             editor = os.environ['EDITOR']
         except KeyError:
             editor = 'nano'
-        subprocess.call([editor, "preferences.yaml"])
+        subprocess.call([editor, program_dir + "/preferences.yaml"])
     elif choice == 'Check Update':
         text = "Checking for updates..."
         print_speech_text_effect(text)
