@@ -134,8 +134,9 @@ while menu:
         default_config_data = yaml.dump(default_config_data)
         with open(program_dir + '/preferences.yaml', 'w') as f:
             f.write(default_config_data)
-        # Create the plugins folder in the config file
+        # Create the plugins, saves folder in the config file
         os.mkdir(program_dir + "/plugins")
+        os.mkdir(program_dir + "/saves")
     # Get player preferences
     with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
@@ -257,7 +258,7 @@ while menu:
                     check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
 
             open_save = preferences["latest preset"]["save"]
-            save_file = "saves/save_" + open_save + ".yaml"
+            save_file = program_dir + "/saves/save_" + open_save + ".yaml"
             check_file = os.path.isfile(save_file)
             if check_file == False:
                 print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
@@ -274,8 +275,8 @@ while menu:
             print_speech_text_effect(text)
             res = []
 
-            for search_for_saves in os.listdir(program_dir + "/plugins/"):
-                res.append(search_for_saves)
+            for search_for_plugins in os.listdir(program_dir + "/plugins/"):
+                res.append(search_for_plugins)
 
             what_plugin = input(COLOR_STYLE_BRIGHT + "Current plugins: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
             preferences["latest preset"]["type"] = "plugin"
@@ -377,7 +378,7 @@ while menu:
             if choice == 'Open Save':
                 res = []
 
-                for search_for_saves in os.listdir('saves/'):
+                for search_for_saves in os.listdir(program_dir + '/saves/'):
                     if search_for_saves.startswith("save_"):
                         res.append(search_for_saves)
 
@@ -395,7 +396,7 @@ while menu:
                 open_save = input(COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
                 preferences["latest preset"]["save"] = open_save
 
-                save_file = "saves/save_" + open_save + ".yaml"
+                save_file = program_dir + "/saves/save_" + open_save + ".yaml"
                 check_file = os.path.isfile(save_file)
                 if check_file == False:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
@@ -412,8 +413,8 @@ while menu:
                 enter_save_name = input('> ')
                 player = start_player
                 dumped = yaml.dump(player)
-                save_name = "saves/save_" + enter_save_name + ".yaml"
-                save_name_backup = "saves/~0 save_" + enter_save_name + ".yaml"
+                save_name = program_dir + "/saves/save_" + enter_save_name + ".yaml"
+                save_name_backup = program_dir + "/saves/~0 save_" + enter_save_name + ".yaml"
                 check_file = os.path.isfile(save_name)
                 if check_file == True:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + save_name + "'" + " already exists" + COLOR_RESET_ALL)
@@ -433,7 +434,7 @@ while menu:
 
         res = []
 
-        for search_for_saves in os.listdir('saves/'):
+        for search_for_saves in os.listdir(program_dir + '/saves/'):
             if search_for_saves.startswith("save_"):
                 res.append(search_for_saves)
 
@@ -454,9 +455,9 @@ while menu:
             text = "Please select a save to edit."
             print_speech_text_effect(text)
             open_save = input(COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
-            check_file = os.path.isfile("saves/save_" + open_save + ".yaml")
+            check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if check_file == False:
-                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + "saves/save_" + open_save + ".yaml" + "'" + " does not exists" + COLOR_RESET_ALL)
+                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + program_dir + "/saves/save_" + open_save + ".yaml" + "'" + " does not exists" + COLOR_RESET_ALL)
                 play = 0
             text = "Select an action for the selected save."
             print_speech_text_effect(text)
@@ -464,9 +465,9 @@ while menu:
             choice = enquiries.choose('', options)
             if choice == 'Rename Save':
                 rename_name = input("Select a new name for the save: ")
-                os.rename("saves/save_" + open_save + ".yaml", "saves/save_" + rename_name + ".yaml")
+                os.rename(program_dir + "/saves/save_" + open_save + ".yaml", program_dir + "/saves/save_" + rename_name + ".yaml")
             else:
-                save_to_open ="saves/save_" + open_save + ".yaml"
+                save_to_open = program_dir + "/saves/save_" + open_save + ".yaml"
                 try:
                     editor = os.environ['EDITOR']
                 except KeyError:
@@ -476,14 +477,14 @@ while menu:
             text = "Please select a save to delete."
             print_speech_text_effect(text)
             open_save = input(COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
-            check_file = os.path.isfile("saves/save_" + open_save + ".yaml")
+            check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if check_file == False:
-                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + "saves/save_" + open_save + ".yaml" + "'" + " does not exists" + COLOR_RESET_ALL)
+                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + program_dir + "/saves/save_" + open_save + ".yaml" + "'" + " does not exists" + COLOR_RESET_ALL)
                 play = 0
             check = input("Are you sure you want to delete the following save (y/n)")
             if check.lower().startswith('y'):
-                os.remove("saves/save_" + open_save + ".yaml")
-                os.remove("saves/~0 save_" + open_save + ".yaml")
+                os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
+                os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
     elif choice == 'Preferences':
         try:
             editor = os.environ['EDITOR']
@@ -2968,7 +2969,7 @@ with open(save_name_backup, "w") as f:
 
 dumped = yaml.dump(preferences)
 
-with open('preferences.yaml', 'w') as f:
+with open(program_dir + 'preferences.yaml', 'w') as f:
     f.write(dumped)
 
 # deinitialize colorame
