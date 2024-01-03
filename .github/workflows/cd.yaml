@@ -39,7 +39,7 @@ jobs:
           
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
-          pip install -r requirements
+          pip install -r requirements.txt
           pip install PyInstaller
 
           python -m PyInstaller --console --onefile --name Bane-Of-Wargs main.py battle.py check_yaml.py colors.py map_item.py train.py --add-data yamale/VERSION:yamale
