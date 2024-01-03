@@ -120,9 +120,18 @@ while menu:
         os.mkdir(program_dir)
         # Open default config file and store the text into
         # a variable to write it into the user config file
-        with open('default preferences.yaml', 'r') as f:
-            default_config_data = yaml.safe_load(f)
-            default_config_data = yaml.dump(default_config_data)
+        default_config_data = {
+            "latest preset": {
+                "plugin": " ",
+                "save": " ",
+                "type": 'vanilla'
+            },
+            "speed up": False,
+            "theme": 'greenblue',
+            "title style": 1,
+            "auto update": False
+        }
+        default_config_data = yaml.dump(default_config_data)
         with open(program_dir + '/preferences.yaml', 'w') as f:
             f.write(default_config_data)
         # Create the plugins folder in the config file
