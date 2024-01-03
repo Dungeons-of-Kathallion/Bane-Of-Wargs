@@ -45,43 +45,43 @@ term_height = h
 
 def print_title():
     if preferences["theme"] == "OFF":
-        with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+        with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
             print(f.read())
     else:
         if preferences["theme"] == "blackwhite":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.blackwhite(f.read())
                 print(faded_text)
         elif preferences["theme"] == "purplepink":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.purplepink(f.read())
                 print(faded_text)
         elif preferences["theme"] == "greenblue":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.greenblue(f.read())
                 print(faded_text)
         elif preferences["theme"] == "water":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.water(f.read())
                 print(faded_text)
         elif preferences["theme"] == "fire":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.fire(f.read())
                 print(faded_text)
         elif preferences["theme"] == "pinkred":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.pinkred(f.read())
                 print(faded_text)
         elif preferences["theme"] == "purpleblue":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.purpleblue(f.read())
                 print(faded_text)
         elif preferences["theme"] == "brazil":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.brazil(f.read())
                 print(faded_text)
         elif preferences["theme"] == "random":
-            with open('imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.random(f.read())
                 print(faded_text)
 
@@ -113,40 +113,76 @@ def exit_game():
 
 menu = True
 
-# main menu start
-while menu:
-    # Check if player has the config folder if
-    # not, create it with all its required content
-    program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
-    if os.path.exists(program_dir) == False:
-        os.mkdir(program_dir)
-        # Open default config file and store the text into
-        # a variable to write it into the user config file
-        default_config_data = {
-            "latest preset": {
-                "plugin": " ",
-                "save": " ",
-                "type": 'vanilla'
-            },
-            "speed up": False,
-            "theme": 'greenblue',
-            "title style": 1,
-            "auto update": False
-        }
-        default_config_data = yaml.dump(default_config_data)
-        with open(program_dir + '/preferences.yaml', 'w') as f:
-            f.write(default_config_data)
-        # Create the plugins, saves, game data folder in the config file
-        os.mkdir(program_dir + "/plugins")
-        os.mkdir(program_dir + "/saves")
-        os.mkdir(program_dir + "/game")
-    # Download game data from github master branch
-    # and install them (auto-update)
-    print("Download game data...")
-    print("This may take a few seconds, sorry for the waiting.")
+# Check if player has the config folder if
+# not, create it with all its required content
+program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
+if os.path.exists(program_dir) == False:
+    os.mkdir(program_dir)
+    # Open default config file and store the text into
+    # a variable to write it into the user config file
+    default_config_data = {
+        "latest preset": {
+            "plugin": " ",
+            "save": " ",
+            "type": 'vanilla'
+        },
+        "speed up": False,
+        "theme": 'greenblue',
+        "title style": 1,
+        "auto update": False
+    }
+    default_config_data = yaml.dump(default_config_data)
+    with open(program_dir + '/preferences.yaml', 'w') as f:
+        f.write(default_config_data)
+    # Create the plugins, saves, game data folder in the config file
+    os.mkdir(program_dir + "/plugins")
+    os.mkdir(program_dir + "/saves")
+    os.mkdir(program_dir + "/game")
+# Download game data from github master branch
+# and install them (auto-update)
+print("Download game data...")
+print("This may take a few seconds, sorry for the waiting.")
+print("0/3", end="\r")
+
+# Download yaml schema files
+try:
     destination = program_dir + '/game/schemas'
     fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
     fs.get(fs.ls("schemas/"), destination)
+except Exception as error:
+    print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
+    print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+    time.sleep(.5)
+
+print("1/3", end="\r")
+
+# Download data files
+try:
+    destination = program_dir + '/game/data'
+    fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+    fs.get(fs.ls("data/"), destination)
+except Exception as error:
+    print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
+    print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+    time.sleep(.5)
+
+print("2/3", end="\r")
+
+# Download images .txt files
+try:
+    destination = program_dir + '/game/imgs'
+    fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+    fs.get(fs.ls("imgs/"), destination)
+except Exception as error:
+    print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
+    print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+    time.sleep(.5)
+
+print("3/3")
+print("Done")
+
+# main menu start
+while menu:
     # Get player preferences
     with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
@@ -179,45 +215,45 @@ while menu:
         if choice == 'Use Latest Preset':
             using_latest_preset = True
             if preferences["latest preset"]["type"] == 'vanilla':
-                with open("data/map.yaml") as f:
+                with open(program_dir + "/game/data/map.yaml") as f:
                     map = yaml.safe_load(f)
-                    check_yaml.examine('data/map.yaml')
+                    check_yaml.examine(program_dir + '/game/data/map.yaml')
 
-                with open("data/items.yaml") as f:
+                with open(program_dir + "/game/data/items.yaml") as f:
                     item = yaml.safe_load(f)
-                    check_yaml.examine('data/items.yaml')
+                    check_yaml.examine(program_dir + '/game/data/items.yaml')
 
-                with open("data/drinks.yaml") as f:
+                with open(program_dir + "/game/data/drinks.yaml") as f:
                     drinks = yaml.safe_load(f)
-                    check_yaml.examine('data/drinks.yaml')
+                    check_yaml.examine(program_dir + '/game/data/drinks.yaml')
 
-                with open("data/enemies.yaml") as f:
+                with open(program_dir + "/game/data/enemies.yaml") as f:
                     enemy = yaml.safe_load(f)
-                    check_yaml.examine('data/enemies.yaml')
+                    check_yaml.examine(program_dir + '/game/data/enemies.yaml')
 
-                with open("data/npcs.yaml") as f:
+                with open(program_dir + "/game/data/npcs.yaml") as f:
                     npcs = yaml.safe_load(f)
-                    check_yaml.examine('data/npcs.yaml')
+                    check_yaml.examine(program_dir + '/game/data/npcs.yaml')
 
-                with open("data/start.yaml") as f:
+                with open(program_dir + "/game/data/start.yaml") as f:
                     start_player = yaml.safe_load(f)
-                    check_yaml.examine('data/start.yaml')
+                    check_yaml.examine(program_dir + '/game/data/start.yaml')
 
-                with open("data/lists.yaml") as f:
+                with open(program_dir + "/game/data/lists.yaml") as f:
                     lists = yaml.safe_load(f)
-                    check_yaml.examine('data/lists.yaml')
+                    check_yaml.examine(program_dir + '/game/data/lists.yaml')
 
-                with open("data/zone.yaml") as f:
+                with open(program_dir + "/game/data/zone.yaml") as f:
                     zone = yaml.safe_load(f)
-                    check_yaml.examine('data/zone.yaml')
+                    check_yaml.examine(program_dir + '/game/data/zone.yaml')
 
-                with open("data/dialog.yaml") as f:
+                with open(program_dir + "/game/data/dialog.yaml") as f:
                     dialog = yaml.safe_load(f)
-                    check_yaml.examine('data/dialog.yaml')
+                    check_yaml.examine(program_dir + '/game/data/dialog.yaml')
 
-                with open("data/mounts.yaml") as f:
+                with open(program_dir + "/game/data/mounts.yaml") as f:
                     mounts = yaml.safe_load(f)
-                    check_yaml.examine('data/mounts.yaml')
+                    check_yaml.examine(program_dir + '/game/data/mounts.yaml')
             else:
 
                 what_plugin = preferences["latest preset"]["plugin"]
@@ -339,45 +375,45 @@ while menu:
         else:
             preferences["latest preset"]["type"] = "vanilla"
             preferences["latest preset"]["plugin"] == "none"
-            with open("data/map.yaml") as f:
+            with open(program_dir + "/game/data/map.yaml") as f:
                 map = yaml.safe_load(f)
-                check_yaml.examine('data/map.yaml')
+                check_yaml.examine(program_dir + '/game/data/map.yaml')
 
-            with open("data/items.yaml") as f:
+            with open(program_dir + "/game/data/items.yaml") as f:
                 item = yaml.safe_load(f)
-                check_yaml.examine('data/items.yaml')
+                check_yaml.examine(program_dir + '/game/data/items.yaml')
 
-            with open("data/drinks.yaml") as f:
+            with open(program_dir + "/game/data/drinks.yaml") as f:
                 drinks = yaml.safe_load(f)
-                check_yaml.examine('data/drinks.yaml')
+                check_yaml.examine(program_dir + '/game/data/drinks.yaml')
 
-            with open("data/enemies.yaml") as f:
+            with open(program_dir + "/game/data/enemies.yaml") as f:
                 enemy = yaml.safe_load(f)
-                check_yaml.examine('data/enemies.yaml')
+                check_yaml.examine(program_dir + '/game/data/enemies.yaml')
 
-            with open("data/npcs.yaml") as f:
+            with open(program_dir + "/game/data/npcs.yaml") as f:
                 npcs = yaml.safe_load(f)
-                check_yaml.examine('data/npcs.yaml')
+                check_yaml.examine(program_dir + '/game/data/npcs.yaml')
 
-            with open("data/start.yaml") as f:
+            with open(program_dir + "/game/data/start.yaml") as f:
                 start_player = yaml.safe_load(f)
-                check_yaml.examine('data/start.yaml')
+                check_yaml.examine(program_dir + '/game/data/start.yaml')
 
-            with open("data/lists.yaml") as f:
+            with open(program_dir + "/game/data/lists.yaml") as f:
                 lists = yaml.safe_load(f)
-                check_yaml.examine('data/lists.yaml')
+                check_yaml.examine(program_dir + '/game/data/lists.yaml')
 
-            with open("data/zone.yaml") as f:
+            with open(program_dir + "/game/data/zone.yaml") as f:
                 zone = yaml.safe_load(f)
-                check_yaml.examine('data/zone.yaml')
+                check_yaml.examine(program_dir + '/game/data/zone.yaml')
 
-            with open("data/dialog.yaml") as f:
+            with open(program_dir + "/game/data/dialog.yaml") as f:
                 dialog = yaml.safe_load(f)
-                check_yaml.examine('data/dialog.yaml')
+                check_yaml.examine(program_dir + '/game/data/dialog.yaml')
 
-            with open("data/mounts.yaml") as f:
+            with open(program_dir + "/game/data/mounts.yaml") as f:
                 mounts = yaml.safe_load(f)
-                check_yaml.examine('data/mounts.yaml')
+                check_yaml.examine(program_dir + '/game/data/mounts.yaml')
 
         if using_latest_preset == False:
             text = "Please select an action:"
@@ -604,7 +640,7 @@ def print_zone_map_alone(zone_name):
 
 def print_npc_thumbnail(npc):
     if preferences["latest preset"]["type"] == "vanilla":
-        with open('imgs/' + npc + ".txt") as f:
+        with open(program_dir + '/game/imgs/' + npc + ".txt") as f:
             to_print = str(f.read())
     else:
         with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + npc + ".txt") as f:
@@ -627,7 +663,7 @@ def print_npc_thumbnail(npc):
 
 def print_enemy_thumbnail(enemy):
     if preferences["latest preset"]["type"] == "vanilla":
-        with open('imgs/' + enemy + ".txt") as f:
+        with open(program_dir + '/game/imgs/' + enemy + ".txt") as f:
             to_print = str(f.read())
     else:
         with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + enemy + ".txt") as f:
@@ -764,7 +800,7 @@ def print_dialog(current_dialog):
     dialog_len = len(current_dialog["phrases"])
     if "scene" in current_dialog:
         if preferences["latest preset"]["type"] == 'vanilla':
-            with open('imgs/' + str(current_dialog["scene"]) + '.txt') as f:
+            with open(program_dir + '/game/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
                 to_print = str(f.read())
                 to_print = to_print.replace('$RED', '\033[0;31m')
                 to_print = to_print.replace('$GREEN', '\033[0;32m')
