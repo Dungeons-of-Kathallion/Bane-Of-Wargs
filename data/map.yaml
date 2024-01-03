@@ -453,3 +453,198 @@ point59:
   blocked:
   - North
   - South
+
+point60:
+  x: 8
+  y: 2
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+  enemy: 3
+  enemy type: black
+
+point61:
+  x: 9
+  y: 2
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point62:
+  x: 10
+  y: 2
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point63:
+  x: 9
+  y: 3
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - West
+
+point64:
+  x: 10
+  y: 3
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point65:
+  x: 11
+  y: 3
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point66:
+  x: 10
+  y: 4
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - West
+
+point67:
+  x: 11
+  y: 4
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point68:
+  x: 12
+  y: 4
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point69:
+  x: 11
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - West
+  - North
+
+point70:
+  x: 12
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point71:
+  x: 13
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point72:
+  x: 14
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point73:
+  x: 15
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point74:
+  x: 16
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point75:
+  x: 17
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point76:
+  x: 18
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point77:
+  x: 19
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - None
+
+point78:
+  x: 20
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point79:
+  x: 21
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point80:
+  x: 22
+  y: 5
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - East
+  - North
+
+point81:
+  x: 14
+  y: 6
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - West
+  - North
+
+point82:
+  x: 15
+  y: 6
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point83:
+  x: 16
+  y: 6
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point84:
+  x: 17
+  y: 6
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point85:
+  x: 18
+  y: 6
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+
+point86:
+  x: 19
+  y: 6
+  map zone: The Edge Of Goro Mounts
+  blocked:
+  - North
+  - East
