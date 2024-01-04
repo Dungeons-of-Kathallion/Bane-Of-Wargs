@@ -8,3 +8,11 @@ __pycache__/**
 wget-log
 .vscode
 .vscode/**
+build
+build/**
+dist
+dist/**
+*.spec
+**/.spec
+yamale
+yamale/**
