@@ -220,7 +220,7 @@ python3 source/main.py
 python<x.x> source/main.py #x.x is for example 3.7 for the version 3.7
 ```
 
-### Additionnal: Compiling & Building
+##### Additionnal: Compiling & Building
 If you want to take the game to a next level, you can compile the game by following the instructions of the [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md) documentation.
 
 #### Fixing Possible Issues
