@@ -62,13 +62,11 @@ jobs:
               --tag 9.9.9-continuous \
               --name "Continuous Build" \
               --description "$DESCRIPTION" \
-              --pre-release
           else
             github-release edit \
               --tag 9.9.9-continuous \
               --name "Continuous Build" \
               --description "$DESCRIPTION" \
-              --pre-release
           fi
       - name: Add executable
         run: |
