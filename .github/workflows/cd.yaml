@@ -53,12 +53,11 @@ jobs:
           git push --tags --force
       - name: Setup continuous release
         run: |
-          DESCRIPTION="This is an automated build of the latest source triggered by commit ${{ github.sha }} (@${{ github.actor }}). It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution! \nThis release was made to be compatible with **latest stable version** of Python. \n_Certain features will not work with earlier versions of Python._"
           if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release \
               --tag 9.9.9-continuous \
               --name "Continuous Build" \
-              --description "$DESCRIPTION" \
+              --description "This is an automated build of the latest source triggered by commit ${{ github.sha }} (@${{ github.actor }}). It may be unstable or even crash, corrupt your save or eat your kitten" \
           else
             github-release edit \
               --tag 9.9.9-continuous \
