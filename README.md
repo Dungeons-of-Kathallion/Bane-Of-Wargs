@@ -13,7 +13,7 @@ lolo@fedora ~ $ python main.py
   Check Update
   Quit
 ```
-
+[![CD](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/cd.yaml/badge.svg)](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/cd.yaml)
 ---
 
 Bane Of Wargs is a python text-game engine with pre-built plot an the ability to create custom pugins/mods that complitely change the game content. The game is very customizable and you will find ton of in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining etc... So in overall a very customizable and enjoyable python terminal-text based RPG.
