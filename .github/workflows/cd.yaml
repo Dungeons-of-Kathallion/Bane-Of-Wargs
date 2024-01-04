@@ -56,7 +56,7 @@ jobs:
           DESCRIPTION="This is an automated build of the latest source triggered by commit ${{ github.sha }} (@${{ github.actor }}). It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
             This release was made to be compatible with **latest stable version** of Python.
 
-            _Certain features will not work with earlier versions of Python._
+            _Certain features will not work with earlier versions of Python._"
           if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release \
               --tag 9.9.9-continuous \
