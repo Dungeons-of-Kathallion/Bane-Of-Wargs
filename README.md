@@ -1,6 +1,6 @@
 # Bane Of Wargs
 
-```
+```bash
 lolo@fedora ~ $ python main.py
 ████████████████████████████████████████████████████████████████████▀███████
 █▄─▄─▀██▀▄─██▄─▀█▄─▄█▄─▄▄─███─▄▄─█▄─▄▄─███▄─█▀▀▀█─▄██▀▄─██▄─▄▄▀█─▄▄▄▄█─▄▄▄▄█
@@ -63,7 +63,7 @@ See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
 
 ```
 pip install -r requirements.txt
-python main.py
+python source/main.py
 ```
 **It's highly recommende to use a clean terminal in fullscreen for the best gameplay experience.**
 

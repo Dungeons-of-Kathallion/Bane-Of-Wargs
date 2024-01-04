@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  
+
   cd_upload_artifacts_to_release:
     name: Upload
     if: github.event_name == 'push'
@@ -36,13 +36,13 @@ jobs:
       - name: Create Executable
         run: |
           git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
-          
+
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
           pip install -r requirements.txt
           pip install PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs main.py battle.py check_yaml.py colors.py map_item.py train.py --add-data yamale/VERSION:yamale
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py --add-data yamale/VERSION:yamale
       - name: Set environment variables
         run: |
           echo "GITHUB_USER=$( echo ${{ github.repository }} | cut -d/ -f1 )" >> $GITHUB_ENV
@@ -55,7 +55,7 @@ jobs:
         run: |
           DESCRIPTION="This is an automated build of the latest source triggered by commit ${{ github.sha }} (@${{ github.actor }}). It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
             This release was made to be compatible with **latest stable version** of Python.
-             
+
             _Certain features will not work with earlier versions of Python._
           if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release \
