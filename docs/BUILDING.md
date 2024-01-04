@@ -2,7 +2,7 @@
 
 First you need to get the source code of the game (here use your fork's url if you want to compile your fork).
 
-```bash
+```powershell
 > git clone git@github.com:Dungeons-of-Kathallion/Bane-Of-Wargs.git
 ```
 
@@ -15,7 +15,7 @@ Next, you'll have to install a few dependencies in order to be able to make the 
 Well of course first, you'll need to have the Python interpreter installed as well as a python package manager PIP. You can check the [`docs/PLAYING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md#get-python-installed-windows-linux-macos) document if you need help installing the Python interpreter.
 
 Afterwards, you'll also need to get the python packages required for the game to run. Here are the PIP packages:
-```python
+```
 enquiries
 fade
 GitPython
@@ -54,7 +54,7 @@ The next step to make the game a real app is to create a desktop shortcut for it
 First, open a text editor and create a new document. Name it `Bane-Of-Wargs.desktop`.
 In this document, you will enter this code:
 
-```toml
+```yaml
 [Desktop Entry]
 Version=1.0
 Type=Application
@@ -67,15 +67,15 @@ Terminal=true
 Categories=Game;
 ```
 
-`Version` // version of the program. This totally not required, you can remove it or enter any value.
-`Type` // the type of the desktop shortcut. Here, it's an application.
-`Name` // the name that will displayed under the icon.
-`Comment` // a fast and compact description of the program.
-`Keywords` // the keywords that will make the shortcut appears in the search bar.
-`Exec` // the path to the executable. For example, me I would put '~/Documents/vscode-cloned-repositories/Bane-Of-Wargs/dist/Bane-Of-Wargs'
-`Icon` // the path of the icon that will be displayed on top of the app name. This is not required, you can remove it, if you do, it's the default app icon that will be shown.
-`Terminal` // make so that it will open the terminal when executing the program specified at `Exec`.
-`Categories` // the list of categories of program this program is in.
+- `Version` // version of the program. This totally not required, you can remove it or enter any value.
+- `Type` // the type of the desktop shortcut. Here, it's an application.
+- `Name` // the name that will displayed under the icon.
+- `Comment` // a fast and compact description of the program.
+- `Keywords` // the keywords that will make the shortcut appears in the search bar.
+- `Exec` // the path to the executable. For example, me I would put '~/Documents/vscode-cloned-repositories/Bane-Of-Wargs/dist/Bane-Of-Wargs'
+- `Icon` // the path of the icon that will be displayed on top of the app name. This is not required, you can remove it, if you do, it's the default app icon that will be shown.
+- `Terminal` // make so that it will open the terminal when executing the program specified at `Exec`.
+- `Categories` // the list of categories of program this program is in.
 
 After finishing the editing of that file, save it at the following location:
 `/usr/share/applications/`.
