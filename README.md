@@ -69,6 +69,10 @@ python source/main.py
 
 If you have any problems, check the full documentation on how to run the game fron nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md).
 
+### Compiling & Building
+
+You can also take the game to a next level by compiling it. Check the documentation about that at [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md).
+
 ## Python Module Requirements
 
 Bane Of Wargs is a minimal game but you will have to install/updated some python modules.\n
