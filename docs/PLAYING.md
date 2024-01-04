@@ -213,12 +213,15 @@ First go to the root of the repository with your terminal by using the **`cd`** 
 Depending on how you installed python, you will run the game differently but it's the same way.
 
 ```
-python main.py
+python source/main.py
 # or
-python3 main.py
+python3 source/main.py
 #or
-python<x.x> main.py #x.x is for example 3.7 for the version 3.7
+python<x.x> source/main.py #x.x is for example 3.7 for the version 3.7
 ```
+
+### Additionnal: Compiling & Building
+If you want to take the game to a next level, you can compile the game by following the instructions of the [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md) documentation.
 
 #### Fixing Possible Issues
 
