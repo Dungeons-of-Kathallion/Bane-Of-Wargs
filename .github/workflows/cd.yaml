@@ -56,7 +56,7 @@ jobs:
           if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release --tag 9.9.9-continuous --name "Continuous Build" --description "This is an automated build triggered by commit ${{ github.sha }}."
           else
-            github-release edit --tag 9.9.9-continuous --name "Continuous Build" --description "$DESCRIPTION"
+            github-release edit --tag 9.9.9-continuous --name "Continuous Build" --description "This is an automated build triggered by commit ${{ github.sha }}."
           fi
       - name: Add executable
         run: |
