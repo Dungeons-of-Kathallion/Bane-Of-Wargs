@@ -48,10 +48,27 @@ Everyone in inflow control has the power to merge pull requests and assign label
 Permission: Write
 
 ## Naming conventions
-You are requested to name commints in a certain style:
-For large things, you use the `progress - ` prefix. You can add a little more detail to the prefix by saying `progress [major | minor] - `.
-For smaller things, say `tweak - `, `bugfix - ` (for bugfixes) or `refactor - ` (for refactors).
-For documentation changes, begin with `documentation - `
+You are requested to name commits in a certain style:
+You'll use the following syntax:
+```yaml
+<name>[<major | minor>] - <commit compact description>
+```
+
+* `<name>` // Should be replaced by one of the name in this table:
+
+| Name            | Use case                                                                                       |
+|-----------------|------------------------------------------------------------------------------------------------|
+| `progress`        | if it has something to do with game data and game vanilla plot progression                     |
+| `tweak`           | if it tweaks anything in the repository                                                        |
+| `bugfix`          | if it fixes a bug                                                                              |
+| `fix`             | if it fixes anything that is not a bug (do not make crash the program or does something wrong) |
+| `refactor`        | if it refactors any word. at the end of the commit description, put "`before`-->`after`"       |
+| `documentation`   | if it changes something in the `docs/` folder                                                  |
+| `update`          | if it updates anything outdated like documentation etc...                                      |
+| `workflow_<name>` | if it changes somethings in the `.github/workflows` folder                                     |
+| `unspecified`     | anything not in this list                                                                      |
+* Optionaly, you can add "`[major]`" or "`[minor]`" after "`<name>`" if you feel it's needed.
+* Please make your commit description the most compact, understandable and changes-related possible.
 
 ## Merging Pull Requests
 When you merge a pull request, please `Squash Merge`, remove commit listing, use the [naming convention](#naming-conventions), and add extra details if necesary. You do not have to use the name of a PR in the commit name.
