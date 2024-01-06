@@ -1,10 +1,12 @@
 import colors
 import yaml
+import appdirs
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
 
 # initialize colorama
 init()
+
 
 def print_map(player, map, zone):
     player_x = player["x"]
@@ -51,10 +53,11 @@ def print_map(player, map, zone):
     print("╝")
 
 def get_zone_color(zone_type):
+    program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
     global zone_color
     zone_color = COLOR_BLACK
     try:
-        with open('schemas/zones_colors.yaml', 'r') as f:
+        with open(program_dir + '/game/schemas/zones_colors.yaml', 'r') as f:
             zones_colors = yaml.safe_load(f)
             zone_code = zones_colors[str(zone_type)]
             if zone_code == 0:
