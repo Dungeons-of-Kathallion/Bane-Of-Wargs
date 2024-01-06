@@ -23,6 +23,7 @@ colorama
 PyYaml
 Yamale
 Fsspec
+AppDirs
 ```
 
 You can also find them in the `requirements.txt` file, located in the root directory. You can also find a guide on how to install these packages in the [`docs/PLAYING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md#getting-required-moduleslibraries-installed--possibly-fix-issues) document.
