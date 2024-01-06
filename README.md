@@ -1,4 +1,4 @@
-# Bane Of Wargs
+# Bane Of Wargs (BETA)
 
 ```bash
 lolo@fedora ~ $ python main.py
