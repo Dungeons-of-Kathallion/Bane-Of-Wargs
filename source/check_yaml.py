@@ -1,6 +1,7 @@
 import yamale
 import yaml
 import appdirs
+import logger_sys
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -49,12 +50,14 @@ def check_yaml(file_path):
 
             schema = yamale.make_schema(file_schema)
             data = yamale.make_data(content=str(current_object_data))
+            logger_sys.log_message(f"INFO: Validating file '{file_path}' data: '{current_object_data}' with schema '{file_schema}'")
             yamale.validate(schema, data)
 
             count += 1
     elif file_type == 'start':
         schema = yamale.make_schema(file_schema)
         data = yamale.make_data(file_path)
+        logger_sys.log_message(f"INFO: Validating file '{file_path}' data: '{data}' with schema '{file_schema}'")
         yamale.validate(schema, data)
     elif file_type == 'zones' or file_type == 'items':
         count = 0
@@ -66,6 +69,7 @@ def check_yaml(file_path):
 
             schema = yamale.make_schema(str(file_schema))
             data = yamale.make_data(content=str(current_object_data))
+            logger_sys.log_message(f"INFO: Validating file '{file_path}' data: '{current_object_data}' with schema '{file_schema}'")
             yamale.validate(schema, data)
 
             count += 1
@@ -73,6 +77,7 @@ def check_yaml(file_path):
         file_schema = f'{program_dir}/game/schemas/{file_type}.yaml'
         schema = yamale.make_schema(file_schema)
         data = yamale.make_data(file_path)
+        logger_sys.log_message(f"INFO: Validating file '{file_path}' data: '{data}' with schema '{file_schema}'")
         yamale.validate(schema, data)
 
 def examine(file_path):
@@ -80,4 +85,5 @@ def examine(file_path):
         check_yaml(str(file_path))
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error))
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
         exit(1)

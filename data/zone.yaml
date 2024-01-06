@@ -24,7 +24,7 @@ Cocorico Village:
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
-  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Please, give gold so we can build a church! We need a church to protect the village from monsters at night time!"
   - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
   - "..."
   - "Hey I'm Joshu... Ooh, You don't care..."
@@ -57,7 +57,7 @@ Woodstack Hostel:
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
-  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Please, give gold so we can build a church! We need a church to protect the village from monsters at night time!"
   - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
   - "..."
   - "Hey I'm Joshu... Ooh, You don't care..."
@@ -96,7 +96,7 @@ Pickaxe Forge:
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
-  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Please, give gold so we can build a church! We need a church to protect the village from monsters at night time!"
   - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
   - "..."
   - "Hey I'm Jo... Ooh, You don't care..."
@@ -130,11 +130,11 @@ James Blacksmith:
   type: blacksmith
   cost value: 1
   location: 42
-  description: "Welcome to James Blacksmith! You can here sell metals to make money, but metals and order many type of swords!"
+  description: "Welcome to James Blacksmith! You can here sell metals to make gold, but metals and order many type of swords!"
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
-  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Please, give gold so we can build a church! We need a church to protect the village from monsters at night time!"
   - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
   - "..."
   - "Hey I'm Jo... Ooh, You don't care..."
@@ -208,7 +208,7 @@ Clarc Warg Stable:
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
-  - "Please, give money so we can build a church! We need a church to protect the village from monsters at night time!"
+  - "Please, give gold so we can build a church! We need a church to protect the village from monsters at night time!"
   - "Would you help me defend the village? I'll need help tonight. Just circles near the village entry and watch out for monsters."
   - "..."
   - "Hey I'm Jo... Ooh, You don't care..."

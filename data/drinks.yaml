@@ -22,4 +22,11 @@ Suspicious Stew:
   gold: 12.5
   healing level: 16
   description: "Why not try to drink this?"
-
+Coffee:
+  gold: 7.4
+  healing level: 7
+  description: "A warm coffee, perfect to relax."
+Hot Chocolate:
+  gold: 7.6
+  healing level: 8
+  description: "A tasty beverage for any adventurer willing to rest."

@@ -15,6 +15,12 @@ elapsed time seconds: 1
 elapsed time game days: .25
 attributes:
 - None
+active missions:
+- None
+done missions:
+- None
+offered missions:
+- None
 orders:
   None: none
 mounts:
