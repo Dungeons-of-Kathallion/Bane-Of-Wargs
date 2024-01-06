@@ -5,3 +5,4 @@ colorama
 PyYaml
 yamale
 fsspec
+appdirs
