@@ -38,7 +38,6 @@ fought_enemy = False
 separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET_ALL
 
 def print_title():
-    logger_sys.log_message("INFO: Printing title")
     if preferences["theme"] == "OFF":
         with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
             print(f.read())
