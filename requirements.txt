@@ -6,3 +6,4 @@ PyYaml
 yamale
 fsspec
 appdirs
+requests
