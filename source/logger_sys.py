@@ -5,6 +5,10 @@ from datetime import date
 def log_message(message):
     program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
+    # Create log file
+    with open(f'{program_dir}/logs/{data.today()}.log', 'w') as f:
+        f.write('LOG")
+    
     # Create and configure logger
     logging.basicConfig(filename=f'{program_dir}/logs/{date.today()}.log',
                         format='%(asctime)s %(message)s',
