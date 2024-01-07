@@ -75,11 +75,10 @@ jobs:
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
           pip install -r requirements.txt
-          pip install windows-curses portalocker PyInstaller
+          pip install windows-curses PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec --paths C:\Windows\WinSxS\x86_microsoft-windows-m..namespace-downlevel_31bf3856ad364e35_10.0.17134.1_none_50c6cb8431e7428f
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
           mv dist/Bane-Of-Wargs.exe Bane-Of-Wargs.exe
-          start Bane-Of-Wargs.exe
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
