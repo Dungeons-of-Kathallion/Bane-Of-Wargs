@@ -110,10 +110,8 @@ menu = True
 
 # Check if player has the config folder if
 # not, create it with all its required content
-logger_sys.log_message("INFO: Checking program directory")
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 if os.path.exists(program_dir) == False:
-    logger_sys.log_message("DEBUG: Could not find program directory: creating it with its content")
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -128,18 +126,13 @@ if os.path.exists(program_dir) == False:
         "title style": 1,
         "auto update": False
     }
-    logger_sys.log_message("INFO: Creating player preferences")
     default_config_data = yaml.dump(default_config_data)
     with open(program_dir + '/preferences.yaml', 'w') as f:
         f.write(default_config_data)
     # Create the plugins, saves, game data folder in the config file
-    logger_sys.log_message("INFO: Creating plugins folder")
     os.mkdir(program_dir + "/plugins")
-    logger_sys.log_message("INFO: Creating saves folder")
     os.mkdir(program_dir + "/saves")
-    logger_sys.log_message("INFO: Creating game folder")
     os.mkdir(program_dir + "/game")
-    logger_sys.log_message("INFO: Creating logs folder")
     os.mkdir(program_dir + "/logs")
 
 # Download game data from github master branch
