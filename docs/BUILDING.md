@@ -38,7 +38,7 @@ And finally, you'll need to install the python package [`PyInstaller`](https://p
 
 Here's a summary of each command case per case that you'll need to run to compile the program.
 
-```bash
+```shell
 $ mkdir yamale
 $ echo `4.0.4` >> yamale/VERSION # for certain reasons, the compiled program needs this file
 $ python -m PyInstaller \
@@ -63,6 +63,7 @@ source/logger_sys.py \
 ```
 
 Alternatively, you can run the bash script `compile.sh` in the root directory.
+**For windows and macos user, compiling has not been tested yet.**
 
 The compiled executable file will be found in the `dist/` directory, which is located in the root directory.
 
