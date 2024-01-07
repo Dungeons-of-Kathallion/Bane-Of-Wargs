@@ -23,6 +23,8 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Bane-Of-Wargs
     steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
       - uses: actions/checkout@v4
         with:
           show-progress: false
@@ -55,6 +57,8 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Bane-Of-Wargs.exe
     steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
       - uses: actions/checkout@v4
         with:
           show-progress: false
