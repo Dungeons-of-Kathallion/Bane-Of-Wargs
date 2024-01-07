@@ -1,6 +1,6 @@
 start dialog:
   phrases:
-  - "Hey! Welcome to this cool and beautiful game. I hope you'll have fun playing it."
+  - "Hey! Welcome to this cool and beautiful game $name! I hope you'll have fun playing it."
   - "Find villages, fight monsters, equip and upgrade yourself with looted items and protect people from monsters!"
   - "Also, don't forget to explore the map! It is very big. If you're too annoyed with the vanilla plot and items, you can try to find plugins and install them!"
   - "Or even create your own plugin and be creative!"

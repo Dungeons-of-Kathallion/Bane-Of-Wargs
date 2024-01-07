@@ -875,14 +875,46 @@ def print_long_string(text):
     new_input = new_input[1:]
     print(str(new_input))
 
+# Loading text replacements
+logger_sys.log_message("INFO: Loading generic texts replacements")
+save_file_name_text_replacements = save_file.replace(program_dir + '/saves/save_', '')
+save_file_name_text_replacements = save_file_name_text_replacements.replace('.yaml', '')
+if str(player["current mount"]) == ' ':
+    player_mount = None
+    player_mount_nick = None
+else:
+    player_mount = player["mounts"][str(player["current mount"])]["mount"]
+    player_mount_nick = player["mounts"][str(player["current mount"])]["name"]
+
+text_replacements_generic = {
+    "$name": save_file_name_text_replacements,
+    "$currency": player["gold"],
+    "$date": player["elapsed time game days"],
+    "$location": f'{player["x"]}, {player["y"]}',
+    "$coord_x": player["x"],
+    "$coord_y": player["y"],
+    "$location_zone": player["map zone"],
+    "$mount": player_mount,
+    "$mount_nick": player_mount_nick,
+    "$weapon": player["held item"],
+    "$chestplate": player["held chestplate"],
+    "$leggins": player["held leggings"],
+    "$boots": player["held boots"],
+    "$shield": player["held shield"],
+    "$health": player["health"],
+    "$max_health": player["max health"],
+    "$exp": player["xp"]
+}
+logger_sys.log_message(f"INFO: Loaded generic texts replacements: '{text_replacements_generic}'")
+
 def print_dialog(current_dialog):
-    curren_dialog_name = current_dialog
-    logger_sys.log_message(f"INFO: Printing dialog '{curren_dialog_name}'")
+    current_dialog_name = current_dialog
+    logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}'")
     current_dialog = dialog[str(current_dialog)]
     dialog_len = len(current_dialog["phrases"])
     if "scene" in current_dialog:
         current_dialog_scene = str(current_dialog["scene"])
-        logger_sys.log_message(f"INFO: Printing dialog '{curren_dialog_name}' scene at '{program_dir}/game/imgs/{current_dialog_scene}.txt'")
+        logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' scene at '{program_dir}/game/imgs/{current_dialog_scene}.txt'")
         if preferences["latest preset"]["type"] == 'vanilla':
             with open(program_dir + '/game/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
                 to_print = str(f.read())
@@ -917,6 +949,11 @@ def print_dialog(current_dialog):
     logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' phrases")
     while count < dialog_len:
         text = str(current_dialog["phrases"][int(count)])
+        count = 0
+        while count < len(list(text_replacements_generic)):
+            current_text_replacement = str(list(text_replacements_generic)[count])
+            text = text.replace(current_text_replacement, str(text_replacements_generic[current_text_replacement]))
+            count += 1
         print_speech_text_effect(text)
         count += 1
     if current_dialog["use actions"] == True:
@@ -1248,30 +1285,6 @@ def run(play):
         # clear text
         os.system('clear')
 
-        # Loading text replacements
-        logger_sys.log_message("INFO: Loading generic texts replacements")
-        save_file_name_text_replacements = save_file.replace(program_dir + '/saves/save_', '')
-        save_file_name_text_replacements = save_file_name_text_replacements.replace('.yaml', '')
-        text_replacements_generic = {
-            "$name": save_file_name_text_replacements,
-            "$currency": player["gold"],
-            "$date": player["elapsed time game days"],
-            "$location": f'{player["x"]}, {player["y"]}',
-            "$coord_x": player["x"],
-            "$coord_y": player["y"],
-            "$location_zone": player["map zone"],
-            "$mount": player["mounts"][str(player["current mount"])]["mount"],
-            "$mount_nick": player["mounts"][str(player["current mount"])]["name"],
-            "$weapon": player["held item"],
-            "$chestplate": player["held chestplate"],
-            "$leggins": player["held leggings"],
-            "$boots": player["held boots"],
-            "$shield": player["held shield"],
-            "$health": player["health"],
-            "$max_health": player["max health"],
-            "$exp": player["xp"]
-        }
-        logger_sys.log_message(f"DEBUG: Loaded generic texts replacements: '{text_replacements_generic}'")
 
         # update player ridded mount location:
         if player["current mount"] in player["mounts"]:
