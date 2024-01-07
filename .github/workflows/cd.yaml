@@ -95,7 +95,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT_LINUX: Bane-Of-Wargs
-      OUTPUT_WINDOWS: Bae-Of-Wargs.exe
+      OUTPUT_WINDOWS: Bane-Of-Wargs.exe
     steps:
       - uses: actions/checkout@v4
       - name: Install github-release
@@ -113,7 +113,7 @@ jobs:
           git push --tags --force
       - name: Setup continuous release
         run: |
-          DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})"
+          DESCRIPTION="This is an automated build triggered by commit ${{ github.sha }}"
           if ! github-release info -t continuous > /dev/null 2>&1; then
             github-release release \
               --tag 9.9.9-continuous \
