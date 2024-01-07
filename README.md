@@ -18,7 +18,7 @@ lolo@fedora ~ $ python main.py
 
 Bane Of Wargs is a python text-game engine with pre-built plot an the ability to create custom pugins/mods that complitely change the game content. The game is very customizable and you will find ton of in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining etc... So in overall a very customizable and enjoyable python terminal-text based RPG.
 
-You will have to fight monsters, bossses to get keys to after unlock new places of the map. The map is divised in points, determined by x and y coordinates, letting the possibility to map up to 128x128 wide, and more in the future of the engine development.
+You will have to fight monsters, bossses to get keys to after unlock new places of the map. The map is divised in points, determined by x and y coordinates, letting the possibility to map up to 128x128 wide (so up to 16,384 places to explore), and more in the future of the engine development.
 
 See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide) wiki page or check or the [Creating Mod](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods) wiki page if you're interested in modding the game.
 
@@ -75,7 +75,7 @@ You can also take the game to a next level by compiling it. Check the documentat
 
 ## Python Module Requirements
 
-Bane Of Wargs is a minimal game but you will have to install/updated some python modules.\n
+Bane Of Wargs is a minimal game but you will have to install/updated some python modules.
 All required modules are in the `requirements.txt` file.
 [enquiries](https://pypi.org/project/enquiries/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html), [AppDirs](https://pypi.org/project/appdirs/), [Requests](https://pypi.org/project/requests/).
 
@@ -90,7 +90,7 @@ Just check the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-
 
 ## Progress
 
-Beta is out! Most of the planned engine features are developed!\n
+Beta is out! Most of the planned engine features are developed!
 If you're interested by the game progress and development, check the wiki page about the [Goals](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Game-Progression) of the game.
 
 ## Licensing
