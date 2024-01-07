@@ -37,14 +37,6 @@ fought_enemy = False
 
 separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET_ALL
 
-# get terminal size
-import fcntl, termios, struct
-h, w, hp, wp = struct.unpack('HHHH',
-    fcntl.ioctl(0, termios.TIOCGWINSZ,
-    struct.pack('HHHH', 0, 0, 0, 0)))
-term_width = w
-term_height = h
-
 def print_title():
     logger_sys.log_message("INFO: Printing title")
     if preferences["theme"] == "OFF":
