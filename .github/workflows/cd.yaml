@@ -15,19 +15,17 @@ concurrency:
 
 jobs:
 
-  cd_upload_artifacts_to_release:
-    name: Upload
+  linux_64_executable:
+    name: Linux 64x Executable
     if: github.event_name == 'push'
-    runs-on: ubuntu-latest
+    runs-on: unbuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Bane-Of-Wargs
     steps:
       - uses: actions/checkout@v4
-      - name: Install github-release
-        run: |
-          go install github.com/github-release/github-release@latest
-          echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
-          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+        with:
+          show-progress: false
       - name: Install Python & Pip
         uses: actions/setup-python@v5
         with:
@@ -43,6 +41,62 @@ jobs:
           pip install PyInstaller
 
           python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  windows_64_executable:
+    name: Windows x64 Executable
+    if: github.event_name == 'push'
+    runs-on: windows-2022
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Bane-Of-Wargs.exe
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Create Executable
+        run: |
+          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
+
+          mkdir yamale
+          echo "4.0.4" >> yamale/VERSION
+          pip install -r requirements.txt
+          pip install PyInstaller
+
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  cd_upload_artifacts_to_release:
+    name: Upload
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    needs:
+      - linux_64_executable
+      - windows_64_executable
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT_LINUX: Bane-Of-Wargs
+      OUTPUT_WINDOWS: Bae-Of-Wargs.exe
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install github-release
+        run: |
+          go install github.com/github-release/github-release@latest
+          echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
       - name: Set environment variables
         run: |
           echo "GITHUB_USER=$( echo ${{ github.repository }} | cut -d/ -f1 )" >> $GITHUB_ENV
@@ -53,11 +107,39 @@ jobs:
           git push --tags --force
       - name: Setup continuous release
         run: |
-          if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
-            github-release release --tag 9.9.9-continuous --name "Continuous Build" --description "This is an automated build triggered by commit ${{ github.sha }}."
+          DESCRIPTION="Triggered on $(date -u '+%Y/%m/%d, %H:%M') UTC by commit ${{ github.sha }} (@${{ github.actor }})
+
+          This is an automated build of the latest source. It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
+
+          https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if ! github-release info -t continuous > /dev/null 2>&1; then
+            github-release release \
+              --tag 9.9.9-continuous \
+              --name "Continuous Build" \
+              --description "$DESCRIPTION"
           else
-            github-release edit --tag 9.9.9-continuous --name "Continuous Build" --description "This is an automated build triggered by commit ${{ github.sha }}."
+            github-release edit \
+              --tag 9.9.9-continuous \
+              --name "Continuous Build" \
+              --description "$DESCRIPTION" \
           fi
-      - name: Add executable
+      - name: Download Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          path: ${{ github.workspace }} 
+      - name: Add ${{ env.OUTPUT_LINUX }} to release tag
+        continue-on-error: true
         run: |
-          github-release upload --tag 9.9.9-continuous --replace --name Bane-Of-Wargs --file dist/Bane-Of-Wargs
+          github-release upload \
+            --tag 9.9.9-continuous \
+            --replace \
+            --name ${{ env.OUTPUT_LINUX }} \
+            --file ${{ env.OUTPUT_LINUX }}/${{ env.OUTPUT_LINUX }}
+      - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
+        continue-on-error: true
+        run: |
+          github-release upload \
+            --tag 9.9.9-continuous \
+            --replace \
+            --name ${{ env.OUTPUT_WINDOWS }} \
+            --file ${{ env.OUTPUT_WINDOWS }}/${{ env.OUTPUT_WINDOWS }}
