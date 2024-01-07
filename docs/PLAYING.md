@@ -190,6 +190,7 @@ All of these modules/libraries are contained in the [requirements.txt](https://g
 * **[yamale](https://pypi.org/project/yamale/)** // the module that makes the verification and debug by the game of every opened yaml files by the program possible.
 * **[fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html)** // the module that makes downloading game data from the github repository and moving them to the game data folder possible.
 * **[appdirs](https://pypi.org/project/appdirs/)** // the module that make cross-platform game config and data storing in users directories possible
+* **[requests](https://pypi.org/project/requests/)** // the module that makes downloading game data from the github repository and moving them to the game data folder possible.
 
 #### Installing
 
