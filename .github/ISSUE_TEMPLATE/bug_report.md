@@ -23,6 +23,9 @@ A clear and concise description of what you expected to happen.
 **Save file**
 Please add your save file here.
 
+**Log File**
+Please add your log files here.
+
 **Version**
 What is your version of Dungeons of Kathallion? [i.e., commit x or release version x]
 
