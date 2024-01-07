@@ -65,7 +65,16 @@ def check_yaml(file_path):
         while count < file_len:
             current_object_name = str(list(file)[count])
             current_object_data = file[str(list(file)[count])]
-            file_schema = str(f'{program_dir}/game/schemas/{file_type}_{current_object_data["type"]}.yaml')
+            if current_object_data["type"].startswith('Armor Piece: Boots'):
+                file_schema = str(f'{program_dir}/game/schemas/{file_type}_Armor Piece Boots.yaml')
+            elif current_object_data["type"].startswith('Armor Piece: Chestplate'):
+                file_schema = str(f'{program_dir}/game/schemas/{file_type}_Armor Piece Chestplate.yaml')
+            elif current_object_data["type"].startswith('Armor Piece: Leggings'):
+                file_schema = str(f'{program_dir}/game/schemas/{file_type}_Armor Piece Leggings.yaml')
+            elif current_object_data["type"].startswith('Armor Piece: Shield'):
+                file_schema = str(f'{program_dir}/game/schemas/{file_type}_Armor Piece Shield.yaml')
+            else:
+                file_schema = str(f'{program_dir}/game/schemas/{file_type}_{current_object_data["type"]}.yaml')
 
             schema = yamale.make_schema(str(file_schema))
             data = yamale.make_data(content=str(current_object_data))
