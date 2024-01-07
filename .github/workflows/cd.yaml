@@ -76,6 +76,7 @@ jobs:
           echo "4.0.4" >> yamale/VERSION
           pip install -r requirements.txt
           pip install PyInstaller
+          pip install windows-curses
 
           python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
           mv dist/Bane-Of-Wargs.exe Bane-Of-Wargs.exe
