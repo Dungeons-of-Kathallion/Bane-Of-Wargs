@@ -41,7 +41,25 @@ Here's a summary of each command case per case that you'll need to run to compil
 ```bash
 $ mkdir yamale
 $ echo `4.0.4` >> yamale/VERSION # for certain reasons, the compiled program needs this file
-$ python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs # create a single executable name `Bane Of Wargs` with all the source code in it, the required libraries and additional stuff required
+$ python -m PyInstaller \
+--console \
+--onefile \
+--name Bane-Of-Wargs \
+source/main.py \
+source/battle.py \
+source/check_yaml.py \
+source/colors.py \
+source/map_item.py \
+source/train.py \
+source/logger_sys.py \
+--add-data yamale/VERSION:yamale \
+--collect-submodules fsspec \
+--collect-submodules appdirs \
+--hidden-import appdirs \
+--hidden-import fsspec \
+--exclude-module fcntl \
+--log-level DEBUG
+# create a single executable name `Bane Of Wargs` with all the source code in it, the required libraries and additional stuff required
 ```
 
 Alternatively, you can run the bash script `compile.sh` in the root directory.
