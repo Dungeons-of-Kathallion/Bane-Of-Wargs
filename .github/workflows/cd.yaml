@@ -16,7 +16,7 @@ concurrency:
 jobs:
 
   linux_64_executable:
-    name: Linux 64x Executable
+    name: Linux x64 Executable
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
@@ -114,7 +114,7 @@ jobs:
       - name: Setup continuous release
         run: |
           DESCRIPTION="This is an automated build triggered by commit ${{ github.sha }}"
-          if ! github-release info -t continuous > /dev/null 2>&1; then
+          if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release \
               --tag 9.9.9-continuous \
               --name "Continuous Build" \
