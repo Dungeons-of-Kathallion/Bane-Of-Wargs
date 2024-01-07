@@ -7,7 +7,7 @@ def log_message(message):
 
     # Create log file
     with open(f'{program_dir}/logs/{data.today()}.log', 'w') as f:
-        f.write('LOG")
+        f.write("LOG")
     
     # Create and configure logger
     logging.basicConfig(filename=f'{program_dir}/logs/{date.today()}.log',
