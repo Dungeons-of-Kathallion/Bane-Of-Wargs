@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Bane-Of-Wargs
+      OUTPUT: Bane-Of-Wargs-UNIX
     steps:
       - name: Fix Checkout Problems
         run: git config --global core.protectNTFS false
@@ -43,7 +43,7 @@ jobs:
           pip install PyInstaller
 
           python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
-          mv dist/Bane-Of-Wargs Bane-Of-Wargs
+          mv dist/Bane-Of-Wargs Bane-Of-Wargs-UNIX
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -94,7 +94,7 @@ jobs:
       - windows_64_executable
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT_LINUX: Bane-Of-Wargs
+      OUTPUT_LINUX: Bane-Of-Wargs-Unix
       OUTPUT_WINDOWS: Bane-Of-Wargs.exe
     steps:
       - uses: actions/checkout@v4
