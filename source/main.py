@@ -27,9 +27,6 @@ init()
 
 os.system('clear')
 
-# get terminal size
-terminal_rows, terminal_columns = os.popen('stty size', 'r').read().split()
-
 # says you are not playing.
 play = 0
 
