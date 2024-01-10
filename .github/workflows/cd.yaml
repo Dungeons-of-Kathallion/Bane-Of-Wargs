@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT: Bane-Of-Wargs-Unix
+      OUTPUT: Bane-Of-Wargs-Linux
     steps:
       - name: Fix Checkout Problems
         run: git config --global core.protectNTFS false
@@ -43,7 +43,42 @@ jobs:
           pip install PyInstaller
 
           python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
-          mv dist/Bane-Of-Wargs Bane-Of-Wargs-Unix
+          mv dist/Bane-Of-Wargs Bane-Of-Wargs-Linux
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  mac_64_executable:
+    name: MacOS x64 Executable
+    if: github.event_name == 'push'
+    runs-on: macos-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Bane-Of-Wargs-Mac
+    steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Create Executable
+        run: |
+          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
+
+          mkdir yamale
+          echo "4.0.4" >> yamale/VERSION
+          pip install -r requirements.txt
+          pip install PyInstaller fcntl
+
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --collect_submodule fcntl --hidden-import fsspec
+          mv dist/Bane-Of-Wargs Bane-Of-Wargs-Mac
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -77,7 +112,7 @@ jobs:
           pip install -r requirements.txt
           pip install windows-curses PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec --exclude-module fcntl --log-level DEBUG
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
           mv dist/Bane-Of-Wargs.exe Bane-Of-Wargs.exe
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -92,10 +127,12 @@ jobs:
     needs:
       - linux_64_executable
       - windows_64_executable
+      - mac_64_executable
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OUTPUT_LINUX: Bane-Of-Wargs-Unix
+      OUTPUT_LINUX: Bane-Of-Wargs-Linux
       OUTPUT_WINDOWS: Bane-Of-Wargs.exe
+      OUTPUT_MAC: Bane-Of-Wargs-Mac
     steps:
       - uses: actions/checkout@v4
       - name: Install github-release
@@ -137,6 +174,14 @@ jobs:
             --replace \
             --name ${{ env.OUTPUT_LINUX }} \
             --file ${{ env.OUTPUT_LINUX }}/${{ env.OUTPUT_LINUX }}
+      - name: Add ${{ env.OUTPUT_MAC }} to release tag
+        continue-on-error: true
+        run: |
+          github-release upload \
+            --tag 9.9.9-continuous \
+            --replace \
+            --name ${{ env.OUTPUT_MAC }} \
+            --file ${{ env.OUTPUT_MAC }}/${{ env.OUTPUT_MAC }}
       - name: Add ${{ env.OUTPUT_WINDOWS }} to release tag
         continue-on-error: true
         run: |
