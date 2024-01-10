@@ -16,7 +16,7 @@ Well of course first, you'll need to have the Python interpreter installed as we
 
 Afterwards, you'll also need to get the python packages required for the game to run. Here are the PIP packages:
 ```
-enquiries
+simple_term_menu
 fade
 GitPython
 colorama
