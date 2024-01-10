@@ -3,7 +3,7 @@ import random
 import os
 import sys
 import time
-import enquiries
+import term_menu
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -36,7 +36,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
     current_mount_feeds = mounts[current_mount_type]["feed"]["food"]
     while still_training:
         options = ['Feed', 'Train', 'Exit']
-        choice = enquiries.choose('', options)
+        choice = term_menu.show_menu(options)
         if choice == 'Feed':
             # get player possible feeding items
             count = 0

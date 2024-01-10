@@ -4,10 +4,10 @@ import battle
 import check_yaml
 import train
 import map_item
+import term_menu
 import os
 import sys
 import time
-import enquiries
 import fade
 import subprocess
 import git
@@ -209,14 +209,14 @@ while menu:
     print_title()
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Quit']
-    choice = enquiries.choose('', options)
+    choice = term_menu.show_menu(options)
     os.system('clear')
 
     print_title()
 
     if choice == 'Play Game':
         options = ['Use Latest Preset', 'Play Vanilla', 'Play Plugin']
-        choice = enquiries.choose('', options)
+        choice = term_menu.show_menu(options)
         using_latest_preset = False
         latest_preset = preferences["latest preset"]
 
@@ -458,7 +458,7 @@ while menu:
             text = "Please select an action:"
             print_speech_text_effect(text)
             options = ['Open Save', 'New Save']
-            choice = enquiries.choose('', options)
+            choice = term_menu.show_menu(options)
 
             if choice == 'Open Save':
                 res = []
@@ -546,7 +546,7 @@ while menu:
         text = "Please choose an action."
         print_speech_text_effect(text)
         options = ['Edit Save', 'Delete Save']
-        choice = enquiries.choose('', options)
+        choice = term_menu.show_menu(options)
         if choice == 'Edit Save':
             text = "Please select a save to edit."
             print_speech_text_effect(text)
@@ -559,7 +559,7 @@ while menu:
             text = "Select an action for the selected save."
             print_speech_text_effect(text)
             options = ['Rename Save', 'Manually Edit Save']
-            choice = enquiries.choose('', options)
+            choice = term_menu.show_menu(options)
             if choice == 'Rename Save':
                 rename_name = input("Select a new name for the save: ")
                 os.rename(program_dir + "/saves/save_" + open_save + ".yaml", program_dir + "/saves/save_" + rename_name + ".yaml")
@@ -809,7 +809,7 @@ def check_for_key(direction):
         print_separator(text)
 
         options = ['Continue', 'Leave']
-        choice = enquiries.choose('', options)
+        choice = term_menu.show_menu(options)
 
         count = 0
 
@@ -1872,7 +1872,7 @@ def run(play):
             p = True
             while p:
                 logger_sys.log_message(f"INFO: Starting player interaction with npc '{current_npc}'")
-                choice = enquiries.choose('', options)
+                choice = term_menu.show_menu(options)
                 if choice == 'Buy Drink':
                     which_drink = input("Which drink do you want to buy from him? ")
                     if which_drink in npcs[current_npc]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
@@ -1989,7 +1989,7 @@ def run(play):
                 else:
                     print("Your enemy dropped " + a_an_check(choosen_item))
                 options = ['Grab Item', 'Continue']
-                drop = enquiries.choose('', options)
+                drop = term_menu.show_menu(options)
                 text = '='
                 print_separator(text)
                 if drop == 'Grab Item':
@@ -2057,7 +2057,7 @@ def run(play):
                 else:
                     print("Your enemy dropped " + a_an_check(choosen_item))
                 options = ['Grab Item', 'Continue']
-                drop = enquiries.choose('', options)
+                drop = term_menu.show_menu(options)
                 text = '='
                 print_separator(text)
                 if drop == 'Grab Item':
@@ -2161,7 +2161,7 @@ def run(play):
             text = '='
             print_separator(text)
             options = ['Visited Places', 'Encountered Monsters', 'Encountered People']
-            choice = enquiries.choose('', options)
+            choice = term_menu.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has choosen option '{choice}'")
             if choice == 'Visited Places':
                 print("VISITED PLACES: ")
@@ -2565,7 +2565,7 @@ def run(play):
                     options = ['Consume', 'Get Rid', 'Exit']
                 else:
                     options = ['Get Rid', 'Exit']
-                choice = enquiries.choose('', options)
+                choice = term_menu.show_menu(options)
                 logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
                 if choice == 'Equip':
                     if item[which_item]["type"] == "Weapon":
@@ -2654,7 +2654,7 @@ def run(play):
                 continue_hostel_actions = True
                 logger_sys.log_message("INFO: Starting loop of hostel actions")
                 while continue_hostel_actions:
-                    choice = enquiries.choose('', options)
+                    choice = term_menu.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
                     if choice == 'Sleep':
                         print("Are you sure you want to spend the night here? It will ")
@@ -2788,7 +2788,7 @@ def run(play):
                 print_separator(text)
                 logger_sys.log_message("INFO: Starting stable interaction loop")
                 while active_stable_menu:
-                    action = enquiries.choose('', options)
+                    action = term_menu.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has choosen option '{action}'")
                     if action == 'Buy Item':
                         which_item = input("Which item do you want to buy? ")
@@ -2990,7 +2990,7 @@ def run(play):
                 continue_blacksmith_actions = True
                 logger_sys.log_message("INFO: Starting blacksmith interact loop")
                 while continue_blacksmith_actions:
-                    action = enquiries.choose('', options)
+                    action = term_menu.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has choosen option '{action}'")
                     if action == 'Sell Equipment':
                         which_weapon = input("Which equipment do you want to sell? ")
@@ -3168,7 +3168,7 @@ def run(play):
                             if time_left == "READY TO COLLECT":
                                 options_order += ['Collect Order']
                             options_order += ['Exit']
-                            action = enquiries.choose('', options_order)
+                            action = term_menu.show_menu(options_order)
                             logger_sys.log_message(f"INFO: Player has choosen option '{action}'")
                             if action == 'Cancel Order':
                                 text = "Are you sure you want to cancel this order? You will receive 75% of the gold you paid and you won't be able"
@@ -3207,7 +3207,7 @@ def run(play):
                 continue_forge_actions = True
                 logger_sys.log_message("INFO: Starting forge interact loop")
                 while continue_forge_actions:
-                    choice = enquiries.choose('', options)
+                    choice = term_menu.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
                     if choice == 'Sell Metals':
                         which_metal = input("Which metal do you want to sell? ")
@@ -3344,7 +3344,7 @@ def run(play):
                     text = '='
                     print_separator(text)
                     options = ['Abandon', 'Rename', 'Exit']
-                    choice = enquiries.choose('', options)
+                    choice = term_menu.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
                     count = 0
                     continue_action = True

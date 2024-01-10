@@ -3,7 +3,7 @@ import random
 import os
 import sys
 import time
-import enquiries
+import term_menu
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
