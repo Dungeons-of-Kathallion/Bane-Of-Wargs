@@ -75,9 +75,9 @@ jobs:
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
           pip install -r requirements.txt
-          pip install PyInstaller fcntl
+          pip install PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --collect_submodule fcntl --hidden-import fsspec
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs
           mv dist/Bane-Of-Wargs Bane-Of-Wargs-Mac
       - name: Upload artifact
         uses: actions/upload-artifact@v3
