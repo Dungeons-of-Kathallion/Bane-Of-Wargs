@@ -62,7 +62,7 @@ source/logger_sys.py \
 # create a single executable name `Bane Of Wargs` with all the source code in it, the required libraries and additional stuff required
 ```
 
-Alternatively, you can run the bash script `compile.sh` in the root directory.
+Alternatively, you can run the bash script `compile.sh` in the root directory **but you're still need the `yamale/VERSION` with `4.0.4` written in for the first time**.
 **For windows and macos user, compiling has not been tested yet.**
 
 The compiled executable file will be found in the `dist/` directory, which is located in the root directory.
