@@ -489,7 +489,7 @@ while menu:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"ERROR: Couldn't find save file '{save_file}'")
                     play = 0
-                    exit_gam()
+                    exit_game()
                 logger_sys.log_message("INFO: Opening save file")
                 with open(save_file) as f:
                     player = yaml.safe_load(f)
