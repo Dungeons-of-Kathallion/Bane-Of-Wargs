@@ -16,7 +16,7 @@ Well of course first, you'll need to have the Python interpreter installed as we
 
 Afterwards, you'll also need to get the python packages required for the game to run. Here are the PIP packages:
 ```
-enquiries
+simple_term_menu
 fade
 GitPython
 colorama
@@ -52,6 +52,7 @@ source/colors.py \
 source/map_item.py \
 source/train.py \
 source/logger_sys.py \
+source/term_menu.py \
 --add-data yamale/VERSION:yamale \
 --collect-submodules fsspec \
 --collect-submodules appdirs \

@@ -182,7 +182,7 @@ The download should start quickly.
 Like most python programs, it's very rare that it only requires the default packages coming with the Python environment. This program requires 6 python modules/libraries.
 All of these modules/libraries are contained in the [requirements.txt](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/requirements.txt) file.
 
-* **[enquiries](https://pypi.org/project/enquiries/)** // the modules that makes the choice-menu things possible.
+* **[simple_term_menu](https://pypi.org/project/simple-term-menu/)** // the modules that makes the choice-menu things possible.
 * **[fade](https://pypi.org/project/fade/)** // the modules that makes the game title fade possible.
 * **[GitPython](https://pypi.org/project/GitPython/)** // the modules that makes updating the game from the github repository while being in-game possible.
 * **[colorama](https://pypi.org/project/colorama/)** // the module that makes displaying colored text in terminal easier.

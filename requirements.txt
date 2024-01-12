@@ -1,4 +1,4 @@
-enquiries
+simple_term_menu
 fade
 GitPython
 colorama
