@@ -17,7 +17,6 @@ concurrency:
 jobs:
   validate-yaml:
     name: Validate Yaml
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
