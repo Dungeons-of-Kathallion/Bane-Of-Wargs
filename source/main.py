@@ -818,14 +818,14 @@ def check_for_key(direction):
         if choice == 'Continue':
             while count < keys_len and have_necessary_keys == True:
 
-                choosen_key = map["point" + str(future_map_location)]["key"]["required keys"][int(count)]
+                chosen_key = map["point" + str(future_map_location)]["key"]["required keys"][int(count)]
 
-                if choosen_key not in player["inventory"]:
+                if chosen_key not in player["inventory"]:
                     have_necessary_keys = False
                 else:
                     if map["point" + str(future_map_location)]["key"]["remove key"]:
-                        player["inventory"].remove(choosen_key)
-                        logger_sys.log_message(f"INFO: Removing from player inventory key '{choosen_key}'")
+                        player["inventory"].remove(chosen_key)
+                        logger_sys.log_message(f"INFO: Removing from player inventory key '{chosen_key}'")
 
                 count += 1
 
@@ -1958,17 +1958,17 @@ def run(play):
                 logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
                 choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
                 choose_rand_enemy = list_enemies[choose_rand_enemy]
-                choosen_enemy = enemy[choose_rand_enemy]
+                chosen_enemy = enemy[choose_rand_enemy]
 
-                enemy_total_inventory = choosen_enemy["inventory"]
+                enemy_total_inventory = chosen_enemy["inventory"]
 
                 enemy_items_number = len(enemy_total_inventory)
                 logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
-                choosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
+                chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
                 logger_sys.log_message("INFO: Calculating battle risk for the player")
-                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
+                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy)
                 logger_sys.log_message("INFO: Getting enemy stats")
-                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
+                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, chosen_enemy, chosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
                 if not already_encountered:
                     logger_sys.log_message("INFO: Display enemy encounter text")
                     battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
@@ -1982,30 +1982,30 @@ def run(play):
             if player["health"] > 0:
 
                 if random.randint(0, 3) >= 2.5:
-                    choosen_item = "Gold"
+                    chosen_item = "Gold"
 
-                if choosen_item == "Gold":
-                    print("Your enemy dropped some " + choosen_item)
+                if chosen_item == "Gold":
+                    print("Your enemy dropped some " + chosen_item)
                 else:
-                    print("Your enemy dropped " + a_an_check(choosen_item))
+                    print("Your enemy dropped " + a_an_check(chosen_item))
                 options = ['Grab Item', 'Continue']
                 drop = term_menu.show_menu(options)
                 text = '='
                 print_separator(text)
                 if drop == 'Grab Item':
-                    if choosen_item == "Gold":
+                    if chosen_item == "Gold":
                         add_gold(round(random.uniform(1.00, 6.30), 2))
                     else:
-                        if choosen_item in player["inventory"] and item[choosen_item]["type"] == "Utility":
+                        if chosen_item in player["inventory"] and item[chosen_item]["type"] == "Utility":
                             print("You cannot take that item")
                         elif player["inventory slots remaining"] == 0:
                             print("You cannot take that item, you don't have enough slots in your inventory")
                         else:
-                            player["inventory"].append(choosen_item)
+                            player["inventory"].append(chosen_item)
                 print(" ")
                 player["defeated enemies"].append(map_location)
             else:
-                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reseted." + COLOR_RESET_ALL
+                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
                 logger_sys.log_message("INFO: Player just died")
                 print_long_string(text)
                 finished = input()
@@ -2026,17 +2026,17 @@ def run(play):
                 choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
                 logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
                 choose_rand_enemy = list_enemies[choose_rand_enemy]
-                choosen_enemy = enemy[choose_rand_enemy]
+                chosen_enemy = enemy[choose_rand_enemy]
 
-                enemy_total_inventory = choosen_enemy["inventory"]
+                enemy_total_inventory = chosen_enemy["inventory"]
 
                 enemy_items_number = len(enemy_total_inventory)
                 logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
-                choosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
+                chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
                 logger_sys.log_message("INFO: Calculating battle risk for the player")
-                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
+                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy)
                 logger_sys.log_message("INFO: Getting enemy stats")
-                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
+                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, chosen_enemy, chosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
                 if not already_encountered:
                     logger_sys.log_message("INFO: Display enemy encounter text")
                     battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
@@ -2050,29 +2050,29 @@ def run(play):
             if player["health"] > 0:
 
                 if random.randint(0, 3) >= 2.5:
-                    choosen_item = "Gold"
+                    chosen_item = "Gold"
 
-                if choosen_item == "Gold":
-                    print("Your enemy dropped some " + choosen_item)
+                if chosen_item == "Gold":
+                    print("Your enemy dropped some " + chosen_item)
                 else:
-                    print("Your enemy dropped " + a_an_check(choosen_item))
+                    print("Your enemy dropped " + a_an_check(chosen_item))
                 options = ['Grab Item', 'Continue']
                 drop = term_menu.show_menu(options)
                 text = '='
                 print_separator(text)
                 if drop == 'Grab Item':
-                    if choosen_item == "Gold":
+                    if chosen_item == "Gold":
                         add_gold(round(random.uniform(1.00, 6.30), 2))
                     else:
-                        if choosen_item in player["inventory"] and item[choosen_item]["type"] == "Utility":
+                        if chosen_item in player["inventory"] and item[chosen_item]["type"] == "Utility":
                             print("You cannot take that item")
                         elif player["inventory slots remaining"] == 0:
                             print("You cannot take that item, you don't have enough slots in your inventory")
                         else:
-                            player["inventory"].append(choosen_item)
+                            player["inventory"].append(chosen_item)
                 print(" ")
             else:
-                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reseted." + COLOR_RESET_ALL
+                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
                 logger_sys.log_message("INFO: Player just died")
                 print_long_string(text)
                 finished = input()
@@ -2162,7 +2162,7 @@ def run(play):
             print_separator(text)
             options = ['Visited Places', 'Encountered Monsters', 'Encountered People']
             choice = term_menu.show_menu(options)
-            logger_sys.log_message(f"INFO: Playing has choosen option '{choice}'")
+            logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
             if choice == 'Visited Places':
                 print("VISITED PLACES: ")
                 zones_list = str(player["visited zones"])
@@ -2175,7 +2175,7 @@ def run(play):
                 text = '='
                 print_separator(text)
                 which_zone = input("> ")
-                logger_sys.log_message(f"INFO: Player has choosen zone '{which_zone}' to check")
+                logger_sys.log_message(f"INFO: Player has chosen zone '{which_zone}' to check")
                 if which_zone in player["visited zones"]:
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
                     text = '='
@@ -2366,7 +2366,7 @@ def run(play):
                 else:
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
-                    logger_sys.log_message(f"INFO: Player has choosen '{which_zone}', which he doesn't know about --> canceling")
+                    logger_sys.log_message(f"INFO: Player has chosen '{which_zone}', which he doesn't know about --> canceling")
                 finished = input("")
             elif choice == 'Encountered Monsters':
                 print("ENCOUNTERED MONSTERS: ")
@@ -2381,7 +2381,7 @@ def run(play):
                 text = '='
                 print_separator(text)
                 which_enemy = input("> ")
-                logger_sys.log_message(f"INFO: Player has choosen enemy '{which_enemy}' to display information")
+                logger_sys.log_message(f"INFO: Player has chosen enemy '{which_enemy}' to display information")
                 if which_enemy == "None":
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
@@ -2435,7 +2435,7 @@ def run(play):
                 text = '='
                 print_separator(text)
                 which_npc = input("> ")
-                logger_sys.log_message(f"INFO: Player has choosen npc '{which_npc}' to display information about")
+                logger_sys.log_message(f"INFO: Player has chosen npc '{which_npc}' to display information about")
                 if which_npc == "None":
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that people." + COLOR_RESET_ALL)
@@ -2523,7 +2523,7 @@ def run(play):
             text = '='
             print_separator(text)
             which_item = input("> ")
-            logger_sys.log_message(f"INFO: Player has choosen item '{which_item}' to display information about")
+            logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
             if which_item in player["inventory"]:
                 text = '='
                 print_separator(text)
@@ -2566,22 +2566,22 @@ def run(play):
                 else:
                     options = ['Get Rid', 'Exit']
                 choice = term_menu.show_menu(options)
-                logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
+                logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                 if choice == 'Equip':
                     if item[which_item]["type"] == "Weapon":
-                        logger_sys.log_message(f"INFO: Equiped item '{which_item}' as a weapon")
+                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a weapon")
                         player["held item"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Chestplate":
-                        logger_sys.log_message(f"INFO: Equiped item '{which_item}' as a chestplate")
+                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a chestplate")
                         player["held chestplate"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Leggings":
-                        logger_sys.log_message(f"INFO: Equiped item '{which_item}' as leggings")
+                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as leggings")
                         player["held leggings"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Boots":
-                        logger_sys.log_message(f"INFO: Equiped item '{which_item}' as boots")
+                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as boots")
                         player["held boots"] = which_item
                     elif item[which_item]["type"] == "Armor Piece: Shield":
-                        logger_sys.log_message(f"INFO: Equiped item '{which_item}' as a shield")
+                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a shield")
                         player["held shield"] = which_item
                     else:
                         logger_sys.log_message(f"INFO: Cannot equip item '{which_item}' --> not an item you can equip")
@@ -2655,7 +2655,7 @@ def run(play):
                 logger_sys.log_message("INFO: Starting loop of hostel actions")
                 while continue_hostel_actions:
                     choice = term_menu.show_menu(options)
-                    logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
+                    logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                     if choice == 'Sleep':
                         print("Are you sure you want to spend the night here? It will ")
                         ask = input("cost you " + str(zone[map_zone]["sleep gold"]) + " gold (y/n) ")
@@ -2700,7 +2700,7 @@ def run(play):
                                 print(COLOR_YELLOW + "You don't own enough gold to sleep here." + COLOR_RESET_ALL)
                     elif choice == 'Buy Drink':
                         which_drink = input("Which drink do you want to buy? ")
-                        logger_sys.log_message(f"INFO: Player has choosen drink '{which_drink}' to drink")
+                        logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to drink")
                         if which_drink in zone[map_zone]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             drink_cost = str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] )
                             logger_sys.log_message(f"INFO: Buying drink '{which_drink}' --> removed {drink_cost} gold from player")
@@ -2718,7 +2718,7 @@ def run(play):
                             print_long_string(text)
                     elif choice == 'Buy Item':
                         which_item = input("Which item do you want to buy? ")
-                        logger_sys.log_message(f"INFO: Player has choosen item '{which_item}' to buy")
+                        logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
                         if which_item in zone[map_zone]["sells"]["items"] and ( item[which_item]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             if player["inventory slots remaining"] > 0:
                                 player["inventory slots remaining"] -= 1
@@ -2737,7 +2737,7 @@ def run(play):
                             print_long_string(text)
                     elif choice == 'Sell Item':
                         which_item = input("Which item do you want to sell? ")
-                        logger_sys.log_message(f"INFO: Player has choosen item '{which_item}' to sell")
+                        logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
                         if which_item in zone[map_zone]["buys"]["items"] and ( item[which_item]["gold"] * zone[map_zone]["cost value"] ) < player["gold"] and which_item in player["inventory"]:
                             logger_sys.log_message(f"INFO: Removing item '{which_item}' from player inventory")
                             player["inventory slots remaining"] -= 1
@@ -2789,10 +2789,10 @@ def run(play):
                 logger_sys.log_message("INFO: Starting stable interaction loop")
                 while active_stable_menu:
                     action = term_menu.show_menu(options)
-                    logger_sys.log_message(f"INFO: Player has choosen option '{action}'")
+                    logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
                     if action == 'Buy Item':
                         which_item = input("Which item do you want to buy? ")
-                        logger_sys.log_message(f"INFO: Player has choosen item '{which_itm}' to buy")
+                        logger_sys.log_message(f"INFO: Player has chosen item '{which_itm}' to buy")
                         if which_item in zone[map_zone]["stable"]["sells"]["items"] and ( item[which_item]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             if player["inventory slots remaining"] > 0:
                                 logger_sys.log_message(f"INFO: Adding item '{which_item}' from player inventory")
@@ -2811,7 +2811,7 @@ def run(play):
                             print_long_string(text)
                     elif action == 'Buy Drink':
                         which_drink = input("Which drink do you want to buy? ")
-                        logger_sys.log_message(f"INFO: Player has choosen drink '{which_drink}' to buy")
+                        logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to buy")
                         if which_drink in zone[map_zone]["stable"]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] ) < player["gold"]:
                             gold = str( drinks[which_drink]["gold"] * zone[map_zone]["cost value"] )
                             logger_sys.log_message(f"INFO: Removing {gold}  gold from player")
@@ -2829,7 +2829,7 @@ def run(play):
                             print_long_string(text)
                     elif action == 'Buy Mount':
                         which_mount = input("Which mount do you want to buy? ")
-                        logger_sys.log_message(f"INFO: Player has choosen mount '{which_mount}' to buy")
+                        logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to buy")
                         if which_mount in zone[map_zone]["stable"]["sells"]["mounts"]:
                             mount_cost = ( mounts[which_mount]["gold"] * zone[map_zone]["cost value"] )
                             if mount_cost < player["gold"]:
@@ -2838,7 +2838,7 @@ def run(play):
                                 generated_mount_uuid = generate_random_uuid()
                                 print("How you mount should be named ?")
                                 new_mount_name = input("> ")
-                                logger_sys.log_message(f"INFO: Player has choosen name '{new_mount_name}' for its new mount")
+                                logger_sys.log_message(f"INFO: Player has chosen name '{new_mount_name}' for its new mount")
                                 mounts_names_list = []
                                 count = 0
                                 if "None" not in list(player["mounts"]):
@@ -2944,7 +2944,7 @@ def run(play):
                             text = '='
                             print_separator(text)
                             which_mount = input("> ")
-                            logger_sys.log_message(f"INFO: Player has choosen mount '{which_mount}' to ride")
+                            logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to ride")
                             if which_mount in deposited_mounts_names_list:
                                 # get what is the uuid of the mount of this name
                                 count = 0
@@ -2991,10 +2991,10 @@ def run(play):
                 logger_sys.log_message("INFO: Starting blacksmith interact loop")
                 while continue_blacksmith_actions:
                     action = term_menu.show_menu(options)
-                    logger_sys.log_message(f"INFO: Player has choosen option '{action}'")
+                    logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
                     if action == 'Sell Equipment':
                         which_weapon = input("Which equipment do you want to sell? ")
-                        logger_sys.log_message(f"INFO: Player has choosen item '{which_weapon}' to sell")
+                        logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to sell")
                         if which_weapon in zone[map_zone]["blacksmith"]["buys"] and which_weapon in player["inventory"]:
                             gold = str( item[which_weapon]["gold"] * zone[map_zone]["cost value"] )
                             add_gold(str( item[which_weapon]["gold"] * zone[map_zone]["cost value"] ))
@@ -3007,7 +3007,7 @@ def run(play):
                             print_long_string(text)
                     elif action == 'Order Equipment':
                         which_weapon = input("Which equipment do you want to order? ")
-                        logger_sys.log_message(f"INFO: Player has choosen item '{which_weapon}' to order")
+                        logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to order")
                         if which_weapon in zone[map_zone]["blacksmith"]["orders"] and player["gold"] > zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]:
                             required_items = False
                             count = 0
@@ -3057,7 +3057,7 @@ def run(play):
                             print_long_string(text)
                     elif action == 'Upgrade Equipment':
                         which_weapon = input("Which equipment do you want to upgrade? ")
-                        logger_sys.log_message(f"INFO: Player has choosen equipment '{which_weapon}' to upgrade")
+                        logger_sys.log_message(f"INFO: Player has chosen equipment '{which_weapon}' to upgrade")
                         if which_weapon in player["inventory"]:
                             item_next_upgrade_name = str(check_weapon_next_upgrade_name(which_weapon))
                             if item_next_upgrade_name != 'None':
@@ -3147,7 +3147,7 @@ def run(play):
                         text = '='
                         print_separator(text)
                         which_order = input("> ")
-                        logger_sys.log_message(f"INFO: Player has choosen order '{which_order}'")
+                        logger_sys.log_message(f"INFO: Player has chosen order '{which_order}'")
                         if which_order in player_orders_number:
                             current_order_uuid = str(list(player["orders"])[int(which_order)])
                             text = '='
@@ -3169,7 +3169,7 @@ def run(play):
                                 options_order += ['Collect Order']
                             options_order += ['Exit']
                             action = term_menu.show_menu(options_order)
-                            logger_sys.log_message(f"INFO: Player has choosen option '{action}'")
+                            logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
                             if action == 'Cancel Order':
                                 text = "Are you sure you want to cancel this order? You will receive 75% of the gold you paid and you won't be able"
                                 print_long_string(text)
@@ -3189,7 +3189,7 @@ def run(play):
                                 # remove order from player orders
                                 player["orders"].pop(current_order_uuid)
                         else:
-                            logger_sys.log_message(f"INFO: Cancelling collecting order process --> player has no order '{which_order}' at map zone '{map_zone}'")
+                            logger_sys.log_message(f"INFO: Canceling collecting order process --> player has no order '{which_order}' at map zone '{map_zone}'")
                             print(COLOR_YELLOW + "You don't have this order currently at this place." + COLOR_RESET_ALL)
                     else:
                         continue_blacksmith_actions = False
@@ -3208,13 +3208,13 @@ def run(play):
                 logger_sys.log_message("INFO: Starting forge interact loop")
                 while continue_forge_actions:
                     choice = term_menu.show_menu(options)
-                    logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
+                    logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                     if choice == 'Sell Metals':
                         which_metal = input("Which metal do you want to sell? ")
-                        logger_sys.log_message(f"INFO: Player has choosen metal '{which_metal}' to buy")
+                        logger_sys.log_message(f"INFO: Player has chosen metal '{which_metal}' to buy")
                         if which_metal in current_forge["forge"]["buys"]:
                             metal_count = int(input("How many count of this metal you want to sell? "))
-                            logger_sys.log_message(f"INFO: Player has choosen to sell '{metal_count}' of the metal '{which_metal}'")
+                            logger_sys.log_message(f"INFO: Player has chosen to sell '{metal_count}' of the metal '{which_metal}'")
                             if player["inventory"].count(which_metal) >= metal_count:
                                 gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
                                 logger_sys.log_message(f"INFO: Adding {gold} gold to player")
@@ -3232,7 +3232,7 @@ def run(play):
                             print(COLOR_YELLOW + "The current forge doesn't buys this metal" + COLOR_RESET_ALL)
                     elif choice == 'Buy Metals':
                         which_metal = input("Which metal do you want to buy? ")
-                        logger_sys.log_message(f"INFO: Player has choosen item '{which_metal}' to buy")
+                        logger_sys.log_message(f"INFO: Player has chosen item '{which_metal}' to buy")
                         if which_metal in current_forge["forge"]["sells"]:
                             metal_count = int(input("How many count of this metal you want to buy? "))
                             if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
@@ -3290,7 +3290,7 @@ def run(play):
                 text = '='
                 print_separator(text)
                 which_mount = input("> ")
-                logger_sys.log_message(f"INFO: Player has choosen option '{which_mount}' to examine")
+                logger_sys.log_message(f"INFO: Player has chosen option '{which_mount}' to examine")
                 if which_mount in mounts_names_list:
                     text = '='
                     print_separator(text)
@@ -3345,7 +3345,7 @@ def run(play):
                     print_separator(text)
                     options = ['Abandon', 'Rename', 'Exit']
                     choice = term_menu.show_menu(options)
-                    logger_sys.log_message(f"INFO: Player has choosen option '{choice}'")
+                    logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                     count = 0
                     continue_action = True
                     while count < len(list(player["mounts"])) and continue_action == True:
@@ -3364,7 +3364,7 @@ def run(play):
                     elif choice == 'Rename':
                         print("Select a new name for your mount")
                         new_name = input("> ")
-                        logger_sys.log_message(f"INFO: Player has choosen as a new name for mount '{which_mount}' '{new_name}'")
+                        logger_sys.log_message(f"INFO: Player has chosen as a new name for mount '{which_mount}' '{new_name}'")
                         if new_name in mounts_names_list:
                             logger_sys.log_message("INFO: Canceling mount renaming process --> already has a mount name like hat")
                             print(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
@@ -3393,7 +3393,7 @@ def run(play):
             print(separator)
             play = 0
         else:
-            logger_sys.log_message(f"INFO: Choosen command '{command}' is not a valid command")
+            logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
             print("'" + command + "' is not a valid command")
             time.sleep(2)
             print(" ")

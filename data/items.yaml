@@ -303,7 +303,7 @@ Broken Shield:
   armor protection: .05
   agility: .1
   gold: 1.1
-  description: "A sheild from ancient times, cloven in two and left for travelers to find."
+  description: "A Shield from ancient times, cloven in two and left for travelers to find."
 Knight Boots: &knight_boots
   display name: Knight Boots
   upgrade tier: 0

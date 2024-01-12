@@ -35,7 +35,7 @@ def print_separator(character):
         count += 1
     sys.stdout.write('\n')
 
-def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy):
+def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     # get all stats
     player_hp = player["health"]
     player_agi = player["agility"]
@@ -45,11 +45,11 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
     player_critic_ch = item[player["held item"]]["critical hit chance"]
     player_health_cap = 1 # placeholder
     enemies_number = enemies_remaining
-    enemy_health = random.randint(choosen_enemy["health"]["min spawning health"], choosen_enemy["health"]["max spawning health"])
-    enemy_agility = choosen_enemy["agility"]
-    enemy_max_damage = choosen_enemy["damage"]["max damage"]
-    enemy_min_damage = choosen_enemy["damage"]["min damage"]
-    enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
+    enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
+    enemy_agility = chosen_enemy["agility"]
+    enemy_max_damage = chosen_enemy["damage"]["max damage"]
+    enemy_min_damage = chosen_enemy["damage"]["min damage"]
+    enemy_critical_chance = chosen_enemy["damage"]["critical chance"]
     enemy_av_dmg = round(( enemy_max_damage + enemy_min_damage + enemy_max_damage * enemy_critical_chance * 1.8) / 2, 2 )
 
     # calculate player health capabilities (how many HP the player can restore)
@@ -217,7 +217,7 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
 def encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage):
     # import stats
     global turn, defend, fighting, already_encountered
-    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, choosen_item
+    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, chosen_item
     player_agility = player["agility"]
     print(" ") # do not merge with possible actions text
     # load and create enemies list type
@@ -317,7 +317,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
                 player["held boots"] = item_input
                 print("You are now wearing a/an ", player["held boots"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Sheild":
+            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
                 player["held shield"] = item_input
                 print("You are now holding a/an ", player["held shield"])
             text = '='
@@ -329,20 +329,20 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
 
     print(" ")
 
-def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining):
+def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, chosen_enemy, chosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining):
     global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage
     # load enemy stat
 
     # enemy stats
     enemy_singular = choose_rand_enemy
-    enemy_plural = choosen_enemy["plural"]
-    enemy_max = choosen_enemy["health"]["max health level"]
-    enemy_health = random.randint(choosen_enemy["health"]["min spawning health"], choosen_enemy["health"]["max spawning health"])
-    enemy_max_damage = choosen_enemy["damage"]["max damage"]
-    enemy_min_damage = choosen_enemy["damage"]["min damage"]
-    enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
+    enemy_plural = chosen_enemy["plural"]
+    enemy_max = chosen_enemy["health"]["max health level"]
+    enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
+    enemy_max_damage = chosen_enemy["damage"]["max damage"]
+    enemy_min_damage = chosen_enemy["damage"]["min damage"]
+    enemy_critical_chance = chosen_enemy["damage"]["critical chance"]
     enemy_damage = 0
-    enemy_agility = choosen_enemy["agility"]
+    enemy_agility = chosen_enemy["agility"]
 
     if choose_rand_enemy not in player["enemies list"]:
         player["enemies list"].append(choose_rand_enemy)
@@ -350,7 +350,7 @@ def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_e
 def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
     # import stats
     global turn, defend, fighting, already_encountered
-    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, choosen_item
+    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, chosen_item
     armor_protection = player["armor protection"]
     player_agility = player["agility"]
     # load and create enemies list type
@@ -480,7 +480,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                         elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
                             player["held boots"] = item_input
                             print("You are now wearing a/an ", player["held boots"])
-                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Sheild":
+                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
                             player["held shield"] = item_input
                             print("You are now holding a/an ", player["held shield"])
                         text = '='
