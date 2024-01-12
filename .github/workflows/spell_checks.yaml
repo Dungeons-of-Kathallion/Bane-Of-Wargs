@@ -1,0 +1,39 @@
+name: Spell Checks
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rojopolis/spellcheck-github-actions@0.35.0
+        with:
+          source_files: "README.md docs/*"
+          task_name: Markdown
+        name: Markdown Checks
+      - uses: rojopolis/spellcheck-github-actions@0.35.0
+        with:
+          source_files: "source/*"
+          task_name: Python
+        name: Python Code Checks
+      - uses: rojopolis/spellcheck-github-actions@0.35.0
+        with:
+          source_files: "data/*"
+          task_name: Yaml
+        name: Yaml Data/ Checks
