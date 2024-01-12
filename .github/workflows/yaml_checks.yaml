@@ -24,14 +24,15 @@ jobs:
     steps:
       - name: Fix Checkout Problems
         run: git config --global core.protectNTFS false
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
           show-progress: false
-      - name: Clone Git Repository
-        run: |
-          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
-          cd Bane-Of-Wargs
       - name: Check Yaml Files
-        run: yamllint -c .github/code_checks/yamllint_config.yaml data/*
+        run: |
+          ls
+          yamllint -c .github/code_checks/yamllint_config.yaml data/*
 
 
