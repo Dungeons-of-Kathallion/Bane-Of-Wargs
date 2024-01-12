@@ -21,7 +21,7 @@ Depending on your operation system or your distribution if you're running a linu
 
 ##### 1 // Downloading The Python Installer
 
-1. Go to the official [Python download page fo Windows](https://www.python.org/downloads/windows/).
+1. Go to the official [Python download page for Windows](https://www.python.org/downloads/windows/).
 2. Find the latest stable version.
 3. Click the appropriate link for your system to download the executable file: **Windows installer (64-bit)** or **Windows installer (32-bit)**.
 ![python-download-page-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy_download.png)
@@ -144,7 +144,7 @@ https://kinsta.com/knowledgebase/install-python/#mac
 
 ### Getting The Game
 
-To get the game you have two methods: either cloning the github repository from the command or either download the zip folder of the game. It's recommended to get the game by the first method because you will be able to update the game simply by running a simple command, but it requires having [git](https://git-scm.com/) installed. While teh second methods doesn't require git, you'll have to re-download the game every time you want to update the game.
+To get the game you have two methods: either cloning the github repository from the command or either download the zip folder of the game. It's recommended to get the game by the first method because you will be able to update the game simply by running a simple command, but it requires having [git](https://git-scm.com/) installed. While the second methods doesn't require git, you'll have to re-download the game every time you want to update the game.
 
 #### // Git Cloning //
 
@@ -222,7 +222,7 @@ python3 source/main.py
 python<x.x> source/main.py #x.x is for example 3.7 for the version 3.7
 ```
 
-##### Additionnal: Compiling & Building
+##### Additional: Compiling & Building
 If you want to take the game to a next level, you can compile the game by following the instructions of the [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md) documentation.
 
 #### Fixing Possible Issues

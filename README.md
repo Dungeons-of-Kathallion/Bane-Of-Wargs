@@ -17,7 +17,7 @@ lolo@fedora ~ $ python main.py
 [![Validate-YAML](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/yaml_checks.yaml/badge.svg)](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/yaml_checks.yaml)
 ---
 
-Bane Of Wargs is a python text-game engine with pre-built plot an the ability to create custom pugins/mods that complitely change the game content. The game is very customizable and you will find ton of in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining etc... So in overall a very customizable and enjoyable python terminal-text based RPG.
+Bane Of Wargs is a python text-game engine with pre-built plot an the ability to create custom plugins/mods that completely change the game content. The game is very customizable and you will find ton of in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining etc... So in overall a very customizable and enjoyable python terminal-text based RPG.
 
 You will have to fight monsters, bossses to get keys to after unlock new places of the map. The map is divised in points, determined by x and y coordinates, letting the possibility to map up to 128x128 wide (so up to 16,384 places to explore), and more in the future of the engine development.
 
@@ -68,7 +68,7 @@ python source/main.py
 ```
 **It's highly recommende to use a clean terminal in fullscreen for the best gameplay experience.**
 
-If you have any problems, check the full documentation on how to run the game fron nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md).
+If you have any problems, check the full documentation on how to run the game from nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md).
 
 ### Compiling & Building
 
@@ -84,9 +84,9 @@ All required modules are in the `requirements.txt` file.
 
 _If you have previously ran the `pip install -r requirements.txt` command, you won't have to install all of theses modules since you already did._
 
-## Contrbuting
+## Contributing
 
-All conributions like PR, issues that can go from bug reporting or feature request are all welcome!\n
+All contributions like PR, issues that can go from bug reporting or feature request are all welcome!\n
 Just check the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/.github/CONTRIBUTING.md) guidelines.
 
 ## Progress
@@ -96,5 +96,5 @@ If you're interested by the game progress and development, check the wiki page a
 
 ## Licensing
 
-Bane Of Wargs is a free, open source game. The source code and every file you will find on this repository is avaible under the GPL v3 license.\n
+Bane Of Wargs is a free, open source game. The source code and every file you will find on this repository is available under the GPL v3 license.\n
 All its work and artwork is all public domain. Feel free to fork, or copy the game source to make your own version of the engine.

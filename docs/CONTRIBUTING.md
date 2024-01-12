@@ -1,6 +1,6 @@
 # Issues
 ### Opening
-If you find an error in the progam or wiki, or if there is a feature you want and cannot program it immediately, please create an issue.
+If you find an error in the program or wiki, or if there is a feature you want and cannot program it immediately, please create an issue.
 ### Closing
 Once the error is fixed, or the feature request is added or rejected, your issue should be closed.
 
