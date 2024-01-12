@@ -1,0 +1,39 @@
+name: Validate-YAML
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  validate-yaml:
+    name: Validate Yaml
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@v4
+        with:
+          show-progress: false
+      - name: Install Yamllint
+        run: sudo apt-get yamllint
+      - name: Clone Git Repository
+        run: |
+          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
+          cd Bane-Of-Wargs
+      - name: Check Yaml Files
+        run: yamllint -c .github/code_checks/yamllint_config.yaml data/*
+          
+
