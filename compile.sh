@@ -12,6 +12,7 @@ source/map_item.py \
 source/train.py \
 source/logger_sys.py \
 source/term_menu.py \
+source/mission_handling.py \
 --add-data yamale/VERSION:yamale \
 --collect-submodules fsspec \
 --collect-submodules appdirs \

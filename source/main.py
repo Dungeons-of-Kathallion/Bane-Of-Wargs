@@ -5,6 +5,7 @@ import check_yaml
 import train
 import map_item
 import term_menu
+import mission_handling
 import os
 import sys
 import time
@@ -2160,7 +2161,7 @@ def run(play):
             print("ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL)
             text = '='
             print_separator(text)
-            options = ['Visited Places', 'Encountered Monsters', 'Encountered People']
+            options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
             choice = term_menu.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
             if choice == 'Visited Places':
@@ -2488,6 +2489,69 @@ def run(play):
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player doesn't know about npc '{which_npc}' --> canceling")
+                    time.sleep(1.5)
+            elif choice == 'Tasks':
+                print("ACTIVE TASKS:")
+                tasks_list = player["active missions"]
+                logger_sys.log_message(f"INFO: Printing player active missions: '{tasks_list}'")
+
+                count = 0
+                while count < len(tasks_list):
+                    current_task = tasks_list[count]
+                    current_task_name = mission[str(current_task)]["name"]
+                    tasks_list.remove(current_task)
+                    tasks_list.append(current_task_name)
+
+                    count += 1
+
+                tasks_list_str = str(tasks_list)
+                tasks_list_str = tasks_list_str.replace("'None', ", '')
+                tasks_list_str = tasks_list_str.replace("'", '')
+                tasks_list_str = tasks_list_str.replace("[", ' -')
+                tasks_list_str = tasks_list_str.replace("]", '')
+                tasks_list_str = tasks_list_str.replace(", ", '\n -')
+
+                print(tasks_list_str)
+                text = '='
+                print_separator(text)
+                which_task = input("> ")
+                logger_sys.log_message(f"INFO: Player has chosen task '{which_task}' to display information about")
+                if which_task in tasks_list:
+                    logger_sys.log_message(f"INFO: Printing mission '{which_task}' information")
+
+                    mission_id = mission_handling.get_mission_id_from_name(which_task, mission)
+
+                    text = '='
+                    print_separator(text)
+                    print("NAME: " + mission[mission_id]["name"])
+                    print("DESCRIPTION:")
+                    mission_handling.print_description(mission[mission_id], map)
+
+                    destination_point = map["point" + str(mission[mission_id]["destination"])]
+                    destination = str("X:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["x"]) + COLOR_RESET_ALL + ", Y:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["x"]) + COLOR_RESET_ALL)
+
+                    print("")
+                    print("DESTINATION: " + destination)
+                    if 'stopovers' in list(mission[mission_id]):
+                        mission_stopovers = mission[mission_id]["stopovers"]
+                        new_mission_stopovers = []
+                        count = 0
+                        while count < len(mission_stopovers):
+                            current_map_point_data = map["point" + str(mission_stopovers[count])]
+                            current_map_point_coordinates = "[X:" + str(current_map_point_data["x"]) + ",Y:" + str(current_map_point_data["y"]) +"]"
+                            new_mission_stopovers.append(current_map_point_coordinates)
+
+                            count += 1
+                        new_mission_stopovers = str(new_mission_stopovers)
+                        print("STOPOVERS: " + new_mission_stopovers)
+
+                    text = '='
+                    print_separator(text)
+                    wait = input("")
+                else:
+                    print("")
+                    print(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
+                    logger_sys.log_message(f"INFO: Player doesn't know about mission '{which_task}' --> canceling")
                     time.sleep(1.5)
         elif command.lower().startswith('i'):
             text = '='

@@ -61,3 +61,7 @@ generic steel gate blocking east:
   - "You must find the key to open it!"
   scene: Steel Gate
 
+first mission:
+  use actions: False
+  phrases:
+  - "First mission! yay!"
