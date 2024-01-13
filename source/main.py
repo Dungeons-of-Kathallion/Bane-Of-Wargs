@@ -2081,7 +2081,7 @@ def run(play):
                 player = start_player
                 play = 0
                 return play
-        command = input("> ")
+        command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
         logger_sys.log_message(f"INFO: Player ran command '{command}'")
         logger_sys.log_message(f"INFO: Checking if a ground item is present at map point 'point{map_location}'")
@@ -2175,7 +2175,7 @@ def run(play):
                 print(zones_list)
                 text = '='
                 print_separator(text)
-                which_zone = input("> ")
+                which_zone = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen zone '{which_zone}' to check")
                 if which_zone in player["visited zones"]:
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
@@ -2381,7 +2381,7 @@ def run(play):
                 print(enemies_list)
                 text = '='
                 print_separator(text)
-                which_enemy = input("> ")
+                which_enemy = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen enemy '{which_enemy}' to display information")
                 if which_enemy == "None":
                     print(" ")
@@ -2435,7 +2435,7 @@ def run(play):
                 print(enemies_list)
                 text = '='
                 print_separator(text)
-                which_npc = input("> ")
+                which_npc = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen npc '{which_npc}' to display information about")
                 if which_npc == "None":
                     print(" ")
@@ -2514,7 +2514,7 @@ def run(play):
                 print(tasks_list_str)
                 text = '='
                 print_separator(text)
-                which_task = input("> ")
+                which_task = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen task '{which_task}' to display information about")
                 if which_task in tasks_list:
                     logger_sys.log_message(f"INFO: Printing mission '{which_task}' information")
@@ -2586,7 +2586,7 @@ def run(play):
             print(player_inventory)
             text = '='
             print_separator(text)
-            which_item = input("> ")
+            which_item = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
             if which_item in player["inventory"]:
                 text = '='
@@ -2901,7 +2901,7 @@ def run(play):
                                 remove_gold(str(mount_cost))
                                 generated_mount_uuid = generate_random_uuid()
                                 print("How you mount should be named ?")
-                                new_mount_name = input("> ")
+                                new_mount_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                                 logger_sys.log_message(f"INFO: Player has chosen name '{new_mount_name}' for its new mount")
                                 mounts_names_list = []
                                 count = 0
@@ -3007,7 +3007,7 @@ def run(play):
                             print(deposited_mounts_names)
                             text = '='
                             print_separator(text)
-                            which_mount = input("> ")
+                            which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                             logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to ride")
                             if which_mount in deposited_mounts_names_list:
                                 # get what is the uuid of the mount of this name
@@ -3210,7 +3210,7 @@ def run(play):
                         print(player_orders_to_collect)
                         text = '='
                         print_separator(text)
-                        which_order = input("> ")
+                        which_order = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen order '{which_order}'")
                         if which_order in player_orders_number:
                             current_order_uuid = str(list(player["orders"])[int(which_order)])
@@ -3353,7 +3353,7 @@ def run(play):
                 print(mounts_names_list_str)
                 text = '='
                 print_separator(text)
-                which_mount = input("> ")
+                which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen option '{which_mount}' to examine")
                 if which_mount in mounts_names_list:
                     text = '='
@@ -3427,7 +3427,7 @@ def run(play):
                             player["current mount"] = " "
                     elif choice == 'Rename':
                         print("Select a new name for your mount")
-                        new_name = input("> ")
+                        new_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen as a new name for mount '{which_mount}' '{new_name}'")
                         if new_name in mounts_names_list:
                             logger_sys.log_message("INFO: Canceling mount renaming process --> already has a mount name like hat")

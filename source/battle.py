@@ -267,7 +267,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
     print_separator(text)
 
     print(" ")
-    startup_action = input("> ")
+    startup_action = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
     print("")
 
     text = '='
@@ -294,7 +294,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
         player_inventory = player_inventory.replace(", ", '\n -')
         print("INVENTORY:")
         print(player_inventory)
-        item_input = input("> ")
+        item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         # use item
         if item_input in player["inventory"]:
             if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
@@ -457,7 +457,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     print_separator(text)
                     print("INVENTORY:")
                     print(player_inventory)
-                    item_input = input("> ")
+                    item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     # use item
                     if item_input in player["inventory"]:
                         if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
