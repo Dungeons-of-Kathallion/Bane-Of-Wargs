@@ -1,0 +1,28 @@
+name: Documentation Issue
+description: For missing or incorrect information (or just typos) in the documentation.
+title: "DOCUMENTATION: "
+labels: ["documentation", "enhancement"]
+assignees:
+  - OcelotWalrus
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Where Is The Issue
+      description: "i.e, '[this](where the error is wiki page) wiki page'"
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What The Issue Is
+      description: "i.e, 'Typo: helath instead of health'"
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Content
+      description: "i.e, 'I expected there to not be a typo'"
+    validations:
+      required: true
