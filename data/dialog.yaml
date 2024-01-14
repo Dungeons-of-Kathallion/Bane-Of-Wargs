@@ -60,8 +60,3 @@ generic steel gate blocking east:
   - "There is a strong steel gate blocking anyone wanting to go further east."
   - "You must find the key to open it!"
   scene: Steel Gate
-
-first mission:
-  use actions: False
-  phrases:
-  - "First mission! yay!"

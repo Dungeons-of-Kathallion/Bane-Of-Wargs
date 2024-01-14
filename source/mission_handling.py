@@ -2,6 +2,7 @@ import yaml
 import term_menu
 import logger_sys
 import os
+import dialog_handling
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
 
@@ -11,6 +12,7 @@ init()
 
 # Functions to handle missions
 def get_mission_id_from_name(mission_name, mission_data):
+    logger_sys.log_message(f"INFO: Getting mission name '{mission_name}' corresponding id")
     global mission_id
     count = 0
     continue_action = True
@@ -22,10 +24,13 @@ def get_mission_id_from_name(mission_name, mission_data):
             mission_id = str(list(mission_data)[count])
 
         count += 1
+    logger_sys.log_message(f"INFO: Found corresponding id of mission name '{mission_name}': {mission_id}")
     return mission_id
 
 def print_description(mission_data, map):
+    logger_sys.log_message(f"INFO: Printing mission '{mission_data}' description to GUI")
 
+    logger_sys.log_message(f"INFO: Generating mission text replacements")
     # Get text replacements
     # Payment of the mission when completed
     payment_for_mission = None
@@ -62,6 +67,7 @@ def print_description(mission_data, map):
         "$deadline": deadline_for_mission,
         "$stopovers": new_stopovers_for_mission
     }
+    logger_sys.log_message(f"INFO: Loading missions text replacements: '{mission_text_replacements}'")
 
 
     text = str(mission_data["description"])
@@ -85,6 +91,41 @@ def print_description(mission_data, map):
     # This is just because at the beginning too a `\n` character gets added
     new_input = new_input[1:]
     print(str(new_input))
+
+def offer_mission(mission_id, player, missions_data, dialog, preferences, text_replacements_generic, drinks):
+    logger_sys.log_message(f"INFO: Offering mission '{mission_id}' to player")
+    data = missions_data[mission_id]
+
+    # Add the mission ID to the player's
+    # offered missions list
+    player["offered missions"].append(mission_id)
+
+    # Trigger the mission 'on offer'
+    # triggers if there are
+
+    logger_sys.log_message(f"INFO: Triggering mission '{mission_id}' 'on offer' triggers")
+    if "on offer" in list(data):
+        # Only ask for accepting mission if there is a dialog,
+        # else, make the player automatically accept it
+        if "dialog" in list(data["on offer"]):
+            dialog_handling.print_dialog(data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
+            accept = input("Do you want to accept this task? (y/n)")
+            print("=======================================================")
+            if accept.startswith('y'):
+                if player["active missions"] == None:
+                    player["active missions"] = []
+                player["active missions"].append(mission_id)
+        else:
+            if player["active missions"] == None:
+                player["active missions"] = []
+            player["active missions"].append(mission_id)
+        if "payment" in list(data["on offer"]):
+            player["gold"] += int(data["on offer"]["payment"])
+        if "fine" in list(data["on offer"]):
+            player["gold"] -= int(data["on offer"]["fine"])
+        if "exp addition" in list(data["on offer"]):
+            player["exp"] += int(data["on offer"]["exp addition"])
+    logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
 
 # deinitialize colorama
 deinit()

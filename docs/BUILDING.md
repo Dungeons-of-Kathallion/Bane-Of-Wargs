@@ -54,6 +54,7 @@ source/train.py \
 source/logger_sys.py \
 source/term_menu.py \
 source/mission_handling.py \
+source/dialog_handling.py \
 --add-data yamale/VERSION:yamale \
 --collect-submodules fsspec \
 --collect-submodules appdirs \
