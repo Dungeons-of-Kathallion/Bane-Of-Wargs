@@ -6,8 +6,9 @@ assignees:
   - OcelotWalrus
 body:
   - type: markdown
-    attributes: |
-      Thanks for taking the time to fill out this bug report!
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
   - type: textarea
     id: describe
     attributes:
