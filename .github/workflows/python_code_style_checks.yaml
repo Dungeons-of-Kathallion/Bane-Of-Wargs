@@ -33,4 +33,4 @@ jobs:
       - name: Install Dependencies
         run: pip install pycodestyle
       - name: Style Checks
-        uses: andymckay/pycodestyle-action@0.1.3
+        run : python -m pycodestyle --statistics --count --max-line-length=130 --show-source source
