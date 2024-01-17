@@ -13,6 +13,8 @@ lolo@fedora ~ $ python main.py
   Check Update
   Quit
 ```
+![License](https://camo.githubusercontent.com/c455b7702b790a16a74ae91c22dfea32f39249e9b80523055ae10a4310f41849/68747470733a2f2f696d672e736869656c64732e696f2f6769746875622f6c6963656e73652f6465762d686431312f70797465787467616d65)
+![Python Version](https://badgen.net/badge/python/3.12/blue?icon=python)
 [![CD](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/cd.yaml/badge.svg)](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/cd.yaml)
 [![Validate-YAML](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/yaml_checks.yaml/badge.svg)](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/yaml_checks.yaml)
 [![Spell Checks](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/spell_checks.yaml/badge.svg)](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/spell_checks.yaml)
