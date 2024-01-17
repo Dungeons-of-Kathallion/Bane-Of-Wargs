@@ -100,7 +100,7 @@ def print_speech_text_effect(text):
 def exit_game():
     time.sleep(1.5)
     print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
-    logger_sys.log_message("Warning: closing game now")
+    logger_sys.log_message("WARNING: closing game now")
     time.sleep(.5)
     os.system('clear')
     exit(1)
@@ -142,6 +142,7 @@ print("This may take a few seconds, sorry for the waiting.")
 print("0/3", end="\r")
 
 logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
+"""
 # Download yaml schema files
 try:
     destination = program_dir + '/game/schemas'
@@ -187,6 +188,7 @@ except Exception as error:
 print("3/3")
 print("Done")
 logger_sys.log_message("INFO: Process of downloading game data to update it completed")
+"""
 
 # main menu start
 while menu:
@@ -1643,7 +1645,9 @@ def run(play):
             print(take_item)
             print("")
         logger_sys.log_message(f"INFO: Checking if an npc is present at map point 'point{map_location}'")
-        # Mission detection
+        # Check if the player can get
+        # a mission from current map
+        # location
         count = 0
         while count < len(list(mission)):
             current_mission_data = mission[list(mission)[count]]
@@ -1651,6 +1655,47 @@ def run(play):
                 mission_handling.offer_mission(str(list(mission)[count]), player, mission, dialog, preferences, text_replacements_generic, drinks)
 
             count += 1
+
+        # Check if the player has a mission that
+        # have a stopover at the current map location
+        # If he does, at the current map location
+        # to the player save to let the program
+        # known that
+
+        count = 0
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if "stopovers" in current_mission_data:
+                if map_location in current_mission_data["stopovers"]:
+                    player["missions"][str(player["active missions"][count])]["stopovers went"].append(map_location)
+
+            count += 1
+
+        # Check if the player has every stopover
+        # done for one of his mission to complete
+        # If he does, modify the player save to
+        # let the program know that
+
+        count = 0
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if "stopovers" in current_mission_data:
+                if len(player["missions"][str(player["active missions"][count])]["stopovers went"]) == len(current_mission_data["stopovers"]):
+                    player["missions"][str(player["active missions"][count])]["went to all stopovers"] = True
+
+            count += 1
+
+        # Check if player has a mission that requires to
+        # be at current map location to complete
+        count = 0
+
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if current_mission_data["destination"] == map_location:
+                mission_handling.mission_completing_checks(str(player["active missions"][count]), mission, player, dialog, preferences, text_replacements_generic, drinks)
+
+            count += 1
+
         if "npc" in map["point" + str(map_location)] and map_location not in player["met npcs"]:
             current_npc = str(map["point" + str(map_location)]["npc"])
             logger_sys.log_message(f"INFO: Current map point 'point{map_location}' has npc: '{current_npc}'")
@@ -2344,7 +2389,8 @@ def run(play):
                         current_task = tasks_list[count]
                         current_task_name = mission[str(current_task)]["name"]
                         tasks_list.remove(current_task)
-                        tasks_list.append(current_task_name)
+                        if not mission[current_task]["invisible"]:
+                            tasks_list.append(current_task_name)
 
                         count += 1
 
@@ -2372,7 +2418,7 @@ def run(play):
                     mission_handling.print_description(mission[mission_id], map)
 
                     destination_point = map["point" + str(mission[mission_id]["destination"])]
-                    destination = str("X:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["x"]) + COLOR_RESET_ALL + ", Y:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["x"]) + COLOR_RESET_ALL)
+                    destination = str("X:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["x"]) + COLOR_RESET_ALL + ", Y:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["y"]) + COLOR_RESET_ALL)
 
                     print("")
                     print("DESTINATION: " + destination)

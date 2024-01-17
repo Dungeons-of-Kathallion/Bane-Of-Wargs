@@ -1,5 +1,6 @@
 name: str()
 description: str()
+invisible: bool()
 deadline: int(required=False)
 stopovers: list(int(required=False))
 to offer: any(required=False)

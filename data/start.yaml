@@ -15,8 +15,7 @@ elapsed time seconds: 1
 elapsed time game days: .25
 attributes:
 - None
-active missions:
-- None
+active missions: []
 done missions:
 - None
 offered missions:
@@ -58,3 +57,5 @@ defeated enemies:
 - None
 met npcs:
 - None
+missions:
+  None: none
