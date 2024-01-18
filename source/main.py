@@ -5,6 +5,9 @@ import check_yaml
 import train
 import map_item
 import term_menu
+import mission_handling
+import dialog_handling
+import enemy_handling
 import os
 import sys
 import time
@@ -98,7 +101,7 @@ def print_speech_text_effect(text):
 def exit_game():
     time.sleep(1.5)
     print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
-    logger_sys.log_message("Warning: closing game now")
+    logger_sys.log_message("WARNING: closing game now")
     time.sleep(.5)
     os.system('clear')
     exit(1)
@@ -140,6 +143,7 @@ print("This may take a few seconds, sorry for the waiting.")
 print("0/3", end="\r")
 
 logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
+"""
 # Download yaml schema files
 try:
     destination = program_dir + '/game/schemas'
@@ -185,6 +189,7 @@ except Exception as error:
 print("3/3")
 print("Done")
 logger_sys.log_message("INFO: Process of downloading game data to update it completed")
+"""
 
 # main menu start
 while menu:
@@ -904,174 +909,6 @@ text_replacements_generic = {
 }
 logger_sys.log_message(f"INFO: Loaded generic texts replacements: '{text_replacements_generic}'")
 
-def print_dialog(current_dialog):
-    current_dialog_name = current_dialog
-    logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}'")
-    current_dialog = dialog[str(current_dialog)]
-    dialog_len = len(current_dialog["phrases"])
-    if "scene" in current_dialog:
-        current_dialog_scene = str(current_dialog["scene"])
-        logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' scene at '{program_dir}/game/imgs/{current_dialog_scene}.txt'")
-        if preferences["latest preset"]["type"] == 'vanilla':
-            with open(program_dir + '/game/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
-                to_print = str(f.read())
-                to_print = to_print.replace('$RED', '\033[0;31m')
-                to_print = to_print.replace('$GREEN', '\033[0;32m')
-                to_print = to_print.replace('$YELLOW', '\033[0;33m')
-                to_print = to_print.replace('$BLUE', '\033[0;34m')
-                to_print = to_print.replace('$PURPLE', '\033[0;34m')
-                to_print = to_print.replace('$CYAN', '\033[0;36m')
-                to_print = to_print.replace('$WHITE', '\033[0;37m')
-                to_print = to_print.replace('$BLACK', '\033[0;30m')
-                to_print = to_print.replace('$BROWN', '\033[0;33m')
-                to_print = to_print.replace('$GRAY', '\033[1;30m')
-                print(to_print)
-        else:
-            current_plugin = str(preferences["latest preset"]["plugin"])
-            logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' scene at '{program_dir}/plugins/{current_plugin}/imgs/{current_dialog_scene}.txt'")
-            with open(program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) + '/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
-                to_print = str(f.read())
-                to_print = to_print.replace('$RED', '\033[0;31m')
-                to_print = to_print.replace('$GREEN', '\033[0;32m')
-                to_print = to_print.replace('$YELLOW', '\033[0;33m')
-                to_print = to_print.replace('$BLUE', '\033[0;34m')
-                to_print = to_print.replace('$PURPLE', '\033[0;34m')
-                to_print = to_print.replace('$CYAN', '\033[0;36m')
-                to_print = to_print.replace('$WHITE', '\033[0;37m')
-                to_print = to_print.replace('$BLACK', '\033[0;30m')
-                to_print = to_print.replace('$BROWN', '\033[0;33m')
-                to_print = to_print.replace('$GRAY', '\033[1;30m')
-                print(to_print)
-    count = 0
-    logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' phrases")
-    while count < dialog_len:
-        text = str(current_dialog["phrases"][int(count)])
-        count = 0
-        while count < len(list(text_replacements_generic)):
-            current_text_replacement = str(list(text_replacements_generic)[count])
-            text = text.replace(current_text_replacement, str(text_replacements_generic[current_text_replacement]))
-            count += 1
-        print_speech_text_effect(text)
-        count += 1
-    if current_dialog["use actions"] == True:
-        logger_sys.log_message(f"INFO: Executing dialog '{current_dialog_name}' actions on the player")
-        actions = current_dialog["actions"]
-        if "give item" in actions:
-            given_items = actions["give item"]
-            given_items_len = len(given_items)
-            count = 0
-            logger_sys.log_message(f"INFO: Giving to the player items '{give_items}'")
-            while count < given_items_len:
-                selected_item = given_items[count]
-                player["inventory"].append(selected_item)
-                count += 1
-        if "add attributes" in actions:
-            count = 0
-            added_attributes = actions["add attributes"]
-            added_attributes_len = len(added_attributes)
-            logger_sys.log_message(f"INFO: Adding attributes '{added_attributes}' to the player")
-            while count < added_attributes_len:
-                selected_attribute = added_attributes[count]
-                player["attributes"].append(selected_attribute)
-                count += 1
-        if "health modification" in actions:
-            if "diminution" in actions["health modification"]:
-                logger_sys.log_message("INFO: Removing " + actions["health modification"]["diminution"] + " hp from the player's health")
-                player["health"] -= actions["health modification"]["diminution"]
-            if "augmentation" in actions["health modification"]:
-                logger_sys.log_message("INFO: Adding " + actions["health modification"]["augmentation"] + " hp from the player's health")
-                player["health"] += actions["health modification"]["augmentation"]
-            if "max health" in actions["health modification"]:
-                if "diminution" in actions["health modification"]["max health"]:
-                    logger_sys.log_message("INFO: Removing " + actions["health modification"]["max health"]["diminution"] + " hp from the player's max health")
-                    player["max health"] -= actions["health modification"]["max health"]["diminution"]
-                if "augmentation" in actions["health modification"]["max health"]:
-                    logger_sys.log_message("INFO: Adding " + actions["health modification"]["max health"]["augmentation"] + " hp from the player's max health")
-                    player["max health"] += actions["health modification"]["max health"]["augmentation"]
-        if "gold modification" in actions:
-            if "diminution" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Removing " + actions["gold modification"]["diminution"] + " gold to the player")
-                player["gold"] -= actions["gold modification"]["diminution"]
-            if "augmentation" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Adding " + actions["gold modification"]["diminution"] + " gold to the player")
-                player["gold"] += actions["gold modification"]["augmentation"]
-        if "remove item" in actions:
-            removed_items = actions["remove item"]
-            removed_items_len = len(removed_items)
-            count = 0
-            logger_sys.log_message(f"INFO: Removing items '{removed_items}' from player's inventory")
-            while count < removed_items_len:
-                selected_item = removed_items[count]
-                player["inventory"].remove(selected_item)
-                count += 1
-        if "add to diary" in actions:
-            if "known zones" in actions["add to diary"]:
-                added_visited_zones = actions["add to diary"]["known zones"]
-                added_visited_zones_len = len(added_visited_zones)
-                count = 0
-                logger_sys.log_message(f"INFO: Adding zones '{added_visited_zones}' to player's visited zones")
-                while count < added_visited_zones_len:
-                    selected_zone = added_visited_zones[count]
-                    player["visited zones"].append(selected_zone)
-                    count += 1
-            if "known enemies" in actions["add to diary"]:
-                added_known_enemies = actions["add to diary"]["known enemies"]
-                added_known_enemies_len = len(added_known_enemies)
-                count = 0
-                logger_sys.log_message(f"INFO: Adding enemies '{added_known_enemies}' to player's known enemies")
-                while count < added_known_enemies_len:
-                    selected_enemy = added_known_enemies[count]
-                    player["enemies list"].append(selected_enemy)
-                    count += 1
-            if "known npcs" in actions["add to diary"]:
-                added_known_npcs = actions["add to diary"]["known npcs"]
-                added_known_npcs_len = len(added_known_npcs)
-                count = 0
-                logger_sys.log_message(f"INFO: Adding npcs '{added_known_npcs}' to player's known npcs")
-                while count < added_known_npcs_len:
-                    selected_npc = added_known_npcs[count]
-                    player["met npcs name"].append(selected_npc)
-                    count += 1
-        if "remove to diary" in actions:
-            if "known zones" in actions["remove to diary"]:
-                removed_visited_zones = actions["remove to diary"]["known zones"]
-                removed_visited_zones_len = len(removed_visited_zones)
-                count = 0
-                logger_sys.log_message(f"INFO: Removing zones '{added_visited_zones}' to player's visited zones")
-                while count < removed_visited_zones_len:
-                    selected_zone = removed_visited_zones[count]
-                    player["visited zones"].remove(selected_zone)
-                    count += 1
-            if "known enemies" in actions["remove to diary"]:
-                removed_known_enemies = actions["remove to diary"]["known enemies"]
-                removed_known_enemies_len = len(removed_known_enemies)
-                count = 0
-                logger_sys.log_message(f"INFO: Removing enemies '{added_known_enemies}' to player's known enemies")
-                while count < removed_known_enemies_len:
-                    selected_enemy = removed_known_npcs[count]
-                    player["enemies list"].remove(selected_enemy)
-                    count += 1
-            if "known npcs" in actions["remove to diary"]:
-                removed_known_npcs = actions["remove to diary"]["known npcs"]
-                removed_known_npcs_len = len(removed_known_npcs)
-                count = 0
-                logger_sys.log_message(f"INFO: Removing npcs '{added_known_npcs}' to player's known npcs")
-                while count < removed_known_npcs_len:
-                    selected_npc = removed_known_npcs[count]
-                    player["met npcs name"].append(selected_npc)
-                    count += 1
-        if "use drink" in actions:
-            used_drinks = actions["use drink"]
-            used_drinks_len = len(used_drinks)
-            count = 0
-            logger_sys.log_message(f"INFO: Using drinks '{used_drinks}'")
-            while count < used_drinks_len:
-                selected_drink = used_drinks_len[count]
-                if drinks[selected_drink]["healing level"] == 999:
-                    player["health"] = player["max health"]
-                else:
-                    player["health"] += drinks[selected_drink]["healing level"]
-
 def generate_random_uuid():
     logger_sys.log_message("INFO: Generating new random UUID using 'uuid.4' method")
     import uuid
@@ -1522,7 +1359,7 @@ def run(play):
         if player["start dialog"]["heard start dialog"] == False:
             start_dialog = player["start dialog"]["dialog"]
             logger_sys.log_message("INFO: Displaying start dialog '{start_dialog}' to player")
-            print_dialog(player["start dialog"]["dialog"])
+            dialog_handling.print_dialog(player["start dialog"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
             text = '='
             print_separator(text)
 
@@ -1599,7 +1436,7 @@ def run(play):
                         count += 1
             if has_required_attributes and has_required_locations and has_required_enemies and has_required_npcs:
                 logger_sys.log_message(f"INFO: Player has all required stuff to display dialog '{current_dialog}' --> displaying it and adding map location '{map_location}' to the player's heard dialogs save list")
-                print_dialog(current_dialog)
+                dialog_handling.print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks)
                 player["heard dialogs"].append(map_location)
                 text = '='
                 print_separator(text)
@@ -1809,6 +1646,86 @@ def run(play):
             print(take_item)
             print("")
         logger_sys.log_message(f"INFO: Checking if an npc is present at map point 'point{map_location}'")
+
+        # Check if the player can get
+        # a mission from current map
+        # location
+
+        logger_sys.log_message(f"INFO: Checking if the player can get a mission from current map location '{map_location}'")
+        count = 0
+        while count < len(list(mission)):
+            current_mission_data = mission[list(mission)[count]]
+            if int(current_mission_data["source"]) == int(map_location) and str(list(mission)[count]) not in player["offered missions"]:
+                logger_sys.log_message(f"INFO: Offering mission '{str(list(mission)[count])}' to player")
+                mission_handling.offer_mission(str(list(mission)[count]), player, mission, dialog, preferences, text_replacements_generic, drinks)
+
+            count += 1
+
+        # Check if the player has a mission that
+        # have a stopover at the current map location
+        # If he does, at the current map location
+        # to the player save to let the program
+        # known that
+        logger_sys.log_message(f"INFO: Checking if the player has a mission that has a stopover at the current map location '{map_location}'")
+
+        count = 0
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if "stopovers" in current_mission_data:
+                if map_location in current_mission_data["stopovers"]:
+                    logger_sys.log_message(f"INFO: Adding current map location '{map_location}' to player active mission data '{current_mission_data}'")
+                    player["missions"][str(player["active missions"][count])]["stopovers went"].append(map_location)
+
+            count += 1
+
+        # Check if the player has every stopover
+        # done for one of his mission to complete
+        # If he does, modify the player save to
+        # let the program know that
+        logger_sys.log_message("INFO: Checking if the player has every stopover done for one of his missions to complete")
+
+        count = 0
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if "stopovers" in current_mission_data:
+                if len(player["missions"][str(player["active missions"][count])]["stopovers went"]) == len(current_mission_data["stopovers"]):
+                    player["missions"][str(player["active missions"][count])]["went to all stopovers"] = True
+
+            count += 1
+
+        # Check if player has a mission that requires to
+        # be at current map location to complete
+        logger_sys.log_message(f"INFO: Checking if the player has a mission that requires to be at current map location '{map_location}' to complete")
+        count = 0
+
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if current_mission_data["destination"] == map_location:
+                logger_sys.log_message(f"INFO: Running mission completing checks for mission data '{current_mission_data}'")
+                mission_handling.mission_completing_checks(str(player["active missions"][count]), mission, player, dialog, preferences, text_replacements_generic, drinks)
+
+            count += 1
+
+        # Check if player has required attributes to
+        # fail a mission. If he does, then
+        # remove the mission id from the player's
+        # active missions save attribute to let the
+        # program know that and run the 'on fail'
+        # mission triggers
+        logger_sys.log_message("INFO: Checking if a player has all required conditions to fail an active mission")
+        count = 0
+
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            if "to fail" in current_mission_data:
+                fail = mission_handling.mission_checks(current_mission_data, player, 'to fail')
+                if fail == False:
+                    logger_sys.log_message(f"INFO: Executing failing triggers of mission data '{current_mission_data}'")
+                    mission_handling.execute_triggers(current_mission_data, player, 'on fail', dialog, preferences, text_replacements_generic, drinks)
+                    player["active missions"].remove(str(player["active missions"][count]))
+
+            count += 1
+
         if "npc" in map["point" + str(map_location)] and map_location not in player["met npcs"]:
             current_npc = str(map["point" + str(map_location)]["npc"])
             logger_sys.log_message(f"INFO: Current map point 'point{map_location}' has npc: '{current_npc}'")
@@ -1948,139 +1865,45 @@ def run(play):
                 time.sleep(.6)
                 os.system('clear')
                 """
+
+        # Check if player current missions
+        # have an enemy at current map point
+        logger_sys.log_message(f"INFO: Checking if the player has a mission that makes an enemy spawn at current map point 'point{map_location}'")
+        count = 0
+        count2 = 0
+
+        while count < len(player["active missions"]):
+            current_mission_id = player["active missions"][count]
+            current_mission_data = mission[player["active missions"][count]]
+            if "enemies" in current_mission_data:
+                while count2 < len(list(current_mission_data["enemies"])):
+                    current_enemy_data = current_mission_data["enemies"][str(list(current_mission_data["enemies"])[count])]
+                    if current_enemy_data["location"] == map_location:
+                        spawning_checks = True
+                        spawning_checks_2 = False
+                        if 'to spawn' in current_enemy_data:
+                            spawning_checks = mission_handling.mission_checks(current_enemy_data, player, 'to spawn')
+                        if 'to despawn' in current_enemy_data:
+                            spawning_checks_2 = mission_handling.mission_checks(current_enemy_data, player, 'to despawn')
+                        if spawning_checks == True and spawning_checks_2 == False:
+                            logger_sys.log_message(f"INFO: Spawning enemy from mission '{current_mission_id}' with mission enemy data '{current_enemy_data}'")
+                            enemy_handling.spawn_enemy(map_location, lists[str(current_enemy_data["enemy category"])], current_enemy_data["enemy number"],enemy, item, lists, start_player, map, player)
+
+                    count2 += 1
+            count += 1
+
         logger_sys.log_message(f"INFO: Checking if an enemy at map point 'point{map_location}'")
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
-            enemies_remaining = map["point" + str(map_location)]["enemy"]
-            already_encountered = False
-            while enemies_remaining > 0:
-                list_enemies = lists[ map["point" + str(map_location)]["enemy type"]]
-                logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
-                choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
-                choose_rand_enemy = list_enemies[choose_rand_enemy]
-                chosen_enemy = enemy[choose_rand_enemy]
-
-                enemy_total_inventory = chosen_enemy["inventory"]
-
-                enemy_items_number = len(enemy_total_inventory)
-                logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
-                chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
-                logger_sys.log_message("INFO: Calculating battle risk for the player")
-                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy)
-                logger_sys.log_message("INFO: Getting enemy stats")
-                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, chosen_enemy, chosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
-                if not already_encountered:
-                    logger_sys.log_message("INFO: Display enemy encounter text")
-                    battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
-                    already_encountered = True
-                logger_sys.log_message("INFO: Starting the fight")
-                battle.fight(player, item, enemy, map, map_location, enemies_remaining, lists)
-                enemies_remaining -= 1
-            # if round(random.uniform(.20, .50), 2) > .35:
-            list_enemies = lists[ map["point" + str(map_location)]["enemy type"]]
-
-            if player["health"] > 0:
-
-                if random.randint(0, 3) >= 2.5:
-                    chosen_item = "Gold"
-
-                if chosen_item == "Gold":
-                    print("Your enemy dropped some " + chosen_item)
-                else:
-                    print("Your enemy dropped " + a_an_check(chosen_item))
-                options = ['Grab Item', 'Continue']
-                drop = term_menu.show_menu(options)
-                text = '='
-                print_separator(text)
-                if drop == 'Grab Item':
-                    if chosen_item == "Gold":
-                        add_gold(round(random.uniform(1.00, 6.30), 2))
-                    else:
-                        if chosen_item in player["inventory"] and item[chosen_item]["type"] == "Utility":
-                            print("You cannot take that item")
-                        elif player["inventory slots remaining"] == 0:
-                            print("You cannot take that item, you don't have enough slots in your inventory")
-                        else:
-                            player["inventory"].append(chosen_item)
-                print(" ")
-                player["defeated enemies"].append(map_location)
-            else:
-                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
-                logger_sys.log_message("INFO: Player just died")
-                print_long_string(text)
-                finished = input()
-                logger_sys.log_message("INFO: Resetting player save")
-                player = start_player
-                play = 0
-                return play
+            enemy_handling.spawn_enemy(map_location, lists[map["point" + str(map_location)]["enemy type"]], map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player)
 
         elif day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL and round(random.uniform(.20, .80), 3) > .7 and zone[map_zone]["type"] != "hostel" and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village" and zone[map_zone]["type"] != "blacksmith" and zone[map_zone]["type"] != "forge":
             logger_sys.log_message("INFO: Checking if it's night time")
             logger_sys.log_message("INFO: Checking if the player isn't in a village, an hostel, a stable, a blacksmith or a forge")
             logger_sys.log_message("INFO: Calculating random chance of enemy spawning")
             logger_sys.log_message("INFO: Spawning enemies")
-            enemies_remaining = random.randint(1, 4)
-            already_encountered = False
-            while enemies_remaining > 0:
-                list_enemies = lists["generic"]
-                choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
-                logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
-                choose_rand_enemy = list_enemies[choose_rand_enemy]
-                chosen_enemy = enemy[choose_rand_enemy]
-
-                enemy_total_inventory = chosen_enemy["inventory"]
-
-                enemy_items_number = len(enemy_total_inventory)
-                logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
-                chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
-                logger_sys.log_message("INFO: Calculating battle risk for the player")
-                defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy)
-                logger_sys.log_message("INFO: Getting enemy stats")
-                battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, chosen_enemy, chosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
-                if not already_encountered:
-                    logger_sys.log_message("INFO: Display enemy encounter text")
-                    battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
-                    already_encountered = True
-                logger_sys.log_message("INFO: Starting the fight")
-                battle.fight(player, item, enemy, map, map_location, enemies_remaining, lists)
-                enemies_remaining -= 1
-            # if round(random.uniform(.20, .50), 2) > .35:
-            list_enemies = lists["generic"]
-
-            if player["health"] > 0:
-
-                if random.randint(0, 3) >= 2.5:
-                    chosen_item = "Gold"
-
-                if chosen_item == "Gold":
-                    print("Your enemy dropped some " + chosen_item)
-                else:
-                    print("Your enemy dropped " + a_an_check(chosen_item))
-                options = ['Grab Item', 'Continue']
-                drop = term_menu.show_menu(options)
-                text = '='
-                print_separator(text)
-                if drop == 'Grab Item':
-                    if chosen_item == "Gold":
-                        add_gold(round(random.uniform(1.00, 6.30), 2))
-                    else:
-                        if chosen_item in player["inventory"] and item[chosen_item]["type"] == "Utility":
-                            print("You cannot take that item")
-                        elif player["inventory slots remaining"] == 0:
-                            print("You cannot take that item, you don't have enough slots in your inventory")
-                        else:
-                            player["inventory"].append(chosen_item)
-                print(" ")
-            else:
-                text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
-                logger_sys.log_message("INFO: Player just died")
-                print_long_string(text)
-                finished = input()
-                logger_sys.log_message("INFO: Resetting player save")
-                player = start_player
-                play = 0
-                return play
-        command = input("> ")
+            enemy_handling.spawn_enemy(map_location, lists['generic'], round(random.uniform(1, 5)), enemy, item, lists, start_player, map, player)
+        command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
         logger_sys.log_message(f"INFO: Player ran command '{command}'")
         logger_sys.log_message(f"INFO: Checking if a ground item is present at map point 'point{map_location}'")
@@ -2160,7 +1983,7 @@ def run(play):
             print("ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL)
             text = '='
             print_separator(text)
-            options = ['Visited Places', 'Encountered Monsters', 'Encountered People']
+            options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
             choice = term_menu.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
             if choice == 'Visited Places':
@@ -2174,7 +1997,7 @@ def run(play):
                 print(zones_list)
                 text = '='
                 print_separator(text)
-                which_zone = input("> ")
+                which_zone = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen zone '{which_zone}' to check")
                 if which_zone in player["visited zones"]:
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
@@ -2380,7 +2203,7 @@ def run(play):
                 print(enemies_list)
                 text = '='
                 print_separator(text)
-                which_enemy = input("> ")
+                which_enemy = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen enemy '{which_enemy}' to display information")
                 if which_enemy == "None":
                     print(" ")
@@ -2434,7 +2257,7 @@ def run(play):
                 print(enemies_list)
                 text = '='
                 print_separator(text)
-                which_npc = input("> ")
+                which_npc = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen npc '{which_npc}' to display information about")
                 if which_npc == "None":
                     print(" ")
@@ -2489,6 +2312,78 @@ def run(play):
                     print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player doesn't know about npc '{which_npc}' --> canceling")
                     time.sleep(1.5)
+            elif choice == 'Tasks':
+                print("ACTIVE TASKS:")
+                tasks_list = player["active missions"]
+                if tasks_list == None:
+                    tasks_list = ["You have no tasks"]
+                logger_sys.log_message(f"INFO: Printing player active missions: '{tasks_list}'")
+
+                if tasks_list != ["You have no tasks"]:
+                    count = 0
+                    while count < len(tasks_list):
+                        current_task = tasks_list[count]
+                        current_task_name = mission[str(current_task)]["name"]
+                        tasks_list.remove(current_task)
+                        if not mission[current_task]["invisible"]:
+                            tasks_list.append(current_task_name)
+
+                        count += 1
+
+                tasks_list_str = str(tasks_list)
+                tasks_list_str = tasks_list_str.replace("'None', ", '')
+                tasks_list_str = tasks_list_str.replace("'", '')
+                tasks_list_str = tasks_list_str.replace("[", ' -')
+                tasks_list_str = tasks_list_str.replace("]", '')
+                tasks_list_str = tasks_list_str.replace(", ", '\n -')
+
+                print(tasks_list_str)
+                text = '='
+                print_separator(text)
+                which_task = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Player has chosen task '{which_task}' to display information about")
+                if which_task in tasks_list:
+                    logger_sys.log_message(f"INFO: Printing mission '{which_task}' information")
+
+                    mission_id = mission_handling.get_mission_id_from_name(which_task, mission)
+
+                    text = '='
+                    print_separator(text)
+                    print("NAME: " + mission[mission_id]["name"])
+                    print("DESCRIPTION:")
+                    mission_handling.print_description(mission[mission_id], map)
+
+                    destination_point = map["point" + str(mission[mission_id]["destination"])]
+                    destination = str("X:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["x"]) + COLOR_RESET_ALL + ", Y:" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(destination_point["y"]) + COLOR_RESET_ALL)
+
+                    print("")
+                    print("DESTINATION: " + destination)
+                    if 'stopovers' in list(mission[mission_id]):
+                        mission_stopovers = mission[mission_id]["stopovers"]
+                        new_mission_stopovers = []
+                        count = 0
+                        while count < len(mission_stopovers):
+                            current_map_point_data = map["point" + str(mission_stopovers[count])]
+                            current_map_point_coordinates = "[X:" + str(current_map_point_data["x"]) + ",Y:" + str(current_map_point_data["y"]) +"]"
+                            new_mission_stopovers.append(current_map_point_coordinates)
+
+                            count += 1
+                        new_mission_stopovers = str(new_mission_stopovers)
+                        print("STOPOVERS: " + new_mission_stopovers)
+
+                    text = '='
+                    print_separator(text)
+                    options = ['Abort', 'Exit']
+                    choice = term_menu.show_menu(options)
+                    if choice == 'Abort':
+                        wait = input("Are you sure you want to abort this mission? (y/n) ")
+                        if wait.startswith('y'):
+                            player["active missions"].remove(mission_id)
+                else:
+                    print("")
+                    print(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
+                    logger_sys.log_message(f"INFO: Player doesn't know about mission '{which_task}' --> canceling")
+                    time.sleep(1.5)
         elif command.lower().startswith('i'):
             text = '='
             print_separator(text)
@@ -2522,7 +2417,7 @@ def run(play):
             print(player_inventory)
             text = '='
             print_separator(text)
-            which_item = input("> ")
+            which_item = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
             if which_item in player["inventory"]:
                 text = '='
@@ -2837,7 +2732,7 @@ def run(play):
                                 remove_gold(str(mount_cost))
                                 generated_mount_uuid = generate_random_uuid()
                                 print("How you mount should be named ?")
-                                new_mount_name = input("> ")
+                                new_mount_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                                 logger_sys.log_message(f"INFO: Player has chosen name '{new_mount_name}' for its new mount")
                                 mounts_names_list = []
                                 count = 0
@@ -2943,7 +2838,7 @@ def run(play):
                             print(deposited_mounts_names)
                             text = '='
                             print_separator(text)
-                            which_mount = input("> ")
+                            which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                             logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to ride")
                             if which_mount in deposited_mounts_names_list:
                                 # get what is the uuid of the mount of this name
@@ -3146,7 +3041,7 @@ def run(play):
                         print(player_orders_to_collect)
                         text = '='
                         print_separator(text)
-                        which_order = input("> ")
+                        which_order = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen order '{which_order}'")
                         if which_order in player_orders_number:
                             current_order_uuid = str(list(player["orders"])[int(which_order)])
@@ -3289,7 +3184,7 @@ def run(play):
                 print(mounts_names_list_str)
                 text = '='
                 print_separator(text)
-                which_mount = input("> ")
+                which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen option '{which_mount}' to examine")
                 if which_mount in mounts_names_list:
                     text = '='
@@ -3363,7 +3258,7 @@ def run(play):
                             player["current mount"] = " "
                     elif choice == 'Rename':
                         print("Select a new name for your mount")
-                        new_name = input("> ")
+                        new_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen as a new name for mount '{which_mount}' '{new_name}'")
                         if new_name in mounts_names_list:
                             logger_sys.log_message("INFO: Canceling mount renaming process --> already has a mount name like hat")

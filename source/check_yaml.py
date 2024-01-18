@@ -34,6 +34,8 @@ def check_yaml(file_path):
         file_type = 'npcs'
     elif file_path.endswith('start.yaml'):
         file_type = 'start'
+    elif file_path.endswith('mission.yaml'):
+        file_type = 'missions'
     elif file_path.endswith('zone.yaml'):
         file_type = 'zones'
     elif file_path.endswith('preferences.yaml'):
@@ -41,7 +43,7 @@ def check_yaml(file_path):
     elif file_path.startswith('saves/'):
         file_type = 'saves'
     file_schema = str(f'{program_dir}/game/schemas/{file_type}.yaml')
-    if file_type == 'drinks' or file_type == 'mounts' or file_type == 'map' or file_type == 'lists' or file_type == 'npcs' or file_type == 'enemies' or file_type == 'dialogs':
+    if file_type == 'drinks' or file_type == 'mounts' or file_type == 'map' or file_type == 'lists' or file_type == 'npcs' or file_type == 'enemies' or file_type == 'dialogs' or file_type == 'missions':
         count = 0
         file_len = int(len(list(file)))
         while count < file_len:

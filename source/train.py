@@ -59,7 +59,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
             print("FEEDING ITEMS:")
             print(player_feeding_items_text)
             print_separator(text)
-            which_food = str(input("> "))
+            which_food = str(input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL))
             if which_food in player_feeding_items and which_food in player["inventory"]:
                 player["inventory"].remove(which_food)
                 player["xp"] += random.randint(1, 4)
