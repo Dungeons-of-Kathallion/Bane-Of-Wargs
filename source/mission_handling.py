@@ -107,98 +107,98 @@ def mission_checks(mission_data, player, which_key):
     # for running which_key operations
 
     checks = []
+    generic_keys = ['to offer', 'to complete', 'to fail', 'to despawn', 'to spawn']
 
     # If which_key input is invalid, quit
     # the game and output the error to the
     # game logs files
-    if which_key != 'to offer' and which_key != 'to complete'  and which_key != 'to fail':
+    if which_key != 'to offer' and which_key != 'to complete' and which_key != 'to fail' and which_key != 'to spawn' and which_key != 'to despawn':
         logger_sys.log_message(f"ERROR: Stopping mission checks for mission data '{mission_data}' --> invalid key '{which_key}'")
         exit_game()
 
-    #if "stopovers" in list(mission_data):
-        #checks.append('Stopovers')
-    if "player attributes" in list(mission_data[which_key]):
-        checks.append('Player Attributes')
-    if "visited locations" in list(mission_data[which_key]):
-        checks.append('Visited Locations')
-    if "known enemies" in list(mission_data[which_key]):
-        checks.append('Known Enemies')
-    if "known zones" in list(mission_data[which_key]):
-        checks.append('Known Zones')
-    if "known npcs" in list(mission_data[which_key]):
-        checks.append('Known Npcs')
-    if "has items" in list(mission_data[which_key]):
-        checks.append('Has Items')
+    if which_key in generic_keys:
+        if "player attributes" in list(mission_data[which_key]):
+            checks.append('Player Attributes')
+        if "visited locations" in list(mission_data[which_key]):
+            checks.append('Visited Locations')
+        if "known enemies" in list(mission_data[which_key]):
+            checks.append('Known Enemies')
+        if "known zones" in list(mission_data[which_key]):
+            checks.append('Known Zones')
+        if "known npcs" in list(mission_data[which_key]):
+            checks.append('Known Npcs')
+        if "has items" in list(mission_data[which_key]):
+            checks.append('Has Items')
 
-    # Check if checks are passing
-    # and the action can continue
-    checks_passed = True
-    count = 0
-
-    # Player attributes checks
-    if 'Player Attributes' in checks:
-        while count < len(mission_data[which_key]["player attributes"]) and checks_passed == True:
-            current_attribute = mission_data[which_key]["player attributes"][count]
-            if str(current_attribute) not in player["attributes"]:
-                checks_passed = False
-
-            count += 1
+        # Check if checks are passing
+        # and the action can continue
+        checks_passed = True
         count = 0
 
-    # Visited locations checks
-    if 'Visited Locations' in checks:
-        while count < len(mission_data[which_key]["visited locations"]) and checks_passed == True:
-            current_location = mission_data[which_key]["visited locations"][count]
-            if current_location not in player["visited points"]:
-                checks_passed = False
-
-            count += 1
-        count = 0
-
-    # Known enemies checks
-    if 'Known Enemies' in checks:
-        while count < len(mission_data[which_key]["known enemies"]) and checks_passed == True:
-            current_enemy = mission_data[which_key]["known enemies"][count]
-            if current_enemy not in player["enemies list"]:
-                checks_passed = False
-
-            count += 1
-        count = 0
-
-    # Known zones checks
-    if 'Known Zones' in checks:
-        while count < len(mission_data[which_key]["known zones"]) and checks_passed == True:
-            current_enemy = mission_data[which_key]["known zones"][count]
-            if current_enemy not in player["visited zones"]:
-                checks_passed = False
-
-            count += 1
-        count = 0
-
-    # Known npcs checks
-    if 'Known Npcs' in checks:
-        while count < len(mission_data[which_key]["known npcs"]) and checks_passed == True:
-            current_enemy = mission_data[which_key]["known npcs"][count]
-            if current_enemy not in player["met npcs names"]:
-                checks_passed = False
-
-            count += 1
-        count = 0
-
-    # Has items checks
-    if 'Has Items' in checks:
-        while count < len(mission_data[which_key]["has items"]) and checks_passed == True:
-            current_item = mission_data[which_key]["has items"][count]
-
-            if which_key == 'to fail':
-                if current_item in player["inventory"]:
-                    checks_passed = False
-            else:
-                if current_item not in player["inventory"]:
+        # Player attributes checks
+        if 'Player Attributes' in checks:
+            while count < len(mission_data[which_key]["player attributes"]) and checks_passed == True:
+                current_attribute = mission_data[which_key]["player attributes"][count]
+                if str(current_attribute) not in player["attributes"]:
                     checks_passed = False
 
-            count += 1
-        count = 0
+                count += 1
+            count = 0
+
+        # Visited locations checks
+        if 'Visited Locations' in checks:
+            while count < len(mission_data[which_key]["visited locations"]) and checks_passed == True:
+                current_location = mission_data[which_key]["visited locations"][count]
+                if current_location not in player["visited points"]:
+                    checks_passed = False
+
+                count += 1
+            count = 0
+
+        # Known enemies checks
+        if 'Known Enemies' in checks:
+            while count < len(mission_data[which_key]["known enemies"]) and checks_passed == True:
+                current_enemy = mission_data[which_key]["known enemies"][count]
+                if current_enemy not in player["enemies list"]:
+                    checks_passed = False
+
+                count += 1
+            count = 0
+
+        # Known zones checks
+        if 'Known Zones' in checks:
+            while count < len(mission_data[which_key]["known zones"]) and checks_passed == True:
+                current_enemy = mission_data[which_key]["known zones"][count]
+                if current_enemy not in player["visited zones"]:
+                    checks_passed = False
+
+                count += 1
+            count = 0
+
+        # Known npcs checks
+        if 'Known Npcs' in checks:
+            while count < len(mission_data[which_key]["known npcs"]) and checks_passed == True:
+                current_enemy = mission_data[which_key]["known npcs"][count]
+                if current_enemy not in player["met npcs names"]:
+                    checks_passed = False
+
+                count += 1
+            count = 0
+
+        # Has items checks
+        if 'Has Items' in checks:
+            while count < len(mission_data[which_key]["has items"]) and checks_passed == True:
+                current_item = mission_data[which_key]["has items"][count]
+
+                if which_key == 'to fail':
+                    if current_item in player["inventory"]:
+                        checks_passed = False
+                else:
+                    if current_item not in player["inventory"]:
+                        checks_passed = False
+
+                count += 1
+            count = 0
 
     return checks_passed
 
