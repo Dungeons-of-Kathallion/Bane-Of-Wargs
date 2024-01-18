@@ -1696,6 +1696,23 @@ def run(play):
 
             count += 1
 
+        # Check if player has required attributes to
+        # fail a mission. If he does, then
+        # remove the mission id from the player's
+        # active missions save attribute to let the
+        # program know that and run the 'on fail'
+        # mission triggers
+        count = 0
+
+        while count < len(player["active missions"]):
+            current_mission_data = mission[str(player["active missions"][count])]
+            fail = mission_handling.mission_checks(current_mission_data, player, 'to fail')
+            if fail == False:
+                mission_handling.execute_triggers(current_mission_data, player, 'on fail', dialog, preferences, text_replacements_generic, drinks)
+                player["active missions"].remove(str(player["active missions"][count]))
+
+            count += 1
+
         if "npc" in map["point" + str(map_location)] and map_location not in player["met npcs"]:
             current_npc = str(map["point" + str(map_location)]["npc"])
             logger_sys.log_message(f"INFO: Current map point 'point{map_location}' has npc: '{current_npc}'")

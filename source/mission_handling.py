@@ -136,49 +136,69 @@ def mission_checks(mission_data, player, which_key):
     count = 0
 
     # Player attributes checks
-    while count < len(mission_data[which_key]["player attributes"]) and checks_passed == True and 'Player Attributes' in checks:
-        current_attribute = mission_data[which_key]["player attributes"][count]
-        if str(current_attribute) not in player["attributes"]:
-            checks_passed = False
+    if 'Player Attributes' in checks:
+        while count < len(mission_data[which_key]["player attributes"]) and checks_passed == True:
+            current_attribute = mission_data[which_key]["player attributes"][count]
+            if str(current_attribute) not in player["attributes"]:
+                checks_passed = False
 
-        count += 1
-    count = 0
+            count += 1
+        count = 0
 
     # Visited locations checks
-    while count < len(mission_data[which_key]["visited locations"]) and checks_passed == True and 'Visited Locations' in checks:
-        current_location = mission_data[which_key]["visited locations"][count]
-        if current_location not in player["visited points"]:
-            checks_passed = False
+    if 'Visited Locations' in checks:
+        while count < len(mission_data[which_key]["visited locations"]) and checks_passed == True:
+            current_location = mission_data[which_key]["visited locations"][count]
+            if current_location not in player["visited points"]:
+                checks_passed = False
 
-        count += 1
-    count = 0
+            count += 1
+        count = 0
 
     # Known enemies checks
-    while count < len(mission_data[which_key]["known enemies"]) and checks_passed == True and 'Known Enemies' in checks:
-        current_enemy = mission_data[which_key]["known enemies"][count]
-        if current_enemy not in player["enemies list"]:
-            checks_passed = False
+    if 'Known Enemies' in checks:
+        while count < len(mission_data[which_key]["known enemies"]) and checks_passed == True:
+            current_enemy = mission_data[which_key]["known enemies"][count]
+            if current_enemy not in player["enemies list"]:
+                checks_passed = False
 
-        count += 1
-    count = 0
+            count += 1
+        count = 0
 
     # Known zones checks
-    while count < len(mission_data[which_key]["known zones"]) and checks_passed == True and 'Known Zones' in checks:
-        current_enemy = mission_data[which_key]["known zones"][count]
-        if current_enemy not in player["visited zones"]:
-            checks_passed = False
+    if 'Known Zones' in checks:
+        while count < len(mission_data[which_key]["known zones"]) and checks_passed == True:
+            current_enemy = mission_data[which_key]["known zones"][count]
+            if current_enemy not in player["visited zones"]:
+                checks_passed = False
 
-        count += 1
-    count = 0
+            count += 1
+        count = 0
 
     # Known npcs checks
-    while count < len(mission_data[which_key]["known npcs"]) and checks_passed == True and 'Known Npcs' in checks:
-        current_enemy = mission_data[which_key]["known npcs"][count]
-        if current_enemy not in player["met npcs names"]:
-            checks_passed = False
+    if 'Known Npcs' in checks:
+        while count < len(mission_data[which_key]["known npcs"]) and checks_passed == True:
+            current_enemy = mission_data[which_key]["known npcs"][count]
+            if current_enemy not in player["met npcs names"]:
+                checks_passed = False
 
-        count += 1
-    count = 0
+            count += 1
+        count = 0
+
+    # Has items checks
+    if 'Has Items' in checks:
+        while count < len(mission_data[which_key]["has items"]) and checks_passed == True:
+            current_item = mission_data[which_key]["has items"][count]
+
+            if which_key == 'to fail':
+                if current_item in player["inventory"]:
+                    checks_passed = False
+            else:
+                if current_item not in player["inventory"]:
+                    checks_passed = False
+
+            count += 1
+        count = 0
 
     return checks_passed
 
@@ -190,14 +210,15 @@ def execute_triggers(mission_data, player, which_key, dialog, preferences, text_
         logger_sys.log_message(f"ERROR: Stopping mission checks for mission data '{mission_data}' --> invalid key '{which_key}'")
         exit_game()
 
-    if "dialog" in mission_data[which_key]:
-        dialog_handling.print_dialog(mission_data[which_key]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
-    if "payment" in mission_data[which_key]:
-        player["gold"] += int(mission_data[which_key]["payment"])
-    if "fine" in mission_data[which_key]:
-        player["gold"] -= int(mission_data[which_key]["fine"])
-    if "exp addition" in mission_data[which_key]:
-        player["exp"] += int(mission_data[which_key]["exp addition"])
+    if which_key in mission_data:
+        if "dialog" in mission_data[which_key]:
+            dialog_handling.print_dialog(mission_data[which_key]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
+        if "payment" in mission_data[which_key]:
+            player["gold"] += int(mission_data[which_key]["payment"])
+        if "fine" in mission_data[which_key]:
+            player["gold"] -= int(mission_data[which_key]["fine"])
+        if "exp addition" in mission_data[which_key]:
+            player["exp"] += int(mission_data[which_key]["exp addition"])
 
 def offer_mission(mission_id, player, missions_data, dialog, preferences, text_replacements_generic, drinks):
     logger_sys.log_message(f"INFO: Offering mission '{mission_id}' to player")
@@ -207,42 +228,52 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
     # offered missions list and add
     # the mission data in the player's
     # data of its save
-    player["offered missions"].append(mission_id)
 
-    mission_dict = {
-        "went to all stopovers": False,
-        "stopovers went": []
-    }
+    if 'to offer' in data:
+        can_offer = mission_checks(data, player, 'to offer')
+    else:
+        can_offer = True
 
-    player["missions"][mission_id] = mission_dict
+    if can_offer == True:
+        player["offered missions"].append(mission_id)
 
-    # Trigger the mission 'on offer'
-    # triggers if there are
+        mission_dict = {
+            "went to all stopovers": False,
+            "stopovers went": []
+        }
 
-    logger_sys.log_message(f"INFO: Triggering mission '{mission_id}' 'on offer' triggers")
-    if "on offer" in list(data):
-        # Only ask for accepting mission if there is a dialog,
-        # else, make the player automatically accept it
-        if "dialog" in list(data["on offer"]):
-            dialog_handling.print_dialog(data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
-            accept = input("Do you want to accept this task? (y/n)")
-            print("=======================================================")
-            if accept.startswith('y'):
+        player["missions"][mission_id] = mission_dict
+
+        # Trigger the mission 'on offer'
+        # triggers if there are
+
+        logger_sys.log_message(f"INFO: Triggering mission '{mission_id}' 'on offer' triggers")
+        if "on offer" in list(data):
+            # Only ask for accepting mission if there is a dialog,
+            # else, make the player automatically accept it
+            if "dialog" in list(data["on offer"]):
+                dialog_handling.print_dialog(data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
+                accept = input("Do you want to accept this task? (y/n)")
+                print("=======================================================")
+                if accept.startswith('y'):
+                    if player["active missions"] == None:
+                        player["active missions"] = []
+                    player["active missions"].append(mission_id)
+            else:
                 if player["active missions"] == None:
                     player["active missions"] = []
-                player["active missions"].append(mission_id)
+                player["active missions"] += [mission_id]
+            if "payment" in list(data["on offer"]):
+                player["gold"] += int(data["on offer"]["payment"])
+            if "fine" in list(data["on offer"]):
+                player["gold"] -= int(data["on offer"]["fine"])
+            if "exp addition" in list(data["on offer"]):
+                player["exp"] += int(data["on offer"]["exp addition"])
         else:
             if player["active missions"] == None:
                 player["active missions"] = []
             player["active missions"].append(mission_id)
-        if "payment" in list(data["on offer"]):
-            player["gold"] += int(data["on offer"]["payment"])
-        if "fine" in list(data["on offer"]):
-            player["gold"] -= int(data["on offer"]["fine"])
-        if "exp addition" in list(data["on offer"]):
-            player["exp"] += int(data["on offer"]["exp addition"])
-    logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
-
+        logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
 
 def mission_completing_checks(mission_id, missions_data, player, dialog, preferences, text_replacements_generic, drinks):
     # Load mission data and check if the
