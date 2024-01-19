@@ -15,6 +15,7 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 # Functions to handle dialogs
 
+
 def print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks):
     current_dialog_name = current_dialog
     logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}'")
@@ -22,7 +23,11 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
     dialog_len = len(current_dialog["phrases"])
     if "scene" in current_dialog:
         current_dialog_scene = str(current_dialog["scene"])
-        logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' scene at '{program_dir}/game/imgs/{current_dialog_scene}.txt'")
+        logger_sys.log_message(
+            f"INFO: Printing dialog '{
+                current_dialog_name
+            }' scene at '{program_dir}/game/imgs/{current_dialog_scene}.txt'"
+        )
         if preferences["latest preset"]["type"] == 'vanilla':
             with open(program_dir + '/game/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
                 to_print = str(f.read())
@@ -39,8 +44,15 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 print(to_print)
         else:
             current_plugin = str(preferences["latest preset"]["plugin"])
-            logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' scene at '{program_dir}/plugins/{current_plugin}/imgs/{current_dialog_scene}.txt'")
-            with open(program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) + '/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
+            logger_sys.log_message(
+                f"INFO: Printing dialog '{
+                    current_dialog_name
+                }' scene at '{program_dir}/plugins/{current_plugin}/imgs/{current_dialog_scene}.txt'"
+            )
+            with open(
+                program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
+                '/imgs/' + str(current_dialog["scene"]) + '.txt'
+            ) as f:
                 to_print = str(f.read())
                 to_print = to_print.replace('$RED', '\033[0;31m')
                 to_print = to_print.replace('$GREEN', '\033[0;32m')
@@ -64,7 +76,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             count += 1
         text_handling.print_speech_text_effect(text, preferences)
         count += 1
-    if current_dialog["use actions"] == True:
+    if current_dialog["use actions"]:
         logger_sys.log_message(f"INFO: Executing dialog '{current_dialog_name}' actions on the player")
         actions = current_dialog["actions"]
         if "give item" in actions:
@@ -87,17 +99,29 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 count += 1
         if "health modification" in actions:
             if "diminution" in actions["health modification"]:
-                logger_sys.log_message("INFO: Removing " + actions["health modification"]["diminution"] + " hp from the player's health")
+                logger_sys.log_message(
+                    "INFO: Removing " + actions["health modification"]["diminution"] +
+                    " hp from the player's health"
+                )
                 player["health"] -= actions["health modification"]["diminution"]
             if "augmentation" in actions["health modification"]:
-                logger_sys.log_message("INFO: Adding " + actions["health modification"]["augmentation"] + " hp from the player's health")
+                logger_sys.log_message(
+                    "INFO: Adding " + actions["health modification"]["augmentation"] +
+                    " hp from the player's health"
+                )
                 player["health"] += actions["health modification"]["augmentation"]
             if "max health" in actions["health modification"]:
                 if "diminution" in actions["health modification"]["max health"]:
-                    logger_sys.log_message("INFO: Removing " + actions["health modification"]["max health"]["diminution"] + " hp from the player's max health")
+                    logger_sys.log_message(
+                        "INFO: Removing " + actions["health modification"]["max health"]["diminution"] +
+                        " hp from the player's max health"
+                        )
                     player["max health"] -= actions["health modification"]["max health"]["diminution"]
                 if "augmentation" in actions["health modification"]["max health"]:
-                    logger_sys.log_message("INFO: Adding " + actions["health modification"]["max health"]["augmentation"] + " hp from the player's max health")
+                    logger_sys.log_message(
+                        "INFO: Adding " + actions["health modification"]["max health"]["augmentation"] +
+                        " hp from the player's max health"
+                        )
                     player["max health"] += actions["health modification"]["max health"]["augmentation"]
         if "gold modification" in actions:
             if "diminution" in actions["gold modification"]:

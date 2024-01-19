@@ -13,6 +13,7 @@ init()
 
 # Handling function
 
+
 def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player):
     enemies_remaining = enemy_number
     already_encountered = False
@@ -30,7 +31,11 @@ def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, st
         logger_sys.log_message("INFO: Calculating battle risk for the player")
         defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy)
         logger_sys.log_message("INFO: Getting enemy stats")
-        battle.get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, chosen_enemy, chosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining)
+        battle.get_enemy_stats(
+            player, item, enemy, map, map_location, lists, choose_rand_enemy,
+            chosen_enemy, chosen_item, enemy_items_number,
+            enemy_total_inventory, enemies_remaining
+            )
         if not already_encountered:
             logger_sys.log_message("INFO: Display enemy encounter text")
             battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
@@ -73,6 +78,7 @@ def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, st
         player = start_player
         play = 0
         return play
+
 
 # deinitialize colorama
 deinit()
