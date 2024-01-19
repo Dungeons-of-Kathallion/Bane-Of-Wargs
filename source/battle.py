@@ -577,6 +577,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     return
         return
 
+
 still_playing = True
 
 # deinitialize colorama
