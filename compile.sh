@@ -18,6 +18,9 @@ source/enemy_handling.py \
 source/data_handling.py \
 source/npc_handling.py \
 source/text_handling.py \
+source/zone_handling.py \
+source/uuid_handling.py \
+source/weapon_upgrade_handling.py \
 --add-data yamale/VERSION:yamale \
 --collect-submodules fsspec \
 --collect-submodules appdirs \
