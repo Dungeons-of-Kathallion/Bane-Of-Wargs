@@ -16,6 +16,7 @@ source/mission_handling.py \
 source/dialog_handling.py \
 source/enemy_handling.py \
 source/data_handling.py \
+source/npc_handling.py \
 --add-data yamale/VERSION:yamale \
 --collect-submodules fsspec \
 --collect-submodules appdirs \
