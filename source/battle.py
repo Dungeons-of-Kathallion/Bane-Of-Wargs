@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import term_menu
+import text_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -14,26 +15,6 @@ init()
 defend = 0
 turn = True
 fighting = True
-
-def print_long_string(text):
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-
-    # this is just because at the beginning too a `\n` character gets added
-    new_input = new_input[1:]
-    print(str(new_input))
-
-def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
 
 def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     # get all stats
@@ -226,7 +207,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
     enemies_number = enemies_remaining
 
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
 
     if enemies_number > 1:
         print("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
@@ -264,14 +245,14 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
     print("[R]un Away, [F]ight, [U]se Item? ")
 
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
 
     print(" ")
     startup_action = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
     print("")
 
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
 
     if startup_action.lower().startswith('r'):
         # run away chance
@@ -280,9 +261,9 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             fighting = False
         else:
             text = "You failed in running away from your enemy! You now have to fight him/them!"
-            print_long_string(text)
+            text_handling.print_long_string(text)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             fighting = True
     elif startup_action.lower().startswith('f'):
             fighting = True
@@ -321,7 +302,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
                 player["held shield"] = item_input
                 print("You are now holding a/an ", player["held shield"])
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
     else:
         print("'" + startup_action + "' is not a valid option")
         fighting = True
@@ -454,7 +435,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     player_inventory = player_inventory.replace(", ", '\n -')
                     print(" ")
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     print("INVENTORY:")
                     print(player_inventory)
                     item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
@@ -484,7 +465,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                             player["held shield"] = item_input
                             print("You are now holding a/an ", player["held shield"])
                         text = '='
-                        print_separator(text)
+                        text_handling.print_separator(text)
                         print(" ")
                 else:
                     print("'" + action + "' is not a valid option")

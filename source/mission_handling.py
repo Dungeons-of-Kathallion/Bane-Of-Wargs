@@ -3,21 +3,13 @@ import term_menu
 import logger_sys
 import os
 import dialog_handling
+import text_handling
 import time
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
 
 # initialize colorama
 init()
-
-
-def exit_game():
-    time.sleep(1.5)
-    print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
-    logger_sys.log_message("WARNING: closing game now")
-    time.sleep(.5)
-    os.system('clear')
-    exit(1)
 
 # Functions to handle missions
 def get_mission_id_from_name(mission_name, mission_data):
@@ -114,7 +106,7 @@ def mission_checks(mission_data, player, which_key):
     # game logs files
     if which_key != 'to offer' and which_key != 'to complete' and which_key != 'to fail' and which_key != 'to spawn' and which_key != 'to despawn':
         logger_sys.log_message(f"ERROR: Stopping mission checks for mission data '{mission_data}' --> invalid key '{which_key}'")
-        exit_game()
+        text_handling.exit_game()
 
     if which_key in generic_keys:
         if "player attributes" in list(mission_data[which_key]):
@@ -208,7 +200,7 @@ def execute_triggers(mission_data, player, which_key, dialog, preferences, text_
     # game logs files
     if which_key != 'on offer' and which_key != 'on complete'  and which_key != 'on fail':
         logger_sys.log_message(f"ERROR: Stopping mission checks for mission data '{mission_data}' --> invalid key '{which_key}'")
-        exit_game()
+        text_handling.exit_game()
 
     if which_key in mission_data:
         if "dialog" in mission_data[which_key]:

@@ -3,6 +3,7 @@ First Mission:
   description: "Go to $destination"
   source: 0
   destination: 5
+  invisible: true
   on offer:
     dialog: "first mission"
   on complete:

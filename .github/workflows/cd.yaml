@@ -42,7 +42,7 @@ jobs:
           pip install -r requirements.txt
           pip install PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py source/data_handling.py source/npc_handling.py source/text_handling.py source/zone_handling.py source/uuid_handling.py source/weapon_upgrade_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
           mv dist/Bane-Of-Wargs Bane-Of-Wargs-Linux
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -77,7 +77,7 @@ jobs:
           pip install -r requirements.txt
           pip install PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py source/data_handling.py source/npc_handling.py source/text_handling.py source/zone_handling.py source/uuid_handling.py source/weapon_upgrade_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs
           mv dist/Bane-Of-Wargs Bane-Of-Wargs-Mac
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -112,7 +112,7 @@ jobs:
           pip install -r requirements.txt
           pip install windows-curses PyInstaller
 
-          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py source/data_handling.py source/npc_handling.py source/text_handling.py source/zone_handling.py source/uuid_handling.py source/weapon_upgrade_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
           mv dist/Bane-Of-Wargs.exe Bane-Of-Wargs.exe
       - name: Upload artifact
         uses: actions/upload-artifact@v3

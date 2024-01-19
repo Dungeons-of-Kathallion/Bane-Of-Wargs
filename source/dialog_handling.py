@@ -1,4 +1,5 @@
 import logger_sys
+import text_handling
 import appdirs
 import sys
 import time
@@ -13,23 +14,6 @@ init()
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 # Functions to handle dialogs
-def print_speech_text_effect(text, preferences):
-    text = str(text) + "\n"
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-    if preferences["speed up"] == False:
-        for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
-            time.sleep(round(random.uniform(.05, .1), 2))
-    else:
-        for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
-            time.sleep(.02)
 
 def print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks):
     current_dialog_name = current_dialog
@@ -78,7 +62,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             current_text_replacement = str(list(text_replacements_generic)[count])
             text = text.replace(current_text_replacement, str(text_replacements_generic[current_text_replacement]))
             count += 1
-        print_speech_text_effect(text, preferences)
+        text_handling.print_speech_text_effect(text, preferences)
         count += 1
     if current_dialog["use actions"] == True:
         logger_sys.log_message(f"INFO: Executing dialog '{current_dialog_name}' actions on the player")

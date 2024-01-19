@@ -2,6 +2,7 @@ import yamale
 import yaml
 import appdirs
 import logger_sys
+import text_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -97,4 +98,4 @@ def examine(file_path):
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error))
         logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
-        exit(1)
+        text_handling.exit_game()
