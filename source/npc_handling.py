@@ -11,6 +11,7 @@ from colors import *
 # initialize colorama
 init()
 
+
 # Handling functions
 def init_npc(map_location, player, npcs, drinks, item, preferences, map):
     current_npc = str(map["point" + str(map_location)]["npc"])
@@ -46,7 +47,12 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         npc_drinks_len = len(npc_drinks)
         while count < npc_drinks_len:
             current_drink = str(npcs[current_npc]["sells"]["drinks"][int(count)])
-            print(" -" + npcs[current_npc]["sells"]["drinks"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(drinks[current_drink]["gold"] * npcs[current_npc]["cost value"], 2)) + COLOR_RESET_ALL)
+            print(
+                " -" + npcs[current_npc]["sells"]["drinks"][int(count)] + " " +
+                COLOR_YELLOW + COLOR_STYLE_BRIGHT +
+                str(round(drinks[current_drink]["gold"] * npcs[current_npc]["cost value"], 2)) +
+                COLOR_RESET_ALL
+            )
             count += 1
         options += ['Buy Drink']
     if "None" not in npcs[current_npc]["sells"]["items"]:
@@ -56,7 +62,11 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         npc_items_len = len(npc_items)
         while count < npc_items_len:
             current_item = str(npcs[current_npc]["sells"]["items"][int(count)])
-            print(" -" + npcs[current_npc]["sells"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * npcs[current_npc]["cost value"], 2)) + COLOR_RESET_ALL)
+            print(
+                " -" + npcs[current_npc]["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
+                COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * npcs[current_npc]["cost value"], 2)) +
+                COLOR_RESET_ALL
+            )
             count += 1
         options += ['Buy Item']
     if "None" not in npcs[current_npc]["buys"]["items"]:
@@ -66,7 +76,11 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         npc_items_len = len(npc_items)
         while count < npc_items_len:
             current_item = str(npcs[current_npc]["buys"]["items"][int(count)])
-            print(" -" + npcs[current_npc]["buys"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * npcs[current_npc]["cost value"], 2)) + COLOR_RESET_ALL)
+            print(
+                " -" + npcs[current_npc]["buys"]["items"][int(count)] + " " + COLOR_YELLOW +
+                COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * npcs[current_npc]["cost value"], 2)) +
+                COLOR_RESET_ALL
+            )
             count += 1
         options += ['Sell Item']
     options += ['Exit']
@@ -78,34 +92,63 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         choice = term_menu.show_menu(options)
         if choice == 'Buy Drink':
             which_drink = input("Which drink do you want to buy from him? ")
-            if which_drink in npcs[current_npc]["sells"]["drinks"] and (drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]:
-                logger_sys.log_message(f"INFO: Player bought drink '{which_drink}' from npc '{current_npc}', causing the player to loose " + str(drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) + " gold")
+            if (
+                which_drink in npcs[current_npc]["sells"]["drinks"]
+                and (drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]
+            ):
+                logger_sys.log_message(
+                    f"INFO: Player bought drink '{which_drink}' from npc '{current_npc}', causing the player to loose " +
+                    str(drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) + " gold"
+                )
                 player["gold"] -= drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]
                 if drinks[which_drink]["healing level"] == 999:
                     player["health"] = player["max health"]
                 else:
                     player["health"] += drinks[which_drink]["healing level"]
             else:
-                text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
+                text = (
+                    COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." +
+                    COLOR_RESET_ALL
+                )
                 text_handling.print_long_string(text)
         elif choice == 'Buy Item':
             which_item = input("Which item do you want to buy from him? ")
-            if which_item in npcs[current_npc]["sells"]["items"] and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]:
+            if (
+                which_item in npcs[current_npc]["sells"]["items"]
+                and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]
+            ):
                 if player["inventory slots remaining"] > 0:
-                    logger_sys.log_message("INFO: Player bought item '{which_item}' from npc '{current_npc}', causing him, to loose " + str(item[which_item]["gold"] * npcs[current_npc]["cost value"]) + " gold")
+                    logger_sys.log_message(
+                        f"INFO: Player bought item '{which_item}' from npc '{current_npc}', causing him, to loose " + str(
+                            item[which_item]["gold"] * npcs[current_npc]["cost value"]
+                        ) + " gold"
+                    )
                     player["inventory slots remaining"] -= 1
                     player["inventory"].append(which_item)
                     player["gold"] -= item[which_item]["gold"] * npcs[current_npc]["cost value"]
                 else:
-                    text = COLOR_YELLOW + "You cannot buy that items because it would cause your inventory slots to be negative." + COLOR_RESET_ALL
+                    text = (
+                        COLOR_YELLOW + "You cannot buy that items because it would cause your inventory slots to be negative." +
+                        COLOR_RESET_ALL
+                    )
                     text_handling.print_long_string(text)
             else:
-                text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
+                text = (
+                    COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." +
+                    COLOR_RESET_ALL
+                )
                 text_handling.print_long_string(text)
         elif choice == 'Sell Item':
             which_item = input("Which item do you want to sell him? ")
-            if which_item in npcs[current_npc]["buys"]["items"] and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"] and which_item in player["inventory"]:
-                logger_sys.log_message("INFO: Player has sold item '{witch_item}' to npc '{current_npc}' for " + str(item[which_item]["gold"] * npcs[current_npc]["cost value"]) + " gold")
+            if (
+                which_item in npcs[current_npc]["buys"]["items"]
+                and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]
+                and which_item in player["inventory"]
+            ):
+                logger_sys.log_message(
+                    "INFO: Player has sold item '{witch_item}' to npc '{current_npc}' for " +
+                    str(item[which_item]["gold"] * npcs[current_npc]["cost value"]) + " gold"
+                )
                 player["inventory slots remaining"] -= 1
                 player["gold"] += item[which_item]["gold"] * npcs[current_npc]["cost value"]
                 player["inventory"].remove(which_item)
@@ -133,11 +176,13 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                     if which_item == player["held shield"]:
                         player["held shield"] = " "
             else:
-                text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative or because you don't own that item." + COLOR_RESET_ALL
+                text = (
+                    COLOR_YELLOW + "You cannot buy that items because it would cause " +
+                    "your gold to be negative or because you don't own that item." + COLOR_RESET_ALL
+                )
                 text_handling.print_long_string(text)
         else:
             p = False
-
 
 
 # deinitialize colorama
