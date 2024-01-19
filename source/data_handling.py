@@ -17,6 +17,7 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 # Handling functions
 
+
 def load_game_data(which_type, what_plugin=None):
 
     # Check if the which_type variable is valid,
@@ -25,7 +26,10 @@ def load_game_data(which_type, what_plugin=None):
     # and stop the program immediately
     if which_type != 'vanilla' and which_type != 'plugin':
         logger_sys.log_message(f"ERROR: Yaml data loading inputted key '{which_type}' is not valid --> crashing program")
-        print(f"{COLOR_RED}ERROR: {COLOR_STYLE_BRIGHT}Yaml data loading inputted key '{which_type}' is not valid --> crashing program{COLOR_RESET_ALL}")
+        print(
+            f"{COLOR_RED}ERROR: {COLOR_STYLE_BRIGHT}Yaml" +
+            f"data loading inputted key '{which_type}' is not valid --> crashing program{COLOR_RESET_ALL}"
+        )
         time.sleep(5)
         text_handling.exit_game()
 
@@ -81,7 +85,7 @@ def load_game_data(which_type, what_plugin=None):
     else:
         logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' data")
         check_file = os.path.exists(program_dir + "/plugins/" + what_plugin)
-        if check_file == False:
+        if check_file:
             print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
             logger_sys.log_message(f"ERROR: Couldn't find plugin '{what_plugin}'")
             play = 0
@@ -131,6 +135,7 @@ def load_game_data(which_type, what_plugin=None):
             check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
 
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+
 
 # deinitialize colorama
 deinit()
