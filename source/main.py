@@ -1722,6 +1722,7 @@ def run(play):
                 if fail == False:
                     logger_sys.log_message(f"INFO: Executing failing triggers of mission data '{current_mission_data}'")
                     mission_handling.execute_triggers(current_mission_data, player, 'on fail', dialog, preferences, text_replacements_generic, drinks)
+                    print(COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" + current_mission_data["name"] + "'" + COLOR_RESET_ALL)
                     player["active missions"].remove(str(player["active missions"][count]))
 
             count += 1

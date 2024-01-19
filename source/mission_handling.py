@@ -303,6 +303,7 @@ def mission_completing_checks(mission_id, missions_data, player, dialog, prefere
         execute_triggers(mission_data, player, 'on complete', dialog, preferences, text_replacements_generic, drinks)
 
         logger_sys.log_message(f"INFO: Set mission '{mission_id}' as done")
+        print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You completed mission '" + current_mission_data["name"] + "'" + COLOR_RESET_ALL)
         player["active missions"].remove(mission_id)
         player["done missions"].append(mission_id)
 
