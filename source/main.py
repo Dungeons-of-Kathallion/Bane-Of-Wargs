@@ -657,8 +657,8 @@ def run(play):
             current_mount_data = player["mounts"][str(player["current mount"])]
             current_mount_type = str(current_mount_data["mount"])
             if current_mount_data["level"] >= 1:
-                player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
-                player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + ( mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * ( round(current_mount_data["level"]) - 1 )), 3)
+                player["mounts"][str(player["current mount"])]["stats"]["agility addition"] = round(mounts[current_mount_type]["stats"]["agility addition"] + (mounts[current_mount_type]["levels"]["level stat additions"]["agility addition"] * (round(current_mount_data["level"]) - 1)), 3)
+                player["mounts"][str(player["current mount"])]["stats"]["resistance addition"] = round(mounts[current_mount_type]["stats"]["resistance addition"] + (mounts[current_mount_type]["levels"]["level stat additions"]["resistance addition"] * (round(current_mount_data["level"]) - 1)), 3)
 
 
         logger_sys.log_message("INFO: Verifying player equipped equipment is in the player's inventory")
@@ -704,7 +704,7 @@ def run(play):
 
         # loop to get player total armor protection
         while p:
-            if count > ( player_items_number - 1 ):
+            if count > (player_items_number - 1):
                 p = False
             if p == True:
 
@@ -742,7 +742,7 @@ def run(play):
 
         # loop to get player total agility
         while p:
-            if count > ( player_items_number - 1 ):
+            if count > (player_items_number - 1):
                 p = False
             if p == True:
 
@@ -783,7 +783,7 @@ def run(play):
 
         # loop to get player total inventory slots
         while p2:
-            if count2 > ( player_items_number - 1 ):
+            if count2 > (player_items_number - 1):
                 p2 = False
             if p2 == True:
 
@@ -853,11 +853,11 @@ def run(play):
         if "North" not in map["point" + str(map_location)]["blocked"]:
             print("You can go North ▲" + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
         else:
-            print( "                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
+            print("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
         if "South" not in map["point" + str(map_location)]["blocked"]:
             print("You can go South ▼" + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
         else:
-            print( "                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
+            print("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
         if "East" not in map["point" + str(map_location)]["blocked"]:
             print("You can go East ►" + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Interact with zone (hostel...)")
         else:
@@ -1422,8 +1422,8 @@ def run(play):
                     print("NAME: " + which_enemy)
 
                     print("PLURAL: " + enemy[which_enemy]["plural"])
-                    enemy_average_damage = ( enemy[which_enemy]["damage"]["min damage"] + enemy[which_enemy]["damage"]["max damage"] ) / 2
-                    enemy_average_health = ( enemy[which_enemy]["health"]["min spawning health"] + enemy[which_enemy]["health"]["max spawning health"] ) / 2
+                    enemy_average_damage = (enemy[which_enemy]["damage"]["min damage"] + enemy[which_enemy]["damage"]["max damage"]) / 2
+                    enemy_average_health = (enemy[which_enemy]["health"]["min spawning health"] + enemy[which_enemy]["health"]["max spawning health"]) / 2
                     print("AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(enemy_average_damage) + COLOR_RESET_ALL)
                     print("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
                     print("AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(enemy[which_enemy]["agility"]) + COLOR_RESET_ALL)
@@ -1699,7 +1699,7 @@ def run(play):
                     if ask.lower().startswith('y'):
                         logger_sys.log_message(f"INFO: Getting rid of item '{which_item}'")
                         if item[which_item]["type"] == "Bag":
-                            if ( player["inventory slots remaining"] - item[which_item]["inventory slots"] ) < 0:
+                            if (player["inventory slots remaining"] - item[which_item]["inventory slots"]) < 0:
                                 text = COLOR_YELLOW + "You cannot throw that item because it would cause your remaining inventory slots to be negative" + COLOR_RESET_ALL
                                 text_handling.print_long_string(text)
                                 time.sleep(1.5)

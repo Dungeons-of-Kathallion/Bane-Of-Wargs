@@ -78,8 +78,8 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         choice = term_menu.show_menu(options)
         if choice == 'Buy Drink':
             which_drink = input("Which drink do you want to buy from him? ")
-            if which_drink in npcs[current_npc]["sells"]["drinks"] and ( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
-                logger_sys.log_message(f"INFO: Player bought drink '{which_drink}' from npc '{current_npc}', causing the player to loose " + str( drinks[which_drink]["gold"] * npcs[current_npc]["cost value"] ) + " gold")
+            if which_drink in npcs[current_npc]["sells"]["drinks"] and (drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]:
+                logger_sys.log_message(f"INFO: Player bought drink '{which_drink}' from npc '{current_npc}', causing the player to loose " + str(drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) + " gold")
                 player["gold"] -= drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]
                 if drinks[which_drink]["healing level"] == 999:
                     player["health"] = player["max health"]
@@ -90,9 +90,9 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                 text_handling.print_long_string(text)
         elif choice == 'Buy Item':
             which_item = input("Which item do you want to buy from him? ")
-            if which_item in npcs[current_npc]["sells"]["items"] and ( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
+            if which_item in npcs[current_npc]["sells"]["items"] and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]:
                 if player["inventory slots remaining"] > 0:
-                    logger_sys.log_message("INFO: Player bought item '{which_item}' from npc '{current_npc}', causing him, to loose " + str( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) + " gold")
+                    logger_sys.log_message("INFO: Player bought item '{which_item}' from npc '{current_npc}', causing him, to loose " + str(item[which_item]["gold"] * npcs[current_npc]["cost value"]) + " gold")
                     player["inventory slots remaining"] -= 1
                     player["inventory"].append(which_item)
                     player["gold"] -= item[which_item]["gold"] * npcs[current_npc]["cost value"]
@@ -104,8 +104,8 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                 text_handling.print_long_string(text)
         elif choice == 'Sell Item':
             which_item = input("Which item do you want to sell him? ")
-            if which_item in npcs[current_npc]["buys"]["items"] and ( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"] and which_item in player["inventory"]:
-                logger_sys.log_message("INFO: Player has sold item '{witch_item}' to npc '{current_npc}' for " + str( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) + " gold")
+            if which_item in npcs[current_npc]["buys"]["items"] and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"] and which_item in player["inventory"]:
+                logger_sys.log_message("INFO: Player has sold item '{witch_item}' to npc '{current_npc}' for " + str(item[which_item]["gold"] * npcs[current_npc]["cost value"]) + " gold")
                 player["inventory slots remaining"] -= 1
                 player["gold"] += item[which_item]["gold"] * npcs[current_npc]["cost value"]
                 player["inventory"].remove(which_item)
