@@ -3,12 +3,17 @@
 (You can open a PR to add or improve this template, if you find it lacking!)
 
 (Choose one heading, or add your own.)
-**Content (Artwork / Missions / Jobs)**
-**Balance**
-**Feature**
-**Bug fix**
-**CI/CD/Testing**
-**Documentation**
+**CONTENT** (data addon)
+**BALANCE**
+**FEATURE**
+**BUGFIX**
+**DOCUMENTATION**
+**WORKFLOW**
+**UPDATE**
+**REFACTOR**
+**TWEAK**
+**FIX**
+**PROGRESS**
 
 This PR addresses the bug/feature described in issue #{{insert number}}
 
