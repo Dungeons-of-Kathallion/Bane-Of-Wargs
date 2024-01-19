@@ -124,7 +124,7 @@ if os.path.exists(program_dir) == False:
         "speed up": False,
         "theme": 'greenblue',
         "title style": 1,
-        "auto update": False
+        "auto update": True
     }
     default_config_data = yaml.dump(default_config_data)
     with open(program_dir + '/preferences.yaml', 'w') as f:
@@ -137,59 +137,63 @@ if os.path.exists(program_dir) == False:
 
 # Download game data from github master branch
 # and install them (auto-update)
-logger_sys.log_message("INFO: Downloading game data to update it")
-print("Download game data...")
-print("This may take a few seconds, sorry for the waiting.")
-print("0/3", end="\r")
+with open(program_dir + '/preferences.yaml', 'r') as f:
+    preferences = yaml.safe_load(f)
+    check_yaml.examine(program_dir + '/preferences.yaml')
+if preferences["auto update"] == True:
+    logger_sys.log_message("INFO: Downloading game data to update it")
+    print("Download game data...")
+    print("This may take a few seconds, sorry for the waiting.")
+    print("0/3", end="\r")
 
-logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
-"""
-# Download yaml schema files
-try:
-    destination = program_dir + '/game/schemas'
-    fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
-    fs.get(fs.ls("schemas/"), destination)
-except Exception as error:
-    print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
-    logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-    logger_sys.log_message("DEBUG: " + str(error))
-    print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-    time.sleep(.5)
+    logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
 
-print("1/3", end="\r")
+    # Download yaml schema files
+    try:
+        destination = program_dir + '/game/schemas'
+        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+        fs.get(fs.ls("schemas/"), destination)
+    except Exception as error:
+        print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
+        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
+        logger_sys.log_message("DEBUG: " + str(error))
+        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+        time.sleep(.5)
 
-logger_sys.log_message("INFO: Downloading game data files from github")
-# Download data files
-try:
-    destination = program_dir + '/game/data'
-    fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
-    fs.get(fs.ls("data/"), destination)
-except Exception as error:
-    print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
-    logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-    logger_sys.log_message("DEBUG: " + str(error))
-    print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-    time.sleep(.5)
+    print("1/3", end="\r")
 
-print("2/3", end="\r")
+    logger_sys.log_message("INFO: Downloading game data files from github")
+    # Download data files
+    try:
+        destination = program_dir + '/game/data'
+        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+        fs.get(fs.ls("data/"), destination)
+    except Exception as error:
+        print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
+        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
+        logger_sys.log_message("DEBUG: " + str(error))
+        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+        time.sleep(.5)
 
-logger_sys.log_message("INFO: Downloading game images .txt files from github")
-# Download images .txt files
-try:
-    destination = program_dir + '/game/imgs'
-    fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
-    fs.get(fs.ls("imgs/"), destination)
-except Exception as error:
-    print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
-    logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-    logger_sys.log_message("DEBUG: " + str(error))
-    print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-    time.sleep(.5)
+    print("2/3", end="\r")
 
-print("3/3")
-print("Done")
-logger_sys.log_message("INFO: Process of downloading game data to update it completed")
-"""
+    logger_sys.log_message("INFO: Downloading game images .txt files from github")
+    # Download images .txt files
+    try:
+        destination = program_dir + '/game/imgs'
+        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+        fs.get(fs.ls("imgs/"), destination)
+    except Exception as error:
+        print(COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL + " an error occurred when trying to download game data to '" + destination + "'.")
+        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
+        logger_sys.log_message("DEBUG: " + str(error))
+        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+        time.sleep(.5)
+
+    print("3/3")
+    print("Done")
+    logger_sys.log_message("INFO: Process of downloading game data to update it completed")
+
 
 # main menu start
 while menu:
