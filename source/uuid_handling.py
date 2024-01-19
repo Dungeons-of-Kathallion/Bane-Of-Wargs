@@ -1,6 +1,7 @@
 import logger_sys
 import uuid
 
+
 # Handling functions
 def generate_random_uuid():
     logger_sys.log_message("INFO: Generating new random UUID using 'uuid.4' method")

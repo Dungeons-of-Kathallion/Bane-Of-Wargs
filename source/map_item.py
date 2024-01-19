@@ -37,7 +37,7 @@ def print_map(player, map, zone):
             get_zone = True
             try:
                 current_point = search_point(coord_x, coord_y, map_points_num, map)
-            except:
+            except Exception:
                 get_zone = False
             if get_zone and current_point not in current_point_list:
                 print_color = get_zone_color(zone[map["point" + str(current_point)]["map zone"]]["type"])
@@ -52,6 +52,7 @@ def print_map(player, map, zone):
         print("═", end="")
         count += 1
     print("╝")
+
 
 def get_zone_color(zone_type):
     program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
@@ -126,6 +127,7 @@ def get_zone_color(zone_type):
         print(error)
         text_handling.exit_game()
     return zone_color
+
 
 # function to search through the map file
 def search_point(x, y, map_points_num, map):

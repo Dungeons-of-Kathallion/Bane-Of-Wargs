@@ -1,5 +1,6 @@
 import logger_sys
 
+
 # Handling functions
 def check_for_item(item_name, item):
     logger_sys.log_message(f"INFO: Checking if item '{item_name}' actually exists")
@@ -7,6 +8,7 @@ def check_for_item(item_name, item):
     if str(item_name) in list(item):
         item_exist = True
     return item_exist
+
 
 def check_weapon_next_upgrade_name(item_name, item):
     logger_sys.log_message(f"INFO: Check for equipment '{item_name}' next upgrade")
@@ -27,7 +29,9 @@ def check_weapon_next_upgrade_name(item_name, item):
         if not weapon_already_upgraded:
             weapon_next_upgrade_name = str(item_name) + " (1)"
         else:
-            weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
+            weapon_next_upgrade_name = str(
+                weapon_next_upgrade_name[0: weapon_next_upgrade_name.index("(")]
+            ) + "(" + str(item_data["upgrade tier"] + 1) + ")"
 
         # check if the next upgrade actually exist
         item_upgrade_exist = check_for_item(weapon_next_upgrade_name, item)
@@ -38,6 +42,7 @@ def check_weapon_next_upgrade_name(item_name, item):
         logger_sys.log_message(f"INFO: Found next upgrade for equipment '{item_name}': '{weapon_next_upgrade_name}'")
 
     return weapon_next_upgrade_name
+
 
 def check_weapon_max_upgrade(item_name, item):
     logger_sys.log_message(f"INFO: Getting equipment '{item_name}' max upgrade")
@@ -52,14 +57,16 @@ def check_weapon_max_upgrade(item_name, item):
         if "(" in str(weapon_next_upgrade_name):
             weapon_already_upgraded = True
 
-        if weapon_already_upgraded == False:
+        if not weapon_already_upgraded:
             weapon_next_upgrade_name = str(item_name) + " (1)"
         else:
-            weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
+            weapon_next_upgrade_name = str(
+                weapon_next_upgrade_name[0: weapon_next_upgrade_name.index("(")]
+            ) + "(" + str(item_data["upgrade tier"] + 1) + ")"
 
         # check if the next upgrade actually exist
         item_upgrade_exist = check_for_item(weapon_next_upgrade_name, item)
-        if item_upgrade_exist == False:
+        if not item_upgrade_exist:
             further_upgrade = False
 
     # correct max upgrade count
@@ -71,6 +78,7 @@ def check_weapon_max_upgrade(item_name, item):
     weapon_next_upgrade_name_count -= 1
 
     return weapon_next_upgrade_name_count
+
 
 def detect_weapon_next_upgrade_items(item_name, item):
     logger_sys.log_message(f"INFO: Getting equipment '{item_name}' next upgrade items")
@@ -85,7 +93,9 @@ def detect_weapon_next_upgrade_items(item_name, item):
     if not weapon_already_upgraded:
         weapon_next_upgrade_name = str(item_name) + " (1)"
     else:
-        weapon_next_upgrade_name = str(weapon_next_upgrade_name[ 0 : weapon_next_upgrade_name.index("(")]) + "(" + str(item_data["upgrade tier"] + 1) + ")"
+        weapon_next_upgrade_name = str(
+            weapon_next_upgrade_name[0: weapon_next_upgrade_name.index("(")]
+        ) + "(" + str(item_data["upgrade tier"] + 1) + ")"
 
     # check if the next upgrade actually exist
     item_upgrade_exist = check_for_item(weapon_next_upgrade_name, item)
@@ -93,7 +103,7 @@ def detect_weapon_next_upgrade_items(item_name, item):
         weapon_next_upgrade_name = None
 
     # get next weapon upgrade needed items
-    if weapon_next_upgrade_name != None:
+    if weapon_next_upgrade_name is not None:
         weapon_next_upgrade_items = item[str(weapon_next_upgrade_name)]["for this upgrade"]
     else:
         weapon_next_upgrade_items = "None"
@@ -109,7 +119,11 @@ def detect_weapon_next_upgrade_items(item_name, item):
             while count2 < current_item_number - 1:
                 weapon_next_upgrade_items.remove(current_item)
                 count2 += 1
-            weapon_next_upgrade_items = [sub.replace(current_item, current_item + "X" + str(current_item_number)) for sub in weapon_next_upgrade_items]
+            weapon_next_upgrade_items = [
+                sub.replace(
+                    current_item, current_item + "X" + str(current_item_number)
+                ) for sub in weapon_next_upgrade_items
+            ]
 
         count += 1
 
