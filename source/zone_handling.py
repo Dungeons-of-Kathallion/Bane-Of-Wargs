@@ -820,7 +820,7 @@ def interaction_forge(map_zone, zone, player, item):
                     player["gold"] -= item[which_metal]["gold"] * current_forge["cost value"] * metal_count
                     count = 0
                     while count < metal_count:
-                        logger_sys.log_message(f"INFO: Removing from player inventory item '{which_metal}")
+                        logger_sys.log_message(f"INFO: Adding to player inventory item '{which_metal}")
                         player["inventory"].append(which_metal)
                         count += 1
                 else:
