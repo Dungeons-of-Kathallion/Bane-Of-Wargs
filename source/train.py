@@ -11,6 +11,7 @@ from colorama import Fore, Back, Style, init, deinit
 # initialize colorama
 init()
 
+
 def training_loop(mount_uuid, player, item, mounts, stable):
     still_training = True
     current_mount_type = str(player["mounts"][str(mount_uuid)]["mount"])
@@ -45,7 +46,9 @@ def training_loop(mount_uuid, player, item, mounts, stable):
                 player["inventory"].remove(which_food)
                 player["xp"] += random.randint(1, 4)
                 if player["current mount"] in player["mounts"]:
-                        player["mounts"][player["current mount"]]["level"] += round(random.uniform(.02, .10), 3) / mounts[current_mount_type]["feed"]["feed needs"]
+                    player["mounts"][player["current mount"]]["level"] += round(
+                        random.uniform(.02, .10), 3
+                    ) / mounts[current_mount_type]["feed"]["feed needs"]
             else:
                 text = COLOR_YELLOW + "You cannot feed your mount with this food or you don't own that food." + COLOR_RESET_ALL
                 text_handling.print_long_string(text)
@@ -82,7 +85,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
             # calculate elapsed time
             elapsed_time = end_time - start_time
             elapsed_time = round(elapsed_time, 2)
-            game_elapsed_time = .001389 * elapsed_time # 180 seconds irl = .25 days in-game
+            game_elapsed_time = .001389 * elapsed_time  # 180 seconds irl = .25 days in-game
             game_elapsed_time = round(game_elapsed_time, 2)
             player["gold"] -= stable["training gold"] * game_elapsed_time
         else:

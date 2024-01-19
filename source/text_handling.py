@@ -15,6 +15,7 @@ init()
 # Handling functions
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
+
 def print_speech_text_effect(text, preferences):
     text = str(text) + "\n"
     new_input = ""
@@ -22,7 +23,7 @@ def print_speech_text_effect(text, preferences):
         if i % 54 == 0:
             new_input += '\n'
         new_input += letter
-    if preferences["speed up"] == False:
+    if not preferences["speed up"]:
         for character in new_input:
             sys.stdout.write(character)
             sys.stdout.flush()
@@ -33,6 +34,7 @@ def print_speech_text_effect(text, preferences):
             sys.stdout.flush()
             time.sleep(.02)
 
+
 def exit_game():
     time.sleep(1.5)
     print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
@@ -40,6 +42,7 @@ def exit_game():
     time.sleep(.5)
     os.system('clear')
     exit(1)
+
 
 def print_separator(character):
     count = 0
@@ -50,11 +53,13 @@ def print_separator(character):
         count += 1
     sys.stdout.write('\n')
 
+
 def overstrike_text(text):
     result = ""
     for character in text:
         result = result + character + '\u0336'
     print(str(result))
+
 
 def print_long_string(text):
     new_input = ""
@@ -66,6 +71,7 @@ def print_long_string(text):
     # this is just because at the beginning too a `\n` character gets added
     new_input = new_input[1:]
     print(str(new_input))
+
 
 def print_zone_map(zone_name, zone, player, preferences):
     logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
@@ -102,16 +108,28 @@ def print_zone_map(zone_name, zone, player, preferences):
         if count == 0:
             print(line + " NAME: " + preferences["latest preset"]["save"])
         if count == 1:
-            print(line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE + str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_BLUE+ str(player["max health"]) + COLOR_RESET_ALL)
+            print(
+                line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
+                str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT +
+                COLOR_BLUE + str(player["max health"]) + COLOR_RESET_ALL
+            )
         if count == 2:
-            print(line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL)
+            print(
+                line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
+                str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" +
+                COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
+            )
         if count == 3:
-            print(line + " ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL)
+            print(
+                line + " ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
+                str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL
+            )
         if count == 4:
             print(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
         if count == 5:
             print(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
         count += 1
+
 
 def print_zone_map_alone(zone_name, zone):
     logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
@@ -132,13 +150,17 @@ def print_zone_map_alone(zone_name, zone):
         print(line)
         count += 1
 
+
 def print_npc_thumbnail(npc, preferences):
     logger_sys.log_message(f"INFO: Printing NPC '{npc}' thumbnail")
     if preferences["latest preset"]["type"] == "vanilla":
         with open(program_dir + '/game/imgs/' + npc + ".txt") as f:
             to_print = str(f.read())
     else:
-        with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + npc + ".txt") as f:
+        with open(
+            program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
+            '/imgs/' + npc + ".txt"
+        ) as f:
             to_print = str(f.read())
     to_print = to_print.replace('$RED', '\033[0;31m')
     to_print = to_print.replace('$GREEN', '\033[0;32m')
@@ -155,6 +177,7 @@ def print_npc_thumbnail(npc, preferences):
     for line in to_print.splitlines():
         print(line)
         count += 1
+
 
 def print_enemy_thumbnail(enemy, preferences):
     logger_sys.log_message(f"INFO: Printing enemy '{enemy}' thumbnail")
@@ -162,7 +185,10 @@ def print_enemy_thumbnail(enemy, preferences):
         with open(program_dir + '/game/imgs/' + enemy + ".txt") as f:
             to_print = str(f.read())
     else:
-        with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + enemy + ".txt") as f:
+        with open(
+            program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
+            '/imgs/' + enemy + ".txt"
+        ) as f:
             to_print = str(f.read())
     to_print = to_print.replace('$RED', '\033[0;31m')
     to_print = to_print.replace('$GREEN', '\033[0;32m')
@@ -179,6 +205,7 @@ def print_enemy_thumbnail(enemy, preferences):
     for line in to_print.splitlines():
         print(line)
         count += 1
+
 
 def a_an_check(word):
     logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}'")
