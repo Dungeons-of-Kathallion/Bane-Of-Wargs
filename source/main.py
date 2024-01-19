@@ -1889,6 +1889,8 @@ def run(play):
                         if spawning_checks == True and spawning_checks_2 == False:
                             logger_sys.log_message(f"INFO: Spawning enemy from mission '{current_mission_id}' with mission enemy data '{current_enemy_data}'")
                             enemy_handling.spawn_enemy(map_location, lists[str(current_enemy_data["enemy category"])], current_enemy_data["enemy number"],enemy, item, lists, start_player, map, player)
+                            if "dialog" in current_enemy_data:
+                                dialog_handling.print_dialog(current_enemy_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
 
                     count2 += 1
             count += 1
