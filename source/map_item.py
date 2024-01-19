@@ -1,6 +1,7 @@
 import colors
 import yaml
 import appdirs
+import text_handling
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
 
@@ -123,7 +124,7 @@ def get_zone_color(zone_type):
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"zone type '{zone_type}' is not a valid zone type." + COLOR_RESET_ALL)
         print(error)
-        exit(1)
+        text_handling.exit_game()
     return zone_color
 
 # function to search through the map file

@@ -10,6 +10,7 @@ import dialog_handling
 import enemy_handling
 import data_handling
 import npc_handling
+import text_handling
 import os
 import sys
 import time
@@ -80,33 +81,6 @@ def print_title():
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.random(f.read())
                 print(faded_text)
-
-def print_speech_text_effect(text):
-    text = str(text) + "\n"
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-    if preferences["speed up"] == False:
-        for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
-            time.sleep(round(random.uniform(.05, .1), 2))
-    else:
-        for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
-            time.sleep(.02)
-
-
-def exit_game():
-    time.sleep(1.5)
-    print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
-    logger_sys.log_message("WARNING: closing game now")
-    time.sleep(.5)
-    os.system('clear')
-    exit(1)
 
 menu = True
 
@@ -249,7 +223,7 @@ while menu:
                 print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
                 logger_sys.log_message(f"ERROR: Couldn't find save file '{save_file}'")
                 play = 0
-                exit_game()
+                text_handling.exit_game()
             logger_sys.log_message("INFO: Opening Save File")
             with open(save_file) as f:
                 player = yaml.safe_load(f)
@@ -260,7 +234,7 @@ while menu:
 
         elif choice == 'Play Plugin':
             text = "Please select a plugin to use"
-            print_speech_text_effect(text)
+            text_handling.print_speech_text_effect(text, preferences)
             res = []
 
             logger_sys.log_message(f"INFO: Searching for plugins in the '{program_dir}/plugins/' directory")
@@ -282,7 +256,7 @@ while menu:
 
         if using_latest_preset == False:
             text = "Please select an action:"
-            print_speech_text_effect(text)
+            text_handling.print_speech_text_effect(text, preferences)
             options = ['Open Save', 'New Save']
             choice = term_menu.show_menu(options)
 
@@ -304,7 +278,7 @@ while menu:
                     res[idx] = ele.replace(char2, '')
 
                 text = "Please select a save to open."
-                print_speech_text_effect(text)
+                text_handling.print_speech_text_effect(text, preferences)
                 open_save = input(COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
                 logger_sys.log_message("INFO: Updating latest preset")
                 preferences["latest preset"]["save"] = open_save
@@ -315,7 +289,7 @@ while menu:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"ERROR: Couldn't find save file '{save_file}'")
                     play = 0
-                    exit_game()
+                    text_handling.exit_game()
                 logger_sys.log_message("INFO: Opening save file")
                 with open(save_file) as f:
                     player = yaml.safe_load(f)
@@ -324,7 +298,7 @@ while menu:
                 menu = False
             else:
                 text = "Please name your save: "
-                print_speech_text_effect(text)
+                text_handling.print_speech_text_effect(text, preferences)
                 enter_save_name = input('> ')
                 player = start_player
                 dumped = yaml.dump(player)
@@ -337,7 +311,7 @@ while menu:
                     print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" + save_name + "'" + " already exists" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"ERROR: Save file '{save_name}' already exists")
                     play = 0
-                    exit_game()
+                    text_handling.exit_game()
                 logger_sys.log_message("INFO: Creating new save")
                 with open(save_name, "w") as f:
                     f.write(dumped)
@@ -370,12 +344,12 @@ while menu:
             res[idx] = ele.replace(char2, '')
 
         text = "Please choose an action."
-        print_speech_text_effect(text)
+        text_handling.print_speech_text_effect(text, preferences)
         options = ['Edit Save', 'Delete Save']
         choice = term_menu.show_menu(options)
         if choice == 'Edit Save':
             text = "Please select a save to edit."
-            print_speech_text_effect(text)
+            text_handling.print_speech_text_effect(text, preferences)
             open_save = input(COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if check_file == False:
@@ -383,7 +357,7 @@ while menu:
                 logger_sys.log_message(f"ERROR: Save file '{program_dir}/saves/save_{open_save}.yaml' does not exists")
                 play = 0
             text = "Select an action for the selected save."
-            print_speech_text_effect(text)
+            text_handling.print_speech_text_effect(text, preferences)
             options = ['Rename Save', 'Manually Edit Save']
             choice = term_menu.show_menu(options)
             if choice == 'Rename Save':
@@ -400,7 +374,7 @@ while menu:
                 subprocess.call([editor, save_to_open])
         else:
             text = "Please select a save to delete."
-            print_speech_text_effect(text)
+            text_handling.print_speech_text_effect(text, preferences)
             open_save = input(COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL + COLOR_GREEN + str(res) + COLOR_RESET_ALL + " ")
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if check_file == False:
@@ -426,7 +400,7 @@ while menu:
     elif choice == 'Check Update':
         logger_sys.log_message("INFO: Checking for updates from github repo")
         text = "Checking for updates..."
-        print_speech_text_effect(text)
+        text_handling.print_speech_text_effect(text, preferences)
         try:
             repo = Repo('.git')
             assert not repo.bare
@@ -438,7 +412,7 @@ while menu:
             logger_sys.log_message("DEBUG: Please make sure you're playing using the source code from the github repository. You can also try to pull the repo manually from the command line.")
             time.sleep(5)
         text = "Finished Updating."
-        print_speech_text_effect(text)
+        text_handling.print_speech_text_effect(text, preferences)
     else:
         os.system('clear')
         exit(1)
@@ -468,119 +442,6 @@ def remove_gold(amount):
     player_gold = player["gold"]
     player_gold -= float(amount)
     player["gold"] = round(player_gold, 2)
-
-def print_zone_map(zone_name):
-    logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
-    to_print = zone[zone_name]["map"]["map full"]
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
-
-    player_equipment = []
-
-    logger_sys.log_message("INFO: Updating player equipped items")
-    if player["held item"] != " ":
-        player_equipment.append(player["held item"])
-    if player["held chestplate"] != " ":
-        player_equipment.append(player["held chestplate"])
-    if player["held leggings"] != " ":
-        player_equipment.append(player["held leggings"])
-    if player["held boots"] != " ":
-        player_equipment.append(player["held boots"])
-
-    player_equipment = str(player_equipment)
-    player_equipment = player_equipment.replace("'", "")
-
-    count = 0
-    logger_sys.log_message("INFO: Printing UI")
-    for line in to_print.splitlines():
-        if count == 0:
-            print(line + " NAME: " + preferences["latest preset"]["save"])
-        if count == 1:
-            print(line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE + str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_BLUE+ str(player["max health"]) + COLOR_RESET_ALL)
-        if count == 2:
-            print(line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL)
-        if count == 3:
-            print(line + " ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL)
-        if count == 4:
-            print(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
-        if count == 5:
-            print(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
-        count += 1
-
-def print_zone_map_alone(zone_name):
-    logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
-    to_print = zone[zone_name]["map"]["map full"]
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
-
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
-
-def print_npc_thumbnail(npc):
-    logger_sys.log_message(f"INFO: Printing NPC '{npc}' thumbnail")
-    if preferences["latest preset"]["type"] == "vanilla":
-        with open(program_dir + '/game/imgs/' + npc + ".txt") as f:
-            to_print = str(f.read())
-    else:
-        with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + npc + ".txt") as f:
-            to_print = str(f.read())
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
-
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
-
-def print_enemy_thumbnail(enemy):
-    logger_sys.log_message(f"INFO: Printing enemy '{enemy}' thumbnail")
-    if preferences["latest preset"]["type"] == "vanilla":
-        with open(program_dir + '/game/imgs/' + enemy + ".txt") as f:
-            to_print = str(f.read())
-    else:
-        with open(program_dir + '/plugins/' +  str(preferences["latest preset"]["plugin"]) + '/imgs/' + enemy + ".txt") as f:
-            to_print = str(f.read())
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
-
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
 
 def check_for_key(direction):
     logger_sys.log_message("INFO: Checking for key at every next locations possible")
@@ -615,10 +476,10 @@ def check_for_key(direction):
                 future_map_location = i
     if "key" in map["point" + str(future_map_location)]:
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
 
         text = "You need the following key(s) to enter this location, if you decide to use them, you may loose them:"
-        print_long_string(text)
+        text_handling.print_long_string(text)
 
         keys_list = str(map["point" + str(future_map_location)]["key"]["required keys"])
         logger_sys.log_message(f"INFO: Entering map point 'point{future_map_location}' requires keys: {keys_list}")
@@ -632,7 +493,7 @@ def check_for_key(direction):
         keys_len = len(map["point" + str(future_map_location)]["key"]["required keys"])
 
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
 
         options = ['Continue', 'Leave']
         choice = term_menu.show_menu(options)
@@ -659,7 +520,7 @@ def check_for_key(direction):
                 logger_sys.log_message("INFO: Player don't have necessary keys: passing")
                 print(" ")
                 text = COLOR_YELLOW + "You don't have the necessary key(s) to enter this locations"
-                print_long_string(text)
+                text_handling.print_long_string(text)
                 time.sleep(1.5)
             if have_necessary_keys:
                 logger_sys.log_message("INFO: Player has necessary keys: letting him pass")
@@ -671,32 +532,6 @@ def check_for_key(direction):
                     player["x"] += 1
                 elif direction == "west":
                     player["x"] -= 1
-
-def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
-
-def overstrike_text(text):
-    result = ""
-    for character in text:
-        result = result + character + '\u0336'
-    print(str(result))
-
-def print_long_string(text):
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-
-    # this is just because at the beginning too a `\n` character gets added
-    new_input = new_input[1:]
-    print(str(new_input))
 
 # Loading text replacements
 logger_sys.log_message("INFO: Loading generic texts replacements")
@@ -864,20 +699,6 @@ def detect_weapon_next_upgrade_items(item_name):
 
     logger_sys.log_message(f"INFO: Found equipment '{item_name}' next upgrade items: '{weapon_next_upgrade_items}'")
     return weapon_next_upgrade_items
-
-# check correct grammar for 'a' in front of a
-# certain word. will return the right text like this:
-# <a/an> <word>
-def a_an_check(word):
-    logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}'")
-    global to_return
-    vowels = ['a', 'e', 'i', 'o', 'u']
-    if word[0] in vowels:
-        to_return = "an " + word
-    else:
-        to_return = "a " + word
-    logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}': '{to_return}'")
-    return to_return
 
 # gameplay here:
 def run(play):
@@ -1117,10 +938,10 @@ def run(play):
             text = COLOR_RED + COLOR_STYLE_BRIGHT + "FATAL ERROR: You are in an undefined location. This could have been the result of using or not using a plugin. Verify you are using the right plugin for this save or manually modify your player coordinates in the 'Manage Saves' in the main menu. The game will close in 10 secs." + COLOR_RESET_ALL
             logger_sys.log_message("CRITICAL: Player is in an undefined location.")
             logger_sys.log_message("DEBUG: This could have been the result of using or not using a plugin. Verify you are using the right plugin for this save or manually modify your player coordinates in the 'Manage Saves' in the main menu.")
-            print_long_string(text)
+            text_handling.print_long_string(text)
             time.sleep(10)
             os.system('clear')
-            exit_game()
+            text_handling.exit_game()
         logger_sys.log_message("INFO: Getting player current map zone location")
         map_zone = map["point" + str(map_location)]["map zone"]
         logger_sys.log_message("INFO: Updating player 'map zone' in the save file")
@@ -1140,18 +961,18 @@ def run(play):
 
         logger_sys.log_message("INFO: Printing GUI")
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
 
         print("DAY TIME: " + day_time)
         print("LOCATION: " + map_zone + " (" + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(player["x"]) + COLOR_RESET_ALL + ", " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(player["y"]) + COLOR_RESET_ALL + ")")
 
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
 
-        print_zone_map(map_zone)
+        text_handling.print_zone_map(map_zone, zone, player, preferences)
 
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
 
         print("DIRECTIONS: " + "          ACTIONS:")
 
@@ -1173,7 +994,7 @@ def run(play):
             print("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save")
 
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
 
         logger_sys.log_message("INFO: Checking if the start dialog should be displayed to the player")
         # player start dialog
@@ -1182,7 +1003,7 @@ def run(play):
             logger_sys.log_message("INFO: Displaying start dialog '{start_dialog}' to player")
             dialog_handling.print_dialog(player["start dialog"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
 
             player["start dialog"]["heard start dialog"] = True
 
@@ -1200,9 +1021,9 @@ def run(play):
             village_news_len = len(village_news)
             choose_rand_news = random.randint(0, ( village_news_len - 1 ))
             choose_rand_news = village_news[int(choose_rand_news)]
-            print_long_string(choose_rand_news)
+            text_handling.print_long_string(choose_rand_news)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
         logger_sys.log_message(f"INFO: Checking if a dialog is defined at map point 'point{map_location}'")
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
             current_dialog = map["point" + str(map_location)]["dialog"]
@@ -1260,7 +1081,7 @@ def run(play):
                 dialog_handling.print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks)
                 player["heard dialogs"].append(map_location)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
             else:
                 logger_sys.log_message("INFO: Player doesn't have all required stuff to display dialog '{current_dialog}' --> passing")
         logger_sys.log_message("INFO: Checking if the player is in a village")
@@ -1274,7 +1095,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Printing current forge '{current_forge_name}' information to GUI")
             print(str(current_forge["name"]) + ":")
             text = current_forge["description"]
-            print_long_string(text)
+            text_handling.print_long_string(text)
             print(" ")
             if "None" not in current_forge["forge"]["buys"]:
                 print("METAL BUYS:")
@@ -1295,7 +1116,7 @@ def run(play):
                     print(" -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL)
                     count += 1
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
         logger_sys.log_message("INFO: Checking if the player is in a blacksmith")
         if zone[map_zone]["type"] == "blacksmith":
             is_in_blacksmith = True
@@ -1304,7 +1125,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Printing current blacksmith '{current_black_smith_name}' information to GUI")
             print(str(current_black_smith["name"]) + ":")
             text = current_black_smith["description"]
-            print_long_string(text)
+            text_handling.print_long_string(text)
             print("")
             if "None" not in current_black_smith["blacksmith"]["buys"]:
                 print("EQUIPMENT BUYS:")
@@ -1355,7 +1176,7 @@ def run(play):
                     print(" -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + global_current_weapon_materials + COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
                     count += 1
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
         logger_sys.log_message("INFO: Checking if the player is in a stable")
         if zone[map_zone]["type"] == "stable":
             is_in_stable = True
@@ -1364,7 +1185,7 @@ def run(play):
             print(str(current_stable["name"]) + ":")
             logger_sys.log_message(f"INFO: Printing current stable '{current_stable_name}' information to GUI")
             text = current_stable["description"]
-            print_long_string(text)
+            text_handling.print_long_string(text)
             print(" ")
             print("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["deposit gold"]) + COLOR_RESET_ALL)
             print("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
@@ -1414,7 +1235,7 @@ def run(play):
             else:
                 print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL + " " + deposited_mounts_names)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
         logger_sys.log_message("INFO: Checking if the player is an hostel")
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
@@ -1423,7 +1244,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Printing current hostel '{current_hostel_name}' information to GUI")
             print(str(current_hostel["name"]) + ":")
             text = current_hostel["description"]
-            print_long_string(text)
+            text_handling.print_long_string(text)
             print(" ")
             print("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_hostel["sleep gold"]) + COLOR_RESET_ALL)
             if "None" not in current_hostel["sells"]["drinks"]:
@@ -1454,7 +1275,7 @@ def run(play):
                     print(" -" + current_hostel["buys"]["items"][int(count)] + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) + COLOR_RESET_ALL)
                     count += 1
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
         print("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
@@ -1664,12 +1485,12 @@ def run(play):
                 player["x"] -= 1
         elif command.lower().startswith('d'):
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             logger_sys.log_message("INFO: Displaying player diary menu")
             print("ADVENTURER NAME: " + str(preferences["latest preset"]["save"]))
             print("ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
             choice = term_menu.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
@@ -1683,14 +1504,14 @@ def run(play):
                 zones_list = zones_list.replace(", ", '\n -')
                 print(zones_list)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 which_zone = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen zone '{which_zone}' to check")
                 if which_zone in player["visited zones"]:
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
                     text = '='
-                    print_separator(text)
-                    print_zone_map_alone(which_zone)
+                    text_handling.print_separator(text)
+                    text_handling.print_zone_map_alone(which_zone, zone, player, preferences)
                     print("NAME: " + zone[which_zone]["name"])
                     if zone[which_zone]["type"] == "village":
                         village_point = zone[which_zone]["location"]
@@ -1701,13 +1522,13 @@ def run(play):
                         content_hostels = content_hostels.replace(']', '')
                         content_hostels = content_hostels.replace("'", '')
                         text = "HOSTELS: " + content_hostels
-                        print_long_string(text)
+                        text_handling.print_long_string(text)
                         content_blacksmiths = str(zone[which_zone]["content"]["blacksmiths"])
                         content_blacksmiths = content_blacksmiths.replace('[', '')
                         content_blacksmiths = content_blacksmiths.replace(']', '')
                         content_blacksmiths = content_blacksmiths.replace("'", '')
                         text = "BLACKSMITHS: " + content_blacksmiths
-                        print_long_string(text)
+                        text_handling.print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
                         hostel_point = zone[which_zone]["location"]
@@ -1849,7 +1670,7 @@ def run(play):
                         current_forge = zone[which_zone]
                         print(str(current_forge["name"]) + ":")
                         text = current_forge["description"]
-                        print_long_string(text)
+                        text_handling.print_long_string(text)
                         print(" ")
                         if "None" not in current_forge["forge"]["buys"]:
                             print("METAL BUYS:")
@@ -1870,9 +1691,9 @@ def run(play):
                                 print(" -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL)
                                 count += 1
                     text = "DESCRIPTION: " + zone[which_zone]["description"]
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                 else:
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
@@ -1889,7 +1710,7 @@ def run(play):
                 enemies_list = enemies_list.replace(", ", '\n -')
                 print(enemies_list)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 which_enemy = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen enemy '{which_enemy}' to display information")
                 if which_enemy == "None":
@@ -1900,9 +1721,9 @@ def run(play):
                     logger_sys.log_message(f"INFO: Printing enemy '{which_enemy}' information")
 
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
 
-                    print_enemy_thumbnail(which_enemy)
+                    text_handling.print_enemy_thumbnail(which_enemy, preferences)
                     print(" ")
 
                     print("NAME: " + which_enemy)
@@ -1920,12 +1741,12 @@ def run(play):
                     enemy_drops = enemy_drops.replace(']', '')
                     enemy_drops = enemy_drops.replace("'", '')
                     text = "DROPS: " + str(enemy_drops)
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
 
                     text = "DESCRIPTION: " + enemy[which_enemy]["description"]
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     finished = input("")
                 else:
                     logger_sys.log_message(f"INFO: Player doesn't know about enemy '{which_enemy}' --> canceling")
@@ -1943,7 +1764,7 @@ def run(play):
                 enemies_list = enemies_list.replace(", ", '\n -')
                 print(enemies_list)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 which_npc = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen npc '{which_npc}' to display information about")
                 if which_npc == "None":
@@ -1954,9 +1775,9 @@ def run(play):
                     logger_sys.log_message(f"INFO: Printing npc '{which_npc}' information")
 
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
 
-                    print_npc_thumbnail(which_npc)
+                    text_handling.print_npc_thumbnail(which_npc, preferences)
                     print(" ")
 
                     print("NAME: " + which_npc)
@@ -1981,18 +1802,18 @@ def run(play):
                     print(" ")
                     print("SELLS:")
                     text = "DRINKS: " + sells_list_drinks
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     text = "ITEMS: " + sells_list_items
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     print(" ")
                     print("BUYS:")
                     text = "ITEMS: " + buys_list
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
 
                     text = "DESCRIPTION: " + npcs[which_npc]["description"]
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     finished = input("")
                 else:
                     print(" ")
@@ -2026,7 +1847,7 @@ def run(play):
 
                 print(tasks_list_str)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 which_task = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen task '{which_task}' to display information about")
                 if which_task in tasks_list:
@@ -2035,7 +1856,7 @@ def run(play):
                     mission_id = mission_handling.get_mission_id_from_name(which_task, mission)
 
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     print("NAME: " + mission[mission_id]["name"])
                     print("DESCRIPTION:")
                     mission_handling.print_description(mission[mission_id], map)
@@ -2059,7 +1880,7 @@ def run(play):
                         print("STOPOVERS: " + new_mission_stopovers)
 
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     options = ['Abort', 'Exit']
                     choice = term_menu.show_menu(options)
                     if choice == 'Abort':
@@ -2073,7 +1894,7 @@ def run(play):
                     time.sleep(1.5)
         elif command.lower().startswith('i'):
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             logger_sys.log_message(f"INFO: Printing player armor protection, agility and critical hit chance stats")
             print("ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(player["armor protection"]) + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + "More it's higher, the less you'll take damages in fights" + COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
             print("AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["agility"]) + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" + COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL)
@@ -2099,16 +1920,16 @@ def run(play):
             player_inventory = player_inventory.replace("]", '')
             player_inventory = player_inventory.replace(", ", '\n -')
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             print("INVENTORY:")
             print(player_inventory)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             which_item = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
             if which_item in player["inventory"]:
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 logger_sys.log_message(f"INFO: Printing item '{which_item}' information")
                 if item[which_item]["type"] == "Weapon":
                     print("NAME: " + item[which_item]["display name"])
@@ -2116,10 +1937,10 @@ def run(play):
                     print("NAME: " + which_item)
                 print("TYPE: " + item[which_item]["type"])
                 text = "DESCRIPTION: " + item[which_item]["description"]
-                print_long_string(text)
+                text_handling.print_long_string(text)
                 if item[which_item]["type"] == "Armor Piece: Chestplate" or item[which_item]["type"] == "Armor Piece: Boots" or item[which_item]["type"] == "Armor Piece: Leggings" or item[which_item]["type"] == "Armor Piece: Shield":
                     text = "             Armor pieces can protect you in fights, more the armor protection is higher, the more it protects you."
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     item_next_upgrade = detect_weapon_next_upgrade_items(which_item)
                     print("UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" + str(check_weapon_max_upgrade(str(which_item))))
                     print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
@@ -2128,7 +1949,7 @@ def run(play):
                     text = "              Metals are items that you buy in village forges that you often use to order weapons in blacksmith."
                 if item[which_item]["type"] == "Primary Material":
                     text = "              Primary materials are items that you can find naturally but that you can also buy from many villages shops."
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                 if item[which_item]["type"] == "Weapon":
                     item_next_upgrade = detect_weapon_next_upgrade_items(which_item)
                     print("UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" + str(check_weapon_max_upgrade(str(which_item))))
@@ -2140,7 +1961,7 @@ def run(play):
                     print("HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW  + str(item[which_item]["max bonus"]) + COLOR_RESET_ALL)
                     print("HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(item[which_item]["healing level"]) + COLOR_RESET_ALL)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 if str(item[which_item]["type"]) == 'Armor Piece: Chestplate' or str(item[which_item]["type"]) == 'Weapon' or str(item[which_item]["type"]) == 'Armor Piece: Leggings' or str(item[which_item]["type"]) == 'Armor Piece: Boots' or str(item[which_item]["type"]) == 'Armor Piece: Shield':
                     options = ['Equip', 'Get Rid', 'Exit']
                 elif str(item[which_item]["type"]) == 'Consumable' or str(item[which_item]["type"]) == 'Food':
@@ -2180,14 +2001,14 @@ def run(play):
                     player["inventory"].remove(which_item)
                 elif choice == 'Get Rid':
                     text = "You won't be able to get this item back if your throw it away. Are you sure you want to throw away this item"
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
                     ask = input("? (y/n) ")
                     if ask.lower().startswith('y'):
                         logger_sys.log_message(f"INFO: Getting rid of item '{which_item}'")
                         if item[which_item]["type"] == "Bag":
                             if ( player["inventory slots remaining"] - item[which_item]["inventory slots"] ) < 0:
                                 text = COLOR_YELLOW + "You cannot throw that item because it would cause your remaining inventory slots to be negative" + COLOR_RESET_ALL
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                                 time.sleep(1.5)
                                 print(" ")
                         else:
@@ -2223,7 +2044,7 @@ def run(play):
             if zone[map_zone]["type"] == "hostel":
                 logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is an hostel --> can interact")
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 logger_sys.log_message(f"INFO: Adding correct interactions options depending on the hostel '{map_zone}' capabilities")
                 options = ['Sleep']
                 if "None" not in zone[map_zone]["sells"]["drinks"]:
@@ -2242,7 +2063,7 @@ def run(play):
                         print("Are you sure you want to spend the night here? It will ")
                         ask = input("cost you " + str(zone[map_zone]["sleep gold"]) + " gold (y/n) ")
                         text = '='
-                        print_separator(text)
+                        text_handling.print_separator(text)
                         if ask.lower().startswith('y'):
                             logger_sys.log_message("INFO: Starting player sleeping process")
                             if int(player["gold"]) > int(zone[map_zone]["sleep gold"]):
@@ -2297,7 +2118,7 @@ def run(play):
                         else:
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
                             logger_sys.log_message(f"INFO: Canceling buying process of drink '{which_drink}' --> doesn't have enough gold")
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif choice == 'Buy Item':
                         which_item = input("Which item do you want to buy? ")
                         logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
@@ -2312,11 +2133,11 @@ def run(play):
                             else:
                                 logger_sys.log_message("INFO: Canceling buying process --> doesn't have enough inventory slots")
                                 text = COLOR_YELLOW + "You cannot buy that items because it would cause your inventory slots to be negative." + COLOR_RESET_ALL
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                         else:
                             logger_sys.log_message("INFO: Canceling buying process --> doesn't have enough gold")
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif choice == 'Sell Item':
                         which_item = input("Which item do you want to sell? ")
                         logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
@@ -2352,7 +2173,7 @@ def run(play):
                         else:
                             logger_sys.log_message(f"INFO: Canceling selling process --> doesn't own item '{which_item}'")
                             text = COLOR_YELLOW + "You cannot sell that items because you don't own any of this item." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     else:
                         continue_hostel_actions = False
             elif zone[map_zone]["type"] == "stable":
@@ -2367,7 +2188,7 @@ def run(play):
                 options += ["Exit"]
                 active_stable_menu = True
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 logger_sys.log_message("INFO: Starting stable interaction loop")
                 while active_stable_menu:
                     action = term_menu.show_menu(options)
@@ -2386,11 +2207,11 @@ def run(play):
                             else:
                                 logger_sys.log_message("INFO: Canceling buying process -> doesn't gas enough inventory slots")
                                 text = COLOR_YELLOW + "You cannot buy that items because it would cause your inventory slots to be negative." + COLOR_RESET_ALL
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                         else:
                             logger_sys.log_message("INFO: Canceling buying process --> doesn't has enough gold")
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif action == 'Buy Drink':
                         which_drink = input("Which drink do you want to buy? ")
                         logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to buy")
@@ -2408,7 +2229,7 @@ def run(play):
                         else:
                             logger_sys.log_message("INFO: Canceling buying process --> doesn't have enough gold")
                             text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif action == 'Buy Mount':
                         which_mount = input("Which mount do you want to buy? ")
                         logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to buy")
@@ -2434,7 +2255,7 @@ def run(play):
                                     logger_sys.log_message(f"INFO: Canceling buying process --> already has a mount name '{new_mount_name}'")
                                     print(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
                                     text = '='
-                                    print_separator(text)
+                                    text_handling.print_separator(text)
                                 else:
                                     logger_sys.log_message("INFO: Creating new mount stats")
                                     mount_stats = {
@@ -2454,9 +2275,9 @@ def run(play):
                                     player["mounts"][generated_mount_uuid] = mount_dict
                                     logger_sys.log_message(f"INFO: Deposited new mount at map zone '{map_zone}'")
                                     text = "Your mount is currently deposited at the " + zone[map_zone]["name"] + "\nYou can ride it whenever you want."
-                                    print_speech_text_effect(text)
+                                    text_handling.print_speech_text_effect(text, preferences)
                                     text = '='
-                                    print_separator(text)
+                                    text_handling.print_separator(text)
                             else:
                                 logger_sys.log_message("INFO: Canceling buying process --> doesn't has enough gold")
                                 print(COLOR_YELLOW + "You don't own enough gold to buy that mount" + COLOR_RESET_ALL)
@@ -2480,7 +2301,7 @@ def run(play):
                                     player["mounts"][current_mount_uuid]["deposited day"] = round(player["elapsed time game days"], 1)
                                     player["mounts"][current_mount_uuid]["location"] = str("point" + str(map_location))
                                 text = "="
-                                print_separator(text)
+                                text_handling.print_separator(text)
                             else:
                                 logger_sys.log_message(f"INFO: Canceling depositing process --> current stable '{map_zone}' doesn't accept mounts of type '{current_mount_type}'")
                                 print(COLOR_YELLOW + "This stable doesn't accept this type of mount." + COLOR_RESET_ALL)
@@ -2495,7 +2316,7 @@ def run(play):
                         else:
                             logger_sys.log_message("INFO: Canceling mount train process --> doesn't ride any mounts by now")
                             text = COLOR_YELLOW + "You're not riding any mounts currently. You need to ride one to train it." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif action == 'Ride Mount':
                         if player["current mount"] == ' ':
                             logger_sys.log_message(f"INFO: Getting player deposited mounts at stable '{map_zone}'")
@@ -2524,7 +2345,7 @@ def run(play):
                             print("MOUNTS AT THIS STABLE:")
                             print(deposited_mounts_names)
                             text = '='
-                            print_separator(text)
+                            text_handling.print_separator(text)
                             which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                             logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to ride")
                             if which_mount in deposited_mounts_names_list:
@@ -2556,17 +2377,17 @@ def run(play):
                             else:
                                 logger_sys.log_message("INFO: Canceling taking back process --> doesn't own that mount or the mount isn't deposited at this current location")
                                 text = COLOR_YELLOW + "You don't own that mount or the mount isn't deposited at this current location" + COLOR_RESET_ALL
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                         else:
                             (f"INFO: Canceling taking back process --> already riding mount '{which_mount}'")
                             text = COLOR_YELLOW + "You are currently already riding a mount. You need to deposit your current mount before riding an other one." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     else:
                         active_stable_menu = False
             elif zone[map_zone]["type"] == "blacksmith":
                 logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is a blacksmith --> can interact")
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
 
                 options = ['Sell Equipment', 'Order Equipment', 'Upgrade Equipment', 'Check Order', 'Exit']
                 continue_blacksmith_actions = True
@@ -2586,7 +2407,7 @@ def run(play):
                         else:
                             text = COLOR_YELLOW + "You cannot sell that equipment because you dont own any of that weapon or because the current blacksmith doesn't buy this weapon." + COLOR_RESET_ALL
                             logger_sys.log_message(f"INFO: Canceling selling process --> current blacksmith '{map_zone}' doesn't sell item '{which_weapon}' or player doesn't own item '{which_weapon}'")
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif action == 'Order Equipment':
                         which_weapon = input("Which equipment do you want to order? ")
                         logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to order")
@@ -2628,15 +2449,15 @@ def run(play):
                                 logger_sys.log_message(f"Created order '{order_uuid}' dictionary: '{order_dict}'")
                                 player["orders"][order_uuid] = order_dict
                                 text = "You'll be able to get your finished order in " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(zone[map_zone]["blacksmith"]["orders"][which_weapon]["time needed"]) + COLOR_RESET_ALL + " days."
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                             else:
                                 logger_sys.log_message("INFO: Canceling ordering process --> doesn't have necessary items")
                                 text = COLOR_YELLOW + "You cannot order that equipment because you dont have the necessary items." + COLOR_RESET_ALL
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                         else:
                             logger_sys.log_message("INFO: Canceling ordering process --> doesn't has enough gold")
                             text = COLOR_YELLOW + "You cannot order that weapon because you dont own enough gold." + COLOR_RESET_ALL
-                            print_long_string(text)
+                            text_handling.print_long_string(text)
                     elif action == 'Upgrade Equipment':
                         which_weapon = input("Which equipment do you want to upgrade? ")
                         logger_sys.log_message(f"INFO: Player has chosen equipment '{which_weapon}' to upgrade")
@@ -2681,7 +2502,7 @@ def run(play):
                                         logger_sys.log_message(f"Created order '{order_uuid}' dictionary: '{order_dict}'")
                                         player["orders"][order_uuid] = order_dict
                                         text = "You'll be able to get your finished order in " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["orders"][order_uuid]["time needed"]) + COLOR_RESET_ALL + " days."
-                                        print_long_string(text)
+                                        text_handling.print_long_string(text)
                                     else:
                                         logger_sys.log_message("INFO: Canceling upgrading process --> doesn't has the necessary items")
                                         print(COLOR_YELLOW + "You don't own the necessary items to upgrade" + COLOR_RESET_ALL)
@@ -2727,13 +2548,13 @@ def run(play):
                         print("ORDERS:")
                         print(player_orders_to_collect)
                         text = '='
-                        print_separator(text)
+                        text_handling.print_separator(text)
                         which_order = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen order '{which_order}'")
                         if which_order in player_orders_number:
                             current_order_uuid = str(list(player["orders"])[int(which_order)])
                             text = '='
-                            print_separator(text)
+                            text_handling.print_separator(text)
 
                             time_left = round(player["orders"][current_order_uuid]["ordered day"] + player["orders"][current_order_uuid]["time needed"] - player["elapsed time game days"], 1)
                             if time_left <= 0:
@@ -2745,7 +2566,7 @@ def run(play):
                             print("TIME LEFT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(time_left) + COLOR_RESET_ALL)
 
                             text = '='
-                            print_separator(text)
+                            text_handling.print_separator(text)
                             options_order = ['Cancel Order']
                             if time_left == "READY TO COLLECT":
                                 options_order += ['Collect Order']
@@ -2754,7 +2575,7 @@ def run(play):
                             logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
                             if action == 'Cancel Order':
                                 text = "Are you sure you want to cancel this order? You will receive 75% of the gold you paid and you won't be able"
-                                print_long_string(text)
+                                text_handling.print_long_string(text)
                                 ask =input(" to get your given items back. (y/n)")
                                 if ask.lower().startswith('y'):
                                     # give player 75% of paid gold
@@ -2779,7 +2600,7 @@ def run(play):
                 logger_sys.log_message(f"INFO: map zone '{map_zone}' is a forge --> can interact")
                 current_forge = zone[map_zone]
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 options = []
                 if "None" not in current_forge["forge"]["buys"]:
                     options += ['Sell Metals']
@@ -2842,7 +2663,7 @@ def run(play):
             if "mounts" in player and player["mounts"] != '':
                 logger_sys.log_message("INFO: Printing player currently ridden mount")
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 if "current mount" in player:
                     current_mount_uuid = str(player["current mount"])
                     if current_mount_uuid != ' ':
@@ -2870,12 +2691,12 @@ def run(play):
                 print("OWNED MOUNTS:")
                 print(mounts_names_list_str)
                 text = '='
-                print_separator(text)
+                text_handling.print_separator(text)
                 which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen option '{which_mount}' to examine")
                 if which_mount in mounts_names_list:
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
 
                     # get what uuid is related to the mount name entered
                     mounts_list_len = len(player["mounts"])
@@ -2888,7 +2709,7 @@ def run(play):
                         count += 1
 
                     logger_sys.log_message(f"INFO: Printing player mount '{which_mount}' data: '{which_mount_data}'")
-                    print_enemy_thumbnail(str(mounts[which_mount_data["mount"]]["name"]))
+                    text_handling.print_enemy_thumbnail(str(mounts[which_mount_data["mount"]]["name"]), preferences)
                     print(" ")
 
                     print("GIVEN NAME: " + which_mount_data["name"])
@@ -2921,10 +2742,10 @@ def run(play):
                     print("")
 
                     text = "DESCRIPTION: " + mounts[which_mount_data["mount"]]["description"]
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
 
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     options = ['Abandon', 'Rename', 'Exit']
                     choice = term_menu.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")

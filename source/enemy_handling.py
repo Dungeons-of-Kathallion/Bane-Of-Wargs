@@ -4,43 +4,12 @@ import random
 import sys
 import colors
 import term_menu
+import text_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
 # initialize colorama
 init()
-
-# Basic functions
-def print_long_string(text):
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-
-    # this is just because at the beginning too a `\n` character gets added
-    new_input = new_input[1:]
-    print(str(new_input))
-
-def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
-
-def a_an_check(word):
-    logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}'")
-    global to_return
-    vowels = ['a', 'e', 'i', 'o', 'u']
-    if word[0] in vowels:
-        to_return = "an " + word
-    else:
-        to_return = "a " + word
-    logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}': '{to_return}'")
-    return to_return
 
 # Handling function
 
@@ -78,11 +47,11 @@ def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, st
         if chosen_item == "Gold":
             print("Your enemy dropped some " + chosen_item)
         else:
-            print("Your enemy dropped " + a_an_check(chosen_item))
+            print("Your enemy dropped " + text_handling.a_an_check(chosen_item))
         options = ['Grab Item', 'Continue']
         drop = term_menu.show_menu(options)
         text = '='
-        print_separator(text)
+        text_handling.print_separator(text)
         if drop == 'Grab Item':
             if chosen_item == "Gold":
                 player["gold"] += round(random.uniform(1.00, 6.30), 2)
@@ -98,7 +67,7 @@ def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, st
     else:
         text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
         logger_sys.log_message("INFO: Player just died")
-        print_long_string(text)
+        text_handling.print_long_string(text)
         finished = input()
         logger_sys.log_message("INFO: Resetting player save")
         player = start_player

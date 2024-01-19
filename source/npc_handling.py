@@ -1,4 +1,5 @@
 import logger_sys
+import text_handling
 import term_menu
 import colors
 import sys
@@ -9,45 +10,6 @@ from colors import *
 
 # initialize colorama
 init()
-
-# Basic functions
-def print_speech_text_effect(text, preferences):
-    text = str(text) + "\n"
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-    if preferences["speed up"] == False:
-        for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
-            time.sleep(round(random.uniform(.05, .1), 2))
-    else:
-        for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
-            time.sleep(.02)
-
-def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
-
-def print_long_string(text):
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-
-    # this is just because at the beginning too a `\n` character gets added
-    new_input = new_input[1:]
-    print(str(new_input))
 
 # Handling functions
 def init_npc(map_location, player, npcs, drinks, item, preferences, map):
@@ -61,20 +23,20 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
     player["met npcs names"].append(str(npcs[current_npc]["name"]))
     print(" ")
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
     print(str(npcs[current_npc]["name"]) + ":")
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
     count = 0
     npc_speech = npcs[current_npc]["speech"]
     npc_speech_len = len(npc_speech)
     logger_sys.log_message(f"INFO: Printing npc '{current_npc}' dialog")
     while count < npc_speech_len:
         text = str(npcs[current_npc]["speech"][int(count)])
-        print_speech_text_effect(text, preferences)
+        text_handling.print_speech_text_effect(text, preferences)
         count += 1
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
     options = []
     logger_sys.log_message(f"INFO: Display npc '{current_npc}' information to GUI")
     if "None" not in npcs[current_npc]["sells"]["drinks"]:
@@ -109,7 +71,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         options += ['Sell Item']
     options += ['Exit']
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
     p = True
     while p:
         logger_sys.log_message(f"INFO: Starting player interaction with npc '{current_npc}'")
@@ -125,7 +87,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                     player["health"] += drinks[which_drink]["healing level"]
             else:
                 text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
-                print_long_string(text)
+                text_handling.print_long_string(text)
         elif choice == 'Buy Item':
             which_item = input("Which item do you want to buy from him? ")
             if which_item in npcs[current_npc]["sells"]["items"] and ( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"]:
@@ -136,10 +98,10 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                     player["gold"] -= item[which_item]["gold"] * npcs[current_npc]["cost value"]
                 else:
                     text = COLOR_YELLOW + "You cannot buy that items because it would cause your inventory slots to be negative." + COLOR_RESET_ALL
-                    print_long_string(text)
+                    text_handling.print_long_string(text)
             else:
                 text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative." + COLOR_RESET_ALL
-                print_long_string(text)
+                text_handling.print_long_string(text)
         elif choice == 'Sell Item':
             which_item = input("Which item do you want to sell him? ")
             if which_item in npcs[current_npc]["buys"]["items"] and ( item[which_item]["gold"] * npcs[current_npc]["cost value"] ) < player["gold"] and which_item in player["inventory"]:
@@ -172,7 +134,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                         player["held shield"] = " "
             else:
                 text = COLOR_YELLOW + "You cannot buy that items because it would cause your gold to be negative or because you don't own that item." + COLOR_RESET_ALL
-                print_long_string(text)
+                text_handling.print_long_string(text)
         else:
             p = False
 

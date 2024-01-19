@@ -5,6 +5,7 @@ import colors
 import os
 import yaml
 import time
+import text_handling
 from colorama import Fore, Back, Style, init, deinit
 from colors import *
 
@@ -13,15 +14,6 @@ init()
 
 # Get program add directory
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
-
-# Basic functions
-def exit_game():
-    time.sleep(1.5)
-    print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
-    logger_sys.log_message("WARNING: closing game now")
-    time.sleep(.5)
-    os.system('clear')
-    exit(1)
 
 # Handling functions
 
@@ -35,7 +27,7 @@ def load_game_data(which_type, what_plugin=None):
         logger_sys.log_message(f"ERROR: Yaml data loading inputted key '{which_type}' is not valid --> crashing program")
         print(f"{COLOR_RED}ERROR: {COLOR_STYLE_BRIGHT}Yaml data loading inputted key '{which_type}' is not valid --> crashing program{COLOR_RESET_ALL}")
         time.sleep(5)
-        exit(1)
+        text_handling.exit_game()
 
     # If the inputted which_type is vanilla, then just
     # load the vanilla game data
@@ -93,7 +85,7 @@ def load_game_data(which_type, what_plugin=None):
             print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
             logger_sys.log_message(f"ERROR: Couldn't find plugin '{what_plugin}'")
             play = 0
-            exit_game()
+            text_handling.exit_game()
         with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
             map = yaml.safe_load(f)
             check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/map.yaml")
