@@ -8,6 +8,7 @@ import term_menu
 import mission_handling
 import dialog_handling
 import enemy_handling
+import data_handling
 import os
 import sys
 import time
@@ -234,104 +235,11 @@ while menu:
             logger_sys.log_message(f"INFO: Starting game with latest preset: {latest_preset}")
             using_latest_preset = True
             if preferences["latest preset"]["type"] == 'vanilla':
-                logger_sys.log_message("INFO: Loading vanilla game data")
-                with open(program_dir + "/game/data/map.yaml") as f:
-                    map = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/map.yaml')
-
-                with open(program_dir + "/game/data/items.yaml") as f:
-                    item = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/items.yaml')
-
-                with open(program_dir + "/game/data/drinks.yaml") as f:
-                    drinks = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/drinks.yaml')
-
-                with open(program_dir + "/game/data/enemies.yaml") as f:
-                    enemy = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/enemies.yaml')
-
-                with open(program_dir + "/game/data/npcs.yaml") as f:
-                    npcs = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/npcs.yaml')
-
-                with open(program_dir + "/game/data/start.yaml") as f:
-                    start_player = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/start.yaml')
-
-                with open(program_dir + "/game/data/lists.yaml") as f:
-                    lists = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/lists.yaml')
-
-                with open(program_dir + "/game/data/zone.yaml") as f:
-                    zone = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/zone.yaml')
-
-                with open(program_dir + "/game/data/dialog.yaml") as f:
-                    dialog = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/dialog.yaml')
-
-                with open(program_dir + "/game/data/mission.yaml") as f:
-                    mission = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/mission.yaml')
-
-                with open(program_dir + "/game/data/mounts.yaml") as f:
-                    mounts = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + '/game/data/mounts.yaml')
+                map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts = data_handling.load_game_data('vanilla')
             else:
 
                 what_plugin = preferences["latest preset"]["plugin"]
-
-                logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' data")
-                check_file = os.path.exists(program_dir + "/plugins/" + what_plugin)
-                if check_file == False:
-                    print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
-                    logger_sys.log_message(f"ERROR: Couldn't find plugin '{what_plugin}'")
-                    play = 0
-                    exit_game()
-                with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
-                    map = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/map.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/items.yaml") as f:
-                    item = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/items.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/drinks.yaml") as f:
-                    drinks = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/drinks.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/enemies.yaml") as f:
-                    enemy = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/enemies.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/npcs.yaml") as f:
-                    npcs = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/npcs.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
-                    start_player = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
-                    lists = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/lists.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/zone.yaml") as f:
-                    zone = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/zone.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/dialog.yaml") as f:
-                    dialog = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/dialog.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/mission.yaml") as f:
-                    mission = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mission.yaml")
-
-                with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
-                    mounts = yaml.safe_load(f)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
+                map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts = data_handling.load_game_data('plugin', what_plugin)
 
             open_save = preferences["latest preset"]["save"]
             save_file = program_dir + "/saves/save_" + open_save + ".yaml"
@@ -363,105 +271,13 @@ while menu:
             preferences["latest preset"]["type"] = "plugin"
             preferences["latest preset"]["plugin"] = what_plugin
 
-            check_file = os.path.exists(program_dir + "/plugins/" + what_plugin )
-            if check_file == False:
-                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
-                logger_sys.log_message("ERROR: Couldn't find plugin '" + what_plugin + "'")
-                play = 0
-                exit_game()
-            logger_sys.log_message(f"INFO: Loading plugin {what_plugin} data")
-            with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
-                map = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/map.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/items.yaml") as f:
-                item = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/items.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/drinks.yaml") as f:
-                drinks = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/drinks.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/enemies.yaml") as f:
-                enemy = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/enemies.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/npcs.yaml") as f:
-                npcs = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/npcs.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
-                start_player = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
-                lists = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/lists.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/zone.yaml") as f:
-                zone = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/zone.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/dialog.yaml") as f:
-                dialog = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/dialog.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/mission.yaml") as f:
-                mission = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mission.yaml")
-
-            with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
-                mounts = yaml.safe_load(f)
-                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
+            map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts = data_handling.load_game_data('plugin', what_plugin)
         else:
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "vanilla"
             preferences["latest preset"]["plugin"] = "none"
 
-            logger_sys.log_message("INFO: Loading vanilla game data")
-            with open(program_dir + "/game/data/map.yaml") as f:
-                map = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/map.yaml')
-
-            with open(program_dir + "/game/data/items.yaml") as f:
-                item = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/items.yaml')
-
-            with open(program_dir + "/game/data/drinks.yaml") as f:
-                drinks = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/drinks.yaml')
-
-            with open(program_dir + "/game/data/enemies.yaml") as f:
-                enemy = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/enemies.yaml')
-
-            with open(program_dir + "/game/data/npcs.yaml") as f:
-                npcs = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/npcs.yaml')
-
-            with open(program_dir + "/game/data/start.yaml") as f:
-                start_player = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/start.yaml')
-
-            with open(program_dir + "/game/data/lists.yaml") as f:
-                lists = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/lists.yaml')
-
-            with open(program_dir + "/game/data/zone.yaml") as f:
-                zone = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/zone.yaml')
-
-            with open(program_dir + "/game/data/dialog.yaml") as f:
-                dialog = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/dialog.yaml')
-
-            with open(program_dir + "/game/data/mission.yaml") as f:
-                mission = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/mission.yaml')
-
-            with open(program_dir + "/game/data/mounts.yaml") as f:
-                mounts = yaml.safe_load(f)
-                check_yaml.examine(program_dir + '/game/data/mounts.yaml')
+            map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts = data_handling.load_game_data('vanilla')
 
         if using_latest_preset == False:
             text = "Please select an action:"
