@@ -1,9 +1,11 @@
 name: CI
 
 on:
-  push:
   pull_request:
-    types: [opened, synchronize]
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
 
 
 concurrency:
@@ -24,6 +26,7 @@ jobs:
         run: git config --global core.protectNTFS false
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           show-progress: false
       - name: Install Python & Pip
         uses: actions/setup-python@v5
@@ -32,7 +35,6 @@ jobs:
           cache: 'pip'
       - name: Create Executable
         run: |
-          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
 
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
@@ -59,6 +61,7 @@ jobs:
         run: git config --global core.protectNTFS false
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           show-progress: false
       - name: Install Python & Pip
         uses: actions/setup-python@v5
@@ -67,7 +70,6 @@ jobs:
           cache: 'pip'
       - name: Create Executable
         run: |
-          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
 
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
@@ -94,6 +96,7 @@ jobs:
         run: git config --global core.protectNTFS false
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.sha }}
           show-progress: false
       - name: Install Python & Pip
         uses: actions/setup-python@v5
@@ -102,7 +105,6 @@ jobs:
           cache: 'pip'
       - name: Create Executable
         run: |
-          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
 
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
