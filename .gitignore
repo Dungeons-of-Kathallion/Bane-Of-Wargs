@@ -12,7 +12,5 @@ build
 build/**
 dist
 dist/**
-*.spec
-**/.spec
 yamale
 yamale/**
