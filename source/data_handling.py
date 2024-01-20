@@ -85,7 +85,7 @@ def load_game_data(which_type, what_plugin=None):
     else:
         logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' data")
         check_file = os.path.exists(program_dir + "/plugins/" + what_plugin)
-        if check_file:
+        if not check_file:
             print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
             logger_sys.log_message(f"ERROR: Couldn't find plugin '{what_plugin}'")
             play = 0
