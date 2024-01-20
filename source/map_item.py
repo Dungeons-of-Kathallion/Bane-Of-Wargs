@@ -40,7 +40,10 @@ def print_map(player, map, zone):
             except Exception:
                 get_zone = False
             if get_zone and current_point not in current_point_list:
-                print_color = get_zone_color(zone[map["point" + str(current_point)]["map zone"]]["type"])
+                if current_point in player["visited points"]:
+                    print_color = get_zone_color(zone[map["point" + str(current_point)]["map zone"]]["type"])
+                else:
+                    print_color = COLOR_BLUE_7 + "░"
             print(print_color + COLOR_RESET_ALL, end="")
             if get_zone:
                 current_point_list += [current_point]
@@ -63,65 +66,65 @@ def get_zone_color(zone_type):
             zones_colors = yaml.safe_load(f)
             zone_code = zones_colors[str(zone_type)]
             if zone_code == 0:
-                zone_color = COLOR_GREEN + COLOR_STYLE_BRIGHT + '█'
+                zone_color = COLOR_GREENS_4 + '█'
             elif zone_code == 1:
-                zone_color = COLOR_GREEN + COLOR_STYLE_BRIGHT + '█'
+                zone_color = COLOR_GREENS_5 + '█'
             elif zone_code == 2:
                 zone_color = COLOR_GREEN + '█'
             elif zone_code == 3:
-                zone_color = COLOR_GREEN + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_GREENS_12 + '█'
             elif zone_code == 4:
-                zone_color = "\033[1;30;40m" + '█'
+                zone_color = COLOR_GRAY_4 + '█'
             elif zone_code == 5:
-                zone_color = "\033[1;30;40m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_GRAY_5 + '█'
             elif zone_code == 6:
-                zone_color = "\033[1;30;40m" + COLOR_STYLE_BRIGHT + '█'
+                zone_color = COLOR_GRAY_3 + '█'
             elif zone_code == 7:
-                zone_color = "\033[0;30;47m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_GRAY_1 + '█'
             elif zone_code == 8:
-                zone_color = "\033[1;33;40m" + '█'
+                zone_color = COLOR_YELLOW_6 + '█'
             elif zone_code == 9:
-                zone_color = "\033[1;33;40m" + '█'
+                zone_color = COLOR_YELLOW_7 + '█'
             elif zone_code == 10:
-                zone_color = "\033[1;33;40m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_YELLOW_7 + '█'
             elif zone_code == 11:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_5 + '█'
             elif zone_code == 12:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_3 + '█'
             elif zone_code == 13:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_4 + '█'
             elif zone_code == 14:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_4 + '█'
             elif zone_code == 15:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_6 + '█'
             elif zone_code == 16:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_6 + '█'
             elif zone_code == 17:
-                zone_color = "\033[33m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_ORANGE_7 + '█'
             elif zone_code == 18:
-                zone_color = COLOR_MAGENTA + '█'
+                zone_color = COLOR_MAGENTA_7 + '█'
             elif zone_code == 19:
-                zone_color = COLOR_YELLOW + COLOR_STYLE_BRIGHT + '█'
+                zone_color = COLOR_YELLOW_8 + '█'
             elif zone_code == 20:
-                zone_color = COLOR_GREEN + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_GREENS_20 + '█'
             elif zone_code == 21:
-                zone_color = COLOR_YELLOW + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_YELLOW_3 + '█'
             elif zone_code == 22:
-                zone_color = zone_color = "\033[0;30;47m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_RED_1 + '█'
             elif zone_code == 23:
-                zone_color = "\033[0;30;47m" + COLOR_STYLE_DIM + '█'
+                zone_color = COLOR_RED_0 + '█'
             elif zone_code == 24:
-                zone_color = COLOR_BLUE + '▓'
+                zone_color = COLOR_BLUE_5 + '▓'
             elif zone_code == 25:
-                zone_color = COLOR_BLUE + '▒'
+                zone_color = COLOR_BLUE_14 + '▒'
             elif zone_code == 26:
-                zone_color = COLOR_BLUE + '▒'
+                zone_color = COLOR_BLUE_14 + '▒'
             elif zone_code == 27:
-                zone_color = COLOR_BLUE + '▒'
+                zone_color = COLOR_BLUE_14 + '▒'
             elif zone_code == 28:
-                zone_color = COLOR_BLUE + '▒'
+                zone_color = COLOR_BLUE_14 + '▒'
             elif zone_code == 28:
-                zone_color = COLOR_BLUE + '▒'
+                zone_color = COLOR_BLUE_14 + '▒'
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"zone type '{zone_type}' is not a valid zone type." + COLOR_RESET_ALL)
         print(error)
