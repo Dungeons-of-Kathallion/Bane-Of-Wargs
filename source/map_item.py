@@ -31,7 +31,7 @@ def print_map(player, map, zone):
         if coord_x == -64:
             print("║", end="")
         if coord_x == player_x and coord_y == player_y:
-            print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "¿" + COLOR_RESET_ALL, end="")
+            print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "¶" + COLOR_RESET_ALL, end="")
         else:
             print_color = COLOR_BLACK + '░'
             get_zone = True
@@ -43,7 +43,7 @@ def print_map(player, map, zone):
                 if current_point in player["visited points"]:
                     print_color = get_zone_color(zone[map["point" + str(current_point)]["map zone"]]["type"])
                 else:
-                    print_color = COLOR_BLUE_7 + "░"
+                    print_color = COLOR_BLUE_7 + "#"
             print(print_color + COLOR_RESET_ALL, end="")
             if get_zone:
                 current_point_list += [current_point]
