@@ -13,7 +13,7 @@ concurrency:
 jobs:
 
   linux_64_executable:
-    name: Linux x64 Executable
+    name: Linux x64 Build
     if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
@@ -48,7 +48,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   mac_64_executable:
-    name: MacOS x64 Executable
+    name: MacOS x64 Build
     if: github.event_name == 'push'
     runs-on: macos-latest
     env:
@@ -83,7 +83,7 @@ jobs:
           path: ${{ env.OUTPUT }}
 
   windows_64_executable:
-    name: Windows x64 Executable
+    name: Windows x64 Build
     if: github.event_name == 'push'
     runs-on: windows-latest
     env:
