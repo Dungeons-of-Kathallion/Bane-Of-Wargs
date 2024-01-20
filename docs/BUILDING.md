@@ -5,7 +5,7 @@ First you need to get the source code of the game (here use your fork's url if y
 ```powershell
 > git clone git@github.com:Dungeons-of-Kathallion/Bane-Of-Wargs.git
 ```
-
+eeeee
 The game root directory, the folder that has been created after cloning the repository will be the start point for building and compiling the game. After running the git clone command, you can run `cd Bane-Of-Wargs` to changed of folder.
 
 Next, you'll have to install a few dependencies in order to be able to make the whole compiling process.
