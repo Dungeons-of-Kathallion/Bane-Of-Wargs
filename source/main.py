@@ -1438,7 +1438,7 @@ def run(play):
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
                     text = '='
                     text_handling.print_separator(text)
-                    text_handling.print_zone_map_alone(which_zone, zone, player, preferences)
+                    text_handling.print_zone_map_alone(which_zone, zone)
                     print("NAME: " + zone[which_zone]["name"])
                     if zone[which_zone]["type"] == "village":
                         village_point = zone[which_zone]["location"]
