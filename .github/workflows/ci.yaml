@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
+
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+
+  linux_64_executable:
+    name: Linux x64 Build
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Bane-Of-Wargs-Linux
+    steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Create Executable
+        run: |
+
+          mkdir yamale
+          echo "4.0.4" >> yamale/VERSION
+          pip install -r requirements.txt
+          pip install PyInstaller
+
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py source/data_handling.py source/npc_handling.py source/text_handling.py source/zone_handling.py source/uuid_handling.py source/weapon_upgrade_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
+          mv dist/Bane-Of-Wargs Bane-Of-Wargs-Linux
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  mac_64_executable:
+    name: MacOS x64 Build
+    runs-on: macos-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Bane-Of-Wargs-Mac
+    steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Create Executable
+        run: |
+
+          mkdir yamale
+          echo "4.0.4" >> yamale/VERSION
+          pip install -r requirements.txt
+          pip install PyInstaller
+
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py source/data_handling.py source/npc_handling.py source/text_handling.py source/zone_handling.py source/uuid_handling.py source/weapon_upgrade_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs
+          mv dist/Bane-Of-Wargs Bane-Of-Wargs-Mac
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
+
+  windows_64_executable:
+    name: Windows x64 Build
+    runs-on: windows-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      OUTPUT: Bane-Of-Wargs.exe
+    steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Create Executable
+        run: |
+
+          mkdir yamale
+          echo "4.0.4" >> yamale/VERSION
+          pip install -r requirements.txt
+          pip install windows-curses PyInstaller
+
+          python -m PyInstaller --console --onefile --name Bane-Of-Wargs source/main.py source/battle.py source/check_yaml.py source/colors.py source/map_item.py source/train.py source/logger_sys.py source/mission_handling.py source/dialog_handling.py source/enemy_handling.py source/data_handling.py source/npc_handling.py source/text_handling.py source/zone_handling.py source/uuid_handling.py source/weapon_upgrade_handling.py --add-data yamale/VERSION:yamale --collect-submodules fsspec --collect-submodules appdirs --hidden-import appdirs --hidden-import fsspec
+          mv dist/Bane-Of-Wargs.exe Bane-Of-Wargs.exe
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT }}
+          path: ${{ env.OUTPUT }}
