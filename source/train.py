@@ -4,31 +4,13 @@ import os
 import sys
 import time
 import term_menu
+import text_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
 # initialize colorama
 init()
 
-def print_long_string(text):
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
-
-    # this is just because at the beginning too a `\n` character gets added
-    new_input = new_input[1:]
-    print(str(new_input))
-
-def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
 
 def training_loop(mount_uuid, player, item, mounts, stable):
     still_training = True
@@ -55,19 +37,21 @@ def training_loop(mount_uuid, player, item, mounts, stable):
             player_feeding_items_text = player_feeding_items_text.replace("]", '')
             player_feeding_items_text = player_feeding_items_text.replace(", ", '\n -')
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             print("FEEDING ITEMS:")
             print(player_feeding_items_text)
-            print_separator(text)
-            which_food = str(input("> "))
+            text_handling.print_separator(text)
+            which_food = str(input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL))
             if which_food in player_feeding_items and which_food in player["inventory"]:
                 player["inventory"].remove(which_food)
                 player["xp"] += random.randint(1, 4)
                 if player["current mount"] in player["mounts"]:
-                        player["mounts"][player["current mount"]]["level"] += round(random.uniform(.02, .10), 3) / mounts[current_mount_type]["feed"]["feed needs"]
+                    player["mounts"][player["current mount"]]["level"] += round(
+                        random.uniform(.02, .10), 3
+                    ) / mounts[current_mount_type]["feed"]["feed needs"]
             else:
                 text = COLOR_YELLOW + "You cannot feed your mount with this food or you don't own that food." + COLOR_RESET_ALL
-                print_long_string(text)
+                text_handling.print_long_string(text)
         elif choice == 'Train':
             # get start time
             start_time = time.time()
@@ -101,7 +85,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
             # calculate elapsed time
             elapsed_time = end_time - start_time
             elapsed_time = round(elapsed_time, 2)
-            game_elapsed_time = .001389 * elapsed_time # 180 seconds irl = .25 days in-game
+            game_elapsed_time = .001389 * elapsed_time  # 180 seconds irl = .25 days in-game
             game_elapsed_time = round(game_elapsed_time, 2)
             player["gold"] -= stable["training gold"] * game_elapsed_time
         else:

@@ -1,0 +1,36 @@
+name: Python Style Checks
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    name: Python Style Checks
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Install Dependencies
+        run: pip install pycodestyle
+      - name: Style Checks
+        run : python -m pycodestyle --max-line-length=130 source

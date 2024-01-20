@@ -1,0 +1,61 @@
+name: Bug Report
+description: Create a report to help us improve the game.
+title: "BUG: "
+labels: ["bug"]
+assignees:
+  - OcelotWalrus
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: describe
+    attributes:
+      label: Describe The Bug
+      description: Please write a clear and consize description of your bug
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: To Reproduce
+      description: Steps To Reproduce The Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: input
+    id: save_file
+    attributes:
+      label: Save File
+      description: Please add your save file here.
+      placeholder: ex. https://your_save_file.com/download
+    validations:
+      required: false
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log File
+      description: Please add your log files here. You can also put your bug error message
+    validations:
+      required: false
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: What is your version of Bane Of Wargs? [i.e., commit x or release version x]
+    validations:
+      required: true
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: "Add any other context about the problem here. For example, you could say if you received an error, if you didn't say that in the problem description."
+    validations:
+      required: false

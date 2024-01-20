@@ -1,0 +1,31 @@
+name: Spell Checks
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Spellcheck
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+        show-progress: false
+    - uses: codespell-project/actions-codespell@master
+      with:
+        builtin: clear,en-GB_to_en-US
+        path: README.md docs/ source/ data/

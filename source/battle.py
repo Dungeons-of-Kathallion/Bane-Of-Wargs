@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import term_menu
+import text_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -15,42 +16,29 @@ defend = 0
 turn = True
 fighting = True
 
-def print_long_string(text):
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 54 == 0:
-            new_input += '\n'
-        new_input += letter
 
-    # this is just because at the beginning too a `\n` character gets added
-    new_input = new_input[1:]
-    print(str(new_input))
-
-def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
-
-def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy):
+def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     # get all stats
     player_hp = player["health"]
     player_agi = player["agility"]
     player_prot = player["armor protection"]
-    player_av_dmg = round(( item[player["held item"]]["damage"] + 1 + item[player["held item"]]["damage"] * item[player["held item"]]["critical hit chance"] * 2.3) / 2, 2 )
+    player_av_dmg = round(
+        (
+            (
+                item[player["held item"]]["damage"] + 1 + item[player["held item"]]["damage"]
+            ) * item[player["held item"]]["critical hit chance"] * 2.3
+        ) / 2, 2
+    )
     player_def = item[player["held item"]]["defend"]
     player_critic_ch = item[player["held item"]]["critical hit chance"]
-    player_health_cap = 1 # placeholder
+    player_health_cap = 1   # placeholder
     enemies_number = enemies_remaining
-    enemy_health = random.randint(choosen_enemy["health"]["min spawning health"], choosen_enemy["health"]["max spawning health"])
-    enemy_agility = choosen_enemy["agility"]
-    enemy_max_damage = choosen_enemy["damage"]["max damage"]
-    enemy_min_damage = choosen_enemy["damage"]["min damage"]
-    enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
-    enemy_av_dmg = round(( enemy_max_damage + enemy_min_damage + enemy_max_damage * enemy_critical_chance * 1.8) / 2, 2 )
+    enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
+    enemy_agility = chosen_enemy["agility"]
+    enemy_max_damage = chosen_enemy["damage"]["max damage"]
+    enemy_min_damage = chosen_enemy["damage"]["min damage"]
+    enemy_critical_chance = chosen_enemy["damage"]["critical chance"]
+    enemy_av_dmg = round((enemy_max_damage + enemy_min_damage + enemy_max_damage * enemy_critical_chance * 1.8) / 2, 2)
 
     # calculate player health capabilities (how many HP the player can restore)
     count = 0
@@ -72,13 +60,12 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
             if item_health_bonus != 0:
                 item_health_bonus = int(item[selected_item]["max bonus"]) / 2
 
-
         player_health_cap += current_item_health_restoration
         player_health_cap += item_health_bonus
 
         count += 1
     # get differences between player and enemy HP
-    hp_diff = ( (player_hp + player_health_cap + player_def * 1.5) - ( enemy_health * enemies_number ) )
+    hp_diff = ((player_hp + player_health_cap + player_def * 1.5) - (enemy_health * enemies_number))
 
     # dodge formula is if round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
     # enemy agility / 1.15
@@ -92,19 +79,19 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
 
     # player
     real_enemy_agility = enemy_agility / 1.15
-    player_true_dodge_possibilities = ( player_agi - .3 ) * 100
-    player_false_dodge_possibilities = ( real_enemy_agility - .3 ) * 100
+    player_true_dodge_possibilities = (player_agi - .3) * 100
+    player_false_dodge_possibilities = (real_enemy_agility - .3) * 100
     player_total_possibilities = player_true_dodge_possibilities + player_false_dodge_possibilities
 
-    player_dodge_chance = round(( player_true_dodge_possibilities / player_total_possibilities) * 100)
+    player_dodge_chance = round((player_true_dodge_possibilities / player_total_possibilities) * 100)
 
     # enemy
     real_player_agility = player_agi / 1.15
-    enemy_true_dodge_possibilities = ( enemy_agility - .3 ) * 100
-    enemy_false_dodge_possibilities = ( real_player_agility - .3 ) * 100
+    enemy_true_dodge_possibilities = (enemy_agility - .3) * 100
+    enemy_false_dodge_possibilities = (real_player_agility - .3) * 100
     enemy_total_possibilities = enemy_true_dodge_possibilities + enemy_false_dodge_possibilities
 
-    enemy_dodge_chance = round(( enemy_true_dodge_possibilities / enemy_total_possibilities ) * 100)
+    enemy_dodge_chance = round((enemy_true_dodge_possibilities / enemy_total_possibilities) * 100)
 
     av_dmg_diff = player_av_dmg - enemy_av_dmg
 
@@ -143,11 +130,11 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
             enemy_dodged = False
             while player_turn:
                 # if player health is less than 45% and random formula, defend
-                if player_fake_health > player_fake_health * ( 45 / 100 ) and round(random.uniform(.20, .60), 2) > .45:
+                if player_fake_health > player_fake_health * (45 / 100) and round(random.uniform(.20, .60), 2) > .45:
                     defend = 0
                     defend += random.randint(0, int(item[player["held item"]]["defend"])) * player_fake_agility
                     # defend formula
-                    player_fake_health+= random.randint(0, 3)
+                    player_fake_health += random.randint(0, 3)
                     if player_fake_health > player_fake_health_max:
                         player_fake_health = player_fake_health_max
                 # else, the player attack
@@ -155,7 +142,11 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
                     # attack formula
                     enemy_dodged = False
                     player_critical_hit = False
-                    player_critical_hit_chance = round(player_critical_hit_chance / random.uniform(.03, player_critical_hit_chance * 2.8), 2)
+                    player_critical_hit_chance = round(
+                        player_critical_hit_chance / random.uniform(
+                            .03, player_critical_hit_chance * 2.8
+                        ), 2
+                    )
                     if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15:
                         enemy_dodged = True
                     if player_critical_hit_chance / random.uniform(.20, .35) < player_critical_hit_chance and not enemy_dodged:
@@ -179,13 +170,25 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
             while not player_turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    damage = random.randint(enemy_min_damage, enemy_max_damage) - player_fake_defend * ( player_fake_armor_protection * round(random.uniform(.50, .90), 1) )
+                    damage = random.randint(enemy_min_damage, enemy_max_damage) - player_fake_defend * (
+                        player_fake_armor_protection * round(
+                            random.uniform(.50, .90), 1
+                        )
+                    )
                     damage = round(damage)
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
-                    enemy_critical_hit_chance = round(enemy_fake_critical_hit_chance / random.uniform(.03, enemy_fake_critical_hit_chance * 2.8), 2)
-                    critical_hit_chance_formula = round(enemy_critical_hit_chance / random.uniform(.03, enemy_critical_hit_chance * 2.8), 2)
+                    enemy_critical_hit_chance = round(
+                        enemy_fake_critical_hit_chance / random.uniform(
+                            .03, enemy_fake_critical_hit_chance * 2.8
+                        ), 2
+                    )
+                    critical_hit_chance_formula = round(
+                        enemy_critical_hit_chance / random.uniform(
+                            .03, enemy_critical_hit_chance * 2.8
+                        ), 2
+                    )
                     if enemy_critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
                         enemy_critical_hit = True
                     elif round(random.uniform(.30, enemy_agility), 2) > enemy_agility / 1.15:
@@ -201,7 +204,6 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
                     someone_died = True
                     player_deaths += 1
 
-
         count += 1
 
     # compute percentage of defeat chance
@@ -214,19 +216,22 @@ def calculate_player_risk(player, item, enemies_remaining, choosen_enemy, enemy)
 
     return defeat_percentage
 
+
 def encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage):
     # import stats
     global turn, defend, fighting, already_encountered
-    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, choosen_item
+    global enemy_singular, enemy_plural, enemy_max
+    global enemy_health, enemy_max_damage, enemy_min_damage
+    global enemy_agility, enemy_damage, chosen_item
     player_agility = player["agility"]
-    print(" ") # do not merge with possible actions text
+    print(" ")  # do not merge with possible actions text
     # load and create enemies list type
 
     health_color = COLOR_GREEN
     enemies_number = enemies_remaining
 
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
 
     if enemies_number > 1:
         print("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
@@ -258,20 +263,24 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
         health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
 
     sys.stdout.write(f"RISK: {risk}% \n")
-    sys.stdout.write(f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n")
+    sys.stdout.write(
+        f"|{health_color}{
+            remaining_risk_bars * remaining_risk_symbol
+        }{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n"
+    )
     sys.stdout.flush()
 
     print("[R]un Away, [F]ight, [U]se Item? ")
 
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
 
     print(" ")
-    startup_action = input("> ")
+    startup_action = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
     print("")
 
     text = '='
-    print_separator(text)
+    text_handling.print_separator(text)
 
     if startup_action.lower().startswith('r'):
         # run away chance
@@ -280,12 +289,12 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             fighting = False
         else:
             text = "You failed in running away from your enemy! You now have to fight him/them!"
-            print_long_string(text)
+            text_handling.print_long_string(text)
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
             fighting = True
     elif startup_action.lower().startswith('f'):
-            fighting = True
+        fighting = True
     elif startup_action.lower().startswith('u'):
         player_inventory = str(player["inventory"])
         player_inventory = player_inventory.replace("'", '')
@@ -294,7 +303,7 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
         player_inventory = player_inventory.replace(", ", '\n -')
         print("INVENTORY:")
         print(player_inventory)
-        item_input = input("> ")
+        item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         # use item
         if item_input in player["inventory"]:
             if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
@@ -317,40 +326,49 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
                 player["held boots"] = item_input
                 print("You are now wearing a/an ", player["held boots"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Sheild":
+            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
                 player["held shield"] = item_input
                 print("You are now holding a/an ", player["held shield"])
             text = '='
-            print_separator(text)
+            text_handling.print_separator(text)
     else:
         print("'" + startup_action + "' is not a valid option")
         fighting = True
 
-
     print(" ")
 
-def get_enemy_stats(player, item, enemy, map, map_location, lists, choose_rand_enemy, choosen_enemy, choosen_item, enemy_items_number, enemy_total_inventory, enemies_remaining):
-    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage
+
+def get_enemy_stats(
+    player, item, enemy, map, map_location,
+    lists, choose_rand_enemy, chosen_enemy,
+    chosen_item, enemy_items_number,
+    enemy_total_inventory, enemies_remaining
+):
+    global enemy_singular, enemy_plural, enemy_max, enemy_health
+    global enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage
     # load enemy stat
 
     # enemy stats
     enemy_singular = choose_rand_enemy
-    enemy_plural = choosen_enemy["plural"]
-    enemy_max = choosen_enemy["health"]["max health level"]
-    enemy_health = random.randint(choosen_enemy["health"]["min spawning health"], choosen_enemy["health"]["max spawning health"])
-    enemy_max_damage = choosen_enemy["damage"]["max damage"]
-    enemy_min_damage = choosen_enemy["damage"]["min damage"]
-    enemy_critical_chance = choosen_enemy["damage"]["critical chance"]
+    enemy_plural = chosen_enemy["plural"]
+    enemy_max = chosen_enemy["health"]["max health level"]
+    enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
+    enemy_max_damage = chosen_enemy["damage"]["max damage"]
+    enemy_min_damage = chosen_enemy["damage"]["min damage"]
+    enemy_critical_chance = chosen_enemy["damage"]["critical chance"]
     enemy_damage = 0
-    enemy_agility = choosen_enemy["agility"]
+    enemy_agility = chosen_enemy["agility"]
 
     if choose_rand_enemy not in player["enemies list"]:
         player["enemies list"].append(choose_rand_enemy)
 
+
 def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
     # import stats
     global turn, defend, fighting, already_encountered
-    global enemy_singular, enemy_plural, enemy_max, enemy_health, enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage, choosen_item
+    global enemy_singular, enemy_plural, enemy_max
+    global enemy_health, enemy_max_damage, enemy_min_damage
+    global enemy_agility, enemy_damage, chosen_item
     armor_protection = player["armor protection"]
     player_agility = player["agility"]
     # load and create enemies list type
@@ -406,9 +424,17 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     health_color_enemy = COLOR_MAGENTA
 
                 sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
-                sys.stdout.write(f"|{health_color}{remaining_health_bars * remaining_health_symbol}{lost_health_bars * lost_health_symbol}{color_default}|\n")
+                sys.stdout.write(
+                    f"|{health_color}{
+                        remaining_health_bars * remaining_health_symbol
+                    }{lost_health_bars * lost_health_symbol}{color_default}|\n"
+                )
                 sys.stdout.write(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
-                sys.stdout.write(f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}{lost_health_bars_enemy * lost_health_symbol}{color_default}|")
+                sys.stdout.write(
+                    f"|{health_color_enemy}{
+                        remaining_health_bars_enemy * remaining_health_symbol
+                    }{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
+                )
                 sys.stdout.flush()
 
                 action = input("\n[A]ttack, [D]efend, [U]se Item? ")
@@ -454,10 +480,10 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     player_inventory = player_inventory.replace(", ", '\n -')
                     print(" ")
                     text = '='
-                    print_separator(text)
+                    text_handling.print_separator(text)
                     print("INVENTORY:")
                     print(player_inventory)
-                    item_input = input("> ")
+                    item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     # use item
                     if item_input in player["inventory"]:
                         if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
@@ -480,11 +506,11 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                         elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
                             player["held boots"] = item_input
                             print("You are now wearing a/an ", player["held boots"])
-                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Sheild":
+                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
                             player["held shield"] = item_input
                             print("You are now holding a/an ", player["held shield"])
                         text = '='
-                        print_separator(text)
+                        text_handling.print_separator(text)
                         print(" ")
                 else:
                     print("'" + action + "' is not a valid option")
@@ -493,7 +519,11 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
             while not turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    damage = random.randint(enemy_min_damage, enemy_max_damage) - defend * ( armor_protection * round(random.uniform(.50, .90), 1) )
+                    damage = random.randint(
+                        enemy_min_damage, enemy_max_damage
+                    ) - defend * (
+                        armor_protection * round(random.uniform(.50, .90), 1)
+                    )
                     damage = round(damage)
                     defend = 0
                     player_dodged = False
@@ -525,9 +555,17 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
                     lost_health_bars_enemy = bars - remaining_health_bars_enemy
                     sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
-                    sys.stdout.write(f"|{health_color}{remaining_health_bars * remaining_health_symbol}{lost_health_bars * lost_health_symbol}{color_default}|\n")
+                    sys.stdout.write(f"|{health_color}{
+                        remaining_health_bars * remaining_health_symbol
+                    }{
+                        lost_health_bars * lost_health_symbol
+                    }{color_default}|\n")
                     sys.stdout.write(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
-                    sys.stdout.write(f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}{lost_health_bars_enemy * lost_health_symbol}{color_default}|")
+                    sys.stdout.write(f"|{health_color_enemy}{
+                        remaining_health_bars_enemy * remaining_health_symbol
+                    }{
+                        lost_health_bars_enemy * lost_health_symbol
+                    }{color_default}|")
                     sys.stdout.flush()
                     print("\n")
                     player["xp"] += enemy_max * enemy_max_damage / 3
@@ -538,7 +576,6 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     still_playing = False
                     return
         return
-
 
 
 still_playing = True

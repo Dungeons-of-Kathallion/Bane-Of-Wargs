@@ -1,3 +1,10 @@
-Hunt Down Yrch Covet:
-  name: "Hunt Down Yrch Covet"
-  description: ""
+First Mission:
+  name: "First Mission"
+  description: "Go to $destination"
+  source: 0
+  destination: 5
+  invisible: true
+  on offer:
+    dialog: "first mission"
+  on complete:
+    dialog: "first mission"
