@@ -1367,6 +1367,7 @@ def run(play):
 
         logger_sys.log_message(f"INFO: Player ran command '{command}'")
         logger_sys.log_message(f"INFO: Checking if a ground item is present at map point 'point{map_location}'")
+        continued_command = False
         if "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
             logger_sys.log_message(f"INFO: Found item '{command}' at map point 'point{map_location}'")
             if command in player["inventory"] and item[command]["type"] == "Utility":
@@ -1380,9 +1381,12 @@ def run(play):
                 logger_sys.log_message(f"INFO: Adding map point 'point{map_location}' to the player save attribute 'taken items'")
                 player["inventory"].append(command)
                 player["taken items"].append(map_location)
+
+            continued_command = True
         elif command.lower().startswith('go'):
             print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
+            continued_command = True
         elif command.lower().startswith('n'):
             logger_sys.log_message(f"INFO: Checking if player can go north from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] + 1)
@@ -1396,6 +1400,7 @@ def run(play):
             else:
                 logger_sys.log_message(f"INFO: Moving player north to map point 'point{next_point}': successful checks")
                 player["y"] += 1
+            continued_command = True
         elif command.lower().startswith('s'):
             logger_sys.log_message(f"INFO: Checking if player can go south from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] - 1)
@@ -1409,6 +1414,7 @@ def run(play):
             else:
                 logger_sys.log_message(f"INFO: Moving player south to map point 'point{next_point}': successful checks")
                 player["y"] -= 1
+            continued_command = True
         elif command.lower().startswith('e'):
             logger_sys.log_message(f"INFO: Checking if player can go east from map point 'point{map_location}'")
             next_point = search(player["x"] + 1, player["y"])
@@ -1422,6 +1428,7 @@ def run(play):
             else:
                 logger_sys.log_message(f"INFO: Moving player east to map point 'point{next_point}': successful checks")
                 player["x"] += 1
+            continued_command = True
         elif command.lower().startswith('w'):
             logger_sys.log_message(f"INFO: Checking if player can go west from map point 'point{map_location}'")
             next_point = search(player["x"] - 1, player["y"])
@@ -1435,6 +1442,7 @@ def run(play):
             else:
                 logger_sys.log_message(f"INFO: Moving player west to map point 'point{next_point}': successful checks")
                 player["x"] -= 1
+            continued_command = True
         elif command.lower().startswith('d'):
             text = '='
             text_handling.print_separator(text)
@@ -1944,6 +1952,7 @@ def run(play):
                     print(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player doesn't know about mission '{which_task}' --> canceling")
                     time.sleep(1.5)
+            continued_command = True
         elif command.lower().startswith('i'):
             text = '='
             text_handling.print_separator(text)
@@ -2044,7 +2053,7 @@ def run(play):
                     print(
                         "UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" +
-                        str(weapon_upgrade_handling.check_weapon_max_upgrade(str(which_item). item))
+                        str(weapon_upgrade_handling.check_weapon_max_upgrade(str(which_item), item))
                     )
                     print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print("DAMAGE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["damage"]) + COLOR_RESET_ALL)
@@ -2162,6 +2171,7 @@ def run(play):
                 logger_sys.log_message(f"INFO: Canceling item action --> player doesn't own item '{which_item}'")
                 print(COLOR_YELLOW + "You do not have that item." + COLOR_RESET_ALL)
                 time.sleep(1.5)
+            continued_command = True
         elif command.lower().startswith('z'):
             logger_sys.log_message(f"INFO: Trying to interact with current zone '{map_zone}'")
             if zone[map_zone]["type"] == "hostel":
@@ -2176,6 +2186,7 @@ def run(play):
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
                 print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge or church." + COLOR_RESET_ALL)
                 time.sleep(1.5)
+            continued_command = True
         elif command.lower().startswith('y'):
             if "mounts" in player and player["mounts"] != '':
                 logger_sys.log_message("INFO: Printing player currently ridden mount")
@@ -2325,14 +2336,15 @@ def run(play):
                 logger_sys.log_message(f"INFO: Canceling mount examining process --> player doesn't own any mounts")
                 print(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
                 time.sleep(1.5)
+            continued_command = True
         elif command.lower().startswith('q'):
             logger_sys.log_message("INFO: Closing & Saving game")
             print(separator)
             play = 0
+            continued_command = True
         else:
-            continued = False
             for i in utilities_list:
-                continued = True
+                continued_command = True
                 continued2 = False
                 current_utility = i
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
@@ -2386,11 +2398,12 @@ def run(play):
                 time.sleep(2)
                 print(" ")
 
-        if not continued:
+        if not continued_command:
             logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
             print("'" + command + "' is not a valid command")
             time.sleep(2)
             print(" ")
+
         # get end time
         end_time = time.time()
         logger_sys.log_message(f"INFO: Getting end time: '{end_time}'")

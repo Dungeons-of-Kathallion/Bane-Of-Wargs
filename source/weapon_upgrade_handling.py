@@ -13,7 +13,7 @@ def check_for_item(item_name, item):
 def check_weapon_next_upgrade_name(item_name, item):
     logger_sys.log_message(f"INFO: Check for equipment '{item_name}' next upgrade")
     weapon_next_upgrade_name = str(item_name)
-    check_weapon_max_upgrade_number = check_weapon_max_upgrade(str(weapon_next_upgrade_name))
+    check_weapon_max_upgrade_number = check_weapon_max_upgrade(str(weapon_next_upgrade_name), item)
     if item[weapon_next_upgrade_name]["upgrade tier"] == check_weapon_max_upgrade_number:
         weapon_next_upgrade_name = None
         logger_sys.log_message(f"INFO: No next upgrade found for equipment '{item_name}'")

@@ -779,26 +779,26 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 item_next_upgrade_name = str(weapon_upgrade_handling.check_weapon_next_upgrade_name(which_weapon, item))
                 if item_next_upgrade_name != 'None':
                     if player["gold"] > item[item_next_upgrade_name]["gold"]:
-                        required_items = False
-                        count = 0
-                        required_items_number = 0
-                        fake_player_inventory = player["inventory"]
-                        while count < len(fake_player_inventory):
-                            selected_item = fake_player_inventory[count]
-                            if selected_item in item[str(item_next_upgrade_name)]["for this upgrade"]:
-                                required_items_number += 1
-                            count += 1
-                        if required_items_number == len(item[str(item_next_upgrade_name)]["for this upgrade"]):
-                            required_items = True
-                            logger_sys.log_message("INFO: Player has required items for --< continuing")
-                        if required_items:
+                        finished = False
+                        has_required_items = True
+                        player_fake_inventory = player["inventory"]
+                        required_items = []
+                        for i in player_fake_inventory:
+                            if i in item[item_next_upgrade_name]["for this upgrade"]:
+                                required_items.append(i)
+                        while has_required_items and not finished:
+                            for i in item[item_next_upgrade_name]["for this upgrade"]:
+                                if required_items.count(i) < item[item_next_upgrade_name]["for this upgrade"].count(i):
+                                    has_required_items = False
+                            finished = True
+                        if has_required_items:
                             gold = str(item[item_next_upgrade_name]["gold"])
                             logger_sys.log_message(f"INFO: Removing from player {gold} gold")
                             player["gold"] -= item[item_next_upgrade_name]["gold"]
                             player["inventory"].remove(which_weapon)
                             count = 0
                             remaining_items_to_remove = len(item[str(item_next_upgrade_name)]["for this upgrade"])
-                            while count < len(player["inventory"]) and remaining_items_to_remove != 0:
+                            while count < len(player["inventory"]) and remaining_items_to_remove > 0:
                                 selected_item = item[str(item_next_upgrade_name)]["for this upgrade"][count]
                                 player["inventory"].remove(selected_item)
                                 remaining_items_to_remove -= 1
