@@ -2338,7 +2338,8 @@ def run(play):
                     logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
                     if preferences["latest preset"]["type"] == 'plugin':
                         with open(
-                            program_dir + '/plugins/' + preferences["latest preset"]["plugin"] + '/scripts/' + item[current_utility]["script name"]
+                            program_dir + '/plugins/' + preferences["latest preset"]["plugin"] +
+                            '/scripts/' + item[current_utility]["script name"]
                         ) as f:
                             global_arguments = {}
                             arguments = item[current_utility]['arguments']
