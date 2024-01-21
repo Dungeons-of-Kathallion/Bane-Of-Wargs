@@ -2371,7 +2371,6 @@ def run(play):
                             exec(f.read(), global_arguments)
                     else:
                         pass
-                    # map_item.print_map(player, map, zone)
                     finished = input(" ")
                 elif current_utility not in player["inventory"]:
                     logger_sys.log_message("INFO: Canceling map examining process --> doesn't have 'Map' item")
