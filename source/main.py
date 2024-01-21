@@ -2333,6 +2333,7 @@ def run(play):
             continued = False
             for i in utilities_list:
                 continued = True
+                continued2 = False
                 current_utility = i
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
                     logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
@@ -2369,25 +2370,27 @@ def run(play):
                                 if "mounts" in arguments:
                                     global_arguments["mounts"] = mounts
                             exec(f.read(), global_arguments)
+                            continued2 = True
                     else:
                         pass
                     finished = input(" ")
                 elif current_utility not in player["inventory"]:
+                    continued2 = True
                     logger_sys.log_message("INFO: Canceling map examining process --> doesn't have 'Map' item")
                     print(f"You do not have a '{current_utility}'.")
                     print(" ")
                     finished = input(" ")
-                else:
-                    logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
-                    print("'" + command + "' is not a valid command")
-                    time.sleep(2)
-                    print(" ")
-
-            if not continued:
+            if not continued2:
                 logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
                 print("'" + command + "' is not a valid command")
                 time.sleep(2)
                 print(" ")
+
+        if not continued:
+            logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
+            print("'" + command + "' is not a valid command")
+            time.sleep(2)
+            print(" ")
         # get end time
         end_time = time.time()
         logger_sys.log_message(f"INFO: Getting end time: '{end_time}'")
