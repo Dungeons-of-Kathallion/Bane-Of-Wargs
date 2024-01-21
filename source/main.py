@@ -2044,7 +2044,7 @@ def run(play):
                     print(
                         "UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" +
-                        str(weapon_upgrade_handling.check_weapon_max_upgrade(str(which_item). item))
+                        str(weapon_upgrade_handling.check_weapon_max_upgrade(str(which_item), item))
                     )
                     print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print("DAMAGE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["damage"]) + COLOR_RESET_ALL)
