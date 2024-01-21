@@ -8,7 +8,6 @@ source/main.py \
 source/battle.py \
 source/check_yaml.py \
 source/colors.py \
-source/map_item.py \
 source/train.py \
 source/logger_sys.py \
 source/term_menu.py \

@@ -259,6 +259,12 @@ Healing Potion:
 # Utilities
 Map:
   type: "Utility"
+  key: "M"
+  script name: 'map_item.py'
+  arguments:
+  - player
+  - zone
+  - map
   description: "It's a map of the dungeons! [Press 'M' to activate.]"
 # Armors
 Wolf Fur: &wolf_fur
