@@ -2342,31 +2342,32 @@ def run(play):
                             '/scripts/' + item[current_utility]["script name"]
                         ) as f:
                             global_arguments = {}
-                            arguments = item[current_utility]['arguments']
-                            if "player" in arguments:
-                                global_arguments["player"] = player
-                            if "map" in arguments:
-                                global_arguments["map"] = map
-                            if "item" in arguments:
-                                global_arguments["item"] = item
-                            if "drinks" in arguments:
-                                global_arguments["drinks"] = drinks
-                            if "enemy" in arguments:
-                                global_arguments["enemy"] = enemy
-                            if "npcs" in arguments:
-                                global_arguments["npcs"] = npcs
-                            if "start_player" in arguments:
-                                global_arguments["start_player"] = start_player
-                            if "lists" in arguments:
-                                global_arguments["lists"] = lists
-                            if "zone" in arguments:
-                                global_arguments["zone"] = zone
-                            if "dialog" in arguments:
-                                global_arguments["dialog"] = dialog
-                            if "mission" in arguments:
-                                global_arguments["mission"] = mission
-                            if "mounts" in arguments:
-                                global_arguments["mounts"] = mounts
+                            if "arguments" in item[current_utility]:
+                                arguments = item[current_utility]['arguments']
+                                if "player" in arguments:
+                                    global_arguments["player"] = player
+                                if "map" in arguments:
+                                    global_arguments["map"] = map
+                                if "item" in arguments:
+                                    global_arguments["item"] = item
+                                if "drinks" in arguments:
+                                    global_arguments["drinks"] = drinks
+                                if "enemy" in arguments:
+                                    global_arguments["enemy"] = enemy
+                                if "npcs" in arguments:
+                                    global_arguments["npcs"] = npcs
+                                if "start_player" in arguments:
+                                    global_arguments["start_player"] = start_player
+                                if "lists" in arguments:
+                                    global_arguments["lists"] = lists
+                                if "zone" in arguments:
+                                    global_arguments["zone"] = zone
+                                if "dialog" in arguments:
+                                    global_arguments["dialog"] = dialog
+                                if "mission" in arguments:
+                                    global_arguments["mission"] = mission
+                                if "mounts" in arguments:
+                                    global_arguments["mounts"] = mounts
                             exec(f.read(), global_arguments)
                     else:
                         pass
