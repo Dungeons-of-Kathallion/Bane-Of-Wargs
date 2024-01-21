@@ -90,7 +90,7 @@ _If you have previously ran the `pip install -r requirements.txt` command, you w
 
 ## Contributing
 
-All contributions like PR, issues that can go from bug reporting or feature request are all welcome!\n
+All contributions like PR, issues that can go from bug reporting or feature request are all welcome!
 Just check the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/.github/CONTRIBUTING.md) guidelines.
 
 ## Progress
@@ -100,5 +100,5 @@ If you're interested by the game progress and development, check the wiki page a
 
 ## Licensing
 
-Bane Of Wargs is a free, open source game. The source code and every file you will find on this repository is available under the GPL v3 license.\n
+Bane Of Wargs is a free, open source game. The source code and every file you will find on this repository is available under the GPL v3 license.
 All its work and artwork is all public domain. Feel free to fork, or copy the game source to make your own version of the engine.
