@@ -1,7 +1,7 @@
 latest preset:
   plugin: str()
   save: str()
-  type: str()
+  type: str(equals='plugin', equals='vanilla')
 speed up: bool()
 theme: str()
 title style: int(max=2, min=1)

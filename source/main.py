@@ -3,7 +3,6 @@ import yaml
 import battle
 import check_yaml
 import train
-import map_item
 import term_menu
 import mission_handling
 import dialog_handling
@@ -124,7 +123,7 @@ if preferences["auto update"]:
     logger_sys.log_message("INFO: Downloading game data to update it")
     print("Download game data...")
     print("This may take a few seconds, sorry for the waiting.")
-    print("0/3", end="\r")
+    print("0/4", end="\r")
 
     logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
 
@@ -144,7 +143,7 @@ if preferences["auto update"]:
         print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
         time.sleep(.5)
 
-    print("1/3", end="\r")
+    print("1/4", end="\r")
 
     logger_sys.log_message("INFO: Downloading game data files from github")
     # Download data files
@@ -163,7 +162,7 @@ if preferences["auto update"]:
         print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
         time.sleep(.5)
 
-    print("2/3", end="\r")
+    print("2/4", end="\r")
 
     logger_sys.log_message("INFO: Downloading game images .txt files from github")
     # Download images .txt files
@@ -182,7 +181,26 @@ if preferences["auto update"]:
         print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
         time.sleep(.5)
 
-    print("3/3")
+    print("3/4", end="\r")
+
+    logger_sys.log_message("INFO: Downloading game scripts .py files from github")
+    # Download images .txt files
+    try:
+        destination = program_dir + '/game/scripts'
+        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs")
+        fs.get(fs.ls("scripts/"), destination)
+    except Exception as error:
+        print(
+            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" +
+            COLOR_RESET_ALL + " an error occurred when trying to download game data to '" +
+            destination + "'."
+            )
+        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
+        logger_sys.log_message("DEBUG: " + str(error))
+        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+        time.sleep(.5)
+
+    print("4/4")
     print("Done")
     logger_sys.log_message("INFO: Process of downloading game data to update it completed")
 
@@ -1337,6 +1355,16 @@ def run(play):
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
+
+        logger_sys.log_message(f"INFO: Checking for utilities type items in '{item}' dictionary")
+        # Check for utilities keys
+        utilities_list = []
+        for i in list(item):
+            current_item = item[i]
+            if current_item["type"] == 'Utility':
+                utilities_list.append(i)
+        logger_sys.log_message(f"INFO: Found utilities items: '{utilities_list}'")
+
         logger_sys.log_message(f"INFO: Player ran command '{command}'")
         logger_sys.log_message(f"INFO: Checking if a ground item is present at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
@@ -2297,20 +2325,68 @@ def run(play):
                 logger_sys.log_message(f"INFO: Canceling mount examining process --> player doesn't own any mounts")
                 print(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
                 time.sleep(1.5)
-        elif command.lower().startswith('m'):
-            if "Map" in player["inventory"]:
-                logger_sys.log_message("INFO: Player is examining map")
-                map_item.print_map(player, map, zone)
-            else:
-                logger_sys.log_message("INFO: Canceling map examining process --> doesn't have 'Map' item")
-                print("You do not have a map.")
-                print(" ")
-            finished = input(" ")
-        elif command == "q" or command == "Q":
+        elif command.lower().startswith('q'):
             logger_sys.log_message("INFO: Closing & Saving game")
             print(separator)
             play = 0
         else:
+            continued = False
+            for i in utilities_list:
+                continued = True
+                continued2 = False
+                current_utility = i
+                if command == item[current_utility]["key"] and current_utility in player["inventory"]:
+                    logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
+                    if preferences["latest preset"]["type"] == 'plugin':
+                        with open(
+                            program_dir + '/plugins/' + preferences["latest preset"]["plugin"] +
+                            '/scripts/' + item[current_utility]["script name"]
+                        ) as f:
+                            global_arguments = {}
+                            if "arguments" in item[current_utility]:
+                                arguments = item[current_utility]['arguments']
+                                if "player" in arguments:
+                                    global_arguments["player"] = player
+                                if "map" in arguments:
+                                    global_arguments["map"] = map
+                                if "item" in arguments:
+                                    global_arguments["item"] = item
+                                if "drinks" in arguments:
+                                    global_arguments["drinks"] = drinks
+                                if "enemy" in arguments:
+                                    global_arguments["enemy"] = enemy
+                                if "npcs" in arguments:
+                                    global_arguments["npcs"] = npcs
+                                if "start_player" in arguments:
+                                    global_arguments["start_player"] = start_player
+                                if "lists" in arguments:
+                                    global_arguments["lists"] = lists
+                                if "zone" in arguments:
+                                    global_arguments["zone"] = zone
+                                if "dialog" in arguments:
+                                    global_arguments["dialog"] = dialog
+                                if "mission" in arguments:
+                                    global_arguments["mission"] = mission
+                                if "mounts" in arguments:
+                                    global_arguments["mounts"] = mounts
+                            exec(f.read(), global_arguments)
+                            continued2 = True
+                    else:
+                        pass
+                    finished = input(" ")
+                elif current_utility not in player["inventory"]:
+                    continued2 = True
+                    logger_sys.log_message("INFO: Canceling map examining process --> doesn't have 'Map' item")
+                    print(f"You do not have a '{current_utility}'.")
+                    print(" ")
+                    finished = input(" ")
+            if not continued2:
+                logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
+                print("'" + command + "' is not a valid command")
+                time.sleep(2)
+                print(" ")
+
+        if not continued:
             logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
             print("'" + command + "' is not a valid command")
             time.sleep(2)

@@ -1,2 +1,5 @@
 type: str()
+key: str()
+script name: str()
 description: str()
+arguments: list(required=False)
