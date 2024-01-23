@@ -104,7 +104,11 @@ if not os.path.exists(program_dir):
         "theme": 'greenblue',
         "title style": 1,
         "auto update": True,
-        "branch": "master"
+        "game data download": {
+            "branch": "master",
+            "repository": "Bane-Of-Wargs",
+            "org": "Dungeons-Of-Kathallion"
+        }
     }
     default_config_data = yaml.dump(default_config_data)
     with open(program_dir + '/preferences.yaml', 'w') as f:
@@ -125,14 +129,16 @@ if preferences["auto update"]:
     print("Download game data...")
     print("This may take a few seconds, sorry for the waiting.")
     print("0/4", end="\r")
-    download_branch = str(preferences["branch"])
+    download_branch = str(preferences["game data download"]["branch"])
+    download_repo = str(preferences["game data download"]["repository"])
+    download_org = str(preferences["game data download"]["org"])
 
     logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
 
     # Download yaml schema files
     try:
         destination = program_dir + '/game/schemas'
-        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs", branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
         fs.get(fs.ls("schemas/"), destination)
     except Exception as error:
         print(
@@ -151,7 +157,7 @@ if preferences["auto update"]:
     # Download data files
     try:
         destination = program_dir + '/game/data'
-        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs", branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
         fs.get(fs.ls("data/"), destination)
     except Exception as error:
         print(
@@ -170,7 +176,7 @@ if preferences["auto update"]:
     # Download images .txt files
     try:
         destination = program_dir + '/game/imgs'
-        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs", branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
         fs.get(fs.ls("imgs/"), destination)
     except Exception as error:
         print(
@@ -189,7 +195,7 @@ if preferences["auto update"]:
     # Download images .txt files
     try:
         destination = program_dir + '/game/scripts'
-        fs = fsspec.filesystem("github", org="Dungeons-Of-Kathallion", repo="Bane-Of-Wargs", branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
         fs.get(fs.ls("scripts/"), destination)
     except Exception as error:
         print(
