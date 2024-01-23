@@ -138,7 +138,7 @@ if preferences["auto update"]:
     # Download yaml schema files
     try:
         destination = program_dir + '/game/schemas'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
         fs.get(fs.ls("schemas/"), destination)
     except Exception as error:
         print(
@@ -157,7 +157,7 @@ if preferences["auto update"]:
     # Download data files
     try:
         destination = program_dir + '/game/data'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
         fs.get(fs.ls("data/"), destination)
     except Exception as error:
         print(
@@ -176,7 +176,7 @@ if preferences["auto update"]:
     # Download images .txt files
     try:
         destination = program_dir + '/game/imgs'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
         fs.get(fs.ls("imgs/"), destination)
     except Exception as error:
         print(
@@ -195,7 +195,7 @@ if preferences["auto update"]:
     # Download images .txt files
     try:
         destination = program_dir + '/game/scripts'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, branch=download_branch)
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
         fs.get(fs.ls("scripts/"), destination)
     except Exception as error:
         print(
