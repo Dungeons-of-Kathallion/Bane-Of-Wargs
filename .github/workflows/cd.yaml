@@ -22,6 +22,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: Bane-Of-Wargs-Linux
+      OUTPUT_DIST: Bane-Of-Wargs-Dist.zip
     steps:
       - name: Fix Checkout Problems
         run: git config --global core.protectNTFS false
@@ -44,11 +45,22 @@ jobs:
 
           python -m PyInstaller Bane-Of-Wargs.spec
           mv dist/Bane-Of-Wargs Bane-Of-Wargs-Linux
+      - name: Create Unpacked Compiled Program Zip
+        run: |
+          cd dist/
+          zip Bane-Of-Wargs-Dist.zip Bane-Of-Wargs-Other/**********
+          cd ..
+          mv dist/Bane-Of-Wargs-Dist.zip Bane-Of-Wargs-Dist.zip
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.OUTPUT }}
           path: ${{ env.OUTPUT }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.OUTPUT_DIST }}
+          path: ${{ env.OUTPUT_DIST }}
 
   mac_64_executable:
     name: MacOS x64 Executable
