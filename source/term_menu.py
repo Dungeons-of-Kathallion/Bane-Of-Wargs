@@ -5,6 +5,7 @@ from colorama import Fore, Back, Style, init, deinit
 # initialize colorama
 init()
 
+
 def show_menu(options, length=54):
     continue_action = True
 
@@ -12,16 +13,19 @@ def show_menu(options, length=54):
     choice_number = len(options)
 
     # Print the box with the choices displayed
-    print("╭"+ int(length) * '─' + '╮')
+    print("╭" + int(length) * '─' + '╮')
 
     count = 0
     while count < choice_number:
         number_of_spaces_remaining = (length - 2) - (2 + len(list(str(options[count]))))
-        print("│ " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(count) + '> ' + COLOR_RESET_ALL + str(options[count]) + int(number_of_spaces_remaining) * ' ' + '│')
+        print(
+            "│ " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(count) + 
+            '> ' + COLOR_RESET_ALL + str(options[count]) + int(number_of_spaces_remaining) * ' ' + '│'
+        )
 
         count += 1
 
-    print("╰"+ int(length) * '─' + '╯')
+    print("╰" + int(length) * '─' + '╯')
 
     while continue_action:
         error_happened = False
