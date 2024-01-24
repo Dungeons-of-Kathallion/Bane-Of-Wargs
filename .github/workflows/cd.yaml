@@ -48,7 +48,7 @@ jobs:
       - name: Create Unpacked Compiled Program Zip
         run: |
           cd dist/
-          zip Bane-Of-Wargs-Dist.zip Bane-Of-Wargs-Other/**********
+          zip Bane-Of-Wargs-Dist.zip Bane-Of-Wargs-Other/**/**/**
           cd ..
           mv dist/Bane-Of-Wargs-Dist.zip Bane-Of-Wargs-Dist.zip
       - name: Upload artifact
