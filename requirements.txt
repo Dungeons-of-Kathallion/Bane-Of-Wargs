@@ -8,7 +8,6 @@ fsspec
 appdirs
 requests
 cryptography
-cryptography-41.0.3-py3.12.egg-info
 lib-dynload
 certifi
 numpy
