@@ -40,11 +40,11 @@ jobs:
 
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
-          pip install -r requirements.txt
-          pip install PyInstaller
+          pip install -r requirements.txt PyInstaller pytest pytest-cov
 
           python -m PyInstaller Bane-Of-Wargs.spec
           mv dist/Bane-Of-Wargs Bane-Of-Wargs-Linux
+          python -m pytest source/main.py
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -74,11 +74,11 @@ jobs:
 
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
-          pip install -r requirements.txt
-          pip install PyInstaller
+          pip install -r requirements.txt PyInstaller pytest pytest-cov
 
           python -m PyInstaller Bane-Of-Wargs.spec
           mv dist/Bane-Of-Wargs Bane-Of-Wargs-Mac
+          python -m pytest source/main.py
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
@@ -108,11 +108,11 @@ jobs:
 
           mkdir yamale
           echo "4.0.4" >> yamale/VERSION
-          pip install -r requirements.txt
-          pip install windows-curses PyInstaller
+          pip install -r requirements.txt PyInstaller pytest pytest-cov
 
           python -m PyInstaller Bane-Of-Wargs.spec
           mv dist/Bane-Of-Wargs.exe Bane-Of-Wargs.exe
+          python -m pytest source/main.py
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
