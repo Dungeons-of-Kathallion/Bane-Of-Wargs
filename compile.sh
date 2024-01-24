@@ -27,5 +27,3 @@ source/weapon_upgrade_handling.py \
 --hidden-import fsspec \
 --exclude-module fcntl \
 --log-level DEBUG
-
-sudo mv dist/Bane-Of-Wargs /usr/bin/

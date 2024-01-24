@@ -82,7 +82,7 @@ You can also take the game to a next level by compiling it. Check the documentat
 
 Bane Of Wargs is a minimal game but you will have to install/updated some python modules.
 All required modules are in the `requirements.txt` file.
-[simple-term-menu](https://pypi.org/project/simple-term-menu/), [fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html), [AppDirs](https://pypi.org/project/appdirs/), [Requests](https://pypi.org/project/requests/).
+[fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html), [AppDirs](https://pypi.org/project/appdirs/), [Requests](https://pypi.org/project/requests/).
 
 ---
 
