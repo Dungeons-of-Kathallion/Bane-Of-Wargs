@@ -6,7 +6,7 @@ from colorama import Fore, Back, Style, init, deinit
 init()
 
 
-def show_menu(options, length=54):
+def show_menu(options, length=52):
     continue_action = True
 
     # Get how many choices there are
