@@ -473,7 +473,8 @@ while menu:
         text_handling.print_speech_text_effect(text, preferences)
 
         # Download documentation files
-        md_file = data_handling.temporary_git_file_download('Gameplay-Guide.md')
+        file = 'Gameplay-Guide.md'
+        md_file = data_handling.temporary_git_file_download(file)
 
         last_timer = time.time()
         time_for_process = round(last_timer - first_timer, 4)
@@ -494,7 +495,10 @@ while menu:
             wait = input()
         except Exception as error:
             error_occurred = True
-            print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + f"file '{file}' does not exists" + COLOR_RESET_ALL)
+            print(
+                COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: " + COLOR_RESET_ALL +
+                COLOR_RED + f"file '{file}' does not exists" + COLOR_RESET_ALL
+            )
             logger_sys.log_message(f"ERROR: file '{file}' does not exists --> canceling gameplay guide markdown printing")
         os.system('clear')
     else:
