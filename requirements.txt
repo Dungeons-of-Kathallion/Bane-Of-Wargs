@@ -6,3 +6,4 @@ yamale
 fsspec
 appdirs
 requests
+rich

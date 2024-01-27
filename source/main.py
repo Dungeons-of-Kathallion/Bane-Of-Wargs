@@ -22,17 +22,23 @@ import readline
 import traceback
 import appdirs
 import shutil
-import fsspec
 import logger_sys
 from git import Repo
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
 from sys import exit
+from rich.console import Console
+from rich.markdown import Markdown
 
 # initialize colorama
 init()
 
 os.system('clear')
+
+# defines console for the rich module
+# to work properly
+
+console = Console()
 
 # says you are not playing.
 play = 0
@@ -118,6 +124,7 @@ if not os.path.exists(program_dir):
     os.mkdir(program_dir + "/saves")
     os.mkdir(program_dir + "/game")
     os.mkdir(program_dir + "/logs")
+    os.mkdir(program_dir + "/docs")
 
 # Download game data from github master branch
 # and install them (auto-update)
@@ -135,82 +142,30 @@ if preferences["auto update"]:
 
     logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
 
+    first_timer = time.time()
     # Download yaml schema files
-    try:
-        destination = program_dir + '/game/schemas'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
-        fs.get(fs.ls("schemas/"), destination)
-    except Exception as error:
-        print(
-            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
-            " an error occurred when trying to download game data to '" +
-            destination + "'."
-        )
-        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-        logger_sys.log_message("DEBUG: " + str(error))
-        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-        time.sleep(.5)
-
+    data_handling.fsspec_download('schemas/', program_dir + '/game/schemas', download_branch, download_repo, download_org)
     print("1/4", end="\r")
 
     logger_sys.log_message("INFO: Downloading game data files from github")
     # Download data files
-    try:
-        destination = program_dir + '/game/data'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
-        fs.get(fs.ls("data/"), destination)
-    except Exception as error:
-        print(
-            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" +
-            COLOR_RESET_ALL + " an error occurred when trying to download game data to '" +
-            destination + "'."
-            )
-        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-        logger_sys.log_message("DEBUG: " + str(error))
-        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-        time.sleep(.5)
-
+    data_handling.fsspec_download('data/', program_dir + '/game/data', download_branch, download_repo, download_org)
     print("2/4", end="\r")
 
     logger_sys.log_message("INFO: Downloading game images .txt files from github")
     # Download images .txt files
-    try:
-        destination = program_dir + '/game/imgs'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
-        fs.get(fs.ls("imgs/"), destination)
-    except Exception as error:
-        print(
-            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" +
-            COLOR_RESET_ALL + " an error occurred when trying to download game data to '" +
-            destination + "'."
-            )
-        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-        logger_sys.log_message("DEBUG: " + str(error))
-        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-        time.sleep(.5)
-
+    data_handling.fsspec_download('imgs/', program_dir + '/game/imgs', download_branch, download_repo, download_org)
     print("3/4", end="\r")
 
     logger_sys.log_message("INFO: Downloading game scripts .py files from github")
-    # Download images .txt files
-    try:
-        destination = program_dir + '/game/scripts'
-        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
-        fs.get(fs.ls("scripts/"), destination)
-    except Exception as error:
-        print(
-            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" +
-            COLOR_RESET_ALL + " an error occurred when trying to download game data to '" +
-            destination + "'."
-            )
-        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
-        logger_sys.log_message("DEBUG: " + str(error))
-        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
-        time.sleep(.5)
+    # Download scripts .py files
+    data_handling.fsspec_download('scripts/', program_dir + '/game/scripts', download_branch, download_repo, download_org)
 
     print("4/4")
     print("Done")
-    logger_sys.log_message("INFO: Process of downloading game data to update it completed")
+    last_timer = time.time()
+    process_time = round(last_timer - first_timer, 4)
+    logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
 
 
 # main menu start
@@ -236,7 +191,7 @@ while menu:
     os.system('clear')
     print_title()
 
-    options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Quit']
+    options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Quit']
     choice = term_menu.show_menu(options)
     os.system('clear')
 
@@ -511,6 +466,41 @@ while menu:
             time.sleep(5)
         text = "Finished Updating."
         text_handling.print_speech_text_effect(text, preferences)
+    elif choice == 'Gameplay Guide':
+        first_timer = time.time()
+        logger_sys.log_message("INFO: Downloading game documentation")
+        text = "Downloading game documentation..."
+        text_handling.print_speech_text_effect(text, preferences)
+
+        # Download documentation files
+        file = 'Gameplay-Guide.md'
+        md_file = data_handling.temporary_git_file_download(file)
+
+        last_timer = time.time()
+        time_for_process = round(last_timer - first_timer, 4)
+        logger_sys.log_message(f"INFO: Finished game documentation downloading process in {time_for_process} seconds")
+        text = "Finished downloading process..."
+        text_handling.print_speech_text_effect(text, preferences)
+
+        # Actually display the markdown file
+        # to the terminal with 'rich' module
+        error_occurred = False
+
+        os.system('clear')
+
+        try:
+            md_text = Markdown(md_file)
+            console.print(md_text)
+
+            wait = input()
+        except Exception as error:
+            error_occurred = True
+            print(
+                COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: " + COLOR_RESET_ALL +
+                COLOR_RED + f"file '{file}' does not exists" + COLOR_RESET_ALL
+            )
+            logger_sys.log_message(f"ERROR: file '{file}' does not exists --> canceling gameplay guide markdown printing")
+        os.system('clear')
     else:
         os.system('clear')
         exit(1)

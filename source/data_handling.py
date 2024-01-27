@@ -3,9 +3,13 @@ import logger_sys
 import check_yaml
 import colors
 import os
+import git
+import shutil
+import tempfile
 import yaml
 import time
 import text_handling
+import fsspec
 from colorama import Fore, Back, Style, init, deinit
 from colors import *
 
@@ -135,6 +139,38 @@ def load_game_data(which_type, what_plugin=None):
             check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
 
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+
+
+def fsspec_download(github_file, destination_point, download_org, download_repo, download_branch):
+    try:
+        destination = destination_point
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
+        fs.get(fs.ls(github_file), destination)
+    except Exception as error:
+        print(
+            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
+            " an error occurred when trying to download game data to '" +
+            destination + "'."
+        )
+        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
+        logger_sys.log_message("DEBUG: " + str(error))
+        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+        time.sleep(.5)
+
+
+def temporary_git_file_download(selected_file):
+    global file_text_data
+    # Create a temporary directory to after
+    # clone the repository and select the chosen
+    # file and export its data in a string
+
+    temporary_dir = tempfile.mkdtemp()
+    git.Repo.clone_from('https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.wiki.git', temporary_dir, depth=1)
+
+    with open(temporary_dir + '/' + selected_file, 'r') as f:
+        file_text_data = f.read()
+
+    return file_text_data
 
 
 # deinitialize colorama
