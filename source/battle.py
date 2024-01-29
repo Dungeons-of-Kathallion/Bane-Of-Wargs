@@ -142,14 +142,9 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
                     # attack formula
                     enemy_dodged = False
                     player_critical_hit = False
-                    player_critical_hit_chance = round(
-                        player_critical_hit_chance / random.uniform(
-                            .03, player_critical_hit_chance * 2.8
-                        ), 2
-                    )
                     if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15:
                         enemy_dodged = True
-                    if player_critical_hit_chance / random.uniform(.20, .35) < player_critical_hit_chance and not enemy_dodged:
+                    if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
                     if not enemy_dodged:
                         player_damage = random.randint(1, int(item[player["held item"]]["damage"]))
@@ -179,17 +174,8 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
-                    enemy_critical_hit_chance = round(
-                        enemy_fake_critical_hit_chance / random.uniform(
-                            .03, enemy_fake_critical_hit_chance * 2.8
-                        ), 2
-                    )
-                    critical_hit_chance_formula = round(
-                        enemy_critical_hit_chance / random.uniform(
-                            .03, enemy_critical_hit_chance * 2.8
-                        ), 2
-                    )
-                    if enemy_critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
+                    enemy_critical_hit_chance = enemy_fake_critical_hit_chance
+                    if enemy_critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
                     elif round(random.uniform(.30, enemy_agility), 2) > enemy_agility / 1.15:
                         player_dodged = True
@@ -446,11 +432,10 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
-                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(.03, critical_hit_chance * 2.8), 2)
                     if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15:
                         enemy_dodged = True
                         print("Your enemy dodged your attack!")
-                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
+                    if critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
                         print("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
@@ -528,8 +513,7 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
-                    critical_hit_chance_formula = round(critical_hit_chance / random.uniform(.03, critical_hit_chance * 2.8), 2)
-                    if critical_hit_chance / random.uniform(.20, .35) < critical_hit_chance_formula and not enemy_dodged:
+                    if critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
                         print("Your enemy dealt a critical hit!")
                     elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
