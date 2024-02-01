@@ -28,5 +28,5 @@ rules:
     allow-non-breakable-inline-mappings: true
   truthy: disable
   line-length:
-    max: 120
+    max: 200
     level: warning
