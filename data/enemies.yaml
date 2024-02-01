@@ -204,4 +204,6 @@ Balrog:
   inventory:
   - Balrog Horn
   - Flaming Whip
-  description: "Balrogs are extremely deadly dragons that can produce huge amounts of flame and heat around them. Their weapon is the Flaming Whip, a deadly weapon. Balrogs are one of the most powerful monsters in the world."
+  description: >
+  Balrogs are extremely deadly dragons that can produce huge amounts of flame and heat around them.
+  Their weapon is the Flaming Whip, a deadly weapon. Balrogs are one of the most powerful monsters in the world.

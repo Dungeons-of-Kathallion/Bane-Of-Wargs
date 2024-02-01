@@ -45,7 +45,7 @@ met Jerry The Junk Seller attribute:
 find another old rusted key in case:
   to display:
     player attributes:
-      - met jerry the junk seller
+    - met jerry the junk seller
   use actions: True
   phrases:
   - "You find another old rusted key on the ground. Looks exactly like the one Jerry The Junk Seller was talking about."

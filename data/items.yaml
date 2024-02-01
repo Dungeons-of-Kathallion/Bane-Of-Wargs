@@ -9,8 +9,7 @@ Sword: &generic_sword
   gold: 7.65
   critical hit chance: .14
   description: "A generic sword."
-Sword (1):
-  << : *generic_sword
+Sword (1): *generic_sword
   upgrade tier: 1
   damage: 6.4
   defend: 7
@@ -19,8 +18,7 @@ Sword (1):
   for this upgrade:
   - Raw Wood
   - Raw Iron
-Sword (2):
-  << : *generic_sword
+Sword (2): *generic_sword
   upgrade tier: 2
   damage: 7.2
   defend: 7.6
@@ -30,8 +28,7 @@ Sword (2):
   - Raw Wood
   - Raw Bronze
   - Raw Iron
-Sword (3):
-  << : *generic_sword
+Sword (3): *generic_sword
   upgrade tier: 3
   damage: 7.4
   defend: 7.7
@@ -51,8 +48,7 @@ Broadsword: &broadsword
   gold: 12.98
   critical hit chance: .12
   description: "The Broadsword is a large sword and powerful sword that not anyone can use well."
-Broadsword (1):
-  << : *broadsword
+Broadsword (1): *broadsword
   upgrade tier: 1
   damage: 8
   defend: 7
@@ -63,8 +59,7 @@ Broadsword (1):
   - Raw Iron
   - Raw Iron
   - Raw Bronze
-Broadsword (2):
-  << : *broadsword
+Broadsword (2): *broadsword
   upgrade tier: 2
   damage: 9.3
   defend: 7.6
@@ -85,8 +80,7 @@ Long Sword: &long_sword
   gold: 13.78
   critical hit chance: .15
   description: "A very long sword that is very practical to defend yourself from monsters."
-Long Sword (1):
-  << : *long_sword
+Long Sword (1): *long_sword
   upgrade tier: 1
   damage: 6.7
   defend: 8
@@ -97,8 +91,7 @@ Long Sword (1):
   - Raw Wood
   - Raw Bronze
   - Flexible Steel
-Long Sword (2):
-  << : *long_sword
+Long Sword (2): *long_sword
   upgrade tier: 2
   damage: 7
   defend: 8
@@ -120,8 +113,7 @@ Rapier: &Rapier
   agility: .19
   critical hit chance: .1
   description: "A long, thin sword with an elaborate hilt and a flexible blade."
-Rapier (1):
-  << : *Rapier
+Rapier (1): *Rapier
   upgrade tier: 1
   damage: 6.6
   defend: 7.4
@@ -141,8 +133,7 @@ Bow: &generic_bow
   gold: 3.2
   critical hit chance: .1
   description: "A generic bow."
-Bow (1):
-  << : *generic_bow
+Bow (1): *generic_bow
   upgrade tier: 1
   damage: 5.2
   defend: 8.7
@@ -152,8 +143,7 @@ Bow (1):
   - Raw Wood
   - Raw Wood
   - Strong String
-Bow (2):
-  << : *generic_bow
+Bow (2): *generic_bow
   upgrade tier: 2
   damage: 5.7
   defend: 9
@@ -207,8 +197,7 @@ Dwarf Axe: &dwarf_axe
   gold: 4.68
   critical hit chance: .14
   description: "A generic dwarf axe used by the Dwarves. A slow but deadly weapon."
-Dwarf Axe (1):
-  << : *dwarf_axe
+Dwarf Axe (1): *dwarf_axe
   upgrade tier: 1
   damage: 9
   defend: 7.5
@@ -275,8 +264,7 @@ Wolf Fur: &wolf_fur
   agility: .35
   gold: 1.25
   description: "A wolf fur that can also be used as a chestplate."
-Wolf Fur (1):
-  << : *wolf_fur
+Wolf Fur (1): *wolf_fur
   upgrade tier: 1
   armor protection: .37
   agility: .38
@@ -318,8 +306,7 @@ Knight Boots: &knight_boots
   agility: .2
   gold: 13.45
   description: "The generic boots of any good knight."
-Knight Boots (1):
-  << : *knight_boots
+Knight Boots (1): *knight_boots
   upgrade tier: 1
   armor protection: .27
   agility: .18
@@ -327,8 +314,7 @@ Knight Boots (1):
   - Raw Wood
   - Raw Iron
   - Raw Iron
-Knight Boots (2):
-  << : *knight_boots
+Knight Boots (2): *knight_boots
   upgrade tier: 2
   armor protection: .29
   agility: .165
@@ -344,8 +330,7 @@ Chainmail Leggings: &chainmail_leggings
   agility: .17
   gold: 19.53
   description: "Chainmail leggings are light weight but strong and durable armor pieces. They are used by most knights."
-Chainmail Leggings (1):
-  << : *chainmail_leggings
+Chainmail Leggings (1): *chainmail_leggings
   upgrade tier: 1
   armor protection: .36
   agility: .15
@@ -353,8 +338,7 @@ Chainmail Leggings (1):
   - Raw Iron
   - Raw Iron
   - Raw Bronze
-Chainmail Leggings (2):
-  << : *chainmail_leggings
+Chainmail Leggings (2): *chainmail_leggings
   upgrade tier: 2
   armor protection: .38
   agility: .13
@@ -363,8 +347,7 @@ Chainmail Leggings (2):
   - Raw Silver
   - Flexible Steel
   - Flexible Steel
-Chainmail Leggings (3):
-  << : *chainmail_leggings
+Chainmail Leggings (3): *chainmail_leggings
   upgrade tier: 3
   armor protection: .38
   agility: .145
@@ -372,8 +355,7 @@ Chainmail Leggings (3):
   - Steel
   - Refined Steel
   - Flexible Steel
-Chainmail Leggings (4):
-  << : *chainmail_leggings
+Chainmail Leggings (4): *chainmail_leggings
   upgrade tier: 4
   armor protection: .38
   agility: .1495
