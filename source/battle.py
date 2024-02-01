@@ -117,7 +117,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     enemies_count = enemies_number
     player_deaths = 0
     enemy_deaths = 0
-    while count < 15:
+    while count < 50:
         someone_died = False
         # reset enemy health stats
         player_fake_health = player_health_cap + player_hp
@@ -193,7 +193,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
         count += 1
 
     # compute percentage of defeat chance
-    defeat_percentage = round(player_deaths * 100 / 15)
+    defeat_percentage = round(player_deaths * 100 / 50)
 
     if defeat_percentage > 100:
         defeat_percentage = 100
