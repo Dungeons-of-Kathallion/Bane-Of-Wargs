@@ -1,0 +1,4 @@
+[submodule "vanilla-environment"]
+	path = vanilla-environment
+    url = git@github.com:Dungeons-of-Kathallion/Bane-Of-Wargs-Map-Editor.git
+    branch = vanilla-map
