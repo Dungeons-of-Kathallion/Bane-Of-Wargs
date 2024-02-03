@@ -141,7 +141,7 @@ def load_game_data(which_type, what_plugin=None):
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 
 
-def fsspec_download(github_file, destination_point, download_org, download_repo, download_branch):
+def fsspec_download(github_file, destination_point, download_branch, download_repo, download_org):
     try:
         destination = destination_point
         fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)

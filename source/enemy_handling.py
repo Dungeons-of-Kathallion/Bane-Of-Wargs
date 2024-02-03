@@ -14,7 +14,10 @@ init()
 # Handling function
 
 
-def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player):
+def spawn_enemy(
+    map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player,
+    preferences, drinks, npcs, zone, mounts, mission, dialog
+):
     enemies_remaining = enemy_number
     already_encountered = False
     while enemies_remaining > 0:
@@ -38,10 +41,16 @@ def spawn_enemy(map_location, list_enemies, enemy_number, enemy, item, lists, st
             )
         if not already_encountered:
             logger_sys.log_message("INFO: Display enemy encounter text")
-            battle.encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage)
+            battle.encounter_text_show(
+                player, item, enemy, map, map_location, enemies_remaining, lists,
+                defeat_percentage, preferences, drinks, npcs, zone, mounts, mission, start_player, dialog
+            )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")
-        battle.fight(player, item, enemy, map, map_location, enemies_remaining, lists)
+        battle.fight(
+            player, item, enemy, map, map_location, enemies_remaining, lists,
+            preferences, drinks, npcs, start_player, zone, dialog, mission, mounts
+        )
         enemies_remaining -= 1
 
     if player["health"] > 0:
