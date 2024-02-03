@@ -5,6 +5,7 @@ import sys
 import time
 import term_menu
 import text_handling
+import script_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -203,7 +204,11 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     return defeat_percentage
 
 
-def encounter_text_show(player, item, enemy, map, map_location, enemies_remaining, lists, defeat_percentage):
+def encounter_text_show(
+    player, item, enemy, map, map_location, enemies_remaining, lists,
+    defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
+    start_player, dialog
+):
     # import stats
     global turn, defend, fighting, already_encountered
     global enemy_singular, enemy_plural, enemy_max
@@ -315,6 +320,18 @@ def encounter_text_show(player, item, enemy, map, map_location, enemies_remainin
             elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
                 player["held shield"] = item_input
                 print("You are now holding a/an ", player["held shield"])
+            elif item[item_input]["type"] == "Utility":
+                print(" ")
+                if preferences["latest preset"]["type"] == 'plugin':
+                    script_handling.load_script(
+                        item_input, preferences, player, map, item, drinks, enemy, npcs,
+                        start_player, lists, zone, dialog, mission, mounts, plugin=True
+                    )
+                else:
+                    script_handling.load_script(
+                        item_input, preferences, player, map, item, drinks, enemy, npcs,
+                        start_player, lists, zone, dialog, mission, mounts
+                    )
             text = '='
             text_handling.print_separator(text)
     else:
@@ -349,7 +366,10 @@ def get_enemy_stats(
         player["enemies list"].append(choose_rand_enemy)
 
 
-def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
+def fight(
+    player, item, enemy, map, map_location, enemies_remaining, lists,
+    preferences, drinks, npcs, start_player, zone, dialog, mission, mounts
+):
     # import stats
     global turn, defend, fighting, already_encountered
     global enemy_singular, enemy_plural, enemy_max
@@ -389,13 +409,13 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
 
                 remaining_health_bars = round(player_health / player_max_health * bars)
                 lost_health_bars = bars - remaining_health_bars
-                
+
                 if remaining_health_bars > 20:
                     remaining_health_bars = 20
 
                 remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
                 lost_health_bars_enemy = bars - remaining_health_bars_enemy
-                
+
                 if remaining_health_bars_enemy > 20:
                     remaining_health_bars_enemy = 20
 
@@ -485,21 +505,33 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                             player["max health"] += item[item_input]["max bonus"]
                             player["inventory"].remove(item_input)
                         # hold weapon/armor piece if it is one
-                        if item_input in player["inventory"] and item[item_input]["type"] == "Weapon":
+                        elif item[item_input]["type"] == "Weapon":
                             player["held item"] = item_input
                             print("You are now holding a/an ", player["held item"])
-                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Chestplate":
+                        elif item[item_input]["type"] == "Armor Piece: Chestplate":
                             player["held chestplate"] = item_input
                             print("You are now wearing a/an ", player["held chestplate"])
-                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Leggings":
+                        elif item[item_input]["type"] == "Armor Piece: Leggings":
                             player["held leggings"] = item_input
                             print("You are now wearing a/an ", player["held leggings"])
-                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
+                        elif item[item_input]["type"] == "Armor Piece: Boots":
                             player["held boots"] = item_input
                             print("You are now wearing a/an ", player["held boots"])
-                        elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
+                        elif item[item_input]["type"] == "Armor Piece: Shield":
                             player["held shield"] = item_input
                             print("You are now holding a/an ", player["held shield"])
+                        elif item[item_input]["type"] == "Utility":
+                            print(" ")
+                            if preferences["latest preset"]["type"] == 'plugin':
+                                script_handling.load_script(
+                                    item_input, preferences, player, map, item, drinks, enemy, npcs,
+                                    start_player, lists, zone, dialog, mission, mounts, plugin=True
+                                )
+                            else:
+                                script_handling.load_script(
+                                    item_input, preferences, player, map, item, drinks, enemy, npcs,
+                                    start_player, lists, zone, dialog, mission, mounts
+                                )
                         text = '='
                         text_handling.print_separator(text)
                         print(" ")
@@ -541,16 +573,16 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                         enemy_health = 0
                     remaining_health_bars = round(player_health / player_max_health * bars)
                     lost_health_bars = bars - remaining_health_bars
-                    
+
                     if remaining_health_bars > 20:
                         remaining_health_bars = 20
 
                     remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
                     lost_health_bars_enemy = bars - remaining_health_bars_enemy
-                    
+
                     if remaining_health_bars_enemy > 20:
                         remaining_health_bars_enemy = 20
-                    
+
                     sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
                     sys.stdout.write(f"|{health_color}{
                         remaining_health_bars * remaining_health_symbol

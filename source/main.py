@@ -12,6 +12,7 @@ import npc_handling
 import text_handling
 import zone_handling
 import weapon_upgrade_handling
+import script_handling
 import os
 import sys
 import time
@@ -1316,7 +1317,8 @@ def run(play):
                             )
                             enemy_handling.spawn_enemy(
                                 map_location, lists[str(current_enemy_data["enemy category"])],
-                                current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player
+                                current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
+                                preferences, drinks, npcs, zone, mounts, mission, dialog
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1332,7 +1334,8 @@ def run(play):
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
             enemy_handling.spawn_enemy(
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
-                map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player
+                map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
+                preferences, drinks, npcs, zone, mounts, mission, dialog
             )
 
         elif (
@@ -1349,7 +1352,8 @@ def run(play):
             logger_sys.log_message("INFO: Spawning enemies")
             enemy_handling.spawn_enemy(
                 map_location, lists['generic'], round(random.uniform(1, 5)), enemy,
-                item, lists, start_player, map, player
+                item, lists, start_player, map, player,
+                preferences, drinks, npcs, zone, mounts, mission, dialog
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
@@ -2346,43 +2350,17 @@ def run(play):
                 continued2 = False
                 current_utility = i
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
-                    logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
-                    if preferences["latest preset"]["type"] == 'plugin':
-                        with open(
-                            program_dir + '/plugins/' + preferences["latest preset"]["plugin"] +
-                            '/scripts/' + item[current_utility]["script name"]
-                        ) as f:
-                            global_arguments = {}
-                            if "arguments" in item[current_utility]:
-                                arguments = item[current_utility]['arguments']
-                                if "player" in arguments:
-                                    global_arguments["player"] = player
-                                if "map" in arguments:
-                                    global_arguments["map"] = map
-                                if "item" in arguments:
-                                    global_arguments["item"] = item
-                                if "drinks" in arguments:
-                                    global_arguments["drinks"] = drinks
-                                if "enemy" in arguments:
-                                    global_arguments["enemy"] = enemy
-                                if "npcs" in arguments:
-                                    global_arguments["npcs"] = npcs
-                                if "start_player" in arguments:
-                                    global_arguments["start_player"] = start_player
-                                if "lists" in arguments:
-                                    global_arguments["lists"] = lists
-                                if "zone" in arguments:
-                                    global_arguments["zone"] = zone
-                                if "dialog" in arguments:
-                                    global_arguments["dialog"] = dialog
-                                if "mission" in arguments:
-                                    global_arguments["mission"] = mission
-                                if "mounts" in arguments:
-                                    global_arguments["mounts"] = mounts
-                            exec(f.read(), global_arguments)
-                            continued2 = True
+                    if preferences["latest preset"]["type"] == "plugin":
+                        script_handling.load_script(
+                            current_utility, preferences, player, map, item, drinks, enemy, npcs,
+                            start_player, lists, zone, dialog, mission, mounts, plugin=True
+                        )
                     else:
-                        pass
+                        script_handling.load_script(
+                            current_utility, preferences, player, map, item, drinks, enemy, npcs,
+                            start_player, lists, zone, dialog, mission, mounts
+                        )
+                    continued2 = True
                     finished = input(" ")
                 elif current_utility not in player["inventory"]:
                     continued2 = True
