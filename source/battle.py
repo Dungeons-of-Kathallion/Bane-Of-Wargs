@@ -389,9 +389,15 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
 
                 remaining_health_bars = round(player_health / player_max_health * bars)
                 lost_health_bars = bars - remaining_health_bars
+                
+                if remaining_health_bars > 20:
+                    remaining_health_bars = 20
 
                 remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
                 lost_health_bars_enemy = bars - remaining_health_bars_enemy
+                
+                if remaining_health_bars_enemy > 20:
+                    remaining_health_bars_enemy = 20
 
                 # print HP stats and possible actions for the player
 
@@ -535,9 +541,16 @@ def fight(player, item, enemy, map, map_location, enemies_remaining, lists):
                         enemy_health = 0
                     remaining_health_bars = round(player_health / player_max_health * bars)
                     lost_health_bars = bars - remaining_health_bars
+                    
+                    if remaining_health_bars > 20:
+                        remaining_health_bars = 20
 
                     remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
                     lost_health_bars_enemy = bars - remaining_health_bars_enemy
+                    
+                    if remaining_health_bars_enemy > 20:
+                        remaining_health_bars_enemy = 20
+                    
                     sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
                     sys.stdout.write(f"|{health_color}{
                         remaining_health_bars * remaining_health_symbol
