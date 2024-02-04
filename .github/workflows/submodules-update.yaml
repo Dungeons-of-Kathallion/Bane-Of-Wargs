@@ -32,4 +32,4 @@ jobs:
           git push
           
           echo "# Submodule Update\n`master`<--`submodules-updates`" >> body_content.txt
-          gh pr create -a @OcelotWalrus -b master -F body_content.txt -t "Submodules Updates" -l "submodule updates" 
+          gh pr create -b "master" -F body_content.txt -t "Submodules Updates" -l "submodule updates"
