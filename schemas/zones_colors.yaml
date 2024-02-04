@@ -2,29 +2,31 @@ fields: 0
 hills: 1
 plains: 2
 valleys: 3
-mountains: 4
-low mountains: 5
-high mountains: 6
-black rocky mountains: 7
-desert: 8
-desert hills: 9
-desert valleys: 10
-badlands: 11
-badlands canyon: 12
-badlands hills: 13
-badlands valleys: 14
-badlands plateaus: 15
-badlands butte: 16
-badlands landforms: 17
-flatlands: 18
-beach: 19
-plains canyon: 20
-desert canyons: 21
-rocky canyons: 22
-black rocky canyons: 23
-village: 24
-hostel: 25
-forge: 26
-blacksmith: 27
-stable: 28
-church: 29
+woods: 4
+dark woods: 5
+mountains: 6
+low mountains: 7
+high mountains: 8
+black rocky mountains: 9
+desert: 10
+desert hills: 11
+desert valleys: 12
+badlands: 13
+badlands canyon: 14
+badlands hills: 15
+badlands valleys: 16
+badlands plateaus: 17
+badlands butte: 18
+badlands landforms: 19
+flatlands: 20
+beach: 21
+plains canyon: 22
+desert canyons: 23
+rocky canyons: 24
+black rocky canyons: 25
+village: 26
+hostel: 27
+forge: 28
+blacksmith: 29
+stable: 30
+church: 31
