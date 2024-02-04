@@ -77,13 +77,24 @@ If you have any problems, check the full documentation on how to run the game fr
 
 ## Building From Source
 
-You can also take the game to a next level by compiling it. Check the documentation about that at [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md).
+We recommend to build the game using the [PyInstaller](https://pyinstaller.org/en/stable/) program, but you could use any if you'd like, but we only support PyInstaller.There's a full documentation about building the game using PyInstaller at [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md).
 
 ## System Requirements
 
 Bane Of Wargs is a minimal game but you will have to install/updated some python modules.
 All required modules are in the `requirements.txt` file.
-[fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html), [AppDirs](https://pypi.org/project/appdirs/), [Requests](https://pypi.org/project/requests/), [Rich](https://pypi.org/project/rich/).
+
+| Module    | PyPi Link                                                   | Version        |
+|-----------|-------------------------------------------------------------|----------------|
+| Fade      | https://pypi.org/project/fade/                              | latest-version |
+| GitPython | https://pypi.org/project/GitPython/                         | latest-version |
+| Colorama  | https://pypi.org/project/colorama/                          | latest-version |
+| PyYaml    | https://pypi.org/project/PyYAML/                            | latest-version |
+| Yamale    | https://pypi.org/project/yamale/                            | latest-version |
+| Fsspec    | https://filesystem-spec.readthedocs.io/en/latest/index.html | latest-version |
+| AppDirs   | https://pypi.org/project/appdirs/                           | latest-version |
+| Requests  | https://pypi.org/project/requests/                          | latest-version |
+| Rich      | https://pypi.org/project/rich/                              | latest-version |
 
 ---
 
