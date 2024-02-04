@@ -63,6 +63,8 @@ def print_description(mission_data, map):
 
             count += 1
         new_stopovers_for_mission = str(new_stopovers_for_mission)
+    else:
+        new_stopovers_for_mission = None
 
     # Load text replacements
     mission_text_replacements = {
