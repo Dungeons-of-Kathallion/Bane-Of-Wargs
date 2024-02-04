@@ -29,8 +29,14 @@ jobs:
           git submodule update --remote --recursive
           git merge master
 
-          git commit -am "Update submodules"
-          git push
+          continue=True
+
+          git commit -am "Update submodules" | continue=False
+
+          if [ continue == True ]
+          then
+            git push
           
-          echo "# Submodule Update\n`master`<--`submodules-updates`" >> body_content.txt
-          gh pr create -b "master" -F body_content.txt -t "Submodules Updates" -l "submodule updates"
+            echo "# Submodule Update\n`master`<--`submodules-updates`" >> body_content.txt
+            gh pr create -b "master" -F body_content.txt -t "Submodules Updates" -l "submodule updates"
+          fi
