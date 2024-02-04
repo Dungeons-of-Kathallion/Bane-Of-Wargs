@@ -24,14 +24,8 @@ jobs:
           git submodule update --init --recursive
           git submodule update --remote --recursive
 
-      # Commit to the repo under the GitHub actions user to ensure we have
-      # reasonable logging to trace back
-      - name: Commit & push changes
-        run: |
           git commit -am "Update submodules" || echo "No changes to commit"
           git push
-      # Create the PR to merge the submodules update to the master branch
-      - name: Create PR
-        run: |
+          
           echo "# Submodule Update\n`master`<--`submodules-updates`" >> body_content.txt
           gh pr create -a @OcelotWalrus -b master -F body_content.txt -t "Submodules Updates" -l "submodule updates" 
