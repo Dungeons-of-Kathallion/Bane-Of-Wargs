@@ -1948,7 +1948,7 @@ def run(play):
                     if choice == 'Abort':
                         wait = input("Are you sure you want to abort this mission? (y/n) ")
                         if wait.startswith('y'):
-                            player["active missions"].remove(mission_id)
+                            player["active missions"].remove(mission[mission_id]["name"])
                 else:
                     print("")
                     print(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
