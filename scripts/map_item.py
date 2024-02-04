@@ -144,3 +144,6 @@ def search_point(x, y, map_points_num, map):
         if point_i["x"] == x and point_i["y"] == y:
             map_location = i
     return map_location
+
+# run the script
+print_map(player, map, zone)
