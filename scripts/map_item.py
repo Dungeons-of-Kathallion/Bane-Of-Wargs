@@ -129,6 +129,12 @@ def get_zone_color(zone_type):
                 zone_color = COLOR_BLUE_14 + '▒'
             elif zone_code == 31:
                 zone_color = COLOR_BLUE_14 + '▒'
+            elif zone_code == 32:
+                zone_color = COLOR_BLUE_14 + '±'
+            elif zone_code == 33:
+                zone_color = COLOR_CYAN_2 + '≈'
+            elif zone_code == 34:
+                zone_color = COLOR_CYAN_1 + '≈'
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"zone type '{zone_type}' is not a valid zone type." + COLOR_RESET_ALL)
         print(error)
