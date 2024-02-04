@@ -64,25 +64,26 @@ See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
 
 </details>
 
-## To Play
+## Installing The Game
 
 ```
 pip install -r requirements.txt
 python source/main.py
 ```
+
 **It's highly recommende to use a clean terminal in fullscreen for the best gameplay experience.**
 
 If you have any problems, check the full documentation on how to run the game from nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md).
 
-### Compiling & Building
+## Building From Source
 
 You can also take the game to a next level by compiling it. Check the documentation about that at [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md).
 
-## Python Module Requirements
+## System Requirements
 
 Bane Of Wargs is a minimal game but you will have to install/updated some python modules.
 All required modules are in the `requirements.txt` file.
-[fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html), [AppDirs](https://pypi.org/project/appdirs/), [Requests](https://pypi.org/project/requests/), [Rich]([rich](https://pypi.org/project/rich/)).
+[fade](https://pypi.org/project/fade/), [GitPython](https://pypi.org/project/GitPython/), [colorama](https://pypi.org/project/colorama/), [PyYaml](https://pypi.org/project/PyYAML/), [Yamale](https://pypi.org/project/yamale/), [Fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html), [AppDirs](https://pypi.org/project/appdirs/), [Requests](https://pypi.org/project/requests/), [Rich](https://pypi.org/project/rich/).
 
 ---
 
@@ -90,15 +91,13 @@ _If you have previously ran the `pip install -r requirements.txt` command, you w
 
 ## Contributing
 
-All contributions like PR, issues that can go from bug reporting or feature request are all welcome!
-Just check the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/.github/CONTRIBUTING.md) guidelines.
+As a free and open source game, the source code is accessible to reading and modifying. You can contribute to the game by creating a github issue [from here](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose) to request a new feature or report a bug. You can propose your own changes by creating a [new pull request](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/pulls). Those who wish to contribute are recommended to checkout the [wiki](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki) and the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/.github/CONTRIBUTING.md) guidlines.
 
-## Progress
+## Development Progress
 
-Beta is out! Most of the planned engine features are developed!
-If you're interested by the game progress and development, check the wiki page about the [Goals](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Game-Progression) of the game.
+The planned game engine is currently in progress, and for the most of it done. The vanilla gameplay is not ready at all by you could always [create your own mod!](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods). If you're interested by the game progress and development, check the wiki page about the [Goals](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Game-Progression) of the game.
 
 ## Licensing
 
-Bane Of Wargs is a free, open source game. The source code and every file you will find on this repository is available under the GPL v3 license.
+Bane Of Wargs is a free, open source game. The [source code](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/tree/master/source) and every file you will find on this repository is available under the [GPL v3 license](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs?tab=GPL-3.0-1-ov-file#readme).
 All its work and artwork is all public domain. Feel free to fork, or copy the game source to make your own version of the engine.
