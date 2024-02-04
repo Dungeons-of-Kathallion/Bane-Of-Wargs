@@ -102,7 +102,7 @@ _If you have previously ran the `pip install -r requirements.txt` command, you w
 
 ## Contributing
 
-As a free and open source game, the source code is accessible to reading and modifying. You can contribute to the game by creating a github issue [from here](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose) to request a new feature or report a bug. You can propose your own changes by creating a [new pull request](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/pulls). Those who wish to contribute are recommended to checkout the [wiki](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki) and the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/.github/CONTRIBUTING.md) guidlines.
+As a free and open source game, the source code is accessible to reading and modifying. You can contribute to the game by creating a github issue [from here](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose) to request a new feature or report a bug. You can propose your own changes by creating a [new pull request](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/pulls). Those who wish to contribute are recommended to checkout the [wiki](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki) and the [CONTRIBUTING](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/.github/CONTRIBUTING.md) guidelines.
 
 ## Development Progress
 
