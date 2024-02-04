@@ -15,7 +15,7 @@ jobs:
       # Initialize or update each one recursively
       - name: Pull & update submodules recursively
         run: |
-          git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git
+          git clone git@github.com:Dungeons-of-Kathallion/Bane-Of-Wargs.git
           cd Bane-Of-Wargs
           
           git config --global user.email "actions@github.com"
