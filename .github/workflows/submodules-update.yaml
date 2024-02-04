@@ -24,7 +24,7 @@ jobs:
           git submodule update --init --recursive
           git submodule update --remote --recursive
 
-          git commit -m "Update submodules"
+          git commit -am "Update submodules"
           git push
           
           echo "# Submodule Update\n`master`<--`submodules-updates`" >> body_content.txt
