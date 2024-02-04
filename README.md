@@ -27,6 +27,17 @@ You will have to fight monsters, bossses to get keys to after unlock new places 
 
 See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide) wiki page or check or the [Creating Mod](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods) wiki page if you're interested in modding the game.
 
+---
+
+Here's the vanilla starting dialog plot:
+> “
+> You're a lumberjack who lives in a small village in the _Forlindon Woods_, a quiet a calm place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the _Stall Insland_. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear "the world": dragons, gold, elves, dwarves, great mountains, adventure...
+> 
+> A day like others, you get a message in your mailbox: a dwarf king from the _Goro Mountains Peaks_ has heard from the mayor of the village, who keeps contact with him because they provide the village in stone, that you have great woodcraft skills. This dwarf king requests you to come to his castle in the mountains of the _Goro Peaks_ to participate to a great project...
+>
+> You decide to accept the deal, because of the great promiced remuneration. You'll travel into many places like the _Californ Woods_, the _Stall Fields_, and many other great places.
+> ”
+
 <details>
 
 <summary>Check some gameplay shots:</summary>
