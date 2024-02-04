@@ -27,7 +27,7 @@ jobs:
           git checkout submodule-updates-patches
           git submodule update --init --recursive
           git submodule update --remote --recursive
-          git merge master
+          git merge master || echo "Not Merging"
 
           continue=True
 
