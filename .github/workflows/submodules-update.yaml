@@ -27,6 +27,7 @@ jobs:
           git checkout submodule-updates-patches
           git submodule update --init --recursive
           git submodule update --remote --recursive
+          git merge master
 
           git commit -am "Update submodules"
           git push
