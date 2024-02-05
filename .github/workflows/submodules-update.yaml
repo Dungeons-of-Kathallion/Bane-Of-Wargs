@@ -31,7 +31,7 @@ jobs:
 
           continue=True
 
-          git commit -am "Update submodules" | continue=False
+          git commit -am "Update submodules" || continue=False
 
           if [ continue == True ]
           then
