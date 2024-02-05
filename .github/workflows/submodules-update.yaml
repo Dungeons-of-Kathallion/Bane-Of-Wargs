@@ -33,7 +33,7 @@ jobs:
 
           git commit -am "Update submodules" || continue=False
 
-          if [ continue == True ]
+          if [ continue ]
           then
             git push
           
