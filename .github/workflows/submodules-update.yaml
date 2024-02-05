@@ -37,6 +37,7 @@ jobs:
           then
             git push
           
-            echo "# Submodule Update\n`master`<--`submodules-updates`" >> body_content.txt
+            echo "# Submodule" >> body_content.txt
+            echo "Update master<--submodules-updates" >> body_content.txt
             gh pr create -b "master" -F body_content.txt -t "Submodules Updates" -l "submodule updates"
           fi
