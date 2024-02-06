@@ -47,7 +47,7 @@ def load_game_data(which_type, what_plugin=None):
         with Progress() as progress:
 
             task1 = progress.add_task("[cyan]Loading Data...", total=22)
-    
+
             while not progress.finished:
 
                 with open(program_dir + "/game/data/map.yaml") as f:
@@ -124,7 +124,7 @@ def load_game_data(which_type, what_plugin=None):
             logger_sys.log_message(f"ERROR: Couldn't find plugin '{what_plugin}'")
             play = 0
             text_handling.exit_game()
-     
+
         with Progress() as progress:
 
             task1 = progress.add_task("[cyan]Loading Data...", total=22)
