@@ -238,7 +238,9 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
                 current_function, current_function_executions, new_text_replacements, preferences, current_dialog
             )
         elif current_function.lower().startswith('choice()'):
-            conversation_choice_maker(current_function, current_function_choices, new_text_replacements, preferences, current_dialog)
+            conversation_choice_maker(
+                current_function, current_function_choices, new_text_replacements, preferences, current_dialog
+            )
         else:
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog conversation function '{current_function}' isn't valid" +
