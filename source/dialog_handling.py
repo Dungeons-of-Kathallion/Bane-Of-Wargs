@@ -234,12 +234,19 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
         elif current_function.lower().startswith('ask-confirmation('):
             conversation_ask_confirmation(current_function, new_text_replacements)
         elif current_function.lower().startswith('if('):
-            conversation_if_statement(current_function, current_function_executions, new_text_replacements, preferences, current_dialog)
+            conversation_if_statement(
+                current_function, current_function_executions, new_text_replacements, preferences, current_dialog
+            )
         elif current_function.lower().startswith('choice()'):
             conversation_choice_maker(current_function, current_function_choices, new_text_replacements, preferences, current_dialog)
         else:
-            print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog conversation function '{current_function}' isn't valid" + COLOR_RESET_ALL)
-            logger_sys.log_message(f"ERROR: dialog conversation function '{current_function}' isn't valid --> shuting down program")
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog conversation function '{current_function}' isn't valid" +
+                COLOR_RESET_ALL
+            )
+            logger_sys.log_message(
+                f"ERROR: dialog conversation function '{current_function}' isn't valid --> shuting down program"
+            )
             time.sleep(5)
             text_handling.exit_game()
 
@@ -253,7 +260,9 @@ def conversation_print(conversation_input, preferences, new_text_replacements):
     conversation_input = conversation_input.replace(')', '')
     count = 0
     while count < len(list(new_text_replacements)):
-        conversation_input = conversation_input.replace('$' + list(new_text_replacements)[count], str(new_text_replacements[list(new_text_replacements)[count]]))
+        conversation_input = conversation_input.replace(
+            '$' + list(new_text_replacements)[count], str(new_text_replacements[list(new_text_replacements)[count]])
+        )
 
         count += 1
     text_handling.print_speech_text_effect(conversation_input, preferences)
@@ -270,7 +279,7 @@ def conversation_ask_input(conversation_input, new_text_replacements):
 def conversation_goto(conversation_input, preferences, new_text_replacements, current_dialog):
     label_name = conversation_input.replace('goto(', '')
     label_name = label_name.replace(')', '')
-    label_name_int = int(label_name.split("label",1)[1]) - 1
+    label_name_int = int(label_name.split("label", 1)[1]) - 1
     label_data = current_dialog["conversation"][label_name_int][label_name]
 
     load_conversation_label(label_data, preferences, new_text_replacements, current_dialog)
@@ -292,8 +301,8 @@ def conversation_ask_confirmation(conversation_input, new_text_replacements):
 def conversation_if_statement(conversation_input, executions_dict, new_text_replacements, preferences, current_dialog):
     statement = conversation_input.replace('if(', '')
     statement = statement.replace(')', '')
-    statement_1 = new_text_replacements[statement.split(", ",1)[0]]
-    statement_2 = statement.split(", ",1)[1]
+    statement_1 = new_text_replacements[statement.split(", ", 1)[0]]
+    statement_2 = statement.split(", ", 1)[1]
 
     if statement_2 == 'True':
         statement_2 = True
@@ -307,16 +316,16 @@ def conversation_if_statement(conversation_input, executions_dict, new_text_repl
 def conversation_choice_maker(conversation_input, choices_dict, new_text_replacements, preferences, current_dialog):
     choices = []
     for current_choice_making in choices_dict:
-        choice_name = current_choice_making.split("(",1)[1]
-        choice_name = choice_name.split(",",1)[0]
+        choice_name = current_choice_making.split("(", 1)[1]
+        choice_name = choice_name.split(",", 1)[0]
         choices += [str(choice_name)]
 
     player_choice = term_menu.show_menu(choices)
     choice_position = choices.index(player_choice)
 
     choice_action = choices_dict[choice_position]
-    choice_action = choice_action.split(", ",1)[1]
-    choice_action = choice_action.split("))",1)[0] + ")"
+    choice_action = choice_action.split(", ", 1)[1]
+    choice_action = choice_action.split("))", 1)[0] + ")"
     if choice_action.lower().startswith('print('):
         conversation_print(choice_action, preferences, new_text_replacements)
     elif choice_action.lower().startswith('ask-input('):
