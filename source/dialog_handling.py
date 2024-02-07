@@ -245,7 +245,7 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
                 COLOR_RESET_ALL
             )
             logger_sys.log_message(
-                f"ERROR: dialog conversation function '{current_function}' isn't valid --> shuting down program"
+                f"ERROR: dialog conversation function '{current_function}' isn't valid --> shutting down program"
             )
             time.sleep(5)
             text_handling.exit_game()
