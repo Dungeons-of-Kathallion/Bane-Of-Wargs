@@ -1,5 +1,5 @@
 to display: any(required=False)
-phrases: list(str())
+conversation: list()
 scene: str(required=False)
 use actions: bool()
 actions: any(required=False)

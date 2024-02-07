@@ -1,5 +1,6 @@
 import logger_sys
 import text_handling
+import term_menu
 import appdirs
 import sys
 import time
@@ -20,7 +21,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
     current_dialog_name = current_dialog
     logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}'")
     current_dialog = dialog[str(current_dialog)]
-    dialog_len = len(current_dialog["phrases"])
+    dialog_len = len(current_dialog["conversation"])
     if "scene" in current_dialog:
         current_dialog_scene = str(current_dialog["scene"])
         logger_sys.log_message(
@@ -66,16 +67,16 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 to_print = to_print.replace('$GRAY', '\033[1;30m')
                 print(to_print)
     count = 0
-    logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' phrases")
-    while count < dialog_len:
-        text = str(current_dialog["phrases"][int(count)])
-        count = 0
-        while count < len(list(text_replacements_generic)):
-            current_text_replacement = str(list(text_replacements_generic)[count])
-            text = text.replace(current_text_replacement, str(text_replacements_generic[current_text_replacement]))
-            count += 1
-        text_handling.print_speech_text_effect(text, preferences)
-        count += 1
+
+    # Conversation loop
+    # Here we get all the labels and execute functions
+    # one by one in the list
+    new_text_replacements = {}
+    current_label = current_dialog["conversation"][0]['label 1']
+    load_conversation_label(current_label, preferences, new_text_replacements, current_dialog)
+
+    logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}' conversation")
+    pass
     if current_dialog["use actions"]:
         logger_sys.log_message(f"INFO: Executing dialog '{current_dialog_name}' actions on the player")
         actions = current_dialog["actions"]
@@ -206,6 +207,130 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                     player["health"] = player["max health"]
                 else:
                     player["health"] += drinks[selected_drink]["healing level"]
+
+
+def load_conversation_label(label_data, preferences, new_text_replacements, current_dialog):
+    count = 0
+    while count < len(label_data):
+        current_function = label_data[count]
+        if list(current_function)[0].lower().startswith('if('):
+            current_function = list(current_function)[0]
+            current_function_executions = label_data[count][current_function]
+        elif list(current_function)[0].lower().startswith('choice()'):
+            current_function = list(current_function)[0]
+            current_function_choices = label_data[count][current_function]
+        if current_function.lower().startswith('print('):
+            conversation_print(current_function, preferences, new_text_replacements)
+        elif current_function.lower().startswith('ask-input('):
+            conversation_ask_input(current_function, new_text_replacements)
+        elif current_function.lower().startswith('goto('):
+            conversation_goto(current_function, preferences, new_text_replacements, current_dialog)
+            # Stop the current loop
+            count = 1e999
+        elif current_function.lower().startswith('wait('):
+            wait_time = current_function.replace('wait(', '')
+            wait_time = int(wait_time.replace(')', ''))
+            time.sleep(wait_time)
+        elif current_function.lower().startswith('ask-confirmation('):
+            conversation_ask_confirmation(current_function, new_text_replacements)
+        elif current_function.lower().startswith('if('):
+            conversation_if_statement(current_function, current_function_executions, new_text_replacements, preferences, current_dialog)
+        elif current_function.lower().startswith('choice()'):
+            conversation_choice_maker(current_function, current_function_choices, new_text_replacements, preferences, current_dialog)
+        else:
+            print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog conversation function '{current_function}' isn't valid" + COLOR_RESET_ALL)
+            logger_sys.log_message(f"ERROR: dialog conversation function '{current_function}' isn't valid --> shuting down program")
+            time.sleep(5)
+            text_handling.exit_game()
+
+        count += 1
+
+
+# Dialog conversation functions
+
+def conversation_print(conversation_input, preferences, new_text_replacements):
+    conversation_input = conversation_input.replace('print(', '')
+    conversation_input = conversation_input.replace(')', '')
+    count = 0
+    while count < len(list(new_text_replacements)):
+        conversation_input = conversation_input.replace('$' + list(new_text_replacements)[count], str(new_text_replacements[list(new_text_replacements)[count]]))
+
+        count += 1
+    text_handling.print_speech_text_effect(conversation_input, preferences)
+
+
+def conversation_ask_input(conversation_input, new_text_replacements):
+    player_input = input()
+    output_variable = conversation_input.replace('ask-input(', '')
+    output_variable = output_variable.replace(')', '')
+
+    new_text_replacements[f"{output_variable}"] = player_input
+
+
+def conversation_goto(conversation_input, preferences, new_text_replacements, current_dialog):
+    label_name = conversation_input.replace('goto(', '')
+    label_name = label_name.replace(')', '')
+    label_name_int = int(label_name.split("label",1)[1]) - 1
+    label_data = current_dialog["conversation"][label_name_int][label_name]
+
+    load_conversation_label(label_data, preferences, new_text_replacements, current_dialog)
+
+
+def conversation_ask_confirmation(conversation_input, new_text_replacements):
+    choice = ['Yes', 'No']
+    confirmation = term_menu.show_menu(choice)
+    if confirmation == 'Yes':
+        confirmation = True
+    else:
+        confirmation = False
+    output_variable = conversation_input.replace('ask-confirmation(', '')
+    output_variable = output_variable.replace(')', '')
+    new_text_replacements[f"{output_variable}"] = confirmation
+    return confirmation
+
+
+def conversation_if_statement(conversation_input, executions_dict, new_text_replacements, preferences, current_dialog):
+    statement = conversation_input.replace('if(', '')
+    statement = statement.replace(')', '')
+    statement_1 = new_text_replacements[statement.split(", ",1)[0]]
+    statement_2 = statement.split(", ",1)[1]
+
+    if statement_2 == 'True':
+        statement_2 = True
+    elif statement_2 == 'False':
+        statement_2 = False
+
+    if statement_1 == statement_2:
+        load_conversation_label(executions_dict, preferences, new_text_replacements, current_dialog)
+
+
+def conversation_choice_maker(conversation_input, choices_dict, new_text_replacements, preferences, current_dialog):
+    choices = []
+    for current_choice_making in choices_dict:
+        choice_name = current_choice_making.split("(",1)[1]
+        choice_name = choice_name.split(",",1)[0]
+        choices += [str(choice_name)]
+
+    player_choice = term_menu.show_menu(choices)
+    choice_position = choices.index(player_choice)
+
+    choice_action = choices_dict[choice_position]
+    choice_action = choice_action.split(", ",1)[1]
+    choice_action = choice_action.split("))",1)[0] + ")"
+    if choice_action.lower().startswith('print('):
+        conversation_print(choice_action, preferences, new_text_replacements)
+    elif choice_action.lower().startswith('ask-input('):
+        conversation_ask_input(choice_action, new_text_replacements)
+    elif choice_action.lower().startswith('goto('):
+        conversation_goto(choice_action, preferences, new_text_replacements, current_dialog)
+        # Stop the current loop
+        count = 1e999
+    elif choice_action.lower().startswith('wait('):
+        wait_time = choice_action.replace('wait(', '')
+        wait_time = int(wait_time.replace(')', ''))
+        time.sleep(wait_time)
+    elif choice_action.lower().startswith('ask-confirmation('):
+        conversation_ask_confirmation(choice_action, new_text_replacements)
 
 
 # Deinitialize colorama
