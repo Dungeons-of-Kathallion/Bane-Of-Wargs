@@ -71,7 +71,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
     # Conversation loop
     # Here we get all the labels and execute functions
     # one by one in the list
-    new_text_replacements = {}
+    new_text_replacements = text_replacements_generic
     current_label = current_dialog["conversation"][0]['label 1']
     load_conversation_label(current_label, preferences, new_text_replacements, current_dialog)
 
