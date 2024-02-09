@@ -212,6 +212,8 @@ def check_dialog_conversations(dialog_data, dialog_name):
 
 
 def invalid_label_name_output(dialog_name, label_name):
+    # Output in the UI and the logging
+    # proper error messages
     print(
         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
         f"dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game" +
