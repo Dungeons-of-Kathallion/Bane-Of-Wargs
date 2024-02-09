@@ -155,31 +155,56 @@ def check_dialog_conversations(dialog_data, dialog_name):
         else:
             invalid_label_name_output(dialog_name, current_label_name)
 
-        count += 1
-
         # Check if the functions in the label are valid,
         # if not, close the program and output an error
         # message in the UI and in logging
         possible_functions = ['print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(', 'choice(']
 
-        count = 0
-        while count < len(conversation[0][current_label_name]):
-            current_function = conversation[0][current_label_name][count]
+        count2 = 0
+        while count2 < len(conversation[count][current_label_name]):
+            current_function = conversation[count][current_label_name][count2]
             continue_actions = True
-            count2 = 0
-            while count2 < len(possible_functions) and continue_actions:
-                i = possible_functions[count2]
+            count3 = 0
+            while count3 < len(possible_functions) and continue_actions:
+                i = possible_functions[count3]
+                if str(type(current_function)) != "<class 'str'>":
+                    current_function = list(current_function)[0]
                 if not current_function.lower().startswith(i):
                     error = True
                 else:
                     error = False
                     continue_actions = False
 
-                count2 += 1
+                count3 += 1
 
-            count += 1
+            # If the current function is a 'if()' function,
+            # then run specific tests to test the functions
+            # inside of it
+            if current_function.lower().startswith('if('):
+                count4 = 0
+                while count4 < len(conversation[count][current_label_name][count2]):
+                    count5 = 0
+                    continue_actions = True
+                    while count5 < len(possible_functions) and continue_actions:
+                        i = possible_functions[count5]
+                        current_sub_function = conversation[count][current_label_name][count2][current_function][count4]
+                        if str(type(current_sub_function)) != "<class 'str'>":
+                            current_sub_function = list(conversation[count][current_label_name][count2][current_function][count4])[0]
+                        if not current_sub_function.lower().startswith(i):
+                            error = True
+                        else:
+                            error = False
+                            continue_actions = False
+
+                        count5 += 1
+
+                    count4 += 1
+
+            count2 += 1
+
             if error:
                 invalid_conversation_functions_output(dialog_name, current_function)
+        count += 1
 
 
 def invalid_label_name_output(dialog_name, label_name):
