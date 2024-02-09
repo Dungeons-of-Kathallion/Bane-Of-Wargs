@@ -77,12 +77,13 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
         load_conversation_label(current_label, preferences, new_text_replacements, current_dialog)
     except Exception as error:
         print(
-            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + 
-            f"an error occurred when trying to run dialog '{current_dialog_name}' conversations:\n{error}" + 
+            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+            f"an error occurred when trying to run dialog '{current_dialog_name}' conversations:\n{error}" +
             COLOR_RESET_ALL
         )
         logger_sys.log_message(
-            f"ERROR: an error occurred when trying to run dialog '{current_dialog_name}' conversations:\n{error} --> shutting down game"
+            f"ERROR: an error occurred when trying to run dialog '{current_dialog_name}' " +
+            "conversations:\n{error} --> shutting down game"
         )
         text_handling.exit_game()
 
