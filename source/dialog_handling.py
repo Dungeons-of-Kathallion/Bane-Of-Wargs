@@ -305,6 +305,8 @@ def conversation_goto(conversation_input, preferences, new_text_replacements, cu
 
 
 def conversation_ask_confirmation(conversation_input, new_text_replacements):
+    # Run a ask-confirmation function: ask for player input
+    # with either 'Yes' or 'No' as an answer
     choice = ['Yes', 'No']
     confirmation = term_menu.show_menu(choice)
     if confirmation == 'Yes':
