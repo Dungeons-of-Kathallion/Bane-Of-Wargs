@@ -338,6 +338,10 @@ def conversation_if_statement(conversation_input, executions_dict, new_text_repl
 
 
 def conversation_choice_maker(conversation_input, choices_dict, new_text_replacements, preferences, current_dialog):
+    # Run a choice function: create multiple choices
+    # and ask the player to choose one. Also loads
+    # the choices output functions and run them
+    # if they're triggered
     choices = []
     for current_choice_making in choices_dict:
         choice_name = current_choice_making.split("(", 1)[1]
