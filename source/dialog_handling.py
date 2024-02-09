@@ -285,6 +285,7 @@ def conversation_print(conversation_input, preferences, new_text_replacements):
 
 
 def conversation_ask_input(conversation_input, new_text_replacements):
+    # Run an ask-input function: ask user for any input
     player_input = input()
     output_variable = conversation_input.replace('ask-input(', '')
     output_variable = output_variable.replace(')', '')
