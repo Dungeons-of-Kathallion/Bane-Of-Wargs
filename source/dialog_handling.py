@@ -274,6 +274,8 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
 # Dialog conversation functions
 
 def conversation_print(conversation_input, preferences, new_text_replacements):
+    # Run a print function: print text output in
+    # the UI
     conversation_input = conversation_input.replace('print(', '')
     conversation_input = conversation_input.replace(')', '')
     count = 0
