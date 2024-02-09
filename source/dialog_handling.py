@@ -320,6 +320,9 @@ def conversation_ask_confirmation(conversation_input, new_text_replacements):
 
 
 def conversation_if_statement(conversation_input, executions_dict, new_text_replacements, preferences, current_dialog):
+    # Run a if statement function: check if the statement return
+    # a 'True' boolean value and if yes, execute the function's
+    # functions one by one in order
     statement = conversation_input.replace('if(', '')
     statement = statement.replace(')', '')
     statement_1 = new_text_replacements[statement.split(", ", 1)[0]]
