@@ -294,6 +294,8 @@ def conversation_ask_input(conversation_input, new_text_replacements):
 
 
 def conversation_goto(conversation_input, preferences, new_text_replacements, current_dialog):
+    # Run a goto function: load a new label and
+    # execute its functions on by one in order
     label_name = conversation_input.replace('goto(', '')
     label_name = label_name.replace(')', '')
     label_name_int = int(label_name.split("label", 1)[1]) - 1
