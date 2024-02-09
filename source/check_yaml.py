@@ -226,6 +226,8 @@ def invalid_label_name_output(dialog_name, label_name):
 
 
 def invalid_conversation_functions_output(dialog_name, function_name):
+    # Output in the UI and the logging
+    # proper error messages
     print(
         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
         f"dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game" +
