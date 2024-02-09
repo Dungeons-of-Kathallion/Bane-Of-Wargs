@@ -185,6 +185,7 @@ def load_game_data(which_type, what_plugin=None):
                     dialog = yaml.safe_load(f)
                     progress.update(task1, advance=1)
                     check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/dialog.yaml")
+                    # Run special tests for every dialog conversations
                     for i in list(dialog):
                         check_yaml.check_dialog_conversations(dialog, i)
                 progress.update(task1, advance=1)
