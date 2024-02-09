@@ -145,7 +145,9 @@ def check_dialog_conversations(dialog_data, dialog_name):
         # Check if the label name is correct, if not,
         # close the program and output an error message
         # in the UI and in logging
-        logger_sys.log_message(f"INFO: Checking if dialog '{dialog_name}' conversation label '{current_label_name}' is a valid label name")
+        logger_sys.log_message(
+            f"INFO: Checking if dialog '{dialog_name}' conversation label '{current_label_name}' is a valid label name"
+        )
         if current_label_name.lower().startswith('label '):
             try:
                 if int(current_label_name.split('label ', 1)[1]) not in digits:
@@ -189,7 +191,9 @@ def check_dialog_conversations(dialog_data, dialog_name):
                         i = possible_functions[count5]
                         current_sub_function = conversation[count][current_label_name][count2][current_function][count4]
                         if str(type(current_sub_function)) != "<class 'str'>":
-                            current_sub_function = list(conversation[count][current_label_name][count2][current_function][count4])[0]
+                            current_sub_function = list(
+                                conversation[count][current_label_name][count2][current_function][count4]
+                            )[0]
                         if not current_sub_function.lower().startswith(i):
                             error = True
                         else:
@@ -208,12 +212,24 @@ def check_dialog_conversations(dialog_data, dialog_name):
 
 
 def invalid_label_name_output(dialog_name, label_name):
-    print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game" + COLOR_RESET_ALL)
-    logger_sys.log_message(f"ERROR: dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game")
+    print(
+    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + 
+        f"dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game" + 
+        COLOR_RESET_ALL
+    )
+    logger_sys.log_message(
+        f"ERROR: dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game"
+    )
     text_handling.exit_game()
 
 
 def invalid_conversation_functions_output(dialog_name, function_name):
-    print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game" + COLOR_RESET_ALL)
-    logger_sys.log_message(f"ERROR: dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game")
+    print(
+        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + 
+        f"dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game" + 
+        COLOR_RESET_ALL
+    )
+    logger_sys.log_message(
+        f"ERROR: dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game"
+    )
     text_handling.exit_game()
