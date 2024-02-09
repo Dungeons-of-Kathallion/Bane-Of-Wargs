@@ -255,6 +255,8 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
             conversation_choice_maker(
                 current_function, current_function_choices, new_text_replacements, preferences, current_dialog
             )
+        # If a function entered isn't valid, report
+        # an error and shut down the program
         else:
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog conversation function '{current_function}' isn't valid" +
