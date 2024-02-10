@@ -40,14 +40,14 @@ def show_menu(options, length=52):
 
         # Check if the input is an integer
         if input_type != "<class 'int'>":
-            print(COLOR_YELLOW + f"Options '{get_input}' is not valid!" + COLOR_RESET_ALL)
+            print(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
             time.sleep(.5)
             error_happened = True
 
         # Check if the input is in the choices
         if not error_happened:
             if int(get_input) < 0 or int(get_input) > choice_number:
-                print(COLOR_YELLOW + f"Options '{get_input}' is not valid!" + COLOR_RESET_ALL)
+                print(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
                 time.sleep(.5)
                 error_happened = True
 

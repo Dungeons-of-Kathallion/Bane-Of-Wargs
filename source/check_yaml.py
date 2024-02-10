@@ -118,6 +118,127 @@ def examine(file_path):
         text_handling.exit_game()
 
 
+def check_dialog_conversations(dialog_data, dialog_name):
+    # Run every checks required to pass
+    # for a dialog's conversation to be
+    # valid
+    logger_sys.log_message(f"INFO: Checking dialog '{dialog_name}' conversation data")
+
+    conversation = dialog_data[dialog_name]["conversation"]
+
+    # Create digits database
+    logger_sys.log_message("INFO: Creating digits database from 0 to 120")
+    digits = []
+    count = 0
+    while count <= 120:
+        digits += [count]
+
+        count += 1
+
+    count = 0
+    while count < len(conversation):
+        current_label_name = str(list(conversation[count]))
+        current_label_name = current_label_name.replace('[', '')
+        current_label_name = current_label_name.replace(']', '')
+        current_label_name = current_label_name.replace("'", '')
+
+        # Check if the label name is correct, if not,
+        # close the program and output an error message
+        # in the UI and in logging
+        logger_sys.log_message(
+            f"INFO: Checking if dialog '{dialog_name}' conversation label '{current_label_name}' is a valid label name"
+        )
+        if current_label_name.lower().startswith('label '):
+            try:
+                if int(current_label_name.split('label ', 1)[1]) not in digits:
+                    invalid_label_name_output(dialog_name, current_label_name)
+            except Exception as error:
+                invalid_label_name_output(dialog_name, current_label_name)
+        else:
+            invalid_label_name_output(dialog_name, current_label_name)
+
+        # Check if the functions in the label are valid,
+        # if not, close the program and output an error
+        # message in the UI and in logging
+        possible_functions = ['print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(', 'choice(', 'create-variable(']
+
+        count2 = 0
+        while count2 < len(conversation[count][current_label_name]):
+            current_function = conversation[count][current_label_name][count2]
+            continue_actions = True
+            count3 = 0
+            while count3 < len(possible_functions) and continue_actions:
+                i = possible_functions[count3]
+                if str(type(current_function)) != "<class 'str'>":
+                    current_function = list(current_function)[0]
+                if not current_function.lower().startswith(i):
+                    error = True
+                else:
+                    error = False
+                    continue_actions = False
+
+                count3 += 1
+
+            # If the current function is a 'if()' function,
+            # then run specific tests to test the functions
+            # inside of it
+            if current_function.lower().startswith('if('):
+                count4 = 0
+                while count4 < len(conversation[count][current_label_name][count2]):
+                    count5 = 0
+                    continue_actions = True
+                    while count5 < len(possible_functions) and continue_actions:
+                        i = possible_functions[count5]
+                        current_sub_function = conversation[count][current_label_name][count2][current_function][count4]
+                        if str(type(current_sub_function)) != "<class 'str'>":
+                            current_sub_function = list(
+                                conversation[count][current_label_name][count2][current_function][count4]
+                            )[0]
+                        if not current_sub_function.lower().startswith(i):
+                            error = True
+                        else:
+                            error = False
+                            continue_actions = False
+
+                        count5 += 1
+
+                    count4 += 1
+
+            count2 += 1
+
+            if error:
+                invalid_conversation_functions_output(dialog_name, current_function)
+        count += 1
+
+
+def invalid_label_name_output(dialog_name, label_name):
+    # Output in the UI and the logging
+    # proper error messages
+    print(
+        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+        f"dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game" +
+        COLOR_RESET_ALL
+    )
+    logger_sys.log_message(
+        f"ERROR: dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game"
+    )
+    text_handling.exit_game()
+
+
+def invalid_conversation_functions_output(dialog_name, function_name):
+    # Output in the UI and the logging
+    # proper error messages
+    print(
+        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+        f"dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game" +
+        COLOR_RESET_ALL
+    )
+    logger_sys.log_message(
+        f"ERROR: dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game"
+    )
+    text_handling.exit_game()
+
+
 def examine_map_point(data):
     try:
         data = yamale.make_data(content=str(data))

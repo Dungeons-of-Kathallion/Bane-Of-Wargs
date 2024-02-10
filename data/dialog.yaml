@@ -1,62 +1,9 @@
 start dialog:
-  phrases:
-  - "Hey! Welcome to this cool and beautiful game $name! I hope you'll have fun playing it."
-  - "Find villages, fight monsters, equip and upgrade yourself with looted items and protect people from monsters!"
-  - "Also, don't forget to explore the map! It is very big. If you're too annoyed with the vanilla plot and items, you can try to find plugins and install them!"
-  - "Or even create your own plugin and be creative!"
+  conversation:
+  - label 1:
+    - print(Hey! Welcome to this cool and beautiful game $name! I hope you'll have fun playing it.)
+    - print(Find villages, fight monsters, equip and upgrade yourself with looted items and protect people from monsters!)
+    - print(Also, don't forget to explore the map! It is very big. If you're too annoyed with the vanilla plot and items, you can try to find plugins and install them!)
+    - print(Or even create your own plugin and be creative!)
   use actions: False
   scene: Title1
-
-first village enter warg attack:
-  phrases:
-  - "You enter the village, but you cannot find any one in the streets."
-  - "You keep looking for people when you hear some noise and try to approach where it comes from."
-  - "You enter the village center place and you see every one of the village forming a circle. You look in the center and you see an angry warg."
-  - "One guy see you and shout out:\n `Hey guys! There's a knight to help' us!`"
-  - "You guess you can't get back now, you have to fight the warg."
-  scene: Warg
-  use actions: True
-  actions:
-    add attributes:
-    - "seen warg attacking village"
-
-guy saw you fighting gives you gold:
-  to display:
-    player attributes:
-    - "seen warg attacking village"
-  phrases:
-  - "Hey! Aren't you the courageous knight who fought the Warg yesterday? Please accept these 7 gold coins and this tissue bag."
-  - "I want you now that you are welcome in this village!"
-  use actions: True
-  actions:
-    gold modification:
-      augmentation: 7
-    give item:
-    - Tissue Bag
-
-met Jerry The Junk Seller attribute:
-  use actions: True
-  phrases:
-  - ""
-  actions:
-    add attributes:
-    - met jerry the junk seller
-
-find another old rusted key in case:
-  to display:
-    player attributes:
-    - met jerry the junk seller
-  use actions: True
-  phrases:
-  - "You find another old rusted key on the ground. Looks exactly like the one Jerry The Junk Seller was talking about."
-  - "You take it in case, you never know..."
-  actions:
-    give item:
-    - Old Rusted Key
-
-generic steel gate blocking east:
-  use actions: False
-  phrases:
-  - "There is a strong steel gate blocking anyone wanting to go further east."
-  - "You must find the key to open it!"
-  scene: Steel Gate

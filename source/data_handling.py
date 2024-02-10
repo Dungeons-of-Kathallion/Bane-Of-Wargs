@@ -46,7 +46,6 @@ def load_game_data(which_type, what_plugin=None):
     if which_type == 'vanilla':
         logger_sys.log_message("INFO: Loading vanilla game data")
         with Progress() as progress:
-
             task_map = progress.add_task("[cyan]Loading Game Map Data...", total=100)
             task_item = progress.add_task("[cyan]Loading Game Items Data...", total=100)
             task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
@@ -119,8 +118,10 @@ def load_game_data(which_type, what_plugin=None):
                 dialog = yaml.safe_load(f)
             progress.update(task_dialog, total=len(list(dialog)))
             for i in list(dialog):
+                check_yaml.check_dialog_conversations(dialog, i)
+                progress.update(task_dialog, advance=.5)
                 check_yaml.examine_dialog(dialog[i])
-                progress.update(task_dialog, advance=1)
+                progress.update(task_dialog, advance=.5)
 
             with open(program_dir + "/game/data/mission.yaml") as f:
                 mission = yaml.safe_load(f)
@@ -219,8 +220,10 @@ def load_game_data(which_type, what_plugin=None):
                 dialog = yaml.safe_load(f)
             progress.update(task_dialog, total=len(list(dialog)))
             for i in list(dialog):
+                check_yaml.check_dialog_conversations(dialog, i)
+                progress.update(task_dialog, advance=.5)
                 check_yaml.examine_dialog(dialog[i])
-                progress.update(task_dialog, advance=1)
+                progress.update(task_dialog, advance=.5)
 
             with open(program_dir + "/plugins/" + what_plugin + "/mission.yaml") as f:
                 mission = yaml.safe_load(f)
