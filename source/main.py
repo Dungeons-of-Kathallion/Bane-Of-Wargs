@@ -1539,6 +1539,18 @@ def run(play):
                         content_blacksmiths = content_blacksmiths.replace("'", '')
                         text = "BLACKSMITHS: " + content_blacksmiths
                         text_handling.print_long_string(text)
+                        content_forges = str(zone[which_zone]["content"]["forges"])
+                        content_forges = content_forges.replace('[', '')
+                        content_forges = content_forges.replace(']', '')
+                        content_forges = content_forges.replace("'", '')
+                        text = "FORGES: " + content_forges
+                        text_handling.print_long_string(text)
+                        content_stables = str(zone[which_zone]["content"]["stables"])
+                        content_stables = content_stables.replace('[', '')
+                        content_stables = content_stables.replace(']', '')
+                        content_stables = content_stables.replace("'", '')
+                        text = "STABLES: " + content_stables
+                        text_handling.print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
                         hostel_point = zone[which_zone]["location"]
