@@ -39,85 +39,104 @@ def load_game_data(which_type, what_plugin=None):
         time.sleep(5)
         text_handling.exit_game()
 
+    print("")
     # If the inputted which_type is vanilla, then just
     # load the vanilla game data
 
     if which_type == 'vanilla':
         logger_sys.log_message("INFO: Loading vanilla game data")
         with Progress() as progress:
+          
+            task_map = progress.add_task("[cyan]Loading Game Map Data...", total=100)
+            task_item = progress.add_task("[cyan]Loading Game Items Data...", total=100)
+            task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
+            task_enemy = progress.add_task("[cyan]Loading Game Enemies Data...", total=100)
+            task_npc = progress.add_task("[cyan]Loading Game NPCS Data...", total=100)
+            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=100)
+            task_lists = progress.add_task("[cyan]Loading Game Lists Data...", total=100)
+            task_zone = progress.add_task("[cyan]Loading Game Zones Data...", total=100)
+            task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
+            task_mission = progress.add_task("[cyan]Loading Game Missions Data...", total=100)
+            task_mount = progress.add_task("[cyan]Loading Game Mounts Data...", total=100)
 
-            task1 = progress.add_task("[cyan]Loading Data...", total=22)
+            with open(program_dir + "/game/data/map.yaml") as f:
+                map = yaml.safe_load(f)
+            progress.update(task_map, total=len(list(map)))
+            for i in list(map):
+                check_yaml.examine_map_point(map[i])
+                progress.update(task_map, advance=1)
 
-            while not progress.finished:
+            with open(program_dir + "/game/data/items.yaml") as f:
+                item = yaml.safe_load(f)
+            progress.update(task_item, total=len(list(item)))
+            for i in list(item):
+                check_yaml.examine_item(item[i])
+                progress.update(task_item, advance=1)
 
-                with open(program_dir + "/game/data/map.yaml") as f:
-                    map = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/map.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/drinks.yaml") as f:
+                drinks = yaml.safe_load(f)
+            progress.update(task_drink, total=len(list(drinks)))
+            for i in list(drinks):
+                check_yaml.examine_drink(drinks[i])
+                progress.update(task_drink, advance=1)
 
-                with open(program_dir + "/game/data/items.yaml") as f:
-                    item = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/items.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/enemies.yaml") as f:
+                enemy = yaml.safe_load(f)
+            progress.update(task_enemy, total=len(list(enemy)))
+            for i in list(enemy):
+                check_yaml.examine_enemy(enemy[i])
+                progress.update(task_enemy, advance=1)
 
-                with open(program_dir + "/game/data/drinks.yaml") as f:
-                    drinks = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/drinks.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/npcs.yaml") as f:
+                npcs = yaml.safe_load(f)
+            progress.update(task_npc, total=len(list(npcs)))
+            for i in list(npcs):
+                check_yaml.examine_npc(npcs[i])
+                progress.update(task_npc, advance=1)
 
-                with open(program_dir + "/game/data/enemies.yaml") as f:
-                    enemy = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/enemies.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/start.yaml") as f:
+                progress.update(task_start, advance=1 / 3)
+                start_player = yaml.safe_load(f)
+                progress.update(task_start, advance=1 / 3)
+                check_yaml.examine(program_dir + "/game/data/start.yaml")
+            progress.update(task_start, advance=1 / 3)
 
-                with open(program_dir + "/game/data/npcs.yaml") as f:
-                    npcs = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/npcs.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/lists.yaml") as f:
+                lists = yaml.safe_load(f)
+            progress.update(task_lists, total=len(list(lists)))
+            for i in list(lists):
+                check_yaml.examine_list(lists[i])
+                progress.update(task_lists, advance=1)
 
-                with open(program_dir + "/game/data/start.yaml") as f:
-                    start_player = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/start.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/zone.yaml") as f:
+                zone = yaml.safe_load(f)
+            progress.update(task_zone, total=len(list(zone)))
+            for i in list(zone):
+                check_yaml.examine_zone(zone[i])
+                progress.update(task_zone, advance=1)
 
-                with open(program_dir + "/game/data/lists.yaml") as f:
-                    lists = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/lists.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/dialog.yaml") as f:
+                dialog = yaml.safe_load(f)
+            progress.update(task_dialog, total=len(list(dialog)))
+            for i in list(dialog):
+                check_yaml.check_dialog_conversations(dialog, i)
+                progress.update(task_dialog, advance=.5)
+                check_yaml.examine_dialog(dialog[i])
+                progress.update(task_dialog, advance=.5)
 
-                with open(program_dir + "/game/data/zone.yaml") as f:
-                    zone = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/zone.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/mission.yaml") as f:
+                mission = yaml.safe_load(f)
+            progress.update(task_mission, total=len(list(mission)))
+            for i in list(mission):
+                check_yaml.examine_mission(mission[i])
+                progress.update(task_mission, advance=1)
 
-                with open(program_dir + "/game/data/dialog.yaml") as f:
-                    dialog = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/dialog.yaml')
-                    # Run special tests for every dialog conversations
-                    for i in list(dialog):
-                        check_yaml.check_dialog_conversations(dialog, i)
-                progress.update(task1, advance=1)
-
-                with open(program_dir + "/game/data/mission.yaml") as f:
-                    mission = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/mission.yaml')
-                progress.update(task1, advance=1)
-
-                with open(program_dir + "/game/data/mounts.yaml") as f:
-                    mounts = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + '/game/data/mounts.yaml')
-                progress.update(task1, advance=1)
+            with open(program_dir + "/game/data/mounts.yaml") as f:
+                mounts = yaml.safe_load(f)
+            progress.update(task_mount, total=len(list(mounts)))
+            for i in list(mounts):
+                check_yaml.examine_mount(mounts[i])
+                progress.update(task_mount, advance=1)
 
     else:
         logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' data")
@@ -128,79 +147,99 @@ def load_game_data(which_type, what_plugin=None):
             play = 0
             text_handling.exit_game()
 
+
         with Progress() as progress:
 
-            task1 = progress.add_task("[cyan]Loading Data...", total=22)
+            task_map = progress.add_task("[cyan]Loading Game Map Data...", total=100)
+            task_item = progress.add_task("[cyan]Loading Game Items Data...", total=100)
+            task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
+            task_enemy = progress.add_task("[cyan]Loading Game Enemies Data...", total=100)
+            task_npc = progress.add_task("[cyan]Loading Game NPCS Data...", total=100)
+            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=100)
+            task_lists = progress.add_task("[cyan]Loading Game Lists Data...", total=100)
+            task_zone = progress.add_task("[cyan]Loading Game Zones Data...", total=100)
+            task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
+            task_mission = progress.add_task("[cyan]Loading Game Missions Data...", total=100)
+            task_mount = progress.add_task("[cyan]Loading Game Mounts Data...", total=100)
 
-            while not progress.finished:
-                with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
-                    map = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/map.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
+                map = yaml.safe_load(f)
+            progress.update(task_map, total=len(list(map)))
+            for i in list(map):
+                check_yaml.examine_map_point(map[i])
+                progress.update(task_map, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/items.yaml") as f:
-                    item = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/items.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/items.yaml") as f:
+                item = yaml.safe_load(f)
+            progress.update(task_item, total=len(list(item)))
+            for i in list(item):
+                check_yaml.examine_item(item[i])
+                progress.update(task_item, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/drinks.yaml") as f:
-                    drinks = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/drinks.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/drinks.yaml") as f:
+                drinks = yaml.safe_load(f)
+            progress.update(task_drink, total=len(list(drinks)))
+            for i in list(drinks):
+                check_yaml.examine_drink(drinks[i])
+                progress.update(task_drink, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/enemies.yaml") as f:
-                    enemy = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/enemies.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/enemies.yaml") as f:
+                enemy = yaml.safe_load(f)
+            progress.update(task_enemy, total=len(list(enemy)))
+            for i in list(enemy):
+                check_yaml.examine_enemy(enemy[i])
+                progress.update(task_enemy, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/npcs.yaml") as f:
-                    npcs = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/npcs.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/npcs.yaml") as f:
+                npcs = yaml.safe_load(f)
+            progress.update(task_npc, total=len(list(npcs)))
+            for i in list(npcs):
+                check_yaml.examine_npc(npcs[i])
+                progress.update(task_npc, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
-                    start_player = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
+                progress.update(task_start, advance=1 / 3)
+                start_player = yaml.safe_load(f)
+                progress.update(task_start, advance=1 / 3)
+                check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
+            progress.update(task_start, advance=1 / 3)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
-                    lists = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/lists.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
+                lists = yaml.safe_load(f)
+            progress.update(task_lists, total=len(list(lists)))
+            for i in list(lists):
+                check_yaml.examine_list(lists[i])
+                progress.update(task_lists, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/zone.yaml") as f:
-                    zone = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/zone.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/zone.yaml") as f:
+                zone = yaml.safe_load(f)
+            progress.update(task_zone, total=len(list(zone)))
+            for i in list(zone):
+                check_yaml.examine_zone(zone[i])
+                progress.update(task_zone, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/dialog.yaml") as f:
-                    dialog = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/dialog.yaml")
-                    # Run special tests for every dialog conversations
-                    for i in list(dialog):
-                        check_yaml.check_dialog_conversations(dialog, i)
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/dialog.yaml") as f:
+                dialog = yaml.safe_load(f)
+            progress.update(task_dialog, total=len(list(dialog)))
+            for i in list(dialog):
+                check_yaml.check_dialog_conversations(dialog, i)
+                progress.update(task_dialog, advance=.5)
+                check_yaml.examine_dialog(dialog[i])
+                progress.update(task_dialog, advance=.5)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/mission.yaml") as f:
-                    mission = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mission.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/mission.yaml") as f:
+                mission = yaml.safe_load(f)
+            progress.update(task_mission, total=len(list(mission)))
+            for i in list(mission):
+                check_yaml.examine_mission(mission[i])
+                progress.update(task_mission, advance=1)
 
-                with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
-                    mounts = yaml.safe_load(f)
-                    progress.update(task1, advance=1)
-                    check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/mounts.yaml")
-                progress.update(task1, advance=1)
+            with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
+                mounts = yaml.safe_load(f)
+            progress.update(task_mount, total=len(list(mounts)))
+            for i in list(mounts):
+                check_yaml.examine_mount(mounts[i])
+                progress.update(task_mount, advance=1)
 
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 

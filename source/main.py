@@ -1433,7 +1433,7 @@ def run(play):
         elif command.lower().startswith('n'):
             logger_sys.log_message(f"INFO: Checking if player can go north from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] + 1)
-            if "North" in map["point" + str(map_location)]["blocked"]:
+            if "North" in map["point" + str(map_location)]["blocked"] or next_point == None:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to north: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
@@ -1447,7 +1447,7 @@ def run(play):
         elif command.lower().startswith('s'):
             logger_sys.log_message(f"INFO: Checking if player can go south from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] - 1)
-            if "South" in map["point" + str(map_location)]["blocked"]:
+            if "South" in map["point" + str(map_location)]["blocked"] or next_point == None:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to south: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
@@ -1461,7 +1461,7 @@ def run(play):
         elif command.lower().startswith('e'):
             logger_sys.log_message(f"INFO: Checking if player can go east from map point 'point{map_location}'")
             next_point = search(player["x"] + 1, player["y"])
-            if "East" in map["point" + str(map_location)]["blocked"]:
+            if "East" in map["point" + str(map_location)]["blocked"] or next_point == None:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to east: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
@@ -1475,7 +1475,7 @@ def run(play):
         elif command.lower().startswith('w'):
             logger_sys.log_message(f"INFO: Checking if player can go west from map point 'point{map_location}'")
             next_point = search(player["x"] - 1, player["y"])
-            if "West" in map["point" + str(map_location)]["blocked"]:
+            if "West" in map["point" + str(map_location)]["blocked"] or next_point == None:
                 print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to west: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
