@@ -147,7 +147,6 @@ def load_game_data(which_type, what_plugin=None):
             play = 0
             text_handling.exit_game()
 
-
         with Progress() as progress:
 
             task_map = progress.add_task("[cyan]Loading Game Map Data...", total=100)
