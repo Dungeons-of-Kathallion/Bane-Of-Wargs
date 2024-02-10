@@ -46,7 +46,6 @@ def load_game_data(which_type, what_plugin=None):
     if which_type == 'vanilla':
         logger_sys.log_message("INFO: Loading vanilla game data")
         with Progress() as progress:
-          
             task_map = progress.add_task("[cyan]Loading Game Map Data...", total=100)
             task_item = progress.add_task("[cyan]Loading Game Items Data...", total=100)
             task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
