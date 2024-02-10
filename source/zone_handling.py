@@ -387,8 +387,8 @@ def interact_hostel(map_zone, zone, player, drinks, item):
             ):
                 logger_sys.log_message(f"INFO: Removing item '{which_item}' from player inventory")
                 player["inventory slots remaining"] -= 1
-                logger_sys.log_message(f"INFO: Adding to player {gold} gold")
                 gold = str(item[which_item]["gold"] * zone[map_zone]["cost value"])
+                logger_sys.log_message(f"INFO: Adding to player {gold} gold")
                 player["gold"] += item[which_item]["gold"] * zone[map_zone]["cost value"]
                 player["inventory"].remove(which_item)
                 which_item_number_inventory = 0
@@ -449,8 +449,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     logger_sys.log_message(f"INFO: Adding item '{which_item}' from player inventory")
                     player["inventory slots remaining"] -= 1
                     player["inventory"].append(which_item)
-                    logger_sys.log_message(f"INFO: Removing {gold} gold from player")
                     gold = str(item[which_item]["gold"] * zone[map_zone]["cost value"])
+                    logger_sys.log_message(f"INFO: Removing {gold} gold from player")
                     player["gold"] -= item[which_item]["gold"] * zone[map_zone]["cost value"]
                 else:
                     logger_sys.log_message("INFO: Canceling buying process -> doesn't gas enough inventory slots")
