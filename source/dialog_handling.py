@@ -156,13 +156,13 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message("INFO: Removing " + actions["gold modification"]["diminution"] + " gold to the player")
                 diminution = actions["gold modification"]["diminution"]
                 if diminution.replace('$', '') in list(new_text_replacements):
-                        diminution = new_text_replacements[diminution.replace('$', '')]
+                    diminution = new_text_replacements[diminution.replace('$', '')]
                 player["gold"] -= diminution
             if "augmentation" in actions["gold modification"]:
                 logger_sys.log_message("INFO: Adding " + actions["gold modification"]["augmentation"] + " gold to the player")
                 augmentation = actions["gold modification"]["augmentation"]
                 if augmentation.replace('$', '') in list(new_text_replacements):
-                        augmentation = new_text_replacements[augmentation.replace('$', '')]
+                    augmentation = new_text_replacements[augmentation.replace('$', '')]
                 player["gold"] += augmentation
         if "remove item" in actions:
             removed_items = actions["remove item"]
@@ -336,6 +336,7 @@ def conversation_ask_input(conversation_input, new_text_replacements):
 
     new_text_replacements[f"{output_variable}"] = player_input
 
+
 def conversation_create_variable(conversation_input, new_text_replacements):
     output_variable = conversation_input.replace('create-variable(', '')
     output_variable = output_variable.replace(')', '')
@@ -353,6 +354,7 @@ def conversation_create_variable(conversation_input, new_text_replacements):
         output_variable_value = float(output_variable_value)
 
     new_text_replacements[f"{output_variable_name}"] = output_variable_value
+
 
 def conversation_goto(conversation_input, preferences, new_text_replacements, current_dialog):
     # Run a goto function: load a new label and
