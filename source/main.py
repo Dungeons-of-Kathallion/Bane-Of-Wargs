@@ -30,6 +30,8 @@ from colors import *
 from sys import exit
 from rich.console import Console
 from rich.markdown import Markdown
+from rich.table import Table
+import pydoc
 
 # initialize colorama
 init()
@@ -192,7 +194,7 @@ while menu:
     os.system('clear')
     print_title()
 
-    options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Quit']
+    options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Check Logs', 'Quit']
     choice = term_menu.show_menu(options)
     os.system('clear')
 
@@ -502,6 +504,45 @@ while menu:
             )
             logger_sys.log_message(f"ERROR: file '{file}' does not exists --> canceling gameplay guide markdown printing")
         os.system('clear')
+    elif choice == 'Check Logs':
+        # Get the logs directory content
+        # and save the names in a list
+        directory = f'{program_dir}/logs/'
+        directory_content = os.listdir(directory)
+
+        # Create the rich table
+        table = Table(title=f"LOGS FILES: ({directory})")
+        table.add_column("Input Number", style="cyan", no_wrap=True)
+        table.add_column("Title", style="magenta")
+
+        # Add one by one every files in
+        # the logs directory
+        count = 0
+        for i in directory_content:
+            table.add_row(str(count), str(i))
+
+            count += 1
+        console.print(table)
+
+        # Get which log the player wants
+        # to open and display it in the UI
+        loop = True
+        error = False
+        while loop:
+            which_log_file = input()
+            try:
+                which_log_file = directory_content[int(which_log_file)]
+            except Exception as error:
+                error = True
+                print(COLOR_YELLOW + "incorrect input" + COLOR_RESET_ALL)
+
+            if not error:
+                loop = False
+                os.system('clear')
+                with open(directory + which_log_file, 'r') as f:
+                    content = f.read()
+
+                    pydoc.pager(content)
     else:
         os.system('clear')
         exit(1)
