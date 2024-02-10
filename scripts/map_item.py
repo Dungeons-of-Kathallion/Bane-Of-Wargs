@@ -10,6 +10,7 @@ init()
 
 
 def print_map(player, map, zone):
+    player_already_printed = False
     player_x = player["x"]
     player_y = player["y"]
     map_points = list(map)
@@ -23,31 +24,31 @@ def print_map(player, map, zone):
     coord_x = -64
     coord_y = 64
     current_point_list = []
-    for n in range(0, 16383):
-        if coord_x == 65:
+    counting = 0
+    while counting < 16384:
+        if coord_x > 64:
             coord_x = -64
             coord_y -= 1
             print("║")
-        if coord_x == -64:
+        if coord_x < -63:
             print("║", end="")
-        if coord_x == player_x and coord_y == player_y:
+        if not not player_already_printed and coord_x == player_x and coord_y == player_y:
             print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "¶" + COLOR_RESET_ALL, end="")
+            player_already_printed = True
         else:
             print_color = COLOR_BLACK + '░'
             get_zone = True
             try:
                 current_point = search_point(coord_x, coord_y, map_points_num, map)
-            except Exception:
+            except Exception as error:
                 get_zone = False
             if get_zone and current_point not in current_point_list:
-                if current_point in player["visited points"]:
-                    print_color = get_zone_color(zone[map["point" + str(current_point)]["map zone"]]["type"])
-                else:
-                    print_color = COLOR_BLUE_7 + "#"
+                print_color = get_zone_color(zone[map["point" + str(current_point)]["map zone"]]["type"])
             print(print_color + COLOR_RESET_ALL, end="")
             if get_zone:
                 current_point_list += [current_point]
         coord_x += 1
+        counting += 1
     print("║")
     print("╚", end="")
     count = 0
@@ -147,10 +148,14 @@ def get_zone_color(zone_type):
 # function to search through the map file
 def search_point(x, y, map_points_num, map):
     global map_location
-    for i in range(0, map_points_num):
-        point_i = map["point" + str(i)]
+    counting2 = 0
+    found_map_point = False
+    while counting2 < map_points_num and not found_map_point:
+        point_i = map["point" + str(counting2)]
         if point_i["x"] == x and point_i["y"] == y:
-            map_location = i
+            map_location = str(counting2)
+            found_map_point = True
+        counting2 += 1
     return map_location
 
 # run the script
