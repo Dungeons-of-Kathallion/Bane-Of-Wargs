@@ -9,3 +9,5 @@ map:
 content:
   hostels: list(str())
   blacksmiths: list(str())
+  forges: list(str())
+  stables: list(str())
