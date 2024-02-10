@@ -98,6 +98,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             logger_sys.log_message(f"INFO: Giving to the player items '{given_items}'")
             while count < given_items_len:
                 selected_item = given_items[count]
+                if selected_item.replace('$', '') in list(new_text_replacements):
+                    selected_item = new_text_replacements[selected_item.replace('$', '')]
                 player["inventory"].append(selected_item)
                 count += 1
         if "add attributes" in actions:
@@ -107,6 +109,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             logger_sys.log_message(f"INFO: Adding attributes '{added_attributes}' to the player")
             while count < added_attributes_len:
                 selected_attribute = added_attributes[count]
+                if selected_attribute.replace('$', '') in list(new_text_replacements):
+                    selected_attribute = new_text_replacements[selected_attribute.replace('$', '')]
                 player["attributes"].append(selected_attribute)
                 count += 1
         if "health modification" in actions:
@@ -115,33 +119,51 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                     "INFO: Removing " + actions["health modification"]["diminution"] +
                     " hp from the player's health"
                 )
-                player["health"] -= actions["health modification"]["diminution"]
+                diminution = actions["health modification"]["diminution"]
+                if diminution.replace('$', '') in list(new_text_replacements):
+                    diminution = new_text_replacements[diminution.replace('$', '')]
+                player["health"] -= diminution
             if "augmentation" in actions["health modification"]:
                 logger_sys.log_message(
                     "INFO: Adding " + actions["health modification"]["augmentation"] +
                     " hp from the player's health"
                 )
-                player["health"] += actions["health modification"]["augmentation"]
+                augmentation = actions["health modification"]["augmentation"]
+                if augmentation.replace('$', '') in list(new_text_replacements):
+                    augmentation = new_text_replacements[augmentation.replace('$', '')]
+                player["health"] += augmentation
             if "max health" in actions["health modification"]:
                 if "diminution" in actions["health modification"]["max health"]:
                     logger_sys.log_message(
                         "INFO: Removing " + actions["health modification"]["max health"]["diminution"] +
                         " hp from the player's max health"
                         )
-                    player["max health"] -= actions["health modification"]["max health"]["diminution"]
+                    diminution = actions["health modification"]["max health"]["diminution"]
+                    if diminution.replace('$', '') in list(new_text_replacements):
+                        diminution = new_text_replacements[diminution.replace('$', '')]
+                    player["max health"] -= diminution
                 if "augmentation" in actions["health modification"]["max health"]:
                     logger_sys.log_message(
                         "INFO: Adding " + actions["health modification"]["max health"]["augmentation"] +
                         " hp from the player's max health"
                         )
-                    player["max health"] += actions["health modification"]["max health"]["augmentation"]
+                    augmentation = actions["health modification"]["max health"]["augmentation"]
+                    if augmentation.replace('$', '') in list(new_text_replacements):
+                        augmentation = new_text_replacements[augmentation.replace('$', '')]
+                    player["max health"] += augmentation
         if "gold modification" in actions:
             if "diminution" in actions["gold modification"]:
                 logger_sys.log_message("INFO: Removing " + actions["gold modification"]["diminution"] + " gold to the player")
-                player["gold"] -= actions["gold modification"]["diminution"]
+                diminution = actions["gold modification"]["diminution"]
+                if diminution.replace('$', '') in list(new_text_replacements):
+                        diminution = new_text_replacements[diminution.replace('$', '')]
+                player["gold"] -= diminution
             if "augmentation" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Adding " + actions["gold modification"]["diminution"] + " gold to the player")
-                player["gold"] += actions["gold modification"]["augmentation"]
+                logger_sys.log_message("INFO: Adding " + actions["gold modification"]["augmentation"] + " gold to the player")
+                augmentation = actions["gold modification"]["augmentation"]
+                if augmentation.replace('$', '') in list(new_text_replacements):
+                        augmentation = new_text_replacements[augmentation.replace('$', '')]
+                player["gold"] += augmentation
         if "remove item" in actions:
             removed_items = actions["remove item"]
             removed_items_len = len(removed_items)
@@ -149,6 +171,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             logger_sys.log_message(f"INFO: Removing items '{removed_items}' from player's inventory")
             while count < removed_items_len:
                 selected_item = removed_items[count]
+                if selected_item.replace('$', '') in list(new_text_replacements):
+                    selected_item = new_text_replacements[selected_item.replace('$', '')]
                 player["inventory"].remove(selected_item)
                 count += 1
         if "add to diary" in actions:
@@ -159,6 +183,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message(f"INFO: Adding zones '{added_visited_zones}' to player's visited zones")
                 while count < added_visited_zones_len:
                     selected_zone = added_visited_zones[count]
+                    if selected_zone.replace('$', '') in list(new_text_replacements):
+                        selected_zone = new_text_replacements[selected_zone.replace('$', '')]
                     player["visited zones"].append(selected_zone)
                     count += 1
             if "known enemies" in actions["add to diary"]:
@@ -168,6 +194,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message(f"INFO: Adding enemies '{added_known_enemies}' to player's known enemies")
                 while count < added_known_enemies_len:
                     selected_enemy = added_known_enemies[count]
+                    if selected_enemy.replace('$', '') in list(new_text_replacements):
+                        selected_enemy = new_text_replacements[selected_enemy.replace('$', '')]
                     player["enemies list"].append(selected_enemy)
                     count += 1
             if "known npcs" in actions["add to diary"]:
@@ -177,6 +205,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message(f"INFO: Adding npcs '{added_known_npcs}' to player's known npcs")
                 while count < added_known_npcs_len:
                     selected_npc = added_known_npcs[count]
+                    if selected_npc.replace('$', '') in list(new_text_replacements):
+                        selected_npc = new_text_replacements[selected_npc.replace('$', '')]
                     player["met npcs name"].append(selected_npc)
                     count += 1
         if "remove to diary" in actions:
@@ -187,6 +217,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message(f"INFO: Removing zones '{added_visited_zones}' to player's visited zones")
                 while count < removed_visited_zones_len:
                     selected_zone = removed_visited_zones[count]
+                    if selected_zone.replace('$', '') in list(new_text_replacements):
+                        selected_zone = new_text_replacements[selected_zone.replace('$', '')]
                     player["visited zones"].remove(selected_zone)
                     count += 1
             if "known enemies" in actions["remove to diary"]:
@@ -196,6 +228,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message(f"INFO: Removing enemies '{added_known_enemies}' to player's known enemies")
                 while count < removed_known_enemies_len:
                     selected_enemy = removed_known_npcs[count]
+                    if selected_enemy.replace('$', '') in list(new_text_replacements):
+                        selected_enemy = new_text_replacements[selected_enemy.replace('$', '')]
                     player["enemies list"].remove(selected_enemy)
                     count += 1
             if "known npcs" in actions["remove to diary"]:
@@ -205,6 +239,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 logger_sys.log_message(f"INFO: Removing npcs '{added_known_npcs}' to player's known npcs")
                 while count < removed_known_npcs_len:
                     selected_npc = removed_known_npcs[count]
+                    if selected_npc.replace('$', '') in list(new_text_replacements):
+                        selected_npc = new_text_replacements[selected_npc.replace('$', '')]
                     player["met npcs name"].append(selected_npc)
                     count += 1
         if "use drink" in actions:
@@ -214,6 +250,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             logger_sys.log_message(f"INFO: Using drinks '{used_drinks}'")
             while count < used_drinks_len:
                 selected_drink = used_drinks_len[count]
+                if selected_drink.replace('$', '') in list(new_text_replacements):
+                    selected_drink = new_text_replacements[selected_drink.replace('$', '')]
                 if drinks[selected_drink]["healing level"] == 999:
                     player["health"] = player["max health"]
                 else:
@@ -235,6 +273,8 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
             current_function_choices = label_data[count][current_function]
         if current_function.lower().startswith('print('):
             conversation_print(current_function, preferences, new_text_replacements)
+        elif current_function.lower().startswith('create-variable('):
+            conversation_create_variable(current_function, new_text_replacements)
         elif current_function.lower().startswith('ask-input('):
             conversation_ask_input(current_function, new_text_replacements)
         elif current_function.lower().startswith('goto('):
@@ -296,6 +336,23 @@ def conversation_ask_input(conversation_input, new_text_replacements):
 
     new_text_replacements[f"{output_variable}"] = player_input
 
+def conversation_create_variable(conversation_input, new_text_replacements):
+    output_variable = conversation_input.replace('create-variable(', '')
+    output_variable = output_variable.replace(')', '')
+    output_variable_name = output_variable.split(', ', 1)[0]
+    output_variable_value = output_variable.split(', ', 1)[1]
+
+    # If the value is supposed to be an other
+    # type than a string, convert it to its
+    # intended type
+    if output_variable_value == 'True':
+        output_variable_value = True
+    elif output_variable_value == 'False':
+        output_variable_value = False
+    elif output_variable_value.isnumeric():
+        output_variable_value = float(output_variable_value)
+
+    new_text_replacements[f"{output_variable_name}"] = output_variable_value
 
 def conversation_goto(conversation_input, preferences, new_text_replacements, current_dialog):
     # Run a goto function: load a new label and
@@ -332,10 +389,15 @@ def conversation_if_statement(conversation_input, executions_dict, new_text_repl
     statement_1 = new_text_replacements[statement.split(", ", 1)[0]]
     statement_2 = statement.split(", ", 1)[1]
 
+    # If the value is supposed to be an other
+    # type than a string, convert it to its
+    # intended type
     if statement_2 == 'True':
         statement_2 = True
     elif statement_2 == 'False':
         statement_2 = False
+    elif statement_2.isnumeric():
+        statement_2 = float(statement_2)
 
     if statement_1 == statement_2:
         load_conversation_label(executions_dict, preferences, new_text_replacements, current_dialog)
@@ -360,6 +422,8 @@ def conversation_choice_maker(conversation_input, choices_dict, new_text_replace
     choice_action = choice_action.split("))", 1)[0] + ")"
     if choice_action.lower().startswith('print('):
         conversation_print(choice_action, preferences, new_text_replacements)
+    elif choice_action.lower().startswith('create-variable('):
+        conversation_create_variable(choice_action, new_text_replacements)
     elif choice_action.lower().startswith('ask-input('):
         conversation_ask_input(choice_action, new_text_replacements)
     elif choice_action.lower().startswith('goto('):

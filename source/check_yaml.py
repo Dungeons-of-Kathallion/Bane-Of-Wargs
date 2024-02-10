@@ -160,7 +160,7 @@ def check_dialog_conversations(dialog_data, dialog_name):
         # Check if the functions in the label are valid,
         # if not, close the program and output an error
         # message in the UI and in logging
-        possible_functions = ['print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(', 'choice(']
+        possible_functions = ['print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(', 'choice(', 'create-variable(']
 
         count2 = 0
         while count2 < len(conversation[count][current_label_name]):
