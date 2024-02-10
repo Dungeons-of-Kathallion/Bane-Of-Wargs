@@ -116,3 +116,155 @@ def examine(file_path):
         )
         logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
         text_handling.exit_game()
+
+
+def examine_map_point(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/map.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/map.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_item(data):
+    try:
+        data_type = data["type"]
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/items_{data_type}.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/items_{data_type}.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_drink(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/drinks.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/drinks.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_enemy(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/enemies.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/enemies.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_npc(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/npcs.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/npcs.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_list(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/lists.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/lists.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_zone(data):
+    try:
+        data_type = data["type"]
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/zones_{data_type}.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/zones_{data_type}.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_dialog(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/dialogs.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/dialogs.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_mission(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/missions.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/missions.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
+def examine_mount(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/mounts.yaml')
+        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/mounts.yaml'")
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()

@@ -46,6 +46,10 @@ Cocorico Village:
     - Kathallion Hostel
     blacksmiths:
     - James Blacksmith
+    forges:
+    - None
+    stables:
+    - None
 
 Woodstack Hostel:
   name: "Kathallion Hostel"
