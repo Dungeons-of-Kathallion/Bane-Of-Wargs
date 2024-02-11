@@ -1,9 +1,40 @@
-start dialog:
-  conversation:
-  - label 1:
-    - print(Hey! Welcome to this cool and beautiful game $name! I hope you'll have fun playing it.)
-    - print(Find villages, fight monsters, equip and upgrade yourself with looted items and protect people from monsters!)
-    - print(Also, don't forget to explore the map! It is very big. If you're too annoyed with the vanilla plot and items, you can try to find plugins and install them!)
-    - print(Or even create your own plugin and be creative!)
+Test Dialog:
   use actions: False
-  scene: Title1
+  conversation:
+    - label 1:
+      - print(phrase 1)
+      - print(phrase 2)
+      - ask-input(input_1)
+      - goto(label 2)
+    - label 2:
+      - print(phrase 3, $input_1)
+      - wait(5)
+      - ask-confirmation(input_2)
+      - goto(label 3)
+    - label 3:
+      - if(input_2, True):
+        - print(phrase 4, $input_1)
+        - choice():
+          - create_choice(first choice, print(oh damn!))
+          - create_choice(second choice, print(wow!))
+          - create_choice(third choice, print(huge!))
+      - if(input_2, False):
+        - print(phrase 5)
+
+Palace Enter:
+  conversation:
+    - label 1:
+      - print(As you enter the beautiful palace, there is already someone waiting for you in the enter hall.)
+      - print(He walks towards you and start to talk:“Hey! I hope it wasn't too difficult to get here, because of all the monsters in the Kathallion Plains.”)
+      - print(He propose you to give you some gold. Do you want to accept it?)
+      - ask-confirmation(confirmation_variable)
+      - if(confirmation_variable, True):
+        - create-variable(gold_addon, 19)
+        - print(He gives you 19 royal gold coins before opening a great door, letting you enter the palace and look at all the marble statues and other beautiful sculptures.)
+      - if(confirmation_variable, False):
+        - create-variable(gold_addon, 0)
+        - print(He opens a great door, letting you enter the palace and look at all the marble statues and other beautiful sculptures.)
+  use actions: true
+  actions:
+    gold modification:
+      augmentation: $gold_addon

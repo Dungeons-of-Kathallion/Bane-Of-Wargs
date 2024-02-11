@@ -1,10 +1,6 @@
-First Mission:
-  name: "First Mission"
-  description: "Go to $destination"
-  source: 0
-  destination: 5
-  invisible: true
-  on offer:
-    dialog: "first mission"
-  on complete:
-    dialog: "first mission"
+Mission 1:
+  name: "mission"
+  description: "mission"
+  source: 1000000000000000
+  destination: 0
+  invisible: false

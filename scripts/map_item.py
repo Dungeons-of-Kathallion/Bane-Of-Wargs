@@ -25,14 +25,14 @@ def print_map(player, map, zone):
     coord_y = 64
     current_point_list = []
     counting = 0
-    while counting < 16384:
+    while counting < 16383:
         if coord_x > 64:
             coord_x = -64
             coord_y -= 1
             print("║")
         if coord_x < -63:
             print("║", end="")
-        if not not player_already_printed and coord_x == player_x and coord_y == player_y:
+        if not player_already_printed and coord_x == player_x and coord_y == player_y:
             print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "¶" + COLOR_RESET_ALL, end="")
             player_already_printed = True
         else:
@@ -67,77 +67,77 @@ def get_zone_color(zone_type):
             zones_colors = yaml.safe_load(f)
             zone_code = zones_colors[str(zone_type)]
             if zone_code == 0:
-                zone_color = COLOR_GREENS_4 + '█'
+                zone_color = COLOR_GREENS_4 + '╬'
             elif zone_code == 1:
-                zone_color = COLOR_GREENS_5 + '█'
+                zone_color = COLOR_GREENS_5 + '╬'
             elif zone_code == 2:
-                zone_color = COLOR_GREEN + '█'
+                zone_color = COLOR_GREEN + '╬'
             elif zone_code == 3:
-                zone_color = COLOR_GREENS_12 + '█'
+                zone_color = COLOR_GREENS_12 + '╬'
             elif zone_code == 4:
-                zone_color = COLOR_GREENS_2 + '█'
+                zone_color = COLOR_GREENS_2 + '↟'
             elif zone_code == 5:
-                zone_color = COLOR_GREENS_1 + '█'
+                zone_color = COLOR_GREENS_1 + '⇞'
             elif zone_code == 6:
-                zone_color = COLOR_GRAY_4 + '█'
+                zone_color = COLOR_GRAY_4 + '▲'
             elif zone_code == 7:
-                zone_color = COLOR_GRAY_5 + '█'
+                zone_color = COLOR_GRAY_5 + '▲'
             elif zone_code == 8:
-                zone_color = COLOR_GRAY_3 + '█'
+                zone_color = COLOR_GRAY_3 + '▲'
             elif zone_code == 9:
-                zone_color = COLOR_GRAY_1 + '█'
+                zone_color = COLOR_GRAY_1 + '▲'
             elif zone_code == 10:
-                zone_color = COLOR_YELLOW_6 + '█'
+                zone_color = COLOR_YELLOW_6 + '≡'
             elif zone_code == 11:
-                zone_color = COLOR_YELLOW_7 + '█'
+                zone_color = COLOR_YELLOW_7 + '≡'
             elif zone_code == 12:
-                zone_color = COLOR_YELLOW_7 + '█'
+                zone_color = COLOR_YELLOW_7 + '≡'
             elif zone_code == 13:
-                zone_color = COLOR_ORANGE_5 + '█'
+                zone_color = COLOR_ORANGE_5 + '≡'
             elif zone_code == 14:
-                zone_color = COLOR_ORANGE_3 + '█'
+                zone_color = COLOR_ORANGE_3 + '≡'
             elif zone_code == 15:
-                zone_color = COLOR_ORANGE_4 + '█'
+                zone_color = COLOR_ORANGE_4 + '≡'
             elif zone_code == 16:
-                zone_color = COLOR_ORANGE_4 + '█'
+                zone_color = COLOR_ORANGE_4 + '≡'
             elif zone_code == 17:
-                zone_color = COLOR_ORANGE_6 + '█'
+                zone_color = COLOR_ORANGE_6 + '≡'
             elif zone_code == 18:
-                zone_color = COLOR_ORANGE_6 + '█'
+                zone_color = COLOR_ORANGE_6 + '≡'
             elif zone_code == 19:
-                zone_color = COLOR_ORANGE_7 + '█'
+                zone_color = COLOR_ORANGE_7 + '≡'
             elif zone_code == 20:
-                zone_color = COLOR_MAGENTA_7 + '█'
+                zone_color = COLOR_MAGENTA_7 + '#'
             elif zone_code == 21:
-                zone_color = COLOR_YELLOW_8 + '█'
+                zone_color = COLOR_YELLOW_8 + '≡'
             elif zone_code == 22:
-                zone_color = COLOR_GREENS_20 + '█'
+                zone_color = COLOR_GREENS_20 + '«'
             elif zone_code == 23:
-                zone_color = COLOR_YELLOW_3 + '█'
+                zone_color = COLOR_YELLOW_3 + '«'
             elif zone_code == 24:
-                zone_color = COLOR_RED_1 + '█'
+                zone_color = COLOR_RED_1 + '«'
             elif zone_code == 25:
-                zone_color = COLOR_RED_0 + '█'
+                zone_color = COLOR_RED_0 + '«'
             elif zone_code == 26:
-                zone_color = COLOR_BLUE_5 + '▓'
+                zone_color = COLOR_BLUE_5 + '⌂'
             elif zone_code == 27:
-                zone_color = COLOR_BLUE_14 + '▒'
+                zone_color = COLOR_BLUE_13 + '⌂'
             elif zone_code == 28:
-                zone_color = COLOR_BLUE_14 + '▒'
+                zone_color = COLOR_BLUE_13 + '⟰'
             elif zone_code == 29:
-                zone_color = COLOR_BLUE_14 + '▒'
+                zone_color = COLOR_BLUE_13 + '⟰'
             elif zone_code == 30:
-                zone_color = COLOR_BLUE_14 + '▒'
+                zone_color = COLOR_BLUE_13 + '⥣'
             elif zone_code == 31:
-                zone_color = COLOR_BLUE_14 + '▒'
+                zone_color = COLOR_BLUE_13 + '⤊'
             elif zone_code == 32:
-                zone_color = COLOR_BLUE_14 + '±'
+                zone_color = COLOR_BLUE_13 + '±'
             elif zone_code == 33:
-                zone_color = COLOR_CYAN_2 + '≈'
+                zone_color = COLOR_CYAN_3 + '≈'
             elif zone_code == 34:
                 zone_color = COLOR_CYAN_1 + '≈'
             elif zone_code == 35:
-                zone_color = COLOR_GREENS_1 + '█'
+                zone_color = COLOR_GREENS_0 + '#'
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"zone type '{zone_type}' is not a valid zone type." + COLOR_RESET_ALL)
         print(error)

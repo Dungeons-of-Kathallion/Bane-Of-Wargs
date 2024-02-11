@@ -1,26 +1,130 @@
-Stall Fields:
-  name: "Stall Fields"
-  description: "The great fields of the Stall Island."
-  type: fields
+# Seas and lakes
+Stall Seas:
+  name: "Stall Seas"
+  description: "The great seas near the Stall Island."
+  type: sea
   map:
-    map full: " x__________x\n \
-  |$GREEN,,_,,,,$YELLOWo$GREEN_,$WHITE|\n \
-  |$GREEN,,$YELLOWo$GREEN__,,_,,$WHITE|\n \
-  |$GREEN,,,_,,$YELLOWo$GREEN,_,$WHITE|\n \
-  |$YELLOWo$GREEN_,,,_,,,,$WHITE|\n \
-  x__________x"
-    map raw: " x__________x\n \
-  |,,_,,,,o_,|\n \
-  |,,o__,,_,,|\n \
-  |,,,_,,o,_,|\n \
-  |o_,,,_,,,,|\n \
-  x__________x"
+    map full: |
+      x__________x
+      |$BLUE≈$GRAY*$BLUE≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈$GRAY.$BLUE≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈$GRAY/|$BLUE≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈*≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈.≈≈≈|
+      |≈≈≈≈≈/|≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
 
+Stall Seas Bay:
+  name: "Stall Seas Bay"
+  description: "The great bay of the Stall Seas."
+  type: sea
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈$GRAY*$BLUE≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈$GRAY.$BLUE≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈$GRAY/|$BLUE≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈*≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈.≈≈≈|
+      |≈≈≈≈≈/|≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+Forlindon Lake:
+  name: "Forlindon Lake"
+  description: "The small lake in between the Forlindon Woods and the Californ Woods."
+  type: lake
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+Magrove Wastes Waters:
+  name: "Magrove Wastes Waters"
+  description: "The water areas in the Mangrove Wastes."
+  type: lake
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+Middle Area Lakes:
+  name: "Middle Area Lakes"
+  description: "The lakes that are approximately at the middle point of the Stall Island. They are in between the Goro Mounts, the Californ Woods, the Mangrove Wastes and the Gerud Desert."
+  type: lake
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+Gerud Lakes:
+  name: "Gerud Lakes"
+  description: "The lakes of the Gerud Desert."
+  type: lake
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+# Civilizations
 Cocorico Village:
   name: "Cocorico Village"
   description: "The village in the Stall Fields. It offers tranquility and safeness."
   type: village
-  location: 3
+  location: 0
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
@@ -29,18 +133,20 @@ Cocorico Village:
   - "..."
   - "Hey I'm Joshu... Ooh, You don't care..."
   map:
-    map raw: " x__________x\n \
-  |o__----__o|\n \
-  | ||    || |\n \
-  | ||    || |\n \
-  |;||;;;;||;|\n \
-  x__________x"
-    map full: " x__________x\n \
-  |o__----__o|\n \
-  | $GREEN|$WHITE|    |$GREEN|$WHITE |\n \
-  | $GREEN|$WHITE|    $GREEN|$WHITE| |\n \
-  |$YELLOW;$WHITE|$GREEN|;$RED;;$YELLOW;$GREEN||;$WHITE|\n \
-  x__________x"
+    map raw: |
+      x__________x
+      |o__----__o|
+      | ||    || |
+      | ||    || |
+      |;||;;;;||;|
+      x__________x
+    map full: |
+      x__________x
+      |o__----__o|
+      | $GREEN|$WHITE|    |$GREEN|$WHITE |
+      | $GREEN|$WHITE|    $GREEN|$WHITE| |
+      |$YELLOW;$WHITE|$GREEN|;$RED;;$YELLOW;$GREEN||;$WHITE|
+      x__________x
   content:
     hostels:
     - Kathallion Hostel
@@ -51,12 +157,202 @@ Cocorico Village:
     stables:
     - None
 
+Ayar Town:
+  name: "Ayar Town"
+  description: "A small village located in the Forlindon Woods. It's a quiet place to live."
+  type: village
+  location: 0
+  news:
+  - "Hey! Have you ever heard about the Goro Mounts? Apparently our mayor have contacts with a dwarf colony there."
+  - "..."
+  map:
+    map full: |
+      x__________x
+      | $GREEN( $WHITE$GRAY/-\ $GREEN)) $WHITE|
+      |$GREEN( )$WHITE$GRAY|0| $GREEN( )$WHITE|
+      | $GREEN( ($WHITE$GRAY/-\ $GREEN) $WHITE|
+      |$GREEN,,$YELLOW| $GRAY|0|$YELLOW|$GREEN,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ( /-\ )) |
+      |( )|0| ( )|
+      | ( (/-\ ) |
+      |,,| |0||,,|
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+
+New Hyru:
+  name: "New Hyru"
+  description: "Located in the Californ Woods, it is a quit dangerous place, but also welcoming if you're careful."
+  type: village
+  location: 0
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |═══════╗  $WHITE|
+      |══╗    ║$YELLOW\\$WHITE|
+      |$YELLOW=\$WHITE║    ║$YELLOWII$WHITE|
+      |$YELLOW0|$WHITE║    ║$YELLOWII$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |═══════╗  |
+      |══╗    ║\\|
+      |=\║    ║II|
+      |0|║    ║II|
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - Clarc Warg Stable
+
+Los Gerudos:
+  name: "New Hyru"
+  description: "Located in the Gerud Valleys, Los Gerudos is a great town for adventurers that are willing to train and challenge themselves."
+  type: village
+  location: 0
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$RED\/\    //$YELLOW|$WHITE|
+      |$YELLOWO|$WHITE/   \$YELLOW|O|$WHITE|
+      | /     \ $YELLOW|$WHITE|
+      |/       \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |\/\    //||
+      |O|/   \|O||
+      | /     \ ||
+      |/       \||
+      x__________x
+  content:
+    hostels:
+    - Los Gerudos Hostel
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - Kathal Horses
+
+Los Gerudos Hostel:
+  name: "Los Gerudo Hostel"
+  description: "The hostel of the town of Los Gerudos. It was originally a Yrch outpost, but a century ago, it has been taken by an adventurer called Cromha MCcloud... From there, the town has been built around this hostel."
+  type: hostel
+  location: 0
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      | $RED_------_ $WHITE|
+      |$RED/$YELLOWO  OO  O$RED\$WHITE|
+      |$YELLOW||   |$PURPLELOS$YELLOW|$WHITE|
+      |$YELLOW||   $YELLOW|---|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | _------_ |
+      |/O  OO  O\|
+      |||   |LOS||
+      |||   |---||
+      x__________x
+  cost value: 1.1
+  sleep gold: 12
+  sells:
+    drinks:
+    - Beer
+    - Whisky
+    - Wine
+    - Purple Elixir
+    - Green Elixir
+    - Hot Chocolate
+    items:
+    - Porkchop
+    - Raw Salmon
+    - Beef
+    - Bread
+    - Apple
+    - Carrot
+    - Slime
+    - Tissue Bag
+  buys:
+    items:
+    - Wolf Skull
+    - Wolf Skin
+    - Wheat
+
+Kathal Horses:
+  name: "Kathal Horses"
+  description: "A great place where you can adopt horses mounts, train them or sell them. You can also find good quality horse equipment here."
+  type: stable
+  location: 0
+  cost value: 1.2
+  training gold: 24
+  deposit gold: .23
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |          |
+      |    $RED/\    $WHITE|
+      |$YELLOW;;;$RED//\\$YELLOW;;;$WHITE|
+      |$GREEN,,,,$BROWN||$GREEN,,,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |          |
+      |    /\    |
+      |;;;//\\;;;|
+      |,,,,||,,,,|
+      x__________x
+  stable:
+    sells:
+      mounts:
+      - Horse
+      - Friesian Horse
+      - Shire Horse
+      drinks:
+      - Beer
+      - Whisky
+      - Suspicious Stew
+      items:
+      - Wheat
+      - Hay Bale
+      - Bread
+      - Apple
+      - Carrot
+      - Slime
+      - Tissue Bag
+    stables:
+    - Horse Stable
+
 Woodstack Hostel:
   name: "Kathallion Hostel"
   type: hostel
   cost value: .9
   sleep gold: 7
-  location: 50
+  location: 0
   description: "The Woodstack Hostel is a nice place to be and you can find amazing people."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -78,24 +374,75 @@ Woodstack Hostel:
     items:
     - None
   map:
-    map raw: " x__________x\n \
-  |  ______  |\n \
-  | I||||||I |\n \
-  |I||----||I|\n \
-  | ||--0-|| |\n \
-  x__________x"
-    map full: " x__________x\n \
-  |  $BROWN______  $WHITE|\n \
-  | $BROWNI||||||I $WHITE|\n \
-  |$BROWNI||----||I$WHITE|\n \
-  | $BROWN||--$GRAY0$BROWN-|| $WHITE|\n \
-  x__________x"
+    map raw: |
+      x__________x
+      |  ______  |
+      | I||||||I |
+      |I||----||I|
+      | ||--0-|| |
+      x__________x
+    map full: |
+      x__________x
+      |  $BROWN______  $WHITE|
+      | $BROWNI||||||I $WHITE|
+      |$BROWNI||----||I$WHITE|
+      | $BROWN||--$GRAY0$BROWN-|| $WHITE|
+      x__________x
+
+Seaside Hostels:
+  name: "Seaside Hostels"
+  type: hostel
+  cost value: 1.8
+  sleep gold: 21
+  location: 0
+  description: "The Seaside Hostels are a company of hostels that are settled in the west coast of the Stall Island. There are great hostels near the beach."
+  news:
+  - "..."
+  sells:
+    drinks:
+    - Beer
+    - Whisky
+    - Wine
+    - Purple Elixir
+    - Coffee
+    - Hot Chocolate
+    - Green Elixir
+    items:
+    - Porkchop
+    - Raw Salmon
+    - Beef
+    - Bread
+    - Chicken
+    - Tissue Bag
+    - Healing Potion
+  buys:
+    items:
+    - Tissue Bag
+    - Apple
+    - Carrot
+    - Healing Potion
+    - Knife
+  map:
+    map raw: |
+      x__________x
+      |_____≈≈≈≈≈|
+      |  __ \≈≈≈≈|
+      | [  ]|;;;;|
+      | [  ]|;;;;|
+      x__________x
+    map full: |
+      x__________x
+      |$BROWN_____$BLUE≈≈≈≈≈$WHITE|
+      |  $YELLOW__ $BROWN\$BLUE≈≈≈≈$WHITE|
+      | $YELLOW[  ]$BROWN|$YELLOW;;;;$WHITE|
+      | $YELLOW[  ]$BROWN|$YELLOW;;;;$WHITE|
+      x__________x
 
 Pickaxe Forge:
   name: "Pickaxe Forge"
   type: forge
   cost value: 1.15
-  location: 43
+  location: 0
   description: "At the Pickaxe Forge you'll be able to buy any metal at low prices for its high quality!"
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -105,21 +452,61 @@ Pickaxe Forge:
   - "..."
   - "Hey I'm Jo... Ooh, You don't care..."
   map:
-    map raw: " x__________x\n \
-  |*  *  {}  |\n \
-  |(--------)|\n \
-  |( ___ [] )|\n \
-  |(|░░░|[] )|\n \
-  x__________x"
-    map full: " x__________x\n \
-  |$BLUE*  *  $GRAY{}  $WHITE|\n \
-  |$GRAY(--------)$WHITE|\n \
-  |$GRAY( ___ $BROWN[]$GRAY )$WHITE|\n \
-  |$GRAY(|$RED░░░$GRAY|$BROWN[]$GRAY )$WHITE|\n \
-  x__________x"
+    map raw: |
+      x__________x
+      |*  *  {}  |
+      |(--------)|
+      |( ___ [] )|
+      |(|░░░|[] )|
+      x__________x
+    map full: |
+      x__________x
+      |$BLUE*  *  $GRAY{}  $WHITE|
+      |$GRAY(--------)$WHITE|
+      |$GRAY( ___ $BROWN[]$GRAY )$WHITE|
+      |$GRAY(|$RED░░░$GRAY|$BROWN[]$GRAY )$WHITE|
+      x__________x
   forge:
     buys:
     - Raw Iron
+    sells:
+    - Raw Iron
+    - Raw Silver
+    - Raw Copper
+    - Raw Bronze
+
+Gerud Forges:
+  name: "Gerud Forges"
+  type: forge
+  cost value: 1.25
+  location: 0
+  description: "One of the most known forge in the eastern Stall Island. Huge prices but great quality."
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      | /\______ |
+      |/ []     \|
+      ||   __   ||
+      ||  <  >  ||
+      x__________x
+    map full: |
+      x__________x
+      |$BROWN /\______ $WHITE|
+      |$BROWN/ $GRAY[]$BROWN     \$WHITE|
+      |$BROWN|   $YELLOW__$BROWN   |$WHITE|
+      |$BROWN|  $YELLOW<  >$BROWN  |$WHITE|
+      x__________x
+  forge:
+    buys:
+    - Raw Iron
+    - Raw Silver
+    - Raw Copper
+    - Raw Bronze
+    - Steel
+    - Refined Steel
+    - Flexible Steel
     sells:
     - Raw Iron
     - Raw Silver
@@ -133,7 +520,7 @@ James Blacksmith:
   name: "James Blacksmith"
   type: blacksmith
   cost value: 1
-  location: 42
+  location: 0
   description: "Welcome to James Blacksmith! You can here sell metals to make gold, but metals and order many type of swords!"
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -143,18 +530,20 @@ James Blacksmith:
   - "..."
   - "Hey I'm Jo... Ooh, You don't care..."
   map:
-    map raw: " x__________x\n \
-  |  * *  *  |\n \
-  |_______0__|\n \
-  |((((((()))|\n \
-  |(((((I-I))|\n \
-  x__________x"
-    map full: " x__________x\n \
-  |  $PURPLE* *  *  $WHITE|\n \
-  |$BLUE_______$GRAY0$BLUE__$WHITE|\n \
-  |$BLUE((((((()))$WHITE|\n \
-  |$BLUE((((($GRAYI-I$BLUE))$WHITE|\n \
-  x__________x"
+    map raw: |
+      x__________x
+      |  * *  *  |
+      |_______0__|
+      |((((((()))|
+      |(((((I-I))|
+      x__________x
+    map full: |
+      x__________x
+      |  $PURPLE* *  *  $WHITE|
+      |$BLUE_______$GRAY0$BLUE__$WHITE|
+      |$BLUE((((((()))$WHITE|
+      |$BLUE((((($GRAYI-I$BLUE))$WHITE|
+      x__________x
   blacksmith:
     buys:
     - Sword
@@ -205,7 +594,7 @@ Clarc Warg Stable:
   name: "Clarc Stable"
   type: stable
   cost value: .7
-  location: 9
+  location: 0
   training gold: 18
   deposit gold: .15
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."
@@ -231,33 +620,238 @@ Clarc Warg Stable:
     stables:
     - Warg Stable
   map:
-    map raw: " x__________x\n \
-  |  ______  |\n \
-  | I||||||I |\n \
-  | I|====|I |\n \
-  | I|==//|I |\n \
-  x__________x"
-    map full: " x__________x\n \
-  |  $BROWN______$WHITE  |\n \
-  | $GRAYI$BROWN||||||$GRAYI$WHITE |\n \
-  |$GRAYII$BROWN|====|$GRAYII$WHITE|\n \
-  |$GRAYII$BROWN|==//|$GRAYII$WHITE|\n \
-  x__________x"
+    map raw: |
+      x__________x
+      |  ______  |
+      | I||||||I |
+      | I|====|I |
+      | I|==//|I |
+      x__________x
+    map full: |
+      x__________x
+      |  $BROWN______$WHITE  |
+      | $GRAYI$BROWN||||||$GRAYI$WHITE |
+      |$GRAYII$BROWN|====|$GRAYII$WHITE|
+      |$GRAYII$BROWN|==//|$GRAYII$WHITE|
+      x__________x
 
+# Lands
 The Edge Of Goro Mounts:
   name: "The Edge Of Goro Mounts"
   type: low mountains
   description: "The very edge of the famous Goro Mounts. This place is known for its rich rocky ground. You'll find many mines here."
   map:
-    map full: " x__________x\n \
-  |$GRAY▒$BLUE#$GRAY▒▒▒$GRAY@$GRAY▒▒▒▒$WHITE|\n \
-  |$GRAY▒▒$GRAY@$GRAY▒▒▒▒$GRAY@$GRAY▒▒$WHITE|\n \
-  |$GRAY▒$GRAY@$BLUE#$GRAY▒▒▒▒▒$GRAY@$GRAY▒$WHITE|\n \
-  |$GRAY#▒▒▒▒$GRAY@$GRAY▒$BLUE#$GRAY▒▒$WHITE|\n \
-  x__________x"
-    map raw: " x__________x\n \
-  |▒#▒▒▒@▒▒▒▒|\n \
-  |▒▒@▒▒▒▒@▒▒|\n \
-  |▒@#▒▒▒▒▒@▒|\n \
-  |#▒▒▒▒@▒#▒▒|\n \
-  x__________x"
+    map full: |
+      x__________x
+      |$GRAY▒$BLUE#$GRAY▒▒▒$GRAY@$GRAY▒▒▒▒$WHITE|
+      |$GRAY▒▒$GRAY@$GRAY▒▒▒▒$GRAY@$GRAY▒▒$WHITE|
+      |$GRAY▒$GRAY@$BLUE#$GRAY▒▒▒▒▒$GRAY@$GRAY▒$WHITE|
+      |$GRAY#▒▒▒▒$GRAY@$GRAY▒$BLUE#$GRAY▒▒$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |▒#▒▒▒@▒▒▒▒|
+      |▒▒@▒▒▒▒@▒▒|
+      |▒@#▒▒▒▒▒@▒|
+      |#▒▒▒▒@▒#▒▒|
+      x__________x
+
+The Goro Mounts:
+  name: "The Goro Mounts"
+  type: mountains
+  description: "The great Goro Mounts."
+  map:
+    map full: |
+      x__________x
+      |$CYAN*  $WHITE__$CYAN  * *$WHITE|
+      | $CYAN*$WHITE/$CYAN* $WHITE\__$CYAN* $WHITE|
+      | /$CYAN~~$WHITE/$CYAN~~~$WHITE\$CYAN*$WHITE|
+      |$CYAN/  /*  \ \$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |*  __  * *|
+      | */* \__* |
+      | /~~/~~~\*|
+      |/  /*  \ \|
+      x__________x
+
+The Goro Mounts Peaks:
+  name: "The Goro Mounts Peaks"
+  type: high mountains
+  description: "The peaks of the Goro Mounts. A cold place to be and dangerous."
+  map:
+    map full: |
+      x__________x
+      |$CYAN*  $WHITE__$CYAN  * *$WHITE|
+      | $CYAN*$WHITE/$CYAN* $WHITE\__$CYAN* $WHITE|
+      | /$CYAN~~$WHITE/$CYAN~~~$WHITE\$CYAN*$WHITE|
+      |$CYAN/  /*  \ \$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |*  __  * *|
+      | */* \__* |
+      | /~~/~~~\*|
+      |/  /*  \ \|
+      x__________x
+
+Stall Fields:
+  name: "Stall Fields"
+  description: "The great fields of the Stall Island."
+  type: fields
+  map:
+    map full: |
+      x__________x
+      |$GREEN,,$YELLOW_$GREEN,,,,$YELLOWo_$GREEN,$WHITE|
+      |$GREEN,,$YELLOWo__$GREEN,,$YELLOW_$GREEN,,$WHITE|
+      |$GREEN,,,$YELLOW_$GREEN,,$YELLOWo$GREEN,$YELLOW_$GREEN,$WHITE|
+      |$YELLOWo_$GREEN,,,$YELLOW_$GREEN,,,,$WHITE|
+      x__________x"
+    map raw: |
+      x__________x
+      |,,_,,,,o_,|
+      |,,o__,,_,,|
+      |,,,_,,o,_,|
+      |o_,,,_,,,,|
+      x__________x"
+
+Californ Woods:
+  name: "Californ Woods"
+  description: "The Californ Woods are known to be one of the most dangerous woods of the Stall Island."
+  type: dark woods
+  map:
+    map full: |
+      x__________x
+      |$YELLOW\||  \//  $WHITE|
+      |$YELLOW-||   ||  $WHITE|
+      | $YELLOW||  //   $WHITE|
+      |$GREEN~$YELLOW||$GREEN~$YELLOW||$GREEN~~~~$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |\||  \//  |
+      |-||   ||  |
+      | ||  //   |
+      |~||~||~~~~|
+      x__________x
+
+Forlindon Woods:
+  name: "Forlindon Woods"
+  description: "A small and quite forest where you find a small village, living apart of the other great cities."
+  type: woods
+  map:
+    map full: |
+      x__________x
+      |$GREEN (     )) $WHITE|
+      |$GREEN( )    ( )$WHITE|
+      | $GREEN( (    ) $WHITE|
+      |$GREEN,,$YELLOW|    |$GREEN,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | (     )) |
+      |( )    ( )|
+      | ( (    ) |
+      |,,|    |,,|
+      x__________x
+
+Mangrove Wastes:
+  name: "Mangrove Wastes"
+  description: "The Mangrove Wastes are great wastes land where you find almost no live, except monsters."
+  type: swamps
+  map:
+    map full: |
+      x__________x
+      |    $YELLOW\\    $WHITE|
+      |$BLUE~$GREENO$BLUE~~~$YELLOW||$BLUE~~~$WHITE|
+      |$GREEN;$YELLOW|$GREEN;$BLUE~$GREEN;;$BLUE~~~$GREEN;$WHITE|
+      |$GREEN;$YELLOW|$GREEN;;;;;;;;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |    \\    |
+      |~O~~~||~~~|
+      |;|;~;;~~~;|
+      |;|;;;;;;;;|
+      x__________x
+
+Gerud Desert:
+  name: "Gerud Desert"
+  description: "The Gerud desert is an arid desert in the eastern of the Stall Island. You'll find very dangerous enemies but also great rewards for adventurers."
+  type: desert
+  map:
+    map full: |
+      x__________x
+      |          |
+      |$YELLOW~;;~~~;;~;$WHITE|
+      |$YELLOW;~~;;;~~;;$WHITE|
+      |$YELLOW;~;;~;;;~;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |          |
+      |~;;~~~;;~;|
+      |;~~;;;~~;;|
+      |;~;;~;;;~;|
+      x__________x
+
+Gerud Valleys:
+  name: "Gerud Valleys"
+  description: "The Gerud Valleys are a calm area of the Gerud Desert, so calm that a town has been settled here."
+  type: desert valleys
+  map:
+    map full: |
+      x__________x
+      |          |
+      |$YELLOW~;$GREEN[]$YELLOW~~;$GREENI$YELLOW~;$WHITE|
+      |$YELLOW;~~$GREEN[]$YELLOW;~~;;$WHITE|
+      |$YELLOW;$GREEN[]$YELLOW;~;;;$GREEN[]$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |          |
+      |~;[]~~;I~;|
+      |;~~[];~~;;|
+      |;[];~;;;[]|
+      x__________x
+
+Badlands:
+  name: "Badlands"
+  description: "The Badlands are a highly dangerous place, with many enemies wanting your death. In the past, there were drawves mines but they seem to be gone..."
+  type: badlands
+  map:
+    map full: |
+      x__________x
+      |          |
+      |$YELLOW~;$GREEN[]$YELLOW~~;$GREENI$YELLOW~;$WHITE|
+      |$YELLOW;~~$GREEN[]$YELLOW;~~;;$WHITE|
+      |$YELLOW;$GREEN[]$YELLOW;~;;;$GREEN[]$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |          |
+      |~;[]~~;I~;|
+      |;~~[];~~;;|
+      |;[];~;;;[]|
+      x__________x
+
+Californ Beaches:
+  name: "Californ Beaches"
+  description: "The beaches of the Californ Woods in the western Stall Island."
+  type: beach
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$YELLOW;$BLUE≈$YELLOW;;$BLUE≈≈$YELLOW;;;;$WHITE|
+      |$YELLOW;;;;;;;;;;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |;≈;;≈≈;;;;|
+      |;;;;;;;;;;|
+      x__________x
