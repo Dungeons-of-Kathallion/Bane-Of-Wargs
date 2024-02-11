@@ -24,6 +24,8 @@ def dialog_action(player):
 
     text_handling.print_separator("=")
 
+player = None
+
 # Actually run the action, and tells the game which arguments to use
 dialog_action(player)
 
