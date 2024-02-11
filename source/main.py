@@ -842,13 +842,13 @@ def run(play):
         day_time_decimal = "." + str(player["elapsed time game days"]).split(".", 1)[1]
         day_time_decimal = float(day_time_decimal)
         if day_time_decimal < .25 and day_time_decimal > .0:
-            day_time = COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL
+            day_time = COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
         elif day_time_decimal > .25 and day_time_decimal < .50:
-            day_time = COLOR_BLUE + COLOR_STYLE_BRIGHT + "MORNING" + COLOR_RESET_ALL
+            day_time = COLOR_BLUE + COLOR_STYLE_BRIGHT + "▲ MORNING" + COLOR_RESET_ALL
         elif day_time_decimal > .50 and day_time_decimal < .75:
-            day_time = COLOR_GREEN + COLOR_STYLE_BRIGHT + "DAY" + COLOR_RESET_ALL
+            day_time = COLOR_GREEN + COLOR_STYLE_BRIGHT + "☼ DAY" + COLOR_RESET_ALL
         elif day_time_decimal > .75 and day_time_decimal:
-            day_time = COLOR_YELLOW + COLOR_STYLE_BRIGHT + "EVENING" + COLOR_RESET_ALL
+            day_time = COLOR_YELLOW + COLOR_STYLE_BRIGHT + "▼ EVENING" + COLOR_RESET_ALL
 
         logger_sys.log_message("INFO: Calculating player armor protection stat")
         # calculate player armor protection
