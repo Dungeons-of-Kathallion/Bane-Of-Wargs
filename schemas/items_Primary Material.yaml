@@ -1,3 +1,4 @@
 type: str()
 description: str()
 gold: num()
+thumbnail: str()

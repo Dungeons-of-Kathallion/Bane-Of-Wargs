@@ -9,6 +9,16 @@ Sword: &generic_sword
   gold: 7.65
   critical hit chance: .05
   description: "A generic sword."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Sword (1):
   <<: *generic_sword
   upgrade tier: 1
@@ -51,6 +61,16 @@ Broadsword: &broadsword
   gold: 12.98
   critical hit chance: .09
   description: "The Broadsword is a large sword and powerful sword that not anyone can use well."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Broadsword (1):
   <<: *broadsword
   upgrade tier: 1
@@ -85,6 +105,16 @@ Long Sword: &long_sword
   gold: 13.78
   critical hit chance: .05
   description: "A very long sword that is very practical to defend yourself from monsters."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Long Sword (1):
   <<: *long_sword
   upgrade tier: 1
@@ -120,6 +150,16 @@ Rapier: &Rapier
   agility: .19
   critical hit chance: .03
   description: "A long, thin sword with an elaborate hilt and a flexible blade."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Rapier (1):
   <<: *Rapier
   upgrade tier: 1
@@ -141,6 +181,16 @@ Bow: &generic_bow
   gold: 3.2
   critical hit chance: .06
   description: "A generic bow."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Bow (1):
   <<: *generic_bow
   upgrade tier: 1
@@ -177,6 +227,16 @@ Orc Bow:
   gold: 3.35
   critical hit chance: .07
   description: "Orc bows are less powerful than generic bows but are way more easy to use and transport."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Knife:
   display name: "Knife"
   upgrade tier: 0
@@ -187,6 +247,16 @@ Knife:
   gold: 1.24
   critical hit chance: .04
   description: "A simple knife. Fast and easy to use. Most goblins uses this weapon."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Dagger:
   display name: "Dagger"
   upgrade tier: 0
@@ -197,6 +267,16 @@ Dagger:
   gold: 1.85
   critical hit chance: .05
   description: "The daggers are a generic longer knife that is often used by Yrch."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Dwarf Axe: &dwarf_axe
   display name: "Dwarf Axe"
   upgrade tier: 0
@@ -207,6 +287,16 @@ Dwarf Axe: &dwarf_axe
   gold: 4.68
   critical hit chance: .085
   description: "A generic dwarf axe used by the Dwarves. A slow but deadly weapon."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Dwarf Axe (1):
   <<: *dwarf_axe
   upgrade tier: 1
@@ -229,6 +319,16 @@ Mace:
   gold: 6.57
   critical hit chance: .17
   description: "A huge mace used by cavern trolls. It is an extremely damaging weapon but also a very slow weapon."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Spear:
   display name: "Spear"
   upgrade tier: 0
@@ -239,6 +339,16 @@ Spear:
   gold: 8.75
   critical hit chance: .13
   description: "The spear is a fast and agile weapon that lets you attack your enemy without letting them the time to attack you."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Flaming Whip:
   display name: "Flaming Whip"
   upgrade tier: 0
@@ -249,6 +359,16 @@ Flaming Whip:
   gold: 27.85
   critical hit chance: .1
   description: "The Flaming Whip is the powerful weapon that Balrogs uses. It is a very fast and agile weapon that can easily outcome any adventurer. "
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Consumables
 Healing Potion:
   type: "Consumable"
@@ -256,6 +376,16 @@ Healing Potion:
   healing level: 999
   gold: 17.4
   description: "A generic healing potion that restores your health to it's max and gives it a bonus 5 to that maximum."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Utilities
 Map:
   type: "Utility"
@@ -266,6 +396,16 @@ Map:
   - map
   - zone
   description: "It's a map of the dungeons! [Press 'M' to activate.]"
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Teleportation Rock:
   type: Utility
   key: "T"
@@ -274,6 +414,16 @@ Teleportation Rock:
   - player
   - map
   description: "It's a mysterious that asks you where you want to go... [Press 'T' to activate]"
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Heart Stone:
   type: Utility
   key: "H"
@@ -281,6 +431,16 @@ Heart Stone:
   arguments:
   - player
   description: "A weird artifact that can randomly generate health... [Press 'H' to activate]"
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Armors
 Wolf Fur: &wolf_fur
   display name: "Wolf Fur"
@@ -290,6 +450,16 @@ Wolf Fur: &wolf_fur
   agility: .35
   gold: 1.25
   description: "A wolf fur that can also be used as a chestplate."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Wolf Fur (1):
   <<: *wolf_fur
   upgrade tier: 1
@@ -304,6 +474,16 @@ Leather Jacket:
   agility: .2
   gold: .6
   description: "A small jacket that may not protect you much but keeps you warm when it's cold."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Leather Boots:
   upgrade tier: 0
   type: "Armor Piece: Boots"
@@ -311,6 +491,16 @@ Leather Boots:
   agility: .35
   gold: .6
   description: "While these boots are dirty and wet, they grant you great mobility."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Old Pants:
   upgrade tier: 0
   type: "Armor Piece: Leggings"
@@ -318,6 +508,16 @@ Old Pants:
   agility: .25
   gold: .6
   description: "An old pair of pants. It is large and very dirty."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Broken Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
@@ -325,6 +525,16 @@ Broken Shield:
   agility: .1
   gold: 1.1
   description: "A Shield from ancient times, cloven in two and left for travelers to find."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Knight Boots: &knight_boots
   display name: Knight Boots
   upgrade tier: 0
@@ -333,6 +543,16 @@ Knight Boots: &knight_boots
   agility: .2
   gold: 13.45
   description: "The generic boots of any good knight."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Knight Boots (1):
   <<: *knight_boots
   upgrade tier: 1
@@ -359,6 +579,16 @@ Chainmail Leggings: &chainmail_leggings
   agility: .17
   gold: 19.53
   description: "Chainmail leggings are light weight but strong and durable armor pieces. They are used by most knights."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Chainmail Leggings (1):
   <<: *chainmail_leggings
   upgrade tier: 1
@@ -405,6 +635,16 @@ Orc Iron Leggings:
   agility: .15
   gold: 5.68
   description: "The generics leggings of Goblins and Yrch. These leggings continue further along on your legs since Yrch and goblins don't wear boots.'"
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Orc Shredded Chestplate:
   upgrade tier: 0
   type: "Armor Piece: Chestplate"
@@ -412,6 +652,16 @@ Orc Shredded Chestplate:
   agility: .15
   gold: 8.65
   description: "The generic chestplate of Goblins and Yrch."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
@@ -419,6 +669,16 @@ Shield:
   agility: .2
   gold: 3.2
   description: "While not very strong, this shield will serve you well in deflecting enemy attacks."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Orc Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
@@ -426,6 +686,16 @@ Orc Shield:
   agility: .35
   gold: 3.8
   description: "A shield built for weight; used by the Black Yrch."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Warg Fur Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
@@ -433,22 +703,62 @@ Warg Fur Shield:
   agility: .15
   gold: 3.24
   description: "A shredded orc shield with warg fur on it."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Bags
 Stretched Bag:
   type: "Bag"
   inventory slots: 9
   gold: 2.34
   description: "An old stretched bag that lets you transport 9 items."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Tissue Bag:
   type: "Bag"
   inventory slots: 4
   gold: 4.35
   description: "A tissue but still strong bag to stores up to 4 items."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Orc Bag:
   type: "Bag"
   inventory slots: 3
   gold: 1.25
   description: "A generic orc bag that lets you transport 3 items."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Food
 Beef:
   type: "Food"
@@ -456,130 +766,420 @@ Beef:
   healing level: 6
   gold: 2.6
   description: "A generic cooked beef than can restore your energy."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Chicken:
   type: "Food"
   max bonus: 0
   healing level: 4
   gold: 3.2
   description: "A generic cooked chicken leg that can restore your energy."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Apple:
   type: "Food"
   max bonus: 0
   healing level: 1
   gold: .7
   description: "Apples are not great for energy but are easy to find."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Carrot:
   type: "Food"
   max bonus: 0
   healing level: 2
   gold: .7
   description: "Carrot are great food for horses but not for humans."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Porkchop:
   type: "Food"
   max bonus: 0
   healing level: 5
   gold: 6.7
   description: "Cooked porkchops are great food that restore your energy by a lot."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Raw Salmon:
   type: "Food"
   max bonus: 0
   healing level: 2
   gold: 3.2
   description: "A raw salmon may not be the best thing to eat but it's always better than nothing."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Bread:
   type: "Food"
   max bonus: 0
   healing level: 6
   gold: 3.4
   description: "Bread is a great food and energy source for adventurers. It is cheap and full of energy."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Misc
 Bone:
   type: "Misc"
   gold: .25
   description: "An old bone that seems to come from a great beast."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Wooden Stick:
   type: "Misc"
   gold: .12
   description: "Small stick made of wood. They often come from forest-destroying Goblins."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Wolf Skin:
   type: "Misc"
   gold: 1.1
   description: "A warm wolf skin."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Wolf Skull:
   type: "Misc"
   gold: 1.1
   description: "A huge skull of a head of a Warg."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Slime:
   type: "Misc"
   gold: 1.2
   description: "While slime may seems useless, it's actually used in many elixirs recipes."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Hay Bale:
   type: "Misc"
   gold: 3.4
   description: "Hay Bales are the only food that Kathallion horses accepts to eat, with Wheat of course."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Wheat:
   type: "Misc"
   gold: .7
   description: "Wheat are very useful in the Kathallion civilizations. It is used to feed horses, make Hay Bales but mostly, cook bread."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Balrog Horn:
   type: "Misc"
   gold: 12.75
   description: "Balrog Horns are very hard to get and very expensive on the market."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Keys
 Warg Key:
   type: "Key"
   description: "A key that opens any warg stable."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Old Rusted Key:
   type: "Key"
   gold: 12.4
   description: "An old rusted key you bought from Jerry The Junk Seller. Seems to be in a certain way useful."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Notes
 Note1:
   type: "Note"
   description: "The note reads: 'Help! Help!'. You wonder what it means..."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Metals
 Raw Iron:
   type: "Metal"
   gold: .6
   description: "A bag with raw iron in it. Useful to forge swords."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Raw Copper:
   type: "Metal"
   gold: .7
   description: "A bag with raw copper in it. Useful to forge swords."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Raw Silver:
   type: "Metal"
   gold: .95
   description: "A bag with raw silver in it. Useful to forge swords."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Raw Bronze:
   type: "Metal"
   gold: .55
   description: "A bag with raw bronze in it. Useful to forge swords."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Steel:
   type: "Metal"
   gold: .85
   description: "A bag with steel ingots in it. Useful to forge axes."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Refined Steel:
   type: "Metal"
   gold: .93
   description: "A bag with stronger steel ingots in it. Useful to forge axes or other heavy weapons."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Flexible Steel:
   type: "Metal"
   gold: .98
   description: "A bag with flexible steel ingots in it. Useful to forge flexible swords."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 # Primary Materials
 Raw Wood:
   type: "Primary Material"
   gold: .29
   description: "A bag with raw oak, spruce and other random woods in it. Useful to make shields or swords."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Bow String:
   type: "Primary Material"
   gold: 5.7
   description: "A generic solid string used for making bows."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Strong String:
   type: "Primary Material"
   gold: 8.9
   description: "A generic hyper solid string used for making low-range but powerful-shot bows."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
 Flexible String:
   type: "Primary Material"
   gold: 8.9
   description: "A generic solid string used for making high-range bows."
+  thumbnail: |
+    ╔════════════════╗
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ║                ║
+    ╚════════════════╝
