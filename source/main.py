@@ -2122,9 +2122,12 @@ def run(play):
                         "HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW +
                         str(item[which_item]["max bonus"]) + COLOR_RESET_ALL
                     )
+                    healing_level = str(item[which_item]["healing level"])
+                    if healing_level == '999':
+                        healing_level = 'MAX HEALTH'
                     print(
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
-                        str(item[which_item]["healing level"]) + COLOR_RESET_ALL
+                         healing_level + COLOR_RESET_ALL
                     )
                 text = '='
                 text_handling.print_separator(text)
