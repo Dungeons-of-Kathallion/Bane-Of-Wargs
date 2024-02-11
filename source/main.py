@@ -2066,7 +2066,7 @@ def run(play):
                 text_handling.print_separator(text)
                 logger_sys.log_message(f"INFO: Printing item '{which_item}' information")
                 print("")
-                print(item[which_item]["thumbnail"])
+                text_handling.print_item_thumbnail(item[which_item]["thumbnail"])
                 text = '='
                 text_handling.print_separator(text)
                 if item[which_item]["type"] == "Weapon":
