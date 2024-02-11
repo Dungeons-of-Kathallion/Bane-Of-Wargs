@@ -2127,7 +2127,7 @@ def run(play):
                         healing_level = 'MAX HEALTH'
                     print(
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
-                         healing_level + COLOR_RESET_ALL
+                        healing_level + COLOR_RESET_ALL
                     )
                 text = '='
                 text_handling.print_separator(text)
