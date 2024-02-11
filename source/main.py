@@ -2401,9 +2401,9 @@ def run(play):
             play = 0
             continued_command = True
         else:
+            continued2 = False
             for i in utilities_list:
                 continued_command = True
-                continued2 = False
                 current_utility = i
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
                     if preferences["latest preset"]["type"] == "plugin":
@@ -2420,7 +2420,7 @@ def run(play):
                     finished = input(" ")
                 elif current_utility not in player["inventory"]:
                     continued2 = True
-                    logger_sys.log_message("INFO: Canceling map examining process --> doesn't have 'Map' item")
+                    logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
                     print(f"You do not have a '{current_utility}'.")
                     print(" ")
                     finished = input(" ")
