@@ -2395,6 +2395,33 @@ def run(play):
                 print(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             continued_command = True
+        elif command.lower().startswith('k'):
+            logger_sys.log_message("INFO: Dumping player RAM save into its save file")
+            print("Collecting player data...")
+            dumped = yaml.dump(player)
+            logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+
+            save_file_quit = save_file
+            print("Dumping player data to save files...")
+            with open(save_file_quit, "w") as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+
+            save_name_backup = save_file.replace('save_', '~0 save_')
+
+            with open(save_name_backup, "w") as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+
+            print("Collecting player preferences...")
+            dumped = yaml.dump(preferences)
+            logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+
+            print("Dumping player preferences to preferences file...")
+            with open(program_dir + '/preferences.yaml', 'w') as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+            continued_command = True
         elif command.lower().startswith('q'):
             logger_sys.log_message("INFO: Closing & Saving game")
             print(separator)
