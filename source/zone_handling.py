@@ -266,7 +266,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
 # Interactions functions
 
 
-def interact_hostel(map_zone, zone, player, drinks, item):
+def interaction_hostel(map_zone, zone, player, drinks, item):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is an hostel --> can interact")
     text = '='
     text_handling.print_separator(text)
