@@ -36,3 +36,6 @@ This save file can be used to test these changes:
 
 ## Performance Impact
 {{If this PR changed code, describe any performance impact (positive or negative). "N/A" if no performance-critical code is changed.}}
+
+## Check-List
+{{If this PR is in progress, write major actions that need to be done here.}}
