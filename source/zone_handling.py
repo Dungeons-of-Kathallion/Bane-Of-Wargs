@@ -33,7 +33,7 @@ def print_forge_information(map_zone, zone, item):
     current_forge = zone[map_zone]
     current_forge_name = current_forge["name"]
     logger_sys.log_message(f"INFO: Printing current forge '{current_forge_name}' information to GUI")
-    print(str(current_forge["name"]) + ":")
+    print(COLOR_STYLE_BRIGHT + str(current_forge["name"]) + ":" + COLOR_RESET_ALL)
     text = current_forge["description"]
     text_handling.print_long_string(text)
     print(" ")
@@ -69,7 +69,7 @@ def print_blacksmith_information(map_zone, zone, item):
     current_black_smith = zone[map_zone]
     current_black_smith_name = current_black_smith["name"]
     logger_sys.log_message(f"INFO: Printing current blacksmith '{current_black_smith_name}' information to GUI")
-    print(str(current_black_smith["name"]) + ":")
+    print(COLOR_STYLE_BRIGHT + str(current_black_smith["name"]) + ":" + COLOR_RESET_ALL)
     text = current_black_smith["description"]
     text_handling.print_long_string(text)
     print("")
@@ -141,7 +141,7 @@ def print_blacksmith_information(map_zone, zone, item):
 def print_stable_information(map_zone, zone, mounts, item, player, map_location):
     current_stable = zone[map_zone]
     current_stable_name = current_stable["name"]
-    print(str(current_stable["name"]) + ":")
+    print(COLOR_STYLE_BRIGHT + str(current_stable["name"]) + ":" + COLOR_RESET_ALL)
     logger_sys.log_message(f"INFO: Printing current stable '{current_stable_name}' information to GUI")
     text = current_stable["description"]
     text_handling.print_long_string(text)
@@ -216,7 +216,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
     current_hostel = zone[map_zone]
     current_hostel_name = current_hostel["name"]
     logger_sys.log_message(f"INFO: Printing current hostel '{current_hostel_name}' information to GUI")
-    print(str(current_hostel["name"]) + ":")
+    print(COLOR_STYLE_BRIGHT + str(current_hostel["name"]) + ":" + COLOR_RESET_ALL)
     text = current_hostel["description"]
     text_handling.print_long_string(text)
     print(" ")
