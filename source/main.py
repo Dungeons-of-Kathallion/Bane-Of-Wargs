@@ -730,7 +730,8 @@ def run(play):
             COLOR_RESET_ALL
         )
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit game")
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Save game")
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         print(" ")
         print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
         print("If you find an item on the ground, type the name of the item to take it.")
