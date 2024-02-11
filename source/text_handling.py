@@ -84,7 +84,7 @@ def print_zone_map(zone_name, zone, player, preferences):
     to_print = to_print.replace('$CYAN', '\033[0;36m')
     to_print = to_print.replace('$WHITE', '\033[0;37m')
     to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
+    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
 
     player_equipment = []
@@ -142,7 +142,7 @@ def print_zone_map_alone(zone_name, zone):
     to_print = to_print.replace('$CYAN', '\033[0;36m')
     to_print = to_print.replace('$WHITE', '\033[0;37m')
     to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
+    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
 
     count = 0
@@ -170,7 +170,7 @@ def print_npc_thumbnail(npc, preferences):
     to_print = to_print.replace('$CYAN', '\033[0;36m')
     to_print = to_print.replace('$WHITE', '\033[0;37m')
     to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
+    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
 
     count = 0
@@ -198,7 +198,7 @@ def print_enemy_thumbnail(enemy, preferences):
     to_print = to_print.replace('$CYAN', '\033[0;36m')
     to_print = to_print.replace('$WHITE', '\033[0;37m')
     to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[0;33m')
+    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
 
     count = 0
