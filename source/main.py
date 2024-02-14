@@ -2029,7 +2029,7 @@ def run(play):
             if player["held item"] != " ":
                 print(
                     "CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
-                    str(item[player["held item"]]["critical hit chance"] * 100) + "%" + COLOR_RESET_ALL +
+                    str(round(item[player["held item"]]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
                     COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                     "More it's higher, the more you'll have a chance to deal critical attacks" +
                     COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -2116,7 +2116,7 @@ def run(play):
                     print("DEFENSE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["defend"]) + COLOR_RESET_ALL)
                     print(
                         "CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
-                        str(item[which_item]["critical hit chance"] * 100) + "%" + COLOR_RESET_ALL
+                        str(round(item[which_item]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Consumable" or item[which_item]["type"] == "Food":
                     print(
