@@ -71,7 +71,7 @@ def print_long_string(text):
     # this is just because at the beginning too, a `\n` character gets added
     new_input = new_input[1:]
     print(str(new_input))
-    
+
 
 def apply_yaml_data_color_code(to_print):
     # Convert it to a proper string in case
@@ -89,7 +89,7 @@ def apply_yaml_data_color_code(to_print):
     to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
     to_print = to_print.replace('$LIGHT_GRAY', '\033[38;2;192;192;192m')
-    
+
     return to_print
 
 
