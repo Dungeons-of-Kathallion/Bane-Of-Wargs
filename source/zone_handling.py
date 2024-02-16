@@ -732,9 +732,9 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     required_items = True
                     logger_sys.log_message("INFO: Player has required items --> continuing")
                 if required_items:
-                    gold = str(item[which_weapon]["gold"] * zone[map_zone]["cost value"])
+                    gold = str(zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"])
                     logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                    player["gold"] -= item[which_weapon]["gold"] * zone[map_zone]["cost value"]
+                    player["gold"] -= zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]
                     count = 0
                     remaining_items_to_remove = len(zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"])
                     while count < len(player["inventory"]) and remaining_items_to_remove != 0:
@@ -746,7 +746,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     order_uuid = uuid_handling.generate_random_uuid()
                     logger_sys.log_message(f"INFO: Creating order '{order_uuid}' dictionary")
                     order_dict = {
-                        "paid gold": zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"],
+                        "paid gold": int(gold),
                         "ordered weapon": which_weapon,
                         "ordered day": player["elapsed time game days"],
                         "ordered blacksmith": zone[map_zone]["name"],
