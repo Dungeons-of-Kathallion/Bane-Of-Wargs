@@ -2348,6 +2348,7 @@ def run(play):
                     player_feeding_items_text = player_feeding_items_text.replace(", ", '\n -')
                     print("FEEDING ITEMS:")
                     print(player_feeding_items_text)
+                    print("FEEDING NEEDS: " + str(which_mount_data["feed"]["feed needs"]))
                     print("")
 
                     text = "DESCRIPTION: " + mounts[which_mount_data["mount"]]["description"]
