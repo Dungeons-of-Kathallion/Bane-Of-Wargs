@@ -15,7 +15,7 @@ def dialog_action(player):
 
     # First, check that the player has the experience that he said, then
     # if the player has enough experience, we
-    if player["xp"] < how_many_exp:
+    if float(player["xp"]) < how_many_exp:
         print(COLOR_YELLOW + "You don't have enough experience for this action!" + COLOR_RESET_ALL)
     else:
         player["xp"] -= how_many_exp

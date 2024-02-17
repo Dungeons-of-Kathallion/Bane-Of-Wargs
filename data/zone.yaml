@@ -548,28 +548,16 @@ James Blacksmith:
     buys:
     - Sword
     - Long Sword
-    - Spear
-    - Dwarf Axe
-    - Chainmail Leggings
-    - Knight Boots
     - Dagger
     - Knife
     orders:
-      Sword:
-        needed materials:
-        - Raw Iron
-        - Raw Iron
-        - Wooden Stick
-        gold: 3.4
-        time needed: 2.7
       Spear:
         needed materials:
         - Raw Iron
         - Raw Iron
         - Raw Iron
         - Wooden Stick
-        - Bone
-        gold: 5.7
+        gold: 19.6
         time needed: 3.7
       Broadsword:
         needed materials:
@@ -577,7 +565,6 @@ James Blacksmith:
         - Raw Iron
         - Raw Iron
         - Wooden Stick
-        - Bone
         gold: 8.6
         time needed: 4.7
       Chainmail Leggings:
@@ -589,6 +576,130 @@ James Blacksmith:
         - Raw Bronze
         gold: 13.5
         time needed: 8.69
+
+Gerud Armorer:
+  name: "Gerud Armorer"
+  type: blacksmith
+  cost value: 1.7
+  location: 0
+  description: "One of the most well know blacksmith in the eastern Stall Island. They sell extreme quality materials here."
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  ______  |
+      | /------\ |
+      |/ |  []| \|
+      |;;|;;[]|;;|
+      x__________x
+    map full: |
+      x__________x
+      |  $RED______  $WHITE|
+      | $RED/$BROWN------$RED\ $WHITE|
+      |$RED/ $BROWN|  $RED[]$BROWN| $RED\$WHITE|
+      |$YELLOW;;$BROWN|$YELLOW;;$RED[]$BROWN|$YELLOW;;$WHITE|
+      x__________x
+  blacksmith:
+    buys:
+    - Raw Iron
+    - Raw Bronze
+    - Raw Silver
+    - Steel
+    - Flexible Steel
+    - Refined Steel
+    - Raw Wood
+    - Bow String
+    - Strong String
+    - Flexible String
+    orders:
+      Sword:
+        gold: 16.5
+        time needed: 2.7
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Wooden Stick
+      Long Sword:
+        gold: 19.5
+        time needed: 3.1
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Raw Iron
+        - Wooden Stick
+      Spear:
+        gold: 19.56
+        time needed: 2.4
+        needed materials:
+        - Raw Wood
+        - Raw Wood
+        - Raw Iron
+        - Raw Bronze
+      Broadsword:
+        gold: 33.56
+        time needed: 4.8
+        needed materials:
+        - Raw Silver
+        - Raw Iron
+        - Raw Iron
+        - Wooden Stick
+      Rapier:
+        gold: 27.89
+        time needed: 3.2
+        needed materials:
+        - Steel
+        - Steel
+        - Flexible Steel
+        - Raw Bronze
+        - Wooden Stick
+      Katana:
+        gold: 25.68
+        time needed: 4.6
+        needed materials:
+        - Flexible Steel
+        - Raw Bronze
+        - Raw Bronze
+        - Raw Silver
+        - Steel
+        - Wooden Stick
+      Bow:
+        gold: 12.34
+        time needed: 2.7
+        needed materials:
+        - Wooden Stick
+        - Wooden Stick
+        - Wooden Stick
+        - Bow String
+      Shield:
+        gold: 17.23
+        time needed: 2.8
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Raw Wood
+        - Raw Wood
+        - Raw Wood
+      Knight Boots:
+        gold: 29.32
+        time needed: 6.7
+        needed materials:
+        - Raw Wood
+        - Raw Iron
+        - Raw Iron
+        - Raw Iron
+        - Raw Silver
+      Chainmail Leggings:
+        gold: 42.32
+        time needed: 8.4
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Iron
+        - Raw Iron
+        - Raw Iron
 
 Clarc Warg Stable:
   name: "Clarc Stable"
@@ -707,14 +818,14 @@ Stall Fields:
       |$GREEN,,$YELLOWo__$GREEN,,$YELLOW_$GREEN,,$WHITE|
       |$GREEN,,,$YELLOW_$GREEN,,$YELLOWo$GREEN,$YELLOW_$GREEN,$WHITE|
       |$YELLOWo_$GREEN,,,$YELLOW_$GREEN,,,,$WHITE|
-      x__________x"
+      x__________x
     map raw: |
       x__________x
       |,,_,,,,o_,|
       |,,o__,,_,,|
       |,,,_,,o,_,|
       |o_,,,_,,,,|
-      x__________x"
+      x__________x
 
 Californ Woods:
   name: "Californ Woods"

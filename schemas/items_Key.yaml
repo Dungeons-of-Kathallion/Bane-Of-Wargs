@@ -1,3 +1,5 @@
 type: str()
 description: str()
 gold: num(required=False)
+thumbnail: str()
+thumbnail raw: str(required=False)

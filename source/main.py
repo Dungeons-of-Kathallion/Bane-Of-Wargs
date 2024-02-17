@@ -2065,6 +2065,10 @@ def run(play):
                 text = '='
                 text_handling.print_separator(text)
                 logger_sys.log_message(f"INFO: Printing item '{which_item}' information")
+                print("")
+                text_handling.print_item_thumbnail(item[which_item]["thumbnail"])
+                text = '='
+                text_handling.print_separator(text)
                 if item[which_item]["type"] == "Weapon":
                     print("NAME: " + item[which_item]["display name"])
                 else:
@@ -2348,7 +2352,10 @@ def run(play):
                     player_feeding_items_text = player_feeding_items_text.replace(", ", '\n -')
                     print("FEEDING ITEMS:")
                     print(player_feeding_items_text)
-                    print("FEEDING NEEDS: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(mounts[which_mount_data["mount"]]["feed"]["feed needs"]) + COLOR_RESET_ALL)
+                    print(
+                        "FEEDING NEEDS: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
+                        str(mounts[which_mount_data["mount"]]["feed"]["feed needs"]) + COLOR_RESET_ALL
+                    )
                     print("")
 
                     text = "DESCRIPTION: " + mounts[which_mount_data["mount"]]["description"]

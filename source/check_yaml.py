@@ -257,6 +257,8 @@ def examine_map_point(data):
 def examine_item(data):
     try:
         data_type = data["type"]
+        if data_type.startswith("Armor Piece"):
+            data_type = data_type.replace(':', '')
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/items_{data_type}.yaml')
         logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/items_{data_type}.yaml'")

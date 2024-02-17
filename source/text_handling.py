@@ -68,24 +68,35 @@ def print_long_string(text):
             new_input += '\n'
         new_input += letter
 
-    # this is just because at the beginning too a `\n` character gets added
+    # this is just because at the beginning too, a `\n` character gets added
     new_input = new_input[1:]
     print(str(new_input))
 
 
-def print_zone_map(zone_name, zone, player, preferences):
-    logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
-    to_print = zone[zone_name]["map"]["map full"]
+def apply_yaml_data_color_code(to_print):
+    # Convert it to a proper string in case
+    to_print = str(to_print)
     to_print = to_print.replace('$RED', '\033[0;31m')
     to_print = to_print.replace('$GREEN', '\033[0;32m')
     to_print = to_print.replace('$YELLOW', '\033[0;33m')
+    to_print = to_print.replace('$ORANGE', '\033[38;2;255;128;0m')
     to_print = to_print.replace('$BLUE', '\033[0;34m')
     to_print = to_print.replace('$PURPLE', '\033[0;34m')
+    to_print = to_print.replace('$PINK', '\033[38;2;255;0;127m')
     to_print = to_print.replace('$CYAN', '\033[0;36m')
     to_print = to_print.replace('$WHITE', '\033[0;37m')
     to_print = to_print.replace('$BLACK', '\033[0;30m')
     to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
+    to_print = to_print.replace('$LIGHT_GRAY', '\033[38;2;192;192;192m')
+
+    return to_print
+
+
+def print_zone_map(zone_name, zone, player, preferences):
+    logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
+    to_print = zone[zone_name]["map"]["map full"]
+    to_print = apply_yaml_data_color_code(to_print)
 
     player_equipment = []
 
@@ -134,16 +145,7 @@ def print_zone_map(zone_name, zone, player, preferences):
 def print_zone_map_alone(zone_name, zone):
     logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
     to_print = zone[zone_name]["map"]["map full"]
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
+    to_print = apply_yaml_data_color_code(to_print)
 
     count = 0
     for line in to_print.splitlines():
@@ -162,16 +164,7 @@ def print_npc_thumbnail(npc, preferences):
             '/imgs/' + npc + ".txt"
         ) as f:
             to_print = str(f.read())
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
+    to_print = apply_yaml_data_color_code(to_print)
 
     count = 0
     for line in to_print.splitlines():
@@ -190,16 +183,7 @@ def print_enemy_thumbnail(enemy, preferences):
             '/imgs/' + enemy + ".txt"
         ) as f:
             to_print = str(f.read())
-    to_print = to_print.replace('$RED', '\033[0;31m')
-    to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
-    to_print = to_print.replace('$BLUE', '\033[0;34m')
-    to_print = to_print.replace('$PURPLE', '\033[0;34m')
-    to_print = to_print.replace('$CYAN', '\033[0;36m')
-    to_print = to_print.replace('$WHITE', '\033[0;37m')
-    to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
-    to_print = to_print.replace('$GRAY', '\033[1;30m')
+    to_print = apply_yaml_data_color_code(to_print)
 
     count = 0
     for line in to_print.splitlines():
@@ -217,6 +201,13 @@ def a_an_check(word):
         to_return = "a " + word
     logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}': '{to_return}'")
     return to_return
+
+
+def print_item_thumbnail(to_print):
+    to_print = apply_yaml_data_color_code(to_print)
+
+    print(to_print)
+    return to_print
 
 
 # deinitialize colorama
