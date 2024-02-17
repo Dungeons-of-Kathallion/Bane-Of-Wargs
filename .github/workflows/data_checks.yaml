@@ -1,0 +1,44 @@
+name: Validate-Data
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: [ master ]
+    types:
+      - synchronize
+      - opened
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}-${{ github.event_name }}
+  cancel-in-progress: false
+
+jobs:
+  validate-yaml:
+    name: Validate Data
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Fix Checkout Problems
+        run: git config --global core.protectNTFS false
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          show-progress: false
+      - name: Install Python & Pip
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.1'
+          cache: 'pip'
+      - name: Download Required Python Modules
+        run: |
+          pip install PyYaml yamale colorama
+      - name: Run Checks Script
+        run: |
+          python .github/code_checks/run_yaml_data_tests.py
+
+
