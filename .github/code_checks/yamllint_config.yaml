@@ -21,12 +21,10 @@ rules:
   hyphens:
     level: warning
   indentation:
-    level: warning
+    level: info
     indent-sequences: consistent
-  line-length:
-    level: warning
-    allow-non-breakable-inline-mappings: true
   truthy: disable
   line-length:
     max: 200
     level: warning
+    allow-non-breakable-inline-mappings: true
