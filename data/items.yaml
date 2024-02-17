@@ -852,7 +852,7 @@ Teleportation Rock:
     ║        \  /     \  /       ║
     ║         \_________/        ║
     ║                            ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -867,7 +867,7 @@ Teleportation Rock:
     ║        $LIGHT_GRAY\  /     \  /       $WHITE║
     ║         $LIGHT_GRAY\_________/        $WHITE║
     ║                            ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
 Heart Stone:
   type: Utility
   key: "H"
@@ -889,7 +889,7 @@ Heart Stone:
     ║        \  /     \  /       ║
     ║         \_________/        ║
     ║                            ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -904,7 +904,7 @@ Heart Stone:
     ║        $LIGHT_GRAY\  /     \  /       $WHITE║
     ║         $LIGHT_GRAY\_________/        $WHITE║
     ║                            ║
-    ╚════════════════════════════╝  
+    ╚════════════════════════════╝
 Rock Paper Scissors:
   type: Utility
   key: "R"
@@ -924,7 +924,7 @@ Rock Paper Scissors:
     ║        \  /     \  /       ║
     ║         \_________/        ║
     ║                            ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -939,7 +939,7 @@ Rock Paper Scissors:
     ║        $LIGHT_GRAY\  /     \  /       $WHITE║
     ║         $LIGHT_GRAY\_________/        $WHITE║
     ║                            ║
-    ╚════════════════════════════╝  
+    ╚════════════════════════════╝
 # Armors
 Wolf Fur: &wolf_fur
   display name: "Wolf Fur"
@@ -965,7 +965,7 @@ Wolf Fur: &wolf_fur
     ║        o///  ║║  \\\o        ║
     ║         ooo  ║║  ooo         ║
     ║              ╝               ║
-    ╚══════════════════════════════╝   
+    ╚══════════════════════════════╝
   thumbnail: |
     ╔══════════════════════════════╗
     ║              $YELLOW00              $WHITE║
@@ -982,7 +982,7 @@ Wolf Fur: &wolf_fur
     ║        $YELLOWo$BROWN///  ║║  \\\$YELLOWo        $WHITE║
     ║         $YELLOWooo  $BROWN║║  $YELLOWooo         $WHITE║
     ║              $BROWN╝               $WHITE║
-    ╚══════════════════════════════╝   
+    ╚══════════════════════════════╝
 Wolf Fur (1):
   <<: *wolf_fur
   upgrade tier: 1
