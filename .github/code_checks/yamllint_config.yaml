@@ -21,7 +21,7 @@ rules:
   hyphens:
     level: warning
   indentation:
-    level: info
+    level: warning
     indent-sequences: consistent
   truthy: disable
   line-length:
