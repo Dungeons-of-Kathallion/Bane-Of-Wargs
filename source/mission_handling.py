@@ -306,7 +306,10 @@ def mission_completing_checks(mission_id, missions_data, player, dialog, prefere
     else:
         attributes_checks_passed = True
 
-    stopovers_checks_passed = player["missions"][mission_id]["went to all stopovers"]
+    if "stopovers" in list(mission_data):
+        stopovers_checks_passed = player["missions"][mission_id]["went to all stopovers"]
+    else:
+        stopovers_checks_passed = True
 
     # If the player has done everything
     # required to complete the mission, then

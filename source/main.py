@@ -325,7 +325,7 @@ while menu:
                 save_name_backup = program_dir + "/saves/~0 save_" + enter_save_name + ".yaml"
                 check_file = os.path.isfile(save_name)
                 logger_sys.log_message("INFO: Updating latest preset")
-                preferences["latest preset"]["save"] = "/save_" + enter_save_name + ".yaml"
+                preferences["latest preset"]["save"] = enter_save_name
                 if check_file:
                     print(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" +
