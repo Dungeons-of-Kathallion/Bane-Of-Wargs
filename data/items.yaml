@@ -756,20 +756,35 @@ Healing Potion:
   healing level: 999
   gold: 17.6
   description: "A generic healing potion that restores your health to it's max and gives it a bonus 5 to that maximum."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║            ____            ║
+    ║           [####]           ║
+    ║       ____[####]____       ║
+    ║      /              \      ║
+    ║     /                \     ║
+    ║     |                |     ║
+    ║     | ≈≈≈     ≈≈   ≈ |     ║
+    ║     |≈≈≈≈≈    ≈≈≈≈≈≈≈|     ║
+    ║     \≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈/     ║
+    ║      \≈≈≈≈≈≈≈≈≈≈≈≈≈≈/      ║
+    ║       \____________/       ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║            $BROWN____            $WHITE║
+    ║           $BROWN[####]           $WHITE║
+    ║       $LIGHT_GRAY____$BROWN[####]$LIGHT_GRAY____       $WHITE║
+    ║      $LIGHT_GRAY/              \      $WHITE║
+    ║     $LIGHT_GRAY/                \     $WHITE║
+    ║     $LIGHT_GRAY|                |     $WHITE║
+    ║     $LIGHT_GRAY| $RED≈≈≈     ≈≈   ≈ $LIGHT_GRAY|     $WHITE║
+    ║     $LIGHT_GRAY|$RED≈≈≈≈≈    ≈≈≈≈≈≈≈$LIGHT_GRAY|     $WHITE║
+    ║     $LIGHT_GRAY\$RED≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈$LIGHT_GRAY/     $WHITE║
+    ║      $LIGHT_GRAY\$RED≈≈≈≈≈≈≈≈≈≈≈≈≈≈$LIGHT_GRAY/      $WHITE║
+    ║       $LIGHT_GRAY\____________/       $WHITE║
+    ║                            $WHITE║
     ╚════════════════════════════╝
 # Utilities
 Map:
@@ -780,22 +795,41 @@ Map:
   - player
   - map
   - zone
-  description: "It's a map of the dungeons! [Press 'M' to activate.]"
+  description: "It's a map of Stall Island! [Press 'M' to activate.]"
+  thumbnail raw: |
+    ╔══════════════════════════════╗
+    ║     __________________       ║
+    ║    /                  |\     ║
+    ║    |                   ||    ║
+    ║    | ↟↟↟      ╬╬╬╬     ||    ║
+    ║    |  ⟰↟↟↟↟  ↟↟╬╬ ⇞⇞⇞⇞ ||    ║
+    ║    |  ↟↟↟⌂⌂↟↟↟ ⇞⇞⇞⇞⇞   ||    ║
+    ║    | ↟↟    ↟↟     ⇞⇞⇞⇞ ||    ║
+    ║    |             ⇞⇞    ||    ║
+    ║    |        ▲▲ ≡≡≡ ≡≡  ||    ║
+    ║    |  ##  ⟰▲▲▲▲▲≡≡≡≡≡  ||    ║
+    ║    |     ⌂###▲▲▲≡≡≡ ≡  ||    ║
+    ║    |  ####⌂⌂##         ||    ║
+    ║    | __________________||    ║
+    ║    |/===================\    ║
+    ╚══════════════════════════════╝
   thumbnail: |
-    ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ╚════════════════════════════╝
+    ╔══════════════════════════════╗
+    ║     $BROWN__________________       $WHITE║
+    ║    $BROWN/                  $BROWN|$RED\     $WHITE║
+    ║    $BROWN|                   $BROWN|$RED|    $WHITE║
+    ║    $BROWN| $GREEN↟↟↟      ╬╬╬╬     $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $BLUE⟰$GREEN↟↟↟↟  ↟↟╬╬ ⇞⇞⇞⇞ $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN↟↟↟$BLUE⌂⌂$GREEN↟↟↟ ⇞⇞⇞⇞⇞   $BROWN|$RED|    $WHITE║
+    ║    $BROWN| $GREEN↟↟    ↟↟     ⇞⇞⇞⇞ $BROWN|$RED|    $WHITE║
+    ║    $BROWN|             $GREEN⇞⇞    $BROWN|$RED|    $WHITE║
+    ║    $BROWN|        ▲▲ $YELLOW≡$ORANGE≡$YELLOW≡ ≡≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN##  $BLUE⟰$GRAY▲▲▲▲▲$YELLOW≡≡$ORANGE≡≡$YELLOW≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|     $BLUE⌂$GREEN###$GRAY▲▲▲$YELLOW≡$ORANGE≡$YELLOW≡ ≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN####$BLUE⌂⌂$GREEN##         $BROWN|$RED|    $WHITE║
+    ║    $BROWN| __________________|$RED|    $WHITE║
+    ║    $RED|/===================\    $WHITE║
+    ╚══════════════════════════════╝
 Teleportation Rock:
   type: Utility
   key: "T"
@@ -804,21 +838,36 @@ Teleportation Rock:
   - player
   - map
   description: "It's a mysterious that asks you where you want to go... [Press 'T' to activate]"
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║          _________         ║
+    ║         /         \        ║
+    ║        /  \     /  \       ║
+    ║       /             \      ║
+    ║      /   _ _ . _ _   \     ║
+    ║      \               /     ║
+    ║       \             /      ║
+    ║        \  /     \  /       ║
+    ║         \_________/        ║
+    ║                            ║
+    ╚════════════════════════════╝   
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
+    ║          $LIGHT_GRAY_________         $WHITE║
+    ║         $LIGHT_GRAY/         \        $WHITE║
+    ║        $LIGHT_GRAY/  \     /  \       $WHITE║
+    ║       $LIGHT_GRAY/             \      $WHITE║
+    ║      $LIGHT_GRAY/   _ _ . _ _   \     $WHITE║
+    ║      $LIGHT_GRAY\               /     $WHITE║
+    ║       $LIGHT_GRAY\             /      $WHITE║
+    ║        $LIGHT_GRAY\  /     \  /       $WHITE║
+    ║         $LIGHT_GRAY\_________/        $WHITE║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ╚════════════════════════════╝
+    ╚════════════════════════════╝   
 Heart Stone:
   type: Utility
   key: "H"
@@ -826,21 +875,71 @@ Heart Stone:
   arguments:
   - player
   description: "A weird artifact that can randomly generate health... [Press 'H' to activate]"
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║          _________         ║
+    ║         /         \        ║
+    ║        /  \     /  \       ║
+    ║       /             \      ║
+    ║      /   _ _ . _ _   \     ║
+    ║      \               /     ║
+    ║       \             /      ║
+    ║        \  /     \  /       ║
+    ║         \_________/        ║
+    ║                            ║
+    ╚════════════════════════════╝   
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
+    ║          $LIGHT_GRAY_________         $WHITE║
+    ║         $LIGHT_GRAY/         \        $WHITE║
+    ║        $LIGHT_GRAY/  \     /  \       $WHITE║
+    ║       $LIGHT_GRAY/             \      $WHITE║
+    ║      $LIGHT_GRAY/   _ _ . _ _   \     $WHITE║
+    ║      $LIGHT_GRAY\               /     $WHITE║
+    ║       $LIGHT_GRAY\             /      $WHITE║
+    ║        $LIGHT_GRAY\  /     \  /       $WHITE║
+    ║         $LIGHT_GRAY\_________/        $WHITE║
+    ║                            ║
+    ╚════════════════════════════╝  
+Rock Paper Scissors:
+  type: Utility
+  key: "R"
+  script name: "rock_paper_scissors_game.py"
+  description: "A weird artifact that lets you play a strange game... [Press 'R' to activate]"
+  thumbnail raw: |
+    ╔════════════════════════════╗
     ║                            ║
     ║                            ║
+    ║          _________         ║
+    ║         /         \        ║
+    ║        /  \     /  \       ║
+    ║       /             \      ║
+    ║      /   _ _ . _ _   \     ║
+    ║      \               /     ║
+    ║       \             /      ║
+    ║        \  /     \  /       ║
+    ║         \_________/        ║
+    ║                            ║
+    ╚════════════════════════════╝   
+  thumbnail: |
+    ╔════════════════════════════╗
     ║                            ║
     ║                            ║
+    ║          $LIGHT_GRAY_________         $WHITE║
+    ║         $LIGHT_GRAY/         \        $WHITE║
+    ║        $LIGHT_GRAY/  \     /  \       $WHITE║
+    ║       $LIGHT_GRAY/             \      $WHITE║
+    ║      $LIGHT_GRAY/   _ _ . _ _   \     $WHITE║
+    ║      $LIGHT_GRAY\               /     $WHITE║
+    ║       $LIGHT_GRAY\             /      $WHITE║
+    ║        $LIGHT_GRAY\  /     \  /       $WHITE║
+    ║         $LIGHT_GRAY\_________/        $WHITE║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ╚════════════════════════════╝
+    ╚════════════════════════════╝  
 # Armors
 Wolf Fur: &wolf_fur
   display name: "Wolf Fur"
@@ -850,28 +949,49 @@ Wolf Fur: &wolf_fur
   agility: .35
   gold: 16.84
   description: "A wolf fur that can also be used as a chestplate."
+  thumbnail raw: |
+    ╔══════════════════════════════╗
+    ║              00              ║
+    ║             /  \             ║
+    ║        oo  /x  x\  oo        ║
+    ║       o\\ (      ) //o       ║
+    ║         \\|      |//         ║
+    ║           |      |           ║
+    ║           |      |           ║
+    ║           |      |           ║
+    ║           |      |           ║
+    ║           ///║║\\\           ║
+    ║          /// ║║ \\\          ║
+    ║        o///  ║║  \\\o        ║
+    ║         ooo  ║║  ooo         ║
+    ║              ╝               ║
+    ╚══════════════════════════════╝   
   thumbnail: |
-    ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ╚════════════════════════════╝
+    ╔══════════════════════════════╗
+    ║              $YELLOW00              $WHITE║
+    ║             $BROWN/  $BROWN\             $WHITE║
+    ║        $YELLOWoo  $BROWN/$REDx  x$GRAY\  $YELLOWoo        $WHITE║
+    ║       $YELLOWo$GRAY\\ (      $BROWN) //$YELLOWo       $WHITE║
+    ║         $BROWN\\|      $GRAY|//         $WHITE║
+    ║           $BROWN|      $BROWN|           $WHITE║
+    ║           $GRAY|      $GRAY|           $WHITE║
+    ║           $BROWN|      $BROWN|           $WHITE║
+    ║           $BROWN|      $BROWN|           $WHITE║
+    ║           $GRAY//$BROWN/$GRAY║║\$BROWN\\           $WHITE║
+    ║          $GRAY/$BROWN/$GRAY/ ║$BROWN║ \\$GRAY\          $WHITE║
+    ║        $YELLOWo$BROWN///  ║║  \\\$YELLOWo        $WHITE║
+    ║         $YELLOWooo  $BROWN║║  $YELLOWooo         $WHITE║
+    ║              $BROWN╝               $WHITE║
+    ╚══════════════════════════════╝   
 Wolf Fur (1):
   <<: *wolf_fur
   upgrade tier: 1
   armor protection: .37
   agility: .38
   for this upgrade:
-  - Flexible Steel
+  - Wolf Skin
+  - Wolf Skin
+  - Slime
 Leather Jacket:
   upgrade tier: 0
   type: "Armor Piece: Chestplate"
@@ -901,19 +1021,34 @@ Leather Boots:
   agility: .35
   gold: 4.56
   description: "While these boots are dirty and wet, they grant you great mobility."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║        ________            ║
+    ║     __(_____  <|           ║
+    ║    (____ / <| <|           ║
+    ║    (___ /  <| L`-------.   ║
+    ║    (__ /   L`--------.  \  ║
+    ║    /  `.    ^^^^^ |   \  | ║
+    ║   |     \---------'    |/  ║
+    ║   |______|____________/]   ║
+    ║   [_____|`-.__________]    ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║        $BROWN________            $WHITE║
+    ║     $BROWN__(_____  $LIGHT_GRAY<|           $WHITE║
+    ║    $BROWN(____ / $LIGHT_GRAY<$BROWN| $LIGHT_GRAY<$BROWN|           $WHITE║
+    ║    $BROWN(___ /  $LIGHT_GRAY<$BROWN| L`-------.   $WHITE║
+    ║    $BROWN(__ /   L`--------.  \  $WHITE║
+    ║    $BROWN/  `.    $LIGHT_GRAY^^^^^ $BROWN|   \  | $WHITE║
+    ║   $BROWN|     \---------'    |/  $WHITE║
+    ║   $BROWN|______|____________/]   $WHITE║
+    ║   $LIGHT_GRAY[_____|`-.__________]    $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Old Pants:
