@@ -36,7 +36,7 @@ jobs:
           cache: 'pip'
       - name: Download Required Python Modules
         run: |
-          pip install PyYaml yamale
+          pip install PyYaml yamale colorama
       - name: Run Checks Script
         run: |
           python .github/code_checks/run_yaml_data_tests.py
