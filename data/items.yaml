@@ -82,7 +82,7 @@ Broadsword: &broadsword
   critical hit chance: .09
   description: "The Broadsword is a large sword and powerful sword that not anyone can use well."
   thumbnail raw: |
-    ╔════════════════════════════╗    
+    ╔════════════════════════════╗
     ║             ^              ║
     ║            / \             ║
     ║            | |             ║
@@ -97,7 +97,7 @@ Broadsword: &broadsword
     ║             0              ║
     ╚════════════════════════════╝
   thumbnail: |
-    ╔════════════════════════════╗    
+    ╔════════════════════════════╗
     ║             $GRAY^              $WHITE║
     ║            $GRAY/ \             $WHITE║
     ║            $GRAY| |             $WHITE║
@@ -224,7 +224,7 @@ Rapier: &Rapier
     ║              x |           ║
     ║              x /           ║
     ║              0             ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║              $GRAY|\            $WHITE║
@@ -239,8 +239,8 @@ Rapier: &Rapier
     ║              $REDx $GRAY|           $WHITE║
     ║              $REDx $GRAY/           $WHITE║
     ║              $BROWN0             $WHITE║
-    ╚════════════════════════════╝   
-    
+    ╚════════════════════════════╝
+
 Rapier (1):
   <<: *Rapier
   upgrade tier: 1
@@ -276,7 +276,7 @@ Katana: &Katana
     ║             /              ║
     ║             /              ║
     ║             *              ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║             $GRAY|              $WHITE║
@@ -291,7 +291,7 @@ Katana: &Katana
     ║             $BROWN/              $WHITE║
     ║             $BROWN/              $WHITE║
     ║             $YELLOW*              $WHITE║
-    ╚════════════════════════════╝    
+    ╚════════════════════════════╝
 Katana (1):
   <<: *Katana
   upgrade tier: 1
@@ -333,7 +333,7 @@ Bow: &generic_bow
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
-    ║             /`.            ║            
+    ║             /`.            ║
     ║            /   :.          ║
     ║           /     \\         ║
     ║          /       ::        ║
@@ -348,7 +348,7 @@ Bow: &generic_bow
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║             $GRAY/$BROWN`.            $WHITE║            
+    ║             $GRAY/$BROWN`.            $WHITE║
     ║            $GRAY/   $BROWN:.          $WHITE║
     ║           $GRAY/     $BROWN\\         $WHITE║
     ║          $GRAY/       $BROWN::        $WHITE║
@@ -399,7 +399,7 @@ Orc Bow:
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
-    ║             /`.            ║            
+    ║             /`.            ║
     ║            /   :.          ║
     ║           /     \\         ║
     ║          /       ::        ║
@@ -414,7 +414,7 @@ Orc Bow:
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║             $GRAY/$BROWN`.            $WHITE║            
+    ║             $GRAY/$BROWN`.            $WHITE║
     ║            $GRAY/   $BROWN:.          $WHITE║
     ║           $GRAY/     $BROWN\\         $WHITE║
     ║          $GRAY/       $BROWN::        $WHITE║
@@ -490,7 +490,7 @@ Dagger:
     ║             xx             ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝ 
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -505,7 +505,7 @@ Dagger:
     ║             $CYANxx             $WHITE║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝ 
+    ╚════════════════════════════╝
 Dwarf Axe: &dwarf_axe
   display name: "Dwarf Axe"
   upgrade tier: 0
@@ -580,9 +580,9 @@ Throwing Axe: &throwing_axe
     ║           /o_'/o>::/ /     ║
     ║           / /'/:::/ /      ║
     ║          / /_/::.'_/       ║
-    ║         / / \__.-'         ║       
-    ║        / /                 ║      
-    ║       / /                  ║           
+    ║         / / \__.-'         ║
+    ║        / /                 ║
+    ║       / /                  ║
     ║        /                   ║
     ╚════════════════════════════╝
   thumbnail: |
@@ -595,9 +595,9 @@ Throwing Axe: &throwing_axe
     ║           $BROWN/$GREENo_'$GRAY/$GREENo$GRAY>$BLUE::$GRAY/ /     $WHITE║
     ║           $BROWN/ /'/$BLUE:::$GRAY/ /      $WHITE║
     ║          $BROWN/ /_/$BLUE::.$GRAY'_/       $WHITE║
-    ║         $BROWN/ / $GRAY\__.-'         $WHITE║       
-    ║        $BROWN/ /                 $WHITE║      
-    ║       $BROWN/ /                  $WHITE║           
+    ║         $BROWN/ / $GRAY\__.-'         $WHITE║
+    ║        $BROWN/ /                 $WHITE║
+    ║       $BROWN/ /                  $WHITE║
     ║        $BROWN/                   $WHITE║
     ╚════════════════════════════╝
 Throwing Axe (1):
@@ -649,7 +649,7 @@ Mace:
     ║            )__(            ║
     ║            )__(            ║
     ║           <<()>>           ║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║            $CYAN^  ^            $WHITE║
@@ -664,7 +664,7 @@ Mace:
     ║            $BROWN)__(            $WHITE║
     ║            $BROWN)__(            $WHITE║
     ║           $GRAY<<$PURPLE()$GRAY>>           $WHITE║
-    ╚════════════════════════════╝   
+    ╚════════════════════════════╝
 Spear:
   display name: "Spear"
   upgrade tier: 0
@@ -732,7 +732,6 @@ Flaming Whip:
     ║ ~   XX         \\\\\\        ║
     ║     XX    ~~~~               ║
     @══════════════════════════════@
-  
   thumbnail: |
     $CYAN@$WHITE══════════════════════════════$CYAN@$WHITE
     ║        $RED~~         $YELLOW^      $RED~$YELLOW~  $WHITE║
