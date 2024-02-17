@@ -51,7 +51,7 @@ def load_game_data(which_type, what_plugin=None):
             task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
             task_enemy = progress.add_task("[cyan]Loading Game Enemies Data...", total=100)
             task_npc = progress.add_task("[cyan]Loading Game NPCS Data...", total=100)
-            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=100)
+            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=3)
             task_lists = progress.add_task("[cyan]Loading Game Lists Data...", total=100)
             task_zone = progress.add_task("[cyan]Loading Game Zones Data...", total=100)
             task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
@@ -94,11 +94,11 @@ def load_game_data(which_type, what_plugin=None):
                 progress.update(task_npc, advance=1)
 
             with open(program_dir + "/game/data/start.yaml") as f:
-                progress.update(task_start, advance=1 / 3)
+                progress.update(task_start, advance=1)
                 start_player = yaml.safe_load(f)
-                progress.update(task_start, advance=1 / 3)
+                progress.update(task_start, advance=1)
                 check_yaml.examine(program_dir + "/game/data/start.yaml")
-            progress.update(task_start, advance=1 / 3)
+            progress.update(task_start, advance=1)
 
             with open(program_dir + "/game/data/lists.yaml") as f:
                 lists = yaml.safe_load(f)
@@ -153,7 +153,7 @@ def load_game_data(which_type, what_plugin=None):
             task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
             task_enemy = progress.add_task("[cyan]Loading Game Enemies Data...", total=100)
             task_npc = progress.add_task("[cyan]Loading Game NPCS Data...", total=100)
-            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=100)
+            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=3)
             task_lists = progress.add_task("[cyan]Loading Game Lists Data...", total=100)
             task_zone = progress.add_task("[cyan]Loading Game Zones Data...", total=100)
             task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
@@ -196,11 +196,11 @@ def load_game_data(which_type, what_plugin=None):
                 progress.update(task_npc, advance=1)
 
             with open(program_dir + "/plugins/" + what_plugin + "/start.yaml") as f:
-                progress.update(task_start, advance=1 / 3)
+                progress.update(task_start, advance=1)
                 start_player = yaml.safe_load(f)
-                progress.update(task_start, advance=1 / 3)
+                progress.update(task_start, advance=1)
                 check_yaml.examine(program_dir + "/plugins/" + what_plugin + "/start.yaml")
-            progress.update(task_start, advance=1 / 3)
+            progress.update(task_start, advance=1)
 
             with open(program_dir + "/plugins/" + what_plugin + "/lists.yaml") as f:
                 lists = yaml.safe_load(f)
