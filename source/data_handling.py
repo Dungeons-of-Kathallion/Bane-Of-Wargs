@@ -11,6 +11,8 @@ import time
 import text_handling
 import fsspec
 import time
+import sys
+import subprocess
 from rich.progress import Progress
 from colorama import Fore, Back, Style, init, deinit
 from colors import *
@@ -159,6 +161,7 @@ def load_game_data(which_type, what_plugin=None):
             task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
             task_mission = progress.add_task("[cyan]Loading Game Missions Data...", total=100)
             task_mount = progress.add_task("[cyan]Loading Game Mounts Data...", total=100)
+            task_requirements = progress.add_task("[cyan]Loading Plugin Requirements...", total=None)
 
             with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:
                 map = yaml.safe_load(f)
@@ -239,6 +242,21 @@ def load_game_data(which_type, what_plugin=None):
                 check_yaml.examine_mount(mounts[i])
                 progress.update(task_mount, advance=1)
 
+
+        logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' module requirements")
+        error_pip = False
+        try:
+            requirements_file = program_dir + '/plugins/' + what_plugin + "/requirements.txt"
+        except Exception as error:
+            logger_sys.log_message(f"WARNING: No 'requirements.txt' file found in plugin '{what_plugin}'")
+            logger_sys.log_message(f"WARNING: '{error}'")
+            error_pip = True
+        if not error_pip:
+            retcode = subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", requirements_file],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.STDOUT)
+        progress.update(task_requirements, total=1)
+        progress.update(task_requirements, advance=1)
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 
 
