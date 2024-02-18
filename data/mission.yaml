@@ -1,6 +1,31 @@
-Mission 1:
-  name: "mission"
-  description: "mission"
-  source: 1000000000000000
-  destination: 0
+Deliver Raw Wood To Jacky:
+  name: "Deliver Raw Wood To Jacky"
+  description: "Deliver 2 bags of raw wood to your friend jacky at $destination. He promised you to pay you 15 gold coins."
+  source: 906
+  destination: 647
   invisible: false
+  to complete:
+    has items:
+    - Raw Wood
+    - Raw Wood
+  on complete:
+    dialog: Deliver Raw Wood To Jacky Completed
+    exp addition: 5
+
+Cut Wood And Get Back Home:
+  name: "Cut Wood And Get Back Home"
+  description: "Go to $stopovers to cut some wood and then get back home at $destination to get some sleep."
+  source: 647
+  destination: 906
+  stopovers:
+  - 1035
+  invisible: false
+  to offer:
+    player attributes:
+    - has finished jacky deliver
+  on offer:
+    dialog: Cut Wood And Get Back Home Offer
+  on complete:
+    dialog: Cut Wood And Get Back Home Complete
+    exp addition: 8
+

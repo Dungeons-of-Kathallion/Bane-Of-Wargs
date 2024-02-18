@@ -1,40 +1,74 @@
-Test Dialog:
-  use actions: False
+Start Dialog:
   conversation:
     - label 1:
-      - print(phrase 1)
-      - print(phrase 2)
-      - ask-input(input_1)
+      - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the Stall Island. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarves, great mountains, adventure...)"
+      - print(You currently have a order to deliver to a friend of yours, at the -62, 59 coordinates.)
+      - "print(Hint: check the gameplay guide at https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide)"
+  use actions: false
+  scene: Title1
+
+Deliver Raw Wood To Jacky Completed:
+  conversation:
+    - label 1:
+      - print(You arrive to the house of your friend Jack. You knock on his doors...)
+      - wait(4)
+      - print(The doors finally opens, and you greet Jacky.)
+      - print(“Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me. You say.”)
+      - print(“Hi! Thanks for the deliver! How many gold do you want me to pay you? Jacky says.”)
       - goto(label 2)
     - label 2:
-      - print(phrase 3, $input_1)
-      - wait(5)
-      - ask-confirmation(input_2)
-      - goto(label 3)
+      - choice():
+        - create-choice(10 gold coins, goto(label 3))
+        - create-choice(20 gold coins, goto(label 4))
+        - create-choice(25 gold coins, goto(label 5))
+        - create-choice(45 gold coins, goto(label 6))
     - label 3:
-      - if(input_2, True):
-        - print(phrase 4, $input_1)
-        - choice():
-          - create_choice(first choice, print(oh damn!))
-          - create_choice(second choice, print(wow!))
-          - create_choice(third choice, print(huge!))
-      - if(input_2, False):
-        - print(phrase 5)
-
-Palace Enter:
-  conversation:
-    - label 1:
-      - print(As you enter the beautiful palace, there is already someone waiting for you in the enter hall.)
-      - print(He walks towards you and start to talk:“Hey! I hope it wasn't too difficult to get here, because of all the monsters in the Kathallion Plains.”)
-      - print(He propose you to give you some gold. Do you want to accept it?)
-      - ask-confirmation(confirmation_variable)
-      - if(confirmation_variable, True):
-        - create-variable(gold_addon, 19)
-        - print(He gives you 19 royal gold coins before opening a great door, letting you enter the palace and look at all the marble statues and other beautiful sculptures.)
-      - if(confirmation_variable, False):
-        - create-variable(gold_addon, 0)
-        - print(He opens a great door, letting you enter the palace and look at all the marble statues and other beautiful sculptures.)
+      - print(“10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins.”)
+      - create-variable(gold_augmentation, 10)
+    - label 4:
+      - print(“20 gold coins? What a nice price, thanks! Here's 20 gold coins.”)
+      - create-variable(gold_augmentation, 20)
+    - label 5:
+      - print(“25 gold coins? Seems fair. Here's 25 gold coins.”)
+      - create-variable(gold_augmentation, 25)
+    - label 6:
+      - print(“45 gold coins?! Are you crazy?! I'm not paying 45 fucking gold coins for 2 bags of raw wood!”)
+      - goto(label 2)
   use actions: true
   actions:
+    add attributes:
+    - has finished jacky deliver
     gold modification:
-      augmentation: $gold_addon
+      augmentation: $gold_augmentation
+
+Cut Wood And Get Back Home Offer:
+  conversation:
+    - label 1:
+      - print(Now, go to -61, 56 to cut some wood and go back home at -61, 57 to get some sleep.)
+  use actions: true
+  actions:
+    add attributes:
+    - has mission cut wood and get back home offered
+
+Cut Wood And Get Back Home Stopover:
+  to display:
+    player attributes:
+    - has mission cut wood and get back home offered
+  conversation:
+    - label 1:
+      - print(Let's cut some wood now...)
+      - wait(30)
+      - print(1 or 2 hours after...)
+  use actions: false
+  scene: Forlindon Woods
+
+Cut Wood And Get Back Home Complete:
+  conversation:
+    - label 1:
+      - print(Now that you're at home, you can get some sleep and rest...)
+      - wait(60)
+      - print(A few hours after...)
+  use actions: true
+  actions:
+    use drink:
+    - Green Elixir

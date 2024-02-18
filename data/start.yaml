@@ -3,9 +3,9 @@ health: 40
 armor protection: .95
 current mount: ' '
 agility: .8
-gold: 15
-held item: Dagger
-held chestplate: Wolf Fur
+gold: 45
+held item: " "
+held chestplate: Leather Jacket
 held boots: Leather Boots
 held leggings: Old Pants
 held shield: " "
@@ -25,14 +25,14 @@ orders:
 mounts:
   None: none
 start dialog:
-  dialog: start dialog
+  dialog: Start Dialog
   heard start dialog: False
 heard dialogs:
 - None
 used keys:
 - None
 visited zones:
-- Stall Fields
+- Forlindon Woods
 met npcs names:
 - Old Man
 visited points:
@@ -40,17 +40,20 @@ visited points:
 enemies list:
 - None
 inventory:
-- Dagger
-- Healing Potion
-- Wolf Fur
+- Leather Jacket
 - Leather Boots
 - Old Pants
+- Beef
+- Bread
+- Bread
 - Stretched Bag
+- Raw Wood
+- Raw Wood
 max health: 40
-x: 0
+x: -61
 xp: 0
-y: 0
-map zone: "Kathallion Plains"
+y: 57
+map zone: "Ayar Town"
 taken items:
 - None
 defeated enemies:
