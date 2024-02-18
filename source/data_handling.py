@@ -252,9 +252,8 @@ def load_game_data(which_type, what_plugin=None):
             error_pip = True
         if not error_pip:
             retcode = subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", requirements_file],
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.STDOUT
-            )
+                                            stdout=subprocess.DEVNULL,
+                                            stderr=subprocess.STDOUT)
         progress.update(task_requirements, total=1)
         progress.update(task_requirements, advance=1)
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
