@@ -2437,7 +2437,7 @@ def run(play):
             play = 0
             continued_command = True
         else:
-            continued2 = False
+            continued_utility = False
             for i in utilities_list:
                 continued_command = True
                 current_utility = i
@@ -2452,15 +2452,15 @@ def run(play):
                             current_utility, preferences, player, map, item, drinks, enemy, npcs,
                             start_player, lists, zone, dialog, mission, mounts
                         )
-                    continued2 = True
+                    continued_utility = True
                     finished = input(" ")
-                elif current_utility not in player["inventory"]:
-                    continued2 = True
+                elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
+                    continued_utility = True
                     logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
                     print(f"You do not have a '{current_utility}'.")
                     print(" ")
                     finished = input(" ")
-            if not continued2:
+            if not continued_utility:
                 logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
                 print("'" + command + "' is not a valid command")
                 time.sleep(2)
