@@ -2252,7 +2252,10 @@ def run(play):
                 zone_handling.interaction_forge(map_zone, zone, player, item)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
-                print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge, church or castle." + COLOR_RESET_ALL)
+                print(
+                    COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge, church or castle." +
+                    COLOR_RESET_ALL
+                )
                 time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('y'):
