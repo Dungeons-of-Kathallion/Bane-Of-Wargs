@@ -209,6 +209,7 @@ def print_item_thumbnail(to_print):
     print(to_print)
     return to_print
 
+
 def multiple_items_in_list_formatting(list_to_format):
     output_list = []
     different_items = []
