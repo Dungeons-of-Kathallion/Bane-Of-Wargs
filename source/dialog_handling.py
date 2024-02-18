@@ -257,6 +257,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 else:
                     player["health"] += drinks[selected_drink]["healing level"]
 
+                count += 1
+
 
 def load_conversation_label(label_data, preferences, new_text_replacements, current_dialog):
     # Load a dialog conversation specific label functions
