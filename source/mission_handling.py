@@ -231,7 +231,7 @@ def execute_triggers(mission_data, player, which_key, dialog, preferences, text_
         if "fine" in mission_data[which_key]:
             player["gold"] -= int(mission_data[which_key]["fine"])
         if "exp addition" in mission_data[which_key]:
-            player["exp"] += int(mission_data[which_key]["exp addition"])
+            player["xp"] += int(mission_data[which_key]["exp addition"])
 
 
 def offer_mission(mission_id, player, missions_data, dialog, preferences, text_replacements_generic, drinks):
@@ -284,7 +284,7 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
             if "fine" in list(data["on offer"]):
                 player["gold"] -= int(data["on offer"]["fine"])
             if "exp addition" in list(data["on offer"]):
-                player["exp"] += int(data["on offer"]["exp addition"])
+                player["xp"] += int(data["on offer"]["exp addition"])
         else:
             if player["active missions"] is None:
                 player["active missions"] = []
