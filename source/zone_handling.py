@@ -106,22 +106,9 @@ def print_blacksmith_information(map_zone, zone, item):
             count2 = 0
             count3 = 0
 
-            while count2 < len(global_current_weapon_materials):
-                current_material = global_current_weapon_materials[count2]
-                current_material_number = str(global_current_weapon_materials.count(current_material))
-
-                if global_current_weapon_materials.count(current_material) > 1:
-                    while count3 < global_current_weapon_materials.count(current_material):
-                        global_current_weapon_materials.remove(current_material)
-                        count3 += 1
-                    global_current_weapon_materials = [
-                        sub.replace(
-                            current_material, current_material + "X" + current_material_number
-                        ) for sub in global_current_weapon_materials
-                    ]
-
-                count2 += 1
-
+            global_current_weapon_materials = text_handling.multiple_items_in_list_formatting(
+                global_current_weapon_materials
+            )
             global_current_weapon_materials = str(global_current_weapon_materials)
             global_current_weapon_materials = global_current_weapon_materials.replace("'", '')
             global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
