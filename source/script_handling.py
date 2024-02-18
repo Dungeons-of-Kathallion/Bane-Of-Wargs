@@ -10,7 +10,7 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 def load_script(
     current_utility, preferences, player, map, item, drinks, enemy, npcs,
-    start_player, lists, zone, dialog, mission, mounts, plugin=False
+    start_player, lists, zone, dialog, mission, mounts, start_time, plugin=False
 ):
     logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
     if plugin:
@@ -20,7 +20,7 @@ def load_script(
         ) as f:
             execute_script(
                 f, current_utility, player, map, item, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts
+                start_player, lists, zone, dialog, mission, mounts, start_time
             )
     else:
         with open(
@@ -28,13 +28,13 @@ def load_script(
         ) as f:
             execute_script(
                 f, current_utility, player, map, item, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts
+                start_player, lists, zone, dialog, mission, mounts, start_time
             )
 
 
 def execute_script(
     f, current_utility, player, map, item, drinks, enemy, npcs,
-    start_player, lists, zone, dialog, mission, mounts
+    start_player, lists, zone, dialog, mission, mounts, start_time
 ):
     global_arguments = {}
     if "arguments" in item[current_utility]:
@@ -63,4 +63,6 @@ def execute_script(
             global_arguments["mission"] = mission
         if "mounts" in arguments:
             global_arguments["mounts"] = mounts
+        if "start_time" in arguments:
+            global_arguments["start_time"] = start_time
     exec(f.read(), global_arguments)

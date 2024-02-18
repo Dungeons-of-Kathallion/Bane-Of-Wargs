@@ -795,6 +795,7 @@ Map:
   - player
   - map
   - zone
+  - start_time
   description: "It's a map of Stall Island! [Press 'M' to activate.]"
   thumbnail raw: |
     ╔══════════════════════════════╗

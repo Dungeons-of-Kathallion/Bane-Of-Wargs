@@ -1,6 +1,7 @@
 import colors
 import yaml
 import appdirs
+import time
 import text_handling
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
@@ -9,7 +10,8 @@ from colors import *
 init()
 
 
-def print_map(player, map, zone):
+def print_map(player, map, zone, start_time):
+    map_printing_starting_time = time.time()
     player_already_printed = False
     player_x = player["x"]
     player_y = player["y"]
@@ -56,6 +58,8 @@ def print_map(player, map, zone):
         print("═", end="")
         count += 1
     print("╝")
+    map_printing_starting_ending_time = time.time()
+    start_time -= map_printing_starting_ending_time - map_printing_starting_time
 
 
 def get_zone_color(zone_type):
@@ -159,4 +163,4 @@ def search_point(x, y, map_points_num, map):
     return map_location
 
 # run the script
-print_map(player, map, zone)
+print_map(player, map, zone, start_time)
