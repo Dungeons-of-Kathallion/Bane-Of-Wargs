@@ -106,6 +106,7 @@ def print_blacksmith_information(map_zone, zone, item):
             count2 = 0
             count3 = 0
 
+            # Change Here
             while count2 < len(global_current_weapon_materials):
                 current_material = global_current_weapon_materials[count2]
                 current_material_number = str(global_current_weapon_materials.count(current_material))
@@ -121,6 +122,7 @@ def print_blacksmith_information(map_zone, zone, item):
                     ]
 
                 count2 += 1
+            # Change Here
 
             global_current_weapon_materials = str(global_current_weapon_materials)
             global_current_weapon_materials = global_current_weapon_materials.replace("'", '')

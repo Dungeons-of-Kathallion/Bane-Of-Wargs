@@ -108,6 +108,7 @@ def detect_weapon_next_upgrade_items(item_name, item):
     else:
         weapon_next_upgrade_items = "None"
 
+    # Change Here
     # format so that for example: Raw Iron, Raw Iron become Raw IronX2
     count = 0
     while count < len(weapon_next_upgrade_items):
@@ -126,6 +127,8 @@ def detect_weapon_next_upgrade_items(item_name, item):
             ]
 
         count += 1
+
+    # Change Here
 
     # convert list to string and
     # format the string to look better
