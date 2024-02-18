@@ -1,4 +1,5 @@
 import logger_sys
+import text_handling
 
 
 # Handling functions
@@ -108,31 +109,10 @@ def detect_weapon_next_upgrade_items(item_name, item):
     else:
         weapon_next_upgrade_items = "None"
 
-    # Change Here
-    # format so that for example: Raw Iron, Raw Iron become Raw IronX2
-    count = 0
-    while count < len(weapon_next_upgrade_items):
-        current_item = str(list(weapon_next_upgrade_items)[0])
-        current_item_number = weapon_next_upgrade_items.count(current_item)
-
-        count2 = 0
-        if current_item_number > 1:
-            while count2 < current_item_number - 1:
-                weapon_next_upgrade_items.remove(current_item)
-                count2 += 1
-            weapon_next_upgrade_items = [
-                sub.replace(
-                    current_item, current_item + "X" + str(current_item_number)
-                ) for sub in weapon_next_upgrade_items
-            ]
-
-        count += 1
-
-    # Change Here
-
     # convert list to string and
     # format the string to look better
 
+    weapon_next_upgrade_items = text_handling.multiple_items_in_list_formatting(weapon_next_upgrade_items)
     weapon_next_upgrade_items = str(weapon_next_upgrade_items)
     weapon_next_upgrade_items = weapon_next_upgrade_items.replace("'", '')
     weapon_next_upgrade_items = weapon_next_upgrade_items.replace("[", '')

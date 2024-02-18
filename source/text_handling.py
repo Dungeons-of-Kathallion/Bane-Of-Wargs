@@ -209,6 +209,27 @@ def print_item_thumbnail(to_print):
     print(to_print)
     return to_print
 
+def multiple_items_in_list_formatting(list_to_format):
+    output_list = []
+    different_items = []
+
+    # Get different items in the list and then
+    # count how many times these items appear
+    # in the list, to after add the formatted
+    # output in the formatted list
+    for i in list_to_format:
+        if i not in different_items:
+            different_items += [i]
+
+    for i in different_items:
+        number_of_items = list_to_format.count(i)
+        if number_of_items > 1:
+            output_list += [f"{i}X{number_of_items}"]
+        else:
+            output_list += [f"{i}"]
+
+    return output_list
+
 
 # deinitialize colorama
 deinit()
