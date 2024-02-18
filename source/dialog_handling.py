@@ -249,7 +249,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
             count = 0
             logger_sys.log_message(f"INFO: Using drinks '{used_drinks}'")
             while count < used_drinks_len:
-                selected_drink = used_drinks_len[count]
+                selected_drink = used_drinks[count]
                 if selected_drink.replace('$', '') in list(new_text_replacements):
                     selected_drink = new_text_replacements[selected_drink.replace('$', '')]
                 if drinks[selected_drink]["healing level"] == 999:
