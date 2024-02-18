@@ -36823,6 +36823,7 @@ point15519:
   y: -56
 point1552:
   blocked:
+  - South
   - East
   map zone: Forlindon Woods
   x: -60

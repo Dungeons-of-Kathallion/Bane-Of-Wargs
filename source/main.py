@@ -1381,10 +1381,11 @@ def run(play):
             )
 
         elif (
-            day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "NIGHT" + COLOR_RESET_ALL
+            day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
             and round(random.uniform(.20, .80), 3) > .7 and zone[map_zone]["type"] != "hostel"
             and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village"
             and zone[map_zone]["type"] != "blacksmith" and zone[map_zone]["type"] != "forge"
+            and zone[map_zone]["type"] != "castle" and zone[map_zone]["type"] != "church"
         ):
             logger_sys.log_message("INFO: Checking if it's night time")
             logger_sys.log_message(
@@ -1392,8 +1393,12 @@ def run(play):
             )
             logger_sys.log_message("INFO: Calculating random chance of enemy spawning")
             logger_sys.log_message("INFO: Spawning enemies")
+            if "enemy spawning" in list(zone[map_zone]):
+                enemy_list_to_spawn = lists[str(zone[map_zone]["enemy spawning"])]
+            else:
+                enemy_list_to_spawn = lists["generic"]
             enemy_handling.spawn_enemy(
-                map_location, lists['generic'], round(random.uniform(1, 5)), enemy,
+                map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog
             )
@@ -2247,7 +2252,7 @@ def run(play):
                 zone_handling.interaction_forge(map_zone, zone, player, item)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
-                print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge or church." + COLOR_RESET_ALL)
+                print(COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge, church or castle." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('y'):

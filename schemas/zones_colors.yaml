@@ -30,7 +30,7 @@ forge: 28
 blacksmith: 29
 stable: 30
 church: 31
-castles: 32
+castle: 32
 lake: 33
 sea: 34
 swamps: 35

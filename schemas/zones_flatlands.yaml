@@ -4,3 +4,4 @@ type: str()
 map:
   map full: str()
   map raw: str(required=False)
+enemy spawning: str(required=False)
