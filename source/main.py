@@ -784,6 +784,9 @@ def run(play):
         # clear text
         os.system('clear')
 
+
+        # All the actions to update the player
+        # save data;
         # update player ridded mount location:
         if player["current mount"] in player["mounts"]:
             map_location = search(player["x"], player["y"])
@@ -1008,6 +1011,27 @@ def run(play):
         map_zone = map["point" + str(map_location)]["map zone"]
         logger_sys.log_message("INFO: Updating player 'map zone' in the save file")
         player["map zone"] = map_zone
+
+        # check player map zone
+        if map_zone not in list(zone):
+            text = (
+                COLOR_RED + COLOR_STYLE_BRIGHT +
+                "FATAL ERROR: You are in an undefined location. This could have" +
+                " been the result of using or not using a plugin. Verify you " +
+                "are using the right plugin for this save. " +
+                "The game will close in 10 secs." +
+                COLOR_RESET_ALL
+            )
+            logger_sys.log_message("CRITICAL: Player is in an undefined map zone.")
+            logger_sys.log_message(
+                "DEBUG: This could have been the result of using or not " +
+                "using a plugin. Verify you are using the right plugin for this " +
+                "save."
+            )
+            text_handling.print_long_string(text)
+            time.sleep(10)
+            os.system('clear')
+            text_handling.exit_game()
 
         logger_sys.log_message(
             f"INFO: Checking if player current map point 'point{
