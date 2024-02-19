@@ -497,7 +497,7 @@ while menu:
             md_text = Markdown(md_file)
             console.print(md_text)
 
-            wait = input()
+            input()
         except Exception as error:
             error_occurred = True
             print(
@@ -1809,7 +1809,7 @@ def run(play):
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen '{which_zone}', which he doesn't know about --> canceling")
-                finished = input("")
+                input()
             elif choice == 'Encountered Monsters':
                 print("ENCOUNTERED MONSTERS: ")
                 enemies_list = str(player["enemies list"])
@@ -1862,7 +1862,7 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    finished = input("")
+                    input()
                 else:
                     logger_sys.log_message(f"INFO: Player doesn't know about enemy '{which_enemy}' --> canceling")
                     print(" ")
@@ -1931,7 +1931,7 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    finished = input("")
+                    input()
                 else:
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
@@ -2144,6 +2144,7 @@ def run(play):
                 if item[which_item]["type"] == "Consumable":
                     print("")
                     print("EFFECTS:")
+                    logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
                     if item[which_item]["effects"] != None:
                         count = 0
                         for effect in item[which_item]["effects"]:
@@ -2432,6 +2433,12 @@ def run(play):
             print(separator)
             play = 0
             continued_command = True
+        elif command.lower().startswith('$player$data$'):
+            logger_sys.log_message("INFO: Displaying player data in a pager mode")
+            to_display = str(yaml.dump(player))
+            os.system('clear')
+            pydoc.pager(to_display)
+            continued_command = True
         else:
             continued_utility = False
             for i in utilities_list:
@@ -2449,13 +2456,13 @@ def run(play):
                             start_player, lists, zone, dialog, mission, mounts, start_time
                         )
                     continued_utility = True
-                    finished = input(" ")
+                    input()
                 elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
                     continued_utility = True
                     logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
                     print(f"You do not have a '{current_utility}'.")
                     print(" ")
-                    finished = input(" ")
+                    input()
             if not continued_utility:
                 logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
                 print("'" + command + "' is not a valid command")

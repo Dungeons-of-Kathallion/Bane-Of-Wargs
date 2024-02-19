@@ -82,7 +82,7 @@ def spawn_enemy(
         text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
         logger_sys.log_message("INFO: Player just died")
         text_handling.print_long_string(text)
-        finished = input()
+        input()
         logger_sys.log_message("INFO: Resetting player save")
         player = start_player
         play = 0
