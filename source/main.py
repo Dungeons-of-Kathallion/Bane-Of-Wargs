@@ -1848,7 +1848,7 @@ def run(play):
                     ) / 2
                     print("AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(enemy_average_damage) + COLOR_RESET_ALL)
                     print("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
-                    print("AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(enemy[which_enemy]["agility"]) + COLOR_RESET_ALL)
+                    print("AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(enemy[which_enemy]["agility"] * 100) + COLOR_RESET_ALL)
 
                     # drops
                     enemy_drops = str(enemy[which_enemy]["inventory"])
@@ -2022,13 +2022,13 @@ def run(play):
             logger_sys.log_message(f"INFO: Printing player armor protection, agility and critical hit chance stats")
             print(
                 "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                str(player["armor protection"]) + COLOR_RESET_ALL + COLOR_RED +
+                str(player["armor protection"] * 10) + COLOR_RESET_ALL + COLOR_RED +
                 COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                 "More it's higher, the less you'll take damages in fights" + COLOR_RED +
                 COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
             print(
-                "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["agility"]) +
+                "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["agility"] * 100) +
                 COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" +
                 COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -2102,7 +2102,7 @@ def run(play):
                     print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print(
                         "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                        str(item[which_item]["armor protection"]) + COLOR_RESET_ALL
+                        str(item[which_item]["armor protection"] * 10) + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Metal":
                     text = (
