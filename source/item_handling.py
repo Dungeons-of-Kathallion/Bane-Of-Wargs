@@ -39,7 +39,7 @@ def use_item(
             )
 
 
-def equip_item(item_name, player_data, equipment_type):
+def equip_item(item_name, player, equipment_type):
     # equip the item in one of the player slot, depending
     # on the equipment type
     slot = None
@@ -61,4 +61,4 @@ def equip_item(item_name, player_data, equipment_type):
         print("You are now wearing ", text_handling.a_an_check(item_name))
 
     logger_sys.log_message(f"INFO: Equipping item '{item_name}' of type '{equipment_type}' to player slot '{slot}'")
-    player_data[slot] = item_name
+    player[slot] = item_name

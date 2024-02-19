@@ -757,6 +757,8 @@ Healing Potion:
       type: "healing"
       health change:
         augmentation: 999
+        max health:
+          augmentation: 5
   gold: 17.6
   description: "A generic healing potion that restores your health to it's max and gives it a bonus 5 to that maximum."
   thumbnail raw: |

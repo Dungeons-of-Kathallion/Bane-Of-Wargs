@@ -1060,6 +1060,41 @@ def run(play):
             str(player["y"]) + COLOR_RESET_ALL + ")"
         )
 
+        # All the checks for the player active effects
+        # are here
+        #
+        # If the player has any active effects, load
+        # them one by one and update them depending
+        # on their dictionary content and type
+        if player["active effects"] != {}:
+            for i in list(player["active effects"]):
+                current_effect = player["active effects"][i]
+                effect_over = False
+                # Run the actions for every effect type
+                if current_effect["type"] == 'healing':
+                    # Check if the effect duration is over
+                    if current_effect["effect duration"] + current_effect["effect starting time"] < player["elapsed time game days"]:
+                        # Remove that effect from the player
+                        # active effects and set the player
+                        # modified stats to before the effect
+                        # happened
+                        player["active effects"].pop(i)
+                        player["health"] = current_effect["before stats"]["health"]
+                        player["max health"] = current_effect["before stats"]["max health"]
+                        effect_over = True
+                    # Check if the effect has already been
+                    # applied or not
+                    if not current_effect["already applied"] and not effect_over:
+                        # Apply that effect changes now
+                        if current_effect["effects"]["health changes"] >= 999:
+                            player["health"] = player["max health"]
+                        else:
+                            player["health"] += current_effect["effects"]["health changes"]
+                        player["max health"] += current_effect["effects"]["max health changes"]
+                        player["active effects"][i]["already applied"] = True
+
+        # UI Printing
+
         text = '='
         text_handling.print_separator(text)
 
