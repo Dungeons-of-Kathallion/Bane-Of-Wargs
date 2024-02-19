@@ -50,6 +50,7 @@ inventory:
 - Raw Wood
 - Raw Wood
 max health: 40
+active effects: {}
 x: -61
 xp: 0
 y: 57

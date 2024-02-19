@@ -6,6 +6,7 @@ import time
 import term_menu
 import text_handling
 import script_handling
+import item_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -297,41 +298,9 @@ def encounter_text_show(
         item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         # use item
         if item_input in player["inventory"]:
-            if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
-                if item[item_input]["healing level"] == 999:
-                    player["health"] = player["max health"]
-                else:
-                    player["health"] += item[item_input]["healing level"]
-                player["max health"] += item[item_input]["max bonus"]
-                player["inventory"].remove(item_input)
-            # hold weapon/armor piece if it is one
-            if item_input in player["inventory"] and item[item_input]["type"] == "Weapon":
-                player["held item"] = item_input
-                print("You are now holding a/an ", player["held item"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Chestplate":
-                player["held chestplate"] = item_input
-                print("You are now wearing a/an ", player["held chestplate"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Leggings":
-                player["held leggings"] = item_input
-                print("You are now wearing a/an ", player["held leggings"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
-                player["held boots"] = item_input
-                print("You are now wearing a/an ", player["held boots"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
-                player["held shield"] = item_input
-                print("You are now holding a/an ", player["held shield"])
-            elif item[item_input]["type"] == "Utility":
-                print(" ")
-                if preferences["latest preset"]["type"] == 'plugin':
-                    script_handling.load_script(
-                        item_input, preferences, player, map, item, drinks, enemy, npcs,
-                        start_player, lists, zone, dialog, mission, mounts, plugin=True
-                    )
-                else:
-                    script_handling.load_script(
-                        item_input, preferences, player, map, item, drinks, enemy, npcs,
-                        start_player, lists, zone, dialog, mission, mounts
-                    )
+            item_handling.use_item(
+                item_input, item[item_input], player, preferences, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+            )
             text = '='
             text_handling.print_separator(text)
     else:

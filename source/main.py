@@ -13,6 +13,8 @@ import text_handling
 import zone_handling
 import weapon_upgrade_handling
 import script_handling
+import consumable_handling
+import item_handling
 import os
 import sys
 import time
@@ -2160,41 +2162,12 @@ def run(play):
                 choice = term_menu.show_menu(options)
                 logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                 if choice == 'Equip':
-                    if item[which_item]["type"] == "Weapon":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a weapon")
-                        player["held item"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Chestplate":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a chestplate")
-                        player["held chestplate"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Leggings":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as leggings")
-                        player["held leggings"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Boots":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as boots")
-                        player["held boots"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Shield":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a shield")
-                        player["held shield"] = which_item
-                    else:
-                        logger_sys.log_message(f"INFO: Cannot equip item '{which_item}' --> not an item you can equip")
+                    item_handling.equip_item(which_item, player, item[which_item]["type"])
                 elif choice == 'Consume':
-                    if item[which_item]["healing level"] == 999:
-                        player["health"] = player["max health"]
-                        logger_sys.log_message(f"INFO: Consuming item '{which_item}' --> restoring full player health")
-                    else:
-                        healing_level = item[which_item]["healing level"]
-                        health_bonus = item[which_item]["max bonus"]
-                        logger_sys.log_message(
-                            f"INFO: Consuming item '{which_item}' --> restoring {
-                                healing_level
-                            } hp and adding {health_bonus} to player max health as a bonus"
-                        )
-                        player["health"] += item[which_item]["healing level"]
-                        player["max health"] += item[which_item]["max bonus"]
-                    player["inventory"].remove(which_item)
+                    consumable_handling.consume_consumable(item, which_item, player)
                 elif choice == 'Get Rid':
                     text = (
-                        "You won't be able to get this item back if your " +
+                        "You won't be able to get this item back if you " +
                         "throw it away. Are you sure you want to throw away this item"
                     )
                     text_handling.print_long_string(text)
