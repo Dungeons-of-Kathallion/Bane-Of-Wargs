@@ -8,7 +8,7 @@ import consumable_handling
 
 
 def use_item(
-    which_item, item_data, player, preferences, item, drinks,
+    which_item, item_data, player, preferences, drinks,
     enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 ):
     # Load the global items data and load the
@@ -17,7 +17,7 @@ def use_item(
     which_item_data = item_data[which_item]
     which_item_type = which_item_data["type"]
     if which_item_type == "Consumable" or which_item_type == "Food":
-        consumable_handling.consume_consumable(which_item_data, which_item, player)
+        consumable_handling.consume_consumable(item_data, which_item, player)
         logger_sys.log_message(f"INFO: Item '{which_item}' is an item of type '{which_item_type}' --> consuming it")
     elif (
         which_item_type == "Weapon" or which_item_type.lower().startswith("Armor Piece: ")
@@ -29,12 +29,12 @@ def use_item(
         print(" ")
         if preferences["latest preset"]["type"] == 'plugin':
             script_handling.load_script(
-                which_item, preferences, player, map, item, drinks, enemy, npcs,
+                which_item, preferences, player, map, item_data, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts, plugin=True
             )
         else:
             script_handling.load_script(
-                which_item, preferences, player, map, item, drinks, enemy, npcs,
+                which_item, preferences, player, map, item_data, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts
             )
 

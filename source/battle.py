@@ -52,7 +52,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
 
         selected_item = player_inventory[count]
 
-        if item[selected_item]["type"] == "Food" or item[selected_item]["type"] == "Consumable":
+        if item[selected_item]["type"] == "Food":
             item_health_restoration = item[selected_item]["healing level"]
             item_health_bonus = item[selected_item]["max bonus"]
             if item_health_restoration == 999:
@@ -299,7 +299,7 @@ def encounter_text_show(
         # use item
         if item_input in player["inventory"]:
             item_handling.use_item(
-                item_input, item[item_input], player, preferences, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+                item_input, item, player, preferences, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
             )
             text = '='
             text_handling.print_separator(text)
