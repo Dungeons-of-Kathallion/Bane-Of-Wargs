@@ -9,6 +9,7 @@ init()
 
 # Handling Functions
 
+
 def get_healing_effect_changes(effect_data):
     health_changes = 0
     max_health_changes = 0
@@ -28,6 +29,7 @@ def get_healing_effect_changes(effect_data):
             max_health_changes -= diminution
 
     return health_changes, max_health_changes
+
 
 def healing_effect(effect_data, player):
     # Generate a UUID for that new
@@ -69,7 +71,7 @@ def healing_effect(effect_data, player):
         # active effects dictionary
         player["active effects"][effect_uuid] = effect_dictionary
     else:
-        if effect_data["health change"] != None:
+        if effect_data["health change"] is not None:
             health_changes, max_health_changes = get_healing_effect_changes(effect_data)
 
             if health_changes >= 999:
@@ -103,7 +105,7 @@ def consume_consumable(item_data, consumable_name, player):
         # and apply the effects 1 by 1
         logger_sys.log_message(f"INFO: Getting consumable '{consumable_name}' effects")
 
-        if consumable_data["effects"] != None:
+        if consumable_data["effects"] is not None:
             effects = consumable_data["effects"]
             logger_sys.log_message(f"INFO: Loaded consumable '{consumable_name}' effects:\n{effects}")
             count = 0
@@ -111,7 +113,9 @@ def consume_consumable(item_data, consumable_name, player):
                 current_effect_data = consumable_data["effects"][count]
                 current_effect_type = current_effect_data["type"]
 
-                logger_sys.log_message(f"INFO: Running consumable effect with '{current_effect_type}' parameter;\n{current_effect_data}")
+                logger_sys.log_message(
+                    f"INFO: Running consumable effect with '{current_effect_type}' parameter;\n{current_effect_data}"
+                )
 
                 if current_effect_type == "healing":
                     healing_effect(current_effect_data, player)
@@ -132,7 +136,7 @@ def print_consumable_effects(current_effect_type, current_effect_data):
         if "effect time" in current_effect_data:
             duration_time = current_effect_data["effect time"]
             print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
-        if current_effect_data["health change"] != None:
+        if current_effect_data["health change"] is not None:
             print(f"   Health Changes: ")
 
             health_changes, max_health_changes = get_healing_effect_changes(current_effect_data)

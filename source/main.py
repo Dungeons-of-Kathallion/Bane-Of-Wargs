@@ -784,7 +784,6 @@ def run(play):
         # clear text
         os.system('clear')
 
-
         # All the actions to update the player
         # save data;
         # update player ridded mount location:
@@ -1073,7 +1072,11 @@ def run(play):
                 # Run the actions for every effect type
                 if current_effect["type"] == 'healing':
                     # Check if the effect duration is over
-                    if current_effect["effect duration"] + current_effect["effect starting time"] < player["elapsed time game days"]:
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
                         # Remove that effect from the player
                         # active effects and set the player
                         # modified stats to before the effect
@@ -1907,7 +1910,10 @@ def run(play):
                     ) / 2
                     print("AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(enemy_average_damage) + COLOR_RESET_ALL)
                     print("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
-                    print("AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(enemy[which_enemy]["agility"] * 100) + COLOR_RESET_ALL)
+                    print(
+                        "AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
+                        str(enemy[which_enemy]["agility"] * 100) + COLOR_RESET_ALL
+                    )
 
                     # drops
                     enemy_drops = str(enemy[which_enemy]["inventory"])
@@ -2204,7 +2210,7 @@ def run(play):
                     print("")
                     print("EFFECTS:")
                     logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
-                    if item[which_item]["effects"] != None:
+                    if item[which_item]["effects"] is not None:
                         count = 0
                         for effect in item[which_item]["effects"]:
                             current_effect_data = item[which_item]["effects"][count]
