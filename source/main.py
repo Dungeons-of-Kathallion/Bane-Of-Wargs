@@ -2129,7 +2129,7 @@ def run(play):
                         "CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Consumable" or item[which_item]["type"] == "Food":
+                if item[which_item]["type"] == "Food":
                     print(
                         "HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW +
                         str(item[which_item]["max bonus"]) + COLOR_RESET_ALL
@@ -2141,6 +2141,21 @@ def run(play):
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                         healing_level + COLOR_RESET_ALL
                     )
+                if item[which_item]["type"] == "Consumable":
+                    print("")
+                    print("EFFECTS:")
+                    if item[which_item]["effects"] != None:
+                        count = 0
+                        for effect in item[which_item]["effects"]:
+                            current_effect_data = item[which_item]["effects"][count]
+                            current_effect_type = current_effect_data["type"]
+                            print(" -Effect " + str(count + 1) + ": {")
+                            consumable_handling.print_consumable_effects(current_effect_type, current_effect_data)
+                            print("}")
+
+                            count += 1
+                    else:
+                        print(" -None")
                 text = '='
                 text_handling.print_separator(text)
                 if str(
