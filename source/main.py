@@ -1821,42 +1821,7 @@ def run(play):
                             weapon_orders_len = len(weapon_orders)
                             while count < weapon_orders_len:
                                 current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
-                                current_weapon_materials = current_black_smith["blacksmith"]["orders"][
-                                    current_weapon
-                                ]["needed materials"]
-                                count2 = 0
-                                global_current_weapon_materials = []
-                                current_weapon_materials_num = len(current_weapon_materials)
-                                while count2 < current_weapon_materials_num:
-                                    current_material = current_weapon_materials[count2]
-
-                                    global_current_weapon_materials += [current_material]
-
-                                    count2 += 1
-
-                                count2 = 0
-                                count3 = 0
-
-                                while count2 < len(global_current_weapon_materials):
-                                    current_material = global_current_weapon_materials[count2]
-                                    current_material_number = str(global_current_weapon_materials.count(current_material))
-
-                                    if global_current_weapon_materials.count(current_material) > 1:
-                                        while count3 < global_current_weapon_materials.count(current_material):
-                                            global_current_weapon_materials.remove(current_material)
-                                            count3 += 1
-                                        global_current_weapon_materials = [
-                                            sub.replace(
-                                                current_material, current_material + "X" + current_material_number
-                                            ) for sub in global_current_weapon_materials
-                                        ]
-
-                                    count2 += 1
-
-                                global_current_weapon_materials = str(global_current_weapon_materials)
-                                global_current_weapon_materials = global_current_weapon_materials.replace("'", '')
-                                global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
-                                global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
+                                global_current_weapon_materials = weapon_upgrade_handling.detect_weapon_next_upgrade_items(current_weapon, item)
                                 print(
                                     " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +
