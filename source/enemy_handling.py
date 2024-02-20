@@ -32,7 +32,9 @@ def spawn_enemy(
         logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
         chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
         logger_sys.log_message("INFO: Calculating battle risk for the player")
-        defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient)
+        defeat_percentage = battle.calculate_player_risk(
+            player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient
+        )
         logger_sys.log_message("INFO: Getting enemy stats")
         battle.get_enemy_stats(
             player, item, enemy, map, map_location, lists, choose_rand_enemy,

@@ -1103,7 +1103,9 @@ def run(play):
                     # Apply the effect effects if the
                     # effect isn't over
                     if not effect_over:
-                        player["armor protection"] = player["armor protection"] * current_effect["effects"]["protection coefficient"]
+                        player["armor protection"] = player["armor protection"] * current_effect[
+                            "effects"
+                        ]["protection coefficient"]
                 elif current_effect["type"] == 'strength':
                     # Check if the effect duration's over
                     if (
@@ -1118,7 +1120,9 @@ def run(play):
                     # Apply the effect effects if the
                     # effect isn't over
                     if not effect_over:
-                        player["critical hit chance"] = player["critical hit chance"] * current_effect["effects"]["critical hit chance coefficient"]
+                        player["critical hit chance"] = player["critical hit chance"] * current_effect["effects"][
+                            "critical hit chance coefficient"
+                        ]
                         # If the player already has an effect that changes
                         # the damage coefficient and that's greater, don't
                         # apply the current effect coefficient

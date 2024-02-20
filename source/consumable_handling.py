@@ -238,7 +238,7 @@ def print_consumable_effects(current_effect_type, current_effect_data):
         print(f"   Protection Changes:")
         if current_effect_data["protection change"] is not None:
             if "coefficient" in list(current_effect_data["protection change"]):
-                coefficient = str(round((current_effect_data["protection change"]["coefficient"] - 1 )* 100)) + "%"
+                coefficient = str(round((current_effect_data["protection change"]["coefficient"] - 1) * 100)) + "%"
                 if current_effect_data["protection change"]["coefficient"] >= 1:
                     print(f"     protection {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
                 else:
@@ -261,13 +261,17 @@ def print_consumable_effects(current_effect_type, current_effect_data):
                 nothing = True
             if not nothing:
                 if "damage coefficient" in list(current_effect_data["strength change"]):
-                    damage_coefficient = str(round((current_effect_data["strength change"]["damage coefficient"] - 1 )* 100)) + "%"
+                    damage_coefficient = str(
+                        round((current_effect_data["strength change"]["damage coefficient"] - 1) * 100)
+                    ) + "%"
                     if current_effect_data["strength change"]["damage coefficient"] >= 1:
                         print(f"     global damage {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
                     else:
                         print(f"     global damage {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
                 if "critical hit chance coefficient" in list(current_effect_data["strength change"]):
-                    damage_coefficient = str(round((current_effect_data["strength change"]["critical hit chance coefficient"] - 1 )* 100)) + "%"
+                    damage_coefficient = str(
+                        round((current_effect_data["strength change"]["critical hit chance coefficient"] - 1) * 100)
+                    ) + "%"
                     if current_effect_data["strength change"]["critical hit chance coefficient"] >= 1:
                         print(f"     critical hit chance {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
                     else:

@@ -12,6 +12,7 @@ COEFFICIENT = .001389
 
 # Handling Functions
 
+
 def get_day_time(game_days):
     # calculate day time
     day_time = "PLACEHOLDER"  # .25 = morning .50 = day .75 = evening .0 = night
@@ -30,7 +31,7 @@ def get_day_time(game_days):
 
 
 def return_game_day_from_seconds(seconds):
-    game_days = seconds * COEFFICIENT # 180 seconds irl = .25 days in-game
+    game_days = seconds * COEFFICIENT  # 180 seconds irl = .25 days in-game
 
     return game_days
 
