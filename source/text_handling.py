@@ -35,12 +35,23 @@ def print_speech_text_effect(text, preferences):
             time.sleep(.02)
 
 
+def clear_prompt():
+    from os import system, name
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
+
+
 def exit_game():
     time.sleep(1.5)
     print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
     logger_sys.log_message("WARNING: closing game now")
     time.sleep(.5)
-    os.system('clear')
+    clear_prompt()
     exit(1)
 
 

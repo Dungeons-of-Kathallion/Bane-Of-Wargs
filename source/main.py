@@ -40,7 +40,7 @@ import pydoc
 # initialize colorama
 init()
 
-os.system('clear')
+text_handling.clear_prompt()
 
 # defines console for the rich module
 # to work properly
@@ -195,12 +195,12 @@ while menu:
             pass
     else:
         time.sleep(.5)
-    os.system('clear')
+    text_handling.clear_prompt()
     print_title()
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Check Logs', 'Quit']
     choice = term_menu.show_menu(options)
-    os.system('clear')
+    text_handling.clear_prompt()
 
     print_title()
 
@@ -489,7 +489,7 @@ while menu:
         # to the terminal with 'rich' module
         error_occurred = False
 
-        os.system('clear')
+        text_handling.clear_prompt()
 
         try:
             md_text = Markdown(md_file)
@@ -503,7 +503,7 @@ while menu:
                 COLOR_RED + f"file '{file}' does not exists" + COLOR_RESET_ALL
             )
             logger_sys.log_message(f"ERROR: file '{file}' does not exists --> canceling gameplay guide markdown printing")
-        os.system('clear')
+        text_handling.clear_prompt()
     elif choice == 'Check Logs':
         # Get the logs directory content
         # and save the names in a list
@@ -538,13 +538,13 @@ while menu:
 
             if not error:
                 loop = False
-                os.system('clear')
+                text_handling.clear_prompt()
                 with open(directory + which_log_file, 'r') as f:
                     content = f.read()
 
                     pydoc.pager(content)
     else:
-        os.system('clear')
+        text_handling.clear_prompt()
         exit(1)
 
 
@@ -780,7 +780,7 @@ def run(play):
         logger_sys.log_message(f"INFO: Got terminal width and height size: {terminal_rows}x{terminal_columns}")
 
         # clear text
-        os.system('clear')
+        text_handling.clear_prompt()
 
         # All the actions to update the player
         # save data;
@@ -992,7 +992,7 @@ def run(play):
             )
             text_handling.print_long_string(text)
             time.sleep(10)
-            os.system('clear')
+            text_handling.clear_prompt()
             text_handling.exit_game()
         logger_sys.log_message("INFO: Getting player current map zone location")
         map_zone = map["point" + str(map_location)]["map zone"]
@@ -1017,7 +1017,7 @@ def run(play):
             )
             text_handling.print_long_string(text)
             time.sleep(10)
-            os.system('clear')
+            text_handling.clear_prompt()
             text_handling.exit_game()
 
         logger_sys.log_message(
@@ -2503,7 +2503,7 @@ def run(play):
             player_data = str(yaml.dump(player))
             if choice == 'Check':
                 to_display = player_data
-                os.system('clear')
+                text_handling.clear_prompt()
                 pydoc.pager(to_display)
             else:
                 temporary_dir = tempfile.mkdtemp()
@@ -2601,4 +2601,4 @@ with open(program_dir + '/preferences.yaml', 'w') as f:
 
 # deinitialize colorame
 deinit()
-os.system('clear')
+text_handling.clear_prompt()
