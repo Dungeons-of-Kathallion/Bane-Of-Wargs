@@ -5,6 +5,7 @@ import sys
 import time
 import term_menu
 import text_handling
+import time_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -85,7 +86,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
             # calculate elapsed time
             elapsed_time = end_time - start_time
             elapsed_time = round(elapsed_time, 2)
-            game_elapsed_time = .001389 * elapsed_time  # 180 seconds irl = .25 days in-game
+            game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time)
             game_elapsed_time = round(game_elapsed_time, 2)
             player["gold"] -= stable["training gold"] * game_elapsed_time
         else:

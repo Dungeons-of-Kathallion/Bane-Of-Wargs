@@ -15,6 +15,7 @@ import weapon_upgrade_handling
 import script_handling
 import consumable_handling
 import item_handling
+import time_handling
 import os
 import sys
 import time
@@ -842,18 +843,8 @@ def run(play):
         player["health"] = int(round(player["health"]))
 
         logger_sys.log_message("INFO: Calculating day time")
-        # calculate day time
-        day_time = "PLACEHOLDER"  # .25 = morning .50 = day .75 = evening .0 = night
-        day_time_decimal = "." + str(player["elapsed time game days"]).split(".", 1)[1]
-        day_time_decimal = float(day_time_decimal)
-        if day_time_decimal < .25 and day_time_decimal > .0:
-            day_time = COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
-        elif day_time_decimal > .25 and day_time_decimal < .50:
-            day_time = COLOR_BLUE + COLOR_STYLE_BRIGHT + "▲ MORNING" + COLOR_RESET_ALL
-        elif day_time_decimal > .50 and day_time_decimal < .75:
-            day_time = COLOR_GREEN + COLOR_STYLE_BRIGHT + "☼ DAY" + COLOR_RESET_ALL
-        elif day_time_decimal > .75 and day_time_decimal:
-            day_time = COLOR_YELLOW + COLOR_STYLE_BRIGHT + "▼ EVENING" + COLOR_RESET_ALL
+        global day_time
+        day_time = time_handling.get_day_time(player["elapsed time game days"])
 
         logger_sys.log_message("INFO: Calculating player armor protection stat")
         # calculate player armor protection
@@ -2549,7 +2540,7 @@ def run(play):
         elapsed_time = round(elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time: '{elapsed_time}'")
 
-        game_elapsed_time = .001389 * elapsed_time  # 180 seconds irl = .25 days in-game
+        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time)
         game_elapsed_time = round(game_elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time in game days: '{game_elapsed_time}'")
 
