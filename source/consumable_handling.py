@@ -47,13 +47,12 @@ def healing_effect(effect_data, player):
         effects = {}
 
         # Create the applied effects dictionary
-        if effect_data["type"] == 'healing':
-            health_changes, max_health_changes = get_healing_effect_changes(effect_data)
+        health_changes, max_health_changes = get_healing_effect_changes(effect_data)
 
-            effects = {
-                "health changes": health_changes,
-                "max health changes": max_health_changes
-            }
+        effects = {
+            "health changes": health_changes,
+            "max health changes": max_health_changes
+        }
 
         effect_dictionary = {
             "effect duration": effect_data["effect time"],
@@ -79,6 +78,39 @@ def healing_effect(effect_data, player):
             else:
                 player["health"] += health_changes
                 player["max health"] += max_health_changes
+
+
+def protection_effect(effect_data, player):
+    # Generate a UUID for that new
+    # effect
+    effect_uuid = str(uuid_handling.generate_random_uuid())
+
+    # Create the effect dictionary that will
+    # be added to the player save data and then
+    # handled by the main.py function
+
+    effects = {}
+
+    # Create the applied effects dictionary
+    if "coefficient" in list(effect_data["protection change"]):
+        protection_coefficient = effect_data["protection change"]["coefficient"]
+    else:
+        protection_coefficient = 1
+
+    effects = {
+        "protection coefficient": protection_coefficient
+    }
+
+    effect_dictionary = {
+        "effect duration": effect_data["effect time"],
+        "effect starting time": player["elapsed time game days"],
+        "type": effect_data["type"],
+        "effects": effects
+    }
+
+    # Add the effect dictionary to the player
+    # active effects dictionary
+    player["active effects"][effect_uuid] = effect_dictionary
 
 
 def consume_consumable(item_data, consumable_name, player):
@@ -119,6 +151,8 @@ def consume_consumable(item_data, consumable_name, player):
 
                 if current_effect_type == "healing":
                     healing_effect(current_effect_data, player)
+                elif current_effect_type == "protection":
+                    protection_effect(current_effect_data, player)
 
                 count += 1
 
@@ -156,6 +190,20 @@ def print_consumable_effects(current_effect_type, current_effect_data):
                 print(f"     max health + {COLOR_BLUE}{max_health_changes}{COLOR_RESET_ALL}")
             else:
                 print(f"     max health + {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}",)
+
+    elif current_effect_type == 'protection':
+        duration_time = current_effect_data["effect time"]
+        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        if current_effect_data["protection change"] is not None:
+            print(f"   Protection Changes:")
+            if "coefficient" in list(current_effect_data["protection change"]):
+                coefficient = str(round((current_effect_data["protection change"]["coefficient"] - 1 )* 100)) + "%"
+                if current_effect_data["protection change"]["coefficient"] >= 1:
+                    print(f"     protection {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
+                else:
+                    print(f"     protection {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
+            else:
+                print("     NONE")
 
 
 # deinitialize colorama
