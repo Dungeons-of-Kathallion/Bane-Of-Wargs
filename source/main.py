@@ -440,13 +440,9 @@ while menu:
                 os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
                 os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
     elif choice == 'Preferences':
-        try:
-            editor = os.environ['EDITOR']
-        except KeyError:
-            editor = 'nano'
         logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml' with {editor}")
         logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
-        subprocess.call([editor, program_dir + "/preferences.yaml"])
+        data_handling.open_file(program_dir + "/preferences.yaml")
         with open(program_dir + '/preferences.yaml') as f:
             new_preferences = yaml.safe_load(f)
         logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
@@ -1057,6 +1053,12 @@ def run(play):
         # If the player has any active effects, load
         # them one by one and update them depending
         # on their dictionary content and type
+        global player_damage_coefficient
+        player_damage_coefficient = 1
+        if player["held item"] != " ":
+            player["critical hit chance"] = item[player["held item"]]["critical hit chance"]
+        else:
+            player["critical hit chance"] = 0
         if player["active effects"] != {}:
             for i in list(player["active effects"]):
                 current_effect = player["active effects"][i]
@@ -1102,6 +1104,27 @@ def run(play):
                     # effect isn't over
                     if not effect_over:
                         player["armor protection"] = player["armor protection"] * current_effect["effects"]["protection coefficient"]
+                elif current_effect["type"] == 'strength':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        player["critical hit chance"] = player["critical hit chance"] * current_effect["effects"]["critical hit chance coefficient"]
+                        # If the player already has an effect that changes
+                        # the damage coefficient and that's greater, don't
+                        # apply the current effect coefficient
+                        # = keep the greater one
+                        if not player_damage_coefficient > current_effect["effects"]["damage coefficient"]:
+                            player_damage_coefficient = current_effect["effects"]["damage coefficient"]
 
         # UI Printing
 
@@ -1431,7 +1454,7 @@ def run(play):
                             enemy_handling.spawn_enemy(
                                 map_location, lists[str(current_enemy_data["enemy category"])],
                                 current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
-                                preferences, drinks, npcs, zone, mounts, mission, dialog
+                                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1448,7 +1471,7 @@ def run(play):
             enemy_handling.spawn_enemy(
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
                 map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
             )
 
         elif (
@@ -1471,7 +1494,7 @@ def run(play):
             enemy_handling.spawn_enemy(
                 map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
@@ -2108,7 +2131,7 @@ def run(play):
             if player["held item"] != " ":
                 print(
                     "CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
-                    str(round(item[player["held item"]]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
+                    str(round(player["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
                     COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                     "More it's higher, the more you'll have a chance to deal critical attacks" +
                     COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -2522,11 +2545,7 @@ def run(play):
                 # it with a text editor
                 with open(temporary_file, 'w') as f:
                     f.write(player_data)
-                try:
-                    editor = os.environ['EDITOR']
-                except KeyError:
-                    editor = 'nano'
-                subprocess.call([editor, temporary_file])
+                data_handling.open_file(temporary_file)
 
                 # Get the file data and write it into
                 # the 'player' dictionary variable

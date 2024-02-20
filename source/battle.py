@@ -19,7 +19,7 @@ turn = True
 fighting = True
 
 
-def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
+def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient):
     # get all stats
     player_hp = player["health"]
     player_agi = player["agility"]
@@ -28,11 +28,11 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
         (
             (
                 item[player["held item"]]["damage"] + 1 + item[player["held item"]]["damage"]
-            ) * item[player["held item"]]["critical hit chance"] * 2.3
+            ) * player["critical hit chance"] * 2.3
         ) / 2, 2
     )
     player_def = item[player["held item"]]["defend"]
-    player_critic_ch = item[player["held item"]]["critical hit chance"]
+    player_critic_ch = player["critical hit chance"]
     player_health_cap = 1   # placeholder
     enemies_number = enemies_remaining
     enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
@@ -112,7 +112,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     player_fake_agility = player["agility"]
     player_fake_armor_protection = player["armor protection"]
     player_fake_agility = player["agility"]
-    player_critical_hit_chance = item[player["held item"]]["critical hit chance"]
+    player_critical_hit_chance = player["critical hit chance"]
     player_fake_defend = item[player["held item"]]["defend"]
     enemy_fake_critical_hit_chance = enemy_critical_chance
     enemy_fake_health = enemy_health * enemies_number
@@ -149,7 +149,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
                     if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(item[player["held item"]]["damage"]))
+                        player_damage = random.randint(1, int(item[player["held item"]]["damage"])) * player_damage_coefficient
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_fake_health -= player_damage
@@ -337,7 +337,7 @@ def get_enemy_stats(
 
 def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
-    preferences, drinks, npcs, start_player, zone, dialog, mission, mounts
+    preferences, drinks, npcs, start_player, zone, dialog, mission, mounts, player_damage_coefficient
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -350,7 +350,7 @@ def fight(
 
     enemy_max_health = enemy_health
 
-    critical_hit_chance = item[player["held item"]]["critical hit chance"]
+    critical_hit_chance = player["critical hit chance"]
 
     # while the player is still fighting (for run away)
 
@@ -434,7 +434,7 @@ def fight(
                         player_critical_hit = True
                         print("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(item[player["held item"]]["damage"]))
+                        player_damage = random.randint(1, int(item[player["held item"]]["damage"])) * player_damage_coefficient
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_health -= player_damage

@@ -113,6 +113,43 @@ def protection_effect(effect_data, player):
     player["active effects"][effect_uuid] = effect_dictionary
 
 
+def strength_effect(effect_data, player):
+    # Generate a UUID for that new
+    # effect
+    effect_uuid = str(uuid_handling.generate_random_uuid())
+
+    # Create the effect dictionary that will
+    # be added to the player save data and then
+    # handled by the main.py function
+
+    effects = {}
+
+    # Create the applied effects dictionary
+    damage_coefficient = 1
+    critical_hit_chance_coefficient = 1
+    if effect_data["strength change"] is not None:
+        if "damage coefficient" in list(effect_data["strength change"]):
+            damage_coefficient = effect_data["strength change"]["damage coefficient"]
+        if "critical hit chance coefficient" in list(effect_data["strength change"]):
+            critical_hit_chance_coefficient = effect_data["strength change"]["critical hit chance coefficient"]
+
+    effects = {
+        "damage coefficient": damage_coefficient,
+        "critical hit chance coefficient": critical_hit_chance_coefficient
+    }
+
+    effect_dictionary = {
+        "effect duration": effect_data["effect time"],
+        "effect starting time": player["elapsed time game days"],
+        "type": effect_data["type"],
+        "effects": effects
+    }
+
+    # Add the effect dictionary to the player
+    # active effects dictionary
+    player["active effects"][effect_uuid] = effect_dictionary
+
+
 def consume_consumable(item_data, consumable_name, player):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
@@ -153,6 +190,8 @@ def consume_consumable(item_data, consumable_name, player):
                     healing_effect(current_effect_data, player)
                 elif current_effect_type == "protection":
                     protection_effect(current_effect_data, player)
+                elif current_effect_type == "strength":
+                    strength_effect(current_effect_data, player)
 
                 count += 1
 
@@ -190,18 +229,49 @@ def print_consumable_effects(current_effect_type, current_effect_data):
                 print(f"     max health + {COLOR_BLUE}{max_health_changes}{COLOR_RESET_ALL}")
             else:
                 print(f"     max health + {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}",)
+        else:
+            print("     NONE")
 
     elif current_effect_type == 'protection':
         duration_time = current_effect_data["effect time"]
         print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        print(f"   Protection Changes:")
         if current_effect_data["protection change"] is not None:
-            print(f"   Protection Changes:")
             if "coefficient" in list(current_effect_data["protection change"]):
                 coefficient = str(round((current_effect_data["protection change"]["coefficient"] - 1 )* 100)) + "%"
                 if current_effect_data["protection change"]["coefficient"] >= 1:
                     print(f"     protection {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
                 else:
                     print(f"     protection {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
+            else:
+                print("     NONE")
+        else:
+            print("     NONE")
+
+    elif current_effect_type == 'strength':
+        duration_time = current_effect_data["effect time"]
+        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        print(f"   Strength Changes:")
+        if current_effect_data["strength change"] is not None:
+            nothing = False
+            if (
+                "damage coefficient" not in list(current_effect_data["strength change"]) or
+                "critical hit chance coefficient" not in list(current_effect_data["strength change"])
+            ):
+                nothing = True
+            if not nothing:
+                if "damage coefficient" in list(current_effect_data["strength change"]):
+                    damage_coefficient = str(round((current_effect_data["strength change"]["damage coefficient"] - 1 )* 100)) + "%"
+                    if current_effect_data["strength change"]["damage coefficient"] >= 1:
+                        print(f"     global damage {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
+                    else:
+                        print(f"     global damage {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
+                if "critical hit chance coefficient" in list(current_effect_data["strength change"]):
+                    damage_coefficient = str(round((current_effect_data["strength change"]["critical hit chance coefficient"] - 1 )* 100)) + "%"
+                    if current_effect_data["strength change"]["critical hit chance coefficient"] >= 1:
+                        print(f"     critical hit chance {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
+                    else:
+                        print(f"     critical hit chance {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
             else:
                 print("     NONE")
 

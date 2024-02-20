@@ -292,5 +292,13 @@ def temporary_git_file_download(selected_file):
     return file_text_data
 
 
+def open_file(file_path):
+    try:
+        editor = os.environ['EDITOR']
+    except KeyError:
+        editor = 'nano'
+    subprocess.call([editor, file_path])
+
+
 # deinitialize colorama
 deinit()
