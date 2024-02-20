@@ -10,17 +10,21 @@ init()
 def dialog_action(player):
     print(" ")
     text_handling.print_separator("=")
-    how_many_exp = float(input("How many exp would you like to spend?\n"))
-    # Here we consider that the player will enter a correct input`, because this is an example
+    how_many_exp = input("How many exp would you like to spend?\n")
+    # Check if the player entered a number
+    if how_many_exp.isnumerical():
+        how_many_exp = float(how_many_exp)
 
-    # First, check that the player has the experience that he said, then
-    # if the player has enough experience, we
-    if float(player["xp"]) < how_many_exp:
-        print(COLOR_YELLOW + "You don't have enough experience for this action!" + COLOR_RESET_ALL)
+        # First, check that the player has the experience that he said, then
+        # if the player has enough experience, we
+        if player["xp"] < how_many_exp:
+            print(COLOR_YELLOW + "You don't have enough experience for this action!" + COLOR_RESET_ALL)
+        else:
+            player["xp"] -= how_many_exp
+            health_regeneration = round(how_many_exp / round(random.uniform(2.8, 4.3), 2))
+            player["health"] += health_regeneration
     else:
-        player["xp"] -= how_many_exp
-        health_regeneration = round(how_many_exp / round(random.uniform(2.8, 4.3), 2))
-        player["health"] += health_regeneration
+        print("Please enter a number")
 
     text_handling.print_separator("=")
 
