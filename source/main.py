@@ -24,6 +24,7 @@ import subprocess
 import git
 import readline
 import traceback
+import tempfile
 import appdirs
 import shutil
 import logger_sys
@@ -1062,7 +1063,7 @@ def run(play):
                 effect_over = False
                 # Run the actions for every effect type
                 if current_effect["type"] == 'healing':
-                    # Check if the effect duration is over
+                    # Check if the effect duration's over
                     if (
                         (
                             current_effect["effect duration"] + current_effect["effect starting time"]
@@ -1086,6 +1087,21 @@ def run(play):
                             player["health"] += current_effect["effects"]["health changes"]
                         player["max health"] += current_effect["effects"]["max health changes"]
                         player["active effects"][i]["already applied"] = True
+                elif current_effect["type"] == 'protection':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        player["armor protection"] = player["armor protection"] * current_effect["effects"]["protection coefficient"]
 
         # UI Printing
 
@@ -2078,13 +2094,13 @@ def run(play):
             logger_sys.log_message(f"INFO: Printing player armor protection, agility and critical hit chance stats")
             print(
                 "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                str(player["armor protection"] * 10) + COLOR_RESET_ALL + COLOR_RED +
+                str(round(player["armor protection"], 2)) + COLOR_RESET_ALL + COLOR_RED +
                 COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                 "More it's higher, the less you'll take damages in fights" + COLOR_RED +
                 COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
             print(
-                "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["agility"] * 100) +
+                "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(round(player["agility"], 2)) +
                 COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" +
                 COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -2158,7 +2174,7 @@ def run(play):
                     print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print(
                         "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                        str(item[which_item]["armor protection"] * 10) + COLOR_RESET_ALL
+                        str(round(item[which_item]["armor protection"], 2)) + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Metal":
                     text = (
@@ -2491,9 +2507,31 @@ def run(play):
             continued_command = True
         elif command.lower().startswith('$player$data$'):
             logger_sys.log_message("INFO: Displaying player data in a pager mode")
-            to_display = str(yaml.dump(player))
-            os.system('clear')
-            pydoc.pager(to_display)
+            choice = term_menu.show_menu(['Check', 'Edit'], length=12)
+            player_data = str(yaml.dump(player))
+            if choice == 'Check':
+                to_display = player_data
+                os.system('clear')
+                pydoc.pager(to_display)
+            else:
+                temporary_dir = tempfile.mkdtemp()
+                temporary_file = temporary_dir + '/$player$data$.temp'
+
+                # Create a file with the dumped
+                # player data in it, then open
+                # it with a text editor
+                with open(temporary_file, 'w') as f:
+                    f.write(player_data)
+                try:
+                    editor = os.environ['EDITOR']
+                except KeyError:
+                    editor = 'nano'
+                subprocess.call([editor, temporary_file])
+
+                # Get the file data and write it into
+                # the 'player' dictionary variable
+                with open(temporary_file, 'r') as f:
+                    player = yaml.safe_load(f)
             continued_command = True
         else:
             continued_utility = False
