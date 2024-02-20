@@ -12,7 +12,7 @@ def dialog_action(player):
     text_handling.print_separator("=")
     how_many_exp = input("How many exp would you like to spend?\n")
     # Check if the player entered a number
-    if how_many_exp.isnumerical():
+    if how_many_exp.isnumeric():
         how_many_exp = float(how_many_exp)
 
         # First, check that the player has the experience that he said, then
