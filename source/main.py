@@ -440,7 +440,7 @@ while menu:
                 os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
                 os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
     elif choice == 'Preferences':
-        logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml' with {editor}")
+        logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml'")
         logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
         data_handling.open_file(program_dir + "/preferences.yaml")
         with open(program_dir + '/preferences.yaml') as f:

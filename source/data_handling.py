@@ -297,6 +297,7 @@ def open_file(file_path):
         editor = os.environ['EDITOR']
     except KeyError:
         editor = 'nano'
+    logger_sys.log_message(f"INFO: Editing file '{file_path}' with editor '{editor}'")
     subprocess.call([editor, file_path])
 
 
