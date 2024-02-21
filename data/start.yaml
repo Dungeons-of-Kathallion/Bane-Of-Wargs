@@ -27,6 +27,7 @@ mounts:
 start dialog:
   dialog: Start Dialog
   heard start dialog: False
+active effects: {}
 heard dialogs:
 - None
 used keys:
@@ -50,7 +51,6 @@ inventory:
 - Raw Wood
 - Raw Wood
 max health: 40
-active effects: {}
 x: -61
 xp: 0
 y: 57
