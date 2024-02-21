@@ -34,6 +34,19 @@ def get_healing_effect_changes(effect_data):
     return health_changes, max_health_changes
 
 
+def get_exp_changes_effect_changes(effect_data):
+    exp_changes = 0
+
+    if "augmentation" in list(effect_data["exp change"]):
+        augmentation = effect_data["exp change"]["augmentation"]
+        exp_changes += augmentation
+    if "diminution" in list(effect_data["exp change"]):
+        diminution = effect_data["exp change"]["diminution"]
+        exp_changes -= diminution
+
+    return exp_changes
+
+
 def healing_effect(effect_data, player):
     # Generate a UUID for that new
     # effect
@@ -250,6 +263,11 @@ def enemy_spawning_effect(
     )
 
 
+def exp_change_effect(current_effect_data, player):
+    exp_changes = get_exp_changes_effect_changes(current_effect_data)
+    player["xp"] += exp_changes
+
+
 def consume_consumable(
     item_data, consumable_name, player,
     dialog, preferences, text_replacements_generic,
@@ -312,6 +330,8 @@ def consume_consumable(
                         start_player, preferences, drinks, npcs, zone, mounts, mission,
                         dialog, player_damage_coefficient, text_replacements_generic
                     )
+                elif current_effect_type == "exp change":
+                    exp_change_effect(current_effect_data, player)
 
                 count += 1
 
@@ -337,18 +357,18 @@ def print_consumable_effects(current_effect_type, current_effect_data):
             if health_changes >= 999:
                 print(f"     health -> {COLOR_MAGENTA}MAX HEALTH{COLOR_RESET_ALL}")
             elif health_changes > 0:
-                print(f"     health + {COLOR_GREEN}{health_changes}{COLOR_RESET_ALL}")
+                print(f"     health {COLOR_GREEN}+{health_changes}{COLOR_RESET_ALL}")
             elif health_changes == 0:
-                print(f"     health + {COLOR_BLUE}{health_changes}{COLOR_RESET_ALL}")
+                print(f"     health {COLOR_BLUE}+{health_changes}{COLOR_RESET_ALL}")
             else:
-                print(f"     health + {COLOR_RED}{health_changes}{COLOR_RESET_ALL}")
+                print(f"     health {COLOR_RED}{health_changes}{COLOR_RESET_ALL}")
 
             if max_health_changes > 0:
-                print(f"     max health + {COLOR_GREEN}{max_health_changes}{COLOR_RESET_ALL}")
+                print(f"     max health {COLOR_GREEN}+{max_health_changes}{COLOR_RESET_ALL}")
             elif max_health_changes == 0:
-                print(f"     max health + {COLOR_BLUE}{max_health_changes}{COLOR_RESET_ALL}")
+                print(f"     max health {COLOR_BLUE}+{max_health_changes}{COLOR_RESET_ALL}")
             else:
-                print(f"     max health + {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}",)
+                print(f"     max health {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}",)
         else:
             print("     NONE")
 
@@ -428,6 +448,22 @@ def print_consumable_effects(current_effect_type, current_effect_data):
                     print(f"     time elapsing {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
             else:
                 print("     NONE")
+        else:
+            print("     NONE")
+
+    elif current_effect_type == 'exp change':
+        if current_effect_data["exp change"] is not None:
+            print(f"   EXP Changes: ")
+
+            exp_changes = get_exp_changes_effect_changes(current_effect_data)
+
+            if exp_changes > 0:
+                print(f"     EXP {COLOR_GREEN}+{exp_changes}{COLOR_RESET_ALL}")
+            elif exp_changes == 0:
+                print(f"     EXP {COLOR_BLUE}+{exp_changes}{COLOR_RESET_ALL}")
+            else:
+                print(f"     EXP {COLOR_RED}{exp_changes}{COLOR_RESET_ALL}")
+
         else:
             print("     NONE")
 
