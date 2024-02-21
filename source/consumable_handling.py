@@ -2,6 +2,7 @@ import logger_sys
 import uuid_handling
 import dialog_handling
 import text_handling
+import enemy_handling
 import colors
 from colorama import Fore, Back, Style, init, deinit
 from colors import *
@@ -235,7 +236,27 @@ def dialog_displaying_effect(current_effect_data, player, dialog, preferences, t
     print("")
 
 
-def consume_consumable(item_data, consumable_name, player, dialog, preferences, text_replacements_generic, drinks):
+def enemy_spawning_effect(
+    current_effect_data, player, lists, map_location, enemy, item,
+    start_player, preferences, drinks, npcs, zone, mounts, mission,
+    dialog, player_damage_coefficient, text_replacements_generic
+):
+    enemy_list = lists[current_effect_data["enemy list"]]
+    enemies_number = current_effect_data["enemies number"]
+    enemy_handling.spawn_enemy(
+    map_location, enemy_list, enemies_number, enemy, item, lists, start_player, map, player,
+    preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+    text_replacements_generic
+    )
+
+
+def consume_consumable(
+    item_data, consumable_name, player,
+    dialog, preferences, text_replacements_generic,
+    lists, map_location, enemy, item, drinks,
+    start_player, npcs, zone,
+    mounts, mission, player_damage_coefficient
+):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
     # from the player's inventory
@@ -285,6 +306,12 @@ def consume_consumable(item_data, consumable_name, player, dialog, preferences, 
                     attributes_addition_effect(current_effect_data, player)
                 elif current_effect_type == "dialog displaying":
                     dialog_displaying_effect(current_effect_data, player, dialog, preferences, text_replacements_generic, drinks)
+                elif current_effect_type == "enemy spawning":
+                    enemy_spawning_effect(
+                        current_effect_data, player, lists, map_location, enemy, item,
+                        start_player, preferences, drinks, npcs, zone, mounts, mission,
+                        dialog, player_damage_coefficient, text_replacements_generic
+                    )
 
                 count += 1
 

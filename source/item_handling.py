@@ -10,7 +10,8 @@ import consumable_handling
 def use_item(
     which_item, item_data, player, preferences, drinks,
     enemy, npcs, start_player, lists, zone, dialog, mission,
-    mounts, text_replacements_generic
+    mounts, text_replacements_generic, item, map_location,
+    player_damage_coefficient
 ):
     # Load the global items data and load the
     # chosen item data and stores it to a variable
@@ -19,7 +20,11 @@ def use_item(
     which_item_type = which_item_data["type"]
     if which_item_type == "Consumable" or which_item_type == "Food":
         consumable_handling.consume_consumable(
-            item_data, which_item, player, dialog, preferences, text_replacements_generic, drinks
+            item, which_item, player,
+            dialog, preferences, text_replacements_generic,
+            lists, map_location, enemy, item, drinks,
+            start_player, npcs, zone,
+            mounts, mission, player_damage_coefficient
         )
         logger_sys.log_message(f"INFO: Item '{which_item}' is an item of type '{which_item_type}' --> consuming it")
     elif (

@@ -208,7 +208,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
 def encounter_text_show(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
-    start_player, dialog, text_replacements_generic
+    start_player, dialog, text_replacements_generic, player_damage_coefficient
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -299,8 +299,10 @@ def encounter_text_show(
         # use item
         if item_input in player["inventory"]:
             item_handling.use_item(
-                item_input, item, player, preferences, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts, text_replacements_generic
+                item_input, item, player, preferences, drinks,
+                enemy, npcs, start_player, lists, zone, dialog, mission,
+                mounts, text_replacements_generic, item, map_location,
+                player_damage_coefficient
             )
             text = '='
             text_handling.print_separator(text)

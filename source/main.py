@@ -2302,7 +2302,11 @@ def run(play):
                     item_handling.equip_item(which_item, player, item[which_item]["type"])
                 elif choice == 'Consume':
                     consumable_handling.consume_consumable(
-                        item, which_item, player, dialog, preferences, text_replacements_generic, drinks
+                        item, which_item, player,
+                        dialog, preferences, text_replacements_generic,
+                        lists, map_location, enemy, item, drinks,
+                        start_player, npcs, zone,
+                        mounts, mission, player_damage_coefficient
                     )
                 elif choice == 'Get Rid':
                     text = (
