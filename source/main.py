@@ -1129,6 +1129,23 @@ def run(play):
                         # = keep the greater one
                         if not player_damage_coefficient > current_effect["effects"]["damage coefficient"]:
                             player_damage_coefficient = current_effect["effects"]["damage coefficient"]
+                elif current_effect["type"] == 'agility':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        player["agility"] = player["agility"] * current_effect[
+                            "effects"
+                        ]["agility coefficient"]
 
         # UI Printing
 
