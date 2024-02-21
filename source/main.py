@@ -1499,7 +1499,8 @@ def run(play):
                             enemy_handling.spawn_enemy(
                                 map_location, lists[str(current_enemy_data["enemy category"])],
                                 current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
-                                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
+                                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                                text_replacements_generic
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1516,7 +1517,8 @@ def run(play):
             enemy_handling.spawn_enemy(
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
                 map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic
             )
 
         elif (
@@ -1539,7 +1541,8 @@ def run(play):
             enemy_handling.spawn_enemy(
                 map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
@@ -2298,7 +2301,7 @@ def run(play):
                 if choice == 'Equip':
                     item_handling.equip_item(which_item, player, item[which_item]["type"])
                 elif choice == 'Consume':
-                    consumable_handling.consume_consumable(item, which_item, player)
+                    consumable_handling.consume_consumable(item, which_item, player, dialog, preferences, text_replacements_generic, drinks)
                 elif choice == 'Get Rid':
                     text = (
                         "You won't be able to get this item back if you " +

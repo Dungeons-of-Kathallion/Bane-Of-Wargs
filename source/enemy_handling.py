@@ -16,7 +16,8 @@ init()
 
 def spawn_enemy(
     map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player,
-    preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient
+    preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+    text_replacements_generic
 ):
     enemies_remaining = enemy_number
     already_encountered = False
@@ -45,7 +46,8 @@ def spawn_enemy(
             logger_sys.log_message("INFO: Display enemy encounter text")
             battle.encounter_text_show(
                 player, item, enemy, map, map_location, enemies_remaining, lists,
-                defeat_percentage, preferences, drinks, npcs, zone, mounts, mission, start_player, dialog
+                defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
+                start_player, dialog, text_replacements_generic
             )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")

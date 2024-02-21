@@ -1,5 +1,7 @@
 import logger_sys
 import uuid_handling
+import dialog_handling
+import text_handling
 import colors
 from colorama import Fore, Back, Style, init, deinit
 from colors import *
@@ -225,7 +227,15 @@ def attributes_addition_effect(current_effect_data, player):
             player["attributes"] += [i]
 
 
-def consume_consumable(item_data, consumable_name, player):
+def dialog_displaying_effect(current_effect_data, player, dialog, preferences, text_replacements_generic, drinks):
+    print("")
+    text_handling.print_separator("=")
+    dialog_handling.print_dialog(current_effect_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
+    text_handling.print_separator("=")
+    print("")
+
+
+def consume_consumable(item_data, consumable_name, player, dialog, preferences, text_replacements_generic, drinks):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
     # from the player's inventory
@@ -273,6 +283,8 @@ def consume_consumable(item_data, consumable_name, player):
                     time_elapsing_effect(current_effect_data, player)
                 elif current_effect_type == "attributes addition":
                     attributes_addition_effect(current_effect_data, player)
+                elif current_effect_type == "dialog displaying":
+                    dialog_displaying_effect(current_effect_data, player, dialog, preferences, text_replacements_generic, drinks)
 
                 count += 1
 
