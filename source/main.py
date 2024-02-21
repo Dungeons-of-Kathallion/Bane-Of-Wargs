@@ -1821,7 +1821,9 @@ def run(play):
                             weapon_orders_len = len(weapon_orders)
                             while count < weapon_orders_len:
                                 current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
-                                global_current_weapon_materials = weapon_upgrade_handling.detect_weapon_next_upgrade_items(current_weapon, item)
+                                global_current_weapon_materials = (
+                                    weapon_upgrade_handling.detect_weapon_next_upgrade_items(current_weapon, item)
+                                )
                                 print(
                                     " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +

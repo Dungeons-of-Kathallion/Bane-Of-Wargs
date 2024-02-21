@@ -247,7 +247,7 @@ def load_game_data(which_type, what_plugin=None):
                 requirements_file = program_dir + '/plugins/' + what_plugin + "/requirements.txt"
                 if sys.executable.endswith('python'):
                     retcode = subprocess.check_call(
-                        [sys.executable, "-m", "pip", "install", "-r", requirements_file], 
+                        [sys.executable, "-m", "pip", "install", "-r", requirements_file],
                         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
                     )
             except Exception as error:
