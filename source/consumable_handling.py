@@ -183,6 +183,39 @@ def agility_effect(effect_data, player):
     player["active effects"][effect_uuid] = effect_dictionary
 
 
+def time_elapsing_effect(effect_data, player):
+    # Generate a UUID for that new
+    # effect
+    effect_uuid = str(uuid_handling.generate_random_uuid())
+
+    # Create the effect dictionary that will
+    # be added to the player save data and then
+    # handled by the main.py function
+
+    effects = {}
+
+    # Create the applied effects dictionary
+    if "coefficient" in list(effect_data["time change"]):
+        time_elapsing_coefficient = effect_data["time change"]["coefficient"]
+    else:
+        time_elapsing_coefficient = 1
+
+    effects = {
+        "time elapsing coefficient": time_elapsing_coefficient
+    }
+
+    effect_dictionary = {
+        "effect duration": effect_data["effect time"],
+        "effect starting time": player["elapsed time game days"],
+        "type": effect_data["type"],
+        "effects": effects
+    }
+
+    # Add the effect dictionary to the player
+    # active effects dictionary
+    player["active effects"][effect_uuid] = effect_dictionary
+
+
 def consume_consumable(item_data, consumable_name, player):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
@@ -227,6 +260,8 @@ def consume_consumable(item_data, consumable_name, player):
                     strength_effect(current_effect_data, player)
                 elif current_effect_type == "agility":
                     agility_effect(current_effect_data, player)
+                elif current_effect_type == "time elapsing":
+                    time_elapsing_effect(current_effect_data, player)
 
                 count += 1
 
@@ -325,6 +360,22 @@ def print_consumable_effects(current_effect_type, current_effect_data):
                     print(f"     agility {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
                 else:
                     print(f"     agility {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
+            else:
+                print("     NONE")
+        else:
+            print("     NONE")
+
+    elif current_effect_type == 'time elapsing':
+        duration_time = current_effect_data["effect time"]
+        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        print(f"   Time Changes:")
+        if current_effect_data["time change"] is not None:
+            if "coefficient" in list(current_effect_data["time change"]):
+                coefficient = str(round((current_effect_data["time change"]["coefficient"] - 1) * 100)) + "%"
+                if current_effect_data["time change"]["coefficient"] >= 1:
+                    print(f"     time elapsing {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
+                else:
+                    print(f"     time elapsing {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
             else:
                 print("     NONE")
         else:

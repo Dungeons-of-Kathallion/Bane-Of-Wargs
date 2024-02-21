@@ -13,7 +13,7 @@ from colorama import Fore, Back, Style, init, deinit
 init()
 
 
-def training_loop(mount_uuid, player, item, mounts, stable):
+def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coefficient):
     still_training = True
     current_mount_type = str(player["mounts"][str(mount_uuid)]["mount"])
     current_mount_feeds = mounts[current_mount_type]["feed"]["food"]
@@ -86,7 +86,7 @@ def training_loop(mount_uuid, player, item, mounts, stable):
             # calculate elapsed time
             elapsed_time = end_time - start_time
             elapsed_time = round(elapsed_time, 2)
-            game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time)
+            game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
             game_elapsed_time = round(game_elapsed_time, 2)
             player["gold"] -= stable["training gold"] * game_elapsed_time
         else:

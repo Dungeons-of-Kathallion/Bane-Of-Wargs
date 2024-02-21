@@ -30,8 +30,8 @@ def get_day_time(game_days):
     return day_time
 
 
-def return_game_day_from_seconds(seconds):
-    game_days = seconds * COEFFICIENT  # 180 seconds irl = .25 days in-game
+def return_game_day_from_seconds(seconds, time_elapsing_coefficient):
+    game_days = seconds * COEFFICIENT * time_elapsing_coefficient  # 180 seconds irl = .25 days in-game
 
     return game_days
 

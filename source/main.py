@@ -1053,8 +1053,9 @@ def run(play):
         # If the player has any active effects, load
         # them one by one and update them depending
         # on their dictionary content and type
-        global player_damage_coefficient
+        global player_damage_coefficient, time_elapsing_coefficient
         player_damage_coefficient = 1
+        time_elapsing_coefficient = 1
         if player["held item"] != " ":
             player["critical hit chance"] = item[player["held item"]]["critical hit chance"]
         else:
@@ -1146,6 +1147,29 @@ def run(play):
                         player["agility"] = player["agility"] * current_effect[
                             "effects"
                         ]["agility coefficient"]
+                elif current_effect["type"] == 'time elapsing':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        # If the player already has an effect that changes
+                        # the damage coefficient, make so that the global
+                        # coefficient gets added that effect coefficient
+                        if time_elapsing_coefficient != 1:
+                            time_elapsing_coefficient = (
+                                time_elapsing_coefficient * current_effect["effects"]["time elapsing coefficient"]
+                            )
+                        else:
+                            time_elapsing_coefficient = current_effect["effects"]["time elapsing coefficient"]
 
         # UI Printing
 
@@ -2317,7 +2341,9 @@ def run(play):
             if zone[map_zone]["type"] == "hostel":
                 zone_handling.interaction_hostel(map_zone, zone, player, drinks, item)
             elif zone[map_zone]["type"] == "stable":
-                zone_handling.interaction_stable(map_zone, zone, player, item, drinks, mounts, map_location, preferences)
+                zone_handling.interaction_stable(
+                    map_zone, zone, player, item, drinks, mounts, map_location, preferences, time_elapsing_coefficient
+                )
             elif zone[map_zone]["type"] == "blacksmith":
                 zone_handling.interaction_blacksmith(map_zone, zone, item, player)
             elif zone[map_zone]["type"] == "forge":
@@ -2585,7 +2611,7 @@ def run(play):
         elapsed_time = round(elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time: '{elapsed_time}'")
 
-        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time)
+        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
         game_elapsed_time = round(game_elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time in game days: '{game_elapsed_time}'")
 
