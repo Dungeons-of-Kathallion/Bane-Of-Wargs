@@ -18,7 +18,9 @@ def use_item(
     which_item_data = item_data[which_item]
     which_item_type = which_item_data["type"]
     if which_item_type == "Consumable" or which_item_type == "Food":
-        consumable_handling.consume_consumable(item_data, which_item, player, dialog, preferences, text_replacements_generic, drinks)
+        consumable_handling.consume_consumable(
+            item_data, which_item, player, dialog, preferences, text_replacements_generic, drinks
+        )
         logger_sys.log_message(f"INFO: Item '{which_item}' is an item of type '{which_item_type}' --> consuming it")
     elif (
         which_item_type == "Weapon" or which_item_type.lower().startswith("Armor Piece: ")

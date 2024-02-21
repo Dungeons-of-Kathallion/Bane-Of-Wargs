@@ -2301,7 +2301,9 @@ def run(play):
                 if choice == 'Equip':
                     item_handling.equip_item(which_item, player, item[which_item]["type"])
                 elif choice == 'Consume':
-                    consumable_handling.consume_consumable(item, which_item, player, dialog, preferences, text_replacements_generic, drinks)
+                    consumable_handling.consume_consumable(
+                        item, which_item, player, dialog, preferences, text_replacements_generic, drinks
+                    )
                 elif choice == 'Get Rid':
                     text = (
                         "You won't be able to get this item back if you " +
