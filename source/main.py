@@ -2249,6 +2249,13 @@ def run(play):
                         healing_level + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Consumable":
+                    invisible_effects = [      # some effects are invisible,
+                        'attributes addition', # because they're non 'physic'
+                        'dialog displaying',   # effects
+                        'enemy spawning',
+                        'coordinate change',
+                        'inventory change'
+                    ]
                     print("")
                     print("EFFECTS:")
                     logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
@@ -2257,9 +2264,10 @@ def run(play):
                         for effect in item[which_item]["effects"]:
                             current_effect_data = item[which_item]["effects"][count]
                             current_effect_type = current_effect_data["type"]
-                            print(" -Effect " + str(count + 1) + ": {")
-                            consumable_handling.print_consumable_effects(current_effect_type, current_effect_data)
-                            print("}")
+                            if current_effect_type not in invisible_effects:
+                                print(" -Effect " + str(count + 1) + ": {")
+                                consumable_handling.print_consumable_effects(current_effect_type, current_effect_data)
+                                print("}")
 
                             count += 1
                     else:

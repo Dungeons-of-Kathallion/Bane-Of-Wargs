@@ -216,6 +216,15 @@ def time_elapsing_effect(effect_data, player):
     player["active effects"][effect_uuid] = effect_dictionary
 
 
+def attributes_addition_effect(current_effect_data, player):
+    # Check if there're effects to add, and
+    # if yes, add them one by one
+
+    if "attributes addition" in list(current_effect_data):
+        for i in current_effect_data["attributes addition"]:
+            player["attributes"] += [i]
+
+
 def consume_consumable(item_data, consumable_name, player):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
@@ -262,6 +271,8 @@ def consume_consumable(item_data, consumable_name, player):
                     agility_effect(current_effect_data, player)
                 elif current_effect_type == "time elapsing":
                     time_elapsing_effect(current_effect_data, player)
+                elif current_effect_type == "attributes addition":
+                    attributes_addition_effect(current_effect_data, player)
 
                 count += 1
 
