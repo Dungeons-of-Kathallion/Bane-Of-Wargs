@@ -2249,9 +2249,12 @@ def run(play):
                         healing_level + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Consumable":
-                    invisible_effects = [       # some effects are invisible,
-                        'attributes addition',  # because they're non 'physic'
-                        'dialog displaying',    # effects
+                    # some effects are not displayed in the consumable
+                    # info because they're 'non-physic' effects, they're
+                    # invisible
+                    invisible_effects = [
+                        'attributes addition',
+                        'dialog displaying',
                         'enemy spawning',
                         'coordinate change',
                         'inventory change'
