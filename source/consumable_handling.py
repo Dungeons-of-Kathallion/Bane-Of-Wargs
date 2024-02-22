@@ -268,6 +268,13 @@ def exp_change_effect(current_effect_data, player):
     player["xp"] += exp_changes
 
 
+def coordinates_change_effect(current_effect_data, player):
+    if "x" in list(current_effect_data["coordinates change"]):
+        player["x"] = current_effect_data["coordinates change"]["x"]
+    if "y" in list(current_effect_data["coordinates change"]):
+        player["y"] = current_effect_data["coordinates change"]["y"]
+
+
 def consume_consumable(
     item_data, consumable_name, player,
     dialog, preferences, text_replacements_generic,
@@ -332,6 +339,8 @@ def consume_consumable(
                     )
                 elif current_effect_type == "exp change":
                     exp_change_effect(current_effect_data, player)
+                elif current_effect_type == "coordinates change":
+                    coordinates_change_effect(current_effect_data, player)
 
                 count += 1
 
