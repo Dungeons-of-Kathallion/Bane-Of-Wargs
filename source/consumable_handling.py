@@ -275,6 +275,15 @@ def coordinates_change_effect(current_effect_data, player):
         player["y"] = current_effect_data["coordinates change"]["y"]
 
 
+def inventory_change_effect(current_effect_data, player):
+    if "removals" in list(current_effect_data["inventory change"]):
+        for i in current_effect_data["inventory change"]["removals"]:
+            player["inventory"].remove(i)
+    if "additions" in list(current_effect_data["inventory change"]):
+        for i in current_effect_data["inventory change"]["additions"]:
+            player["inventory"].append(i)
+
+
 def consume_consumable(
     item_data, consumable_name, player,
     dialog, preferences, text_replacements_generic,
@@ -341,6 +350,8 @@ def consume_consumable(
                     exp_change_effect(current_effect_data, player)
                 elif current_effect_type == "coordinates change":
                     coordinates_change_effect(current_effect_data, player)
+                elif current_effect_type == "inventory change":
+                    inventory_change_effect(current_effect_data, player)
 
                 count += 1
 
