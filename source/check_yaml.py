@@ -408,9 +408,9 @@ def consumable_effect_output_error(message):
 def check_if_is_a_number(variable_to_test):
     is_int = True
     is_float = True
-    if type(variable_to_test) != type(0):
+    if type(variable_to_test) is not type(0):
         is_int = False
-    elif type(variable_to_test) != type(.1):
+    elif type(variable_to_test) is not type(.1):
         is_float = False
 
     if is_int or is_float:
@@ -464,7 +464,9 @@ def consumable_run_test(data, effect_type):
                     consumable_effect_output_error("'damage coefficient' key should be an integer or floating number")
             if "critical hit chance coefficient" in data["strength change"]:
                 if not check_if_is_a_number(data["strength change"]["critical hit chance coefficient"]):
-                    consumable_effect_output_error("'critical hit chance coefficient' key should be an integer or floating number")
+                    consumable_effect_output_error(
+                        "'critical hit chance coefficient' key should be an integer or floating number"
+                    )
     elif effect_type == "agility":
         if "effect time" in data:
             if not check_if_is_a_number(data["effect time"]):
@@ -489,7 +491,7 @@ def consumable_run_test(data, effect_type):
         if "attributes addition" not in data:
             consumable_effect_output_error("missing required 'attributes addition' key list")
         else:
-            if type(['1']) != type(data["attributes addition"]):
+            if type(['1']) is not type(data["attributes addition"]):
                 consumable_effect_output_error("key 'attributes addition' should be a list")
     elif effect_type == "dialog displaying":
         if "dialog" not in data:
@@ -526,10 +528,10 @@ def consumable_run_test(data, effect_type):
             consumable_effect_output_error("missing required 'inventory change' dictionary")
         if data["inventory change"] is not None:
             if "removals" in data["inventory change"]:
-                if type(['1']) != type(data["inventory change"]["removals"]):
+                if type(['1']) is not type(data["inventory change"]["removals"]):
                     consumable_effect_output_error("'removals' key should be a list")
             if "additions" in data["inventory change"]:
-                if type(['1']) != type(data["inventory change"]["additions"]):
+                if type(['1']) is not type(data["inventory change"]["additions"]):
                     consumable_effect_output_error("'x' key should be a list")
 
 
@@ -548,8 +550,8 @@ def examine_consumable(data):
             count += 1
     except Exception as error:
         print(
-        COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
-        "An error happened when examining item:\n" + COLOR_RESET_ALL + str(data)
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "An error happened when examining item:\n" + COLOR_RESET_ALL + str(data)
         )
         logger_sys.log_message(f"ERROR: A error happened when examining item:\n{data}")
         text_handling.exit_game()
