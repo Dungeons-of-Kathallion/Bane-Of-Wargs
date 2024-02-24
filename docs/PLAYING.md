@@ -34,10 +34,13 @@ Depending on your operation system or your distribution if you're running a linu
 ![python-installer-windowds](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy_download.png)
 4. If you’re just getting started with Python and you want to install it with default features as described in the dialog, then click **Install Now**. To install other optional and advanced features, click **Customize installation** and continue.
 5. The **Optional Feature** include common tools and resources for Python and you can install all of them, even if you don't plan using them. You'll need to check the `pip` box since this program uses external Python modules/libraries. Other boxes are just optional for this program.
+
 ![python-optional-features-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-optional.png)
+
 6. Click **Next**.
 7. The **Advanced Options** dialog displays.
-    ![python-advanced-options-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-advanced.png)
+
+![python-advanced-options-windows](https://deved-images.nyc3.cdn.digitaloceanspaces.com/CONTINT-1526%2Fpy-installer-advanced.png)
 
 * **Install for all users**: recommended if you’re not the only user on this computer.
 * **Associate files with Python**: recommended, because this option associates all the Python file types with the launcher or editor.
