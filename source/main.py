@@ -1464,7 +1464,7 @@ def run(play):
                                 map_location, lists[str(current_enemy_data["enemy category"])],
                                 current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
                                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                                text_replacements_generic
+                                text_replacements_generic, start_time
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1482,7 +1482,7 @@ def run(play):
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
                 map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic
+                text_replacements_generic, start_time
             )
 
         elif (
@@ -1506,7 +1506,7 @@ def run(play):
                 map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic
+                text_replacements_generic, start_time
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
