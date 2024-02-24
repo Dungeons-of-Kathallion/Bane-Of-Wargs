@@ -18,6 +18,8 @@ def show_menu(options, length=52):
     count = 0
     while count < choice_number:
         number_of_spaces_remaining = (length - 2) - (2 + len(list(str(options[count]))))
+        if len(str(count)) > 1:
+            number_of_spaces_remaining -= 1
         print(
             "│ " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(count) +
             '> ' + COLOR_RESET_ALL + str(options[count]) + int(number_of_spaces_remaining) * ' ' + '│'
