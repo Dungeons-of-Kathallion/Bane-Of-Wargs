@@ -112,7 +112,8 @@ def detect_weapon_next_upgrade_items(item_name, item):
     # convert list to string and
     # format the string to look better
 
-    weapon_next_upgrade_items = text_handling.multiple_items_in_list_formatting(weapon_next_upgrade_items)
+    if weapon_next_upgrade_name is not None:
+        weapon_next_upgrade_items = text_handling.multiple_items_in_list_formatting(weapon_next_upgrade_items)
     weapon_next_upgrade_items = str(weapon_next_upgrade_items)
     weapon_next_upgrade_items = weapon_next_upgrade_items.replace("'", '')
     weapon_next_upgrade_items = weapon_next_upgrade_items.replace("[", '')

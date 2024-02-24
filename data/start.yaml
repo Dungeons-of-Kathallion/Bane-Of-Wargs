@@ -27,6 +27,7 @@ mounts:
 start dialog:
   dialog: Start Dialog
   heard start dialog: False
+active effects: {}
 heard dialogs:
 - None
 used keys:

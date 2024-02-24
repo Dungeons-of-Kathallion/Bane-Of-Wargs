@@ -131,6 +131,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 augmentation = actions["health modification"]["augmentation"]
                 if augmentation.replace('$', '') in list(new_text_replacements):
                     augmentation = new_text_replacements[augmentation.replace('$', '')]
+                if augmentation >= 999:
+                    augmentation = player["max health"]
                 player["health"] += augmentation
             if "max health" in actions["health modification"]:
                 if "diminution" in actions["health modification"]["max health"]:

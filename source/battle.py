@@ -6,6 +6,7 @@ import time
 import term_menu
 import text_handling
 import script_handling
+import item_handling
 from colors import *
 from colorama import Fore, Back, Style, init, deinit
 
@@ -18,7 +19,7 @@ turn = True
 fighting = True
 
 
-def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
+def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient):
     # get all stats
     player_hp = player["health"]
     player_agi = player["agility"]
@@ -27,11 +28,11 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
         (
             (
                 item[player["held item"]]["damage"] + 1 + item[player["held item"]]["damage"]
-            ) * item[player["held item"]]["critical hit chance"] * 2.3
+            ) * player["critical hit chance"] * 2.3
         ) / 2, 2
     )
     player_def = item[player["held item"]]["defend"]
-    player_critic_ch = item[player["held item"]]["critical hit chance"]
+    player_critic_ch = player["critical hit chance"]
     player_health_cap = 1   # placeholder
     enemies_number = enemies_remaining
     enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
@@ -51,7 +52,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
 
         selected_item = player_inventory[count]
 
-        if item[selected_item]["type"] == "Food" or item[selected_item]["type"] == "Consumable":
+        if item[selected_item]["type"] == "Food":
             item_health_restoration = item[selected_item]["healing level"]
             item_health_bonus = item[selected_item]["max bonus"]
             if item_health_restoration == 999:
@@ -111,7 +112,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
     player_fake_agility = player["agility"]
     player_fake_armor_protection = player["armor protection"]
     player_fake_agility = player["agility"]
-    player_critical_hit_chance = item[player["held item"]]["critical hit chance"]
+    player_critical_hit_chance = player["critical hit chance"]
     player_fake_defend = item[player["held item"]]["defend"]
     enemy_fake_critical_hit_chance = enemy_critical_chance
     enemy_fake_health = enemy_health * enemies_number
@@ -148,7 +149,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
                     if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(item[player["held item"]]["damage"]))
+                        player_damage = random.randint(1, int(item[player["held item"]]["damage"])) * player_damage_coefficient
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_fake_health -= player_damage
@@ -207,7 +208,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy):
 def encounter_text_show(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
-    start_player, dialog
+    start_player, dialog, text_replacements_generic, player_damage_coefficient
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -297,41 +298,12 @@ def encounter_text_show(
         item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         # use item
         if item_input in player["inventory"]:
-            if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
-                if item[item_input]["healing level"] == 999:
-                    player["health"] = player["max health"]
-                else:
-                    player["health"] += item[item_input]["healing level"]
-                player["max health"] += item[item_input]["max bonus"]
-                player["inventory"].remove(item_input)
-            # hold weapon/armor piece if it is one
-            if item_input in player["inventory"] and item[item_input]["type"] == "Weapon":
-                player["held item"] = item_input
-                print("You are now holding a/an ", player["held item"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Chestplate":
-                player["held chestplate"] = item_input
-                print("You are now wearing a/an ", player["held chestplate"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Leggings":
-                player["held leggings"] = item_input
-                print("You are now wearing a/an ", player["held leggings"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Boots":
-                player["held boots"] = item_input
-                print("You are now wearing a/an ", player["held boots"])
-            elif item_input in player["inventory"] and item[item_input]["type"] == "Armor Piece: Shield":
-                player["held shield"] = item_input
-                print("You are now holding a/an ", player["held shield"])
-            elif item[item_input]["type"] == "Utility":
-                print(" ")
-                if preferences["latest preset"]["type"] == 'plugin':
-                    script_handling.load_script(
-                        item_input, preferences, player, map, item, drinks, enemy, npcs,
-                        start_player, lists, zone, dialog, mission, mounts, plugin=True
-                    )
-                else:
-                    script_handling.load_script(
-                        item_input, preferences, player, map, item, drinks, enemy, npcs,
-                        start_player, lists, zone, dialog, mission, mounts
-                    )
+            item_handling.use_item(
+                item_input, item, player, preferences, drinks,
+                enemy, npcs, start_player, lists, zone, dialog, mission,
+                mounts, text_replacements_generic, item, map_location,
+                player_damage_coefficient
+            )
             text = '='
             text_handling.print_separator(text)
     else:
@@ -368,7 +340,7 @@ def get_enemy_stats(
 
 def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
-    preferences, drinks, npcs, start_player, zone, dialog, mission, mounts
+    preferences, drinks, npcs, start_player, zone, dialog, mission, mounts, player_damage_coefficient
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -381,7 +353,7 @@ def fight(
 
     enemy_max_health = enemy_health
 
-    critical_hit_chance = item[player["held item"]]["critical hit chance"]
+    critical_hit_chance = player["critical hit chance"]
 
     # while the player is still fighting (for run away)
 
@@ -465,7 +437,7 @@ def fight(
                         player_critical_hit = True
                         print("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(item[player["held item"]]["damage"]))
+                        player_damage = random.randint(1, int(item[player["held item"]]["damage"])) * player_damage_coefficient
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_health -= player_damage

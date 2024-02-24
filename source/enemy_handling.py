@@ -16,7 +16,8 @@ init()
 
 def spawn_enemy(
     map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player,
-    preferences, drinks, npcs, zone, mounts, mission, dialog
+    preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+    text_replacements_generic
 ):
     enemies_remaining = enemy_number
     already_encountered = False
@@ -32,7 +33,9 @@ def spawn_enemy(
         logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
         chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
         logger_sys.log_message("INFO: Calculating battle risk for the player")
-        defeat_percentage = battle.calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy)
+        defeat_percentage = battle.calculate_player_risk(
+            player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient
+        )
         logger_sys.log_message("INFO: Getting enemy stats")
         battle.get_enemy_stats(
             player, item, enemy, map, map_location, lists, choose_rand_enemy,
@@ -43,13 +46,15 @@ def spawn_enemy(
             logger_sys.log_message("INFO: Display enemy encounter text")
             battle.encounter_text_show(
                 player, item, enemy, map, map_location, enemies_remaining, lists,
-                defeat_percentage, preferences, drinks, npcs, zone, mounts, mission, start_player, dialog
+                defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
+                start_player, dialog, text_replacements_generic, player_damage_coefficient
             )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")
         battle.fight(
             player, item, enemy, map, map_location, enemies_remaining, lists,
-            preferences, drinks, npcs, start_player, zone, dialog, mission, mounts
+            preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
+            player_damage_coefficient
         )
         enemies_remaining -= 1
 
@@ -82,7 +87,7 @@ def spawn_enemy(
         text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
         logger_sys.log_message("INFO: Player just died")
         text_handling.print_long_string(text)
-        finished = input()
+        input()
         logger_sys.log_message("INFO: Resetting player save")
         player = start_player
         play = 0

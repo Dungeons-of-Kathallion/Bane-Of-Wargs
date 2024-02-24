@@ -162,9 +162,12 @@ def examine_map_point(data):
 def examine_item(data):
     try:
         data_type = data["type"].replace(':', '')
+        data_real = data
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'schemas/items_{data_type}.yaml')
         yamale.validate(schema, data)
+        if data_type == "Consumable":
+            examine_consumable(data_real)
     except Exception as error:
         print(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
@@ -276,6 +279,165 @@ def examine_mount(data):
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
         exit_game()
+        
+        
+def consumable_effect_output_error(message):
+    print(
+        COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+        "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(message)
+    )
+    logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{message}")
+    text_handling.exit_game()
+
+
+def check_if_is_a_number(variable_to_test):
+    is_int = True
+    is_float = True
+    if type(variable_to_test) != type(0):
+        is_int = False
+    elif type(variable_to_test) != type(.1):
+        is_float = False
+
+    if is_int or is_float:
+        output = True
+
+    return output
+
+
+def consumable_run_test(data, effect_type):
+    # Firstly, check the effect type and then
+    # run specifics tests
+    if effect_type == "healing":
+        if "effect time" in data:
+            if not check_if_is_a_number(data["effect time"]):
+                consumable_effect_output_error("effect time should be an integer or floating number")
+        if "health change" not in data:
+            consumable_effect_output_error("missing required 'health change' dictionary")
+        elif data["health change"] is not None:
+            if "augmentation" in data["health change"]:
+                if not check_if_is_a_number(data["health change"]["augmentation"]):
+                    consumable_effect_output_error("'augmentation' key should be an integer or floating number")
+            if "diminution" in data["health change"]:
+                if not check_if_is_a_number(data["health change"]["diminution"]):
+                    consumable_effect_output_error("'diminution' key should be an integer or floating number")
+            if "max health" in data["health change"]:
+                if "augmentation" in data["health change"]["max health"]:
+                    if not check_if_is_a_number(data["health change"]["max health"]["augmentation"]):
+                        consumable_effect_output_error("'augmentation' key should be an integer or floating number")
+                if "diminution" in data["health change"]["max health"]:
+                    if not check_if_is_a_number(data["health change"]["max health"]["diminution"]):
+                        consumable_effect_output_error("'diminution' key should be an integer or floating number")
+    elif effect_type == "protection":
+        if "effect time" in data:
+            if not check_if_is_a_number(data["effect time"]):
+                consumable_effect_output_error("'effect time' should be an integer or floating number")
+        if "protection change" not in data:
+            consumable_effect_output_error("missing required 'protection change' dictionary")
+        if data["protection change"] is not None:
+            if "coefficient" in data["protection change"]:
+                if not check_if_is_a_number(data["protection change"]["coefficient"]):
+                    consumable_effect_output_error("'coefficient' key should be an integer or floating number")
+    elif effect_type == "strength":
+        if "effect time" in data:
+            if not check_if_is_a_number(data["effect time"]):
+                consumable_effect_output_error("'effect time' should be an integer or floating number")
+        if "strength change" not in data:
+            consumable_effect_output_error("missing required 'strength change' dictionary")
+        if data["strength change"] is not None:
+            if "damage coefficient" in data["strength change"]:
+                if not check_if_is_a_number(data["strength change"]["damage coefficient"]):
+                    consumable_effect_output_error("'damage coefficient' key should be an integer or floating number")
+            if "critical hit chance coefficient" in data["strength change"]:
+                if not check_if_is_a_number(data["strength change"]["critical hit chance coefficient"]):
+                    consumable_effect_output_error("'critical hit chance coefficient' key should be an integer or floating number")
+    elif effect_type == "agility":
+        if "effect time" in data:
+            if not check_if_is_a_number(data["effect time"]):
+                consumable_effect_output_error("'effect time' should be an integer or floating number")
+        if "agility change" not in data:
+            consumable_effect_output_error("missing required 'agility change' dictionary")
+        if data["agility change"] is not None:
+            if "coefficient" in data["agility change"]:
+                if not check_if_is_a_number(data["agility change"]["coefficient"]):
+                    consumable_effect_output_error("'coefficient' key should be an integer or floating number")
+    elif effect_type == "time elapsing":
+        if "effect time" in data:
+            if not check_if_is_a_number(data["effect time"]):
+                consumable_effect_output_error("effect time should be an integer or floating number")
+        if "time change" not in data:
+            consumable_effect_output_error("missing required 'time change' dictionary")
+        if data["time change"] is not None:
+            if "coefficient" in data["time change"]:
+                if not check_if_is_a_number(data["time change"]["coefficient"]):
+                    consumable_effect_output_error("coefficient key should be an integer or floating number")
+    elif effect_type == "attributes addition":
+        if "attributes addition" not in data:
+            consumable_effect_output_error("missing required 'attributes addition' key list")
+        else:
+            if type(['1']) != type(data["attributes addition"]):
+                consumable_effect_output_error("key 'attributes addition' should be a list")
+    elif effect_type == "dialog displaying":
+        if "dialog" not in data:
+            consumable_effect_output_error("missing required 'dialog' key")
+    elif effect_type == "enemy spawning":
+        if "enemy list" not in data:
+            consumable_effect_output_error("missing required 'enemy list' key")
+        if "enemy number" not in data:
+            consumable_effect_output_error("missing required 'enemy number' key")
+        elif not check_if_is_a_number(data["enemy number"]):
+            consumable_effect_output_error("'enemy number' should be an integer or floating number")
+    elif effect_type == "exp change":
+        if "exp change" not in data:
+            consumable_effect_output_error("missing required 'exp change' dictionary")
+        if data["exp change"] is not None:
+            if "augmentation" in data["exp change"]:
+                if not check_if_is_a_number(data["exp change"]["augmentation"]):
+                    consumable_effect_output_error("'augmentation' key should be an integer or floating number")
+            if "diminution" in data["exp change"]:
+                if not check_if_is_a_number(data["exp change"]["diminution"]):
+                    consumable_effect_output_error("'diminution' key should be an integer or floating number")
+    elif effect_type == "coordinates change":
+        if "coordinates change" not in data:
+            consumable_effect_output_error("missing required 'coordinates change' dictionary")
+        if data["coordinates change"] is not None:
+            if "x" in data["coordinates change"]:
+                if not check_if_is_a_number(data["coordinates change"]["x"]):
+                    consumable_effect_output_error("'x' key should be an integer or floating number")
+            if "x" in data["coordinates change"]:
+                if not check_if_is_a_number(data["coordinates change"]["x"]):
+                    consumable_effect_output_error("'x' key should be an integer or floating number")
+    elif effect_type == "inventory change":
+        if "inventory change" not in data:
+            consumable_effect_output_error("missing required 'inventory change' dictionary")
+        if data["inventory change"] is not None:
+            if "removals" in data["inventory change"]:
+                if type(['1']) != type(data["inventory change"]["removals"]):
+                    consumable_effect_output_error("'removals' key should be a list")
+            if "additions" in data["inventory change"]:
+                if type(['1']) != type(data["inventory change"]["additions"]):
+                    consumable_effect_output_error("'x' key should be a list")
+
+
+def examine_consumable(data):
+    # For every effect in that consumable,
+    # load it and run every tests, depending
+    # on the effect type and dictionary keys
+    try:
+        count = 0
+        for effect in data["effects"]:
+            current_effect_data = data["effects"][count]
+            current_effect_type = current_effect_data["type"]
+
+            consumable_run_test(current_effect_data, current_effect_type)
+
+            count += 1
+    except Exception as error:
+        print(
+        COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+        "An error happened when examining item:\n" + COLOR_RESET_ALL + str(data)
+        )
+        logger_sys.log_message(f"ERROR: A error happened when examining item:\n{data}")
+        text_handling.exit_game()
 
 
 # Main Function

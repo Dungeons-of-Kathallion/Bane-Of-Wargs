@@ -13,6 +13,9 @@ import text_handling
 import zone_handling
 import weapon_upgrade_handling
 import script_handling
+import consumable_handling
+import item_handling
+import time_handling
 import os
 import sys
 import time
@@ -21,6 +24,7 @@ import subprocess
 import git
 import readline
 import traceback
+import tempfile
 import appdirs
 import shutil
 import logger_sys
@@ -36,7 +40,7 @@ import pydoc
 # initialize colorama
 init()
 
-os.system('clear')
+text_handling.clear_prompt()
 
 # defines console for the rich module
 # to work properly
@@ -191,12 +195,12 @@ while menu:
             pass
     else:
         time.sleep(.5)
-    os.system('clear')
+    text_handling.clear_prompt()
     print_title()
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Check Logs', 'Quit']
     choice = term_menu.show_menu(options)
-    os.system('clear')
+    text_handling.clear_prompt()
 
     print_title()
 
@@ -436,13 +440,9 @@ while menu:
                 os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
                 os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
     elif choice == 'Preferences':
-        try:
-            editor = os.environ['EDITOR']
-        except KeyError:
-            editor = 'nano'
-        logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml' with {editor}")
+        logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml'")
         logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
-        subprocess.call([editor, program_dir + "/preferences.yaml"])
+        data_handling.open_file(program_dir + "/preferences.yaml")
         with open(program_dir + '/preferences.yaml') as f:
             new_preferences = yaml.safe_load(f)
         logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
@@ -489,13 +489,13 @@ while menu:
         # to the terminal with 'rich' module
         error_occurred = False
 
-        os.system('clear')
+        text_handling.clear_prompt()
 
         try:
             md_text = Markdown(md_file)
             console.print(md_text)
 
-            wait = input()
+            input()
         except Exception as error:
             error_occurred = True
             print(
@@ -503,7 +503,7 @@ while menu:
                 COLOR_RED + f"file '{file}' does not exists" + COLOR_RESET_ALL
             )
             logger_sys.log_message(f"ERROR: file '{file}' does not exists --> canceling gameplay guide markdown printing")
-        os.system('clear')
+        text_handling.clear_prompt()
     elif choice == 'Check Logs':
         # Get the logs directory content
         # and save the names in a list
@@ -538,13 +538,13 @@ while menu:
 
             if not error:
                 loop = False
-                os.system('clear')
+                text_handling.clear_prompt()
                 with open(directory + which_log_file, 'r') as f:
                     content = f.read()
 
                     pydoc.pager(content)
     else:
-        os.system('clear')
+        text_handling.clear_prompt()
         exit(1)
 
 
@@ -780,8 +780,10 @@ def run(play):
         logger_sys.log_message(f"INFO: Got terminal width and height size: {terminal_rows}x{terminal_columns}")
 
         # clear text
-        os.system('clear')
+        text_handling.clear_prompt()
 
+        # All the actions to update the player
+        # save data;
         # update player ridded mount location:
         if player["current mount"] in player["mounts"]:
             map_location = search(player["x"], player["y"])
@@ -838,18 +840,8 @@ def run(play):
         player["health"] = int(round(player["health"]))
 
         logger_sys.log_message("INFO: Calculating day time")
-        # calculate day time
-        day_time = "PLACEHOLDER"  # .25 = morning .50 = day .75 = evening .0 = night
-        day_time_decimal = "." + str(player["elapsed time game days"]).split(".", 1)[1]
-        day_time_decimal = float(day_time_decimal)
-        if day_time_decimal < .25 and day_time_decimal > .0:
-            day_time = COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
-        elif day_time_decimal > .25 and day_time_decimal < .50:
-            day_time = COLOR_BLUE + COLOR_STYLE_BRIGHT + "▲ MORNING" + COLOR_RESET_ALL
-        elif day_time_decimal > .50 and day_time_decimal < .75:
-            day_time = COLOR_GREEN + COLOR_STYLE_BRIGHT + "☼ DAY" + COLOR_RESET_ALL
-        elif day_time_decimal > .75 and day_time_decimal:
-            day_time = COLOR_YELLOW + COLOR_STYLE_BRIGHT + "▼ EVENING" + COLOR_RESET_ALL
+        global day_time
+        day_time = time_handling.get_day_time(player["elapsed time game days"])
 
         logger_sys.log_message("INFO: Calculating player armor protection stat")
         # calculate player armor protection
@@ -1000,12 +992,33 @@ def run(play):
             )
             text_handling.print_long_string(text)
             time.sleep(10)
-            os.system('clear')
+            text_handling.clear_prompt()
             text_handling.exit_game()
         logger_sys.log_message("INFO: Getting player current map zone location")
         map_zone = map["point" + str(map_location)]["map zone"]
         logger_sys.log_message("INFO: Updating player 'map zone' in the save file")
         player["map zone"] = map_zone
+
+        # check player map zone
+        if map_zone not in list(zone):
+            text = (
+                COLOR_RED + COLOR_STYLE_BRIGHT +
+                "FATAL ERROR: You are in an undefined location. This could have" +
+                " been the result of using or not using a plugin. Verify you " +
+                "are using the right plugin for this save. " +
+                "The game will close in 10 secs." +
+                COLOR_RESET_ALL
+            )
+            logger_sys.log_message("CRITICAL: Player is in an undefined map zone.")
+            logger_sys.log_message(
+                "DEBUG: This could have been the result of using or not " +
+                "using a plugin. Verify you are using the right plugin for this " +
+                "save."
+            )
+            text_handling.print_long_string(text)
+            time.sleep(10)
+            text_handling.clear_prompt()
+            text_handling.exit_game()
 
         logger_sys.log_message(
             f"INFO: Checking if player current map point 'point{
@@ -1033,6 +1046,132 @@ def run(play):
             str(player["x"]) + COLOR_RESET_ALL + ", " + COLOR_STYLE_BRIGHT + COLOR_GREEN +
             str(player["y"]) + COLOR_RESET_ALL + ")"
         )
+
+        # All the checks for the player active effects
+        # are here
+        #
+        # If the player has any active effects, load
+        # them one by one and update them depending
+        # on their dictionary content and type
+        global player_damage_coefficient, time_elapsing_coefficient
+        player_damage_coefficient = 1
+        time_elapsing_coefficient = 1
+        if player["held item"] != " ":
+            player["critical hit chance"] = item[player["held item"]]["critical hit chance"]
+        else:
+            player["critical hit chance"] = 0
+        if player["active effects"] != {}:
+            for i in list(player["active effects"]):
+                current_effect = player["active effects"][i]
+                effect_over = False
+                # Run the actions for every effect type
+                if current_effect["type"] == 'healing':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects and set the player
+                        # modified stats to before the effect
+                        # happened
+                        player["active effects"].pop(i)
+                        player["health"] = current_effect["before stats"]["health"]
+                        player["max health"] = current_effect["before stats"]["max health"]
+                        effect_over = True
+                    # Check if the effect has already been
+                    # applied or not
+                    if not current_effect["already applied"] and not effect_over:
+                        # Apply that effect changes now
+                        if current_effect["effects"]["health changes"] >= 999:
+                            player["health"] = player["max health"]
+                        else:
+                            player["health"] += current_effect["effects"]["health changes"]
+                        player["max health"] += current_effect["effects"]["max health changes"]
+                        player["active effects"][i]["already applied"] = True
+                elif current_effect["type"] == 'protection':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        player["armor protection"] = player["armor protection"] * current_effect[
+                            "effects"
+                        ]["protection coefficient"]
+                elif current_effect["type"] == 'strength':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        player["critical hit chance"] = player["critical hit chance"] * current_effect["effects"][
+                            "critical hit chance coefficient"
+                        ]
+                        # If the player already has an effect that changes
+                        # the damage coefficient and that's greater, don't
+                        # apply the current effect coefficient
+                        # = keep the greater one
+                        if not player_damage_coefficient > current_effect["effects"]["damage coefficient"]:
+                            player_damage_coefficient = current_effect["effects"]["damage coefficient"]
+                elif current_effect["type"] == 'agility':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        player["agility"] = player["agility"] * current_effect[
+                            "effects"
+                        ]["agility coefficient"]
+                elif current_effect["type"] == 'time elapsing':
+                    # Check if the effect duration's over
+                    if (
+                        (
+                            current_effect["effect duration"] + current_effect["effect starting time"]
+                        ) < player["elapsed time game days"]
+                    ):
+                        # Remove that effect from the player
+                        # active effects
+                        player["active effects"].pop(i)
+                        effect_over = True
+                    # Apply the effect effects if the
+                    # effect isn't over
+                    if not effect_over:
+                        # If the player already has an effect that changes
+                        # the damage coefficient, make so that the global
+                        # coefficient gets added that effect coefficient
+                        if time_elapsing_coefficient != 1:
+                            time_elapsing_coefficient = (
+                                time_elapsing_coefficient * current_effect["effects"]["time elapsing coefficient"]
+                            )
+                        else:
+                            time_elapsing_coefficient = current_effect["effects"]["time elapsing coefficient"]
+
+        # UI Printing
 
         text = '='
         text_handling.print_separator(text)
@@ -1360,7 +1499,8 @@ def run(play):
                             enemy_handling.spawn_enemy(
                                 map_location, lists[str(current_enemy_data["enemy category"])],
                                 current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
-                                preferences, drinks, npcs, zone, mounts, mission, dialog
+                                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                                text_replacements_generic
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1377,7 +1517,8 @@ def run(play):
             enemy_handling.spawn_enemy(
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
                 map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic
             )
 
         elif (
@@ -1400,7 +1541,8 @@ def run(play):
             enemy_handling.spawn_enemy(
                 map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
@@ -1723,42 +1865,9 @@ def run(play):
                             weapon_orders_len = len(weapon_orders)
                             while count < weapon_orders_len:
                                 current_weapon = str(list(current_black_smith["blacksmith"]["orders"])[int(count)])
-                                current_weapon_materials = current_black_smith["blacksmith"]["orders"][
-                                    current_weapon
-                                ]["needed materials"]
-                                count2 = 0
-                                global_current_weapon_materials = []
-                                current_weapon_materials_num = len(current_weapon_materials)
-                                while count2 < current_weapon_materials_num:
-                                    current_material = current_weapon_materials[count2]
-
-                                    global_current_weapon_materials += [current_material]
-
-                                    count2 += 1
-
-                                count2 = 0
-                                count3 = 0
-
-                                while count2 < len(global_current_weapon_materials):
-                                    current_material = global_current_weapon_materials[count2]
-                                    current_material_number = str(global_current_weapon_materials.count(current_material))
-
-                                    if global_current_weapon_materials.count(current_material) > 1:
-                                        while count3 < global_current_weapon_materials.count(current_material):
-                                            global_current_weapon_materials.remove(current_material)
-                                            count3 += 1
-                                        global_current_weapon_materials = [
-                                            sub.replace(
-                                                current_material, current_material + "X" + current_material_number
-                                            ) for sub in global_current_weapon_materials
-                                        ]
-
-                                    count2 += 1
-
-                                global_current_weapon_materials = str(global_current_weapon_materials)
-                                global_current_weapon_materials = global_current_weapon_materials.replace("'", '')
-                                global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
-                                global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
+                                global_current_weapon_materials = (
+                                    weapon_upgrade_handling.detect_weapon_next_upgrade_items(current_weapon, item)
+                                )
                                 print(
                                     " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +
@@ -1807,7 +1916,7 @@ def run(play):
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen '{which_zone}', which he doesn't know about --> canceling")
-                finished = input("")
+                input()
             elif choice == 'Encountered Monsters':
                 print("ENCOUNTERED MONSTERS: ")
                 enemies_list = str(player["enemies list"])
@@ -1846,7 +1955,10 @@ def run(play):
                     ) / 2
                     print("AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(enemy_average_damage) + COLOR_RESET_ALL)
                     print("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
-                    print("AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA + str(enemy[which_enemy]["agility"]) + COLOR_RESET_ALL)
+                    print(
+                        "AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
+                        str(enemy[which_enemy]["agility"] * 100) + COLOR_RESET_ALL
+                    )
 
                     # drops
                     enemy_drops = str(enemy[which_enemy]["inventory"])
@@ -1860,7 +1972,7 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    finished = input("")
+                    input()
                 else:
                     logger_sys.log_message(f"INFO: Player doesn't know about enemy '{which_enemy}' --> canceling")
                     print(" ")
@@ -1929,7 +2041,7 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    finished = input("")
+                    input()
                 else:
                     print(" ")
                     print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
@@ -2020,13 +2132,13 @@ def run(play):
             logger_sys.log_message(f"INFO: Printing player armor protection, agility and critical hit chance stats")
             print(
                 "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                str(player["armor protection"]) + COLOR_RESET_ALL + COLOR_RED +
+                str(round(player["armor protection"], 2)) + COLOR_RESET_ALL + COLOR_RED +
                 COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                 "More it's higher, the less you'll take damages in fights" + COLOR_RED +
                 COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
             print(
-                "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["agility"]) +
+                "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(round(player["agility"], 2)) +
                 COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" +
                 COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -2034,7 +2146,7 @@ def run(play):
             if player["held item"] != " ":
                 print(
                     "CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
-                    str(round(item[player["held item"]]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
+                    str(round(player["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
                     COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                     "More it's higher, the more you'll have a chance to deal critical attacks" +
                     COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -2100,7 +2212,7 @@ def run(play):
                     print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
                     print(
                         "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                        str(item[which_item]["armor protection"]) + COLOR_RESET_ALL
+                        str(round(item[which_item]["armor protection"], 2)) + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Metal":
                     text = (
@@ -2127,7 +2239,7 @@ def run(play):
                         "CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Consumable" or item[which_item]["type"] == "Food":
+                if item[which_item]["type"] == "Food":
                     print(
                         "HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW +
                         str(item[which_item]["max bonus"]) + COLOR_RESET_ALL
@@ -2139,6 +2251,33 @@ def run(play):
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                         healing_level + COLOR_RESET_ALL
                     )
+                if item[which_item]["type"] == "Consumable":
+                    # some effects are not displayed in the consumable
+                    # info because they're 'non-physic' effects, they're
+                    # invisible
+                    invisible_effects = [
+                        'attributes addition',
+                        'dialog displaying',
+                        'enemy spawning',
+                        'coordinate change',
+                        'inventory change'
+                    ]
+                    print("")
+                    print("EFFECTS:")
+                    logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
+                    if item[which_item]["effects"] is not None:
+                        count = 0
+                        for effect in item[which_item]["effects"]:
+                            current_effect_data = item[which_item]["effects"][count]
+                            current_effect_type = current_effect_data["type"]
+                            if current_effect_type not in invisible_effects:
+                                print(" -Effect " + str(count + 1) + ": {")
+                                consumable_handling.print_consumable_effects(current_effect_type, current_effect_data)
+                                print("}")
+
+                            count += 1
+                    else:
+                        print(" -None")
                 text = '='
                 text_handling.print_separator(text)
                 if str(
@@ -2160,41 +2299,18 @@ def run(play):
                 choice = term_menu.show_menu(options)
                 logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                 if choice == 'Equip':
-                    if item[which_item]["type"] == "Weapon":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a weapon")
-                        player["held item"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Chestplate":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a chestplate")
-                        player["held chestplate"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Leggings":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as leggings")
-                        player["held leggings"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Boots":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as boots")
-                        player["held boots"] = which_item
-                    elif item[which_item]["type"] == "Armor Piece: Shield":
-                        logger_sys.log_message(f"INFO: Equipped item '{which_item}' as a shield")
-                        player["held shield"] = which_item
-                    else:
-                        logger_sys.log_message(f"INFO: Cannot equip item '{which_item}' --> not an item you can equip")
+                    item_handling.equip_item(which_item, player, item[which_item]["type"])
                 elif choice == 'Consume':
-                    if item[which_item]["healing level"] == 999:
-                        player["health"] = player["max health"]
-                        logger_sys.log_message(f"INFO: Consuming item '{which_item}' --> restoring full player health")
-                    else:
-                        healing_level = item[which_item]["healing level"]
-                        health_bonus = item[which_item]["max bonus"]
-                        logger_sys.log_message(
-                            f"INFO: Consuming item '{which_item}' --> restoring {
-                                healing_level
-                            } hp and adding {health_bonus} to player max health as a bonus"
-                        )
-                        player["health"] += item[which_item]["healing level"]
-                        player["max health"] += item[which_item]["max bonus"]
-                    player["inventory"].remove(which_item)
+                    consumable_handling.consume_consumable(
+                        item, which_item, player,
+                        dialog, preferences, text_replacements_generic,
+                        lists, map_location, enemy, item, drinks,
+                        start_player, npcs, zone,
+                        mounts, mission, player_damage_coefficient
+                    )
                 elif choice == 'Get Rid':
                     text = (
-                        "You won't be able to get this item back if your " +
+                        "You won't be able to get this item back if you " +
                         "throw it away. Are you sure you want to throw away this item"
                     )
                     text_handling.print_long_string(text)
@@ -2245,7 +2361,9 @@ def run(play):
             if zone[map_zone]["type"] == "hostel":
                 zone_handling.interaction_hostel(map_zone, zone, player, drinks, item)
             elif zone[map_zone]["type"] == "stable":
-                zone_handling.interaction_stable(map_zone, zone, player, item, drinks, mounts, map_location, preferences)
+                zone_handling.interaction_stable(
+                    map_zone, zone, player, item, drinks, mounts, map_location, preferences, time_elapsing_coefficient
+                )
             elif zone[map_zone]["type"] == "blacksmith":
                 zone_handling.interaction_blacksmith(map_zone, zone, item, player)
             elif zone[map_zone]["type"] == "forge":
@@ -2444,6 +2562,30 @@ def run(play):
             print(separator)
             play = 0
             continued_command = True
+        elif command.lower().startswith('$player$data$'):
+            logger_sys.log_message("INFO: Displaying player data in a pager mode")
+            choice = term_menu.show_menu(['Check', 'Edit'], length=12)
+            player_data = str(yaml.dump(player))
+            if choice == 'Check':
+                to_display = player_data
+                text_handling.clear_prompt()
+                pydoc.pager(to_display)
+            else:
+                temporary_dir = tempfile.mkdtemp()
+                temporary_file = temporary_dir + '/$player$data$.temp'
+
+                # Create a file with the dumped
+                # player data in it, then open
+                # it with a text editor
+                with open(temporary_file, 'w') as f:
+                    f.write(player_data)
+                data_handling.open_file(temporary_file)
+
+                # Get the file data and write it into
+                # the 'player' dictionary variable
+                with open(temporary_file, 'r') as f:
+                    player = yaml.safe_load(f)
+            continued_command = True
         else:
             continued_utility = False
             for i in utilities_list:
@@ -2461,13 +2603,13 @@ def run(play):
                             start_player, lists, zone, dialog, mission, mounts, start_time
                         )
                     continued_utility = True
-                    finished = input(" ")
+                    input()
                 elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
                     continued_utility = True
                     logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
                     print(f"You do not have a '{current_utility}'.")
                     print(" ")
-                    finished = input(" ")
+                    input()
             if not continued_utility:
                 logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
                 print("'" + command + "' is not a valid command")
@@ -2489,7 +2631,7 @@ def run(play):
         elapsed_time = round(elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time: '{elapsed_time}'")
 
-        game_elapsed_time = .001389 * elapsed_time  # 180 seconds irl = .25 days in-game
+        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
         game_elapsed_time = round(game_elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time in game days: '{game_elapsed_time}'")
 
@@ -2524,4 +2666,4 @@ with open(program_dir + '/preferences.yaml', 'w') as f:
 
 # deinitialize colorame
 deinit()
-os.system('clear')
+text_handling.clear_prompt()

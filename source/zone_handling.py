@@ -408,7 +408,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
             continue_hostel_actions = False
 
 
-def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_location, preferences):
+def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_location, preferences, time_elapsing_coefficient):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is a stable --> can interact")
     options = ["Train Mount", "Deposit Mount", "Ride Mount"]
     if "None" not in zone[map_zone]["stable"]["sells"]["mounts"]:
@@ -572,7 +572,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
             if player["current mount"] != ' ':
                 current_mount_uuid = str(player["current mount"])
                 logger_sys.log_message("INFO: Starting mount training of mount '{current_mount_uuid}'")
-                train.training_loop(current_mount_uuid, player, item, mounts, zone[map_zone])
+                train.training_loop(current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient)
             else:
                 logger_sys.log_message("INFO: Canceling mount train process --> doesn't ride any mounts by now")
                 text = (

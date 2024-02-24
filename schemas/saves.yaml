@@ -27,6 +27,7 @@ met npcs: list(int(), str(equals=None))
 met npcs names: list(str())
 mounts: any()
 orders: any()
+active effects: any()
 start dialog:
   dialog: str()
   heard start dialog: bool()
