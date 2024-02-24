@@ -41,6 +41,10 @@ def load_game_data(which_type, what_plugin=None):
         time.sleep(5)
         text_handling.exit_game()
 
+    # Make these variables global
+    global map, item, drinks, enemy, npcs, start_player
+    global lists, zone, dialog, mission, mounts
+
     print("")
     # If the inputted which_type is vanilla, then just
     # load the vanilla game data

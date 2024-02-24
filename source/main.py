@@ -209,11 +209,15 @@ while menu:
         choice = term_menu.show_menu(options)
         using_latest_preset = False
         latest_preset = preferences["latest preset"]
+        # Make these variables global
+        global map, item, drinks, enemy, npcs, start_player
+        global lists, zone, dialog, mission, mounts
 
         # load data files
         if choice == 'Use Latest Preset':
             logger_sys.log_message(f"INFO: Starting game with latest preset: {latest_preset}")
             using_latest_preset = True
+
             if preferences["latest preset"]["type"] == 'vanilla':
                 (
                     map, item, drinks, enemy, npcs, start_player,
@@ -2523,7 +2527,7 @@ def run(play):
             continued_command = True
         elif command.lower().startswith('q'):
             logger_sys.log_message("INFO: Closing & Saving game")
-            print(separator)
+            text_handling.print_separator('=')
             play = 0
             continued_command = True
         elif command.lower().startswith('$player$data$'):
@@ -2536,7 +2540,7 @@ def run(play):
                 pydoc.pager(to_display)
             else:
                 temporary_dir = tempfile.mkdtemp()
-                temporary_file = temporary_dir + '/$player$data$.temp'
+                temporary_file = temporary_dir + '/$player$data$.temp.yml'
 
                 # Create a file with the dumped
                 # player data in it, then open
@@ -2549,6 +2553,40 @@ def run(play):
                 # the 'player' dictionary variable
                 with open(temporary_file, 'r') as f:
                     player = yaml.safe_load(f)
+            continued_command = True
+        elif command.lower().startswith('$game$data$'):
+            choices = [
+                'map', 'item', 'drinks', 'enemy',
+                'npcs', 'start_player', 'lists',
+                'zone', 'dialog', 'mission', 'mounts'
+            ]
+            choice = term_menu.show_menu(choices, length=20)
+            if choice == 'map':
+                data = str(yaml.dump(map))
+            elif choice == 'item':
+                data = str(yaml.dump(item))
+            elif choice == 'drinks':
+                data = str(yaml.dump(drinks))
+            elif choice == 'enemy':
+                data = str(yaml.dump(enemy))
+            elif choice == 'npcs':
+                data = str(yaml.dump(npcs))
+            elif choice == 'start_player':
+                data = str(yaml.dump(start_player))
+            elif choice == 'lists':
+                data = str(yaml.dump(lists))
+            elif choice == 'zone':
+                data = str(yaml.dump(zone))
+            elif choice == 'dialog':
+                data = str(yaml.dump(dialog))
+            elif choice == 'mission':
+                data = str(yaml.dump(mission))
+            else:
+                data = str(yaml.dump(mounts))
+
+            text_handling.clear_prompt()
+            pydoc.pager(data)
+
             continued_command = True
         else:
             continued_utility = False
