@@ -836,141 +836,105 @@ def run(play):
             player["held shield"] = " "
 
         logger_sys.log_message("INFO: Making sure player's health is an integer")
-        # always round player health to an integer amount
-        player["health"] = int(round(player["health"]))
+        # Round player health so it's an integer
+        player["health"] = round(player["health"])
 
+        # Calculate day time
         logger_sys.log_message("INFO: Calculating day time")
         global day_time
         day_time = time_handling.get_day_time(player["elapsed time game days"])
 
         logger_sys.log_message("INFO: Calculating player armor protection stat")
-        # calculate player armor protection
-        # and write it to the save file
-        player_items = player["inventory"]
-        player_items_number = len(player_items)
-        count = 0
+        # Calculate player global armor protection
+        # and stores it in a player variable
         global_armor_protection = 0
-        p = True
 
-        # loop to get player total armor protection
-        while p:
-            if count > (player_items_number - 1):
-                p = False
-            if p:
+        # First, get every item in the player equipment
+        # and add their protection value to the global
+        # armor protection new created variable
+        held_item_list = [
+            'held boots', 'held chestplate',
+            'held leggings', 'held shield'
+        ]
+        for i in held_item_list:
+            item_name = player[i]
+            if item_name != " ":
+                global_armor_protection += item[item_name]["armor protection"]
 
-                player_items_select = player_items[int(count)]
-
-                if item[player_items_select]["type"] == "Armor Piece: Chestplate" and player[
-                    "held chestplate"
-                ] == player_items_select:
-                    item_armor_protection = item[player_items_select]["armor protection"]
-                elif item[player_items_select]["type"] == "Armor Piece: Boots" and player[
-                    "held boots"
-                ] == player_items_select:
-                    item_armor_protection = item[player_items_select]["armor protection"]
-                elif item[player_items_select]["type"] == "Armor Piece: Leggings" and player[
-                    "held leggings"
-                ] == player_items_select:
-                    item_armor_protection = item[player_items_select]["armor protection"]
-                elif item[player_items_select]["type"] == "Armor Piece: Shield" and player[
-                    "held shield"
-                ] == player_items_select:
-                    item_armor_protection = item[player_items_select]["armor protection"]
-                else:
-                    item_armor_protection = 0
-
-                global_armor_protection += item_armor_protection
-
-                count += 1
-
-        global_armor_protection = round(global_armor_protection, 2)
+        # Then, calculate the player ridden mount -- if he has
+        # one -- protection stat and add it to the global armor
+        # protection variable
         if player["current mount"] in player["mounts"]:
             global_armor_protection += player["mounts"][player["current mount"]]["stats"]["resistance addition"]
 
         player["armor protection"] = round(global_armor_protection, 2)
 
         logger_sys.log_message("INFO: Calculating player agility stat")
-        # calculate player agility and
-        # write it to the save file
-        player_items = player["inventory"]
-        player_items_number = len(player_items)
-        count = 0
+
+        # Calculate player global agility and stores
+        # it in a player variable
         global_agility = 0
-        p = True
 
-        # loop to get player total agility
-        while p:
-            if count > (player_items_number - 1):
-                p = False
-            if p:
+        # First, get every item in the player equipment
+        # and add their agility value to the global agility
+        # new created variable
+        held_item_list = [
+            'held boots', 'held chestplate', 'held item',
+            'held leggings', 'held shield'
+        ]
+        for i in held_item_list:
+            item_name = player[i]
+            if item_name != " ":
+                global_agility += item[item_name]["agility"]
 
-                player_items_select = player_items[int(count)]
-
-                if item[player_items_select]["type"] == "Armor Piece: Chestplate" and player[
-                    "held chestplate"
-                ] == player_items_select:
-                    item_agility = item[player_items_select]["agility"]
-                elif item[player_items_select]["type"] == "Armor Piece: Boots" and player[
-                    "held boots"
-                ] == player_items_select:
-                    item_agility = item[player_items_select]["agility"]
-                elif item[player_items_select]["type"] == "Armor Piece: Leggings" and player[
-                    "held leggings"
-                ] == player_items_select:
-                    item_agility = item[player_items_select]["agility"]
-                elif item[player_items_select]["type"] == "Armor Piece: Shield" and player[
-                    "held shield"
-                ] == player_items_select:
-                    item_agility = item[player_items_select]["agility"]
-                elif item[player_items_select]["type"] == "Weapon" and player[
-                    "held item"
-                ] == player_items_select:
-                    item_agility = item[player_items_select]["agility"]
-                else:
-                    item_agility = 0
-
-                global_agility += item_agility
-
-                count += 1
-
-        global_agility = round(global_agility, 2)
-
+        # Then, calculate the player ridden mount -- if he has
+        # one -- agility stat and add it to the global agility
+        # variable
         if player["current mount"] in player["mounts"]:
             global_agility += player["mounts"][player["current mount"]]["stats"]["agility addition"]
 
-        player["agility"] = round(global_agility, 2)
+        player["agility"] = round(global_agility, 2)  # here we round the actual value
 
         logger_sys.log_message("INFO: Calculating player remaining inventory slots and total inventory slots")
-        # calculate remaining inventory slots
-        # and write it to the save files
-        p2 = True
-        count2 = 0
-        global_inventory_slots = 0
-        player_items = player["inventory"]
-        player_items_number = len(player_items)
+        # Calculate player inventory slots and also
+        # remaining inventory slots and then write
+        # it to the corresponding variables in the
+        # player data dictionary variable
+        player_inventory = player["inventory"]
+        inventory_slots = 0
+        inventory_slots_max = 0
+        for i in player_inventory:
+            # If the item isn't in the item dictionary, then
+            # output a fatal error and shut down the program
+            if i not in list(item):
+                text = (
+                    COLOR_RED + COLOR_STYLE_BRIGHT +
+                    "FATAL ERROR: You have an item in your inventory that isn't" +
+                    f" in the item data: '{i}' item doesn't exists. This could have been the " +
+                    "result of using or not using a plugins. Verify you are using the" +
+                    " right plugin for this save or manually remove that item from you " +
+                    "player save data in the 'Manage Saves' in the main menu" +
+                    COLOR_RESET_ALL
+                )
+                logger_sys.log_message(f"CRITICAL: Player have an item that doesn't exists: '{i}'")
+                logger_sys.log_message(
+                    "DEBUG: This could have been the " +
+                    "result of using or not using a plugins. Verify you are using the" +
+                    " right plugin for this save or manually remove that item from you " +
+                    "player save data in the 'Manage Saves' in the main menu"
+                )
+                text_handling.print_long_string(text)
+                time.sleep(10)
+                text_handling.clear_prompt()
+                text_handling.exit_game()
+            else:
+                inventory_slots -= 1
+                if item[i]["type"] == "Bag":
+                    inventory_slots += item[i]["inventory slots"]
+                    inventory_slots_max += item[i]["inventory slots"]
 
-        # loop to get player total inventory slots
-        while p2:
-            if count2 > (player_items_number - 1):
-                p2 = False
-            if p2:
-
-                player_items_select = player_items[int(count2)]
-
-                if item[player_items_select]["type"] == "Bag":
-                    item_inventory_slot = item[player_items_select]["inventory slots"]
-                else:
-                    item_inventory_slot = 0
-
-                global_inventory_slots += item_inventory_slot
-
-                count2 += 1
-
-            player["inventory slots"] = global_inventory_slots
-
-        # calculate remaining item slots
-
-        player["inventory slots remaining"] = int(player["inventory slots"]) - int(player_items_number)
+        player["inventory slots remaining"] = inventory_slots
+        player["inventory slots"] = inventory_slots_max
 
         map_location = search(player["x"], player["y"])
         logger_sys.log_message("INFO: Checking player location is valid")
@@ -1003,7 +967,7 @@ def run(play):
         if map_zone not in list(zone):
             text = (
                 COLOR_RED + COLOR_STYLE_BRIGHT +
-                "FATAL ERROR: You are in an undefined location. This could have" +
+                "FATAL ERROR: You are in an undefined map zone. This could have" +
                 " been the result of using or not using a plugin. Verify you " +
                 "are using the right plugin for this save. " +
                 "The game will close in 10 secs." +
@@ -1213,9 +1177,9 @@ def run(play):
         # player start dialog
         if not player["start dialog"]["heard start dialog"]:
             start_dialog = player["start dialog"]["dialog"]
-            logger_sys.log_message("INFO: Displaying start dialog '{start_dialog}' to player")
+            logger_sys.log_message(f"INFO: Displaying start dialog '{start_dialog}' to player")
             dialog_handling.print_dialog(
-                player["start dialog"]["dialog"], dialog, preferences,
+                start_dialog, dialog, preferences,
                 text_replacements_generic, player, drinks
             )
             text = '='
