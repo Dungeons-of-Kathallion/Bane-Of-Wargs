@@ -20,7 +20,7 @@ def print_speech_text_effect(text, preferences):
     text = str(text) + "\n"
     new_input = ""
     for i, letter in enumerate(text):
-        if i % 54 == 0:
+        if i % 55 == 0:
             new_input += '\n'
         new_input += letter
     if not preferences["speed up"]:
