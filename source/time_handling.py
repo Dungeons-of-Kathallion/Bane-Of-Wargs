@@ -35,7 +35,6 @@ def addition_to_date(date, addition):
 
     future_date = f"{new_month}-{new_day}-{new_year}"
 
-
     return future_date
 
 
@@ -48,20 +47,22 @@ def date_prettifier(date):
     year = separated_date[2]
 
     # some formatting stuff
-    th = "th"
-    if day.endswith('1'):
-        th = "st"
-    elif day.endswith('2'):
-        th = "nd"
-    elif day.endswith('3'):
-        th = "rd"
+
     if (
         day == '11' or
         day == '12' or
         day == '13'
     ):
-        th = "th"
-    formatted_date = f"{day}{th} {month}, year {year}"
+        day = f"{day}th"
+    elif day.endswith('1'):
+        day = f"{day}st"
+    elif day.endswith('2'):
+        day = f"{day}nd"
+    elif day.endswith('3'):
+        day = f"{day}rd"
+    else:
+        day = f"{day}th"
+    formatted_date = f"{day} {month}, year {year}"
 
     return formatted_date
 

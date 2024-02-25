@@ -143,7 +143,9 @@ def print_zone_map(zone_name, zone, player, preferences):
                 COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
             )
         if count == 3:
-            date = time_handling.date_prettifier(time_handling.addition_to_date(player["starting date"], player["elapsed time game days"]))
+            date = time_handling.date_prettifier(
+                time_handling.addition_to_date(player["starting date"], player["elapsed time game days"])
+            )
             print(
                 line + " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(date) + COLOR_RESET_ALL
