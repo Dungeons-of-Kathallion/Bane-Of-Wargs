@@ -75,7 +75,7 @@ def overstrike_text(text):
 def print_long_string(text):
     new_input = ""
     for i, letter in enumerate(text):
-        if i % 54 == 0:
+        if i % 55 == 0:
             new_input += '\n'
         new_input += letter
 
