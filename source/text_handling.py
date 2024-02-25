@@ -217,7 +217,7 @@ def a_an_check(word):
             to_return = "an " + word
     else:
         to_return = "a " + word
-    logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}': '{to_return}'")
+    logger_sys.log_message(f"INFO: Checked correct grammar of 'a' in front of '{word}': '{to_return}'")
     return to_return
 
 
