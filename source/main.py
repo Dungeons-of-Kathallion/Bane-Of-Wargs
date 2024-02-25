@@ -45,7 +45,7 @@ text_handling.clear_prompt()
 # defines console for the rich module
 # to work properly
 
-console = Console()
+console = Console(width=55)
 
 # says you are not playing.
 play = 0
@@ -190,8 +190,8 @@ while menu:
             assert not repo.bare
             git = repo.git
             git.pull()
-        except Exception:
-            logger_sys.log_message("WARNING: Failed to update game, passing")
+        except Exception as error:
+            logger_sys.log_message(f"WARNING: Failed to update game, passing\n{error}")
             pass
     else:
         time.sleep(.5)
@@ -717,7 +717,7 @@ def run(play):
     if not preferences["speed up"]:
         # clear text
         text_handling.clear_prompt()
-        
+
         logger_sys.log_message("INFO: Printing loading menu")
         print(separator)
         print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Reserved keys:" + COLOR_RESET_ALL)
