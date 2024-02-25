@@ -144,7 +144,7 @@ def print_zone_map(zone_name, zone, player, preferences):
             )
         if count == 3:
             date = time_handling.date_prettifier(
-                time_handling.addition_to_date(player["starting date"], player["elapsed time game days"])
+                time_handling.addition_to_date(player["starting date"], int(player["elapsed time game days"]))
             )
             print(
                 line + " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
