@@ -1,4 +1,5 @@
 import logger_sys
+import time_handling
 import colors
 import sys
 import time
@@ -142,9 +143,10 @@ def print_zone_map(zone_name, zone, player, preferences):
                 COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
             )
         if count == 3:
+            date = time_handling.date_prettifier(time_handling.addition_to_date(player["starting date"], player["elapsed time game days"]))
             print(
-                line + " ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
-                str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL
+                line + " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
+                str(date) + COLOR_RESET_ALL
             )
         if count == 4:
             print(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
