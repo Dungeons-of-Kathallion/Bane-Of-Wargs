@@ -715,6 +715,9 @@ def check_for_item(item_name):
 # gameplay here:
 def run(play):
     if not preferences["speed up"]:
+        # clear text
+        text_handling.clear_prompt()
+        
         logger_sys.log_message("INFO: Printing loading menu")
         print(separator)
         print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Reserved keys:" + COLOR_RESET_ALL)
