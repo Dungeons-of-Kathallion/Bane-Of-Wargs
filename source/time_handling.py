@@ -57,7 +57,7 @@ def date_prettifier(date):
     elif day.endswith('1'):
         day = f"{day}st"
     elif day.endswith('2'):
-        day = f"{day.strip('2')}2nd"
+        day = f"{day.strip('2')}2nd"  # so spell checks is happy ;)
     elif day.endswith('3'):
         day = f"{day}rd"
     else:
