@@ -227,11 +227,11 @@ def execute_triggers(mission_data, player, which_key, dialog, preferences, text_
                 text_replacements_generic, player, drinks
             )
         if "payment" in mission_data[which_key]:
-            player["gold"] += int(mission_data[which_key]["payment"])
+            player["gold"] += mission_data[which_key]["payment"]
         if "fine" in mission_data[which_key]:
-            player["gold"] -= int(mission_data[which_key]["fine"])
+            player["gold"] -= mission_data[which_key]["fine"]
         if "exp addition" in mission_data[which_key]:
-            player["xp"] += int(mission_data[which_key]["exp addition"])
+            player["xp"] += mission_data[which_key]["exp addition"]
 
 
 def offer_mission(mission_id, player, missions_data, dialog, preferences, text_replacements_generic, drinks):
