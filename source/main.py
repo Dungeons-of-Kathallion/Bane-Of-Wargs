@@ -531,16 +531,16 @@ while menu:
         # Get which log the player wants
         # to open and display it in the UI
         loop = True
-        error = False
         while loop:
-            which_log_file = input()
+            error_happened = False
+            which_log_file = input(f"{COLOR_GREEN}{COLOR_STYLE_BRIGHT}>{COLOR_RESET_ALL} ")
             try:
                 which_log_file = directory_content[int(which_log_file)]
             except Exception as error:
-                error = True
+                error_happened = True
                 print(COLOR_YELLOW + "incorrect input" + COLOR_RESET_ALL)
 
-            if not error:
+            if not error_happened:
                 loop = False
                 text_handling.clear_prompt()
                 with open(directory + which_log_file, 'r') as f:
