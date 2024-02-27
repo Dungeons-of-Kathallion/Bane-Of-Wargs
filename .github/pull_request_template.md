@@ -16,6 +16,7 @@
 **PROGRESS**
 
 This PR addresses the bug/feature described in issue #{{insert number}}
+This PR addresses the game progression goal #{{goal}}
 
 ## Summary
 {{Describe and explain your changes. Include links to related issues.}}
