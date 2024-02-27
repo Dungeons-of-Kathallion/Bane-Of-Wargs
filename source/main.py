@@ -549,7 +549,7 @@ while menu:
                     pydoc.pager(content)
     else:
         text_handling.clear_prompt()
-        exit(1)
+        exit(0)
 
 
 # function to search through the map file
