@@ -62,6 +62,9 @@ def date_prettifier(date):
         day = f"{day}rd"
     else:
         day = f"{day}th"
+
+    if day.startswith("0"):
+        day = day.replace("0", "")
     formatted_date = f"{day} {month}, year {year}"
 
     return formatted_date
