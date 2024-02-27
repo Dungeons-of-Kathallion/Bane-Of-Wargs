@@ -446,6 +446,8 @@ def consumable_run_test(data, effect_type):
         if "effect time" in data:
             if not check_if_is_a_number(data["effect time"]):
                 consumable_effect_output_error("'effect time' should be an integer or floating number")
+        else:
+            consumable_effect_output_error("missing required 'effect time' key")
         if "protection change" not in data:
             consumable_effect_output_error("missing required 'protection change' dictionary")
         if data["protection change"] is not None:
@@ -456,6 +458,8 @@ def consumable_run_test(data, effect_type):
         if "effect time" in data:
             if not check_if_is_a_number(data["effect time"]):
                 consumable_effect_output_error("'effect time' should be an integer or floating number")
+        else:
+            consumable_effect_output_error("missing required 'effect time' key")
         if "strength change" not in data:
             consumable_effect_output_error("missing required 'strength change' dictionary")
         if data["strength change"] is not None:
@@ -471,6 +475,8 @@ def consumable_run_test(data, effect_type):
         if "effect time" in data:
             if not check_if_is_a_number(data["effect time"]):
                 consumable_effect_output_error("'effect time' should be an integer or floating number")
+        else:
+            consumable_effect_output_error("missing required 'effect time' key")
         if "agility change" not in data:
             consumable_effect_output_error("missing required 'agility change' dictionary")
         if data["agility change"] is not None:
@@ -481,6 +487,8 @@ def consumable_run_test(data, effect_type):
         if "effect time" in data:
             if not check_if_is_a_number(data["effect time"]):
                 consumable_effect_output_error("effect time should be an integer or floating number")
+        else:
+            consumable_effect_output_error("missing required 'effect time' key")
         if "time change" not in data:
             consumable_effect_output_error("missing required 'time change' dictionary")
         if data["time change"] is not None:
