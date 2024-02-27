@@ -9,6 +9,7 @@ import tempfile
 import yaml
 import time
 import text_handling
+import script_handling
 import fsspec
 import time
 import sys
@@ -246,32 +247,22 @@ def load_game_data(which_type, what_plugin=None):
                 check_yaml.examine_mount(mounts[i])
                 progress.update(task_mount, advance=1)
 
-            logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' module requirements")
+            logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' python module requirements")
             requirements_file = program_dir + '/plugins/' + what_plugin + "/requirements.txt"
-            # Check which executable to use
-            executable = "python"
-            try:
-                subprocess.check_call(
-                    ["python", "-V"],
-                    stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
-                )
-            except Exception as error:
-                executable = "python3"
-
-            # Install the required modules
             try:
                 f = open(requirements_file)
                 modules = f.readlines()
                 progress.update(task_requirements, total=len(modules))
                 for line in modules:
-                    retcode = subprocess.check_call(
-                        [executable, "-m", "pip", "install", line],
-                        stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
-                    )
+                    logger_sys.log_message(f"INFO: Trying to install python module '{line}'")
+                    script_handling.install_requirement(line)
                     progress.update(task_requirements, advance=1)
             except Exception as error:
-                logger_sys.log_message(f"WARNING: Couldn't install plugin '{what_plugin}' python requirements.txt")
+                logger_sys.log_message(f"WARNING: Couldn't install plugin '{what_plugin}' python module requirements")
                 logger_sys.log_message(f"DEBUG: '{error}'")
+
+            # Install the required modules
+
                 progress.update(task_requirements, advance=100)
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 
@@ -293,7 +284,7 @@ def fsspec_download(github_file, destination_point, download_branch, download_re
         time.sleep(.5)
 
 
-def temporary_git_file_download(selected_file):
+def temporary_git_file_download(selected_file, url):
     global file_text_data
     # Create a temporary directory to after
     # clone the repository and select the chosen
@@ -301,7 +292,7 @@ def temporary_git_file_download(selected_file):
 
     temporary_dir = tempfile.mkdtemp()
     logger_sys.log_message(f"INFO: Creating temporary directory at '{temporary_dir}'")
-    git.Repo.clone_from('https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.wiki.git', temporary_dir, depth=1)
+    git.Repo.clone_from(url, temporary_dir, depth=1)
 
     with open(temporary_dir + '/' + selected_file, 'r') as f:
         file_text_data = f.read()

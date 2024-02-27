@@ -27,6 +27,7 @@ import traceback
 import tempfile
 import appdirs
 import shutil
+import io
 import logger_sys
 from git import Repo
 from colorama import Fore, Back, Style, deinit, init
@@ -139,10 +140,34 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
     preferences = yaml.safe_load(f)
     check_yaml.examine(program_dir + '/preferences.yaml')
 if preferences["auto update"]:
+    # Update python modules
+    logger_sys.log_message("INFO: Starting game python module requirements install process")
+    print(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
+    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
+    first_timer = time.time()
+
+    requirements = io.StringIO(data_handling.temporary_git_file_download(
+        'requirements.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
+    )).readlines()
+    requirements_length = len(requirements)
+    count = 0
+    for module in requirements:
+        print(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
+        logger_sys.log_message(f"INFO: Trying to install python module '{module}'")
+        script_handling.install_requirement(module)
+
+        count += 1
+    print(f"{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}")
+
+    last_timer = time.time()
+    process_time = round(last_timer - first_timer, 4)
+    logger_sys.log_message(f"INFO: Process of installing game python module requirements completed in {process_time} seconds")
+
+    # Download game data
     logger_sys.log_message("INFO: Downloading game data to update it")
-    print("Download game data...")
-    print("This may take a few seconds, sorry for the waiting.")
-    print("0/4", end="\r")
+    print(COLOR_STYLE_BRIGHT + "Downloading game data..." + COLOR_RESET_ALL)
+    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
+    print(f"{COLOR_BLUE}0{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
     download_branch = str(preferences["game data download"]["branch"])
     download_repo = str(preferences["game data download"]["repository"])
     download_org = str(preferences["game data download"]["org"])
@@ -152,23 +177,23 @@ if preferences["auto update"]:
     first_timer = time.time()
     # Download yaml schema files
     data_handling.fsspec_download('schemas/', program_dir + '/game/schemas', download_branch, download_repo, download_org)
-    print("1/4", end="\r")
+    print(f"{COLOR_BLUE}1{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
 
     logger_sys.log_message("INFO: Downloading game data files from github")
     # Download data files
     data_handling.fsspec_download('data/', program_dir + '/game/data', download_branch, download_repo, download_org)
-    print("2/4", end="\r")
+    print(f"{COLOR_BLUE}2{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
 
     logger_sys.log_message("INFO: Downloading game images .txt files from github")
     # Download images .txt files
     data_handling.fsspec_download('imgs/', program_dir + '/game/imgs', download_branch, download_repo, download_org)
-    print("3/4", end="\r")
+    print(f"{COLOR_BLUE}3{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
 
     logger_sys.log_message("INFO: Downloading game scripts .py files from github")
     # Download scripts .py files
     data_handling.fsspec_download('scripts/', program_dir + '/game/scripts', download_branch, download_repo, download_org)
 
-    print("4/4")
+    print(f"{COLOR_GREEN}4{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}")
     print("Done")
     last_timer = time.time()
     process_time = round(last_timer - first_timer, 4)
@@ -481,7 +506,9 @@ while menu:
 
         # Download documentation files
         file = 'Gameplay-Guide.md'
-        md_file = data_handling.temporary_git_file_download(file)
+        md_file = data_handling.temporary_git_file_download(
+            file, 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.wiki.git'
+        )
 
         last_timer = time.time()
         time_for_process = round(last_timer - first_timer, 4)
