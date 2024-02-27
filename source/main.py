@@ -45,7 +45,7 @@ text_handling.clear_prompt()
 # defines console for the rich module
 # to work properly
 
-console = Console(width=55)
+console = Console()
 
 # says you are not playing.
 play = 0
