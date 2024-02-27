@@ -1576,6 +1576,66 @@ def run(play):
             print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
             continued_command = True
+        elif command.lower().startswith('ne'):
+            logger_sys.log_message(f"INFO: Checking if player can go north-east from map point 'point{map_location}'")
+            next_point = search(player["x"] + 1, player["y"] + 1)
+            if "North" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to north-east: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(f"INFO: Checking if a key is required for going north-east at map point 'point{next_point}'")
+                check_for_key("north-east")
+            else:
+                logger_sys.log_message(f"INFO: Moving player north-east to map point 'point{next_point}': successful checks")
+                player["y"] += 1
+                player["x"] += 1
+            continued_command = True
+        elif command.lower().startswith('nw'):
+            logger_sys.log_message(f"INFO: Checking if player can go north-west from map point 'point{map_location}'")
+            next_point = search(player["x"] - 1, player["y"] + 1)
+            if "North" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to north-west: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(f"INFO: Checking if a key is required for going north-west at map point 'point{next_point}'")
+                check_for_key("north-west")
+            else:
+                logger_sys.log_message(f"INFO: Moving player north-west to map point 'point{next_point}': successful checks")
+                player["y"] += 1
+                player["x"] -= 1
+            continued_command = True
+        elif command.lower().startswith('se'):
+            logger_sys.log_message(f"INFO: Checking if player can go south-east from map point 'point{map_location}'")
+            next_point = search(player["x"] + 1, player["y"] - 1)
+            if "North" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to south-east: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(f"INFO: Checking if a key is required for going south-east at map point 'point{next_point}'")
+                check_for_key("south-east")
+            else:
+                logger_sys.log_message(f"INFO: Moving player south-east to map point 'point{next_point}': successful checks")
+                player["y"] -= 1
+                player["x"] += 1
+            continued_command = True
+        elif command.lower().startswith('sw'):
+            logger_sys.log_message(f"INFO: Checking if player can go south-west from map point 'point{map_location}'")
+            next_point = search(player["x"] - 1, player["y"] - 1)
+            if "North" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to south-west: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(f"INFO: Checking if a key is required for going south-west at map point 'point{next_point}'")
+                check_for_key("south-west")
+            else:
+                logger_sys.log_message(f"INFO: Moving player south-west to map point 'point{next_point}': successful checks")
+                player["y"] -= 1
+                player["x"] -= 1
+            continued_command = True
         elif command.lower().startswith('n'):
             logger_sys.log_message(f"INFO: Checking if player can go north from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] + 1)
