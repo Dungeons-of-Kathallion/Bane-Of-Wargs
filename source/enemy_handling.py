@@ -54,7 +54,7 @@ def spawn_enemy(
         battle.fight(
             player, item, enemy, map, map_location, enemies_remaining, lists,
             preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
-            player_damage_coefficient, start_time
+            player_damage_coefficient, start_time, text_replacements_generic
         )
         enemies_remaining -= 1
 

@@ -1,6 +1,12 @@
 import logger_sys
 import appdirs
+import colors
+import time
+from colorama import Fore, Back, Style, init, deinit
+from colors import *
 
+# initialize colorama
+init()
 
 # Load program directory
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
@@ -10,7 +16,8 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 def load_script(
     current_utility, preferences, player, map, item, drinks, enemy, npcs,
-    start_player, lists, zone, dialog, mission, mounts, start_time, plugin=False
+    start_player, lists, zone, dialog, mission, mounts, start_time,
+    generic_text_replacements, plugin=False
 ):
     logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
     if plugin:
@@ -20,7 +27,8 @@ def load_script(
         ) as f:
             execute_script(
                 f, current_utility, player, map, item, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts, start_time
+                start_player, lists, zone, dialog, mission, mounts, start_time,
+                generic_text_replacements
             )
     else:
         with open(
@@ -28,13 +36,15 @@ def load_script(
         ) as f:
             execute_script(
                 f, current_utility, player, map, item, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts, start_time
+                start_player, lists, zone, dialog, mission, mounts, start_time,
+                generic_text_replacements
             )
 
 
 def execute_script(
-    f, current_utility, player, map, item, drinks, enemy, npcs,
-    start_player, lists, zone, dialog, mission, mounts, start_time
+    file, current_utility, player, map, item, drinks, enemy, npcs,
+    start_player, lists, zone, dialog, mission, mounts, start_time,
+    generic_text_replacements
 ):
     global_arguments = {}
     if "arguments" in item[current_utility]:
@@ -65,4 +75,14 @@ def execute_script(
             global_arguments["mounts"] = mounts
         if "start_time" in arguments:
             global_arguments["start_time"] = start_time
-    exec(f.read(), global_arguments)
+        if "generic_text_replacements" in arguments:
+            global_arguments["generic_text_replacements"] = generic_text_replacements
+    try:
+        exec(file.read(), global_arguments)
+    except Exception as error:
+        print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + error + COLOR_RESET_ALL)
+        time.sleep(5)
+
+
+# deinitialize colorama
+deinit()

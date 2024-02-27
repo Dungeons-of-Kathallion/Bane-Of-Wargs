@@ -2600,12 +2600,14 @@ def run(play):
                     if preferences["latest preset"]["type"] == "plugin":
                         script_handling.load_script(
                             current_utility, preferences, player, map, item, drinks, enemy, npcs,
-                            start_player, lists, zone, dialog, mission, mounts, start_time, plugin=True
+                            start_player, lists, zone, dialog, mission, mounts, start_time,
+                            text_replacements_generic, plugin=True
                         )
                     else:
                         script_handling.load_script(
                             current_utility, preferences, player, map, item, drinks, enemy, npcs,
-                            start_player, lists, zone, dialog, mission, mounts, start_time
+                            start_player, lists, zone, dialog, mission, mounts, start_time,
+                            text_replacements_generic
                         )
                     continued_utility = True
                     input()

@@ -53,7 +53,7 @@ def print_map_xs(player, map, zone, start_time):
 
         x_to_remove += 1
         count += 1
-    
+
     print("║")
     print("╚", end="")
     count = 0
@@ -108,7 +108,7 @@ def print_map_s(player, map, zone, start_time):
 
         x_to_remove += 1
         count += 1
-    
+
     print("║")
     print("╚", end="")
     count = 0
@@ -163,7 +163,7 @@ def print_map_m(player, map, zone, start_time):
 
         x_to_remove += 1
         count += 1
-    
+
     print("║")
     print("╚", end="")
     count = 0
@@ -218,7 +218,7 @@ def print_map_l(player, map, zone, start_time):
 
         x_to_remove += 1
         count += 1
-    
+
     print("║")
     print("╚", end="")
     count = 0
@@ -384,7 +384,7 @@ def search_point(x, y, map_points_num, map):
 
 
 def run(player, map, zone, start_time):
-    choices = ['8x8', '16x16', '32x32', '64x64', '128x128 (long)']
+    choices = ['8x8', '16x16', '32x32', '64x64', 'full (128x128)']
     choice = term_menu.show_menu(choices, length=19)
     print("")
     if choice == choices[0]:

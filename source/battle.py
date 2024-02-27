@@ -341,7 +341,7 @@ def get_enemy_stats(
 def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
-    player_damage_coefficient, start_time
+    player_damage_coefficient, start_time, text_replacements_generic
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -499,12 +499,13 @@ def fight(
                                 script_handling.load_script(
                                     item_input, preferences, player, map, item, drinks, enemy, npcs,
                                     start_player, lists, zone, dialog, mission, mounts, start_time,
-                                    plugin=True
+                                    text_replacements_generic, plugin=True
                                 )
                             else:
                                 script_handling.load_script(
                                     item_input, preferences, player, map, item, drinks, enemy, npcs,
-                                    start_player, lists, zone, dialog, mission, mounts, start_time
+                                    start_player, lists, zone, dialog, mission, mounts, start_time,
+                                    text_replacements_generic
                                 )
                         text = '='
                         text_handling.print_separator(text)
