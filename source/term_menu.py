@@ -48,7 +48,7 @@ def show_menu(options, length=52):
 
         # Check if the input is in the choices
         if not error_happened:
-            if int(get_input) < 0 or int(get_input) > choice_number:
+            if int(get_input) < 0 or int(get_input) > (choice_number - 1):
                 print(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
                 time.sleep(.5)
                 error_happened = True
