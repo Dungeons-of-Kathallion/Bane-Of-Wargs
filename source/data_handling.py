@@ -247,18 +247,32 @@ def load_game_data(which_type, what_plugin=None):
                 progress.update(task_mount, advance=1)
 
             logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' module requirements")
+            requirements_file = program_dir + '/plugins/' + what_plugin + "/requirements.txt"
+            # Check which executable to use
+            executable = "python"
             try:
-                requirements_file = program_dir + '/plugins/' + what_plugin + "/requirements.txt"
-                if sys.executable.endswith('python'):
+                subprocess.check_call(
+                    ["python", "-V"],
+                    stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
+                )
+            except Exception as error:
+                executable = "python3"
+
+            # Install the required modules
+            try:
+                f = open(requirements_file)
+                modules = f.readlines()
+                progress.update(task_requirements, total=len(modules))
+                for line in modules:
                     retcode = subprocess.check_call(
-                        [sys.executable, "-m", "pip", "install", "-r", requirements_file],
+                        [executable, "-m", "pip", "install", line],
                         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
                     )
+                    progress.update(task_requirements, advance=1)
             except Exception as error:
-                logger_sys.log_message(f"WARNING: No 'requirements.txt' file found in plugin '{what_plugin}'")
+                logger_sys.log_message(f"WARNING: Couldn't install plugin '{what_plugin}' python requirements.txt")
                 logger_sys.log_message(f"DEBUG: '{error}'")
-            for i in range(10):
-                progress.update(task_requirements, advance=10)
+                progress.update(task_requirements, advance=100)
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 
 
