@@ -1241,7 +1241,7 @@ def run(play):
             print(
                 "                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
             )
-        if "South-East" not in blocked_locations:
+        if "South-West" not in blocked_locations:
             print("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         else:
             print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
