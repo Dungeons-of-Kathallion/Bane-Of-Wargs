@@ -2222,6 +2222,8 @@ point1033:
   blocked:
   - South
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -63
   y: 56
@@ -2287,7 +2289,7 @@ point10339:
   y: -16
 point1034:
   blocked:
-  - None
+  - South-West
   map zone: Forlindon Woods
   x: -62
   y: 56
@@ -2421,6 +2423,8 @@ point10359:
 point1036:
   blocked:
   - East
+  - North-East
+  - North-West
   map zone: Forlindon Woods
   x: -60
   y: 56
@@ -10887,6 +10891,7 @@ point11629:
 point1163:
   blocked:
   - West
+  - South-West
   map zone: Forlindon Woods
   x: -62
   y: 55
@@ -11019,6 +11024,8 @@ point11649:
 point1165:
   blocked:
   - East
+  - North-East
+  - North-West
   map zone: Forlindon Woods
   x: -60
   y: 55
@@ -19485,6 +19492,8 @@ point12919:
 point1292:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -62
   y: 54
@@ -20690,6 +20699,9 @@ point131:
   blocked:
   - West
   - East
+  - South-West
+  - North-West
+  - North-East
   map zone: Forlindon Woods
   x: -62
   y: 63
@@ -28094,6 +28106,8 @@ point14209:
 point1421:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -62
   y: 53
@@ -28226,6 +28240,8 @@ point14229:
 point1423:
   blocked:
   - East
+  - North-East
+  - North-West
   map zone: Forlindon Woods
   x: -60
   y: 53
@@ -36692,6 +36708,8 @@ point155:
 point1550:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -62
   y: 52
@@ -36757,7 +36775,7 @@ point15509:
   y: -56
 point1551:
   blocked:
-  - None
+  - South-East
   map zone: Forlindon Woods
   x: -61
   y: 52
@@ -36825,6 +36843,8 @@ point1552:
   blocked:
   - South
   - East
+  - North-West
+  - North-East
   map zone: Forlindon Woods
   x: -60
   y: 52
@@ -44379,6 +44399,8 @@ point1678:
 point1679:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -62
   y: 51
@@ -44391,6 +44413,7 @@ point168:
 point1680:
   blocked:
   - East
+  - South-East
   map zone: Forlindon Woods
   x: -61
   y: 51
@@ -45244,6 +45267,9 @@ point1808:
   blocked:
   - South
   - West
+  - South-West
+  - South-East
+  - North-West
   map zone: Forlindon Woods
   x: -62
   y: 50
@@ -45251,6 +45277,8 @@ point1809:
   blocked:
   - South
   - East
+  - South-West
+  - South-East
   map zone: Forlindon Woods
   x: -61
   y: 50
@@ -46519,6 +46547,10 @@ point2:
   - West
   - East
   - North
+  - South-West
+  - South-East
+  - North-West
+  - North-East
   map zone: Forlindon Woods
   x: -62
   y: 64
@@ -50527,6 +50559,8 @@ point26:
 point260:
   blocked:
   - West
+  - North-West
+  - North-East
   map zone: Forlindon Woods
   x: -62
   y: 62
@@ -50593,6 +50627,7 @@ point2609:
 point261:
   blocked:
   - North
+  - North-East
   map zone: Forlindon Woods
   x: -61
   y: 62
@@ -50659,6 +50694,8 @@ point2619:
 point262:
   blocked:
   - North
+  - North-East
+  - North-West
   map zone: Forlindon Woods
   x: -60
   y: 62
@@ -50726,6 +50763,9 @@ point263:
   blocked:
   - North
   - East
+  - North-East
+  - North-West
+  - South-East
   map zone: Forlindon Woods
   x: -59
   y: 62
@@ -59055,6 +59095,8 @@ point388:
   blocked:
   - West
   - North
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -63
   y: 61
@@ -59120,7 +59162,7 @@ point3889:
   y: 34
 point389:
   blocked:
-  - None
+  - North-West
   map zone: Forlindon Woods
   x: -62
   y: 61
@@ -59258,7 +59300,7 @@ point3909:
   y: 34
 point391:
   blocked:
-  - None
+  - South-East
   map zone: Forlindon Woods
   x: -60
   y: 61
@@ -59326,6 +59368,8 @@ point392:
   blocked:
   - North
   - East
+  - North-East
+  - South-East
   map zone: Forlindon Woods
   x: -59
   y: 61
@@ -67660,6 +67704,8 @@ point5169:
 point517:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -63
   y: 60
@@ -67864,6 +67910,7 @@ point52:
 point520:
   blocked:
   - East
+  - South-East
   map zone: Forlindon Woods
   x: -60
   y: 60
@@ -76258,6 +76305,8 @@ point6459:
 point646:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -63
   y: 59
@@ -76456,6 +76505,7 @@ point6489:
 point649:
   blocked:
   - East
+  - North-East
   map zone: Forlindon Woods
   x: -60
   y: 59
@@ -84856,6 +84906,8 @@ point7749:
 point775:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -63
   y: 58
@@ -85054,6 +85106,8 @@ point7779:
 point778:
   blocked:
   - East
+  - North-East
+  - North-West
   map zone: Forlindon Woods
   x: -60
   y: 58
@@ -93460,6 +93514,8 @@ point9039:
 point904:
   blocked:
   - West
+  - South-West
+  - North-West
   map zone: Forlindon Woods
   x: -63
   y: 57
@@ -93658,6 +93714,8 @@ point9069:
 point907:
   blocked:
   - East
+  - North-East
+  - North-West
   map zone: Forlindon Woods
   x: -60
   y: 57
