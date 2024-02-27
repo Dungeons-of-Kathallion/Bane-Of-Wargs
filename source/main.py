@@ -1234,9 +1234,13 @@ def run(play):
         else:
             print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         if "South-East" not in blocked_locations:
-            print("Can go South-East ⬊" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save")
+            print(
+                "Can go South-East ⬊" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
+            )
         else:
-            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save")
+            print(
+                "                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
+            )
         if "South-East" not in blocked_locations:
             print("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         else:
@@ -1624,7 +1628,9 @@ def run(play):
                 logger_sys.log_message(f"INFO: Refusing access to north-east: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
-                logger_sys.log_message(f"INFO: Checking if a key is required for going north-east at map point 'point{next_point}'")
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going north-east at map point 'point{next_point}'"
+                )
                 check_for_key("north-east")
             else:
                 logger_sys.log_message(f"INFO: Moving player north-east to map point 'point{next_point}': successful checks")
@@ -1639,7 +1645,9 @@ def run(play):
                 logger_sys.log_message(f"INFO: Refusing access to north-west: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
-                logger_sys.log_message(f"INFO: Checking if a key is required for going north-west at map point 'point{next_point}'")
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going north-west at map point 'point{next_point}'"
+                )
                 check_for_key("north-west")
             else:
                 logger_sys.log_message(f"INFO: Moving player north-west to map point 'point{next_point}': successful checks")
@@ -1654,7 +1662,9 @@ def run(play):
                 logger_sys.log_message(f"INFO: Refusing access to south-east: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
-                logger_sys.log_message(f"INFO: Checking if a key is required for going south-east at map point 'point{next_point}'")
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going south-east at map point 'point{next_point}'"
+                )
                 check_for_key("south-east")
             else:
                 logger_sys.log_message(f"INFO: Moving player south-east to map point 'point{next_point}': successful checks")
@@ -1669,7 +1679,9 @@ def run(play):
                 logger_sys.log_message(f"INFO: Refusing access to south-west: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
-                logger_sys.log_message(f"INFO: Checking if a key is required for going south-west at map point 'point{next_point}'")
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going south-west at map point 'point{next_point}'"
+                )
                 check_for_key("south-west")
             else:
                 logger_sys.log_message(f"INFO: Moving player south-west to map point 'point{next_point}': successful checks")
