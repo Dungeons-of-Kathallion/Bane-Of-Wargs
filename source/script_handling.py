@@ -87,12 +87,18 @@ def execute_script(
     logger_sys.log_message(
         f"INFO: Loaded script '{file}' from utility '{current_utility}' required arguments:\n{global_arguments}"
     )
-    logger_sys.log_message(f"INFO: Executing script '{file}' from utility '{current_utility}' with arguments '{global_arguments}'")
+    logger_sys.log_message(
+        f"INFO: Executing script '{file}' from utility '{current_utility}' with arguments '{global_arguments}'"
+    )
     try:
         exec(file.read(), global_arguments)
     except Exception as error:
         print(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + error + COLOR_RESET_ALL)
-        logger_sys.log_message(f"ERROR: An error occurred when executing script '{file}' from utility '{current_utility}' with arguments '{global_arguments}'")
+        logger_sys.log_message(
+            f"ERROR: An error occurred when executing script '{file}' from utility '{
+                current_utility
+            }' with arguments '{global_arguments}'"
+        )
         logger_sys.log_message(f"DEBUG: error message --> '{error}'")
         time.sleep(5)
 
