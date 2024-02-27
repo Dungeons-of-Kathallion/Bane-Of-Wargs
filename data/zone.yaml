@@ -124,7 +124,7 @@ Cocorico Village:
   name: "Cocorico Village"
   description: "The village in the Stall Fields. It offers tranquility and safeness."
   type: village
-  location: 0
+  location: 2334
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
   - "You should checkout the hostel in the village! They sell items for great prices!"
@@ -161,7 +161,7 @@ Ayar Town:
   name: "Ayar Town"
   description: "A small village located in the Forlindon Woods. It's a quiet place to live."
   type: village
-  location: 0
+  location: 647
   news:
   - "Hey! Have you ever heard about the Goro Mounts? Apparently our mayor have contacts with a dwarf colony there."
   - "..."
@@ -194,7 +194,7 @@ New Hyru:
   name: "New Hyru"
   description: "Located in the Californ Woods, it is a quit dangerous place, but also welcoming if you're careful."
   type: village
-  location: 0
+  location: 4777
   news:
   - "..."
   map:
@@ -226,7 +226,7 @@ Los Gerudos:
   name: "New Hyru"
   description: "Located in the Gerud Valleys, Los Gerudos is a great town for adventurers that are willing to train and challenge themselves."
   type: village
-  location: 0
+  location: 673
   news:
   - "..."
   map:
@@ -258,7 +258,7 @@ Los Gerudos Hostel:
   name: "Los Gerudo Hostel"
   description: "The hostel of the town of Los Gerudos. It was originally a Yrch outpost, but a century ago, it has been taken by an adventurer called Cromha MCcloud... From there, the town has been built around this hostel."
   type: hostel
-  location: 0
+  location: 6990
   news:
   - "..."
   map:
@@ -305,7 +305,7 @@ Kathal Horses:
   name: "Kathal Horses"
   description: "A great place where you can adopt horses mounts, train them or sell them. You can also find good quality horse equipment here."
   type: stable
-  location: 0
+  location: 6473
   cost value: 1.2
   training gold: 24
   deposit gold: .23
@@ -352,7 +352,7 @@ Woodstack Hostel:
   type: hostel
   cost value: .9
   sleep gold: 7
-  location: 0
+  location: 2075
   description: "The Woodstack Hostel is a nice place to be and you can find amazing people."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -394,7 +394,7 @@ Seaside Hostels:
   type: hostel
   cost value: 1.8
   sleep gold: 21
-  location: 0
+  location: 2326
   description: "The Seaside Hostels are a company of hostels that are settled in the west coast of the Stall Island. There are great hostels near the beach."
   news:
   - "..."
@@ -442,7 +442,7 @@ Pickaxe Forge:
   name: "Pickaxe Forge"
   type: forge
   cost value: 1.15
-  location: 0
+  location: 4778
   description: "At the Pickaxe Forge you'll be able to buy any metal at low prices for its high quality!"
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -479,7 +479,7 @@ Gerud Forges:
   name: "Gerud Forges"
   type: forge
   cost value: 1.25
-  location: 0
+  location: 7764
   description: "One of the most known forge in the eastern Stall Island. Huge prices but great quality."
   news:
   - "..."
@@ -520,7 +520,7 @@ James Blacksmith:
   name: "James Blacksmith"
   type: blacksmith
   cost value: 1
-  location: 0
+  location: 2463
   description: "Welcome to James Blacksmith! You can here sell metals to make gold, but metals and order many type of swords!"
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"
@@ -581,7 +581,7 @@ Gerud Armorer:
   name: "Gerud Armorer"
   type: blacksmith
   cost value: 1.7
-  location: 0
+  location: 7508
   description: "One of the most well know blacksmith in the eastern Stall Island. They sell extreme quality materials here."
   news:
   - "..."
@@ -705,7 +705,7 @@ Clarc Warg Stable:
   name: "Clarc Stable"
   type: stable
   cost value: .7
-  location: 0
+  location: 5551
   training gold: 18
   deposit gold: .15
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."

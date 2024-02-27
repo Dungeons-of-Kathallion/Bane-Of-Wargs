@@ -609,33 +609,53 @@ def remove_gold(amount):
 
 def check_for_key(direction):
     logger_sys.log_message("INFO: Checking for key at every next locations possible")
-    map_point_count = int(len(list(map)))
+    map_point_count = len(list(map))
     if direction == "north":
         for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"], point_i["y"] - 1
-            # print(i, point_x, point_y, player)
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     elif direction == "south":
         for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"], point_i["y"] + 1
-            # print(i, point_x, point_y, player)
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     elif direction == "east":
         for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"] - 1, point_i["y"]
-            # print(i, point_x, point_y, player)
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     elif direction == "west":
         for i in range(0, map_point_count):
             point_i = map["point" + str(i)]
             point_x, point_y = point_i["x"] + 1, point_i["y"]
-            # print(i, point_x, point_y, player)
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "north-east":
+        for i in range(0, map_point_count):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"] + 1, point_i["y"] + 1
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "north-west":
+        for i in range(0, map_point_count):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"] - 1, point_i["y"] + 1
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "south-east":
+        for i in range(0, map_point_count):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"] + 1, point_i["y"] - 1
+            if point_x == player["x"] and point_y == player["y"]:
+                future_map_location = i
+    elif direction == "south-west":
+        for i in range(0, map_point_count):
+            point_i = map["point" + str(i)]
+            point_x, point_y = point_i["x"] - 1, point_i["y"] - 1
             if point_x == player["x"] and point_y == player["y"]:
                 future_map_location = i
     if "key" in map["point" + str(future_map_location)]:
@@ -764,6 +784,7 @@ def run(play):
             COLOR_RESET_ALL
         )
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
+        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Save game")
         print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         print(" ")
@@ -1181,28 +1202,49 @@ def run(play):
 
         print("DIRECTIONS: " + "          ACTIONS:")
 
-        if "North" not in map["point" + str(map_location)]["blocked"]:
-            print("You can go North ▲" + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
+        blocked_locations = map["point" + str(map_location)]["blocked"]
+        if "North" not in blocked_locations:
+            print("Can go North ⬆    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
         else:
             print("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
-        if "South" not in map["point" + str(map_location)]["blocked"]:
-            print("You can go South ▼" + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
+        if "South" not in blocked_locations:
+            print("Can go South ⬇    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
         else:
             print("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
-        if "East" not in map["point" + str(map_location)]["blocked"]:
+        if "East" not in blocked_locations:
             print(
-                "You can go East ►" + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " +
-                COLOR_RESET_ALL + "Interact with zone (hostel...)"
+                "Can go East ➡    " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " +
+                COLOR_RESET_ALL + "Interact with zone"
             )
         else:
             print(
                 "                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
-                "Z: " + COLOR_RESET_ALL + "Interact with zone (hostel...)"
+                "Z: " + COLOR_RESET_ALL + "Interact with zone"
             )
-        if "West" not in map["point" + str(map_location)]["blocked"]:
-            print("You can go West ◄" + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save")
+        if "West" not in blocked_locations:
+            print("Can go West ⬅    " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
         else:
-            print("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save")
+            print("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
+        if "North-East" not in blocked_locations:
+            print("Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
+        else:
+            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
+        if "North-West" not in blocked_locations:
+            print("Can go North-West ⬉" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
+        else:
+            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
+        if "South-East" not in blocked_locations:
+            print(
+                "Can go South-East ⬊" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
+            )
+        else:
+            print(
+                "                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
+            )
+        if "South-East" not in blocked_locations:
+            print("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
+        else:
+            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
 
         text = '='
         text_handling.print_separator(text)
@@ -1557,6 +1599,8 @@ def run(play):
         logger_sys.log_message(f"INFO: Player ran command '{command}'")
         logger_sys.log_message(f"INFO: Checking if a ground item is present at map point 'point{map_location}'")
         continued_command = False
+        global pause_time
+        pause_time = 0  # required variable
         if "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
             logger_sys.log_message(f"INFO: Found item '{command}' at map point 'point{map_location}'")
             if command in player["inventory"] and item[command]["type"] == "Utility":
@@ -1575,6 +1619,74 @@ def run(play):
         elif command.lower().startswith('go'):
             print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
+            continued_command = True
+        elif command.lower().startswith('ne'):
+            logger_sys.log_message(f"INFO: Checking if player can go north-east from map point 'point{map_location}'")
+            next_point = search(player["x"] + 1, player["y"] + 1)
+            if "North-East" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to north-east: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going north-east at map point 'point{next_point}'"
+                )
+                check_for_key("north-east")
+            else:
+                logger_sys.log_message(f"INFO: Moving player north-east to map point 'point{next_point}': successful checks")
+                player["y"] += 1
+                player["x"] += 1
+            continued_command = True
+        elif command.lower().startswith('nw'):
+            logger_sys.log_message(f"INFO: Checking if player can go north-west from map point 'point{map_location}'")
+            next_point = search(player["x"] - 1, player["y"] + 1)
+            if "North-West" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to north-west: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going north-west at map point 'point{next_point}'"
+                )
+                check_for_key("north-west")
+            else:
+                logger_sys.log_message(f"INFO: Moving player north-west to map point 'point{next_point}': successful checks")
+                player["y"] += 1
+                player["x"] -= 1
+            continued_command = True
+        elif command.lower().startswith('se'):
+            logger_sys.log_message(f"INFO: Checking if player can go south-east from map point 'point{map_location}'")
+            next_point = search(player["x"] + 1, player["y"] - 1)
+            if "South-East" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to south-east: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going south-east at map point 'point{next_point}'"
+                )
+                check_for_key("south-east")
+            else:
+                logger_sys.log_message(f"INFO: Moving player south-east to map point 'point{next_point}': successful checks")
+                player["y"] -= 1
+                player["x"] += 1
+            continued_command = True
+        elif command.lower().startswith('sw'):
+            logger_sys.log_message(f"INFO: Checking if player can go south-west from map point 'point{map_location}'")
+            next_point = search(player["x"] - 1, player["y"] - 1)
+            if "South-West" in map["point" + str(map_location)]["blocked"] or next_point is None:
+                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Refusing access to south-west: access blocked to map point 'point{next_point}'")
+                time.sleep(1)
+            elif "key" in map["point" + str(next_point)]:
+                logger_sys.log_message(
+                    f"INFO: Checking if a key is required for going south-west at map point 'point{next_point}'"
+                )
+                check_for_key("south-west")
+            else:
+                logger_sys.log_message(f"INFO: Moving player south-west to map point 'point{next_point}': successful checks")
+                player["y"] -= 1
+                player["x"] -= 1
             continued_command = True
         elif command.lower().startswith('n'):
             logger_sys.log_message(f"INFO: Checking if player can go north from map point 'point{map_location}'")
@@ -2555,6 +2667,15 @@ def run(play):
                 f.write(dumped)
                 logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
             continued_command = True
+        elif command.lower().startswith('p'):
+            logger_sys.log_message("INFO: Pausing game")
+            print("Press enter to unpause game...")
+            pause_start = time.time()
+            input()
+            pause_end = time.time()
+            pause_time = pause_end - pause_start
+            logger_sys.log_message(f"INFO: Finished pausing game --> game pause have lasted {pause_time} seconds")
+            continued_command = True
         elif command.lower().startswith('q'):
             logger_sys.log_message("INFO: Closing & Saving game")
             text_handling.print_separator('=')
@@ -2662,15 +2783,15 @@ def run(play):
 
         # calculate elapsed time
         elapsed_time = end_time - start_time
-        elapsed_time = round(elapsed_time, 2)
+        elapsed_time = round(elapsed_time, 2) - pause_time
         logger_sys.log_message(f"INFO: Getting elapsed time: '{elapsed_time}'")
 
-        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
+        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time - pause_time, time_elapsing_coefficient)
         game_elapsed_time = round(game_elapsed_time, 2)
         logger_sys.log_message(f"INFO: Getting elapsed time in game days: '{game_elapsed_time}'")
 
-        player["elapsed time seconds"] = float(elapsed_time) + float(player["elapsed time seconds"])
-        player["elapsed time game days"] = game_elapsed_time + player["elapsed time game days"]
+        player["elapsed time seconds"] += elapsed_time
+        player["elapsed time game days"] += game_elapsed_time
 
 
 if play == 1:
