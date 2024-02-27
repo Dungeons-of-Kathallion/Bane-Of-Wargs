@@ -2782,12 +2782,11 @@ def run(play):
         logger_sys.log_message(f"INFO: Getting end time: '{end_time}'")
 
         # calculate elapsed time
-        elapsed_time = end_time - start_time
-        elapsed_time = round(elapsed_time, 2) - pause_time
+        elapsed_time = end_time - start_time - pause_time
         logger_sys.log_message(f"INFO: Getting elapsed time: '{elapsed_time}'")
 
-        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time - pause_time, time_elapsing_coefficient)
-        game_elapsed_time = round(game_elapsed_time, 2)
+        game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
+        game_elapsed_time = game_elapsed_time
         logger_sys.log_message(f"INFO: Getting elapsed time in game days: '{game_elapsed_time}'")
 
         player["elapsed time seconds"] += elapsed_time
