@@ -394,6 +394,8 @@ def print_consumable_effects(current_effect_type, current_effect_data):
 
     elif current_effect_type == 'protection':
         duration_time = current_effect_data["effect time"]
+        if duration_time == 999:
+            duration_time = "∞INFINITE∞"
         print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
         print(f"   Protection Changes:")
         if current_effect_data["protection change"] is not None:
@@ -410,6 +412,8 @@ def print_consumable_effects(current_effect_type, current_effect_data):
 
     elif current_effect_type == 'strength':
         duration_time = current_effect_data["effect time"]
+        if duration_time == 999:
+            duration_time = "∞INFINITE∞"
         print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
         print(f"   Strength Changes:")
         if current_effect_data["strength change"] is not None:
@@ -441,6 +445,8 @@ def print_consumable_effects(current_effect_type, current_effect_data):
 
     elif current_effect_type == 'agility':
         duration_time = current_effect_data["effect time"]
+        if duration_time == 999:
+            duration_time = "∞INFINITE∞"
         print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
         print(f"   Agility Changes:")
         if current_effect_data["agility change"] is not None:
@@ -457,6 +463,8 @@ def print_consumable_effects(current_effect_type, current_effect_data):
 
     elif current_effect_type == 'time elapsing':
         duration_time = current_effect_data["effect time"]
+        if duration_time == 999:
+            duration_time = "∞INFINITE∞"
         print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
         print(f"   Time Changes:")
         if current_effect_data["time change"] is not None:

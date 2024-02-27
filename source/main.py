@@ -1066,7 +1066,7 @@ def run(play):
                     if (
                         (
                             current_effect["effect duration"] + current_effect["effect starting time"]
-                        ) < player["elapsed time game days"]
+                        ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
                     ):
                         # Remove that effect from the player
                         # active effects
@@ -1083,7 +1083,7 @@ def run(play):
                     if (
                         (
                             current_effect["effect duration"] + current_effect["effect starting time"]
-                        ) < player["elapsed time game days"]
+                        ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
                     ):
                         # Remove that effect from the player
                         # active effects
@@ -1106,7 +1106,7 @@ def run(play):
                     if (
                         (
                             current_effect["effect duration"] + current_effect["effect starting time"]
-                        ) < player["elapsed time game days"]
+                        ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
                     ):
                         # Remove that effect from the player
                         # active effects
@@ -1123,7 +1123,7 @@ def run(play):
                     if (
                         (
                             current_effect["effect duration"] + current_effect["effect starting time"]
-                        ) < player["elapsed time game days"]
+                        ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
                     ):
                         # Remove that effect from the player
                         # active effects
