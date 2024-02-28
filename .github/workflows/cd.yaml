@@ -151,22 +151,6 @@ jobs:
         \n
         _Certain features will not work with earlier version of python._\n
         \n
-        ### To Use\n
-        \n
-        #### Using Pre-Built Executable\n
-        Download one of the possible executables, depending on your OS, the download the requirements:\n
-        ```bash\n
-        pip install fade GitPython colorama PyYaml yamale fsspec appdirs requests rich\n
-        ```\n
-        Then run the executable.\n
-        \n
-        #### Using Source Code\n
-        ```bash\n
-        git clone https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git\n
-        cd Bane-Of-Wargs\n
-        pip install -r requirements.txt\n
-        python source/main.py\n
-        ```\n
         _If you have an issues trying to install the game, please refer to the [`docs/PLAYING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md) guide._\n
         _Find a guide to build the game yourself at the [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md) document._
     steps:
