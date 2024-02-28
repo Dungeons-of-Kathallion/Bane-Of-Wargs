@@ -1300,9 +1300,8 @@ def run(play):
                     required_locations = dialog[str(current_dialog)]["to display"]["visited locations"]
                     required_locations_len = len(required_attributes)
                     logger_sys.log_message(
-                        f"INFO: Checking if player has required visited locations '{
-                            required_locations
-                        }' to display dialog '{current_dialog}'"
+                        f"INFO: Checking if player has required visited locations '{required_locations}'" +
+                        f" to display dialog '{current_dialog}'"
                     )
                     while count < required_locations_len and has_required_locations:
                         selected_location = required_locations[count]
