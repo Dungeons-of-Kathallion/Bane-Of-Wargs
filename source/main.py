@@ -1036,9 +1036,8 @@ def run(play):
             text_handling.exit_game()
 
         logger_sys.log_message(
-            f"INFO: Checking if player current map point 'point{
-                map_location
-            }' and map zone '{map_zone}' are already known by the player"
+            f"INFO: Checking if player current map point 'point{map_location}'" +
+            f" and map zone '{map_zone}' are already known by the player"
         )
         # add current player location and map
         # zone to visited areas in the player
