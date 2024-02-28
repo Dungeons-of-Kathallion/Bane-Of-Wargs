@@ -459,11 +459,8 @@ while menu:
             check = input("Are you sure you want to delete the following save (y/n)")
             if check.lower().startswith('y'):
                 logger_sys.log_message(
-                    f"WARNING: Deleting save file '{program_dir}/saves/save_{
-                        open_save
-                    }.yaml' and save file backup '{
-                        program_dir
-                    }/saves/~0 save_{open_save}.yaml'"
+                    f"WARNING: Deleting save file '{program_dir}/saves/save_{open_save}.yaml'" + 
+                    f" and save file backup '{program_dir}/saves/~0 save_{open_save}.yaml'"
                 )
                 os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
                 os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
