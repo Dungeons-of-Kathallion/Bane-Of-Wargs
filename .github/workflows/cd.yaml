@@ -162,12 +162,12 @@ jobs:
           git push --tags --force
       - name: Setup continuous release
         run: |
-          DESCRIPTION="This is an automated build triggered by commit ${{ github.sha }} (@${{ github.actor }}). It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!\n
-            This release was made to be compatible with the **3.12 python version** and the **latest release of the required python module**.\n
-            \n
-            _Certain features will not work with earlier version of python._\n
-            \n
-            _If you have an issues trying to install the game, please refer to the docs/PLAYING.md guide._\n
+          DESCRIPTION="This is an automated build triggered by commit ${{ github.sha }} (@${{ github.actor }}). It may be unstable or even crash, corrupt your save or eat your kitten. Use with caution!
+            This release was made to be compatible with the **3.12 python version** and the **latest release of the required python module**.
+            
+            _Certain features will not work with earlier version of python._
+            
+            _If you have an issues trying to install the game, please refer to the docs/PLAYING.md guide._
             _Find a guide to build the game yourself at the docs/BUILDING.md document._"
           if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release \
