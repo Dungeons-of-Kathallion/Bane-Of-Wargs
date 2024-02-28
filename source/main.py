@@ -1,5 +1,4 @@
-import random
-import yaml
+# source imports
 import battle
 import check_yaml
 import train
@@ -16,30 +15,26 @@ import script_handling
 import consumable_handling
 import item_handling
 import time_handling
+import logger_sys
+from colors import *
+# external imports
+import random
+import yaml
 import os
-import sys
 import time
 import fade
 import subprocess
 import git
-import readline
-import traceback
 import tempfile
 import appdirs
-import shutil
 import io
-import logger_sys
+import pydoc
 from git import Repo
-from colorama import Fore, Back, Style, deinit, init
-from colors import *
 from sys import exit
 from rich.console import Console
 from rich.markdown import Markdown
 from rich.table import Table
-import pydoc
 
-# initialize colorama
-init()
 
 text_handling.clear_prompt()
 
@@ -2799,6 +2794,4 @@ with open(program_dir + '/preferences.yaml', 'w') as f:
     f.write(dumped)
     logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
 
-# deinitialize colorame
-deinit()
 text_handling.clear_prompt()

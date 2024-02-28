@@ -1,12 +1,8 @@
-import logger_sys
-import colors
+# source imports
+from colors import *
+# external imports
 import calendar
 from datetime import datetime, timedelta
-from colorama import Fore, Back, Style, init, deinit
-from colors import *
-
-# initialize colorama
-init()
 
 
 # Constants
@@ -91,7 +87,3 @@ def return_game_day_from_seconds(seconds, time_elapsing_coefficient):
     game_days = seconds * COEFFICIENT * time_elapsing_coefficient  # 180 seconds irl = .25 days in-game
 
     return game_days
-
-
-# deinitialize colorama
-deinit()

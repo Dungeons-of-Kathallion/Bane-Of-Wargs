@@ -1,4 +1,4 @@
-import os
+# external imports
 import appdirs
 from datetime import *
 

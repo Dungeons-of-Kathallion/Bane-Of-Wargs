@@ -1,15 +1,8 @@
+# source imports
 import logger_sys
 import text_handling
 import term_menu
-import colors
-import sys
-import time
-import random
-from colorama import Fore, Back, Style, init, deinit
 from colors import *
-
-# initialize colorama
-init()
 
 
 # Handling functions
@@ -183,7 +176,3 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                 text_handling.print_long_string(text)
         else:
             p = False
-
-
-# deinitialize colorama
-deinit()

@@ -1,13 +1,11 @@
+# source imports
 import logger_sys
+from colors import *
+# external imports
 import appdirs
-import colors
 import time
 import subprocess
-from colorama import Fore, Back, Style, init, deinit
-from colors import *
 
-# initialize colorama
-init()
 
 # Load program directory
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
@@ -120,7 +118,3 @@ def install_requirement(module):
         [executable, "-m", "pip", "install", module],
         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
     )
-
-
-# deinitialize colorama
-deinit()

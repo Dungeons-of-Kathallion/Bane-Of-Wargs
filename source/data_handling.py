@@ -1,25 +1,21 @@
-import appdirs
+# source imports
 import logger_sys
 import check_yaml
-import colors
+import text_handling
+import script_handling
+from colors import *
+# external imports
+import appdirs
 import os
 import git
-import shutil
 import tempfile
 import yaml
 import time
-import text_handling
-import script_handling
 import fsspec
 import time
-import sys
 import subprocess
 from rich.progress import Progress
-from colorama import Fore, Back, Style, init, deinit
-from colors import *
 
-# initialize colorama
-init()
 
 # Get program add directory
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
@@ -307,7 +303,3 @@ def open_file(file_path):
         editor = 'nano'
     logger_sys.log_message(f"INFO: Editing file '{file_path}' with editor '{editor}'")
     subprocess.call([editor, file_path])
-
-
-# deinitialize colorama
-deinit()

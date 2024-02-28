@@ -1,15 +1,13 @@
+# source imports
 import battle
 import logger_sys
-import random
-import sys
-import colors
 import term_menu
 import text_handling
 from colors import *
-from colorama import Fore, Back, Style, init, deinit
+# external imports
+import random
+import sys
 
-# initialize colorama
-init()
 
 # Handling function
 
@@ -92,7 +90,3 @@ def spawn_enemy(
         player = start_player
         play = 0
         return play
-
-
-# deinitialize colorama
-deinit()

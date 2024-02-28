@@ -1,13 +1,11 @@
-import yamale
-import yaml
-import appdirs
+# source imports
 import logger_sys
 import text_handling
 from colors import *
-from colorama import Fore, Back, Style, init, deinit
-
-# initialize colorama
-init()
+# external imports
+import yamale
+import yaml
+import appdirs
 
 # Create the variable for the program
 # to access the program config/data folder

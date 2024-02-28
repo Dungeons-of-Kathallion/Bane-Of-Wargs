@@ -1,15 +1,9 @@
-import yaml
+# source imports
 import term_menu
 import logger_sys
-import os
 import dialog_handling
 import text_handling
-import time
-from colorama import Fore, Back, Style, deinit, init
 from colors import *
-
-# initialize colorama
-init()
 
 
 # Functions to handle missions
@@ -326,7 +320,3 @@ def mission_completing_checks(mission_id, missions_data, player, dialog, prefere
         print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You completed mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)
         player["active missions"].remove(mission_id)
         player["done missions"].append(mission_id)
-
-
-# deinitialize colorama
-deinit()

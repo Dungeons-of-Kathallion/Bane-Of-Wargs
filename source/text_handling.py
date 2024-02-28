@@ -1,16 +1,12 @@
+# source imports
 import logger_sys
 import time_handling
-import colors
+from colors import *
+# external imports
 import sys
 import time
-import os
 import random
 import appdirs
-from colorama import Fore, Back, Style, init, deinit
-from colors import *
-
-# initialize colorama
-init()
 
 
 # Handling functions
@@ -248,7 +244,3 @@ def multiple_items_in_list_formatting(list_to_format):
             output_list += [f"{i}"]
 
     return output_list
-
-
-# deinitialize colorama
-deinit()

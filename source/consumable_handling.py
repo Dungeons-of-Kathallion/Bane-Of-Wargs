@@ -1,14 +1,11 @@
+# source imports
 import logger_sys
 import uuid_handling
 import dialog_handling
 import text_handling
 import enemy_handling
-import colors
-from colorama import Fore, Back, Style, init, deinit
 from colors import *
 
-# initialize colorama
-init()
 
 # Handling Functions
 
@@ -494,7 +491,3 @@ def print_consumable_effects(current_effect_type, current_effect_data):
 
         else:
             print("     NONE")
-
-
-# deinitialize colorama
-deinit()

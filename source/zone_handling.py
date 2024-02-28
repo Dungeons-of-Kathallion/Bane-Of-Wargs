@@ -1,17 +1,15 @@
-import colors
+# source imports
 import logger_sys
-import random
 import text_handling
 import uuid_handling
 import weapon_upgrade_handling
 import train
 import term_menu
-import time
-from colorama import Fore, Back, Style, init, deinit
 from colors import *
+# external imports
+import random
+import time
 
-# initialize colorama
-init()
 
 # Handling functions
 
@@ -991,7 +989,3 @@ def interaction_forge(map_zone, zone, player, item):
                 print(COLOR_YELLOW + "The current forge doesn't sells this metal" + COLOR_RESET_ALL)
         else:
             continue_forge_actions = False
-
-
-# deinitialize colorama
-deinit()

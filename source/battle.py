@@ -1,17 +1,11 @@
-import yaml
-import random
-import os
-import sys
-import time
-import term_menu
+# source imports
 import text_handling
 import script_handling
 import item_handling
 from colors import *
-from colorama import Fore, Back, Style, init, deinit
-
-# initialize colorama
-init()
+# external imports
+import random
+import sys
 
 # battle stats
 defend = 0
@@ -578,6 +572,3 @@ def fight(
 
 
 still_playing = True
-
-# deinitialize colorama
-deinit()

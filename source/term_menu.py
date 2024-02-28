@@ -1,9 +1,7 @@
-import time
+# source imports
 from colors import *
-from colorama import Fore, Back, Style, init, deinit
-
-# initialize colorama
-init()
+# external imports
+import time
 
 
 def show_menu(options, length=52):
@@ -63,7 +61,3 @@ def show_menu(options, length=52):
             user_input = None
 
     return user_input
-
-
-# deinitialize colorama
-deinit()

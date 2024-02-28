@@ -1,15 +1,12 @@
+# source imports
+from colors import *
 import logger_sys
 import text_handling
 import term_menu
+# external imports
 import appdirs
-import sys
 import time
-import random
-from colorama import Fore, Back, Style, deinit, init
-from colors import *
 
-# Initialize colorama
-init()
 
 # Get program directory
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
@@ -440,7 +437,3 @@ def conversation_choice_maker(conversation_input, choices_dict, new_text_replace
         time.sleep(wait_time)
     elif choice_action.lower().startswith('ask-confirmation('):
         conversation_ask_confirmation(choice_action, new_text_replacements)
-
-
-# Deinitialize colorama
-deinit()

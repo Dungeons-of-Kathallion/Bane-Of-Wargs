@@ -1,16 +1,11 @@
-import yaml
-import random
-import os
-import sys
-import time
+# source imports
 import term_menu
 import text_handling
 import time_handling
 from colors import *
-from colorama import Fore, Back, Style, init, deinit
-
-# initialize colorama
-init()
+# external imports
+import random
+import time
 
 
 def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coefficient):
