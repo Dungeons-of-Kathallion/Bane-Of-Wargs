@@ -442,67 +442,67 @@ def examine_consumable(data):
 
 # Main Function
 def run():
-    print("Analazing map...")
+    print("Analyzing map...")
     with open("data/map.yaml") as f:
         map = yaml.safe_load(f)
     for i in list(map):
         examine_map_point(map[i])
 
-    print("Analazing items...")
+    print("Analyzing items...")
     with open("data/items.yaml") as f:
         item = yaml.safe_load(f)
     for i in list(item):
         examine_item(item[i])
 
-    print("Analazing drinks...")
+    print("Analyzing drinks...")
     with open("data/drinks.yaml") as f:
         drinks = yaml.safe_load(f)
     for i in list(drinks):
         examine_drink(drinks[i])
 
-    print("Analazing enemies...")
+    print("Analyzing enemies...")
     with open("data/enemies.yaml") as f:
         enemy = yaml.safe_load(f)
     for i in list(enemy):
         examine_enemy(enemy[i])
 
-    print("Analazing npcs...")
+    print("Analyzing npcs...")
     with open("data/npcs.yaml") as f:
         npcs = yaml.safe_load(f)
     for i in list(npcs):
         examine_npc(npcs[i])
 
-    print("Analazing start...")
+    print("Analyzing start...")
     with open("data/start.yaml") as f:
         start_player = yaml.safe_load(f)
         examine_start(start_player)
 
-    print("Analazing lists...")
+    print("Analyzing lists...")
     with open("data/lists.yaml") as f:
         lists = yaml.safe_load(f)
     for i in list(lists):
         examine_list(lists[i])
 
-    print("Analazing zones...")
+    print("Analyzing zones...")
     with open("data/zone.yaml") as f:
         zone = yaml.safe_load(f)
     for i in list(zone):
         examine_zone(zone[i])
 
-    print("Analazing dialogs...")
+    print("Analyzing dialogs...")
     with open("data/dialog.yaml") as f:
         dialog = yaml.safe_load(f)
     for i in list(dialog):
         check_dialog_conversations(dialog, i)
         examine_dialog(dialog[i])
 
-    print("Analazing missions...")
+    print("Analyzing missions...")
     with open("data/mission.yaml") as f:
         mission = yaml.safe_load(f)
     for i in list(mission):
         examine_mission(mission[i])
 
-    print("Analazing mounts...")
+    print("Analyzing mounts...")
     with open("data/mounts.yaml") as f:
         mounts = yaml.safe_load(f)
     for i in list(mounts):
