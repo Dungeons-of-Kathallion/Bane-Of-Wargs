@@ -166,8 +166,8 @@ jobs:
             \n
             _Certain features will not work with earlier version of python._\n
             \n
-            _If you have an issues trying to install the game, please refer to the docs/`PLAYING.md` guide._\n
-            _Find a guide to build the game yourself at the docs/`BUILDING.md` document._"
+            _If you have an issues trying to install the game, please refer to the docs/PLAYING.md guide._\n
+            _Find a guide to build the game yourself at the docs/BUILDING.md document._"
           if ! github-release info -t 9.9.9-continuous > /dev/null 2>&1; then
             github-release release \
               --tag 9.9.9-continuous \
