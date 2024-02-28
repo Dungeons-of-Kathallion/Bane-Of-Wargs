@@ -429,9 +429,8 @@ while menu:
                     program_dir + "/saves/save_" + rename_name + ".yaml"
                 )
                 logger_sys.log_message(
-                    f"INFO: Renaming save file '{program_dir}/saves/save_{
-                        open_save
-                    }.yaml' to '{program_dir}/saves/save_{rename_name}.yaml'"
+                    f"INFO: Renaming save file '{program_dir}/saves/save_{open_save}.yaml'" +
+                    f" to '{program_dir}/saves/save_{rename_name}.yaml'"
                 )
             else:
                 save_to_open = program_dir + "/saves/save_" + open_save + ".yaml"
