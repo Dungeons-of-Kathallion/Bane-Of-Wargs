@@ -1328,9 +1328,8 @@ def run(play):
                     required_npcs = dialog[str(current_dialog)]["to display"]["known npcs"]
                     required_npcs_len = len(required_npcs)
                     logger_sys.log_message(
-                        f"INFO: Checking if player has required known npcs '{
-                            required_npcs
-                        }' to display dialog '{current_dialog}'"
+                        f"INFO: Checking if player has required known npcs '{required_npcs}'" +
+                        f" to display dialog '{current_dialog}'"
                     )
                     while count < required_npcs_len and has_required_npcs:
                         selected_npc = required_npcs[count]
@@ -1424,9 +1423,8 @@ def run(play):
             if "stopovers" in current_mission_data:
                 if map_location in current_mission_data["stopovers"]:
                     logger_sys.log_message(
-                        f"INFO: Adding current map location '{
-                            map_location
-                        }' to player active mission data '{current_mission_data}'"
+                        f"INFO: Adding current map location '{map_location}' to player" +
+                        f" active mission data '{current_mission_data}'"
                     )
                     player["missions"][str(player["active missions"][count])]["stopovers went"].append(map_location)
 
@@ -2621,9 +2619,8 @@ def run(play):
                             player["mounts"][mount_uuid]["name"] = str(new_name)
                 else:
                     logger_sys.log_message(
-                        f"INFO: Canceling mount examining process --> doesn't own any mount named '{
-                            which_mount
-                        }'"
+                        f"INFO: Canceling mount examining process --> " +
+                        f"doesn't own any mount named '{which_mount}'"
                     )
                     print(COLOR_YELLOW + "You don't have any mounts named like that." + COLOR_RESET_ALL)
                     time.sleep(1.5)
