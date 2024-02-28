@@ -83,7 +83,8 @@ python source/main.py
 
 **It's highly recommende to use a clean terminal in fullscreen for the best gameplay experience.**
 
-If you have any problems, check the full documentation on how to run the game from nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md).
+_If you have any problems, check the full documentation on how to run the game from nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md)._
+_Note that you can also download the pre-built game executable from the [Continuous Build](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/releases/tag/9.9.9-continuous)._
 
 ## Building From Source
 
