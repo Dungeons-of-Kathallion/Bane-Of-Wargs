@@ -190,13 +190,13 @@ jobs:
             github-release release \
               --tag 9.9.9-continuous \
               --name "Continuous Build" \
-              --description "$DESCRIPTION" \
+              --description "${{ env.DESCRIPTION }}" \
               --pre-release
           else
             github-release edit \
               --tag 9.9.9-continuous \
               --name "Continuous Build" \
-              --description "$DESCRIPTION" \
+              --description "${{ env.DESCRIPTION }}" \
               --pre-release
           fi
       - name: Download Artifacts
