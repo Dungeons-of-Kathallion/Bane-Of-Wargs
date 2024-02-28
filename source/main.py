@@ -1339,11 +1339,8 @@ def run(play):
                         count += 1
             if has_required_attributes and has_required_locations and has_required_enemies and has_required_npcs:
                 logger_sys.log_message(
-                    f"INFO: Player has all required stuff to display dialog '{
-                        current_dialog
-                    }' --> displaying it and adding map location '{
-                        map_location
-                    }' to the player's heard dialogs save list"
+                    f"INFO: Player has all required stuff to display dialog '{current_dialog}'" +
+                    f" --> displaying it and adding map location '{map_location}' to the player's heard dialogs save list"
                 )
                 dialog_handling.print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks)
                 player["heard dialogs"].append(map_location)
@@ -1351,9 +1348,8 @@ def run(play):
                 text_handling.print_separator(text)
             else:
                 logger_sys.log_message(
-                    f"INFO: Player doesn't have all required stuff to display dialog '{
-                        current_dialog
-                    }' --> passing"
+                    f"INFO: Player doesn't have all required stuff to display dialog '{current_dialog}'" +
+                    " --> passing"
                 )
         logger_sys.log_message("INFO: Checking if the player is in a village")
         if zone[map_zone]["type"] == "village":
@@ -1412,9 +1408,8 @@ def run(play):
         # to the player save to let the program
         # known that
         logger_sys.log_message(
-            f"INFO: Checking if the player has a mission that has a stopover at the current map location '{
-                map_location
-            }'"
+            "INFO: Checking if the player has a mission that has a stopover" +
+            f" at the current map location '{map_location}'"
         )
 
         count = 0
@@ -1450,9 +1445,8 @@ def run(play):
         # Check if player has a mission that requires to
         # be at current map location to complete
         logger_sys.log_message(
-            f"INFO: Checking if the player has a mission that requires to be at current map location '{
-                map_location
-            }' to complete"
+            "INFO: Checking if the player has a mission that requires " +
+            f"to be at current map location '{map_location}' to complete"
         )
         count = 0
 
@@ -1522,9 +1516,8 @@ def run(play):
                             spawning_checks_2 = mission_handling.mission_checks(current_enemy_data, player, 'to despawn')
                         if spawning_checks and spawning_checks_2:
                             logger_sys.log_message(
-                                f"INFO: Spawning enemy from mission '{
-                                    current_mission_id
-                                }' with mission enemy data '{current_enemy_data}'"
+                                f"INFO: Spawning enemy from mission '{current_mission_id}' " +
+                                f"with mission enemy data '{current_enemy_data}'"
                             )
                             enemy_handling.spawn_enemy(
                                 map_location, lists[str(current_enemy_data["enemy category"])],
