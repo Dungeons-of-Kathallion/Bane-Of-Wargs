@@ -59,9 +59,8 @@ def check_yaml(file_path):
             schema = yamale.make_schema(file_schema)
             data = yamale.make_data(content=str(current_object_data))
             logger_sys.log_message(
-                f"INFO: Validating file '{
-                    file_path
-                }' data: '{current_object_data}' with schema '{file_schema}'"
+                f"INFO: Validating file '{file_path}' data: '{current_object_data}'" +
+                f" with schema '{file_schema}'"
             )
             yamale.validate(schema, data)
 
@@ -91,9 +90,8 @@ def check_yaml(file_path):
             schema = yamale.make_schema(str(file_schema))
             data = yamale.make_data(content=str(current_object_data))
             logger_sys.log_message(
-                f"INFO: Validating file '{
-                    file_path
-                }' data: '{current_object_data}' with schema '{file_schema}'"
+                f"INFO: Validating file '{file_path}' data: '{current_object_data}'" +
+                f" with schema '{file_schema}'"
             )
             yamale.validate(schema, data)
 

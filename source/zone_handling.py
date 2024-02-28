@@ -531,9 +531,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     print(COLOR_YELLOW + "You don't own enough gold to buy that mount" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
-                    f"INFO: Canceling buying process --> current stable '{
-                        map_zone
-                    }' doesn't sell mount '{which_mount}'"
+                    f"INFO: Canceling buying process --> current stable '{map_zone}'" +
+                    f" doesn't sell mount '{which_mount}'"
                 )
                 print(COLOR_YELLOW + "The current stable do not sell this mount" + COLOR_RESET_ALL)
         elif action == 'Deposit Mount':
@@ -548,9 +547,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     ask = input("Do you want to deposit your current mount " + mount_data["name"] + " ? (y/n) ")
                     if ask.lower().startswith('y'):
                         logger_sys.log_message(
-                            f"INFO: Depositing currently player ridden mount '{
-                                current_mount
-                            }' to map zone '{map_zone}"
+                            f"INFO: Depositing currently player ridden mount '{current_mount}'" +
+                            f" to map zone '{map_zone}"
                         )
                         player["current mount"] = " "
                         player["mounts"][current_mount_uuid]["is deposited"] = True
@@ -560,9 +558,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     text_handling.print_separator(text)
                 else:
                     logger_sys.log_message(
-                        f"INFO: Canceling depositing process --> current stable '{
-                            map_zone
-                        }' doesn't accept mounts of type '{current_mount_type}'"
+                        f"INFO: Canceling depositing process --> current stable '{map_zone}' " +
+                        f"doesn't accept mounts of type '{current_mount_type}'"
                     )
                     print(COLOR_YELLOW + "This stable doesn't accept this type of mount." + COLOR_RESET_ALL)
             else:
@@ -694,9 +691,8 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     COLOR_RESET_ALL
                 )
                 logger_sys.log_message(
-                    f"INFO: Canceling selling process --> current blacksmith '{
-                        map_zone
-                    }' doesn't sell item '{which_weapon}' or player doesn't own item '{which_weapon}'"
+                    f"INFO: Canceling selling process --> current blacksmith '{map_zone}' " +
+                    f"doesn't sell item '{which_weapon}' or player doesn't own item '{which_weapon}'"
                 )
                 text_handling.print_long_string(text)
         elif action == 'Order Equipment':
@@ -822,9 +818,10 @@ def interaction_blacksmith(map_zone, zone, item, player):
                         COLOR_YELLOW + "You cannot upgrade this equipment further." + COLOR_RESET_ALL
                     )
             else:
-                logger_sys.log_message(f"INFO: Canceling upgrading process --> player doesn't own any '{
-                    which_weapon
-                }' in its inventory")
+                logger_sys.log_message(
+                    "INFO: Canceling upgrading process --> player doesn't own any" +
+                    f" '{which_weapon}' in its inventory"
+                )
                 print(COLOR_YELLOW + "You don't own that equipment" + COLOR_RESET_ALL)
         elif action == 'Check Order':
             player_orders = player["orders"]
@@ -919,9 +916,8 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     player["orders"].pop(current_order_uuid)
             else:
                 logger_sys.log_message(
-                    f"INFO: Canceling collecting order process --> player has no order '{
-                        which_order
-                    }' at map zone '{map_zone}'"
+                    "INFO: Canceling collecting order process --> player has no order " +
+                    f"'{which_order}' at map zone '{map_zone}'"
                 )
                 print(COLOR_YELLOW + "You don't have this order currently at this place." + COLOR_RESET_ALL)
         else:
@@ -961,9 +957,8 @@ def interaction_forge(map_zone, zone, player, item):
                         count += 1
                 else:
                     logger_sys.log_message(
-                        f"INFO: Canceling selling process --> doesn't has {
-                            metal_count
-                        } '{which_metal}' in player's inventory"
+                        "INFO: Canceling selling process --> doesn't has " +
+                        f"{metal_count} '{which_metal}' in player's inventory"
                     )
                     print(COLOR_YELLOW + "You don't own that many count of this metal" + COLOR_RESET_ALL)
             else:
@@ -990,9 +985,8 @@ def interaction_forge(map_zone, zone, player, item):
                     print(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
-                    f"INFO: Canceling buying process --> current forge '{
-                        map_zone
-                    }' doesn't sell item '{which_metal}'"
+                    f"INFO: Canceling buying process --> current forge '{map_zone}'" +
+                    f" doesn't sell item '{which_metal}'"
                 )
                 print(COLOR_YELLOW + "The current forge doesn't sells this metal" + COLOR_RESET_ALL)
         else:

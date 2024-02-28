@@ -25,9 +25,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
     if "scene" in current_dialog:
         current_dialog_scene = str(current_dialog["scene"])
         logger_sys.log_message(
-            f"INFO: Printing dialog '{
-                current_dialog_name
-            }' scene at '{program_dir}/game/imgs/{current_dialog_scene}.txt'"
+            f"INFO: Printing dialog '{current_dialog_name}' scene at " +
+            f"'{program_dir}/game/imgs/{current_dialog_scene}.txt'"
         )
         if preferences["latest preset"]["type"] == 'vanilla':
             with open(program_dir + '/game/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
@@ -46,9 +45,8 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
         else:
             current_plugin = str(preferences["latest preset"]["plugin"])
             logger_sys.log_message(
-                f"INFO: Printing dialog '{
-                    current_dialog_name
-                }' scene at '{program_dir}/plugins/{current_plugin}/imgs/{current_dialog_scene}.txt'"
+                f"INFO: Printing dialog '{current_dialog_name}' scene at " +
+                f"'{program_dir}/plugins/{current_plugin}/imgs/{current_dialog_scene}.txt'"
             )
             with open(
                 program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +

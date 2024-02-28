@@ -256,9 +256,8 @@ def encounter_text_show(
 
     sys.stdout.write(f"RISK: {risk}% \n")
     sys.stdout.write(
-        f"|{health_color}{
-            remaining_risk_bars * remaining_risk_symbol
-        }{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n"
+        f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}" +
+        f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n"
     )
     sys.stdout.flush()
 
@@ -410,15 +409,13 @@ def fight(
 
                 sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
                 sys.stdout.write(
-                    f"|{health_color}{
-                        remaining_health_bars * remaining_health_symbol
-                    }{lost_health_bars * lost_health_symbol}{color_default}|\n"
+                    f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
+                    f"{lost_health_bars * lost_health_symbol}{color_default}|\n"
                 )
                 sys.stdout.write(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
                 sys.stdout.write(
-                    f"|{health_color_enemy}{
-                        remaining_health_bars_enemy * remaining_health_symbol
-                    }{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
+                    f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
+                    f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
                 )
                 sys.stdout.flush()
 
@@ -559,17 +556,15 @@ def fight(
                         remaining_health_bars_enemy = 20
 
                     sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
-                    sys.stdout.write(f"|{health_color}{
-                        remaining_health_bars * remaining_health_symbol
-                    }{
-                        lost_health_bars * lost_health_symbol
-                    }{color_default}|\n")
+                    sys.stdout.write(
+                        f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
+                        f"{lost_health_bars * lost_health_symbol}{color_default}|\n"
+                    )
                     sys.stdout.write(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
-                    sys.stdout.write(f"|{health_color_enemy}{
-                        remaining_health_bars_enemy * remaining_health_symbol
-                    }{
-                        lost_health_bars_enemy * lost_health_symbol
-                    }{color_default}|")
+                    sys.stdout.write(
+                        f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
+                        f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
+                    )
                     sys.stdout.flush()
                     print("\n")
                     player["xp"] += enemy_max * enemy_max_damage / 3
