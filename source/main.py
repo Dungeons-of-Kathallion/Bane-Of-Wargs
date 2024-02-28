@@ -1286,9 +1286,8 @@ def run(play):
                     required_attributes = dialog[str(current_dialog)]["to display"]["player attributes"]
                     required_attributes_len = len(required_attributes)
                     logger_sys.log_message(
-                        f"INFO: Checking if player has required attributes '{
-                            required_attributes
-                        }' to display dialog '{current_dialog}'"
+                        f"INFO: Checking if player has required attributes '{required_attributes}'" +
+                        f" to display dialog '{current_dialog}'"
                     )
                     while count < required_attributes_len and has_required_attributes:
                         selected_attribute = required_attributes[count]
