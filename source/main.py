@@ -1494,9 +1494,8 @@ def run(play):
         # Check if player current missions
         # have an enemy at current map point
         logger_sys.log_message(
-            f"INFO: Checking if the player has a mission that makes an enemy spawn at current map point 'point{
-                map_location
-            }'"
+            "INFO: Checking if the player has a mission that makes an enemy " +
+            f"spawn at current map point 'point{map_location}'"
         )
         count = 0
         count2 = 0
