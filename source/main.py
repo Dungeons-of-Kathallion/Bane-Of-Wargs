@@ -1314,9 +1314,8 @@ def run(play):
                     required_enemies = dialog[str(current_dialog)]["to display"]["known enemies"]
                     required_enemies_len = len(required_enemies)
                     logger_sys.log_message(
-                        f"INFO: Checking if player has required known enemies '{
-                            required_enemies
-                        }' to display dialog '{current_dialog}'"
+                        f"INFO: Checking if player has required known enemies '{required_enemies}'" +
+                        f" to display dialog '{current_dialog}'"
                     )
                     while count < required_enemies_len and has_required_enemies:
                         selected_enemy = required_enemies[count]
