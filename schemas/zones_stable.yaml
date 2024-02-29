@@ -1,7 +1,6 @@
 name: str()
 type: str()
 cost value: num()
-location: int()
 training gold: num()
 deposit gold: num()
 description: str()

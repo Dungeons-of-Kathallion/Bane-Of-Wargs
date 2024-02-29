@@ -244,3 +244,10 @@ def multiple_items_in_list_formatting(list_to_format):
             output_list += [f"{i}"]
 
     return output_list
+
+
+def transform_negative_number_to_positive(number):
+    if str(number).startswith("-"):
+        number = int(str(number).replace("-", ""))
+
+    return number

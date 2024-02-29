@@ -989,3 +989,46 @@ def interaction_forge(map_zone, zone, player, item):
                 print(COLOR_YELLOW + "The current forge doesn't sells this metal" + COLOR_RESET_ALL)
         else:
             continue_forge_actions = False
+
+
+def get_map_point_distance_from_player(map, player, current_map_point):
+    point_x, point_y = map[current_map_point]["x"], map[current_map_point]["y"]
+    point_x, point_y = text_handling.transform_negative_number_to_positive(
+        point_x
+    ), text_handling.transform_negative_number_to_positive(point_y)
+    player_x, player_y = player["x"], player["y"]
+    player_x, player_y = text_handling.transform_negative_number_to_positive(
+        player_x
+    ), text_handling.transform_negative_number_to_positive(player_y)
+
+    point_distance_from_player = (point_x - player_x) + (point_y - player_y)
+    point_distance_from_player = text_handling.transform_negative_number_to_positive(
+        point_distance_from_player
+    )
+    return point_distance_from_player
+
+
+def get_zone_nearest_point(map, player, map_zone_name):
+    # Get matching points and then for each of them,
+    # get their distance from the player location and
+    # finally determine which one is the closest from the player
+    closest_map_point = None
+    matching_points = []
+    distances = []
+    for point in list(map):
+        if map[point]["map zone"] == map_zone_name:
+            matching_points += [point]
+
+    for point in matching_points:
+        point_distance_from_player = get_map_point_distance_from_player(
+            map, player, point
+        )
+        distances += [point_distance_from_player]
+
+    distances.sort()  # sort the list so that the lowest value is at index 0
+    for point in matching_points:
+        if get_map_point_distance_from_player(map, player, point) == distances[0]:
+            closest_map_point = point
+
+    return closest_map_point
+

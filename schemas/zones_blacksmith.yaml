@@ -1,7 +1,6 @@
 name: str()
 type: str()
 cost value: num()
-location: int()
 description: str()
 news: list(str())
 map:

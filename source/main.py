@@ -1755,11 +1755,13 @@ def run(play):
                     text_handling.print_zone_map_alone(which_zone, zone)
                     print("NAME: " + zone[which_zone]["name"])
                     if zone[which_zone]["type"] == "village":
-                        village_point = zone[which_zone]["location"]
+                        village_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        village_x = map[village_point]["x"]
+                        village_y = map[village_point]["y"]
                         village_coordinates = (
-                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(village_point)]["x"]) +
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(village_x) +
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                            str(map["point" + str(village_point)]["y"]) + COLOR_RESET_ALL + ")"
+                            str(village_y) + COLOR_RESET_ALL + ")"
                         )
                         print("LOCATION: " + village_coordinates)
                         content_hostels = str(zone[which_zone]["content"]["hostels"])
@@ -1788,11 +1790,13 @@ def run(play):
                         text_handling.print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
-                        hostel_point = zone[which_zone]["location"]
+                        hostel_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        hostel_x = map[hostel_point]["x"]
+                        hostel_y = map[hostel_point]["y"]
                         hostel_coordinates = (
-                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(map["point" + str(hostel_point)]["x"]) +
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(hostel_x) +
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                            str(map["point" + str(hostel_point)]["y"]) + COLOR_RESET_ALL + ")"
+                            str(hostel_y) + COLOR_RESET_ALL + ")"
                         )
                         print("LOCATION: " + hostel_coordinates)
                         print(
@@ -1843,12 +1847,13 @@ def run(play):
                                 count += 1
                     elif zone[which_zone]["type"] == "stable":
                         current_stable = zone[which_zone]
-                        stable_point = zone[which_zone]["location"]
+                        stable_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        stable_x = map[stable_point]["x"]
+                        stable_y = map[stable_point]["y"]
                         stable_coordinates = (
-                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                            str(map["point" + str(stable_point)]["x"]) + COLOR_RESET_ALL + ", " +
-                            COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                            str(map["point" + str(stable_point)]["y"]) + COLOR_RESET_ALL + ")"
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(stable_x) +
+                            COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
+                            str(stable_y) + COLOR_RESET_ALL + ")"
                         )
                         print("LOCATION: " + stable_coordinates)
                         print(
@@ -1924,12 +1929,13 @@ def run(play):
                             )
                     elif zone[which_zone]["type"] == "blacksmith":
                         current_black_smith = zone[which_zone]
-                        blacksmith_point = zone[which_zone]["location"]
+                        blacksmith_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        blacksmith_x = map[blacksmith_point]["x"]
+                        blacksmith_y = map[blacksmith_point]["y"]
                         black_smith_coordinates = (
-                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                            str(map["point" + str(blacksmith_point)]["x"]) +
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(blacksmith_x) +
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
-                            str(map["point" + str(blacksmith_point)]["y"]) + COLOR_RESET_ALL + ")"
+                            str(blacksmith_y) + COLOR_RESET_ALL + ")"
                         )
                         print("LOCATION: " + black_smith_coordinates)
                         if "None" not in current_black_smith["blacksmith"]["buys"]:
@@ -1965,10 +1971,15 @@ def run(play):
                                 count += 1
                     elif zone[which_zone]["type"] == "forge":
                         current_forge = zone[which_zone]
-                        print(str(current_forge["name"]) + ":")
-                        text = current_forge["description"]
-                        text_handling.print_long_string(text)
-                        print(" ")
+                        forge_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        forge_x = map[forge_point]["x"]
+                        forge_y = map[forge_point]["y"]
+                        forge_coordinates = (
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(forge_x) +
+                            COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
+                            str(forge_y) + COLOR_RESET_ALL + ")"
+                        )
+                        print("LOCATION: " + forge_coordinates)
                         if "None" not in current_forge["forge"]["buys"]:
                             print("METAL BUYS:")
                             count = 0
