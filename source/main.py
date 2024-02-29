@@ -192,7 +192,7 @@ while count < len(latest_main_class) and continuing:
     count += 1
 
 if preferences["auto update"]:
-    data_handling.update_game_data(preferences)
+    data_handling.update_game_data(preferences, latest_game_data_version)
 
 # Compare the latest game data version with
 # the current game data version
@@ -211,7 +211,7 @@ if GAME_DATA_VERSION != latest_game_data_version:
     want_to_update = term_menu.show_menu(["Yes", "No"])
     if want_to_update == "Yes":
         text_handling.clear_prompt()
-        data_handling.update_game_data(preferences)
+        data_handling.update_game_data(preferences, latest_game_data_version)
     text_handling.clear_prompt()
 
 # main menu start

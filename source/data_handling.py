@@ -264,7 +264,7 @@ def load_game_data(which_type, what_plugin=None):
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 
 
-def update_game_data(preferences):
+def update_game_data(preferences, latest_game_data_version):
     # Update python modules
     logger_sys.log_message("INFO: Starting game python module requirements install process")
     print(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
@@ -323,6 +323,10 @@ def update_game_data(preferences):
     last_timer = time.time()
     process_time = round(last_timer - first_timer, 4)
     logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
+
+    # Update the 'VERSION.bow' file
+    with open(f"{program_dir}/game/VERSION.bow", 'w') as f:
+        f.write(str(latest_game_data_version))
 
 
 def fsspec_download(github_file, destination_point, download_branch, download_repo, download_org):
