@@ -1031,4 +1031,3 @@ def get_zone_nearest_point(map, player, map_zone_name):
             closest_map_point = point
 
     return closest_map_point
-
