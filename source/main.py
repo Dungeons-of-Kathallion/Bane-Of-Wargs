@@ -192,64 +192,7 @@ while count < len(latest_main_class) and continuing:
     count += 1
 
 if preferences["auto update"]:
-    # Update python modules
-    logger_sys.log_message("INFO: Starting game python module requirements install process")
-    print(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
-    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
-    first_timer = time.time()
-
-    requirements = io.StringIO(data_handling.temporary_git_file_download(
-        'requirements.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
-    )).readlines()
-    requirements_length = len(requirements)
-    count = 0
-    for module in requirements:
-        print(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
-        logger_sys.log_message(f"INFO: Trying to install python module '{module}'")
-        script_handling.install_requirement(module)
-
-        count += 1
-    print(f"{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}")
-
-    last_timer = time.time()
-    process_time = round(last_timer - first_timer, 4)
-    logger_sys.log_message(f"INFO: Process of installing game python module requirements completed in {process_time} seconds")
-
-    # Download game data
-    logger_sys.log_message("INFO: Downloading game data to update it")
-    print(COLOR_STYLE_BRIGHT + "Downloading game data..." + COLOR_RESET_ALL)
-    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
-    print(f"{COLOR_BLUE}0{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-    download_branch = str(preferences["game data download"]["branch"])
-    download_repo = str(preferences["game data download"]["repository"])
-    download_org = str(preferences["game data download"]["org"])
-
-    logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
-
-    first_timer = time.time()
-    # Download yaml schema files
-    data_handling.fsspec_download('schemas/', program_dir + '/game/schemas', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}1{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-
-    logger_sys.log_message("INFO: Downloading game data files from github")
-    # Download data files
-    data_handling.fsspec_download('data/', program_dir + '/game/data', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}2{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-
-    logger_sys.log_message("INFO: Downloading game images .txt files from github")
-    # Download images .txt files
-    data_handling.fsspec_download('imgs/', program_dir + '/game/imgs', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}3{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-
-    logger_sys.log_message("INFO: Downloading game scripts .py files from github")
-    # Download scripts .py files
-    data_handling.fsspec_download('scripts/', program_dir + '/game/scripts', download_branch, download_repo, download_org)
-
-    print(f"{COLOR_GREEN}4{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}")
-    print("Done")
-    last_timer = time.time()
-    process_time = round(last_timer - first_timer, 4)
-    logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
+    data_handling.update_game_data(preferences)
 
 # Compare the latest game data version with
 # the current game data version
@@ -264,6 +207,11 @@ if GAME_DATA_VERSION != latest_game_data_version:
         COLOR_RESET_ALL
     )
     time.sleep(3)
+    print("\nDo you want to update your game data right now?")
+    want_to_update = term_menu.show_menu(["Yes", "No"])
+    if want_to_update == "Yes":
+        text_handling.clear_prompt()
+        data_handling.update_game_data(preferences)
     text_handling.clear_prompt()
 
 # main menu start

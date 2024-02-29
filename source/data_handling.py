@@ -13,6 +13,7 @@ import yaml
 import time
 import fsspec
 import time
+import io
 import subprocess
 from rich.progress import Progress
 
@@ -261,6 +262,67 @@ def load_game_data(which_type, what_plugin=None):
 
                 progress.update(task_requirements, advance=100)
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+
+
+def update_game_data(preferences):
+    # Update python modules
+    logger_sys.log_message("INFO: Starting game python module requirements install process")
+    print(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
+    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
+    first_timer = time.time()
+
+    requirements = io.StringIO(temporary_git_file_download(
+        'requirements.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
+    )).readlines()
+    requirements_length = len(requirements)
+    count = 0
+    for module in requirements:
+        print(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
+        logger_sys.log_message(f"INFO: Trying to install python module '{module}'")
+        script_handling.install_requirement(module)
+
+        count += 1
+    print(f"{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}")
+
+    last_timer = time.time()
+    process_time = round(last_timer - first_timer, 4)
+    logger_sys.log_message(f"INFO: Process of installing game python module requirements completed in {process_time} seconds")
+
+    # Download game data
+    logger_sys.log_message("INFO: Downloading game data to update it")
+    print(COLOR_STYLE_BRIGHT + "Downloading game data..." + COLOR_RESET_ALL)
+    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
+    print(f"{COLOR_BLUE}0{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+    download_branch = str(preferences["game data download"]["branch"])
+    download_repo = str(preferences["game data download"]["repository"])
+    download_org = str(preferences["game data download"]["org"])
+
+    logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
+
+    first_timer = time.time()
+    # Download yaml schema files
+    fsspec_download('schemas/', program_dir + '/game/schemas', download_branch, download_repo, download_org)
+    print(f"{COLOR_BLUE}1{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+
+    logger_sys.log_message("INFO: Downloading game data files from github")
+    # Download data files
+    fsspec_download('data/', program_dir + '/game/data', download_branch, download_repo, download_org)
+    print(f"{COLOR_BLUE}2{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+
+    logger_sys.log_message("INFO: Downloading game images .txt files from github")
+    # Download images .txt files
+    fsspec_download('imgs/', program_dir + '/game/imgs', download_branch, download_repo, download_org)
+    print(f"{COLOR_BLUE}3{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+
+    logger_sys.log_message("INFO: Downloading game scripts .py files from github")
+    # Download scripts .py files
+    fsspec_download('scripts/', program_dir + '/game/scripts', download_branch, download_repo, download_org)
+
+    print(f"{COLOR_GREEN}4{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}")
+    print("Done")
+    last_timer = time.time()
+    process_time = round(last_timer - first_timer, 4)
+    logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
 
 
 def fsspec_download(github_file, destination_point, download_branch, download_repo, download_org):
