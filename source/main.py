@@ -100,6 +100,7 @@ menu = True
 # not, create it with all its required content
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 if not os.path.exists(program_dir):
+    GAME_DATA_VERSION = 0.1
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -128,6 +129,8 @@ if not os.path.exists(program_dir):
     os.mkdir(program_dir + "/game")
     os.mkdir(program_dir + "/logs")
     os.mkdir(program_dir + "/docs")
+    with open(f"{program_dir}/game/VERSION.bow", 'w') as f:
+        f.write(str(GAME_DATA_VERSION))
 
 # Download game data from github master branch
 # and install them (auto-update)
@@ -140,7 +143,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-CURRENT_VERSION = 0.1
+SOURCE_CODE_VERSION = 0.1
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -148,23 +151,45 @@ latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
 continuing = True
 count = 0
 while count < len(latest_main_class) and continuing:
-    if latest_main_class[count].startswith('CURRENT_VERSION = '):
+    if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
         latest_version = latest_main_class[count]
         continuing = False
     count += 1
 
-if latest_version != CURRENT_VERSION:
+if latest_version != SOURCE_CODE_VERSION:
     logger_sys.log_message("WARNING: The game source code is outdated")
     logger_sys.log_message(
-        f"DEBUG: You're using version {CURRENT_VERSION} while the latest version is {latest_version}"
+        f"DEBUG: You're using version {SOURCE_CODE_VERSION} while the latest version is {latest_version}"
     )
     print(
         COLOR_YELLOW + "WARNING: The game source code is outdated:\nYou're using " +
-        f"version {CURRENT_VERSION} while the latest version is {latest_version}" +
+        f"version {SOURCE_CODE_VERSION} while the latest version is {latest_version}" +
         COLOR_RESET_ALL
     )
     time.sleep(3)
     text_handling.clear_prompt()
+
+# Get latest game data version for later
+global latest_game_data_version
+latest_game_data_version = None
+try:
+    with open(f'{program_dir}/game/VERSION.bow') as f:
+        GAME_DATA_VERSION = f.read().replace('\n', '')
+except Exception as error:
+    print(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+    print(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+    logger_sys.log_message(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+    logger_sys.log_message(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+    time.sleep(3)
+    text_handling.exit_game()
+
+continuing = True
+count = 0
+while count < len(latest_main_class) and continuing:
+    if latest_main_class[count].startswith('GAME_DATA_VERSION = '):
+        latest_game_data_version = latest_main_class[count]
+        continuing = False
+    count += 1
 
 if preferences["auto update"]:
     # Update python modules
@@ -226,6 +251,20 @@ if preferences["auto update"]:
     process_time = round(last_timer - first_timer, 4)
     logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
 
+# Compare the latest game data version with
+# the current game data version
+if GAME_DATA_VERSION != latest_game_data_version:
+    logger_sys.log_message(f"WARNING: The game data at '{program_dir}' is outdated")
+    logger_sys.log_message(
+        f"DEBUG: You're using version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}"
+    )
+    print(
+        COLOR_YELLOW + f"WARNING: The game data at '{program_dir}' is outdated:\nYou're using " +
+        f"version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}" +
+        COLOR_RESET_ALL
+    )
+    time.sleep(3)
+    text_handling.clear_prompt()
 
 # main menu start
 while menu:
