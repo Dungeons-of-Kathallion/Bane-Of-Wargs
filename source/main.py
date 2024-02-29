@@ -134,6 +134,38 @@ if not os.path.exists(program_dir):
 with open(program_dir + '/preferences.yaml', 'r') as f:
     preferences = yaml.safe_load(f)
     check_yaml.examine(program_dir + '/preferences.yaml')
+
+# Compare the latest source code version with
+# the current code version
+logger_sys.log_message("INFO: Checking if game source code is up to date")
+global latest_version
+latest_version = 0  # placeholder
+CURRENT_VERSION = 0.1
+latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
+    'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
+)).readlines()
+
+continuing = True
+count = 0
+while count < len(latest_main_class) and continuing:
+    if latest_main_class[count].startswith('CURRENT_VERSION = '):
+        latest_version = latest_main_class[count]
+        continuing = False
+    count += 1
+
+if latest_version != CURRENT_VERSION:
+    logger_sys.log_message("WARNING: The game source code is outdated")
+    logger_sys.log_message(
+        f"DEBUG: You're using version {CURRENT_VERSION} while the latest version is {latest_version}"
+    )
+    print(
+        COLOR_YELLOW + "WARNING: The game source code is outdated:\nYou're using " +
+        f"version {CURRENT_VERSION} while the latest version is {latest_version}" +
+        COLOR_RESET_ALL
+    )
+    time.sleep(3)
+    text_handling.clear_prompt()
+
 if preferences["auto update"]:
     # Update python modules
     logger_sys.log_message("INFO: Starting game python module requirements install process")
