@@ -221,23 +221,10 @@ while menu:
     with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
         check_yaml.examine(program_dir + '/preferences.yaml')
-    # try to update game
-    if preferences["auto update"]:
-        try:
-            logger_sys.log_message("INFO: Updating Game")
-            repo = Repo('.git')
-            assert not repo.bare
-            git = repo.git
-            git.pull()
-        except Exception as error:
-            logger_sys.log_message(f"WARNING: Failed to update game, passing\n{error}")
-            pass
-    else:
-        time.sleep(.5)
     text_handling.clear_prompt()
     print_title()
 
-    options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Check Logs', 'Quit']
+    options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Quit']
     choice = term_menu.show_menu(options)
     text_handling.clear_prompt()
 
@@ -485,29 +472,6 @@ while menu:
         with open(program_dir + '/preferences.yaml') as f:
             new_preferences = yaml.safe_load(f)
         logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
-    elif choice == 'Check Update':
-        logger_sys.log_message("INFO: Checking for updates from github repo")
-        text = "Checking for updates..."
-        text_handling.print_speech_text_effect(text, preferences)
-        try:
-            repo = Repo('.git')
-            assert not repo.bare
-            git = repo.git
-            git.pull()
-        except Exception:
-            print(
-                COLOR_RED + "ERROR: Could not update repo: something went wrong when pulling" +
-                ". Please try to pull the repo manually on the command line" + COLOR_RESET_ALL
-            )
-            logger_sys.log_message("ERROR: Could not update repo: something went wrong when pulling.")
-            logger_sys.log_message(
-                "DEBUG: Please make sure you're playing using the source" +
-                " code from the github repository. You can also try to pull" +
-                " the repo manually from the command line."
-            )
-            time.sleep(5)
-        text = "Finished Updating."
-        text_handling.print_speech_text_effect(text, preferences)
     elif choice == 'Gameplay Guide':
         first_timer = time.time()
         logger_sys.log_message("INFO: Downloading game documentation")
