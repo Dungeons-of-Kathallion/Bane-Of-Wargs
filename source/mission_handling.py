@@ -275,7 +275,9 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
                     if player["active missions"] is None:
                         player["active missions"] = []
                     player["active missions"].append(mission_id)
-                    print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)
+                    print(
+                        COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL
+                    )
             else:
                 if player["active missions"] is None:
                     player["active missions"] = []
