@@ -36,6 +36,7 @@ from rich.markdown import Markdown
 from rich.table import Table
 
 
+logger_sys.log_message(f"INFO: GAME RUN START")
 text_handling.clear_prompt()
 
 # defines console for the rich module
@@ -123,17 +124,25 @@ if not os.path.exists(program_dir):
     default_config_data = yaml.dump(default_config_data)
     with open(program_dir + '/preferences.yaml', 'w') as f:
         f.write(default_config_data)
+    logger_sys.log_message(f"INFO: Created player preferences at '{program_dir}/preferences.yaml'")
     # Create the plugins, saves, game data folder in the config file
+    logger_sys.log_message("INFO: Creating directory '{program_dir}/plugins'")
     os.mkdir(program_dir + "/plugins")
+    logger_sys.log_message("INFO: Creating directory '{program_dir}/saves'")
     os.mkdir(program_dir + "/saves")
+    logger_sys.log_message("INFO: Creating directory '{program_dir}/game'")
     os.mkdir(program_dir + "/game")
+    logger_sys.log_message("INFO: Creating directory '{program_dir}/logs'")
     os.mkdir(program_dir + "/logs")
+    logger_sys.log_message("INFO: Creating directory '{program_dir}/docs'")
     os.mkdir(program_dir + "/docs")
+    logger_sys.log_message("INFO: Writing game data version to '{program_dir}/game/VERSION.bow'")
     with open(f"{program_dir}/game/VERSION.bow", 'w') as f:
         f.write(str(GAME_DATA_VERSION))
 
 # Download game data from github master branch
 # and install them (auto-update)
+logger_sys.log_message("INFO: Loading user preferences")
 with open(program_dir + '/preferences.yaml', 'r') as f:
     preferences = yaml.safe_load(f)
     check_yaml.examine(program_dir + '/preferences.yaml')
@@ -171,6 +180,7 @@ if float(latest_version) > float(SOURCE_CODE_VERSION):
     text_handling.clear_prompt()
 
 # Get latest game data version for later
+logger_sys.log_message(f"INFO: Checking if game data at '{program_dir}/game/' is up to date")
 global latest_game_data_version
 latest_game_data_version = None
 try:
@@ -2791,3 +2801,4 @@ with open(program_dir + '/preferences.yaml', 'w') as f:
     logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
 
 text_handling.clear_prompt()
+logger_sys.log_message(f"INFO: GAME RUN END")
