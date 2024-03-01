@@ -192,7 +192,7 @@ while count < len(latest_main_class) and continuing:
     count += 1
 
 if preferences["auto update"]:
-    data_handling.update_game_data(preferences, latest_)
+    data_handling.update_game_data(preferences, latest_game_data_version)
 
 # Compare the latest game data version with
 # the current game data version
