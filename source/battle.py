@@ -18,14 +18,21 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     player_hp = player["health"]
     player_agi = player["agility"]
     player_prot = player["armor protection"]
+    if player["held item"] != " ":
+        player_held_item_damage = item[player["held item"]]["damage"]
+    else:
+        player_held_item_damage = 0
     player_av_dmg = round(
         (
             (
-                item[player["held item"]]["damage"] + 1 + item[player["held item"]]["damage"]
+                player_held_item_damage + 1 + player_held_item_damage
             ) * player["critical hit chance"] * 2.3
         ) / 2, 2
     )
-    player_def = item[player["held item"]]["defend"]
+    if player["held item"] != " ":
+        player_def = item[player["held item"]]["defend"]
+    else:
+        player_def = 0
     player_critic_ch = player["critical hit chance"]
     player_health_cap = 1   # placeholder
     enemies_number = enemies_remaining
@@ -107,7 +114,10 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     player_fake_armor_protection = player["armor protection"]
     player_fake_agility = player["agility"]
     player_critical_hit_chance = player["critical hit chance"]
-    player_fake_defend = item[player["held item"]]["defend"]
+    if player["held item"] != " ":
+        player_fake_defend = item[player["held item"]]["defend"]
+    else:
+        player_fake_defend = 0
     enemy_fake_critical_hit_chance = enemy_critical_chance
     enemy_fake_health = enemy_health * enemies_number
     enemies_count = enemies_number
@@ -128,7 +138,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
                 # if player health is less than 45% and random formula, defend
                 if player_fake_health > player_fake_health * (45 / 100) and round(random.uniform(.20, .60), 2) > .45:
                     defend = 0
-                    defend += random.randint(0, int(item[player["held item"]]["defend"])) * player_fake_agility
+                    defend += random.randint(0, int(player_fake_defend)) * player_fake_agility
                     # defend formula
                     player_fake_health += random.randint(0, 3)
                     if player_fake_health > player_fake_health_max:
@@ -143,7 +153,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
                     if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(item[player["held item"]]["damage"])) * player_damage_coefficient
+                        player_damage = random.randint(1, int(player_av_dmg)) * player_damage_coefficient
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_fake_health -= player_damage
@@ -416,6 +426,12 @@ def fight(
                 action = input("\n[A]ttack, [D]efend, [U]se Item? ")
 
                 # if player attack
+                if player["held item"] != " ":
+                    player_damage = item[player["held item"]]["damage"]
+                    player_defend = item[player["held item"]]["defend"]
+                else:
+                    player_damage = 0
+                    player_defend = 0
                 if action.lower().startswith('a'):
                     print(" ")
                     # attack formula
@@ -429,7 +445,7 @@ def fight(
                         player_critical_hit = True
                         print("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(item[player["held item"]]["damage"])) * player_damage_coefficient
+                        player_damage = random.randint(1, int()) * player_damage_coefficient
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_health -= player_damage
@@ -439,7 +455,7 @@ def fight(
                 # if player defend
                 elif action.lower().startswith('d'):
                     print(" ")
-                    defend += random.randint(0, int(item[player["held item"]]["defend"])) * player_agility
+                    defend += random.randint(0, int(player_defend)) * player_agility
                     # defend formula
                     player["health"] += random.randint(0, 3)
                     if player["health"] > player["max health"]:
