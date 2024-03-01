@@ -275,6 +275,7 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
                     if player["active missions"] is None:
                         player["active missions"] = []
                     player["active missions"].append(mission_id)
+                    print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)
             else:
                 if player["active missions"] is None:
                     player["active missions"] = []
@@ -289,6 +290,7 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
             if player["active missions"] is None:
                 player["active missions"] = []
             player["active missions"].append(mission_id)
+            print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)
         logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
 
 
