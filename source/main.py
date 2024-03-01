@@ -100,6 +100,7 @@ menu = True
 # Check if player has the config folder if
 # not, create it with all its required content
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
+first_start = False
 if not os.path.exists(program_dir):
     GAME_DATA_VERSION = 0.11
     os.mkdir(program_dir)
@@ -114,7 +115,7 @@ if not os.path.exists(program_dir):
         "speed up": False,
         "theme": 'greenblue',
         "title style": 1,
-        "auto update": True,
+        "auto update": False,
         "game data download": {
             "branch": "master",
             "repository": "Bane-Of-Wargs",
@@ -139,6 +140,7 @@ if not os.path.exists(program_dir):
     logger_sys.log_message("INFO: Writing game data version to '{program_dir}/game/VERSION.bow'")
     with open(f"{program_dir}/game/VERSION.bow", 'w') as f:
         f.write(str(GAME_DATA_VERSION))
+    first_start = True
 
 # Download game data from github master branch
 # and install them (auto-update)
@@ -202,7 +204,7 @@ while count < len(latest_main_class) and continuing:
         continuing = False
     count += 1
 
-if preferences["auto update"]:
+if preferences["auto update"] or first_start:
     data_handling.update_game_data(preferences, latest_game_data_version)
 
 # Compare the latest game data version with
