@@ -20,6 +20,28 @@ Warg:
       agility addition: .025
       resistance addition: .015
   description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
+White Warg:
+  name: White Warg
+  plural: White Wargs
+  gold: 320.34
+  feed:
+    food:
+    - Beef
+    - Porkchop
+    - Chicken
+    feed needs: 7.8
+  stable:
+    required stable: Warg Stable
+    stable slot usage: 3
+  stats:
+    agility addition: .27
+    resistance addition: .24
+  levels:
+    max level: 55
+    level stat additions:
+      agility addition: .015
+      resistance addition: .01
+  description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
 Bear:
   name: Bear
   plural: Bears
