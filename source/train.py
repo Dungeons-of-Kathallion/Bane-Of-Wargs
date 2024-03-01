@@ -22,7 +22,11 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
         choice = term_menu.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen to '{choice}'")
         if choice == 'Feed':
-            # get player possible feeding items
+            # For starters, get the mount feeding items,
+            # and than do some checks and finally, up the
+            # mount level by a random amount, divided by the
+            # mount feeding needs. Also add some experience
+            # points to the player.
             count = 0
             logger_sys.log_message("INFO: Getting mount feeding items")
             mount_feeding_items = mounts[player["mounts"][mount_uuid]["mount"]]["feed"]["food"]
@@ -50,12 +54,11 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 exp = random.randint(1, 4)
                 player["xp"] += exp
                 logger_sys.log_message(f"INFO: Adding {exp} experience to player")
-                if player["current mount"] in player["mounts"]:
-                    level = round(
-                        random.uniform(.02, .10), 3
-                    ) / mounts[current_mount_type]["feed"]["feed needs"]
-                    player["mounts"][player["current mount"]]["level"] += level
-                    logger_sys.log_message(f"INFO: Adding {level} levels to mount '{mount_uuid}'")
+                level = round(
+                    random.uniform(.02, .10), 3
+                ) / mounts[current_mount_type]["feed"]["feed needs"]
+                player["mounts"][player["current mount"]]["level"] += level
+                logger_sys.log_message(f"INFO: Adding {level} levels to mount '{mount_uuid}'")
             elif can_be_bought:
                 gold = round(item[which_food]["gold"] * stable["cost value"], 2)
                 text = (
@@ -69,12 +72,15 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 if confirmation.lower().startswith("y"):
                     if gold <= player["gold"]:
                         player["gold"] -= gold
-                        logger_sys.log_message(f"INFO: Player has food '{which_food}' for {gold} gold")
+                        logger_sys.log_message(f"INFO: Player has bought food '{which_food}' for {gold} gold")
                         level = round(
                             random.uniform(.02, .10), 3
                         ) / mounts[current_mount_type]["feed"]["feed needs"]
                         player["mounts"][player["current mount"]]["level"] += level
                         logger_sys.log_message(f"INFO: Adding {level} levels to mount '{mount_uuid}'")
+                        exp = random.randint(1, 4)
+                        player["xp"] += exp
+                        logger_sys.log_message(f"INFO: Adding {exp} experience to player")
                     else:
                         print(COLOR_YELLOW + "You don't have enough gold to buy this food." + COLOR_RESET_ALL)
             else:
@@ -84,6 +90,10 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 text_handling.print_long_string(text)
                 print(COLOR_RESET_ALL, end="")
         elif choice == 'Train':
+            # Begin the training loop, that lasts 30
+            # seconds. Every 2 seconds, the mount gets
+            # its level upped by a small random amount
+            # as the player experience too
             loading = 15
             print(" ")
             while loading > 0:
@@ -116,7 +126,8 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     end_time = time.time()
     logger_sys.log_message(f"INFO: Getting end time of training loop: {end_time}")
 
-    # calculate elapsed time
+    # Calculate elapsed time and make
+    # the player pay for the training
     elapsed_time = end_time - start_time
     elapsed_time = round(elapsed_time, 2)
     game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
