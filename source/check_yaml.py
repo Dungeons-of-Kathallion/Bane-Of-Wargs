@@ -258,7 +258,6 @@ def examine_item(data):
             data_type = data_type.replace(':', '')
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/items_{data_type}.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/items_{data_type}.yaml'")
         yamale.validate(schema, data)
         if data_type == "Consumable":
             examine_consumable(data_real)
@@ -275,7 +274,6 @@ def examine_drink(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/drinks.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/drinks.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -290,7 +288,6 @@ def examine_enemy(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/enemies.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/enemies.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -305,7 +302,6 @@ def examine_npc(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/npcs.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/npcs.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -320,7 +316,6 @@ def examine_list(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/lists.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/lists.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -336,7 +331,6 @@ def examine_zone(data):
         data_type = data["type"]
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/zones_{data_type}.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/zones_{data_type}.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -351,7 +345,6 @@ def examine_dialog(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/dialogs.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/dialogs.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -366,7 +359,6 @@ def examine_mission(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/missions.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/missions.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
@@ -381,7 +373,6 @@ def examine_mount(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/mounts.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/mounts.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
