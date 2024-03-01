@@ -74,7 +74,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                         print(COLOR_YELLOW + "You don't have enough gold to buy this food." + COLOR_RESET_ALL)
             else:
                 text = ("You cannot feed your mount with this food or you don't own that" +
-                    " food and the current stable doesn't sell this food.")
+                        " food and the current stable doesn't sell this food.")
                 print(COLOR_YELLOW, end="")
                 text_handling.print_long_string(text)
                 print(COLOR_RESET_ALL, end="")
