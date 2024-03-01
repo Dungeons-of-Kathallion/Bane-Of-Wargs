@@ -1503,7 +1503,7 @@ def run(play):
                             spawning_checks = mission_handling.mission_checks(current_enemy_data, player, 'to spawn')
                         if 'to despawn' in current_enemy_data:
                             spawning_checks_2 = mission_handling.mission_checks(current_enemy_data, player, 'to despawn')
-                        if spawning_checks and spawning_checks_2:
+                        if spawning_checks and not spawning_checks_2:
                             logger_sys.log_message(
                                 f"INFO: Spawning enemy from mission '{current_mission_id}' " +
                                 f"with mission enemy data '{current_enemy_data}'"

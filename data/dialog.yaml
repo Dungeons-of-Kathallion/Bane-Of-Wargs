@@ -72,3 +72,45 @@ Cut Wood And Get Back Home Complete:
   actions:
     use drink:
     - Green Elixir
+    
+Heard Someone Shouting In The Woods:
+  conversation:
+    - label 1:
+      - print(You're walking in the woods when you hear some noise around you. The sound seems to come from the south.)
+      - wait(2)
+      - print(You listen and you can hear “HELP!!!”, “HELP!!!”. You need to help the man!)
+  use actions: true
+  actions:
+    add attributes:
+    - heard someone shouting in the woods
+  
+Encounter Warg Attacking A Guy:
+  to display:
+    player attributes:
+    - heard someone shouting in the woods
+  conversation:
+    - label 1:
+      - print(You see the man who shouted sooner! He's being attacked by a warg! Fight the warg and save the man!)
+  use actions: false
+  
+Saved The Guy In The Woods:
+  conversation:
+    - label 1:
+      - print(“Thanks man! You saved my life! How could I thank you?”)
+      - choice():
+        - create-choice(“Have you got any gold on you?“, goto(label 2))
+        - create-choice(“Have you got any valuable item on you?“, goto(label 3))
+    - label 2:
+      - print(“Sure! Here's 45 gold coins! Here's also a map!”)
+      - create-variable(payment, 45)
+    - label 3:
+      - print(“I have a magic map, here it is!”)
+      - create-variable(payment, 0)
+  use actions: true
+  actions:
+    add attributes:
+    - has saved the guy in the forlindon woods
+    give item:
+    - Map
+    gold modification:
+      augmentation: $payment

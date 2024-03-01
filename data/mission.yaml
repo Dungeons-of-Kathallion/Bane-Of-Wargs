@@ -17,6 +17,7 @@ Cut Wood And Get Back Home:
   description: "Go to $stopovers to cut some wood and then get back home at $destination to get some sleep."
   source: 647
   destination: 906
+  force accept: true
   stopovers:
   - 1035
   invisible: false
@@ -29,3 +30,21 @@ Cut Wood And Get Back Home:
     dialog: Cut Wood And Get Back Home Complete
     exp addition: 8
 
+Save Someone In The Woods:
+  name: "Save Someone In The Woods"
+  description: "You heard someone shouting “HELP!!!“ near you. Search for him and possibly save him."
+  source: 1036
+  destination: 1165
+  invisible: false
+  force accept: true
+  on offer:
+    dialog: "Heard Someone Shouting In The Woods"
+  to complete:
+    player attributes:
+    - has saved the guy in the forlindon woods
+  enemies:
+    warg attacking:
+      enemy number: 1
+      enemy category: warg raids
+      location: 1165
+      dialog: "Saved The Guy In The Woods"

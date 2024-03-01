@@ -263,7 +263,13 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
                 dialog_handling.print_dialog(
                     data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks
                 )
-                accept = input("Do you want to accept this task? (y/n)")
+                if "force accept" in list(data):
+                    if not data["force accept"]:
+                        accept = input("Do you want to accept this task? (y/n)")
+                    else:
+                        accept = "y"
+                else:
+                    accept = input("Do you want to accept this task? (y/n)")
                 print("=======================================================")
                 if accept.startswith('y'):
                     if player["active missions"] is None:

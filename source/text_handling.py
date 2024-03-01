@@ -7,6 +7,7 @@ import sys
 import time
 import random
 import appdirs
+from sys import exit
 
 
 # Handling functions

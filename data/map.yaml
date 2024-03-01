@@ -11027,6 +11027,7 @@ point1165:
   - North-East
   - South-East
   map zone: Forlindon Woods
+  dialog: "Encounter Warg Attacking A Guy"
   x: -60
   y: 55
 point11650:
