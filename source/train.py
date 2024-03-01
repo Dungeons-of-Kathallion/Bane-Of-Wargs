@@ -12,6 +12,8 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     still_training = True
     current_mount_type = str(player["mounts"][str(mount_uuid)]["mount"])
     current_mount_feeds = mounts[current_mount_type]["feed"]["food"]
+    # get start time
+    start_time = time.time()
     while still_training:
         options = ['Feed', 'Train', 'Exit']
         choice = term_menu.show_menu(options)
@@ -49,9 +51,6 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 text = COLOR_YELLOW + "You cannot feed your mount with this food or you don't own that food." + COLOR_RESET_ALL
                 text_handling.print_long_string(text)
         elif choice == 'Train':
-            # get start time
-            start_time = time.time()
-
             loading = 15
             print(" ")
             while loading > 0:
@@ -74,15 +73,18 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 player["mounts"][player["current mount"]]["level"] += round(random.uniform(.01, .09), 3)
                 player["xp"] += round(random.uniform(.01, .13), 1)
                 loading -= 1
-
-            # get end time
-            end_time = time.time()
-
-            # calculate elapsed time
-            elapsed_time = end_time - start_time
-            elapsed_time = round(elapsed_time, 2)
-            game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
-            game_elapsed_time = round(game_elapsed_time, 2)
-            player["gold"] -= stable["training gold"] * game_elapsed_time
         else:
             still_training = False
+    # get end time
+    end_time = time.time()
+
+    # calculate elapsed time
+    elapsed_time = end_time - start_time
+    elapsed_time = round(elapsed_time, 2)
+    game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
+    game_elapsed_time = round(game_elapsed_time, 2)
+    gold = stable["training gold"] * game_elapsed_time
+    player["gold"] -= gold
+    gold = round(gold, 2)
+    hours = round(game_elapsed_time * 60, 2)
+    print(f"{COLOR_YELLOW}You paid {gold} gold coins for {hours} hours of training{COLOR_RESET_ALL}")
