@@ -13,8 +13,8 @@ Deliver Raw Wood To Jacky Completed:
       - print(You arrive to the house of your friend Jack. You knock on his doors...)
       - wait(4)
       - print(The doors finally opens, and you greet Jacky.)
-      - print(“Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me. You say.”)
-      - print(“Hi! Thanks for the deliver! How many gold do you want me to pay you? Jacky says.”)
+      - print(“Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me.” You say.)
+      - print(“Hi! Thanks for the deliver! How many gold do you want me to pay you?” Jacky says.)
       - goto(label 2)
     - label 2:
       - choice():
@@ -38,6 +38,9 @@ Deliver Raw Wood To Jacky Completed:
   actions:
     add attributes:
     - has finished jacky deliver
+    remove item:
+    - Raw Wood
+    - Raw Wood
     gold modification:
       augmentation: $gold_augmentation
 

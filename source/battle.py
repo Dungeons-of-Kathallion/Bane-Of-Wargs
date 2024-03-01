@@ -21,7 +21,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     if player["held item"] != " ":
         player_held_item_damage = item[player["held item"]]["damage"]
     else:
-        player_held_item_damage = 0
+        player_held_item_damage = 1
     player_av_dmg = round(
         (
             (
@@ -32,7 +32,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     if player["held item"] != " ":
         player_def = item[player["held item"]]["defend"]
     else:
-        player_def = 0
+        player_def = 1
     player_critic_ch = player["critical hit chance"]
     player_health_cap = 1   # placeholder
     enemies_number = enemies_remaining
@@ -117,7 +117,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     if player["held item"] != " ":
         player_fake_defend = item[player["held item"]]["defend"]
     else:
-        player_fake_defend = 0
+        player_fake_defend = 1
     enemy_fake_critical_hit_chance = enemy_critical_chance
     enemy_fake_health = enemy_health * enemies_number
     enemies_count = enemies_number
@@ -153,7 +153,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
                     if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int(player_av_dmg)) * player_damage_coefficient
+                        player_damage = round(random.uniform(0, int(player_av_dmg)) * player_damage_coefficient)
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_fake_health -= player_damage
@@ -212,7 +212,8 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
 def encounter_text_show(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
-    start_player, dialog, text_replacements_generic, player_damage_coefficient
+    start_player, dialog, text_replacements_generic, player_damage_coefficient,
+    previous_player, save_file
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -305,7 +306,7 @@ def encounter_text_show(
                 item_input, item, player, preferences, drinks,
                 enemy, npcs, start_player, lists, zone, dialog, mission,
                 mounts, text_replacements_generic, item, map_location,
-                player_damage_coefficient
+                player_damage_coefficient, previous_player, save_file
             )
             text = '='
             text_handling.print_separator(text)
@@ -430,8 +431,8 @@ def fight(
                     player_damage = item[player["held item"]]["damage"]
                     player_defend = item[player["held item"]]["defend"]
                 else:
-                    player_damage = 0
-                    player_defend = 0
+                    player_damage = 1
+                    player_defend = 1
                 if action.lower().startswith('a'):
                     print(" ")
                     # attack formula
@@ -445,7 +446,7 @@ def fight(
                         player_critical_hit = True
                         print("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
-                        player_damage = random.randint(1, int()) * player_damage_coefficient
+                        player_damage = round(random.uniform(0, player_damage) * player_damage_coefficient)
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_health -= player_damage
@@ -455,7 +456,7 @@ def fight(
                 # if player defend
                 elif action.lower().startswith('d'):
                     print(" ")
-                    defend += random.randint(0, int(player_defend)) * player_agility
+                    defend += round(random.uniform(0, player_defend) * player_agility)
                     # defend formula
                     player["health"] += random.randint(0, 3)
                     if player["health"] > player["max health"]:

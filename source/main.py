@@ -154,7 +154,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.11
+SOURCE_CODE_VERSION = 0.12
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -282,6 +282,7 @@ while menu:
             logger_sys.log_message("INFO: Opening Save File")
             with open(save_file) as f:
                 player = yaml.safe_load(f)
+                previous_player = yaml.safe_load(f)
                 check_yaml.examine(save_file)
             play = 1
             menu = False
@@ -360,6 +361,7 @@ while menu:
                 logger_sys.log_message("INFO: Opening save file")
                 with open(save_file) as f:
                     player = yaml.safe_load(f)
+                    previous_player = yaml.safe_load(f)
                     check_yaml.examine(save_file)
                 play = 1
                 menu = False
@@ -391,6 +393,7 @@ while menu:
                 logger_sys.log_message("INFO: Opening save")
                 with open(save_file) as f:
                     player = yaml.safe_load(f)
+                    previous_player = yaml.safe_load(f)
                 play = 1
                 menu = False
                 logger_sys.log_message("INFO: Starting game and exiting menu")
@@ -811,7 +814,7 @@ def run(play):
     # Mapping stuff
 
     while play == 1:
-        global player
+        global player, previous_player
 
         # get start time
         start_time = time.time()
@@ -1514,7 +1517,7 @@ def run(play):
                                 map_location, lists[str(current_enemy_data["enemy category"])],
                                 current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
                                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                                text_replacements_generic, start_time
+                                text_replacements_generic, start_time, previous_player, save_file
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1532,7 +1535,7 @@ def run(play):
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
                 map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic, start_time
+                text_replacements_generic, start_time, previous_player, save_file
             )
 
         elif (
@@ -1556,7 +1559,7 @@ def run(play):
                 map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic, start_time
+                text_replacements_generic, start_time, previous_player, save_file
             )
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
@@ -2401,7 +2404,8 @@ def run(play):
                         dialog, preferences, text_replacements_generic,
                         lists, map_location, enemy, item, drinks,
                         start_player, npcs, zone,
-                        mounts, mission, player_damage_coefficient
+                        mounts, mission, player_damage_coefficient,
+                        previous_player, save_file
                     )
                 elif choice == 'Get Rid':
                     text = (
@@ -2628,6 +2632,7 @@ def run(play):
             logger_sys.log_message("INFO: Dumping player RAM save into its save file")
             print("Collecting player data...")
             dumped = yaml.dump(player)
+            previous_player = player
             logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
             save_file_quit = save_file
@@ -2688,6 +2693,7 @@ def run(play):
                 # the 'player' dictionary variable
                 with open(temporary_file, 'r') as f:
                     player = yaml.safe_load(f)
+                    previous_player = yaml.safe_load(f)
             continued_command = True
         elif command.lower().startswith('$game$data$'):
             choices = [

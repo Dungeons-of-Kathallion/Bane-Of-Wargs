@@ -6,16 +6,21 @@ import text_handling
 from colors import *
 # external imports
 import random
+import appdirs
 import sys
+import yaml
+import time
+from sys import exit
 
 
+program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 # Handling function
 
 
 def spawn_enemy(
     map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player,
     preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-    text_replacements_generic, start_time
+    text_replacements_generic, start_time, previous_player, save_file
 ):
     enemies_remaining = enemy_number
     already_encountered = False
@@ -45,7 +50,8 @@ def spawn_enemy(
             battle.encounter_text_show(
                 player, item, enemy, map, map_location, enemies_remaining, lists,
                 defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
-                start_player, dialog, text_replacements_generic, player_damage_coefficient
+                start_player, dialog, text_replacements_generic, player_damage_coefficient,
+                previous_player, save_file
             )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")
@@ -82,11 +88,32 @@ def spawn_enemy(
         print(" ")
         player["defeated enemies"].append(map_location)
     else:
-        text = COLOR_RED + COLOR_STYLE_BRIGHT + "You just died and your save have been reset." + COLOR_RESET_ALL
+        text = "You just died and your save have been rested to its older state."
         logger_sys.log_message("INFO: Player just died")
+        print(COLOR_RED + COLOR_STYLE_BRIGHT, end="")
         text_handling.print_long_string(text)
-        input()
+        print(COLOR_RESET_ALL, end="")
+        time.sleep(3)
         logger_sys.log_message("INFO: Resetting player save")
-        player = start_player
-        play = 0
-        return play
+        player = previous_player
+        dumped = yaml.dump(player)
+        logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+
+        save_file_quit = save_file
+        with open(save_file_quit, "w") as f:
+            f.write(dumped)
+            logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+
+        save_name_backup = save_file.replace('save_', '~0 save_')
+
+        with open(save_name_backup, "w") as f:
+            f.write(dumped)
+            logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+
+        dumped = yaml.dump(preferences)
+        logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+
+        with open(program_dir + '/preferences.yaml', 'w') as f:
+            f.write(dumped)
+            logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+        exit(0)
