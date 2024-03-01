@@ -100,6 +100,7 @@ menu = True
 # not, create it with all its required content
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 if not os.path.exists(program_dir):
+    GAME_DATA_VERSION = 0.1
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -128,72 +129,90 @@ if not os.path.exists(program_dir):
     os.mkdir(program_dir + "/game")
     os.mkdir(program_dir + "/logs")
     os.mkdir(program_dir + "/docs")
+    with open(f"{program_dir}/game/VERSION.bow", 'w') as f:
+        f.write(str(GAME_DATA_VERSION))
 
 # Download game data from github master branch
 # and install them (auto-update)
 with open(program_dir + '/preferences.yaml', 'r') as f:
     preferences = yaml.safe_load(f)
     check_yaml.examine(program_dir + '/preferences.yaml')
+
+# Compare the latest source code version with
+# the current code version
+logger_sys.log_message("INFO: Checking if game source code is up to date")
+global latest_version
+latest_version = None  # placeholder
+SOURCE_CODE_VERSION = 0.1
+latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
+    'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
+)).readlines()
+
+continuing = True
+count = 0
+while count < len(latest_main_class) and continuing:
+    if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
+        latest_version = latest_main_class[count]
+        continuing = False
+    count += 1
+
+if latest_version != SOURCE_CODE_VERSION:
+    logger_sys.log_message("WARNING: The game source code is outdated")
+    logger_sys.log_message(
+        f"DEBUG: You're using version {SOURCE_CODE_VERSION} while the latest version is {latest_version}"
+    )
+    print(
+        COLOR_YELLOW + "WARNING: The game source code is outdated:\nYou're using " +
+        f"version {SOURCE_CODE_VERSION} while the latest version is {latest_version}" +
+        COLOR_RESET_ALL
+    )
+    time.sleep(3)
+    text_handling.clear_prompt()
+
+# Get latest game data version for later
+global latest_game_data_version
+latest_game_data_version = None
+try:
+    with open(f'{program_dir}/game/VERSION.bow') as f:
+        GAME_DATA_VERSION = f.read().replace('\n', '')
+except Exception as error:
+    print(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+    print(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+    logger_sys.log_message(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+    logger_sys.log_message(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+    time.sleep(3)
+    text_handling.exit_game()
+
+continuing = True
+count = 0
+while count < len(latest_main_class) and continuing:
+    if latest_main_class[count].startswith('GAME_DATA_VERSION = '):
+        latest_game_data_version = latest_main_class[count]
+        continuing = False
+    count += 1
+
 if preferences["auto update"]:
-    # Update python modules
-    logger_sys.log_message("INFO: Starting game python module requirements install process")
-    print(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
-    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
-    first_timer = time.time()
+    data_handling.update_game_data(preferences, latest_game_data_version)
 
-    requirements = io.StringIO(data_handling.temporary_git_file_download(
-        'requirements.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
-    )).readlines()
-    requirements_length = len(requirements)
-    count = 0
-    for module in requirements:
-        print(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
-        logger_sys.log_message(f"INFO: Trying to install python module '{module}'")
-        script_handling.install_requirement(module)
-
-        count += 1
-    print(f"{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}")
-
-    last_timer = time.time()
-    process_time = round(last_timer - first_timer, 4)
-    logger_sys.log_message(f"INFO: Process of installing game python module requirements completed in {process_time} seconds")
-
-    # Download game data
-    logger_sys.log_message("INFO: Downloading game data to update it")
-    print(COLOR_STYLE_BRIGHT + "Downloading game data..." + COLOR_RESET_ALL)
-    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
-    print(f"{COLOR_BLUE}0{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-    download_branch = str(preferences["game data download"]["branch"])
-    download_repo = str(preferences["game data download"]["repository"])
-    download_org = str(preferences["game data download"]["org"])
-
-    logger_sys.log_message("INFO: Downloading game yaml schemas files from github")
-
-    first_timer = time.time()
-    # Download yaml schema files
-    data_handling.fsspec_download('schemas/', program_dir + '/game/schemas', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}1{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-
-    logger_sys.log_message("INFO: Downloading game data files from github")
-    # Download data files
-    data_handling.fsspec_download('data/', program_dir + '/game/data', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}2{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-
-    logger_sys.log_message("INFO: Downloading game images .txt files from github")
-    # Download images .txt files
-    data_handling.fsspec_download('imgs/', program_dir + '/game/imgs', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}3{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
-
-    logger_sys.log_message("INFO: Downloading game scripts .py files from github")
-    # Download scripts .py files
-    data_handling.fsspec_download('scripts/', program_dir + '/game/scripts', download_branch, download_repo, download_org)
-
-    print(f"{COLOR_GREEN}4{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}")
-    print("Done")
-    last_timer = time.time()
-    process_time = round(last_timer - first_timer, 4)
-    logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
-
+# Compare the latest game data version with
+# the current game data version
+if GAME_DATA_VERSION != latest_game_data_version:
+    logger_sys.log_message(f"WARNING: The game data at '{program_dir}' is outdated")
+    logger_sys.log_message(
+        f"DEBUG: You're using version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}"
+    )
+    print(
+        COLOR_YELLOW + f"WARNING: The game data at '{program_dir}' is outdated:\nYou're using " +
+        f"version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}" +
+        COLOR_RESET_ALL
+    )
+    time.sleep(3)
+    print("\nDo you want to update your game data right now?")
+    want_to_update = term_menu.show_menu(["Yes", "No"])
+    if want_to_update == "Yes":
+        text_handling.clear_prompt()
+        data_handling.update_game_data(preferences, latest_game_data_version)
+    text_handling.clear_prompt()
 
 # main menu start
 while menu:
@@ -202,23 +221,10 @@ while menu:
     with open(program_dir + '/preferences.yaml', 'r') as f:
         preferences = yaml.safe_load(f)
         check_yaml.examine(program_dir + '/preferences.yaml')
-    # try to update game
-    if preferences["auto update"]:
-        try:
-            logger_sys.log_message("INFO: Updating Game")
-            repo = Repo('.git')
-            assert not repo.bare
-            git = repo.git
-            git.pull()
-        except Exception as error:
-            logger_sys.log_message(f"WARNING: Failed to update game, passing\n{error}")
-            pass
-    else:
-        time.sleep(.5)
     text_handling.clear_prompt()
     print_title()
 
-    options = ['Play Game', 'Manage Saves', 'Preferences', 'Check Update', 'Gameplay Guide', 'Check Logs', 'Quit']
+    options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Quit']
     choice = term_menu.show_menu(options)
     text_handling.clear_prompt()
 
@@ -466,29 +472,6 @@ while menu:
         with open(program_dir + '/preferences.yaml') as f:
             new_preferences = yaml.safe_load(f)
         logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
-    elif choice == 'Check Update':
-        logger_sys.log_message("INFO: Checking for updates from github repo")
-        text = "Checking for updates..."
-        text_handling.print_speech_text_effect(text, preferences)
-        try:
-            repo = Repo('.git')
-            assert not repo.bare
-            git = repo.git
-            git.pull()
-        except Exception:
-            print(
-                COLOR_RED + "ERROR: Could not update repo: something went wrong when pulling" +
-                ". Please try to pull the repo manually on the command line" + COLOR_RESET_ALL
-            )
-            logger_sys.log_message("ERROR: Could not update repo: something went wrong when pulling.")
-            logger_sys.log_message(
-                "DEBUG: Please make sure you're playing using the source" +
-                " code from the github repository. You can also try to pull" +
-                " the repo manually from the command line."
-            )
-            time.sleep(5)
-        text = "Finished Updating."
-        text_handling.print_speech_text_effect(text, preferences)
     elif choice == 'Gameplay Guide':
         first_timer = time.time()
         logger_sys.log_message("INFO: Downloading game documentation")
