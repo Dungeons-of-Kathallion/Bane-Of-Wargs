@@ -1559,7 +1559,7 @@ def run(play):
         command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         print(" ")
 
-        logger_sys.log_message(f"INFO: Checking for utilities type items in '{item}' dictionary")
+        logger_sys.log_message(f"INFO: Checking for utilities type items in the item dictionary")
         # Check for utilities keys
         utilities_list = []
         for i in list(item):
@@ -2258,7 +2258,7 @@ def run(play):
             if player["held shield"] != " ":
                 print("HELD SHIELD: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held shield"] + COLOR_RESET_ALL)
             player_inventory = str(player["inventory"])
-            logger_sys.log_message(f"INFO: Printing player inventory: '{player_inventory}'")
+            logger_sys.log_message(f"INFO: Printing player inventory")
             player_inventory = player_inventory.replace("'", '')
             player_inventory = player_inventory.replace("[", ' -')
             player_inventory = player_inventory.replace("]", '')
