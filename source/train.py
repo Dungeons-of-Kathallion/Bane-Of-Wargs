@@ -24,33 +24,27 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
         if choice == 'Feed':
             # get player possible feeding items
             count = 0
-            player_feeding_items = []
-            logger_sys.log_message("INFO: Getting player feeding items")
-            while count < len(player["inventory"]):
-                current_item = str(player["inventory"][count])
-                if current_item in current_mount_feeds and current_item not in player_feeding_items:
-                    player_feeding_items += [current_item]
-
-                count += 1
-            player_feeding_items_text = str(player_feeding_items)
-            logger_sys.log_message(f"INFO: Got player feeding items: {player_feeding_items}")
-            if player_feeding_items == []:
-                player_feeding_items_text = "['None']"
-            player_feeding_items_text = player_feeding_items_text.replace("'", '')
-            player_feeding_items_text = player_feeding_items_text.replace("[", ' -')
-            player_feeding_items_text = player_feeding_items_text.replace("]", '')
-            player_feeding_items_text = player_feeding_items_text.replace(", ", '\n -')
+            logger_sys.log_message("INFO: Getting mount feeding items")
+            mount_feeding_items = mounts[player["mounts"][mount_uuid]["mount"]]["feed"]["food"]
+            mount_feeding_items_text = str(mount_feeding_items)
+            logger_sys.log_message(f"INFO: Got mount feeding items: {mount_feeding_items}")
+            if mount_feeding_items == []:
+                mount_feeding_items_text = "['None']"
+            mount_feeding_items_text = mount_feeding_items_text.replace("'", '')
+            mount_feeding_items_text = mount_feeding_items_text.replace("[", ' -')
+            mount_feeding_items_text = mount_feeding_items_text.replace("]", '')
+            mount_feeding_items_text = mount_feeding_items_text.replace(", ", '\n -')
             text = '='
             text_handling.print_separator(text)
-            print("FEEDING ITEMS:")
-            print(player_feeding_items_text)
+            print("MOUNT FEEDING ITEMS:")
+            print(mount_feeding_items_text)
             text_handling.print_separator(text)
             which_food = str(input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL))
             can_be_bought = False
             if "items" in stable["stable"]["sells"]:
                 if which_food in stable["stable"]["sells"]["items"]:
                     can_be_bought = True
-            if which_food in player_feeding_items and which_food in player["inventory"]:
+            if which_food in mount_feeding_items and which_food in player["inventory"]:
                 player["inventory"].remove(which_food)
                 logger_sys.log_message(f"INFO: Removing item '{which_food}' from player inventory")
                 exp = random.randint(1, 4)
@@ -71,16 +65,11 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 print(COLOR_YELLOW, end="")
                 text_handling.print_long_string(text)
                 print(COLOR_RESET_ALL, end="")
-                confirmation = input("Do you want to buy that food to feed the animal? (y/n)")
+                confirmation = input("Do you want to buy that food to feed this mount? (y/n) ")
                 if confirmation.lower().startswith("y"):
                     if gold <= player["gold"]:
-                        if player["inventory slots remaining"] > 0:
-                            player["inventory slots remaining"] -= 1
-                            player["inventory"].append(which_food)
-                            player["gold"] -= gold
-                            logger_sys.log_message(f"INFO: Player has bought item '{which_food}' for {gold} gold")
-                        else:
-                            print(COLOR_YELLOW + "You don't have enough inventory slots remaining." + COLOR_RESET_ALL)
+                        player["gold"] -= gold
+                        logger_sys.log_message(f"INFO: Player has food '{which_food}' for {gold} gold")
                     else:
                         print(COLOR_YELLOW + "You don't have enough gold to buy this food." + COLOR_RESET_ALL)
             else:
@@ -132,6 +121,6 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     logger_sys.log_message(f"INFO: Getting gold amount to be paid: {gold}")
     player["gold"] -= gold
     gold = round(gold, 2)
-    hours = round(game_elapsed_time * 60, 2)
+    hours = round(game_elapsed_time * 24, 2)
     print(f"{COLOR_YELLOW}You paid {gold} gold coins for {hours} hours of training{COLOR_RESET_ALL}")
     logger_sys.log_message(f"INFO: Player paid {gold} gold for {hours} in-game hours of training.")
