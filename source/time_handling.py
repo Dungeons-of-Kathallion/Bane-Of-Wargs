@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 # Constants
-COEFFICIENT = .001389
+COEFFICIENT = (1 / 720)
 
 # Handling Functions
 
@@ -84,6 +84,6 @@ def get_day_time(game_days):
 
 
 def return_game_day_from_seconds(seconds, time_elapsing_coefficient):
-    game_days = seconds * COEFFICIENT * time_elapsing_coefficient  # 180 seconds irl = .25 days in-game
+    game_days = seconds * COEFFICIENT * time_elapsing_coefficient  # 12 minutes irl = one whole game day (1=720*x)
 
     return game_days
