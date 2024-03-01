@@ -157,6 +157,7 @@ while count < len(latest_main_class) and continuing:
     count += 1
 
 if float(latest_version) > float(SOURCE_CODE_VERSION):
+    latest_version = float(str(latest_version).replace('\n', ''))
     logger_sys.log_message("WARNING: The game source code is outdated")
     logger_sys.log_message(
         f"DEBUG: You're using version {SOURCE_CODE_VERSION} while the latest version is {latest_version}"
@@ -197,6 +198,7 @@ if preferences["auto update"]:
 # Compare the latest game data version with
 # the current game data version
 if float(GAME_DATA_VERSION) < float(latest_game_data_version):
+    latest_game_data_version = float(str(latest_game_data_version).replace('\n', ''))
     logger_sys.log_message(f"WARNING: The game data at '{program_dir}' is outdated")
     logger_sys.log_message(
         f"DEBUG: You're using version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}"
