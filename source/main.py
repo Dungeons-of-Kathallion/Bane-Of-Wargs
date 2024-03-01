@@ -1497,7 +1497,7 @@ def run(play):
             current_mission_data = mission[player["active missions"][count]]
             if "enemies" in current_mission_data:
                 while count2 < len(list(current_mission_data["enemies"])):
-                    current_enemy_data = current_mission_data["enemies"][str(list(current_mission_data["enemies"])[count])]
+                    current_enemy_data = current_mission_data["enemies"][str(list(current_mission_data["enemies"])[count2])]
                     if current_enemy_data["location"] == map_location:
                         spawning_checks = True
                         spawning_checks_2 = False
