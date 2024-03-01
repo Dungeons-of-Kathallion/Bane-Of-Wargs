@@ -707,6 +707,7 @@ Clarc Warg Stable:
     sells:
       mounts:
       - Warg
+      - White Warg
       drinks:
       - None
       items:
