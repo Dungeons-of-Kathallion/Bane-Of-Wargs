@@ -70,6 +70,11 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                     if gold <= player["gold"]:
                         player["gold"] -= gold
                         logger_sys.log_message(f"INFO: Player has food '{which_food}' for {gold} gold")
+                        level = round(
+                            random.uniform(.02, .10), 3
+                        ) / mounts[current_mount_type]["feed"]["feed needs"]
+                        player["mounts"][player["current mount"]]["level"] += level
+                        logger_sys.log_message(f"INFO: Adding {level} levels to mount '{mount_uuid}'")
                     else:
                         print(COLOR_YELLOW + "You don't have enough gold to buy this food." + COLOR_RESET_ALL)
             else:
