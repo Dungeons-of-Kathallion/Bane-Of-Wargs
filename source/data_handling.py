@@ -278,6 +278,7 @@ def update_game_data(preferences, latest_game_data_version):
     count = 0
     for module in requirements:
         print(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
+        module = module.replace('\n', '')
         logger_sys.log_message(f"INFO: Trying to install python module '{module}'")
         script_handling.install_requirement(module)
 
