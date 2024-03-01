@@ -152,7 +152,7 @@ continuing = True
 count = 0
 while count < len(latest_main_class) and continuing:
     if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
-        latest_version = latest_main_class[count]
+        latest_version = latest_main_class[count].split("= ", 1)[1]
         continuing = False
     count += 1
 
@@ -187,7 +187,7 @@ continuing = True
 count = 0
 while count < len(latest_main_class) and continuing:
     if latest_main_class[count].startswith('GAME_DATA_VERSION = '):
-        latest_game_data_version = latest_main_class[count]
+        latest_game_data_version = latest_main_class[count].split("= ", 1)[1]
         continuing = False
     count += 1
 
