@@ -251,6 +251,7 @@ def load_game_data(which_type, what_plugin=None):
                 modules = f.readlines()
                 progress.update(task_requirements, total=len(modules))
                 for line in modules:
+                    line = str(line).replace('\n', '')
                     logger_sys.log_message(f"INFO: Trying to install python module '{line}'")
                     script_handling.install_requirement(line)
                     progress.update(task_requirements, advance=1)
