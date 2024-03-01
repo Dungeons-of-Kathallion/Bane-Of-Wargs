@@ -239,7 +239,6 @@ def examine_map_point(data):
     try:
         data = yamale.make_data(content=str(data))
         schema = yamale.make_schema(f'{program_dir}/game/schemas/map.yaml')
-        logger_sys.log_message(f"INFO: Validating data: '{data}' with schema '{program_dir}/game/schemas/map.yaml'")
         yamale.validate(schema, data)
     except Exception as error:
         print(
