@@ -1,9 +1,10 @@
 # source imports
 import battle
 import logger_sys
-import term_menu
+import terminal_handling
 import text_handling
 from colors import *
+from terminal_handling import cout
 # external imports
 import random
 import appdirs
@@ -68,11 +69,11 @@ def spawn_enemy(
             chosen_item = "Gold"
 
         if chosen_item == "Gold":
-            print("Your enemy dropped some " + chosen_item)
+            cout("Your enemy dropped some " + chosen_item)
         else:
-            print("Your enemy dropped " + text_handling.a_an_check(chosen_item))
+            cout("Your enemy dropped " + text_handling.a_an_check(chosen_item))
         options = ['Grab Item', 'Continue']
-        drop = term_menu.show_menu(options)
+        drop = terminal_handling.show_menu(options)
         text = '='
         text_handling.print_separator(text)
         if drop == 'Grab Item':
@@ -80,19 +81,19 @@ def spawn_enemy(
                 player["gold"] += round(random.uniform(1.00, 6.30), 2)
             else:
                 if chosen_item in player["inventory"] and item[chosen_item]["type"] == "Utility":
-                    print("You cannot take that item")
+                    cout("You cannot take that item")
                 elif player["inventory slots remaining"] == 0:
-                    print("You cannot take that item, you don't have enough slots in your inventory")
+                    cout("You cannot take that item, you don't have enough slots in your inventory")
                 else:
                     player["inventory"].append(chosen_item)
-        print(" ")
+        cout(" ")
         player["defeated enemies"].append(map_location)
     else:
         text = "You just died and your save have been rested to its older state."
         logger_sys.log_message("INFO: Player just died")
-        print(COLOR_RED + COLOR_STYLE_BRIGHT, end="")
+        cout(COLOR_RED + COLOR_STYLE_BRIGHT, end="")
         text_handling.print_long_string(text)
-        print(COLOR_RESET_ALL, end="")
+        cout(COLOR_RESET_ALL, end="")
         time.sleep(3)
         logger_sys.log_message("INFO: Resetting player save")
         player = previous_player

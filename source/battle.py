@@ -3,6 +3,7 @@ import text_handling
 import script_handling
 import item_handling
 from colors import *
+from terminal_handling import cout, cinput
 # external imports
 import random
 import sys
@@ -95,15 +96,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     enemy_total_possibilities = enemy_true_dodge_possibilities + enemy_false_dodge_possibilities
 
     enemy_dodge_chance = round((enemy_true_dodge_possibilities / enemy_total_possibilities) * 100)
-
     av_dmg_diff = player_av_dmg - enemy_av_dmg
-
-    '''
-    print("HP DIFF:", hp_diff)
-    print("AVERAGE DMG DIFF:", av_dmg_diff)
-    print("ENEMY DODGE CHANCE:", enemy_dodge_chance)
-    print("PLAYER DODGE CHANCE:", player_dodge_chance)
-    '''
 
     # simulate fight 5 times to get stats
     count = 0
@@ -221,7 +214,7 @@ def encounter_text_show(
     global enemy_health, enemy_max_damage, enemy_min_damage
     global enemy_agility, enemy_damage, chosen_item
     player_agility = player["agility"]
-    print(" ")  # do not merge with possible actions text
+    cout(" ")  # do not merge with possible actions text
     # load and create enemies list type
 
     health_color = COLOR_GREEN
@@ -231,9 +224,9 @@ def encounter_text_show(
     text_handling.print_separator(text)
 
     if enemies_number > 1:
-        print("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
+        cout("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
     else:
-        print("You find a/an " + str(enemy_singular) + " on your way.")
+        cout("You find a/an " + str(enemy_singular) + " on your way.")
 
     # player stats updates
     risk = defeat_percentage
@@ -259,21 +252,20 @@ def encounter_text_show(
     else:
         health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
 
-    sys.stdout.write(f"RISK: {risk}% \n")
-    sys.stdout.write(
+    cout(f"RISK: {risk}%")
+    cout(
         f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}" +
-        f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|\n"
+        f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|"
     )
-    sys.stdout.flush()
 
-    print("[R]un Away, [F]ight, [U]se Item? ")
+    cout("[R]un Away, [F]ight, [U]se Item? ")
 
     text = '='
     text_handling.print_separator(text)
 
-    print(" ")
-    startup_action = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-    print("")
+    cout(" ")
+    startup_action = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+    cout("")
 
     text = '='
     text_handling.print_separator(text)
@@ -281,7 +273,7 @@ def encounter_text_show(
     if startup_action.lower().startswith('r'):
         # run away chance
         if player["agility"] / round(random.uniform(1.10, 1.25), 2) > enemy_agility:
-            print("You succeeded in running away from your enemy!")
+            cout("You succeeded in running away from your enemy!")
             fighting = False
         else:
             text = "You failed in running away from your enemy! You now have to fight him/them!"
@@ -297,9 +289,9 @@ def encounter_text_show(
         player_inventory = player_inventory.replace("[", ' -')
         player_inventory = player_inventory.replace("]", '')
         player_inventory = player_inventory.replace(", ", '\n -')
-        print("INVENTORY:")
-        print(player_inventory)
-        item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+        cout("INVENTORY:")
+        cout(player_inventory)
+        item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         # use item
         if item_input in player["inventory"]:
             item_handling.use_item(
@@ -311,10 +303,10 @@ def encounter_text_show(
             text = '='
             text_handling.print_separator(text)
     else:
-        print("'" + startup_action + "' is not a valid option")
+        cout("'" + startup_action + "' is not a valid option")
         fighting = True
 
-    print(" ")
+    cout(" ")
 
 
 def get_enemy_stats(
@@ -412,19 +404,18 @@ def fight(
                 else:
                     health_color_enemy = COLOR_MAGENTA
 
-                sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
-                sys.stdout.write(
+                cout(f"PLAYER: {player_health} / {player_max_health}")
+                cout(
                     f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
-                    f"{lost_health_bars * lost_health_symbol}{color_default}|\n"
+                    f"{lost_health_bars * lost_health_symbol}{color_default}|"
                 )
-                sys.stdout.write(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
-                sys.stdout.write(
+                cout(f"ENEMY: {enemy_health} / {enemy_max_health}")
+                cout(
                     f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
                     f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
                 )
-                sys.stdout.flush()
 
-                action = input("\n[A]ttack, [D]efend, [U]se Item? ")
+                action = cinput("[A]ttack, [D]efend, [U]se Item? ")
 
                 # if player attack
                 if player["held item"] != " ":
@@ -434,28 +425,28 @@ def fight(
                     player_damage = 1
                     player_defend = 1
                 if action.lower().startswith('a'):
-                    print(" ")
+                    cout(" ")
                     # attack formula
                     global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
                     if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15:
                         enemy_dodged = True
-                        print("Your enemy dodged your attack!")
+                        cout("Your enemy dodged your attack!")
                     if critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
-                        print("You dealt a critical hit to your opponent!")
+                        cout("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
                         player_damage = round(random.uniform(0, player_damage) * player_damage_coefficient)
                         if player_critical_hit:
                             player_damage = player_damage * 2
                         enemy_health -= player_damage
-                        print("You dealt " + str(player_damage) + " damage to your enemy.")
+                        cout("You dealt " + str(player_damage) + " damage to your enemy.")
                     turn = False
 
                 # if player defend
                 elif action.lower().startswith('d'):
-                    print(" ")
+                    cout(" ")
                     defend += round(random.uniform(0, player_defend) * player_agility)
                     # defend formula
                     player["health"] += random.randint(0, 3)
@@ -470,12 +461,12 @@ def fight(
                     player_inventory = player_inventory.replace("[", ' -')
                     player_inventory = player_inventory.replace("]", '')
                     player_inventory = player_inventory.replace(", ", '\n -')
-                    print(" ")
+                    cout(" ")
                     text = '='
                     text_handling.print_separator(text)
-                    print("INVENTORY:")
-                    print(player_inventory)
-                    item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                    cout("INVENTORY:")
+                    cout(player_inventory)
+                    item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     # use item
                     if item_input in player["inventory"]:
                         if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
@@ -488,21 +479,21 @@ def fight(
                         # hold weapon/armor piece if it is one
                         elif item[item_input]["type"] == "Weapon":
                             player["held item"] = item_input
-                            print("You are now holding a/an ", player["held item"])
+                            cout("You are now holding a/an ", player["held item"])
                         elif item[item_input]["type"] == "Armor Piece: Chestplate":
                             player["held chestplate"] = item_input
-                            print("You are now wearing a/an ", player["held chestplate"])
+                            cout("You are now wearing a/an ", player["held chestplate"])
                         elif item[item_input]["type"] == "Armor Piece: Leggings":
                             player["held leggings"] = item_input
-                            print("You are now wearing a/an ", player["held leggings"])
+                            cout("You are now wearing a/an ", player["held leggings"])
                         elif item[item_input]["type"] == "Armor Piece: Boots":
                             player["held boots"] = item_input
-                            print("You are now wearing a/an ", player["held boots"])
+                            cout("You are now wearing a/an ", player["held boots"])
                         elif item[item_input]["type"] == "Armor Piece: Shield":
                             player["held shield"] = item_input
-                            print("You are now holding a/an ", player["held shield"])
+                            cout("You are now holding a/an ", player["held shield"])
                         elif item[item_input]["type"] == "Utility":
-                            print(" ")
+                            cout(" ")
                             if preferences["latest preset"]["type"] == 'plugin':
                                 script_handling.load_script(
                                     item_input, preferences, player, map, item, drinks, enemy, npcs,
@@ -517,10 +508,10 @@ def fight(
                                 )
                         text = '='
                         text_handling.print_separator(text)
-                        print(" ")
+                        cout(" ")
                 else:
-                    print("'" + action + "' is not a valid option")
-                    print(" ")
+                    cout("'" + action + "' is not a valid option")
+                    cout(" ")
             # when it's not player turn
             while not turn:
                 # if enemy is still alive
@@ -536,19 +527,19 @@ def fight(
                     enemy_critical_hit = False
                     if critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
-                        print("Your enemy dealt a critical hit!")
+                        cout("Your enemy dealt a critical hit!")
                     elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
                         player_dodged = True
-                        print("You dodged your enemy attack!")
+                        cout("You dodged your enemy attack!")
                     if damage > 0 and not player_dodged:
                         if enemy_critical_hit:
                             damage = damage * 2
                         player["health"] -= damage
-                        print("The enemy dealt ", str(damage), " points of damage.")
-                    print(" ")
+                        cout("The enemy dealt ", str(damage), " points of damage.")
+                    cout(" ")
                     turn = True
                 else:
-                    print(" ")
+                    cout(" ")
                     # check if any health is negative
                     if player["health"] < 0:
                         player["health"] = 0
@@ -566,18 +557,16 @@ def fight(
                     if remaining_health_bars_enemy > 20:
                         remaining_health_bars_enemy = 20
 
-                    sys.stdout.write(f"PLAYER: {player_health} / {player_max_health}\n")
-                    sys.stdout.write(
+                    cout(f"PLAYER: {player_health} / {player_max_health}\n")
+                    cout(
                         f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
                         f"{lost_health_bars * lost_health_symbol}{color_default}|\n"
                     )
-                    sys.stdout.write(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
-                    sys.stdout.write(
+                    cout(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
+                    cout(
                         f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
                         f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
                     )
-                    sys.stdout.flush()
-                    print("\n")
                     player["xp"] += enemy_max * enemy_max_damage / 3
                     if player["current mount"] in player["mounts"]:
                         player["mounts"][player["current mount"]]["level"] += round(random.uniform(.05, .20), 3)

@@ -2,6 +2,18 @@
 from colors import *
 # external imports
 import time
+import sys
+
+
+# Handling Function
+
+def cout(__text: object = "", end="\n"):
+    sys.stdout.write(str(__text) + str(end))
+    sys.stdout.flush()
+
+
+def cinput(__text: object = ""):
+    return input(__text)
 
 
 def show_menu(options, length=52):
@@ -32,7 +44,7 @@ def show_menu(options, length=52):
         # Get user's input and return the value
         # of the user's input. Also check if the
         # input is valid, if not, return warning
-        get_input = input('$ ')
+        get_input = cinput('$ ')
         try:
             input_type = str(type(int(get_input)))
         except Exception as error:

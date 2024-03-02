@@ -1,9 +1,10 @@
 # source imports
-import term_menu
+import terminal_handling
 import logger_sys
 import dialog_handling
 import text_handling
 from colors import *
+from terminal_handling import cout, cinput
 
 
 # Functions to handle missions
@@ -91,7 +92,7 @@ def print_description(mission_data, map):
 
     # This is just because at the beginning too a `\n` character gets added
     new_input = new_input[1:]
-    print(str(new_input))
+    cout(str(new_input))
 
 
 def mission_checks(mission_data, player, which_key):
@@ -265,17 +266,17 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
                 )
                 if "force accept" in list(data):
                     if not data["force accept"]:
-                        accept = input("Do you want to accept this task? (y/n)")
+                        accept = cinput("Do you want to accept this task? (y/n)")
                     else:
                         accept = "y"
                 else:
-                    accept = input("Do you want to accept this task? (y/n)")
-                print("=======================================================")
+                    accept = cinput("Do you want to accept this task? (y/n)")
+                cout("=======================================================")
                 if accept.startswith('y'):
                     if player["active missions"] is None:
                         player["active missions"] = []
                     player["active missions"].append(mission_id)
-                    print(
+                    cout(
                         COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL
                     )
             else:
@@ -292,7 +293,7 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
             if player["active missions"] is None:
                 player["active missions"] = []
             player["active missions"].append(mission_id)
-            print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL)
+            cout(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL)
         logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
 
 
@@ -327,6 +328,6 @@ def mission_completing_checks(mission_id, missions_data, player, dialog, prefere
         execute_triggers(mission_data, player, 'on complete', dialog, preferences, text_replacements_generic, drinks)
 
         logger_sys.log_message(f"INFO: Set mission '{mission_id}' as done")
-        print(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You completed mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)
+        cout(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You completed mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)
         player["active missions"].remove(mission_id)
         player["done missions"].append(mission_id)

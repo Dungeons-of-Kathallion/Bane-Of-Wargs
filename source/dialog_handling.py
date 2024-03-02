@@ -2,7 +2,8 @@
 from colors import *
 import logger_sys
 import text_handling
-import term_menu
+import terminal_handling
+from terminal_handling import cout, cinput
 # external imports
 import appdirs
 import time
@@ -38,7 +39,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 to_print = to_print.replace('$BLACK', '\033[0;30m')
                 to_print = to_print.replace('$BROWN', '\033[0;33m')
                 to_print = to_print.replace('$GRAY', '\033[1;30m')
-                print(to_print)
+                cout(to_print)
         else:
             current_plugin = str(preferences["latest preset"]["plugin"])
             logger_sys.log_message(
@@ -60,7 +61,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 to_print = to_print.replace('$BLACK', '\033[0;30m')
                 to_print = to_print.replace('$BROWN', '\033[0;33m')
                 to_print = to_print.replace('$GRAY', '\033[1;30m')
-                print(to_print)
+                cout(to_print)
     count = 0
 
     # Conversation loop
@@ -71,7 +72,7 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
     try:
         load_conversation_label(current_label, preferences, new_text_replacements, current_dialog)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
             f"an error occurred when trying to run dialog '{current_dialog_name}' conversations:\n{error}" +
             COLOR_RESET_ALL
@@ -297,7 +298,7 @@ def load_conversation_label(label_data, preferences, new_text_replacements, curr
         # If a function entered isn't valid, report
         # an error and shut down the program
         else:
-            print(
+            cout(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"dialog conversation function '{current_function}' isn't valid" +
                 COLOR_RESET_ALL
             )
@@ -329,7 +330,7 @@ def conversation_print(conversation_input, preferences, new_text_replacements):
 
 def conversation_ask_input(conversation_input, new_text_replacements):
     # Run an ask-input function: ask user for any input
-    player_input = input()
+    player_input = cinput()
     output_variable = conversation_input.replace('ask-input(', '')
     output_variable = output_variable.replace(')', '')
 
@@ -370,7 +371,7 @@ def conversation_ask_confirmation(conversation_input, new_text_replacements):
     # Run a ask-confirmation function: ask for player input
     # with either 'Yes' or 'No' as an answer
     choice = ['Yes', 'No']
-    confirmation = term_menu.show_menu(choice)
+    confirmation = terminal_handling.show_menu(choice)
     if confirmation == 'Yes':
         confirmation = True
     else:
@@ -415,7 +416,7 @@ def conversation_choice_maker(conversation_input, choices_dict, new_text_replace
         choice_name = choice_name.split(",", 1)[0]
         choices += [str(choice_name)]
 
-    player_choice = term_menu.show_menu(choices)
+    player_choice = terminal_handling.show_menu(choices)
     choice_position = choices.index(player_choice)
 
     choice_action = choices_dict[choice_position]

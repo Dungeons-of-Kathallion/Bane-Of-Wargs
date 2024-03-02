@@ -3,6 +3,7 @@ import logger_sys
 import script_handling
 import text_handling
 import consumable_handling
+from terminal_handling import cout
 
 
 # Handling Function
@@ -36,7 +37,7 @@ def use_item(
         logger_sys.log_message(f"INFO: Item '{which_item}' is an item of type '{which_item_type}' --> equipping it")
     elif which_item_type == "Utility":
         logger_sys.log_message(f"INFO: Item '{which_item}' is an item of type '{which_item_type}' --> loading its script")
-        print(" ")
+        cout(" ")
         if preferences["latest preset"]["type"] == 'plugin':
             script_handling.load_script(
                 which_item, preferences, player, map, item_data, drinks, enemy, npcs,
@@ -66,9 +67,9 @@ def equip_item(item_name, player, equipment_type):
         slot = "held shield"
 
     if equipment_type == "Weapon" or equipment_type == "Armor Piece: Shield":
-        print("You are now holding ", text_handling.a_an_check(item_name))
+        cout("You are now holding ", text_handling.a_an_check(item_name))
     else:
-        print("You are now wearing ", text_handling.a_an_check(item_name))
+        cout("You are now wearing ", text_handling.a_an_check(item_name))
 
     logger_sys.log_message(f"INFO: Equipping item '{item_name}' of type '{equipment_type}' to player slot '{slot}'")
     player[slot] = item_name

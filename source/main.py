@@ -2,7 +2,7 @@
 import battle
 import check_yaml
 import train
-import term_menu
+import terminal_handling
 import mission_handling
 import dialog_handling
 import enemy_handling
@@ -17,6 +17,7 @@ import item_handling
 import time_handling
 import logger_sys
 from colors import *
+from terminal_handling import cout, cinput
 # external imports
 import random
 import yaml
@@ -55,44 +56,44 @@ separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET
 def print_title():
     if preferences["theme"] == "OFF":
         with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-            print(f.read())
+            cout(f.read())
     else:
         if preferences["theme"] == "blackwhite":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.blackwhite(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "purplepink":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.purplepink(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "greenblue":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.greenblue(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "water":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.water(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "fire":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.fire(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "pinkred":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.pinkred(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "purpleblue":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.purpleblue(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "brazil":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.brazil(f.read())
-                print(faded_text)
+                cout(faded_text)
         elif preferences["theme"] == "random":
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.random(f.read())
-                print(faded_text)
+                cout(faded_text)
 
 
 menu = True
@@ -154,7 +155,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.13
+SOURCE_CODE_VERSION = 0.135
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -173,7 +174,7 @@ if float(latest_version) > float(SOURCE_CODE_VERSION):
     logger_sys.log_message(
         f"DEBUG: You're using version {SOURCE_CODE_VERSION} while the latest version is {latest_version}"
     )
-    print(
+    cout(
         COLOR_YELLOW + "WARNING: The game source code is outdated:\nYou're using " +
         f"version {SOURCE_CODE_VERSION} while the latest version is {latest_version}" +
         COLOR_RESET_ALL
@@ -189,8 +190,8 @@ try:
     with open(f'{program_dir}/game/VERSION.bow') as f:
         GAME_DATA_VERSION = f.read().replace('\n', '')
 except Exception as error:
-    print(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
-    print(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+    cout(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+    cout(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
     logger_sys.log_message(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
     logger_sys.log_message(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
     time.sleep(3)
@@ -215,14 +216,14 @@ if float(GAME_DATA_VERSION) < float(latest_game_data_version):
     logger_sys.log_message(
         f"DEBUG: You're using version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}"
     )
-    print(
+    cout(
         COLOR_YELLOW + f"WARNING: The game data at '{program_dir}' is outdated:\nYou're using " +
         f"version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}" +
         COLOR_RESET_ALL
     )
     time.sleep(3)
-    print("\nDo you want to update your game data right now?")
-    want_to_update = term_menu.show_menu(["Yes", "No"])
+    cout("\nDo you want to update your game data right now?")
+    want_to_update = terminal_handling.show_menu(["Yes", "No"])
     if want_to_update == "Yes":
         text_handling.clear_prompt()
         data_handling.update_game_data(preferences, latest_game_data_version)
@@ -239,14 +240,14 @@ while menu:
     print_title()
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Quit']
-    choice = term_menu.show_menu(options)
+    choice = terminal_handling.show_menu(options)
     text_handling.clear_prompt()
 
     print_title()
 
     if choice == 'Play Game':
         options = ['Use Latest Preset', 'Play Vanilla', 'Play Plugin']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.show_menu(options)
         using_latest_preset = False
         latest_preset = preferences["latest preset"]
         # Make these variables global
@@ -275,7 +276,7 @@ while menu:
             save_file = program_dir + "/saves/save_" + open_save + ".yaml"
             check_file = os.path.isfile(save_file)
             if not check_file:
-                print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
+                cout(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
                 logger_sys.log_message(f"ERROR: Couldn't find save file '{save_file}'")
                 play = 0
                 text_handling.exit_game()
@@ -297,7 +298,7 @@ while menu:
             for search_for_plugins in os.listdir(program_dir + "/plugins/"):
                 res.append(search_for_plugins)
 
-            what_plugin = input(
+            what_plugin = cinput(
                 COLOR_STYLE_BRIGHT + "Current plugins: " + COLOR_RESET_ALL +
                 COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
             )
@@ -323,7 +324,7 @@ while menu:
             text = "Please select an action:"
             text_handling.print_speech_text_effect(text, preferences)
             options = ['Open Save', 'New Save']
-            choice = term_menu.show_menu(options)
+            choice = terminal_handling.show_menu(options)
 
             if choice == 'Open Save':
                 res = []
@@ -344,7 +345,7 @@ while menu:
 
                 text = "Please select a save to open."
                 text_handling.print_speech_text_effect(text, preferences)
-                open_save = input(
+                open_save = cinput(
                     COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
                     COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
                 )
@@ -354,7 +355,7 @@ while menu:
                 save_file = program_dir + "/saves/save_" + open_save + ".yaml"
                 check_file = os.path.isfile(save_file)
                 if not check_file:
-                    print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
+                    cout(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find save file '" + save_file + "'" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"ERROR: Couldn't find save file '{save_file}'")
                     play = 0
                     text_handling.exit_game()
@@ -368,7 +369,7 @@ while menu:
             else:
                 text = "Please name your save: "
                 text_handling.print_speech_text_effect(text, preferences)
-                enter_save_name = input('> ')
+                enter_save_name = cinput('> ')
                 player = start_player
                 dumped = yaml.dump(player)
                 save_name = program_dir + "/saves/save_" + enter_save_name + ".yaml"
@@ -377,7 +378,7 @@ while menu:
                 logger_sys.log_message("INFO: Updating latest preset")
                 preferences["latest preset"]["save"] = enter_save_name
                 if check_file:
-                    print(
+                    cout(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" +
                         save_name + "'" + " already exists" + COLOR_RESET_ALL
                     )
@@ -419,17 +420,17 @@ while menu:
         text = "Please choose an action."
         text_handling.print_speech_text_effect(text, preferences)
         options = ['Edit Save', 'Delete Save']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.show_menu(options)
         if choice == 'Edit Save':
             text = "Please select a save to edit."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = input(
+            open_save = cinput(
                 COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
                 COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
             )
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
-                print(
+                cout(
                     COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" +
                     program_dir + "/saves/save_" + open_save + ".yaml" +
                     "'" + " does not exists" + COLOR_RESET_ALL
@@ -439,9 +440,9 @@ while menu:
             text = "Select an action for the selected save."
             text_handling.print_speech_text_effect(text, preferences)
             options = ['Rename Save', 'Manually Edit Save']
-            choice = term_menu.show_menu(options)
+            choice = terminal_handling.show_menu(options)
             if choice == 'Rename Save':
-                rename_name = input("Select a new name for the save: ")
+                rename_name = cinput("Select a new name for the save: ")
                 os.rename(
                     program_dir + "/saves/save_" + open_save + ".yaml",
                     program_dir + "/saves/save_" + rename_name + ".yaml"
@@ -461,20 +462,20 @@ while menu:
         else:
             text = "Please select a save to delete."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = input(
+            open_save = cinput(
                 COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
                 COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
             )
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
-                print(
+                cout(
                     COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" +
                     program_dir + "/saves/save_" + open_save + ".yaml" +
                     "'" + " does not exists" + COLOR_RESET_ALL
                     )
                 logger_sys.log_message(f"ERROR: Save file '{program_dir}/saves/save_{open_save}.yaml' does not exists")
                 play = 0
-            check = input("Are you sure you want to delete the following save (y/n)")
+            check = cinput("Are you sure you want to delete the following save (y/n)")
             if check.lower().startswith('y'):
                 logger_sys.log_message(
                     f"WARNING: Deleting save file '{program_dir}/saves/save_{open_save}.yaml'" +
@@ -517,10 +518,10 @@ while menu:
             md_text = Markdown(md_file)
             console.print(md_text)
 
-            input()
+            cinput()
         except Exception as error:
             error_occurred = True
-            print(
+            cout(
                 COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: " + COLOR_RESET_ALL +
                 COLOR_RED + f"file '{file}' does not exists" + COLOR_RESET_ALL
             )
@@ -551,12 +552,12 @@ while menu:
         loop = True
         while loop:
             error_happened = False
-            which_log_file = input(f"{COLOR_GREEN}{COLOR_STYLE_BRIGHT}>{COLOR_RESET_ALL} ")
+            which_log_file = cinput(f"{COLOR_GREEN}{COLOR_STYLE_BRIGHT}>{COLOR_RESET_ALL} ")
             try:
                 which_log_file = directory_content[int(which_log_file)]
             except Exception as error:
                 error_happened = True
-                print(COLOR_YELLOW + "incorrect input" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "incorrect input" + COLOR_RESET_ALL)
 
             if not error_happened:
                 loop = False
@@ -578,7 +579,6 @@ def search(x, y):
     for i in range(0, map_point_count):
         point_i = map["point" + str(i)]
         point_x, point_y = point_i["x"], point_i["y"]
-        # print(i, point_x, point_y, player)
         if point_x == x and point_y == y:
             map_location = i
             return map_location
@@ -663,7 +663,7 @@ def check_for_key(direction):
         keys_list = keys_list.replace("]", '')
         keys_list = keys_list.replace(", ", '\n -')
 
-        print(keys_list)
+        cout(keys_list)
 
         keys_len = len(map["point" + str(future_map_location)]["key"]["required keys"])
 
@@ -671,7 +671,7 @@ def check_for_key(direction):
         text_handling.print_separator(text)
 
         options = ['Continue', 'Leave']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.show_menu(options)
 
         count = 0
 
@@ -693,7 +693,7 @@ def check_for_key(direction):
 
             if not have_necessary_keys:
                 logger_sys.log_message("INFO: Player don't have necessary keys: passing")
-                print(" ")
+                cout(" ")
                 text = COLOR_YELLOW + "You don't have the necessary key(s) to enter this locations"
                 text_handling.print_long_string(text)
                 time.sleep(1.5)
@@ -757,57 +757,57 @@ def run(play):
         text_handling.clear_prompt()
 
         logger_sys.log_message("INFO: Printing loading menu")
-        print(separator)
-        print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Reserved keys:" + COLOR_RESET_ALL)
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "N: " + COLOR_RESET_ALL + "Go north" + COLOR_RESET_ALL)
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "S: " + COLOR_RESET_ALL + "Go south" + COLOR_RESET_ALL)
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "E: " + COLOR_RESET_ALL + "Go east" + COLOR_RESET_ALL)
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "W: " + COLOR_RESET_ALL + "Go west" + COLOR_RESET_ALL)
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Access to your diary.")
-        print(
+        cout(separator)
+        cout(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Reserved keys:" + COLOR_RESET_ALL)
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "N: " + COLOR_RESET_ALL + "Go north" + COLOR_RESET_ALL)
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "S: " + COLOR_RESET_ALL + "Go south" + COLOR_RESET_ALL)
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "E: " + COLOR_RESET_ALL + "Go east" + COLOR_RESET_ALL)
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "W: " + COLOR_RESET_ALL + "Go west" + COLOR_RESET_ALL)
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Access to your diary.")
+        cout(
             COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL +
             "View items. When in this view, type the name of an item to examine it." +
             COLOR_RESET_ALL
         )
-        print(
+        cout(
             COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL +
             "View mounts. When in this view, type the name of the mount to examine it." +
             COLOR_RESET_ALL
         )
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Save game")
-        print(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
-        print(" ")
-        print(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
-        print("If you find an item on the ground, type the name of the item to take it.")
-        print(
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Save game")
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
+        cout(" ")
+        cout(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Hints:" + COLOR_RESET_ALL)
+        cout("If you find an item on the ground, type the name of the item to take it.")
+        cout(
             "Some items have special triggers, which will often" +
             " be stated in the description. Others can only be activated" +
             " in certain situations, like in combat."
         )
-        print(separator)
-        print(" ")
+        cout(separator)
+        cout(" ")
 
         loading = 4
         while loading > 0:
-            print("Loading game... ▁▁▁", end='\r')
+            cout("Loading game... ▁▁▁", end='\r')
             time.sleep(.15)
-            print("Loading game... ▁▁▃", end='\r')
+            cout("Loading game... ▁▁▃", end='\r')
             time.sleep(.15)
-            print("Loading game... ▁▃▅", end='\r')
+            cout("Loading game... ▁▃▅", end='\r')
             time.sleep(.15)
-            print("Loading game... ▃▅▅", end='\r')
+            cout("Loading game... ▃▅▅", end='\r')
             time.sleep(.15)
-            print("Loading game... ▅▅▅", end='\r')
+            cout("Loading game... ▅▅▅", end='\r')
             time.sleep(.15)
-            print("Loading game... ▅▅▃", end='\r')
+            cout("Loading game... ▅▅▃", end='\r')
             time.sleep(.15)
-            print("Loading game... ▅▃▁", end='\r')
+            cout("Loading game... ▅▃▁", end='\r')
             time.sleep(.15)
-            print("Loading game... ▃▁▁", end='\r')
+            cout("Loading game... ▃▁▁", end='\r')
             time.sleep(.15)
-            print("Loading game... ▁▁▁", end='\r')
+            cout("Loading game... ▁▁▁", end='\r')
             time.sleep(.15)
             loading -= 1
 
@@ -1049,8 +1049,8 @@ def run(play):
         text = '='
         text_handling.print_separator(text)
 
-        print("DAY TIME: " + day_time)
-        print(
+        cout("DAY TIME: " + day_time)
+        cout(
             "LOCATION: " + map_zone + " (" + COLOR_STYLE_BRIGHT + COLOR_GREEN +
             str(player["x"]) + COLOR_RESET_ALL + ", " + COLOR_STYLE_BRIGHT + COLOR_GREEN +
             str(player["y"]) + COLOR_RESET_ALL + ")"
@@ -1190,51 +1190,51 @@ def run(play):
         text = '='
         text_handling.print_separator(text)
 
-        print("DIRECTIONS: " + "          ACTIONS:")
+        cout("DIRECTIONS: " + "          ACTIONS:")
 
         blocked_locations = map["point" + str(map_location)]["blocked"]
         if "North" not in blocked_locations:
-            print("Can go North ⬆    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
+            cout("Can go North ⬆    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
         else:
-            print("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
+            cout("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
         if "South" not in blocked_locations:
-            print("Can go South ⬇    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
+            cout("Can go South ⬇    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
         else:
-            print("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
+            cout("                  " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "D: " + COLOR_RESET_ALL + "Check your diary")
         if "East" not in blocked_locations:
-            print(
+            cout(
                 "Can go East ➡    " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " +
                 COLOR_RESET_ALL + "Interact with zone"
             )
         else:
-            print(
+            cout(
                 "                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
                 "Z: " + COLOR_RESET_ALL + "Interact with zone"
             )
         if "West" not in blocked_locations:
-            print("Can go West ⬅    " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
+            cout("Can go West ⬅    " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
         else:
-            print("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
+            cout("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
         if "North-East" not in blocked_locations:
-            print("Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
+            cout("Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
         else:
-            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
+            cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
         if "North-West" not in blocked_locations:
-            print("Can go North-West ⬉" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
+            cout("Can go North-West ⬉" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         else:
-            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
+            cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         if "South-East" not in blocked_locations:
-            print(
+            cout(
                 "Can go South-East ⬊" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
             )
         else:
-            print(
+            cout(
                 "                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Backup player save"
             )
         if "South-West" not in blocked_locations:
-            print("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
+            cout("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         else:
-            print("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
+            cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
 
         text = '='
         text_handling.print_separator(text)
@@ -1365,7 +1365,7 @@ def run(play):
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
             zone_handling.print_hostel_information(map_zone, zone, item, drinks)
-        print("")
+        cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
             map_items = str(map["point" + str(map_location)]["item"])
@@ -1374,8 +1374,8 @@ def run(play):
             map_items = map_items.replace(']', '')
             map_items = map_items.replace("'", '')
             take_item = "There are these items on the ground: " + map_items
-            print(take_item)
-            print("")
+            cout(take_item)
+            cout("")
         logger_sys.log_message(f"INFO: Checking if an npc is present at map point 'point{map_location}'")
 
         # Check if the player can get
@@ -1475,7 +1475,7 @@ def run(play):
                         current_mission_data, player, 'on fail', dialog, preferences,
                         text_replacements_generic, drinks
                     )
-                    print(
+                    cout(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" +
                         current_mission_data["name"] + "'" + COLOR_RESET_ALL
                     )
@@ -1561,8 +1561,8 @@ def run(play):
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file
             )
-        command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-        print(" ")
+        command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+        cout(" ")
 
         logger_sys.log_message(f"INFO: Checking for utilities type items in the item dictionary")
         # Check for utilities keys
@@ -1581,10 +1581,10 @@ def run(play):
         if "item" in map["point" + str(map_location)] and command in map["point" + str(map_location)]["item"]:
             logger_sys.log_message(f"INFO: Found item '{command}' at map point 'point{map_location}'")
             if command in player["inventory"] and item[command]["type"] == "Utility":
-                print(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot take that item." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             elif player["inventory slots remaining"] == 0:
-                print(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot take that item because you're out of inventory slots." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             else:
                 logger_sys.log_message(f"INFO: Adding item '{command}' to player inventory")
@@ -1594,14 +1594,14 @@ def run(play):
 
             continued_command = True
         elif command.lower().startswith('go'):
-            print(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
+            cout(COLOR_YELLOW + "Rather than saying Go <direction>, simply say <direction>." + COLOR_RESET_ALL)
             time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('ne'):
             logger_sys.log_message(f"INFO: Checking if player can go north-east from map point 'point{map_location}'")
             next_point = search(player["x"] + 1, player["y"] + 1)
             if "North-East" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to north-east: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1618,7 +1618,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go north-west from map point 'point{map_location}'")
             next_point = search(player["x"] - 1, player["y"] + 1)
             if "North-West" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to north-west: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1635,7 +1635,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go south-east from map point 'point{map_location}'")
             next_point = search(player["x"] + 1, player["y"] - 1)
             if "South-East" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to south-east: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1652,7 +1652,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go south-west from map point 'point{map_location}'")
             next_point = search(player["x"] - 1, player["y"] - 1)
             if "South-West" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to south-west: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1669,7 +1669,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go north from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] + 1)
             if "North" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to north: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1683,7 +1683,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go south from map point 'point{map_location}'")
             next_point = search(player["x"], player["y"] - 1)
             if "South" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to south: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1697,7 +1697,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go east from map point 'point{map_location}'")
             next_point = search(player["x"] + 1, player["y"])
             if "East" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to east: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1711,7 +1711,7 @@ def run(play):
             logger_sys.log_message(f"INFO: Checking if player can go west from map point 'point{map_location}'")
             next_point = search(player["x"] - 1, player["y"])
             if "West" in map["point" + str(map_location)]["blocked"] or next_point is None:
-                print(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You cannot go that way." + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Refusing access to west: access blocked to map point 'point{next_point}'")
                 time.sleep(1)
             elif "key" in map["point" + str(next_point)]:
@@ -1725,35 +1725,35 @@ def run(play):
             text = '='
             text_handling.print_separator(text)
             logger_sys.log_message("INFO: Displaying player diary menu")
-            print("ADVENTURER NAME: " + str(preferences["latest preset"]["save"]))
-            print(
+            cout("ADVENTURER NAME: " + str(preferences["latest preset"]["save"]))
+            cout(
                 "ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL
             )
             text = '='
             text_handling.print_separator(text)
             options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
-            choice = term_menu.show_menu(options)
+            choice = terminal_handling.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
             if choice == 'Visited Places':
-                print("VISITED PLACES: ")
+                cout("VISITED PLACES: ")
                 zones_list = str(player["visited zones"])
                 logger_sys.log_message(f"INFO: Printing player visited places '{zones_list}'")
                 zones_list = zones_list.replace("'", '')
                 zones_list = zones_list.replace("[", ' -')
                 zones_list = zones_list.replace("]", '')
                 zones_list = zones_list.replace(", ", '\n -')
-                print(zones_list)
+                cout(zones_list)
                 text = '='
                 text_handling.print_separator(text)
-                which_zone = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_zone = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen zone '{which_zone}' to check")
                 if which_zone in player["visited zones"]:
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
                     text = '='
                     text_handling.print_separator(text)
                     text_handling.print_zone_map_alone(which_zone, zone)
-                    print("NAME: " + zone[which_zone]["name"])
+                    cout("NAME: " + zone[which_zone]["name"])
                     if zone[which_zone]["type"] == "village":
                         village_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
                         village_x = map[village_point]["x"]
@@ -1763,7 +1763,7 @@ def run(play):
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                             str(village_y) + COLOR_RESET_ALL + ")"
                         )
-                        print("LOCATION: " + village_coordinates)
+                        cout("LOCATION: " + village_coordinates)
                         content_hostels = str(zone[which_zone]["content"]["hostels"])
                         content_hostels = content_hostels.replace('[', '')
                         content_hostels = content_hostels.replace(']', '')
@@ -1798,19 +1798,19 @@ def run(play):
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                             str(hostel_y) + COLOR_RESET_ALL + ")"
                         )
-                        print("LOCATION: " + hostel_coordinates)
-                        print(
+                        cout("LOCATION: " + hostel_coordinates)
+                        cout(
                             "SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                             str(current_hostel["sleep gold"]) + COLOR_RESET_ALL
                         )
                         if "None" not in current_hostel["sells"]["drinks"]:
-                            print("DRINKS SELLS:")
+                            cout("DRINKS SELLS:")
                             count = 0
                             hostel_drinks = current_hostel["sells"]["drinks"]
                             hostel_drinks_len = len(hostel_drinks)
                             while count < hostel_drinks_len:
                                 current_drink = str(current_hostel["sells"]["drinks"][int(count)])
-                                print(
+                                cout(
                                     " -" + current_hostel["sells"]["drinks"][int(count)] + " " +
                                     COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(drinks[current_drink]["gold"] * current_hostel["cost value"], 2)) +
@@ -1818,13 +1818,13 @@ def run(play):
                                 )
                                 count += 1
                         if "None" not in current_hostel["sells"]["items"]:
-                            print("ITEMS SELLS")
+                            cout("ITEMS SELLS")
                             count = 0
                             hostel_items = current_hostel["sells"]["items"]
                             hostel_items_len = len(hostel_items)
                             while count < hostel_items_len:
                                 current_item = str(current_hostel["sells"]["items"][int(count)])
-                                print(
+                                cout(
                                     " -" + current_hostel["sells"]["items"][int(count)] + " " +
                                     COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) +
@@ -1832,13 +1832,13 @@ def run(play):
                                 )
                                 count += 1
                         if "None" not in current_hostel["buys"]["items"]:
-                            print("ITEMS BUYS:")
+                            cout("ITEMS BUYS:")
                             count = 0
                             hostel_items = current_hostel["buys"]["items"]
                             hostel_items_len = len(hostel_items)
                             while count < hostel_items_len:
                                 current_item = str(current_hostel["buys"]["items"][int(count)])
-                                print(
+                                cout(
                                     " -" + current_hostel["buys"]["items"][int(count)] + " " +
                                     COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) +
@@ -1855,24 +1855,24 @@ def run(play):
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                             str(stable_y) + COLOR_RESET_ALL + ")"
                         )
-                        print("LOCATION: " + stable_coordinates)
-                        print(
+                        cout("LOCATION: " + stable_coordinates)
+                        cout(
                             "DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                             str(current_stable["deposit gold"]) + COLOR_RESET_ALL
                         )
-                        print(
+                        cout(
                             "TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                             str(current_stable["training gold"]) + COLOR_RESET_ALL
                         )
                         options = ['Train Mount', '']
                         if "None" not in current_stable["stable"]["sells"]["mounts"]:
-                            print("MOUNTS SELLS:")
+                            cout("MOUNTS SELLS:")
                             count = 0
                             stable_mounts = current_stable["stable"]["sells"]["mounts"]
                             stable_mounts_len = len(stable_mounts)
                             while count < stable_mounts_len:
                                 current_mount = str(current_stable["stable"]["sells"]["mounts"][int(count)])
-                                print(
+                                cout(
                                     " -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " +
                                     COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2)) +
@@ -1881,13 +1881,13 @@ def run(play):
                                 count += 1
                         if "None" not in current_stable["stable"]["sells"]["items"]:
                             options += ['Buy Item']
-                            print("ITEMS SELLS:")
+                            cout("ITEMS SELLS:")
                             count = 0
                             stable_items = current_stable["stable"]["sells"]["items"]
                             stable_items_len = len(stable_items)
                             while count < stable_items_len:
                                 current_mount = str(current_stable["stable"]["sells"]["items"][int(count)])
-                                print(
+                                cout(
                                     " -" + current_stable["stable"]["sells"]["items"][int(count)] + " " +
                                     COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_mount]["gold"] * current_stable["cost value"], 2)) +
@@ -1918,12 +1918,12 @@ def run(play):
                         deposited_mounts_names = deposited_mounts_names.replace("'", COLOR_GREEN + COLOR_STYLE_BRIGHT)
                         deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL + ',')
                         if deposited_mounts_num == 0:
-                            print(
+                            cout(
                                 "MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
                                 str(deposited_mounts_num) + COLOR_RESET_ALL
                             )
                         else:
-                            print(
+                            cout(
                                 "MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
                                 str(deposited_mounts_num) + COLOR_RESET_ALL + " " + deposited_mounts_names
                             )
@@ -1937,22 +1937,22 @@ def run(play):
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                             str(blacksmith_y) + COLOR_RESET_ALL + ")"
                         )
-                        print("LOCATION: " + black_smith_coordinates)
+                        cout("LOCATION: " + black_smith_coordinates)
                         if "None" not in current_black_smith["blacksmith"]["buys"]:
-                            print("EQUIPMENT BUYS:")
+                            cout("EQUIPMENT BUYS:")
                             count = 0
                             weapon_buys = current_black_smith["blacksmith"]["buys"]
                             weapon_buys_len = len(weapon_buys)
                             while count < weapon_buys_len:
                                 current_weapon = str(current_black_smith["blacksmith"]["buys"][int(count)])
-                                print(
+                                cout(
                                     " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +
                                     COLOR_RESET_ALL
                                 )
                                 count += 1
                         if "None" not in current_black_smith["blacksmith"]["orders"]:
-                            print("WEAPON ORDERS:")
+                            cout("WEAPON ORDERS:")
                             count = 0
                             weapon_orders = current_black_smith["blacksmith"]["orders"]
                             weapon_orders_len = len(weapon_orders)
@@ -1961,7 +1961,7 @@ def run(play):
                                 global_current_weapon_materials = (
                                     weapon_upgrade_handling.detect_weapon_next_upgrade_items(current_weapon, item)
                                 )
-                                print(
+                                cout(
                                     " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +
                                     COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT + " (" +
@@ -1979,28 +1979,28 @@ def run(play):
                             COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                             str(forge_y) + COLOR_RESET_ALL + ")"
                         )
-                        print("LOCATION: " + forge_coordinates)
+                        cout("LOCATION: " + forge_coordinates)
                         if "None" not in current_forge["forge"]["buys"]:
-                            print("METAL BUYS:")
+                            cout("METAL BUYS:")
                             count = 0
                             metal_buys = current_forge["forge"]["buys"]
                             metal_buys_len = len(metal_buys)
                             while count < metal_buys_len:
                                 current_metal = str(metal_buys[count])
-                                print(
+                                cout(
                                     " -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) +
                                     COLOR_RESET_ALL
                                 )
                                 count += 1
                         if "None" not in current_forge["forge"]["sells"]:
-                            print("METAL SELLS:")
+                            cout("METAL SELLS:")
                             count = 0
                             metal_sells = current_forge["forge"]["sells"]
                             metal_sells_len = len(metal_sells)
                             while count < metal_sells_len:
                                 current_metal = str(metal_sells[count])
-                                print(
+                                cout(
                                     " -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                                     str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) +
                                     COLOR_RESET_ALL
@@ -2011,12 +2011,12 @@ def run(play):
                     text = '='
                     text_handling.print_separator(text)
                 else:
-                    print(" ")
-                    print(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
+                    cout(" ")
+                    cout(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen '{which_zone}', which he doesn't know about --> canceling")
-                input()
+                cinput()
             elif choice == 'Encountered Monsters':
-                print("ENCOUNTERED MONSTERS: ")
+                cout("ENCOUNTERED MONSTERS: ")
                 enemies_list = str(player["enemies list"])
                 logger_sys.log_message(f"INFO: Printing player known enemies: '{enemies_list}'")
                 enemies_list = enemies_list.replace("'None', ", '')
@@ -2024,14 +2024,14 @@ def run(play):
                 enemies_list = enemies_list.replace("[", ' -')
                 enemies_list = enemies_list.replace("]", '')
                 enemies_list = enemies_list.replace(", ", '\n -')
-                print(enemies_list)
+                cout(enemies_list)
                 text = '='
                 text_handling.print_separator(text)
-                which_enemy = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_enemy = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen enemy '{which_enemy}' to display information")
                 if which_enemy == "None":
-                    print(" ")
-                    print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
+                    cout(" ")
+                    cout(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
                     time.sleep(1.5)
                 elif which_enemy in player["enemies list"]:
                     logger_sys.log_message(f"INFO: Printing enemy '{which_enemy}' information")
@@ -2040,20 +2040,20 @@ def run(play):
                     text_handling.print_separator(text)
 
                     text_handling.print_enemy_thumbnail(which_enemy, preferences)
-                    print(" ")
+                    cout(" ")
 
-                    print("NAME: " + which_enemy)
+                    cout("NAME: " + which_enemy)
 
-                    print("PLURAL: " + enemy[which_enemy]["plural"])
+                    cout("PLURAL: " + enemy[which_enemy]["plural"])
                     enemy_average_damage = (
                         enemy[which_enemy]["damage"]["min damage"] + enemy[which_enemy]["damage"]["max damage"]
                     ) / 2
                     enemy_average_health = (
                         enemy[which_enemy]["health"]["min spawning health"] + enemy[which_enemy]["health"]["max spawning health"]
                     ) / 2
-                    print("AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(enemy_average_damage) + COLOR_RESET_ALL)
-                    print("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
-                    print(
+                    cout("AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(enemy_average_damage) + COLOR_RESET_ALL)
+                    cout("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
+                    cout(
                         "AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                         str(enemy[which_enemy]["agility"] * 100) + COLOR_RESET_ALL
                     )
@@ -2070,14 +2070,14 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    input()
+                    cinput()
                 else:
                     logger_sys.log_message(f"INFO: Player doesn't know about enemy '{which_enemy}' --> canceling")
-                    print(" ")
-                    print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
+                    cout(" ")
+                    cout(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
                     time.sleep(1.5)
             elif choice == 'Encountered People':
-                print("ENCOUNTERED PEOPLE: ")
+                cout("ENCOUNTERED PEOPLE: ")
                 enemies_list = str(player["met npcs names"])
                 logger_sys.log_message(f"INFO: Printing player encounter people: '{enemies_list}'")
                 enemies_list = enemies_list.replace("'None', ", '')
@@ -2085,14 +2085,14 @@ def run(play):
                 enemies_list = enemies_list.replace("[", ' -')
                 enemies_list = enemies_list.replace("]", '')
                 enemies_list = enemies_list.replace(", ", '\n -')
-                print(enemies_list)
+                cout(enemies_list)
                 text = '='
                 text_handling.print_separator(text)
-                which_npc = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_npc = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen npc '{which_npc}' to display information about")
                 if which_npc == "None":
-                    print(" ")
-                    print(COLOR_YELLOW + "You don't know about that people." + COLOR_RESET_ALL)
+                    cout(" ")
+                    cout(COLOR_YELLOW + "You don't know about that people." + COLOR_RESET_ALL)
                     time.sleep(1.5)
                 elif which_npc in player["met npcs names"]:
                     logger_sys.log_message(f"INFO: Printing npc '{which_npc}' information")
@@ -2101,11 +2101,11 @@ def run(play):
                     text_handling.print_separator(text)
 
                     text_handling.print_npc_thumbnail(which_npc, preferences)
-                    print(" ")
+                    cout(" ")
 
-                    print("NAME: " + which_npc)
+                    cout("NAME: " + which_npc)
 
-                    print(
+                    cout(
                         "COST VALUE: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                         str(npcs[which_npc]["cost value"]) + COLOR_RESET_ALL
                     )
@@ -2124,14 +2124,14 @@ def run(play):
                     buys_list = buys_list.replace("'", '')
                     buys_list = buys_list.replace("[", '')
                     buys_list = buys_list.replace("]", '')
-                    print(" ")
-                    print("SELLS:")
+                    cout(" ")
+                    cout("SELLS:")
                     text = "DRINKS: " + sells_list_drinks
                     text_handling.print_long_string(text)
                     text = "ITEMS: " + sells_list_items
                     text_handling.print_long_string(text)
-                    print(" ")
-                    print("BUYS:")
+                    cout(" ")
+                    cout("BUYS:")
                     text = "ITEMS: " + buys_list
                     text_handling.print_long_string(text)
 
@@ -2139,14 +2139,14 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    input()
+                    cinput()
                 else:
-                    print(" ")
-                    print(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
+                    cout(" ")
+                    cout(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player doesn't know about npc '{which_npc}' --> canceling")
                     time.sleep(1.5)
             elif choice == 'Tasks':
-                print("ACTIVE TASKS:")
+                cout("ACTIVE TASKS:")
                 tasks_list = player["active missions"]
                 if tasks_list is None:
                     tasks_list = ["You have no tasks"]
@@ -2170,10 +2170,10 @@ def run(play):
                 tasks_list_str = tasks_list_str.replace("]", '')
                 tasks_list_str = tasks_list_str.replace(", ", '\n -')
 
-                print(tasks_list_str)
+                cout(tasks_list_str)
                 text = '='
                 text_handling.print_separator(text)
-                which_task = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_task = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen task '{which_task}' to display information about")
                 if which_task in tasks_list:
                     logger_sys.log_message(f"INFO: Printing mission '{which_task}' information")
@@ -2182,8 +2182,8 @@ def run(play):
 
                     text = '='
                     text_handling.print_separator(text)
-                    print("NAME: " + mission[mission_id]["name"])
-                    print("DESCRIPTION:")
+                    cout("NAME: " + mission[mission_id]["name"])
+                    cout("DESCRIPTION:")
                     mission_handling.print_description(mission[mission_id], map)
 
                     destination_point = map["point" + str(mission[mission_id]["destination"])]
@@ -2193,8 +2193,8 @@ def run(play):
                         str(destination_point["y"]) + COLOR_RESET_ALL
                     )
 
-                    print("")
-                    print("DESTINATION: " + destination)
+                    cout("")
+                    cout("DESTINATION: " + destination)
                     if 'stopovers' in list(mission[mission_id]):
                         mission_stopovers = mission[mission_id]["stopovers"]
                         new_mission_stopovers = []
@@ -2208,19 +2208,19 @@ def run(play):
 
                             count += 1
                         new_mission_stopovers = str(new_mission_stopovers)
-                        print("STOPOVERS: " + new_mission_stopovers)
+                        cout("STOPOVERS: " + new_mission_stopovers)
 
                     text = '='
                     text_handling.print_separator(text)
                     options = ['Abort', 'Exit']
-                    choice = term_menu.show_menu(options)
+                    choice = terminal_handling.show_menu(options)
                     if choice == 'Abort':
-                        wait = input("Are you sure you want to abort this mission? (y/n) ")
+                        wait = cinput("Are you sure you want to abort this mission? (y/n) ")
                         if wait.startswith('y'):
                             player["active missions"].remove(mission[mission_id]["name"])
                 else:
-                    print("")
-                    print(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
+                    cout("")
+                    cout(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player doesn't know about mission '{which_task}' --> canceling")
                     time.sleep(1.5)
             continued_command = True
@@ -2228,40 +2228,40 @@ def run(play):
             text = '='
             text_handling.print_separator(text)
             logger_sys.log_message(f"INFO: Printing player armor protection, agility and critical hit chance stats")
-            print(
+            cout(
                 "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                 str(round(player["armor protection"], 2)) + COLOR_RESET_ALL + COLOR_RED +
                 COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                 "More it's higher, the less you'll take damages in fights" + COLOR_RED +
                 COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
-            print(
+            cout(
                 "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(round(player["agility"], 2)) +
                 COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" +
                 COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
             if player["held item"] != " ":
-                print(
+                cout(
                     "CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
                     str(round(player["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
                     COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
                     "More it's higher, the more you'll have a chance to deal critical attacks" +
                     COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
                 )
-            print(" ")
+            cout(" ")
             logger_sys.log_message("INFO: Printing player equipped items")
             # equipment
             if player["held item"] != " ":
-                print("HELD WEAPON: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held item"] + COLOR_RESET_ALL)
+                cout("HELD WEAPON: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held item"] + COLOR_RESET_ALL)
             if player["held chestplate"] != " ":
-                print("WORN CHESTPLATE: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held chestplate"] + COLOR_RESET_ALL)
+                cout("WORN CHESTPLATE: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held chestplate"] + COLOR_RESET_ALL)
             if player["held leggings"] != " ":
-                print("WORN LEGGINGS: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held leggings"] + COLOR_RESET_ALL)
+                cout("WORN LEGGINGS: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held leggings"] + COLOR_RESET_ALL)
             if player["held boots"] != " ":
-                print("WORN BOOTS: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held boots"] + COLOR_RESET_ALL)
+                cout("WORN BOOTS: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held boots"] + COLOR_RESET_ALL)
             if player["held shield"] != " ":
-                print("HELD SHIELD: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held shield"] + COLOR_RESET_ALL)
+                cout("HELD SHIELD: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held shield"] + COLOR_RESET_ALL)
             player_inventory = str(player["inventory"])
             logger_sys.log_message(f"INFO: Printing player inventory")
             player_inventory = player_inventory.replace("'", '')
@@ -2270,25 +2270,25 @@ def run(play):
             player_inventory = player_inventory.replace(", ", '\n -')
             text = '='
             text_handling.print_separator(text)
-            print("INVENTORY:")
-            print(player_inventory)
+            cout("INVENTORY:")
+            cout(player_inventory)
             text = '='
             text_handling.print_separator(text)
-            which_item = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+            which_item = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
             if which_item in player["inventory"]:
                 text = '='
                 text_handling.print_separator(text)
                 logger_sys.log_message(f"INFO: Printing item '{which_item}' information")
-                print("")
+                cout("")
                 text_handling.print_item_thumbnail(item[which_item]["thumbnail"])
                 text = '='
                 text_handling.print_separator(text)
                 if item[which_item]["type"] == "Weapon":
-                    print("NAME: " + item[which_item]["display name"])
+                    cout("NAME: " + item[which_item]["display name"])
                 else:
-                    print("NAME: " + which_item)
-                print("TYPE: " + item[which_item]["type"])
+                    cout("NAME: " + which_item)
+                cout("TYPE: " + item[which_item]["type"])
                 text = "DESCRIPTION: " + item[which_item]["description"]
                 text_handling.print_long_string(text)
                 if (
@@ -2302,13 +2302,13 @@ def run(play):
                         "the armor protection is higher, the more it protects you.")
                     text_handling.print_long_string(text)
                     item_next_upgrade = weapon_upgrade_handling.detect_weapon_next_upgrade_items(which_item, item)
-                    print(
+                    cout(
                         "UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" +
                         str(weapon_upgrade_handling.check_weapon_max_upgrade(str(which_item), item))
                     )
-                    print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
-                    print(
+                    cout("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
+                    cout(
                         "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["armor protection"], 2)) + COLOR_RESET_ALL
                     )
@@ -2325,27 +2325,27 @@ def run(play):
                     text_handling.print_long_string(text)
                 if item[which_item]["type"] == "Weapon":
                     item_next_upgrade = weapon_upgrade_handling.detect_weapon_next_upgrade_items(which_item, item)
-                    print(
+                    cout(
                         "UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(item[which_item]["upgrade tier"]) + COLOR_RESET_ALL + "/" +
                         str(weapon_upgrade_handling.check_weapon_max_upgrade(str(which_item), item))
                     )
-                    print("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
-                    print("DAMAGE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["damage"]) + COLOR_RESET_ALL)
-                    print("DEFENSE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["defend"]) + COLOR_RESET_ALL)
-                    print(
+                    cout("ITEMS FOR NEXT UPGRADE:\n" + str(item_next_upgrade))
+                    cout("DAMAGE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["damage"]) + COLOR_RESET_ALL)
+                    cout("DEFENSE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(item[which_item]["defend"]) + COLOR_RESET_ALL)
+                    cout(
                         "CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Food":
-                    print(
+                    cout(
                         "HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW +
                         str(item[which_item]["max bonus"]) + COLOR_RESET_ALL
                     )
                     healing_level = str(item[which_item]["healing level"])
                     if healing_level == '999':
                         healing_level = 'MAX HEALTH'
-                    print(
+                    cout(
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                         healing_level + COLOR_RESET_ALL
                     )
@@ -2360,8 +2360,8 @@ def run(play):
                         'coordinate change',
                         'inventory change'
                     ]
-                    print("")
-                    print("EFFECTS:")
+                    cout("")
+                    cout("EFFECTS:")
                     logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
                     if item[which_item]["effects"] is not None:
                         count = 0
@@ -2369,13 +2369,13 @@ def run(play):
                             current_effect_data = item[which_item]["effects"][count]
                             current_effect_type = current_effect_data["type"]
                             if current_effect_type not in invisible_effects:
-                                print(" -Effect " + str(count + 1) + ": {")
+                                cout(" -Effect " + str(count + 1) + ": {")
                                 consumable_handling.print_consumable_effects(current_effect_type, current_effect_data)
-                                print("}")
+                                cout("}")
 
                             count += 1
                     else:
-                        print(" -None")
+                        cout(" -None")
                 text = '='
                 text_handling.print_separator(text)
                 if str(
@@ -2394,7 +2394,7 @@ def run(play):
                     options = ['Consume', 'Get Rid', 'Exit']
                 else:
                     options = ['Get Rid', 'Exit']
-                choice = term_menu.show_menu(options)
+                choice = terminal_handling.show_menu(options)
                 logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                 if choice == 'Equip':
                     item_handling.equip_item(which_item, player, item[which_item]["type"])
@@ -2413,7 +2413,7 @@ def run(play):
                         "throw it away. Are you sure you want to throw away this item"
                     )
                     text_handling.print_long_string(text)
-                    ask = input("? (y/n) ")
+                    ask = cinput("? (y/n) ")
                     if ask.lower().startswith('y'):
                         logger_sys.log_message(f"INFO: Getting rid of item '{which_item}'")
                         if item[which_item]["type"] == "Bag":
@@ -2425,7 +2425,7 @@ def run(play):
                                 )
                                 text_handling.print_long_string(text)
                                 time.sleep(1.5)
-                                print(" ")
+                                cout(" ")
                         else:
                             player["inventory"].remove(which_item)
                             which_item_number_inventory = 0
@@ -2452,7 +2452,7 @@ def run(play):
                                     player["held shield"] = " "
             else:
                 logger_sys.log_message(f"INFO: Canceling item action --> player doesn't own item '{which_item}'")
-                print(COLOR_YELLOW + "You do not have that item." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You do not have that item." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('z'):
@@ -2469,7 +2469,7 @@ def run(play):
                 zone_handling.interaction_forge(map_zone, zone, player, item)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
-                print(
+                cout(
                     COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge, church or castle." +
                     COLOR_RESET_ALL
                 )
@@ -2483,13 +2483,13 @@ def run(play):
                 if "current mount" in player:
                     current_mount_uuid = str(player["current mount"])
                     if current_mount_uuid != ' ':
-                        print(
+                        cout(
                             "RIDDED MOUNT: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                             player["mounts"][current_mount_uuid]["name"] + COLOR_RESET_ALL +
                             " (" + player["mounts"][current_mount_uuid]["mount"] + ")"
                         )
                     else:
-                        print("RIDDED MOUNT: " + COLOR_RED + COLOR_STYLE_BRIGHT + "NONE" + COLOR_RESET_ALL)
+                        cout("RIDDED MOUNT: " + COLOR_RED + COLOR_STYLE_BRIGHT + "NONE" + COLOR_RESET_ALL)
                 mounts_names_list = []
                 count = 0
                 if "None" not in list(player["mounts"]):
@@ -2507,12 +2507,12 @@ def run(play):
                     mounts_names_list_str = mounts_names_list_str.replace(", ", '\n -')
                 else:
                     mounts_names_list_str = "NONE"
-                print(" ")
-                print("OWNED MOUNTS:")
-                print(mounts_names_list_str)
+                cout(" ")
+                cout("OWNED MOUNTS:")
+                cout(mounts_names_list_str)
                 text = '='
                 text_handling.print_separator(text)
-                which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_mount = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen option '{which_mount}' to examine")
                 if which_mount in mounts_names_list:
                     text = '='
@@ -2530,12 +2530,12 @@ def run(play):
 
                     logger_sys.log_message(f"INFO: Printing player mount '{which_mount}' data: '{which_mount_data}'")
                     text_handling.print_enemy_thumbnail(str(mounts[which_mount_data["mount"]]["name"]), preferences)
-                    print(" ")
+                    cout(" ")
 
-                    print("GIVEN NAME: " + which_mount_data["name"])
-                    print("MOUNT: " + mounts[which_mount_data["mount"]]["name"])
-                    print("PLURAL: " + mounts[which_mount_data["mount"]]["plural"])
-                    print(" ")
+                    cout("GIVEN NAME: " + which_mount_data["name"])
+                    cout("MOUNT: " + mounts[which_mount_data["mount"]]["name"])
+                    cout("PLURAL: " + mounts[which_mount_data["mount"]]["plural"])
+                    cout(" ")
 
                     which_mount_location = (
                         "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT +
@@ -2543,35 +2543,35 @@ def run(play):
                         ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(map[which_mount_data["location"]]["y"]) + COLOR_RESET_ALL + ")"
                     )
-                    print("LOCATION: " + which_mount_location)
+                    cout("LOCATION: " + which_mount_location)
                     if which_mount_data["is deposited"]:
-                        print("STABLE: " + str(map[which_mount_data["location"]]["map zone"]))
+                        cout("STABLE: " + str(map[which_mount_data["location"]]["map zone"]))
                         deposited_day = time_handling.date_prettifier(
                             time_handling.addition_to_date(
                                 player["starting date"], int(which_mount_data["deposited day"])
                             )
                         )
-                        print(
+                        cout(
                             "DEPOSITED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                             str(deposited_day) + COLOR_RESET_ALL
                         )
-                    print(" ")
+                    cout(" ")
 
-                    print("STATS:")
-                    print(
+                    cout("STATS:")
+                    cout(
                         "  LEVEL: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(int(round(which_mount_data["level"], 0))) + COLOR_RESET_ALL +
                         "/" + str(int(round(mounts[str(which_mount_data["mount"])]["levels"]["max level"])))
                     )
-                    print(
+                    cout(
                         "  AGILITY ADDITION: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                         str(which_mount_data["stats"]["agility addition"]) + COLOR_RESET_ALL
                     )
-                    print(
+                    cout(
                         "  RESISTANCE ADDITION: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
                         str(which_mount_data["stats"]["resistance addition"]) + COLOR_RESET_ALL
                     )
-                    print(" ")
+                    cout(" ")
 
                     # get player possible feeding items
                     current_mount_feeds = mounts[which_mount_data["mount"]]["feed"]["food"]
@@ -2580,13 +2580,13 @@ def run(play):
                     player_feeding_items_text = player_feeding_items_text.replace("[", ' -')
                     player_feeding_items_text = player_feeding_items_text.replace("]", '')
                     player_feeding_items_text = player_feeding_items_text.replace(", ", '\n -')
-                    print("FEEDING ITEMS:")
-                    print(player_feeding_items_text)
-                    print(
+                    cout("FEEDING ITEMS:")
+                    cout(player_feeding_items_text)
+                    cout(
                         "FEEDING NEEDS: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                         str(mounts[which_mount_data["mount"]]["feed"]["feed needs"]) + COLOR_RESET_ALL
                     )
-                    print("")
+                    cout("")
 
                     text = "DESCRIPTION: " + mounts[which_mount_data["mount"]]["description"]
                     text_handling.print_long_string(text)
@@ -2594,7 +2594,7 @@ def run(play):
                     text = '='
                     text_handling.print_separator(text)
                     options = ['Abandon', 'Rename', 'Exit']
-                    choice = term_menu.show_menu(options)
+                    choice = terminal_handling.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                     count = 0
                     continue_action = True
@@ -2605,19 +2605,19 @@ def run(play):
                             continue_action = False
                         count += 1
                     if choice == 'Abandon':
-                        print("Are you sure you want to abandon this mount? You won't")
-                        ask = input(" be able to find him after that. (y/n) ")
+                        cout("Are you sure you want to abandon this mount? You won't")
+                        ask = cinput(" be able to find him after that. (y/n) ")
                         if ask.lower().startswith('y'):
                             logger_sys.log_message(f"INFO: Player is abandoning mount '{which_mount}'")
                             player["mounts"].pop(mount_uuid)
                             player["current mount"] = " "
                     elif choice == 'Rename':
-                        print("Select a new name for your mount")
-                        new_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                        cout("Select a new name for your mount")
+                        new_name = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen as a new name for mount '{which_mount}' '{new_name}'")
                         if new_name in mounts_names_list:
                             logger_sys.log_message("INFO: Canceling mount renaming process --> already has a mount name like hat")
-                            print(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
+                            cout(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
                             time.sleep(1.5)
                         else:
                             player["mounts"][mount_uuid]["name"] = str(new_name)
@@ -2626,22 +2626,22 @@ def run(play):
                         f"INFO: Canceling mount examining process --> " +
                         f"doesn't own any mount named '{which_mount}'"
                     )
-                    print(COLOR_YELLOW + "You don't have any mounts named like that." + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "You don't have any mounts named like that." + COLOR_RESET_ALL)
                     time.sleep(1.5)
             else:
                 logger_sys.log_message(f"INFO: Canceling mount examining process --> player doesn't own any mounts")
-                print(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('k'):
             logger_sys.log_message("INFO: Dumping player RAM save into its save file")
-            print("Collecting player data...")
+            cout("Collecting player data...")
             dumped = yaml.dump(player)
             previous_player = player
             logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
             save_file_quit = save_file
-            print("Dumping player data to save files...")
+            cout("Dumping player data to save files...")
             with open(save_file_quit, "w") as f:
                 f.write(dumped)
                 logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
@@ -2652,20 +2652,20 @@ def run(play):
                 f.write(dumped)
                 logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-            print("Collecting player preferences...")
+            cout("Collecting player preferences...")
             dumped = yaml.dump(preferences)
             logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
-            print("Dumping player preferences to preferences file...")
+            cout("Dumping player preferences to preferences file...")
             with open(program_dir + '/preferences.yaml', 'w') as f:
                 f.write(dumped)
                 logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
             continued_command = True
         elif command.lower().startswith('p'):
             logger_sys.log_message("INFO: Pausing game")
-            print("Press enter to unpause game...")
+            cout("Press enter to unpause game...")
             pause_start = time.time()
-            input()
+            cinput()
             pause_end = time.time()
             pause_time = pause_end - pause_start
             logger_sys.log_message(f"INFO: Finished pausing game --> game pause have lasted {pause_time} seconds")
@@ -2677,7 +2677,7 @@ def run(play):
             continued_command = True
         elif command.lower().startswith('$player$data$'):
             logger_sys.log_message("INFO: Displaying player data in a pager mode")
-            choice = term_menu.show_menu(['Check', 'Edit'], length=12)
+            choice = terminal_handling.show_menu(['Check', 'Edit'], length=12)
             player_data = str(yaml.dump(player))
             if choice == 'Check':
                 to_display = player_data
@@ -2706,7 +2706,7 @@ def run(play):
                 'npcs', 'start_player', 'lists',
                 'zone', 'dialog', 'mission', 'mounts'
             ]
-            choice = term_menu.show_menu(choices, length=20)
+            choice = terminal_handling.show_menu(choices, length=20)
             if choice == 'map':
                 data = str(yaml.dump(map))
             elif choice == 'item':
@@ -2753,24 +2753,24 @@ def run(play):
                             text_replacements_generic
                         )
                     continued_utility = True
-                    input()
+                    cinput()
                 elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
                     continued_utility = True
                     logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
-                    print(f"You do not have a '{current_utility}'.")
-                    print(" ")
-                    input()
+                    cout(f"You do not have a '{current_utility}'.")
+                    cout(" ")
+                    cinput()
             if not continued_utility:
                 logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
-                print("'" + command + "' is not a valid command")
+                cout("'" + command + "' is not a valid command")
                 time.sleep(2)
-                print(" ")
+                cout(" ")
 
         if not continued_command:
             logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
-            print("'" + command + "' is not a valid command")
+            cout("'" + command + "' is not a valid command")
             time.sleep(2)
-            print(" ")
+            cout(" ")
 
         # get end time
         end_time = time.time()
