@@ -1,7 +1,7 @@
 generic:
 - Goblin
-- Orc
-- Orc Archer
+- Ork
+- Ork Archer
 - Warg
 - Cavern Troll
 - Slime
@@ -9,7 +9,7 @@ warg raids:
 - Warg
 - White Warg
 black:
-- Black Orc
+- Black Ork
 - Dark Marksman
 - Doomed Horror
 dragon bosses:
