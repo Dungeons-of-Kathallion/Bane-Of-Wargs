@@ -79,6 +79,7 @@ You'll use the following syntax:
 | Name            | Use case                                                                                       |
 |-----------------|------------------------------------------------------------------------------------------------|
 | `progress`        | if it has something to do with game data and game vanilla plot progression                     |
+| `content/feature` | if it adds new content/features to the game that aren't planned in the game engine/vanilla plot progression
 | `tweak`           | if it tweaks anything in the repository                                                        |
 | `bugfix`          | if it fixes a bug                                                                              |
 | `fix`             | if it fixes anything that is not a bug (do not make crash the program or does something wrong) |

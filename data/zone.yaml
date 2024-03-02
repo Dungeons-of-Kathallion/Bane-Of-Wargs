@@ -302,7 +302,7 @@ Kathal Horses:
   type: stable
   cost value: 1.2
   training gold: 24
-  deposit gold: .23
+  deposit gold: 4.8
   news:
   - "..."
   map:
@@ -326,6 +326,8 @@ Kathal Horses:
       - Horse
       - Friesian Horse
       - Shire Horse
+      - Camel
+      - Donkey
       drinks:
       - Beer
       - Whisky
@@ -339,6 +341,52 @@ Kathal Horses:
       - Slime
       - Tissue Bag
     stables:
+    - Horse Stable
+    - Camel Stable
+
+Humil Dwarf Stable:
+  name: "Humil Dwarf Stable"
+  description: "An old dwarf stable that's specialized in different type of dwarf mounts."
+  type: stable
+  cost value: 1.1
+  training gold: 21
+  deposit gold: 6.7
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      | $BROWN|   $BLUE()$BROWN|  $WHITE|
+      |$GREEN-$BROWN|_$DARK_BROWN[]$BROWN__|$YELLOW^^$WHITE|
+      |$GREEN;$YELLOW/.  . \║$GREEN;$WHITE|
+      |$YELLOW/  .  . \ $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | |   ()|  |
+      |-|_[]__|^^|
+      |;/.  . \║;|
+      |/  .  . \ |
+      x__________x
+  stable:
+    sells:
+      mounts:
+      - Bear
+      - Shire Horse
+      - Donkey
+      drinks:
+      - Beer
+      - Suspicious Stew
+      items:
+      - Wheat
+      - Hay Bale
+      - Bread
+      - Apple
+      - Carrot
+      - Slime
+      - Stretched Bag
+    stables:
+    - Dwarf Stable
     - Horse Stable
 
 Woodstack Hostel:
@@ -694,7 +742,7 @@ Clarc Warg Stable:
   type: stable
   cost value: .7
   training gold: 18
-  deposit gold: .15
+  deposit gold: 3.17
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"

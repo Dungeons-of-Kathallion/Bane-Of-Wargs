@@ -1737,6 +1737,27 @@ Bread:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Cactus:
+  type: "Food"
+  max bonus: 0
+  healing level: 3
+  gold: 5.12
+  description: "Cactuses from the Gerud Valleys got a pretty good taste actually."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 # Misc
 Bone:
   type: "Misc"
@@ -2197,4 +2218,3 @@ Flexible String:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
-

@@ -1,0 +1,19 @@
+$GRAY               \
+$GRAY                       $DARK_BROWN/\/\
+$GRAY                      $DARK_BROWN/ / /
+$GRAY                    _$DARK_BROWN/,/ /
+$GRAY                 _/` (/"$DARK_BROWN/////,
+$GRAY                 $BLACK($GRAY          '```--.___
+$GRAY                /'   _),       ,-     '-.
+$GRAY               /,   /   \            $DARK_BROWN(\$GRAY  \,
+$GRAY               \_()/     \)   )' =_   $DARK_BROWN))$GRAY  |
+$GRAY                         |    |     .$DARK_BROWN//$GRAY _/)
+$GRAY                         (   ( \_   $DARK_BROWN//$GRAY   /
+$GRAY                          \  >_,\  $DARK_BROWN(/)=$GRAY /
+$GRAY                           | | | \ $DARK_BROWN#\$GRAY| /
+$GRAY                           |=| |=|\ ( (
+$GRAY                           (=> ( >( >),)
+$GRAY                           | | |=| \ ( (
+$GRAY                           / / / /  ) |/
+$GRAY                          /_( /_(   , || )/.,_
+$GRAY                         $BROWN/, //- /  /_(_($WHITE
