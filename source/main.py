@@ -155,7 +155,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.13
+SOURCE_CODE_VERSION = 0.135
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
