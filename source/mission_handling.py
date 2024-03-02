@@ -4,7 +4,7 @@ import logger_sys
 import dialog_handling
 import text_handling
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 
 
 # Functions to handle missions
@@ -266,11 +266,11 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
                 )
                 if "force accept" in list(data):
                     if not data["force accept"]:
-                        accept = input("Do you want to accept this task? (y/n)")
+                        accept = cinput("Do you want to accept this task? (y/n)")
                     else:
                         accept = "y"
                 else:
-                    accept = input("Do you want to accept this task? (y/n)")
+                    accept = cinput("Do you want to accept this task? (y/n)")
                 cout("=======================================================")
                 if accept.startswith('y'):
                     if player["active missions"] is None:

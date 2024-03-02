@@ -17,7 +17,7 @@ import item_handling
 import time_handling
 import logger_sys
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 # external imports
 import random
 import yaml
@@ -298,7 +298,7 @@ while menu:
             for search_for_plugins in os.listdir(program_dir + "/plugins/"):
                 res.append(search_for_plugins)
 
-            what_plugin = input(
+            what_plugin = cinput(
                 COLOR_STYLE_BRIGHT + "Current plugins: " + COLOR_RESET_ALL +
                 COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
             )
@@ -345,7 +345,7 @@ while menu:
 
                 text = "Please select a save to open."
                 text_handling.print_speech_text_effect(text, preferences)
-                open_save = input(
+                open_save = cinput(
                     COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
                     COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
                 )
@@ -369,7 +369,7 @@ while menu:
             else:
                 text = "Please name your save: "
                 text_handling.print_speech_text_effect(text, preferences)
-                enter_save_name = input('> ')
+                enter_save_name = cinput('> ')
                 player = start_player
                 dumped = yaml.dump(player)
                 save_name = program_dir + "/saves/save_" + enter_save_name + ".yaml"
@@ -424,7 +424,7 @@ while menu:
         if choice == 'Edit Save':
             text = "Please select a save to edit."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = input(
+            open_save = cinput(
                 COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
                 COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
             )
@@ -442,7 +442,7 @@ while menu:
             options = ['Rename Save', 'Manually Edit Save']
             choice = terminal_handling.show_menu(options)
             if choice == 'Rename Save':
-                rename_name = input("Select a new name for the save: ")
+                rename_name = cinput("Select a new name for the save: ")
                 os.rename(
                     program_dir + "/saves/save_" + open_save + ".yaml",
                     program_dir + "/saves/save_" + rename_name + ".yaml"
@@ -462,7 +462,7 @@ while menu:
         else:
             text = "Please select a save to delete."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = input(
+            open_save = cinput(
                 COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
                 COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
             )
@@ -475,7 +475,7 @@ while menu:
                     )
                 logger_sys.log_message(f"ERROR: Save file '{program_dir}/saves/save_{open_save}.yaml' does not exists")
                 play = 0
-            check = input("Are you sure you want to delete the following save (y/n)")
+            check = cinput("Are you sure you want to delete the following save (y/n)")
             if check.lower().startswith('y'):
                 logger_sys.log_message(
                     f"WARNING: Deleting save file '{program_dir}/saves/save_{open_save}.yaml'" +
@@ -518,7 +518,7 @@ while menu:
             md_text = Markdown(md_file)
             console.print(md_text)
 
-            input()
+            cinput()
         except Exception as error:
             error_occurred = True
             cout(
@@ -552,7 +552,7 @@ while menu:
         loop = True
         while loop:
             error_happened = False
-            which_log_file = input(f"{COLOR_GREEN}{COLOR_STYLE_BRIGHT}>{COLOR_RESET_ALL} ")
+            which_log_file = cinput(f"{COLOR_GREEN}{COLOR_STYLE_BRIGHT}>{COLOR_RESET_ALL} ")
             try:
                 which_log_file = directory_content[int(which_log_file)]
             except Exception as error:
@@ -1561,7 +1561,7 @@ def run(play):
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file
             )
-        command = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+        command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
 
         logger_sys.log_message(f"INFO: Checking for utilities type items in the item dictionary")
@@ -1746,7 +1746,7 @@ def run(play):
                 cout(zones_list)
                 text = '='
                 text_handling.print_separator(text)
-                which_zone = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_zone = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen zone '{which_zone}' to check")
                 if which_zone in player["visited zones"]:
                     logger_sys.log_message(f"INFO: Printing zone '{which_zone}' information to GUI")
@@ -2014,7 +2014,7 @@ def run(play):
                     cout(" ")
                     cout(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen '{which_zone}', which he doesn't know about --> canceling")
-                input()
+                cinput()
             elif choice == 'Encountered Monsters':
                 cout("ENCOUNTERED MONSTERS: ")
                 enemies_list = str(player["enemies list"])
@@ -2027,7 +2027,7 @@ def run(play):
                 cout(enemies_list)
                 text = '='
                 text_handling.print_separator(text)
-                which_enemy = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_enemy = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen enemy '{which_enemy}' to display information")
                 if which_enemy == "None":
                     cout(" ")
@@ -2070,7 +2070,7 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    input()
+                    cinput()
                 else:
                     logger_sys.log_message(f"INFO: Player doesn't know about enemy '{which_enemy}' --> canceling")
                     cout(" ")
@@ -2088,7 +2088,7 @@ def run(play):
                 cout(enemies_list)
                 text = '='
                 text_handling.print_separator(text)
-                which_npc = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_npc = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen npc '{which_npc}' to display information about")
                 if which_npc == "None":
                     cout(" ")
@@ -2139,7 +2139,7 @@ def run(play):
                     text_handling.print_long_string(text)
                     text = '='
                     text_handling.print_separator(text)
-                    input()
+                    cinput()
                 else:
                     cout(" ")
                     cout(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
@@ -2173,7 +2173,7 @@ def run(play):
                 cout(tasks_list_str)
                 text = '='
                 text_handling.print_separator(text)
-                which_task = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_task = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen task '{which_task}' to display information about")
                 if which_task in tasks_list:
                     logger_sys.log_message(f"INFO: Printing mission '{which_task}' information")
@@ -2215,7 +2215,7 @@ def run(play):
                     options = ['Abort', 'Exit']
                     choice = terminal_handling.show_menu(options)
                     if choice == 'Abort':
-                        wait = input("Are you sure you want to abort this mission? (y/n) ")
+                        wait = cinput("Are you sure you want to abort this mission? (y/n) ")
                         if wait.startswith('y'):
                             player["active missions"].remove(mission[mission_id]["name"])
                 else:
@@ -2274,7 +2274,7 @@ def run(play):
             cout(player_inventory)
             text = '='
             text_handling.print_separator(text)
-            which_item = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+            which_item = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
             if which_item in player["inventory"]:
                 text = '='
@@ -2413,7 +2413,7 @@ def run(play):
                         "throw it away. Are you sure you want to throw away this item"
                     )
                     text_handling.print_long_string(text)
-                    ask = input("? (y/n) ")
+                    ask = cinput("? (y/n) ")
                     if ask.lower().startswith('y'):
                         logger_sys.log_message(f"INFO: Getting rid of item '{which_item}'")
                         if item[which_item]["type"] == "Bag":
@@ -2512,7 +2512,7 @@ def run(play):
                 cout(mounts_names_list_str)
                 text = '='
                 text_handling.print_separator(text)
-                which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_mount = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen option '{which_mount}' to examine")
                 if which_mount in mounts_names_list:
                     text = '='
@@ -2606,14 +2606,14 @@ def run(play):
                         count += 1
                     if choice == 'Abandon':
                         cout("Are you sure you want to abandon this mount? You won't")
-                        ask = input(" be able to find him after that. (y/n) ")
+                        ask = cinput(" be able to find him after that. (y/n) ")
                         if ask.lower().startswith('y'):
                             logger_sys.log_message(f"INFO: Player is abandoning mount '{which_mount}'")
                             player["mounts"].pop(mount_uuid)
                             player["current mount"] = " "
                     elif choice == 'Rename':
                         cout("Select a new name for your mount")
-                        new_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                        new_name = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                         logger_sys.log_message(f"INFO: Player has chosen as a new name for mount '{which_mount}' '{new_name}'")
                         if new_name in mounts_names_list:
                             logger_sys.log_message("INFO: Canceling mount renaming process --> already has a mount name like hat")
@@ -2665,7 +2665,7 @@ def run(play):
             logger_sys.log_message("INFO: Pausing game")
             cout("Press enter to unpause game...")
             pause_start = time.time()
-            input()
+            cinput()
             pause_end = time.time()
             pause_time = pause_end - pause_start
             logger_sys.log_message(f"INFO: Finished pausing game --> game pause have lasted {pause_time} seconds")
@@ -2753,13 +2753,13 @@ def run(play):
                             text_replacements_generic
                         )
                     continued_utility = True
-                    input()
+                    cinput()
                 elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
                     continued_utility = True
                     logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
                     cout(f"You do not have a '{current_utility}'.")
                     cout(" ")
-                    input()
+                    cinput()
             if not continued_utility:
                 logger_sys.log_message(f"INFO: chosen command '{command}' is not a valid command")
                 cout("'" + command + "' is not a valid command")

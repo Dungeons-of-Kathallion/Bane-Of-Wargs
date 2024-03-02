@@ -3,7 +3,7 @@ from colors import *
 import logger_sys
 import text_handling
 import terminal_handling
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 # external imports
 import appdirs
 import time
@@ -330,7 +330,7 @@ def conversation_print(conversation_input, preferences, new_text_replacements):
 
 def conversation_ask_input(conversation_input, new_text_replacements):
     # Run an ask-input function: ask user for any input
-    player_input = input()
+    player_input = cinput()
     output_variable = conversation_input.replace('ask-input(', '')
     output_variable = output_variable.replace(')', '')
 

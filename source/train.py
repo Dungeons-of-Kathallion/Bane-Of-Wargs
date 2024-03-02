@@ -4,7 +4,7 @@ import text_handling
 import time_handling
 import logger_sys
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 # external imports
 import random
 import time
@@ -44,7 +44,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
             cout("MOUNT FEEDING ITEMS:")
             cout(mount_feeding_items_text)
             text_handling.print_separator(text)
-            which_food = str(input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL))
+            which_food = str(cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL))
             can_be_bought = False
             if "items" in stable["stable"]["sells"]:
                 if which_food in stable["stable"]["sells"]["items"]:
@@ -69,7 +69,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 cout(COLOR_YELLOW, end="")
                 text_handling.print_long_string(text)
                 cout(COLOR_RESET_ALL, end="")
-                confirmation = input("Do you want to buy that food to feed this mount? (y/n) ")
+                confirmation = cinput("Do you want to buy that food to feed this mount? (y/n) ")
                 if confirmation.lower().startswith("y"):
                     if gold <= player["gold"]:
                         player["gold"] -= gold

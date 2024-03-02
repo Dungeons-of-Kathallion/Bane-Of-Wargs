@@ -6,7 +6,7 @@ import weapon_upgrade_handling
 import train
 import terminal_handling
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 # external imports
 import random
 import time
@@ -272,7 +272,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sleep':
             cout("Are you sure you want to spend the night here? It will ")
-            ask = input("cost you " + str(zone[map_zone]["sleep gold"]) + " gold (y/n) ")
+            ask = cinput("cost you " + str(zone[map_zone]["sleep gold"]) + " gold (y/n) ")
             text = '='
             text_handling.print_separator(text)
             if ask.lower().startswith('y'):
@@ -313,7 +313,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
                     logger_sys.log_message("INFO: Canceling sleeping process --> player doesn't own enough gold")
                     cout(COLOR_YELLOW + "You don't own enough gold to sleep here." + COLOR_RESET_ALL)
         elif choice == 'Buy Drink':
-            which_drink = input("Which drink do you want to buy? ")
+            which_drink = cinput("Which drink do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to drink")
             if (
                 which_drink in zone[map_zone]["sells"]["drinks"]
@@ -336,7 +336,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
                 logger_sys.log_message(f"INFO: Canceling buying process of drink '{which_drink}' --> doesn't have enough gold")
                 text_handling.print_long_string(text)
         elif choice == 'Buy Item':
-            which_item = input("Which item do you want to buy? ")
+            which_item = cinput("Which item do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if (
                 which_item in zone[map_zone]["sells"]["items"]
@@ -364,7 +364,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
                 )
                 text_handling.print_long_string(text)
         elif choice == 'Sell Item':
-            which_item = input("Which item do you want to sell? ")
+            which_item = cinput("Which item do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
             if (
                 which_item in zone[map_zone]["buys"]["items"]
@@ -425,7 +425,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
         action = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
         if action == 'Buy Item':
-            which_item = input("Which item do you want to buy? ")
+            which_item = cinput("Which item do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if (
                 which_item in zone[map_zone]["stable"]["sells"]["items"]
@@ -452,7 +452,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 )
                 text_handling.print_long_string(text)
         elif action == 'Buy Drink':
-            which_drink = input("Which drink do you want to buy? ")
+            which_drink = cinput("Which drink do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to buy")
             if (
                 which_drink in zone[map_zone]["stable"]["sells"]["drinks"]
@@ -475,7 +475,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 )
                 text_handling.print_long_string(text)
         elif action == 'Buy Mount':
-            which_mount = input("Which mount do you want to buy? ")
+            which_mount = cinput("Which mount do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to buy")
             if which_mount in zone[map_zone]["stable"]["sells"]["mounts"]:
                 mount_cost = (mounts[which_mount]["gold"] * zone[map_zone]["cost value"])
@@ -484,7 +484,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     player["gold"] -= mount_cost
                     generated_mount_uuid = uuid_handling.generate_random_uuid()
                     cout("How you mount should be named ?")
-                    new_mount_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                    new_mount_name = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen name '{new_mount_name}' for its new mount")
                     mounts_names_list = []
                     count = 0
@@ -543,7 +543,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 # check if required stables are in the stable attributes
                 required_mount_stable = str(mounts[str(mount_data["mount"])]["stable"]["required stable"])
                 if required_mount_stable in zone[map_zone]["stable"]["stables"]:
-                    ask = input("Do you want to deposit your current mount " + mount_data["name"] + " ? (y/n) ")
+                    ask = cinput("Do you want to deposit your current mount " + mount_data["name"] + " ? (y/n) ")
                     if ask.lower().startswith('y'):
                         logger_sys.log_message(
                             f"INFO: Depositing currently player ridden mount '{current_mount}'" +
@@ -607,7 +607,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 cout(deposited_mounts_names)
                 text = '='
                 text_handling.print_separator(text)
-                which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                which_mount = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                 logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to ride")
                 if which_mount in deposited_mounts_names_list:
                     # get what is the uuid of the mount of this name
@@ -630,7 +630,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                         "If you take back this mount it will cost you " + COLOR_YELLOW +
                         COLOR_STYLE_BRIGHT + str(mount_take_back_cost) + COLOR_RESET_ALL + " gold. "
                     )
-                    ask = input("(y/n) ")
+                    ask = cinput("(y/n) ")
                     if player["gold"] > mount_take_back_cost:
                         if ask.lower().startswith('y'):
                             logger_sys.log_message(f"INFO: Removing {mount_take_back_cost} gold from player")
@@ -675,7 +675,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
         action = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
         if action == 'Sell Equipment':
-            which_weapon = input("Which equipment do you want to sell? ")
+            which_weapon = cinput("Which equipment do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to sell")
             if which_weapon in zone[map_zone]["blacksmith"]["buys"] and which_weapon in player["inventory"]:
                 gold = str(item[which_weapon]["gold"] * zone[map_zone]["cost value"])
@@ -695,7 +695,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 )
                 text_handling.print_long_string(text)
         elif action == 'Order Equipment':
-            which_weapon = input("Which equipment do you want to order? ")
+            which_weapon = cinput("Which equipment do you want to order? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to order")
             if (
                 which_weapon in zone[map_zone]["blacksmith"]["orders"]
@@ -755,7 +755,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 text = COLOR_YELLOW + "You cannot order that weapon because you dont own enough gold." + COLOR_RESET_ALL
                 text_handling.print_long_string(text)
         elif action == 'Upgrade Equipment':
-            which_weapon = input("Which equipment do you want to upgrade? ")
+            which_weapon = cinput("Which equipment do you want to upgrade? ")
             logger_sys.log_message(f"INFO: Player has chosen equipment '{which_weapon}' to upgrade")
             if which_weapon in player["inventory"]:
                 item_next_upgrade_name = str(weapon_upgrade_handling.check_weapon_next_upgrade_name(which_weapon, item))
@@ -856,7 +856,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
             cout(player_orders_to_collect)
             text = '='
             text_handling.print_separator(text)
-            which_order = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+            which_order = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen order '{which_order}'")
             if which_order in player_orders_number:
                 current_order_uuid = str(list(player["orders"])[int(which_order)])
@@ -898,7 +898,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                         "75% of the gold you paid and you won't be able"
                     )
                     text_handling.print_long_string(text)
-                    ask = input(" to get your given items back. (y/n)")
+                    ask = cinput(" to get your given items back. (y/n)")
                     if ask.lower().startswith('y'):
                         # give player 75% of paid gold
                         gold = player["orders"][current_order_uuid]["paid gold"]
@@ -940,10 +940,10 @@ def interaction_forge(map_zone, zone, player, item):
         choice = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sell Metals':
-            which_metal = input("Which metal do you want to sell? ")
+            which_metal = cinput("Which metal do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen metal '{which_metal}' to buy")
             if which_metal in current_forge["forge"]["buys"]:
-                metal_count = int(input("How many count of this metal you want to sell? "))
+                metal_count = int(cinput("How many count of this metal you want to sell? "))
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{metal_count}' of the metal '{which_metal}'")
                 if player["inventory"].count(which_metal) >= metal_count:
                     gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
@@ -966,10 +966,10 @@ def interaction_forge(map_zone, zone, player, item):
                 )
                 cout(COLOR_YELLOW + "The current forge doesn't buys this metal" + COLOR_RESET_ALL)
         elif choice == 'Buy Metals':
-            which_metal = input("Which metal do you want to buy? ")
+            which_metal = cinput("Which metal do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_metal}' to buy")
             if which_metal in current_forge["forge"]["sells"]:
-                metal_count = int(input("How many count of this metal you want to buy? "))
+                metal_count = int(cinput("How many count of this metal you want to buy? "))
                 if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
                     gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
                     logger_sys.log_message(f"INFO: Removing from player {gold} gold")

@@ -3,7 +3,7 @@ import text_handling
 import script_handling
 import item_handling
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 # external imports
 import random
 import sys
@@ -264,7 +264,7 @@ def encounter_text_show(
     text_handling.print_separator(text)
 
     cout(" ")
-    startup_action = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+    startup_action = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
     cout("")
 
     text = '='
@@ -291,7 +291,7 @@ def encounter_text_show(
         player_inventory = player_inventory.replace(", ", '\n -')
         cout("INVENTORY:")
         cout(player_inventory)
-        item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+        item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         # use item
         if item_input in player["inventory"]:
             item_handling.use_item(
@@ -415,7 +415,7 @@ def fight(
                     f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
                 )
 
-                action = input("[A]ttack, [D]efend, [U]se Item? ")
+                action = cinput("[A]ttack, [D]efend, [U]se Item? ")
 
                 # if player attack
                 if player["held item"] != " ":
@@ -466,7 +466,7 @@ def fight(
                     text_handling.print_separator(text)
                     cout("INVENTORY:")
                     cout(player_inventory)
-                    item_input = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                    item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     # use item
                     if item_input in player["inventory"]:
                         if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":

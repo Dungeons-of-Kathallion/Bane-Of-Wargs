@@ -3,7 +3,7 @@ import logger_sys
 import text_handling
 import terminal_handling
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 
 
 # Handling functions
@@ -85,7 +85,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
         logger_sys.log_message(f"INFO: Starting player interaction with npc '{current_npc}'")
         choice = terminal_handling.show_menu(options)
         if choice == 'Buy Drink':
-            which_drink = input("Which drink do you want to buy from him? ")
+            which_drink = cinput("Which drink do you want to buy from him? ")
             if (
                 which_drink in npcs[current_npc]["sells"]["drinks"]
                 and (drinks[which_drink]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]
@@ -106,7 +106,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                 )
                 text_handling.print_long_string(text)
         elif choice == 'Buy Item':
-            which_item = input("Which item do you want to buy from him? ")
+            which_item = cinput("Which item do you want to buy from him? ")
             if (
                 which_item in npcs[current_npc]["sells"]["items"]
                 and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]
@@ -133,7 +133,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
                 )
                 text_handling.print_long_string(text)
         elif choice == 'Sell Item':
-            which_item = input("Which item do you want to sell him? ")
+            which_item = cinput("Which item do you want to sell him? ")
             if (
                 which_item in npcs[current_npc]["buys"]["items"]
                 and (item[which_item]["gold"] * npcs[current_npc]["cost value"]) < player["gold"]
