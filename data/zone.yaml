@@ -302,7 +302,7 @@ Kathal Horses:
   type: stable
   cost value: 1.2
   training gold: 24
-  deposit gold: .23
+  deposit gold: 4.8
   news:
   - "..."
   map:
@@ -327,6 +327,7 @@ Kathal Horses:
       - Friesian Horse
       - Shire Horse
       - Camel
+      - Donkey
       drinks:
       - Beer
       - Whisky
@@ -341,6 +342,7 @@ Kathal Horses:
       - Tissue Bag
     stables:
     - Horse Stable
+    - Camel Stable
 
 Woodstack Hostel:
   name: "Kathallion Hostel"
@@ -695,7 +697,7 @@ Clarc Warg Stable:
   type: stable
   cost value: .7
   training gold: 18
-  deposit gold: .15
+  deposit gold: 3.17
   description: "Here, you'll be able to buy pre-tamed Wargs, train them and make sure they have a great live as a human mount and not an Orc mount."
   news:
   - "Hey! Did you ever heard about tamed Wargs? Seems crazy right?"

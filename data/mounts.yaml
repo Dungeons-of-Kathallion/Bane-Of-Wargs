@@ -52,7 +52,7 @@ Bear:
     - Porkchop
     feed needs: 3
   stable:
-    required stable: Bear Stable
+    required stable: Dwarf Stable
     stable slot usage: 4
   stats:
     agility addition: -0.15
@@ -139,7 +139,7 @@ Camel:
     - Carrot
     feed needs: 1.3
   stable:
-    required stable: Horse Stable
+    required stable: Camel Stable
     stable slot usage: 3
   stats:
     agility addition: .07
@@ -152,3 +152,26 @@ Camel:
   description: >
     Camels are mounts used by the merchants of the Gerud Valleys, who often need to cross the whole Gerud Desert
     and sometimes the Badlands to get to their destination.
+Donkey:
+  name: Donkey
+  plural: Donkeys
+  gold: 84.58
+  feed:
+    food:
+    - Carrot
+    - Apple
+    feed needs: 1.4
+  stable:
+    required stable: Horse Stable
+    stable slot usage: 3
+  stats:
+    agility addition: .09
+    resistance addition: .35
+  levels:
+    max level: 15
+    level stat additions:
+      agility addition: .01
+      resistance addition: .021
+  description: >
+    Donkeys are not from the Stall Island, but some explorer brought them a few centuries ago and they're now often used by
+    merchants that want to cross the difficult Goro Mounts or the wild Mangrove Wastes.
