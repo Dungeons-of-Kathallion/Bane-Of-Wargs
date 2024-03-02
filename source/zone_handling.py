@@ -992,6 +992,78 @@ def interaction_forge(map_zone, zone, player, item):
             continue_forge_actions = False
 
 
+def interaction_church(map_zone, zone, player):
+    logger_sys.log_message(f"INFO: map zone '{map_zone}' is a church --> can interact")
+    current_church = zone[map_zone]
+    text = '='
+    text_handling.print_separator(text)
+    options = ['Rest', 'Donate', 'Exchange EXP', 'Exit']
+    continue_church_actions = True
+    logger_sys.log_message("INFO: Starting church interact loop")
+    while continue_church_actions:
+        choice = terminal_handling.show_menu(options)
+        logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
+        if choice == 'Rest':
+            logger_sys.log_message("INFO: Starting player resting process")
+            loading = 7
+            cout(" ")
+            while loading > 0:
+                cout("Resting... -__", end='\r')
+                time.sleep(.25)
+                cout("Resting... _-_", end='\r')
+                time.sleep(.25)
+                cout("Resting... __-", end='\r')
+                time.sleep(.25)
+                cout("Resting... ___", end='\r')
+                time.sleep(.25)
+                cout("Resting... -__", end='\r')
+                time.sleep(.25)
+                cout("Resting... _-_", end='\r')
+                time.sleep(.25)
+                cout("Resting... __-", end='\r')
+                time.sleep(.25)
+                cout("Resting... ___", end='\r')
+                time.sleep(.25)
+                loading -= 1
+            logger_sys.log_message("INFO: Finished resting process")
+            continue_church_actions = False
+            player["health"] += (
+                player["max health"] * current_church["rest hp restoring percentage"]
+            )
+            if player["health"] > player["max health"]:
+                player["health"] = player["max health"]
+        elif choice == 'Donate':
+            donations = ['25', '45', '65', '75', '85']
+            how_much = int(terminal_handling.show_menu(donations, length=7))
+            logger_sys.log_message(f"INFO: Player has chosen to donate {how_much} gold to the church")
+            if how_much <= player["gold"]:
+                player["gold"] -= how_much
+                exp = round(how_much / 2.2, 2)
+                player["xp"] += exp
+                logger_sys.log_message(f"INFO: Player has gained {exp} experience for his donation")
+            else:
+                cout(COLOR_YELLOW + "You don't own that many gold" + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Canceling donation process --> doesn't own enough money")
+        elif choice == 'Exchange EXP':
+            exchanges = ['35', '40', '55', '75', '80', '125']
+            how_much = int(terminal_handling.show_menu(exchanges, length=8))
+            logger_sys.log_message(f"INFO: Player has chosen to exchange {how_much} experience")
+            if how_much <= player["xp"]:
+                player["xp"] -= how_much
+                health_points = round(
+                    (
+                        current_church["exp exchange max health percentage"] * how_much
+                    ) * random.uniform(.85, 1.15)
+                )
+                player["max health"] += health_points
+                logger_sys.log_message(f"INFO: Player has gained {health_points} max health points")
+            else:
+                cout(COLOR_YELLOW + "You don't own that many EXP" + COLOR_RESET_ALL)
+                logger_sys.log_message(f"INFO: Canceling EXP exchange process --> doesn't own enough EXP")
+        else:
+            continue_church_actions = False
+
+
 def get_map_point_distance_from_player(map, player, current_map_point):
     point_x, point_y = map[current_map_point]["x"], map[current_map_point]["y"]
     point_x, point_y = text_handling.transform_negative_number_to_positive(

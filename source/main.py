@@ -1253,12 +1253,15 @@ def run(play):
 
             player["start dialog"]["heard start dialog"] = True
 
-        global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith, is_in_blacksmith
+        global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith
+        global is_in_forge, is_in_church, is_in_castle
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
         is_in_blacksmith = False
         is_in_forge = False
+        is_in_church = False
+        is_in_castle = False
         logger_sys.log_message("INFO: Checking if player is in a village, hostel, stable, blacksmith or forge")
         if (
             zone[map_zone]["type"] == "village"
@@ -1266,6 +1269,8 @@ def run(play):
             or zone[map_zone]["type"] == "stable"
             or zone[map_zone]["type"] == "blacksmith"
             or zone[map_zone]["type"] == "forge"
+            or zone[map_zone]["type"] == "church"
+            or zone[map_zone]["type"] == "castle"
         ):
             zone_handling.print_zone_news(zone, map_zone)
         logger_sys.log_message(f"INFO: Checking if a dialog is defined at map point 'point{map_location}'")
@@ -1365,6 +1370,12 @@ def run(play):
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
             zone_handling.print_hostel_information(map_zone, zone, item, drinks)
+        logger_sys.log_message("INFO: Checking if the player is in a church")
+        if zone[map_zone]["type"] == "church":
+            is_in_church = True
+        logger_sys.log_message("INFO: Checking if the player is in a castle")
+        if zone[map_zone]["type"] == "castle":
+            is_in_castle = True
         cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
@@ -2473,6 +2484,8 @@ def run(play):
                 zone_handling.interaction_blacksmith(map_zone, zone, item, player)
             elif zone[map_zone]["type"] == "forge":
                 zone_handling.interaction_forge(map_zone, zone, player, item)
+            elif zone[map_zone]["type"] == "church":
+                zone_handling.interaction_church(map_zone, zone, player)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
                 cout(
