@@ -35,8 +35,8 @@ Goblin:
   - Orc Iron Leggings
   - Orc Shredded Chestplate
   description: "The Goblin may be an easy enemy to beat, but in groups, they can be very annoying to deal with."
-Orc:
-  plural: "Yrch"
+Ork:
+  plural: "Orks"
   damage:
     min damage: 1
     max damage: 4
@@ -55,9 +55,9 @@ Orc:
   - Orc Iron Leggings
   - Orc Shredded Chestplate
   - Orc Bow
-  description: "Yrch are the smaller and swifter version of the Goblins. Even if they have low health, they are fast and hard to hit because of their agility."
-Orc Archer:
-  plural: "Yrch Archer"
+  description: "Orks are the smaller and swifter version of the Goblins. Even if they have low health, they are fast and hard to hit because of their agility."
+Ork Archer:
+  plural: "Ork Archers"
   damage:
     min damage: 1
     max damage: 5
@@ -78,7 +78,7 @@ Orc Archer:
   - Orc Bag
   - Orc Shield
   - Wooden Stick
-  description: "The Yrch are specialized in bows and are not different from other Yrch."
+  description: "The Ork Archers are specialized in bows and are not different from other Orks."
 Warg:
   plural: "Wargs"
   damage:
@@ -136,8 +136,8 @@ Cavern Troll:
   - Spear
   description: "Cavern Trolls are powerful but slow enemies. They can deal huge amounts of damages but they are quit easy to dodge."
 # Black enemies
-Black Orc:
-  plural: "Black Yrch"
+Black Ork:
+  plural: "Black Orks"
   damage:
     min damage: 2
     max damage: 5
@@ -155,7 +155,7 @@ Black Orc:
   - Orc Shredded Chestplate
   - Orc Bag
   - Warg Fur Shield
-  description: "Black Yrch are an old species of the Yrch, which are way more powerful, but you won't see them often during your journey.'"
+  description: "Black Orks are an older species of the Orks, which are way more powerful, but you won't see them often during your journey."
 Dark Marksman:
   plural: "Dark Marksmen"
   damage:

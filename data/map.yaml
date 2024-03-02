@@ -48792,7 +48792,7 @@ point2333:
 point2334:
   blocked:
   - None
-  map zone: Cocorico Village
+  map zone: Cocorico Church
   x: -52
   y: 46
 point2335:
@@ -66812,7 +66812,7 @@ point5034:
 point5035:
   blocked:
   - None
-  map zone: New Hyru
+  map zone: Hyru Church
   x: -58
   y: 25
 point5036:
@@ -79857,7 +79857,7 @@ point6991:
 point6992:
   blocked:
   - None
-  map zone: Los Gerudos
+  map zone: Los Gerudos Church
   x: -36
   y: 10
 point6993:

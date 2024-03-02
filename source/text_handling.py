@@ -81,7 +81,7 @@ def apply_yaml_data_color_code(to_print):
     to_print = str(to_print)
     to_print = to_print.replace('$RED', '\033[0;31m')
     to_print = to_print.replace('$GREEN', '\033[0;32m')
-    to_print = to_print.replace('$YELLOW', '\033[0;33m')
+    to_print = to_print.replace('$YELLOW', '\033[38;2;255;255;0m')
     to_print = to_print.replace('$ORANGE', '\033[38;2;255;128;0m')
     to_print = to_print.replace('$BLUE', '\033[0;34m')
     to_print = to_print.replace('$PURPLE', '\033[0;34m')
@@ -93,6 +93,7 @@ def apply_yaml_data_color_code(to_print):
     to_print = to_print.replace('$DARK_BROWN', '\033[38;2;139;69;19m')
     to_print = to_print.replace('$GRAY', '\033[1;30m')
     to_print = to_print.replace('$LIGHT_GRAY', '\033[38;2;192;192;192m')
+    to_print = to_print.replace('$KHAKI', '\033[38;2;240;230;140m')
 
     return to_print
 

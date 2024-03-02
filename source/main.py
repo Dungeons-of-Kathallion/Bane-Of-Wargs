@@ -103,7 +103,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.13
+    GAME_DATA_VERSION = 0.14
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -155,7 +155,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.135
+SOURCE_CODE_VERSION = 0.14
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -1253,12 +1253,15 @@ def run(play):
 
             player["start dialog"]["heard start dialog"] = True
 
-        global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith, is_in_blacksmith
+        global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith
+        global is_in_forge, is_in_church, is_in_castle
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
         is_in_blacksmith = False
         is_in_forge = False
+        is_in_church = False
+        is_in_castle = False
         logger_sys.log_message("INFO: Checking if player is in a village, hostel, stable, blacksmith or forge")
         if (
             zone[map_zone]["type"] == "village"
@@ -1266,6 +1269,8 @@ def run(play):
             or zone[map_zone]["type"] == "stable"
             or zone[map_zone]["type"] == "blacksmith"
             or zone[map_zone]["type"] == "forge"
+            or zone[map_zone]["type"] == "church"
+            or zone[map_zone]["type"] == "castle"
         ):
             zone_handling.print_zone_news(zone, map_zone)
         logger_sys.log_message(f"INFO: Checking if a dialog is defined at map point 'point{map_location}'")
@@ -1365,6 +1370,12 @@ def run(play):
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
             zone_handling.print_hostel_information(map_zone, zone, item, drinks)
+        logger_sys.log_message("INFO: Checking if the player is in a church")
+        if zone[map_zone]["type"] == "church":
+            is_in_church = True
+        logger_sys.log_message("INFO: Checking if the player is in a castle")
+        if zone[map_zone]["type"] == "castle":
+            is_in_castle = True
         cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
@@ -1787,6 +1798,12 @@ def run(play):
                         content_stables = content_stables.replace(']', '')
                         content_stables = content_stables.replace("'", '')
                         text = "STABLES: " + content_stables
+                        text_handling.print_long_string(text)
+                        content_churches = str(zone[which_zone]["content"]["churches"])
+                        content_churches = content_churches.replace('[', '')
+                        content_churches = content_churches.replace(']', '')
+                        content_churches = content_churches.replace("'", '')
+                        text = "CHURCHES: " + content_churches
                         text_handling.print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
@@ -2467,6 +2484,8 @@ def run(play):
                 zone_handling.interaction_blacksmith(map_zone, zone, item, player)
             elif zone[map_zone]["type"] == "forge":
                 zone_handling.interaction_forge(map_zone, zone, player, item)
+            elif zone[map_zone]["type"] == "church":
+                zone_handling.interaction_church(map_zone, zone, player)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
                 cout(

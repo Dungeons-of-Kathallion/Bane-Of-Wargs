@@ -1,17 +1,14 @@
 import random
 import terminal_handling
 import text_handling
-import colors
-from colorama import Fore, Back, Style, init, deinit
 from colors import *
+from terminal_handling import cout
 
-# initialize colorama
-init()
 
 def print_action(action1, action2):
 
     if action1 == 'rock' and action2 == 'rock':
-        print("""
+        cout("""
             _______           _______
         ---'   ____)         (____   '---
               (_____)       (_____)
@@ -21,7 +18,7 @@ def print_action(action1, action2):
                    Rock VS Rock
         """)
     elif action1 == 'rock' and action2 == 'paper':
-        print("""
+        cout("""
             _______               _______
         ---'   ____)         ____(____   '----
               (_____)       (______
@@ -31,7 +28,7 @@ def print_action(action1, action2):
                    Rock VS Paper
         """)
     elif action1 == 'rock' and action2 == 'scissors':
-        print("""
+        cout("""
             _______                _______
         ---'   ____)          ____(____   '---
               (_____)        (______
@@ -41,7 +38,7 @@ def print_action(action1, action2):
                    Rock VS Scissors
         """)
     elif action1 == 'paper' and action2 == 'rock':
-        print("""
+        cout("""
              _______                 _______
         ---'    ____)____           (____   '---
                    ______)         (_____)
@@ -51,7 +48,7 @@ def print_action(action1, action2):
                         Paper VS Rock
         """)
     elif action1 == 'paper' and action2 == 'paper':
-        print("""
+        cout("""
              _______                     _______
         ---'    ____)____           ____(____   '----
                    ______)         (______
@@ -61,7 +58,7 @@ def print_action(action1, action2):
                         Paper VS Paper
         """)
     elif action1 == 'paper' and action2 == 'scissors':
-        print("""
+        cout("""
              _______                      _______
         ---'    ____)____            ____(____   '---
                    ______)          (______
@@ -71,7 +68,7 @@ def print_action(action1, action2):
                         Paper VS Scissors
         """)
     elif action1 == 'scissors' and action2 == 'rock':
-        print("""
+        cout("""
             _______                 _______
         ---'   ____)____           (____   '---
                   ______)         (_____)
@@ -81,7 +78,7 @@ def print_action(action1, action2):
                      Scissors vs Rock
         """)
     elif action1 == 'scissors' and action2 == 'paper':
-        print("""
+        cout("""
             _______                     _______
         ---'   ____)____           ____(____   '----
                   ______)         (______
@@ -91,7 +88,7 @@ def print_action(action1, action2):
                      Scissors vs Paper
         """)
     elif action1 == 'scissors' and action2 == 'scissors':
-        print("""
+        cout("""
             _______                      _______
         ---'   ____)____            ____(____   '---
                   ______)          (______
@@ -103,9 +100,9 @@ def print_action(action1, action2):
 
 
 def rock_paper_scissors():
-    print(" ")
+    cout(" ")
     text_handling.print_separator("=")
-    print("How many rounds?")
+    cout("How many rounds?")
     rounds = [3, 4, 6, 8, 12]
     rounds_number = terminal_handling.show_menu(rounds)
 
@@ -119,48 +116,45 @@ def rock_paper_scissors():
 
         ai_action = actions[random.randint(0, 2)]
 
-        print('\033[38;2;244;164;96m')
+        cout('\033[38;2;244;164;96m')
         print_action(action, ai_action)
-        print(COLOR_RESET_ALL)
+        cout(COLOR_RESET_ALL)
 
         if action == ai_action:
             ties += 1
-            print(f"{COLOR_STYLE_BRIGHT}Tie !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}Tie !{COLOR_RESET_ALL}")
         elif action == 'rock' and ai_action == 'paper':
             ai_wins += 1
-            print(f"{COLOR_STYLE_BRIGHT}AI wins !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}AI wins !{COLOR_RESET_ALL}")
         elif action == 'rock' and ai_action == 'scissors':
             player_wins += 1
-            print(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
         elif action == 'paper' and ai_action == 'rock':
             player_wins += 1
-            print(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
         elif action == 'paper' and ai_action == 'scissors':
             ai_wins += 1
-            print(f"{COLOR_STYLE_BRIGHT}AI wins !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}AI wins !{COLOR_RESET_ALL}")
         elif action == 'scissors' and ai_action == 'rock':
             ai_wins += 1
-            print(f"{COLOR_STYLE_BRIGHT}AI wins !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}AI wins !{COLOR_RESET_ALL}")
         elif action == 'scissors' and ai_action == 'paper':
             player_wins += 1
-            print(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
+            cout(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
 
-    print("")
+    cout("")
     if player_wins > ai_wins:
-        print(f"{COLOR_GREEN}WINNER: {COLOR_BLUE}Player{COLOR_RESET_ALL}")
+        cout(f"{COLOR_GREEN}WINNER: {COLOR_BLUE}Player{COLOR_RESET_ALL}")
     elif ai_wins > player_wins:
-        print(f"{COLOR_GREEN}WINNER: {COLOR_RED}AI{COLOR_RESET_ALL}")
+        cout(f"{COLOR_GREEN}WINNER: {COLOR_RED}AI{COLOR_RESET_ALL}")
     else:
-        print(f"{COLOR_GREEN}WINNER: {COLOR_CYAN}Tie Game !{COLOR_RESET_ALL}")
-    print("")
-    print(f"{COLOR_GREEN}Player Wins: {COLOR_MAGENTA}{player_wins}{COLOR_RESET_ALL}")
-    print(f"{COLOR_GREEN}AI Wins: {COLOR_MAGENTA}{ai_wins}{COLOR_RESET_ALL}")
-    print(f"{COLOR_CYAN}Ties: {COLOR_MAGENTA}{ties}{COLOR_RESET_ALL}")
+        cout(f"{COLOR_GREEN}WINNER: {COLOR_CYAN}Tie Game !{COLOR_RESET_ALL}")
+    cout("")
+    cout(f"{COLOR_GREEN}Player Wins: {COLOR_MAGENTA}{player_wins}{COLOR_RESET_ALL}")
+    cout(f"{COLOR_GREEN}AI Wins: {COLOR_MAGENTA}{ai_wins}{COLOR_RESET_ALL}")
+    cout(f"{COLOR_CYAN}Ties: {COLOR_MAGENTA}{ties}{COLOR_RESET_ALL}")
     text_handling.print_separator("=")
 
 
 # Actually run the action, and tells the game which arguments to use
 rock_paper_scissors()
-
-# deinitialize colorama
-deinit()

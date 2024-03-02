@@ -92,7 +92,7 @@ def execute_script(
     try:
         exec(file.read(), global_arguments)
     except Exception as error:
-        cout(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + error + COLOR_RESET_ALL)
+        cout(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + str(error) + COLOR_RESET_ALL)
         logger_sys.log_message(
             f"ERROR: An error occurred when executing script '{file}' from utility " +
             f"'{current_utility}' with arguments '{global_arguments}'"
