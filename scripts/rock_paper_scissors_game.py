@@ -1,5 +1,5 @@
 import random
-import term_menu
+import terminal_handling.py
 import text_handling
 import colors
 from colorama import Fore, Back, Style, init, deinit
@@ -9,7 +9,7 @@ from colors import *
 init()
 
 def print_action(action1, action2):
-    
+
     if action1 == 'rock' and action2 == 'rock':
         print("""
             _______           _______
@@ -107,22 +107,22 @@ def rock_paper_scissors():
     text_handling.print_separator("=")
     print("How many rounds?")
     rounds = [3, 4, 6, 8, 12]
-    rounds_number = term_menu.show_menu(rounds)
-    
+    rounds_number = terminal_handling.py.show_menu(rounds)
+
     player_wins = 0
     ai_wins = 0
     ties = 0
-    
+
     for count in range(0, rounds_number):
         actions = ['rock', 'paper', 'scissors']
-        action = term_menu.show_menu(actions)
-        
+        action = terminal_handling.py.show_menu(actions)
+
         ai_action = actions[random.randint(0, 2)]
-        
+
         print('\033[38;2;244;164;96m')
         print_action(action, ai_action)
         print(COLOR_RESET_ALL)
-        
+
         if action == ai_action:
             ties += 1
             print(f"{COLOR_STYLE_BRIGHT}Tie !{COLOR_RESET_ALL}")
@@ -144,7 +144,7 @@ def rock_paper_scissors():
         elif action == 'scissors' and ai_action == 'paper':
             player_wins += 1
             print(f"{COLOR_STYLE_BRIGHT}Player wins !{COLOR_RESET_ALL}")
-    
+
     print("")
     if player_wins > ai_wins:
         print(f"{COLOR_GREEN}WINNER: {COLOR_BLUE}Player{COLOR_RESET_ALL}")

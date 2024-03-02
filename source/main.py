@@ -2,7 +2,7 @@
 import battle
 import check_yaml
 import train
-import term_menu
+import terminal_handling.py
 import mission_handling
 import dialog_handling
 import enemy_handling
@@ -222,7 +222,7 @@ if float(GAME_DATA_VERSION) < float(latest_game_data_version):
     )
     time.sleep(3)
     print("\nDo you want to update your game data right now?")
-    want_to_update = term_menu.show_menu(["Yes", "No"])
+    want_to_update = terminal_handling.py.show_menu(["Yes", "No"])
     if want_to_update == "Yes":
         text_handling.clear_prompt()
         data_handling.update_game_data(preferences, latest_game_data_version)
@@ -239,14 +239,14 @@ while menu:
     print_title()
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Quit']
-    choice = term_menu.show_menu(options)
+    choice = terminal_handling.py.show_menu(options)
     text_handling.clear_prompt()
 
     print_title()
 
     if choice == 'Play Game':
         options = ['Use Latest Preset', 'Play Vanilla', 'Play Plugin']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
         using_latest_preset = False
         latest_preset = preferences["latest preset"]
         # Make these variables global
@@ -323,7 +323,7 @@ while menu:
             text = "Please select an action:"
             text_handling.print_speech_text_effect(text, preferences)
             options = ['Open Save', 'New Save']
-            choice = term_menu.show_menu(options)
+            choice = terminal_handling.py.show_menu(options)
 
             if choice == 'Open Save':
                 res = []
@@ -419,7 +419,7 @@ while menu:
         text = "Please choose an action."
         text_handling.print_speech_text_effect(text, preferences)
         options = ['Edit Save', 'Delete Save']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
         if choice == 'Edit Save':
             text = "Please select a save to edit."
             text_handling.print_speech_text_effect(text, preferences)
@@ -439,7 +439,7 @@ while menu:
             text = "Select an action for the selected save."
             text_handling.print_speech_text_effect(text, preferences)
             options = ['Rename Save', 'Manually Edit Save']
-            choice = term_menu.show_menu(options)
+            choice = terminal_handling.py.show_menu(options)
             if choice == 'Rename Save':
                 rename_name = input("Select a new name for the save: ")
                 os.rename(
@@ -671,7 +671,7 @@ def check_for_key(direction):
         text_handling.print_separator(text)
 
         options = ['Continue', 'Leave']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
 
         count = 0
 
@@ -1733,7 +1733,7 @@ def run(play):
             text = '='
             text_handling.print_separator(text)
             options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
-            choice = term_menu.show_menu(options)
+            choice = terminal_handling.py.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
             if choice == 'Visited Places':
                 print("VISITED PLACES: ")
@@ -2213,7 +2213,7 @@ def run(play):
                     text = '='
                     text_handling.print_separator(text)
                     options = ['Abort', 'Exit']
-                    choice = term_menu.show_menu(options)
+                    choice = terminal_handling.py.show_menu(options)
                     if choice == 'Abort':
                         wait = input("Are you sure you want to abort this mission? (y/n) ")
                         if wait.startswith('y'):
@@ -2394,7 +2394,7 @@ def run(play):
                     options = ['Consume', 'Get Rid', 'Exit']
                 else:
                     options = ['Get Rid', 'Exit']
-                choice = term_menu.show_menu(options)
+                choice = terminal_handling.py.show_menu(options)
                 logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                 if choice == 'Equip':
                     item_handling.equip_item(which_item, player, item[which_item]["type"])
@@ -2594,7 +2594,7 @@ def run(play):
                     text = '='
                     text_handling.print_separator(text)
                     options = ['Abandon', 'Rename', 'Exit']
-                    choice = term_menu.show_menu(options)
+                    choice = terminal_handling.py.show_menu(options)
                     logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
                     count = 0
                     continue_action = True
@@ -2677,7 +2677,7 @@ def run(play):
             continued_command = True
         elif command.lower().startswith('$player$data$'):
             logger_sys.log_message("INFO: Displaying player data in a pager mode")
-            choice = term_menu.show_menu(['Check', 'Edit'], length=12)
+            choice = terminal_handling.py.show_menu(['Check', 'Edit'], length=12)
             player_data = str(yaml.dump(player))
             if choice == 'Check':
                 to_display = player_data
@@ -2706,7 +2706,7 @@ def run(play):
                 'npcs', 'start_player', 'lists',
                 'zone', 'dialog', 'mission', 'mounts'
             ]
-            choice = term_menu.show_menu(choices, length=20)
+            choice = terminal_handling.py.show_menu(choices, length=20)
             if choice == 'map':
                 data = str(yaml.dump(map))
             elif choice == 'item':

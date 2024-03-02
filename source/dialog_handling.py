@@ -2,7 +2,7 @@
 from colors import *
 import logger_sys
 import text_handling
-import term_menu
+import terminal_handling.py
 # external imports
 import appdirs
 import time
@@ -370,7 +370,7 @@ def conversation_ask_confirmation(conversation_input, new_text_replacements):
     # Run a ask-confirmation function: ask for player input
     # with either 'Yes' or 'No' as an answer
     choice = ['Yes', 'No']
-    confirmation = term_menu.show_menu(choice)
+    confirmation = terminal_handling.py.show_menu(choice)
     if confirmation == 'Yes':
         confirmation = True
     else:
@@ -415,7 +415,7 @@ def conversation_choice_maker(conversation_input, choices_dict, new_text_replace
         choice_name = choice_name.split(",", 1)[0]
         choices += [str(choice_name)]
 
-    player_choice = term_menu.show_menu(choices)
+    player_choice = terminal_handling.py.show_menu(choices)
     choice_position = choices.index(player_choice)
 
     choice_action = choices_dict[choice_position]

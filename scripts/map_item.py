@@ -3,7 +3,7 @@ import yaml
 import appdirs
 import time
 import text_handling
-import term_menu
+import terminal_handling.py
 from colorama import Fore, Back, Style, deinit, init
 from colors import *
 
@@ -385,7 +385,7 @@ def search_point(x, y, map_points_num, map):
 
 def run(player, map, zone, start_time):
     choices = ['8x8', '16x16', '32x32', '64x64', 'full (128x128)']
-    choice = term_menu.show_menu(choices, length=19)
+    choice = terminal_handling.py.show_menu(choices, length=19)
     print("")
     if choice == choices[0]:
         print_map_xs(player, map, zone, start_time)

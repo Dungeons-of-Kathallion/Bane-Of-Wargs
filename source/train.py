@@ -1,5 +1,5 @@
 # source imports
-import term_menu
+import terminal_handling.py
 import text_handling
 import time_handling
 import logger_sys
@@ -19,7 +19,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     logger_sys.log_message(f"INFO: Getting start time of training loop: {start_time}")
     while still_training:
         options = ['Feed', 'Train', 'Exit']
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen to '{choice}'")
         if choice == 'Feed':
             # For starters, get the mount feeding items,

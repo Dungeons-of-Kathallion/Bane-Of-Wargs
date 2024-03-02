@@ -1,7 +1,7 @@
 # source imports
 import battle
 import logger_sys
-import term_menu
+import terminal_handling.py
 import text_handling
 from colors import *
 # external imports
@@ -72,7 +72,7 @@ def spawn_enemy(
         else:
             print("Your enemy dropped " + text_handling.a_an_check(chosen_item))
         options = ['Grab Item', 'Continue']
-        drop = term_menu.show_menu(options)
+        drop = terminal_handling.py.show_menu(options)
         text = '='
         text_handling.print_separator(text)
         if drop == 'Grab Item':

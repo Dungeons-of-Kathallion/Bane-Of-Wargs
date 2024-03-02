@@ -4,7 +4,7 @@ import text_handling
 import uuid_handling
 import weapon_upgrade_handling
 import train
-import term_menu
+import terminal_handling.py
 from colors import *
 # external imports
 import random
@@ -267,7 +267,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
     continue_hostel_actions = True
     logger_sys.log_message("INFO: Starting loop of hostel actions")
     while continue_hostel_actions:
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sleep':
             print("Are you sure you want to spend the night here? It will ")
@@ -421,7 +421,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
     text_handling.print_separator(text)
     logger_sys.log_message("INFO: Starting stable interaction loop")
     while active_stable_menu:
-        action = term_menu.show_menu(options)
+        action = terminal_handling.py.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
         if action == 'Buy Item':
             which_item = input("Which item do you want to buy? ")
@@ -671,7 +671,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
     continue_blacksmith_actions = True
     logger_sys.log_message("INFO: Starting blacksmith interact loop")
     while continue_blacksmith_actions:
-        action = term_menu.show_menu(options)
+        action = terminal_handling.py.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
         if action == 'Sell Equipment':
             which_weapon = input("Which equipment do you want to sell? ")
@@ -889,7 +889,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 if time_left == "READY TO COLLECT":
                     options_order += ['Collect Order']
                 options_order += ['Exit']
-                action = term_menu.show_menu(options_order)
+                action = terminal_handling.py.show_menu(options_order)
                 logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
                 if action == 'Cancel Order':
                     text = (
@@ -936,7 +936,7 @@ def interaction_forge(map_zone, zone, player, item):
     continue_forge_actions = True
     logger_sys.log_message("INFO: Starting forge interact loop")
     while continue_forge_actions:
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sell Metals':
             which_metal = input("Which metal do you want to sell? ")

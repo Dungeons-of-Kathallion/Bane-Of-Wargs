@@ -1,5 +1,5 @@
 # source imports
-import term_menu
+import terminal_handling.py
 import logger_sys
 import dialog_handling
 import text_handling

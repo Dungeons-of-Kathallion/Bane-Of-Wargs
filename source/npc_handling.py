@@ -1,7 +1,7 @@
 # source imports
 import logger_sys
 import text_handling
-import term_menu
+import terminal_handling.py
 from colors import *
 
 
@@ -82,7 +82,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
     p = True
     while p:
         logger_sys.log_message(f"INFO: Starting player interaction with npc '{current_npc}'")
-        choice = term_menu.show_menu(options)
+        choice = terminal_handling.py.show_menu(options)
         if choice == 'Buy Drink':
             which_drink = input("Which drink do you want to buy from him? ")
             if (
