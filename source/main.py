@@ -1788,6 +1788,12 @@ def run(play):
                         content_stables = content_stables.replace("'", '')
                         text = "STABLES: " + content_stables
                         text_handling.print_long_string(text)
+                        content_churches = str(zone[which_zone]["content"]["churches"])
+                        content_churches = content_churches.replace('[', '')
+                        content_churches = content_churches.replace(']', '')
+                        content_churches = content_churches.replace("'", '')
+                        text = "CHURCHES: " + content_churches
+                        text_handling.print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
                         hostel_point = zone_handling.get_zone_nearest_point(map, player, which_zone)

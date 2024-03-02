@@ -148,13 +148,15 @@ Cocorico Village:
       x__________x
   content:
     hostels:
-    - Kathallion Hostel
+    - Woodstack Hostel
     blacksmiths:
     - James Blacksmith
     forges:
     - None
     stables:
     - None
+    churches:
+    - Cocorico Church
 
 Ayar Town:
   name: "Ayar Town"
@@ -187,6 +189,8 @@ Ayar Town:
     - None
     stables:
     - None
+    churches:
+    - None
 
 New Hyru:
   name: "New Hyru"
@@ -211,13 +215,15 @@ New Hyru:
       x__________x
   content:
     hostels:
-    - None
+    - Seaside Hostels
     blacksmiths:
     - None
     forges:
-    - None
+    - Pickaxe Forge
     stables:
     - Clarc Warg Stable
+    churches:
+    - Hyru Church
 
 Los Gerudos:
   name: "New Hyru"
@@ -244,11 +250,13 @@ Los Gerudos:
     hostels:
     - Los Gerudos Hostel
     blacksmiths:
-    - None
+    - Gerud Armorer
     forges:
-    - None
+    - Gerud Forges
     stables:
     - Kathal Horses
+    churches:
+    - Los Gerudos Church
 
 Los Gerudos Hostel:
   name: "Los Gerudo Hostel"
@@ -738,7 +746,7 @@ Gerud Armorer:
         - Raw Iron
 
 Clarc Warg Stable:
-  name: "Clarc Stable"
+  name: "Clarc Warg Stable"
   type: stable
   cost value: .7
   training gold: 18
@@ -781,6 +789,84 @@ Clarc Warg Stable:
       |$GRAYII$BROWN|====|$GRAYII$WHITE|
       |$GRAYII$BROWN|==//|$GRAYII$WHITE|
       x__________x
+
+Cocorico Church:
+  name: "Cocorico Church"
+  type: church
+  description: >
+    The Cocorico Church was first builded a millennium ago, around year 45, but since then, it
+    has been re-builded with greater stone. It must be one of the oldest human civilization build.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  ____±_  |
+      | /    U \ |
+      |;| <>   |;|
+      |;| <>   |;|
+      x__________x
+    map full: |
+      x__________x
+      |$KHAKI  ____±_  $WHITE|
+      |$KHAKI /    U \ $WHITE|
+      |$YELLOW;$KHAKI| $DARK_BROWN<>   $KHAKI|$YELLOW;$WHITE|
+      |$YELLOW;$KHAKI| $DARK_BROWN<>   $KHAKI|$YELLOW;$WHITE|
+      x__________x
+  rest hp restoring percentage: .35
+  exp exchange max health percentage: .0333
+
+Hyru Church:
+  name: "Hyru Cathedral"
+  type: church
+  description: >
+    Thy Hyru Cathedral is a great church, that was and still used as a watchtower to track
+    ork patrols at night. This cathedral has saved the New Hyru town many times from orks.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      | __±_     |
+      | |  |__   |
+      | |____|__ |
+      | | {}    ||
+      x__________x
+    map full: |
+      x__________x
+      |$KHAKI __$YELLOW±$KHAKI_     $WHITE|
+      |$KHAKI |  |__   $WHITE|
+      |$KHAKI |$YELLOW____$KHAKI|$YELLOW__ $WHITE|
+      |$KHAKI | $DARK_BROWN{}    $KHAKI|$WHITE|
+      x__________x
+  rest hp restoring percentage: .4
+  exp exchange max health percentage: .025
+
+Los Gerudos Church:
+  name: "Los Gerudos Church"
+  type: church
+  description: >
+    In the great city of Los Gerudos, the church named after the city is one of the greatest human civilization
+    build of all times. It's with the help of the Goro Mount Peaks dwarves and other dwarves from other islands...
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      | /\___±__ |
+      |/ :--:   \|
+      || ±   /\ ||
+      ||[ ] /  \||
+      x__________x
+    map full: |
+      x__________x
+      |$YELLOW /\___$KHAKI±$YELLOW__ $WHITE|
+      |$YELLOW/ $GRAY:$PINK--$GRAY:   $YELLOW\$WHITE|
+      |$YELLOW| $KHAKI±   $ORANGE/\ $YELLOW|$WHITE|
+      |$YELLOW|$DARK_BROWN[ ] $ORANGE/  \$YELLOW|$WHITE|
+      x__________x
+  rest hp restoring percentage: .58
+  exp exchange max health percentage: .03
 
 # Lands
 The Edge Of Goro Mounts:
