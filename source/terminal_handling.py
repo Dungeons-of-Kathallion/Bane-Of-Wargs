@@ -2,12 +2,14 @@
 from colors import *
 # external imports
 import time
+import sys
 
 
 # Handling Function
 
 def cout(__text: object = "", end="\n"):
-    print(__text, end=end)
+    sys.stdout.write(str(__text) + str(end))
+    sys.stdout.flush()
 
 
 def cinput(__text: object = ""):
