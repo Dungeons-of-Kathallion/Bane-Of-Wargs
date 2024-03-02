@@ -4,6 +4,12 @@ from colors import *
 import time
 
 
+# Handling Function
+
+def cout(text, end="\n"):
+    print(text, end=end)
+
+
 def show_menu(options, length=52):
     continue_action = True
 

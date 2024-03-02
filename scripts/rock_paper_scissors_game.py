@@ -1,5 +1,5 @@
 import random
-import terminal_handling.py
+import terminal_handling
 import text_handling
 import colors
 from colorama import Fore, Back, Style, init, deinit
@@ -107,7 +107,7 @@ def rock_paper_scissors():
     text_handling.print_separator("=")
     print("How many rounds?")
     rounds = [3, 4, 6, 8, 12]
-    rounds_number = terminal_handling.py.show_menu(rounds)
+    rounds_number = terminal_handling.show_menu(rounds)
 
     player_wins = 0
     ai_wins = 0
@@ -115,7 +115,7 @@ def rock_paper_scissors():
 
     for count in range(0, rounds_number):
         actions = ['rock', 'paper', 'scissors']
-        action = terminal_handling.py.show_menu(actions)
+        action = terminal_handling.show_menu(actions)
 
         ai_action = actions[random.randint(0, 2)]
 

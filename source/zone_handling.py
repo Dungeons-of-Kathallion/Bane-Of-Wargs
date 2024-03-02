@@ -4,8 +4,9 @@ import text_handling
 import uuid_handling
 import weapon_upgrade_handling
 import train
-import terminal_handling.py
+import terminal_handling
 from colors import *
+from terminal_handling import cout
 # external imports
 import random
 import time
@@ -17,7 +18,7 @@ import time
 # Information printing functions
 def print_zone_news(zone, map_zone):
     logger_sys.log_message(f"INFO: Printing map zone '{map_zone}' news")
-    print("NEWS:")
+    cout("NEWS:")
     village_news = zone[map_zone]["news"]
     village_news_len = len(village_news)
     choose_rand_news = random.randint(0, (village_news_len - 1))
@@ -31,30 +32,30 @@ def print_forge_information(map_zone, zone, item):
     current_forge = zone[map_zone]
     current_forge_name = current_forge["name"]
     logger_sys.log_message(f"INFO: Printing current forge '{current_forge_name}' information to GUI")
-    print(COLOR_STYLE_BRIGHT + str(current_forge["name"]) + ":" + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_BRIGHT + str(current_forge["name"]) + ":" + COLOR_RESET_ALL)
     text = current_forge["description"]
     text_handling.print_long_string(text)
-    print(" ")
+    cout(" ")
     if "None" not in current_forge["forge"]["buys"]:
-        print("METAL BUYS:")
+        cout("METAL BUYS:")
         count = 0
         metal_buys = current_forge["forge"]["buys"]
         metal_buys_len = len(metal_buys)
         while count < metal_buys_len:
             current_metal = str(metal_buys[count])
-            print(
+            cout(
                 " -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                 str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_forge["forge"]["sells"]:
-        print("METAL SELLS:")
+        cout("METAL SELLS:")
         count = 0
         metal_sells = current_forge["forge"]["sells"]
         metal_sells_len = len(metal_sells)
         while count < metal_sells_len:
             current_metal = str(metal_sells[count])
-            print(
+            cout(
                 " -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                 str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL
             )
@@ -67,24 +68,24 @@ def print_blacksmith_information(map_zone, zone, item):
     current_black_smith = zone[map_zone]
     current_black_smith_name = current_black_smith["name"]
     logger_sys.log_message(f"INFO: Printing current blacksmith '{current_black_smith_name}' information to GUI")
-    print(COLOR_STYLE_BRIGHT + str(current_black_smith["name"]) + ":" + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_BRIGHT + str(current_black_smith["name"]) + ":" + COLOR_RESET_ALL)
     text = current_black_smith["description"]
     text_handling.print_long_string(text)
-    print("")
+    cout("")
     if "None" not in current_black_smith["blacksmith"]["buys"]:
-        print("EQUIPMENT BUYS:")
+        cout("EQUIPMENT BUYS:")
         count = 0
         weapon_buys = current_black_smith["blacksmith"]["buys"]
         weapon_buys_len = len(weapon_buys)
         while count < weapon_buys_len:
             current_weapon = str(weapon_buys[int(count)])
-            print(
+            cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                 str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_black_smith["blacksmith"]["orders"]:
-        print("EQUIPMENT ORDERS:")
+        cout("EQUIPMENT ORDERS:")
         count = 0
         weapon_orders = current_black_smith["blacksmith"]["orders"]
         weapon_orders_len = len(weapon_orders)
@@ -111,7 +112,7 @@ def print_blacksmith_information(map_zone, zone, item):
             global_current_weapon_materials = global_current_weapon_materials.replace("'", '')
             global_current_weapon_materials = global_current_weapon_materials.replace("[", '')
             global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
-            print(
+            cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                 str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +
                 COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT +
@@ -126,22 +127,22 @@ def print_blacksmith_information(map_zone, zone, item):
 def print_stable_information(map_zone, zone, mounts, item, player, map_location):
     current_stable = zone[map_zone]
     current_stable_name = current_stable["name"]
-    print(COLOR_STYLE_BRIGHT + str(current_stable["name"]) + ":" + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_BRIGHT + str(current_stable["name"]) + ":" + COLOR_RESET_ALL)
     logger_sys.log_message(f"INFO: Printing current stable '{current_stable_name}' information to GUI")
     text = current_stable["description"]
     text_handling.print_long_string(text)
-    print(" ")
-    print("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["deposit gold"]) + COLOR_RESET_ALL)
-    print("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
+    cout(" ")
+    cout("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["deposit gold"]) + COLOR_RESET_ALL)
+    cout("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
     options = ['Train Mount', '']
     if "None" not in current_stable["stable"]["sells"]["mounts"]:
-        print("MOUNTS SELLS:")
+        cout("MOUNTS SELLS:")
         count = 0
         stable_mounts = current_stable["stable"]["sells"]["mounts"]
         stable_mounts_len = len(stable_mounts)
         while count < stable_mounts_len:
             current_mount = str(stable_mounts[int(count)])
-            print(
+            cout(
                 " -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2)) +
                 COLOR_RESET_ALL
@@ -149,19 +150,19 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
             count += 1
     if "None" not in current_stable["stable"]["sells"]["items"]:
         options += ['Buy Item']
-        print("ITEMS SELLS:")
+        cout("ITEMS SELLS:")
         count = 0
         stable_items = current_stable["stable"]["sells"]["items"]
         stable_items_len = len(stable_items)
         while count < stable_items_len:
             current_mount = str(stable_items[int(count)])
-            print(
+            cout(
                 " -" + current_stable["stable"]["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(item[current_mount]["gold"] * current_stable["cost value"], 2)) +
                 COLOR_RESET_ALL
             )
             count += 1
-    print(" ")
+    cout(" ")
     deposited_mounts_num = 0
     count = 0
     mounts_list_len = len(player["mounts"])
@@ -187,9 +188,9 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
     deposited_mounts_names = deposited_mounts_names.replace("'", COLOR_GREEN + COLOR_STYLE_BRIGHT)
     deposited_mounts_names = deposited_mounts_names.replace(',', COLOR_RESET_ALL + ',')
     if deposited_mounts_num == 0:
-        print("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL)
+        cout("MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT + str(deposited_mounts_num) + COLOR_RESET_ALL)
     else:
-        print(
+        cout(
             "MOUNTS DEPOSITED HERE: " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
             str(deposited_mounts_num) + COLOR_RESET_ALL + " " + deposited_mounts_names
         )
@@ -201,45 +202,45 @@ def print_hostel_information(map_zone, zone, item, drinks):
     current_hostel = zone[map_zone]
     current_hostel_name = current_hostel["name"]
     logger_sys.log_message(f"INFO: Printing current hostel '{current_hostel_name}' information to GUI")
-    print(COLOR_STYLE_BRIGHT + str(current_hostel["name"]) + ":" + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_BRIGHT + str(current_hostel["name"]) + ":" + COLOR_RESET_ALL)
     text = current_hostel["description"]
     text_handling.print_long_string(text)
-    print(" ")
-    print("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_hostel["sleep gold"]) + COLOR_RESET_ALL)
+    cout(" ")
+    cout("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_hostel["sleep gold"]) + COLOR_RESET_ALL)
     if "None" not in current_hostel["sells"]["drinks"]:
-        print("DRINKS SELLS:")
+        cout("DRINKS SELLS:")
         count = 0
         hostel_drinks = current_hostel["sells"]["drinks"]
         hostel_drinks_len = len(hostel_drinks)
         while count < hostel_drinks_len:
             current_drink = str(current_hostel["sells"]["drinks"][int(count)])
-            print(
+            cout(
                 " -" + current_hostel["sells"]["drinks"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(drinks[current_drink]["gold"] * current_hostel["cost value"], 2)) +
                 COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_hostel["sells"]["items"]:
-        print("ITEMS SELLS")
+        cout("ITEMS SELLS")
         count = 0
         hostel_items = current_hostel["sells"]["items"]
         hostel_items_len = len(hostel_items)
         while count < hostel_items_len:
             current_item = str(current_hostel["sells"]["items"][int(count)])
-            print(
+            cout(
                 " -" + current_hostel["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) +
                 COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_hostel["buys"]["items"]:
-        print("ITEMS BUYS:")
+        cout("ITEMS BUYS:")
         count = 0
         hostel_items = current_hostel["buys"]["items"]
         hostel_items_len = len(hostel_items)
         while count < hostel_items_len:
             current_item = str(current_hostel["buys"]["items"][int(count)])
-            print(
+            cout(
                 " -" + current_hostel["buys"]["items"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) +
                 COLOR_RESET_ALL
@@ -267,10 +268,10 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
     continue_hostel_actions = True
     logger_sys.log_message("INFO: Starting loop of hostel actions")
     while continue_hostel_actions:
-        choice = terminal_handling.py.show_menu(options)
+        choice = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sleep':
-            print("Are you sure you want to spend the night here? It will ")
+            cout("Are you sure you want to spend the night here? It will ")
             ask = input("cost you " + str(zone[map_zone]["sleep gold"]) + " gold (y/n) ")
             text = '='
             text_handling.print_separator(text)
@@ -281,23 +282,23 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
                     logger_sys.log_message(f"INFO: Removed {sleep_gold} from player --> sleep costs")
                     player["gold"] -= zone[map_zone]["sleep gold"]
                     loading = 7
-                    print(" ")
+                    cout(" ")
                     while loading > 0:
-                        print("Sleeping... Zzz", end='\r')
+                        cout("Sleeping... Zzz", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... zZz", end='\r')
+                        cout("Sleeping... zZz", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... zzZ", end='\r')
+                        cout("Sleeping... zzZ", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... zzz", end='\r')
+                        cout("Sleeping... zzz", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... Zzz", end='\r')
+                        cout("Sleeping... Zzz", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... zZz", end='\r')
+                        cout("Sleeping... zZz", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... zzZ", end='\r')
+                        cout("Sleeping... zzZ", end='\r')
                         time.sleep(.25)
-                        print("Sleeping... zzz", end='\r')
+                        cout("Sleeping... zzz", end='\r')
                         time.sleep(.25)
                         player["health"] += random.randint(1, 7)
                         loading -= 1
@@ -310,7 +311,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
                         player["health"] = player["max health"]
                 else:
                     logger_sys.log_message("INFO: Canceling sleeping process --> player doesn't own enough gold")
-                    print(COLOR_YELLOW + "You don't own enough gold to sleep here." + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "You don't own enough gold to sleep here." + COLOR_RESET_ALL)
         elif choice == 'Buy Drink':
             which_drink = input("Which drink do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to drink")
@@ -421,7 +422,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
     text_handling.print_separator(text)
     logger_sys.log_message("INFO: Starting stable interaction loop")
     while active_stable_menu:
-        action = terminal_handling.py.show_menu(options)
+        action = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
         if action == 'Buy Item':
             which_item = input("Which item do you want to buy? ")
@@ -482,7 +483,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     logger_sys.log_message(f"INFO: Removing player {mount_cost} gold")
                     player["gold"] -= mount_cost
                     generated_mount_uuid = uuid_handling.generate_random_uuid()
-                    print("How you mount should be named ?")
+                    cout("How you mount should be named ?")
                     new_mount_name = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen name '{new_mount_name}' for its new mount")
                     mounts_names_list = []
@@ -496,7 +497,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                             count += 1
                     if new_mount_name in mounts_names_list:
                         logger_sys.log_message(f"INFO: Canceling buying process --> already has a mount name '{new_mount_name}'")
-                        print(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
+                        cout(COLOR_YELLOW + "You already have a mount named like that." + COLOR_RESET_ALL)
                         text = '='
                         text_handling.print_separator(text)
                     else:
@@ -526,13 +527,13 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                         text_handling.print_separator(text)
                 else:
                     logger_sys.log_message("INFO: Canceling buying process --> doesn't has enough gold")
-                    print(COLOR_YELLOW + "You don't own enough gold to buy that mount" + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "You don't own enough gold to buy that mount" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
                     f"INFO: Canceling buying process --> current stable '{map_zone}'" +
                     f" doesn't sell mount '{which_mount}'"
                 )
-                print(COLOR_YELLOW + "The current stable do not sell this mount" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "The current stable do not sell this mount" + COLOR_RESET_ALL)
         elif action == 'Deposit Mount':
             if player["current mount"] != " ":
                 current_mount_uuid = str(player["current mount"])
@@ -559,10 +560,10 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                         f"INFO: Canceling depositing process --> current stable '{map_zone}' " +
                         f"doesn't accept mounts of type '{current_mount_type}'"
                     )
-                    print(COLOR_YELLOW + "This stable doesn't accept this type of mount." + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "This stable doesn't accept this type of mount." + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message("INFO: Canceling depositing process --> doesn't ride any mounts by now")
-                print(COLOR_YELLOW + "You don't have any mounts to deposit here." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You don't have any mounts to deposit here." + COLOR_RESET_ALL)
         elif action == 'Train Mount':
             if player["current mount"] != ' ':
                 current_mount_uuid = str(player["current mount"])
@@ -602,8 +603,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 deposited_mounts_names = deposited_mounts_names.replace("[", ' -')
                 deposited_mounts_names = deposited_mounts_names.replace("]", '')
                 deposited_mounts_names = deposited_mounts_names.replace(", ", '\n -')
-                print("MOUNTS AT THIS STABLE:")
-                print(deposited_mounts_names)
+                cout("MOUNTS AT THIS STABLE:")
+                cout(deposited_mounts_names)
                 text = '='
                 text_handling.print_separator(text)
                 which_mount = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
@@ -625,7 +626,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                             player["elapsed time game days"] - player["mounts"][which_mount_uuid]["deposited day"]
                         ) * zone[map_zone]["deposit gold"], 2
                     )
-                    print(
+                    cout(
                         "If you take back this mount it will cost you " + COLOR_YELLOW +
                         COLOR_STYLE_BRIGHT + str(mount_take_back_cost) + COLOR_RESET_ALL + " gold. "
                     )
@@ -640,7 +641,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                             player["mounts"][which_mount_uuid]["location"] = "point" + str(map_location)
                     else:
                         logger_sys.log_message("INFO: Canceling taking back process --> doesn't has enough gold")
-                        print(COLOR_YELLOW + "You don't own enough gold to take back your mount." + COLOR_RESET_ALL)
+                        cout(COLOR_YELLOW + "You don't own enough gold to take back your mount." + COLOR_RESET_ALL)
                 else:
                     logger_sys.log_message(
                         "INFO: Canceling taking back process --> doesn't own that mount " +
@@ -671,7 +672,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
     continue_blacksmith_actions = True
     logger_sys.log_message("INFO: Starting blacksmith interact loop")
     while continue_blacksmith_actions:
-        action = terminal_handling.py.show_menu(options)
+        action = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
         if action == 'Sell Equipment':
             which_weapon = input("Which equipment do you want to sell? ")
@@ -804,15 +805,15 @@ def interaction_blacksmith(map_zone, zone, item, player):
                             text_handling.print_long_string(text)
                         else:
                             logger_sys.log_message("INFO: Canceling upgrading process --> doesn't has the necessary items")
-                            print(COLOR_YELLOW + "You don't own the necessary items to upgrade" + COLOR_RESET_ALL)
+                            cout(COLOR_YELLOW + "You don't own the necessary items to upgrade" + COLOR_RESET_ALL)
                     else:
                         logger_sys.log_message("INFO: Canceling upgrading process --> doesn't has enough gold")
-                        print(COLOR_YELLOW + "You don't have enough gold to upgrade." + COLOR_RESET_ALL)
+                        cout(COLOR_YELLOW + "You don't have enough gold to upgrade." + COLOR_RESET_ALL)
                 else:
                     logger_sys.log_message(
                         f"INFO: Canceling upgrading process --> cannot upgrade equipment '{which_weapon}' further"
                         )
-                    print(
+                    cout(
                         COLOR_YELLOW + "You cannot upgrade this equipment further." + COLOR_RESET_ALL
                     )
             else:
@@ -820,7 +821,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     "INFO: Canceling upgrading process --> player doesn't own any" +
                     f" '{which_weapon}' in its inventory"
                 )
-                print(COLOR_YELLOW + "You don't own that equipment" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You don't own that equipment" + COLOR_RESET_ALL)
         elif action == 'Check Order':
             player_orders = player["orders"]
             logger_sys.log_message(f"INFO: Printing player orders: '{player_orders}'")
@@ -839,7 +840,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                         ordered_blacksmith = selected_order["ordered blacksmith"]
                         ordered_weapon = selected_order["ordered weapon"]
                     except Exception:
-                        print(ordered_blacksmith, ordered_weapon)
+                        cout(ordered_blacksmith, ordered_weapon)
                     if ordered_blacksmith == zone[map_zone]["name"]:
                         ordered_weapon_syntax = ordered_weapon + " {" + str(count) + "}"
                         player_orders_to_collect += [ordered_weapon_syntax]
@@ -851,8 +852,8 @@ def interaction_blacksmith(map_zone, zone, item, player):
             player_orders_to_collect = player_orders_to_collect.replace("[", ' -')
             player_orders_to_collect = player_orders_to_collect.replace("]", '')
             player_orders_to_collect = player_orders_to_collect.replace(", ", '\n -')
-            print("ORDERS:")
-            print(player_orders_to_collect)
+            cout("ORDERS:")
+            cout(player_orders_to_collect)
             text = '='
             text_handling.print_separator(text)
             which_order = input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
@@ -869,19 +870,19 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 if time_left <= 0:
                     time_left = "READY TO COLLECT"
                 logger_sys.log_message(f"INFO: Printing order '{current_order_uuid}' information to GUI")
-                print(
+                cout(
                     "ORDERED EQUIPMENT: " + COLOR_RED +
                     str(player["orders"][current_order_uuid]["ordered weapon"]) + COLOR_RESET_ALL
                 )
-                print(
+                cout(
                     "PAID GOLD: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                     str(round(player["orders"][current_order_uuid]["paid gold"], 1)) + COLOR_RESET_ALL
                 )
-                print(
+                cout(
                     "ORDERED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                     str(round(player["orders"][current_order_uuid]["ordered day"], 1)) + COLOR_RESET_ALL
                 )
-                print("TIME LEFT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(time_left) + COLOR_RESET_ALL)
+                cout("TIME LEFT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(time_left) + COLOR_RESET_ALL)
 
                 text = '='
                 text_handling.print_separator(text)
@@ -889,7 +890,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 if time_left == "READY TO COLLECT":
                     options_order += ['Collect Order']
                 options_order += ['Exit']
-                action = terminal_handling.py.show_menu(options_order)
+                action = terminal_handling.show_menu(options_order)
                 logger_sys.log_message(f"INFO: Player has chosen option '{action}'")
                 if action == 'Cancel Order':
                     text = (
@@ -917,7 +918,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     "INFO: Canceling collecting order process --> player has no order " +
                     f"'{which_order}' at map zone '{map_zone}'"
                 )
-                print(COLOR_YELLOW + "You don't have this order currently at this place." + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "You don't have this order currently at this place." + COLOR_RESET_ALL)
         else:
             continue_blacksmith_actions = False
 
@@ -936,7 +937,7 @@ def interaction_forge(map_zone, zone, player, item):
     continue_forge_actions = True
     logger_sys.log_message("INFO: Starting forge interact loop")
     while continue_forge_actions:
-        choice = terminal_handling.py.show_menu(options)
+        choice = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sell Metals':
             which_metal = input("Which metal do you want to sell? ")
@@ -958,12 +959,12 @@ def interaction_forge(map_zone, zone, player, item):
                         "INFO: Canceling selling process --> doesn't has " +
                         f"{metal_count} '{which_metal}' in player's inventory"
                     )
-                    print(COLOR_YELLOW + "You don't own that many count of this metal" + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "You don't own that many count of this metal" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
                     f"INFO: Canceling selling process --> current forge '{map_zone}' doesn't sell metal '{which_metal}'"
                 )
-                print(COLOR_YELLOW + "The current forge doesn't buys this metal" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "The current forge doesn't buys this metal" + COLOR_RESET_ALL)
         elif choice == 'Buy Metals':
             which_metal = input("Which metal do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_metal}' to buy")
@@ -980,13 +981,13 @@ def interaction_forge(map_zone, zone, player, item):
                         count += 1
                 else:
                     logger_sys.log_message(f"INFO: Canceling buying process --> doesn't have enough gold")
-                    print(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
                     f"INFO: Canceling buying process --> current forge '{map_zone}'" +
                     f" doesn't sell item '{which_metal}'"
                 )
-                print(COLOR_YELLOW + "The current forge doesn't sells this metal" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "The current forge doesn't sells this metal" + COLOR_RESET_ALL)
         else:
             continue_forge_actions = False
 

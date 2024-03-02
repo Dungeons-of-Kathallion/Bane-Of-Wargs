@@ -1,9 +1,10 @@
 # source imports
-import terminal_handling.py
+import terminal_handling
 import text_handling
 import time_handling
 import logger_sys
 from colors import *
+from terminal_handling import cout
 # external imports
 import random
 import time
@@ -19,7 +20,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     logger_sys.log_message(f"INFO: Getting start time of training loop: {start_time}")
     while still_training:
         options = ['Feed', 'Train', 'Exit']
-        choice = terminal_handling.py.show_menu(options)
+        choice = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen to '{choice}'")
         if choice == 'Feed':
             # For starters, get the mount feeding items,
@@ -40,8 +41,8 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
             mount_feeding_items_text = mount_feeding_items_text.replace(", ", '\n -')
             text = '='
             text_handling.print_separator(text)
-            print("MOUNT FEEDING ITEMS:")
-            print(mount_feeding_items_text)
+            cout("MOUNT FEEDING ITEMS:")
+            cout(mount_feeding_items_text)
             text_handling.print_separator(text)
             which_food = str(input(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL))
             can_be_bought = False
@@ -65,9 +66,9 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                     "You don't own any of that food but the current stable " +
                     f"sell this food at {gold} gold coins."
                 )
-                print(COLOR_YELLOW, end="")
+                cout(COLOR_YELLOW, end="")
                 text_handling.print_long_string(text)
-                print(COLOR_RESET_ALL, end="")
+                cout(COLOR_RESET_ALL, end="")
                 confirmation = input("Do you want to buy that food to feed this mount? (y/n) ")
                 if confirmation.lower().startswith("y"):
                     if gold <= player["gold"]:
@@ -82,36 +83,36 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                         player["xp"] += exp
                         logger_sys.log_message(f"INFO: Adding {exp} experience to player")
                     else:
-                        print(COLOR_YELLOW + "You don't have enough gold to buy this food." + COLOR_RESET_ALL)
+                        cout(COLOR_YELLOW + "You don't have enough gold to buy this food." + COLOR_RESET_ALL)
             else:
                 text = ("You cannot feed your mount with this food or you don't own that" +
                         " food and the current stable doesn't sell this food.")
-                print(COLOR_YELLOW, end="")
+                cout(COLOR_YELLOW, end="")
                 text_handling.print_long_string(text)
-                print(COLOR_RESET_ALL, end="")
+                cout(COLOR_RESET_ALL, end="")
         elif choice == 'Train':
             # Begin the training loop, that lasts 30
             # seconds. Every 2 seconds, the mount gets
             # its level upped by a small random amount
             # as the player experience too
             loading = 15
-            print(" ")
+            cout(" ")
             while loading > 0:
-                print("Training...", end='\r')
+                cout("Training...", end='\r')
                 time.sleep(.25)
-                print("Training*..", end='\r')
+                cout("Training*..", end='\r')
                 time.sleep(.25)
-                print("Training.*.", end='\r')
+                cout("Training.*.", end='\r')
                 time.sleep(.25)
-                print("Training..*", end='\r')
+                cout("Training..*", end='\r')
                 time.sleep(.25)
-                print("Training..*", end='\r')
+                cout("Training..*", end='\r')
                 time.sleep(.25)
-                print("Training.*.", end='\r')
+                cout("Training.*.", end='\r')
                 time.sleep(.25)
-                print("Training*..", end='\r')
+                cout("Training*..", end='\r')
                 time.sleep(.25)
-                print("Training...", end='\r')
+                cout("Training...", end='\r')
                 time.sleep(.25)
                 level = round(random.uniform(.01, .09), 3)
                 player["mounts"][player["current mount"]]["level"] += level
@@ -138,5 +139,5 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     player["gold"] -= gold
     gold = round(gold, 2)
     hours = round(game_elapsed_time * 24, 2)
-    print(f"{COLOR_YELLOW}You paid {gold} gold coins for {hours} hours of training{COLOR_RESET_ALL}")
+    cout(f"{COLOR_YELLOW}You paid {gold} gold coins for {hours} hours of training{COLOR_RESET_ALL}")
     logger_sys.log_message(f"INFO: Player paid {gold} gold for {hours} in-game hours of training.")

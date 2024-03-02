@@ -5,6 +5,7 @@ import dialog_handling
 import text_handling
 import enemy_handling
 from colors import *
+from terminal_handling import cout
 
 
 # Handling Functions
@@ -239,11 +240,11 @@ def attributes_addition_effect(current_effect_data, player):
 
 
 def dialog_displaying_effect(current_effect_data, player, dialog, preferences, text_replacements_generic, drinks):
-    print("")
+    cout("")
     text_handling.print_separator("=")
     dialog_handling.print_dialog(current_effect_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
     text_handling.print_separator("=")
-    print("")
+    cout("")
 
 
 def enemy_spawning_effect(
@@ -363,58 +364,58 @@ def print_consumable_effects(current_effect_type, current_effect_data):
     # depending on its type, print out in the game
     # UI formatted info about that effect
     logger_sys.log_message(f"INFO: Printing consumable effect data '{current_effect_data}' formatted info")
-    print(f"   Type: {COLOR_CYAN}{current_effect_type}{COLOR_RESET_ALL}")
+    cout(f"   Type: {COLOR_CYAN}{current_effect_type}{COLOR_RESET_ALL}")
     if current_effect_type == 'healing':
         if "effect time" in current_effect_data:
             duration_time = current_effect_data["effect time"]
-            print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+            cout(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
         if current_effect_data["health change"] is not None:
-            print(f"   Health Changes: ")
+            cout(f"   Health Changes: ")
 
             health_changes, max_health_changes = get_healing_effect_changes(current_effect_data)
 
             if health_changes >= 999:
-                print(f"     health -> {COLOR_MAGENTA}MAX HEALTH{COLOR_RESET_ALL}")
+                cout(f"     health -> {COLOR_MAGENTA}MAX HEALTH{COLOR_RESET_ALL}")
             elif health_changes > 0:
-                print(f"     health {COLOR_GREEN}+{health_changes}{COLOR_RESET_ALL}")
+                cout(f"     health {COLOR_GREEN}+{health_changes}{COLOR_RESET_ALL}")
             elif health_changes == 0:
-                print(f"     health {COLOR_BLUE}+{health_changes}{COLOR_RESET_ALL}")
+                cout(f"     health {COLOR_BLUE}+{health_changes}{COLOR_RESET_ALL}")
             else:
-                print(f"     health {COLOR_RED}{health_changes}{COLOR_RESET_ALL}")
+                cout(f"     health {COLOR_RED}{health_changes}{COLOR_RESET_ALL}")
 
             if max_health_changes > 0:
-                print(f"     max health {COLOR_GREEN}+{max_health_changes}{COLOR_RESET_ALL}")
+                cout(f"     max health {COLOR_GREEN}+{max_health_changes}{COLOR_RESET_ALL}")
             elif max_health_changes == 0:
-                print(f"     max health {COLOR_BLUE}+{max_health_changes}{COLOR_RESET_ALL}")
+                cout(f"     max health {COLOR_BLUE}+{max_health_changes}{COLOR_RESET_ALL}")
             else:
-                print(f"     max health {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}",)
+                cout(f"     max health {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}",)
         else:
-            print("     NONE")
+            cout("     NONE")
 
     elif current_effect_type == 'protection':
         duration_time = current_effect_data["effect time"]
         if duration_time == 999:
             duration_time = "∞INFINITE∞"
-        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
-        print(f"   Protection Changes:")
+        cout(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        cout(f"   Protection Changes:")
         if current_effect_data["protection change"] is not None:
             if "coefficient" in list(current_effect_data["protection change"]):
                 coefficient = str(round((current_effect_data["protection change"]["coefficient"] - 1) * 100)) + "%"
                 if current_effect_data["protection change"]["coefficient"] >= 1:
-                    print(f"     protection {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
+                    cout(f"     protection {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
                 else:
-                    print(f"     protection {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
+                    cout(f"     protection {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
             else:
-                print("     NONE")
+                cout("     NONE")
         else:
-            print("     NONE")
+            cout("     NONE")
 
     elif current_effect_type == 'strength':
         duration_time = current_effect_data["effect time"]
         if duration_time == 999:
             duration_time = "∞INFINITE∞"
-        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
-        print(f"   Strength Changes:")
+        cout(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        cout(f"   Strength Changes:")
         if current_effect_data["strength change"] is not None:
             nothing = False
             if (
@@ -428,68 +429,68 @@ def print_consumable_effects(current_effect_type, current_effect_data):
                         round((current_effect_data["strength change"]["damage coefficient"] - 1) * 100)
                     ) + "%"
                     if current_effect_data["strength change"]["damage coefficient"] >= 1:
-                        print(f"     global damage {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
+                        cout(f"     global damage {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
                     else:
-                        print(f"     global damage {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
+                        cout(f"     global damage {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
                 if "critical hit chance coefficient" in list(current_effect_data["strength change"]):
                     damage_coefficient = str(
                         round((current_effect_data["strength change"]["critical hit chance coefficient"] - 1) * 100)
                     ) + "%"
                     if current_effect_data["strength change"]["critical hit chance coefficient"] >= 1:
-                        print(f"     critical hit chance {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
+                        cout(f"     critical hit chance {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}")
                     else:
-                        print(f"     critical hit chance {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
+                        cout(f"     critical hit chance {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}")
             else:
-                print("     NONE")
+                cout("     NONE")
 
     elif current_effect_type == 'agility':
         duration_time = current_effect_data["effect time"]
         if duration_time == 999:
             duration_time = "∞INFINITE∞"
-        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
-        print(f"   Agility Changes:")
+        cout(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        cout(f"   Agility Changes:")
         if current_effect_data["agility change"] is not None:
             if "coefficient" in list(current_effect_data["agility change"]):
                 coefficient = str(round((current_effect_data["agility change"]["coefficient"] - 1) * 100)) + "%"
                 if current_effect_data["agility change"]["coefficient"] >= 1:
-                    print(f"     agility {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
+                    cout(f"     agility {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
                 else:
-                    print(f"     agility {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
+                    cout(f"     agility {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
             else:
-                print("     NONE")
+                cout("     NONE")
         else:
-            print("     NONE")
+            cout("     NONE")
 
     elif current_effect_type == 'time elapsing':
         duration_time = current_effect_data["effect time"]
         if duration_time == 999:
             duration_time = "∞INFINITE∞"
-        print(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
-        print(f"   Time Changes:")
+        cout(f"   Duration Time: {COLOR_BACK_BLUE}{duration_time}{COLOR_RESET_ALL}")
+        cout(f"   Time Changes:")
         if current_effect_data["time change"] is not None:
             if "coefficient" in list(current_effect_data["time change"]):
                 coefficient = str(round((current_effect_data["time change"]["coefficient"] - 1) * 100)) + "%"
                 if current_effect_data["time change"]["coefficient"] >= 1:
-                    print(f"     time elapsing {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
+                    cout(f"     time elapsing {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}")
                 else:
-                    print(f"     time elapsing {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
+                    cout(f"     time elapsing {COLOR_RED}{coefficient}{COLOR_RESET_ALL}")
             else:
-                print("     NONE")
+                cout("     NONE")
         else:
-            print("     NONE")
+            cout("     NONE")
 
     elif current_effect_type == 'exp change':
         if current_effect_data["exp change"] is not None:
-            print(f"   EXP Changes: ")
+            cout(f"   EXP Changes: ")
 
             exp_changes = get_exp_changes_effect_changes(current_effect_data)
 
             if exp_changes > 0:
-                print(f"     EXP {COLOR_GREEN}+{exp_changes}{COLOR_RESET_ALL}")
+                cout(f"     EXP {COLOR_GREEN}+{exp_changes}{COLOR_RESET_ALL}")
             elif exp_changes == 0:
-                print(f"     EXP {COLOR_BLUE}+{exp_changes}{COLOR_RESET_ALL}")
+                cout(f"     EXP {COLOR_BLUE}+{exp_changes}{COLOR_RESET_ALL}")
             else:
-                print(f"     EXP {COLOR_RED}{exp_changes}{COLOR_RESET_ALL}")
+                cout(f"     EXP {COLOR_RED}{exp_changes}{COLOR_RESET_ALL}")
 
         else:
-            print("     NONE")
+            cout("     NONE")

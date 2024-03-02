@@ -1,8 +1,9 @@
 # source imports
 import logger_sys
 import text_handling
-import terminal_handling.py
+import terminal_handling
 from colors import *
+from terminal_handling import cout
 
 
 # Handling functions
@@ -15,10 +16,10 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
     logger_sys.log_message(f"INFO: Adding npc '{current_npc}' to player 'met npcs' and 'met npcs names' save attributes")
     player["met npcs"].append(map_location)
     player["met npcs names"].append(str(npcs[current_npc]["name"]))
-    print(" ")
+    cout(" ")
     text = '='
     text_handling.print_separator(text)
-    print(str(npcs[current_npc]["name"]) + ":")
+    cout(str(npcs[current_npc]["name"]) + ":")
     text = '='
     text_handling.print_separator(text)
     count = 0
@@ -34,13 +35,13 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
     options = []
     logger_sys.log_message(f"INFO: Display npc '{current_npc}' information to GUI")
     if "None" not in npcs[current_npc]["sells"]["drinks"]:
-        print("DRINKS SELLS:")
+        cout("DRINKS SELLS:")
         count = 0
         npc_drinks = npcs[current_npc]["sells"]["drinks"]
         npc_drinks_len = len(npc_drinks)
         while count < npc_drinks_len:
             current_drink = str(npcs[current_npc]["sells"]["drinks"][int(count)])
-            print(
+            cout(
                 " -" + npcs[current_npc]["sells"]["drinks"][int(count)] + " " +
                 COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                 str(round(drinks[current_drink]["gold"] * npcs[current_npc]["cost value"], 2)) +
@@ -49,13 +50,13 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
             count += 1
         options += ['Buy Drink']
     if "None" not in npcs[current_npc]["sells"]["items"]:
-        print("ITEMS SELLS")
+        cout("ITEMS SELLS")
         count = 0
         npc_items = npcs[current_npc]["sells"]["items"]
         npc_items_len = len(npc_items)
         while count < npc_items_len:
             current_item = str(npcs[current_npc]["sells"]["items"][int(count)])
-            print(
+            cout(
                 " -" + npcs[current_npc]["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * npcs[current_npc]["cost value"], 2)) +
                 COLOR_RESET_ALL
@@ -63,13 +64,13 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
             count += 1
         options += ['Buy Item']
     if "None" not in npcs[current_npc]["buys"]["items"]:
-        print("ITEMS BUYS:")
+        cout("ITEMS BUYS:")
         count = 0
         npc_items = npcs[current_npc]["buys"]["items"]
         npc_items_len = len(npc_items)
         while count < npc_items_len:
             current_item = str(npcs[current_npc]["buys"]["items"][int(count)])
-            print(
+            cout(
                 " -" + npcs[current_npc]["buys"]["items"][int(count)] + " " + COLOR_YELLOW +
                 COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * npcs[current_npc]["cost value"], 2)) +
                 COLOR_RESET_ALL
@@ -82,7 +83,7 @@ def init_npc(map_location, player, npcs, drinks, item, preferences, map):
     p = True
     while p:
         logger_sys.log_message(f"INFO: Starting player interaction with npc '{current_npc}'")
-        choice = terminal_handling.py.show_menu(options)
+        choice = terminal_handling.show_menu(options)
         if choice == 'Buy Drink':
             which_drink = input("Which drink do you want to buy from him? ")
             if (

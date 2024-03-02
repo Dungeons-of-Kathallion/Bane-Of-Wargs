@@ -4,6 +4,7 @@ import check_yaml
 import text_handling
 import script_handling
 from colors import *
+from terminal_handling import cout
 # external imports
 import appdirs
 import os
@@ -32,7 +33,7 @@ def load_game_data(which_type, what_plugin=None):
     # and stop the program immediately
     if which_type != 'vanilla' and which_type != 'plugin':
         logger_sys.log_message(f"ERROR: Yaml data loading inputted key '{which_type}' is not valid --> crashing program")
-        print(
+        cout(
             f"{COLOR_RED}ERROR: {COLOR_STYLE_BRIGHT}Yaml" +
             f"data loading inputted key '{which_type}' is not valid --> crashing program{COLOR_RESET_ALL}"
         )
@@ -43,7 +44,7 @@ def load_game_data(which_type, what_plugin=None):
     global map, item, drinks, enemy, npcs, start_player
     global lists, zone, dialog, mission, mounts
 
-    print("")
+    cout("")
     # If the inputted which_type is vanilla, then just
     # load the vanilla game data
 
@@ -145,7 +146,7 @@ def load_game_data(which_type, what_plugin=None):
         logger_sys.log_message(f"INFO: Loading plugin '{what_plugin}' data")
         check_file = os.path.exists(program_dir + "/plugins/" + what_plugin)
         if not check_file:
-            print(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
+            cout(COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Couldn't find plugin '" + what_plugin + "'" + COLOR_RESET_ALL)
             logger_sys.log_message(f"ERROR: Couldn't find plugin '{what_plugin}'")
             play = 0
             text_handling.exit_game()
@@ -268,8 +269,8 @@ def load_game_data(which_type, what_plugin=None):
 def update_game_data(preferences, latest_game_data_version):
     # Update python modules
     logger_sys.log_message("INFO: Starting game python module requirements install process")
-    print(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
-    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_BRIGHT + "Installing and updating python module requirements..." + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
     first_timer = time.time()
 
     requirements = io.StringIO(temporary_git_file_download(
@@ -278,13 +279,13 @@ def update_game_data(preferences, latest_game_data_version):
     requirements_length = len(requirements)
     count = 0
     for module in requirements:
-        print(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
+        cout(f"{COLOR_BLUE}{count}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}", end="\r")
         module = module.replace('\n', '')
         logger_sys.log_message(f"INFO: Trying to install python module '{module}'")
         script_handling.install_requirement(module)
 
         count += 1
-    print(f"{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}")
+    cout(f"{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}/{COLOR_GREEN}{requirements_length}{COLOR_RESET_ALL}")
 
     last_timer = time.time()
     process_time = round(last_timer - first_timer, 4)
@@ -292,9 +293,9 @@ def update_game_data(preferences, latest_game_data_version):
 
     # Download game data
     logger_sys.log_message("INFO: Downloading game data to update it")
-    print(COLOR_STYLE_BRIGHT + "Downloading game data..." + COLOR_RESET_ALL)
-    print(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
-    print(f"{COLOR_BLUE}0{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+    cout(COLOR_STYLE_BRIGHT + "Downloading game data..." + COLOR_RESET_ALL)
+    cout(COLOR_STYLE_DIM + "This may take a few seconds, sorry for the waiting" + COLOR_RESET_ALL)
+    cout(f"{COLOR_BLUE}0{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
     download_branch = str(preferences["game data download"]["branch"])
     download_repo = str(preferences["game data download"]["repository"])
     download_org = str(preferences["game data download"]["org"])
@@ -304,24 +305,24 @@ def update_game_data(preferences, latest_game_data_version):
     first_timer = time.time()
     # Download yaml schema files
     fsspec_download('schemas/', program_dir + '/game/schemas', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}1{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+    cout(f"{COLOR_BLUE}1{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
 
     logger_sys.log_message("INFO: Downloading game data files from github")
     # Download data files
     fsspec_download('data/', program_dir + '/game/data', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}2{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+    cout(f"{COLOR_BLUE}2{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
 
     logger_sys.log_message("INFO: Downloading game images .txt files from github")
     # Download images .txt files
     fsspec_download('imgs/', program_dir + '/game/imgs', download_branch, download_repo, download_org)
-    print(f"{COLOR_BLUE}3{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
+    cout(f"{COLOR_BLUE}3{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}", end="\r")
 
     logger_sys.log_message("INFO: Downloading game scripts .py files from github")
     # Download scripts .py files
     fsspec_download('scripts/', program_dir + '/game/scripts', download_branch, download_repo, download_org)
 
-    print(f"{COLOR_GREEN}4{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}")
-    print("Done")
+    cout(f"{COLOR_GREEN}4{COLOR_RESET_ALL}/{COLOR_GREEN}4{COLOR_RESET_ALL}")
+    cout("Done")
     last_timer = time.time()
     process_time = round(last_timer - first_timer, 4)
     logger_sys.log_message(f"INFO: Process of downloading game data to update it completed in {process_time} seconds")
@@ -337,14 +338,14 @@ def fsspec_download(github_file, destination_point, download_branch, download_re
         fs = fsspec.filesystem("github", org=download_org, repo=download_repo, sha=download_branch)
         fs.get(fs.ls(github_file), destination)
     except Exception as error:
-        print(
+        cout(
             COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
             " an error occurred when trying to download game data to '" +
             destination + "'."
         )
         logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
         logger_sys.log_message("DEBUG: " + str(error))
-        print(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
+        cout(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
         time.sleep(.5)
 
 

@@ -2,6 +2,7 @@
 import logger_sys
 import text_handling
 from colors import *
+from terminal_handling import cout
 # external imports
 import yamale
 import yaml
@@ -106,7 +107,7 @@ def examine(file_path):
     try:
         check_yaml(str(file_path))
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -210,7 +211,7 @@ def check_dialog_conversations(dialog_data, dialog_name):
 def invalid_label_name_output(dialog_name, label_name):
     # Output in the UI and the logging
     # proper error messages
-    print(
+    cout(
         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
         f"dialog '{dialog_name}' conversation label '{label_name}' isn't a valid label name --> closing game" +
         COLOR_RESET_ALL
@@ -224,7 +225,7 @@ def invalid_label_name_output(dialog_name, label_name):
 def invalid_conversation_functions_output(dialog_name, function_name):
     # Output in the UI and the logging
     # proper error messages
-    print(
+    cout(
         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
         f"dialog '{dialog_name}' conversation function '{function_name}' isn't a valid function --> closing game" +
         COLOR_RESET_ALL
@@ -241,7 +242,7 @@ def examine_map_point(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/map.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -261,7 +262,7 @@ def examine_item(data):
         if data_type == "Consumable":
             examine_consumable(data_real)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -275,7 +276,7 @@ def examine_drink(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/drinks.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -289,7 +290,7 @@ def examine_enemy(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/enemies.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -303,7 +304,7 @@ def examine_npc(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/npcs.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -317,7 +318,7 @@ def examine_list(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/lists.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -332,7 +333,7 @@ def examine_zone(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/zones_{data_type}.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -346,7 +347,7 @@ def examine_dialog(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/dialogs.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -360,7 +361,7 @@ def examine_mission(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/missions.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -374,7 +375,7 @@ def examine_mount(data):
         schema = yamale.make_schema(f'{program_dir}/game/schemas/mounts.yaml')
         yamale.validate(schema, data)
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
@@ -383,7 +384,7 @@ def examine_mount(data):
 
 
 def consumable_effect_output_error(message):
-    print(
+    cout(
         COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
         "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(message)
     )
@@ -543,7 +544,7 @@ def examine_consumable(data):
 
             count += 1
     except Exception as error:
-        print(
+        cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
             "An error happened when examining item:\n" + COLOR_RESET_ALL + str(data)
         )

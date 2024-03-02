@@ -2,6 +2,7 @@
 import logger_sys
 import time_handling
 from colors import *
+from terminal_handling import cout
 # external imports
 import sys
 import time
@@ -23,13 +24,11 @@ def print_speech_text_effect(text, preferences):
         new_input += letter
     if not preferences["speed up"]:
         for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
+            cout(character, end="")
             time.sleep(round(random.uniform(.05, .1), 2))
     else:
         for character in new_input:
-            sys.stdout.write(character)
-            sys.stdout.flush()
+            cout(character, end="")
             time.sleep(.02)
 
 
@@ -46,7 +45,7 @@ def clear_prompt():
 
 def exit_game():
     time.sleep(1.5)
-    print(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
+    cout(COLOR_YELLOW + "Warning: closing game now" + COLOR_RESET_ALL)
     logger_sys.log_message("WARNING: closing game now")
     time.sleep(.5)
     clear_prompt()
@@ -55,20 +54,14 @@ def exit_game():
 
 
 def print_separator(character):
-    count = 0
-
-    while count < 55:
-        sys.stdout.write(COLOR_STYLE_BRIGHT + character + COLOR_RESET_ALL)
-        sys.stdout.flush()
-        count += 1
-    sys.stdout.write('\n')
+    cout(COLOR_STYLE_BRIGHT + (character * 55) + COLOR_RESET_ALL)
 
 
 def overstrike_text(text):
     result = ""
     for character in text:
         result = result + character + '\u0336'
-    print(str(result))
+    cout(str(result))
 
 
 def print_long_string(text):
@@ -80,7 +73,7 @@ def print_long_string(text):
 
     # this is just because at the beginning too, a `\n` character gets added
     new_input = new_input[1:]
-    print(str(new_input))
+    cout(str(new_input))
 
 
 def apply_yaml_data_color_code(to_print):
@@ -128,15 +121,15 @@ def print_zone_map(zone_name, zone, player, preferences):
     logger_sys.log_message("INFO: Printing UI")
     for line in to_print.splitlines():
         if count == 0:
-            print(line + " NAME: " + preferences["latest preset"]["save"])
+            cout(line + " NAME: " + preferences["latest preset"]["save"])
         if count == 1:
-            print(
+            cout(
                 line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
                 str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT +
                 COLOR_BLUE + str(player["max health"]) + COLOR_RESET_ALL
             )
         if count == 2:
-            print(
+            cout(
                 line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
                 str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" +
                 COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
@@ -145,14 +138,14 @@ def print_zone_map(zone_name, zone, player, preferences):
             date = time_handling.date_prettifier(
                 time_handling.addition_to_date(player["starting date"], int(player["elapsed time game days"]))
             )
-            print(
+            cout(
                 line + " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(date) + COLOR_RESET_ALL
             )
         if count == 4:
-            print(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
+            cout(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
         if count == 5:
-            print(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
+            cout(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
         count += 1
 
 
@@ -163,7 +156,7 @@ def print_zone_map_alone(zone_name, zone):
 
     count = 0
     for line in to_print.splitlines():
-        print(line)
+        cout(line)
         count += 1
 
 
