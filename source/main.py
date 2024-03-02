@@ -2546,9 +2546,14 @@ def run(play):
                     print("LOCATION: " + which_mount_location)
                     if which_mount_data["is deposited"]:
                         print("STABLE: " + str(map[which_mount_data["location"]]["map zone"]))
+                        deposited_day = time_handling.date_prettifier(
+                            time_handling.addition_to_date(
+                                player["starting date"], int(which_mount_data["deposited day"])
+                            )
+                        )
                         print(
                             "DEPOSITED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
-                            str(which_mount_data["deposited day"]) + COLOR_RESET_ALL
+                            str(deposited_day) + COLOR_RESET_ALL
                         )
                     print(" ")
 
