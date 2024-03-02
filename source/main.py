@@ -102,7 +102,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.11
+    GAME_DATA_VERSION = 0.12
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
