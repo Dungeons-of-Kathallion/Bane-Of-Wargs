@@ -344,6 +344,51 @@ Kathal Horses:
     - Horse Stable
     - Camel Stable
 
+Humil Dwarf Stable:
+  name: "Humil Dwarf Stable"
+  description: "An old dwarf stable that's specialized in different type of dwarf mounts."
+  type: stable
+  cost value: 1.1
+  training gold: 21
+  deposit gold: 6.7
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      | $BROWN|   $BLUE()$BROWN|  $WHITE|
+      |$GREEN-$BROWN|_$DARK_BROWN[]$BROWN__|$YELLOW^^$WHITE|
+      |$GREEN;$YELLOW/.  . \║$GREEN;$WHITE|
+      |$YELLOW/  .  . \ $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | |   ()|  |
+      |-|_[]__|^^|
+      |;/.  . \║;|
+      |/  .  . \ |
+      x__________x
+  stable:
+    sells:
+      mounts:
+      - Bear
+      - Shire Horse
+      - Donkey
+      drinks:
+      - Beer
+      - Suspicious Stew
+      items:
+      - Wheat
+      - Hay Bale
+      - Bread
+      - Apple
+      - Carrot
+      - Slime
+      - Stretched Bag
+    stables:
+    - Dwarf Stable
+    - Horse Stable
+
 Woodstack Hostel:
   name: "Kathallion Hostel"
   type: hostel
