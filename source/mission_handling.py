@@ -227,6 +227,7 @@ def execute_triggers(
                 item, enemy, npcs, start_player, lists, zone,
                 mission, mounts, start_time, map
             )
+            text_handling.print_separator('=')
         if "payment" in mission_data[which_key]:
             player["gold"] += mission_data[which_key]["payment"]
         if "fine" in mission_data[which_key]:
@@ -284,7 +285,7 @@ def offer_mission(
                         accept = "y"
                 else:
                     accept = cinput("Do you want to accept this task? (y/n)")
-                cout("=======================================================")
+                text_handling.print_separator('=')
                 if accept.startswith('y'):
                     if player["active missions"] is None:
                         player["active missions"] = []
@@ -313,7 +314,7 @@ def offer_mission(
 def mission_completing_checks(
     mission_id, missions_data, player, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs, start_player,
-    lists, zone, mission, mounts, start_time, current_scrip_data
+    lists, zone, mission, mounts, start_time
 ):
     # Load mission data and check if the
     # required attributes to complete the

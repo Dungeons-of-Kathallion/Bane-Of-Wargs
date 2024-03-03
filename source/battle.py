@@ -480,19 +480,19 @@ def fight(
                         # hold weapon/armor piece if it is one
                         elif item[item_input]["type"] == "Weapon":
                             player["held item"] = item_input
-                            cout("You are now holding a/an ", player["held item"])
+                            cout("You are now holding " + text_handling.a_an_check(player["held item"]))
                         elif item[item_input]["type"] == "Armor Piece: Chestplate":
                             player["held chestplate"] = item_input
-                            cout("You are now wearing a/an ", player["held chestplate"])
+                            cout("You are now wearing " + text_handling.a_an_check(player["held chestplate"]))
                         elif item[item_input]["type"] == "Armor Piece: Leggings":
                             player["held leggings"] = item_input
-                            cout("You are now wearing a/an ", player["held leggings"])
+                            cout("You are now wearing " + text_handling.a_an_check(player["held leggings"]))
                         elif item[item_input]["type"] == "Armor Piece: Boots":
                             player["held boots"] = item_input
-                            cout("You are now wearing a/an ", player["held boots"])
+                            cout("You are now wearing " + text_handling.a_an_check(player["held boots"]))
                         elif item[item_input]["type"] == "Armor Piece: Shield":
                             player["held shield"] = item_input
-                            cout("You are now holding a/an ", player["held shield"])
+                            cout("You are now holding " + text_handling.a_an_check(player["held shield"]))
                         elif item[item_input]["type"] == "Utility":
                             cout(" ")
                             plugin = preferences["latest preset"]["type"] == "plugin"
@@ -530,7 +530,7 @@ def fight(
                         if enemy_critical_hit:
                             damage = damage * 2
                         player["health"] -= damage
-                        cout("The enemy dealt ", str(damage), " points of damage.")
+                        cout("The enemy dealt " + str(damage) + " points of damage.")
                     cout(" ")
                     turn = True
                 else:

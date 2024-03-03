@@ -265,9 +265,9 @@ def print_dialog(
             plugin = preferences["latest preset"]["type"] == "plugin"
             count = 0
             for script in actions["run scripts"]:
-                current_scrip_data = actions["run scripts"][count]
+                current_script_data = actions["run scripts"][count]
                 script_handling.load_script(
-                    current_scrip_data, preferences,  player, map, item, drinks, enemy, npcs,
+                    current_script_data, preferences,  player, map, item, drinks, enemy, npcs,
                     start_player, lists, zone, dialog, mission, mounts, start_time,
                     text_replacements_generic, plugin
                 )
