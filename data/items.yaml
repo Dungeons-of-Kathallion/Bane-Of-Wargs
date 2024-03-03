@@ -1219,18 +1219,33 @@ Leather Jacket:
   agility: .2
   gold: 8.6
   description: "A small jacket that may not protect you much but keeps you warm when it's cold."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║       .---=     =---.      ║
+    ║      /     \\.//     \     ║
+    ║     (____|  \:/  |____)    ║
+    ║        |     :     |       ║
+    ║        |     :     |       ║
+    ║        |     :     |       ║
+    ║        |     :     |       ║
+    ║        |_____:_____|       ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$DARK_BROWN       .---=     =---.      $WHITE║
+    ║$DARK_BROWN      /     $BROWN\\$TAN.$BROWN//$DARK_BROWN     \     $WHITE║
+    ║$DARK_BROWN     (____|  \$BROWN$TAN:$BROWN/$DARK_BROWN  |____)    $WHITE║
+    ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
+    ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
+    ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
+    ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
+    ║$DARK_BROWN        |_____$TAN:$DARK_BROWN|       $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -1260,14 +1275,14 @@ Leather Boots:
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║        $BROWN________            $WHITE║
-    ║     $BROWN__(_____  $LIGHT_GRAY<|           $WHITE║
-    ║    $BROWN(____ / $LIGHT_GRAY<$BROWN| $LIGHT_GRAY<$BROWN|           $WHITE║
-    ║    $BROWN(___ /  $LIGHT_GRAY<$BROWN| L`-------.   $WHITE║
-    ║    $BROWN(__ /   L`--------.  \  $WHITE║
-    ║    $BROWN/  `.    $LIGHT_GRAY^^^^^ $BROWN|   \  | $WHITE║
-    ║   $BROWN|     \---------'    |/  $WHITE║
-    ║   $BROWN|______|____________/]   $WHITE║
+    ║        $DARK_BROWN________            $WHITE║
+    ║     $DARK_BROWN__(_____  $LIGHT_GRAY<|           $WHITE║
+    ║    $DARK_BROWN(____ / $LIGHT_GRAY<$DARK_BROWN| $LIGHT_GRAY<$DARK_BROWN|           $WHITE║
+    ║    $DARK_BROWN(___ /  $LIGHT_GRAY<$DARK_DARK_BROWN| L`-------.   $WHITE║
+    ║    $DARK_BROWN(__ /   L`--------.  \  $WHITE║
+    ║    $DARK_BROWN/  `.    $LIGHT_GRAY^^^^^ $DARK_BROWN|   \  | $WHITE║
+    ║   $DARK_BROWN|     \---------'    |/  $WHITE║
+    ║   $DARK_BROWN|______|____________/]   $WHITE║
     ║   $LIGHT_GRAY[_____|`-.__________]    $WHITE║
     ║                            ║
     ╚════════════════════════════╝
@@ -1278,20 +1293,35 @@ Old Pants:
   agility: .25
   gold: 3.86
   description: "An old pair of pants. It is large and very dirty."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║       [_I_I[L]=_I_I_]      ║
+    ║       / **  | :**   \      ║
+    ║       |*   /|  \    |      ║
+    ║       |  *| '-  | **|      ║
+    ║        \* |*/^\*| */       ║
+    ║        |  | | |*|  |       ║
+    ║        \  |*| | |  /       ║
+    ║        / -|-| |-|- \       ║
+    ║        |**| | | |  /       ║
+    ║        | *|*| |*| /        ║
+    ║        |* | | | | \        ║
+    ║        [____] [____]       ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$LIGHT_GRAY       [_I_I[L]=_I_I_]      $WHITE║
+    ║$TAN       / $KHAKI**$TAN  | :$KHAKI**$TAN   \      $WHITE║
+    ║$TAN       |$KHAKI*$TAN   /|  \    |      $WHITE║
+    ║$TAN       |  $KHAKI*$TAN| '-  | $KHAKI**$TAN|      $WHITE║
+    ║$TAN        \$KHAKI*$TAN |$KHAKI*$TAN/^\$KHAKI*$TAN| $KHAKI*$TAN/       $WHITE║
+    ║$TAN        |  | | |$KHAKI*$TAN|  |       $WHITE║
+    ║$TAN        \  |$KHAKI*$TAN| | |  /       $WHITE║
+    ║$TAN        / -|-| |-|- \       $WHITE║
+    ║$TAN        |$KHAKI**$TAN| | | |  /       $WHITE║
+    ║$TAN        | $KHAKI*$TAN|$KHAKI*$TAN| |$KHAKI*$TAN| /        $WHITE║
+    ║$TAN        |$KHAKI*$TAN | | | | \        $WHITE║
+    ║$TAN        [____] [____]       $WHITE║
     ╚════════════════════════════╝
 Broken Shield:
   upgrade tier: 0
@@ -1300,19 +1330,34 @@ Broken Shield:
   agility: .1
   gold: 4.5
   description: "A Shield from ancient times, cloven in two and left for travelers to find."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║            _..._           ║
+    ║        .-'_.---._'-.       ║
+    ║        ||####|(__)||       ║
+    ║        ((####|(**)))       ║
+    ║         '\###|_''/'        ║
+    ║          \\()|##//         ║
+    ║           \\ |#//          ║
+    ║            .\_/.           ║
+    ║             L.J            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$BROWN            _..._           $WHITE║
+    ║$BROWN        .-'_.---._'-.       $WHITE║
+    ║$BROWN        ||$TAN####$BROWN|(__)||       $WHITE║
+    ║$BROWN        (($TAN####$BROWN|($DARK_BROWN**$TAN)))       $WHITE║
+    ║$BROWN         '\$TAN###$BROWN|_''/'        $WHITE║
+    ║$BROWN          \\()|$TAN##$BROWN//         $WHITE║
+    ║$BROWN           \\ |$TAN#$BROWN//          $WHITE║
+    ║$BROWN            .\_/.           $WHITE║
+    ║$LIGHT_GRAY             L.J            $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Knight Boots: &knight_boots
