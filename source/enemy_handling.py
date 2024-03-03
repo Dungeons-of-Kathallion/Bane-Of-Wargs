@@ -52,7 +52,7 @@ def spawn_enemy(
                 player, item, enemy, map, map_location, enemies_remaining, lists,
                 defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
                 start_player, dialog, text_replacements_generic, player_damage_coefficient,
-                previous_player, save_file
+                previous_player, save_file, start_time
             )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")

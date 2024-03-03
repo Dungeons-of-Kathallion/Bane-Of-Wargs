@@ -68,7 +68,7 @@ def date_prettifier(date):
 
 def get_day_time(game_days):
     # calculate day time
-    day_time = "PLACEHOLDER"  # .25 = morning .50 = day .75 = evening .0 = night
+    day_time = COLOR_BLUE + COLOR_STYLE_BRIGHT + "▲ MORNING" + COLOR_RESET_ALL  # .25 = morning .50 = day .75 = evening .0 = night
     day_time_decimal = "." + str(game_days).split(".", 1)[1]
     day_time_decimal = float(day_time_decimal)
     if day_time_decimal < .25 and day_time_decimal > .0:

@@ -1245,8 +1245,9 @@ def run(play):
             start_dialog = player["start dialog"]["dialog"]
             logger_sys.log_message(f"INFO: Displaying start dialog '{start_dialog}' to player")
             dialog_handling.print_dialog(
-                start_dialog, dialog, preferences,
-                text_replacements_generic, player, drinks
+                start_dialog, dialog, preferences, text_replacements_generic, player, drinks,
+                item, enemy, npcs, start_player, lists, zone,
+                mission, mounts, start_time, map
             )
             text = '='
             text_handling.print_separator(text)
@@ -1342,7 +1343,11 @@ def run(play):
                     f"INFO: Player has all required stuff to display dialog '{current_dialog}'" +
                     f" --> displaying it and adding map location '{map_location}' to the player's heard dialogs save list"
                 )
-                dialog_handling.print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks)
+                dialog_handling.print_dialog(
+                    current_dialog, dialog, preferences, text_replacements_generic, player, drinks,
+                    item, enemy, npcs, start_player, lists, zone,
+                    mission, mounts, start_time, map
+                )
                 player["heard dialogs"].append(map_location)
                 text = '='
                 text_handling.print_separator(text)
@@ -1402,8 +1407,9 @@ def run(play):
             ) not in player["offered missions"]:
                 logger_sys.log_message(f"INFO: Offering mission '{str(list(mission)[count])}' to player")
                 mission_handling.offer_mission(
-                    str(list(mission)[count]), player, mission, dialog,
-                    preferences, text_replacements_generic, drinks
+                    str(list(mission)[count]), player, mission, dialog, preferences,
+                    text_replacements_generic, drinks, item, enemy, npcs,
+                    start_player, lists, zone, mission, mounts, start_time, map
                 )
 
             count += 1
@@ -1461,8 +1467,9 @@ def run(play):
             if current_mission_data["destination"] == map_location:
                 logger_sys.log_message(f"INFO: Running mission completing checks for mission data '{current_mission_data}'")
                 mission_handling.mission_completing_checks(
-                    str(player["active missions"][count]), mission, player,
-                    dialog, preferences, text_replacements_generic, drinks
+                    str(player["active missions"][count]), mission, player, dialog, preferences,
+                    text_replacements_generic, drinks, item, enemy, npcs, start_player,
+                    lists, zone, mission, mounts, start_time, current_scrip_data
                 )
 
             count += 1
@@ -1484,7 +1491,8 @@ def run(play):
                     logger_sys.log_message(f"INFO: Executing failing triggers of mission data '{current_mission_data}'")
                     mission_handling.execute_triggers(
                         current_mission_data, player, 'on fail', dialog, preferences,
-                        text_replacements_generic, drinks
+                        text_replacements_generic, drinks, item, enemy, npcs,
+                        start_player, lists, zone, mission, mounts, start_time, map
                     )
                     cout(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" +
@@ -1532,8 +1540,9 @@ def run(play):
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
-                                    current_enemy_data["dialog"], dialog, preferences,
-                                    text_replacements_generic, player, drinks
+                                    current_enemy_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
+                                    item, enemy, npcs, start_player, lists, zone,
+                                    mission, mounts, start_time, map
                                 )
 
                     count2 += 1
@@ -2421,8 +2430,8 @@ def run(play):
                         dialog, preferences, text_replacements_generic,
                         lists, map_location, enemy, item, drinks,
                         start_player, npcs, zone,
-                        mounts, mission, player_damage_coefficient,
-                        previous_player, save_file
+                        mounts, mission, player_damage_coefficient, previous_player,
+                        save_file, map, start_time
                     )
                 elif choice == 'Get Rid':
                     text = (
@@ -2759,18 +2768,12 @@ def run(play):
                 continued_command = True
                 current_utility = i
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
-                    if preferences["latest preset"]["type"] == "plugin":
-                        script_handling.load_script(
-                            current_utility, preferences, player, map, item, drinks, enemy, npcs,
-                            start_player, lists, zone, dialog, mission, mounts, start_time,
-                            text_replacements_generic, plugin=True
-                        )
-                    else:
-                        script_handling.load_script(
-                            current_utility, preferences, player, map, item, drinks, enemy, npcs,
-                            start_player, lists, zone, dialog, mission, mounts, start_time,
-                            text_replacements_generic
-                        )
+                    plugin = preferences["latest preset"]["type"] == "plugin"
+                    script_handling.load_script(
+                        current_utility, preferences, player, map, item, drinks, enemy, npcs,
+                        start_player, lists, zone, dialog, mission, mounts, start_time,
+                        text_replacements_generic, plugin
+                    )
                     continued_utility = True
                     cinput()
                 elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
