@@ -160,74 +160,78 @@ latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
 
-continuing = True
-count = 0
-while count < len(latest_main_class) and continuing:
-    if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
-        latest_version = latest_main_class[count].split("= ", 1)[1]
-        continuing = False
-    count += 1
+if latest_main_class == []:  # if the file didn't download
+    cout("Skipping game updating process...")
+    time.sleep(1)
+else:
+    continuing = True
+    count = 0
+    while count < len(latest_main_class) and continuing:
+        if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
+            latest_version = latest_main_class[count].split("= ", 1)[1]
+            continuing = False
+        count += 1
 
-if float(latest_version) > float(SOURCE_CODE_VERSION):
-    latest_version = float(str(latest_version).replace('\n', ''))
-    logger_sys.log_message("WARNING: The game source code is outdated")
-    logger_sys.log_message(
-        f"DEBUG: You're using version {SOURCE_CODE_VERSION} while the latest version is {latest_version}"
-    )
-    cout(
-        COLOR_YELLOW + "WARNING: The game source code is outdated:\nYou're using " +
-        f"version {SOURCE_CODE_VERSION} while the latest version is {latest_version}" +
-        COLOR_RESET_ALL
-    )
-    time.sleep(3)
-    text_handling.clear_prompt()
-
-# Get latest game data version for later
-logger_sys.log_message(f"INFO: Checking if game data at '{program_dir}/game/' is up to date")
-global latest_game_data_version
-latest_game_data_version = None
-try:
-    with open(f'{program_dir}/game/VERSION.bow') as f:
-        GAME_DATA_VERSION = f.read().replace('\n', '')
-except Exception as error:
-    cout(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
-    cout(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
-    logger_sys.log_message(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
-    logger_sys.log_message(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
-    time.sleep(3)
-    text_handling.exit_game()
-
-continuing = True
-count = 0
-while count < len(latest_main_class) and continuing:
-    if latest_main_class[count].startswith('    GAME_DATA_VERSION = '):
-        latest_game_data_version = latest_main_class[count].split("= ", 1)[1]
-        continuing = False
-    count += 1
-
-if preferences["auto update"] or first_start:
-    data_handling.update_game_data(preferences, latest_game_data_version)
-
-# Compare the latest game data version with
-# the current game data version
-if float(GAME_DATA_VERSION) < float(latest_game_data_version):
-    latest_game_data_version = float(str(latest_game_data_version).replace('\n', ''))
-    logger_sys.log_message(f"WARNING: The game data at '{program_dir}' is outdated")
-    logger_sys.log_message(
-        f"DEBUG: You're using version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}"
-    )
-    cout(
-        COLOR_YELLOW + f"WARNING: The game data at '{program_dir}' is outdated:\nYou're using " +
-        f"version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}" +
-        COLOR_RESET_ALL
-    )
-    time.sleep(3)
-    cout("\nDo you want to update your game data right now?")
-    want_to_update = terminal_handling.show_menu(["Yes", "No"])
-    if want_to_update == "Yes":
+    if float(latest_version) > float(SOURCE_CODE_VERSION):
+        latest_version = float(str(latest_version).replace('\n', ''))
+        logger_sys.log_message("WARNING: The game source code is outdated")
+        logger_sys.log_message(
+            f"DEBUG: You're using version {SOURCE_CODE_VERSION} while the latest version is {latest_version}"
+        )
+        cout(
+            COLOR_YELLOW + "WARNING: The game source code is outdated:\nYou're using " +
+            f"version {SOURCE_CODE_VERSION} while the latest version is {latest_version}" +
+            COLOR_RESET_ALL
+        )
+        time.sleep(3)
         text_handling.clear_prompt()
+
+    # Get latest game data version
+    logger_sys.log_message(f"INFO: Checking if game data at '{program_dir}/game/' is up to date")
+    global latest_game_data_version
+    latest_game_data_version = None
+    try:
+        with open(f'{program_dir}/game/VERSION.bow') as f:
+            GAME_DATA_VERSION = f.read().replace('\n', '')
+    except Exception as error:
+        cout(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+        cout(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+        logger_sys.log_message(f"ERROR: Couldn't find required file '{program_dir}/game/VERSION.bow'")
+        logger_sys.log_message(f"DEBUG: Please try to restart the game with the preferences option 'auto update' turned on")
+        time.sleep(3)
+        text_handling.exit_game()
+
+    continuing = True
+    count = 0
+    while count < len(latest_main_class) and continuing:
+        if latest_main_class[count].startswith('    GAME_DATA_VERSION = '):
+            latest_game_data_version = latest_main_class[count].split("= ", 1)[1]
+            continuing = False
+        count += 1
+
+    if preferences["auto update"] or first_start:
         data_handling.update_game_data(preferences, latest_game_data_version)
-    text_handling.clear_prompt()
+
+    # Compare the latest game data version with
+    # the current game data version
+    if float(GAME_DATA_VERSION) < float(latest_game_data_version):
+        latest_game_data_version = float(str(latest_game_data_version).replace('\n', ''))
+        logger_sys.log_message(f"WARNING: The game data at '{program_dir}' is outdated")
+        logger_sys.log_message(
+            f"DEBUG: You're using version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}"
+        )
+        cout(
+            COLOR_YELLOW + f"WARNING: The game data at '{program_dir}' is outdated:\nYou're using " +
+            f"version {GAME_DATA_VERSION} while the latest version is {latest_game_data_version}" +
+            COLOR_RESET_ALL
+        )
+        time.sleep(3)
+        cout("\nDo you want to update your game data right now?")
+        want_to_update = terminal_handling.show_menu(["Yes", "No"])
+        if want_to_update == "Yes":
+            text_handling.clear_prompt()
+            data_handling.update_game_data(preferences, latest_game_data_version)
+        text_handling.clear_prompt()
 
 # main menu start
 while menu:
@@ -1245,8 +1249,9 @@ def run(play):
             start_dialog = player["start dialog"]["dialog"]
             logger_sys.log_message(f"INFO: Displaying start dialog '{start_dialog}' to player")
             dialog_handling.print_dialog(
-                start_dialog, dialog, preferences,
-                text_replacements_generic, player, drinks
+                start_dialog, dialog, preferences, text_replacements_generic, player, drinks,
+                item, enemy, npcs, start_player, lists, zone,
+                mission, mounts, start_time, map
             )
             text = '='
             text_handling.print_separator(text)
@@ -1342,7 +1347,11 @@ def run(play):
                     f"INFO: Player has all required stuff to display dialog '{current_dialog}'" +
                     f" --> displaying it and adding map location '{map_location}' to the player's heard dialogs save list"
                 )
-                dialog_handling.print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks)
+                dialog_handling.print_dialog(
+                    current_dialog, dialog, preferences, text_replacements_generic, player, drinks,
+                    item, enemy, npcs, start_player, lists, zone,
+                    mission, mounts, start_time, map
+                )
                 player["heard dialogs"].append(map_location)
                 text = '='
                 text_handling.print_separator(text)
@@ -1402,8 +1411,9 @@ def run(play):
             ) not in player["offered missions"]:
                 logger_sys.log_message(f"INFO: Offering mission '{str(list(mission)[count])}' to player")
                 mission_handling.offer_mission(
-                    str(list(mission)[count]), player, mission, dialog,
-                    preferences, text_replacements_generic, drinks
+                    str(list(mission)[count]), player, mission, dialog, preferences,
+                    text_replacements_generic, drinks, item, enemy, npcs,
+                    start_player, lists, zone, mission, mounts, start_time, map
                 )
 
             count += 1
@@ -1461,8 +1471,9 @@ def run(play):
             if current_mission_data["destination"] == map_location:
                 logger_sys.log_message(f"INFO: Running mission completing checks for mission data '{current_mission_data}'")
                 mission_handling.mission_completing_checks(
-                    str(player["active missions"][count]), mission, player,
-                    dialog, preferences, text_replacements_generic, drinks
+                    str(player["active missions"][count]), mission, player, dialog, preferences,
+                    text_replacements_generic, drinks, item, enemy, npcs, start_player,
+                    lists, zone, mission, mounts, start_time
                 )
 
             count += 1
@@ -1484,7 +1495,8 @@ def run(play):
                     logger_sys.log_message(f"INFO: Executing failing triggers of mission data '{current_mission_data}'")
                     mission_handling.execute_triggers(
                         current_mission_data, player, 'on fail', dialog, preferences,
-                        text_replacements_generic, drinks
+                        text_replacements_generic, drinks, item, enemy, npcs,
+                        start_player, lists, zone, mission, mounts, start_time, map
                     )
                     cout(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" +
@@ -1532,8 +1544,9 @@ def run(play):
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
-                                    current_enemy_data["dialog"], dialog, preferences,
-                                    text_replacements_generic, player, drinks
+                                    current_enemy_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
+                                    item, enemy, npcs, start_player, lists, zone,
+                                    mission, mounts, start_time, map
                                 )
 
                     count2 += 1
@@ -2421,8 +2434,8 @@ def run(play):
                         dialog, preferences, text_replacements_generic,
                         lists, map_location, enemy, item, drinks,
                         start_player, npcs, zone,
-                        mounts, mission, player_damage_coefficient,
-                        previous_player, save_file
+                        mounts, mission, player_damage_coefficient, previous_player,
+                        save_file, map, start_time
                     )
                 elif choice == 'Get Rid':
                     text = (
@@ -2759,18 +2772,12 @@ def run(play):
                 continued_command = True
                 current_utility = i
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
-                    if preferences["latest preset"]["type"] == "plugin":
-                        script_handling.load_script(
-                            current_utility, preferences, player, map, item, drinks, enemy, npcs,
-                            start_player, lists, zone, dialog, mission, mounts, start_time,
-                            text_replacements_generic, plugin=True
-                        )
-                    else:
-                        script_handling.load_script(
-                            current_utility, preferences, player, map, item, drinks, enemy, npcs,
-                            start_player, lists, zone, dialog, mission, mounts, start_time,
-                            text_replacements_generic
-                        )
+                    plugin = preferences["latest preset"]["type"] == "plugin"
+                    script_handling.load_script(
+                        current_utility, preferences, player, map, item, drinks, enemy, npcs,
+                        start_player, lists, zone, dialog, mission, mounts, start_time,
+                        text_replacements_generic, plugin
+                    )
                     continued_utility = True
                     cinput()
                 elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:

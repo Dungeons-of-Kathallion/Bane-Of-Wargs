@@ -15,46 +15,45 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 # Handling Functions
 
 def load_script(
-    current_utility, preferences, player, map, item, drinks, enemy, npcs,
+    script_data, preferences, player, map, item, drinks, enemy, npcs,
     start_player, lists, zone, dialog, mission, mounts, start_time,
     generic_text_replacements, plugin=False
 ):
-    logger_sys.log_message(f"INFO: Player is using utility item '{current_utility}'")
     if plugin:
         with open(
             program_dir + '/plugins/' + preferences["latest preset"]["plugin"] +
-            '/scripts/' + item[current_utility]["script name"]
+            '/scripts/' + script_data["script name"]
         ) as f:
             execute_script(
-                f, current_utility, player, map, item, drinks, enemy, npcs,
+                script_data, f, player, map, item, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts, start_time,
                 generic_text_replacements
             )
     else:
         with open(
-            program_dir + '/game/scripts/' + item[current_utility]["script name"]
+            program_dir + '/game/scripts/' + script_data["script name"]
         ) as f:
             execute_script(
-                f, current_utility, player, map, item, drinks, enemy, npcs,
+                script_data, f, player, map, item, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts, start_time,
                 generic_text_replacements
             )
 
 
 def execute_script(
-    file, current_utility, player, map, item, drinks, enemy, npcs,
+    script_data, file, player, map, item, drinks, enemy, npcs,
     start_player, lists, zone, dialog, mission, mounts, start_time,
     generic_text_replacements
 ):
     logger_sys.log_message(
-        f"INFO: Starting execution process of script '{file}' from utility '{current_utility}'"
+        f"INFO: Starting execution process of script '{file}'"
     )
     global_arguments = {}
     logger_sys.log_message(
-        f"INFO: Loading script '{file}' from utility '{current_utility}' required arguments"
+        f"INFO: Loading script '{file}' required arguments"
     )
-    if "arguments" in item[current_utility]:
-        arguments = item[current_utility]['arguments']
+    if "arguments" in script_data:
+        arguments = script_data['arguments']
         if "player" in arguments:
             global_arguments["player"] = player
         if "map" in arguments:
@@ -84,18 +83,18 @@ def execute_script(
         if "generic_text_replacements" in arguments:
             global_arguments["generic_text_replacements"] = generic_text_replacements
     logger_sys.log_message(
-        f"INFO: Loaded script '{file}' from utility '{current_utility}' required arguments:\n{global_arguments}"
+        f"INFO: Loaded script '{file}' required arguments:\n{global_arguments}"
     )
     logger_sys.log_message(
-        f"INFO: Executing script '{file}' from utility '{current_utility}' with arguments '{global_arguments}'"
+        f"INFO: Executing script '{file}' with arguments '{global_arguments}'"
     )
     try:
         exec(file.read(), global_arguments)
     except Exception as error:
         cout(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + str(error) + COLOR_RESET_ALL)
         logger_sys.log_message(
-            f"ERROR: An error occurred when executing script '{file}' from utility " +
-            f"'{current_utility}' with arguments '{global_arguments}'"
+            f"ERROR: An error occurred when executing script '{file}' " +
+            f"'with arguments '{global_arguments}'"
         )
         logger_sys.log_message(f"DEBUG: error message --> '{error}'")
         time.sleep(5)

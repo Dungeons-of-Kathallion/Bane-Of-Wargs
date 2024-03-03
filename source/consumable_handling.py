@@ -239,10 +239,18 @@ def attributes_addition_effect(current_effect_data, player):
             player["attributes"] += [i]
 
 
-def dialog_displaying_effect(current_effect_data, player, dialog, preferences, text_replacements_generic, drinks):
+def dialog_displaying_effect(
+    current_effect_data, player, dialog, preferences, text_replacements_generic, drinks,
+    item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map
+):
     cout("")
     text_handling.print_separator("=")
-    dialog_handling.print_dialog(current_effect_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks)
+    dialog_handling.print_dialog(
+        current_effect_data["dialog"], dialog, preferences,
+        text_replacements_generic, player, drinks,
+        item, enemy, npcs, start_player, lists, zone,
+        mission, mounts, start_time, map
+    )
     text_handling.print_separator("=")
     cout("")
 
@@ -288,7 +296,8 @@ def consume_consumable(
     dialog, preferences, text_replacements_generic,
     lists, map_location, enemy, item, drinks,
     start_player, npcs, zone,
-    mounts, mission, player_damage_coefficient, previous_player
+    mounts, mission, player_damage_coefficient, previous_player,
+    save_file, map, start_time
 ):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
@@ -338,7 +347,10 @@ def consume_consumable(
                 elif current_effect_type == "attributes addition":
                     attributes_addition_effect(current_effect_data, player)
                 elif current_effect_type == "dialog displaying":
-                    dialog_displaying_effect(current_effect_data, player, dialog, preferences, text_replacements_generic, drinks)
+                    dialog_displaying_effect(
+                        current_effect_data, player, dialog, preferences, text_replacements_generic, drinks,
+                        item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map
+                    )
                 elif current_effect_type == "enemy spawning":
                     enemy_spawning_effect(
                         current_effect_data, player, lists, map_location, enemy, item,

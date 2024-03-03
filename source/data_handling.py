@@ -341,9 +341,9 @@ def fsspec_download(github_file, destination_point, download_branch, download_re
         cout(
             COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
             " an error occurred when trying to download game data to '" +
-            destination + "'."
+            destination + "'"
         )
-        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'.")
+        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'")
         logger_sys.log_message("DEBUG: " + str(error))
         cout(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
         time.sleep(.5)
@@ -355,12 +355,26 @@ def temporary_git_file_download(selected_file, url):
     # clone the repository and select the chosen
     # file and export its data in a string
 
-    temporary_dir = tempfile.mkdtemp()
-    logger_sys.log_message(f"INFO: Creating temporary directory at '{temporary_dir}'")
-    git.Repo.clone_from(url, temporary_dir, depth=1)
+    try:
+        temporary_dir = tempfile.mkdtemp()
+        logger_sys.log_message(f"INFO: Creating temporary directory at '{temporary_dir}'")
+        git.Repo.clone_from(url, temporary_dir, depth=1)
 
-    with open(temporary_dir + '/' + selected_file, 'r') as f:
-        file_text_data = f.read()
+        with open(temporary_dir + '/' + selected_file, 'r') as f:
+            file_text_data = f.read()
+    except Exception as error:
+        cout(
+            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
+            f" an error occurred when trying to download file '{selected_file}' from git" +
+            f" url '{url}'"
+        )
+        logger_sys.log_message(
+            f"WARNING: An error occurred when downloading file '{selected_file}' from git url" +
+            f" '{url}'"
+        )
+        logger_sys.log_message("DEBUG: " + str(error))
+        time.sleep(3)
+        file_text_data = None
 
     return file_text_data
 

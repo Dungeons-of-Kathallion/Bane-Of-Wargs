@@ -203,7 +203,12 @@ def mission_checks(mission_data, player, which_key):
     return checks_passed
 
 
-def execute_triggers(mission_data, player, which_key, dialog, preferences, text_replacements_generic, drinks):
+def execute_triggers(
+    mission_data, player, which_key, dialog, preferences,
+    text_replacements_generic, drinks, item, enemy, npcs,
+    start_player, lists, zone, mission, mounts, start_time,
+    map
+):
     # If which_key input is invalid, quit
     # the game and output the error to the
     # game logs files
@@ -218,9 +223,11 @@ def execute_triggers(mission_data, player, which_key, dialog, preferences, text_
     if which_key in mission_data:
         if "dialog" in mission_data[which_key]:
             dialog_handling.print_dialog(
-                mission_data[which_key]["dialog"], dialog, preferences,
-                text_replacements_generic, player, drinks
+                mission_data[which_key]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
+                item, enemy, npcs, start_player, lists, zone,
+                mission, mounts, start_time, map
             )
+            text_handling.print_separator('=')
         if "payment" in mission_data[which_key]:
             player["gold"] += mission_data[which_key]["payment"]
         if "fine" in mission_data[which_key]:
@@ -229,7 +236,12 @@ def execute_triggers(mission_data, player, which_key, dialog, preferences, text_
             player["xp"] += mission_data[which_key]["exp addition"]
 
 
-def offer_mission(mission_id, player, missions_data, dialog, preferences, text_replacements_generic, drinks):
+def offer_mission(
+    mission_id, player, missions_data, dialog, preferences,
+    text_replacements_generic, drinks, item, enemy, npcs,
+    start_player, lists, zone, mission, mounts, start_time,
+    map
+):
     logger_sys.log_message(f"INFO: Offering mission '{mission_id}' to player")
     data = missions_data[mission_id]
 
@@ -262,7 +274,9 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
             # else, make the player automatically accept it
             if "dialog" in list(data["on offer"]):
                 dialog_handling.print_dialog(
-                    data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks
+                    data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
+                    item, enemy, npcs, start_player, lists, zone,
+                    mission, mounts, start_time, map
                 )
                 if "force accept" in list(data):
                     if not data["force accept"]:
@@ -271,7 +285,7 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
                         accept = "y"
                 else:
                     accept = cinput("Do you want to accept this task? (y/n)")
-                cout("=======================================================")
+                text_handling.print_separator('=')
                 if accept.startswith('y'):
                     if player["active missions"] is None:
                         player["active missions"] = []
@@ -297,7 +311,11 @@ def offer_mission(mission_id, player, missions_data, dialog, preferences, text_r
         logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
 
 
-def mission_completing_checks(mission_id, missions_data, player, dialog, preferences, text_replacements_generic, drinks):
+def mission_completing_checks(
+    mission_id, missions_data, player, dialog, preferences,
+    text_replacements_generic, drinks, item, enemy, npcs, start_player,
+    lists, zone, mission, mounts, start_time
+):
     # Load mission data and check if the
     # required attributes to complete the
     # mission are here and also check if the
@@ -325,7 +343,12 @@ def mission_completing_checks(mission_id, missions_data, player, dialog, prefere
     if attributes_checks_passed and stopovers_checks_passed:
         logger_sys.log_message(f"INFO: Executing mission '{mission_id}' completing triggers")
 
-        execute_triggers(mission_data, player, 'on complete', dialog, preferences, text_replacements_generic, drinks)
+        execute_triggers(
+            mission_data, player, 'on complete', dialog, preferences,
+            text_replacements_generic, drinks, item, enemy, npcs,
+            start_player, lists, zone, mission, mounts, start_time,
+            map
+        )
 
         logger_sys.log_message(f"INFO: Set mission '{mission_id}' as done")
         cout(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You completed mission '" + mission_data["name"] + "'" + COLOR_RESET_ALL)

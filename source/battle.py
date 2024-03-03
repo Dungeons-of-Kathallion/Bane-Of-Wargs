@@ -206,7 +206,7 @@ def encounter_text_show(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
     start_player, dialog, text_replacements_generic, player_damage_coefficient,
-    previous_player, save_file
+    previous_player, save_file, start_time
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -298,7 +298,8 @@ def encounter_text_show(
                 item_input, item, player, preferences, drinks,
                 enemy, npcs, start_player, lists, zone, dialog, mission,
                 mounts, text_replacements_generic, item, map_location,
-                player_damage_coefficient, previous_player, save_file
+                player_damage_coefficient, previous_player, save_file,
+                start_time
             )
             text = '='
             text_handling.print_separator(text)
@@ -479,33 +480,27 @@ def fight(
                         # hold weapon/armor piece if it is one
                         elif item[item_input]["type"] == "Weapon":
                             player["held item"] = item_input
-                            cout("You are now holding a/an ", player["held item"])
+                            cout("You are now holding " + text_handling.a_an_check(player["held item"]))
                         elif item[item_input]["type"] == "Armor Piece: Chestplate":
                             player["held chestplate"] = item_input
-                            cout("You are now wearing a/an ", player["held chestplate"])
+                            cout("You are now wearing " + text_handling.a_an_check(player["held chestplate"]))
                         elif item[item_input]["type"] == "Armor Piece: Leggings":
                             player["held leggings"] = item_input
-                            cout("You are now wearing a/an ", player["held leggings"])
+                            cout("You are now wearing " + text_handling.a_an_check(player["held leggings"]))
                         elif item[item_input]["type"] == "Armor Piece: Boots":
                             player["held boots"] = item_input
-                            cout("You are now wearing a/an ", player["held boots"])
+                            cout("You are now wearing " + text_handling.a_an_check(player["held boots"]))
                         elif item[item_input]["type"] == "Armor Piece: Shield":
                             player["held shield"] = item_input
-                            cout("You are now holding a/an ", player["held shield"])
+                            cout("You are now holding " + text_handling.a_an_check(player["held shield"]))
                         elif item[item_input]["type"] == "Utility":
                             cout(" ")
-                            if preferences["latest preset"]["type"] == 'plugin':
-                                script_handling.load_script(
-                                    item_input, preferences, player, map, item, drinks, enemy, npcs,
-                                    start_player, lists, zone, dialog, mission, mounts, start_time,
-                                    text_replacements_generic, plugin=True
-                                )
-                            else:
-                                script_handling.load_script(
-                                    item_input, preferences, player, map, item, drinks, enemy, npcs,
-                                    start_player, lists, zone, dialog, mission, mounts, start_time,
-                                    text_replacements_generic
-                                )
+                            plugin = preferences["latest preset"]["type"] == "plugin"
+                            script_handling.load_script(
+                                item[item_input], preferences, player, map, item, drinks, enemy, npcs,
+                                start_player, lists, zone, dialog, mission, mounts, start_time,
+                                text_replacements_generic, plugin
+                            )
                         text = '='
                         text_handling.print_separator(text)
                         cout(" ")
@@ -535,7 +530,7 @@ def fight(
                         if enemy_critical_hit:
                             damage = damage * 2
                         player["health"] -= damage
-                        cout("The enemy dealt ", str(damage), " points of damage.")
+                        cout("The enemy dealt " + str(damage) + " points of damage.")
                     cout(" ")
                     turn = True
                 else:

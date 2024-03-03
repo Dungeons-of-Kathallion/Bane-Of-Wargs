@@ -3,6 +3,7 @@ from colors import *
 import logger_sys
 import text_handling
 import terminal_handling
+import script_handling
 from terminal_handling import cout, cinput
 # external imports
 import appdirs
@@ -15,7 +16,11 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 # Functions to handle dialogs
 
 
-def print_dialog(current_dialog, dialog, preferences, text_replacements_generic, player, drinks):
+def print_dialog(
+    current_dialog, dialog, preferences, text_replacements_generic, player, drinks,
+    item, enemy, npcs, start_player, lists, zone,
+    mission, mounts, start_time, map
+):
     current_dialog_name = current_dialog
     logger_sys.log_message(f"INFO: Printing dialog '{current_dialog_name}'")
     current_dialog = dialog[str(current_dialog)]
@@ -255,6 +260,17 @@ def print_dialog(current_dialog, dialog, preferences, text_replacements_generic,
                 else:
                     player["health"] += drinks[selected_drink]["healing level"]
 
+                count += 1
+        if "run scripts" in actions:
+            plugin = preferences["latest preset"]["type"] == "plugin"
+            count = 0
+            for script in actions["run scripts"]:
+                current_script_data = actions["run scripts"][count]
+                script_handling.load_script(
+                    current_script_data, preferences,  player, map, item, drinks, enemy, npcs,
+                    start_player, lists, zone, dialog, mission, mounts, start_time,
+                    text_replacements_generic, plugin
+                )
                 count += 1
 
 
