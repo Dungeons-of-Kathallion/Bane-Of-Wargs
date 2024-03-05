@@ -95,7 +95,7 @@ def execute_script(
         cout(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + str(error) + COLOR_RESET_ALL)
         logger_sys.log_message(
             f"ERROR: An error occurred when executing script '{file}' " +
-            f"'with arguments '{global_arguments}'"
+            f"'with arguments '{arguments_list}'"
         )
         logger_sys.log_message(f"DEBUG: error message --> '{error}'")
         time.sleep(5)
