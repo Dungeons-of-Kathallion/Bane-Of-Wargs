@@ -82,8 +82,9 @@ def execute_script(
             global_arguments["start_time"] = start_time
         if "generic_text_replacements" in arguments:
             global_arguments["generic_text_replacements"] = generic_text_replacements
+    arguments_list = list(global_arguments)
     logger_sys.log_message(
-        f"INFO: Loaded script '{file}' required arguments:\n{global_arguments}"
+        f"INFO: Loaded script '{file}' required arguments:\n{arguments_list}"
     )
     logger_sys.log_message(
         f"INFO: Executing script '{file}' with arguments '{global_arguments}'"
