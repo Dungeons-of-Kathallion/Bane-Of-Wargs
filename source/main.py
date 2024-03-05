@@ -2085,7 +2085,7 @@ def run(play):
                     cout("AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(enemy_average_health) + COLOR_RESET_ALL)
                     cout(
                         "AGILITY: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
-                        str(enemy[which_enemy]["agility"] * 100) + COLOR_RESET_ALL
+                        str(enemy[which_enemy]["agility"]) + COLOR_RESET_ALL
                     )
 
                     # drops
