@@ -574,7 +574,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     train.training_loop(current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient)
                 else:
                     logger_sys.log_message(
-                        "INFO: Aborting mount training of mount '{current_mount_uuid}' --> the current stable isn't the right stable type"
+                        f"INFO: Aborting mount training of mount '{current_mount_uuid}' " +
+                        "--> the current stable isn't the right stable type"
                     )
                     cout(
                         COLOR_YELLOW + "The current stable doesn't have the right facilities for this mount" + COLOR_RESET_ALL
