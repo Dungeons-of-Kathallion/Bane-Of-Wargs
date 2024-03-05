@@ -2774,7 +2774,7 @@ def run(play):
                 if command == item[current_utility]["key"] and current_utility in player["inventory"]:
                     plugin = preferences["latest preset"]["type"] == "plugin"
                     script_handling.load_script(
-                        current_utility, preferences, player, map, item, drinks, enemy, npcs,
+                        item[current_utility], preferences, player, map, item, drinks, enemy, npcs,
                         start_player, lists, zone, dialog, mission, mounts, start_time,
                         text_replacements_generic, plugin
                     )
