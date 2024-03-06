@@ -664,7 +664,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     )
                     text_handling.print_long_string(text)
             else:
-                logger_sys.log_message(f"INFO: Canceling taking back process --> already riding mount '{which_mount}'")
+                logger_sys.log_message(f"INFO: Canceling taking back process --> already riding a mount")
                 text = (
                     COLOR_YELLOW + "You are currently already riding a mount. You need " +
                     "to deposit your current mount before riding an other one." + COLOR_RESET_ALL
