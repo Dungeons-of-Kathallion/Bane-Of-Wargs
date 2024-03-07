@@ -338,7 +338,8 @@ def get_enemy_stats(
 def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
-    player_damage_coefficient, start_time, text_replacements_generic
+    player_damage_coefficient, start_time, text_replacements_generic,
+    previous_player, save_file
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -470,40 +471,15 @@ def fight(
                     item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
                     # use item
                     if item_input in player["inventory"]:
-                        if item[item_input]["type"] == "Consumable" or item[item_input]["type"] == "Food":
-                            if item[item_input]["healing level"] == 999:
-                                player["health"] = player["max health"]
-                            else:
-                                player["health"] += item[item_input]["healing level"]
-                            player["max health"] += item[item_input]["max bonus"]
-                            player["inventory"].remove(item_input)
-                        # hold weapon/armor piece if it is one
-                        elif item[item_input]["type"] == "Weapon":
-                            player["held item"] = item_input
-                            cout("You are now holding " + text_handling.a_an_check(player["held item"]))
-                        elif item[item_input]["type"] == "Armor Piece: Chestplate":
-                            player["held chestplate"] = item_input
-                            cout("You are now wearing " + text_handling.a_an_check(player["held chestplate"]))
-                        elif item[item_input]["type"] == "Armor Piece: Leggings":
-                            player["held leggings"] = item_input
-                            cout("You are now wearing " + text_handling.a_an_check(player["held leggings"]))
-                        elif item[item_input]["type"] == "Armor Piece: Boots":
-                            player["held boots"] = item_input
-                            cout("You are now wearing " + text_handling.a_an_check(player["held boots"]))
-                        elif item[item_input]["type"] == "Armor Piece: Shield":
-                            player["held shield"] = item_input
-                            cout("You are now holding " + text_handling.a_an_check(player["held shield"]))
-                        elif item[item_input]["type"] == "Utility":
-                            cout(" ")
-                            plugin = preferences["latest preset"]["type"] == "plugin"
-                            script_handling.load_script(
-                                item[item_input], preferences, player, map, item, drinks, enemy, npcs,
-                                start_player, lists, zone, dialog, mission, mounts, start_time,
-                                text_replacements_generic, plugin
-                            )
+                        item_handling.use_item(
+                            item_input, item, player, preferences, drinks,
+                            enemy, npcs, start_player, lists, zone, dialog, mission,
+                            mounts, text_replacements_generic, item, map_location,
+                            player_damage_coefficient, previous_player, save_file,
+                            start_time
+                        )
                         text = '='
                         text_handling.print_separator(text)
-                        cout(" ")
                 else:
                     cout("'" + action + "' is not a valid option")
                     cout(" ")
