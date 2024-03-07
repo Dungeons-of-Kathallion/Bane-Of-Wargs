@@ -1060,8 +1060,42 @@ def run(play):
             str(player["y"]) + COLOR_RESET_ALL + ")"
         )
 
+        # Calculate the enemies global damage
+        # coefficient, depending on the player
+        # elapsed time in game-days
+        #
+        # Here's the calculation settings:
+        # x < 25days  => .85
+        # x < 45days  => .95
+        # x < 50days  => 1
+        # x < 80days  => 1.15
+        # x < 100days => 1.25
+        # x < 150days => 1.35
+        # x < 220days => 1.45
+        # x < 300days => 1.5
+        global enemies_damage_coefficient
+        enemies_damage_coefficient = 1  # placeholder
+        if player["elapsed time game days"] < 25:
+            enemies_damage_coefficient = .85
+        elif player["elapsed time game days"] < 45:
+            enemies_damage_coefficient = .95
+        elif player["elapsed time game days"] < 50:
+            enemies_damage_coefficient = 1
+        elif player["elapsed time game days"] < 80:
+            enemies_damage_coefficient = 1.15
+        elif player["elapsed time game days"] < 100:
+            enemies_damage_coefficient =  1.25
+        elif player["elapsed time game days"] < 150:
+            enemies_damage_coefficient = 1.35
+        elif player["elapsed time game days"] < 220:
+            enemies_damage_coefficient = 1.45
+        elif player["elapsed time game days"] < 300:
+            enemies_damage_coefficient = 1.5
+        else:
+            enemies_damage_coefficient = 1.5
+
         # All the checks for the player active effects
-        # are here
+        # are done here
         #
         # If the player has any active effects, load
         # them one by one and update them depending
@@ -1540,7 +1574,8 @@ def run(play):
                                 map_location, lists[str(current_enemy_data["enemy category"])],
                                 current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
                                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                                text_replacements_generic, start_time, previous_player, save_file
+                                text_replacements_generic, start_time, previous_player, save_file,
+                                enemies_damage_coefficient
                             )
                             if "dialog" in current_enemy_data:
                                 dialog_handling.print_dialog(
@@ -1559,7 +1594,8 @@ def run(play):
                 map_location, lists[map["point" + str(map_location)]["enemy type"]],
                 map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic, start_time, previous_player, save_file
+                text_replacements_generic, start_time, previous_player, save_file,
+                enemies_damage_coefficient
             )
 
         elif (
@@ -1583,7 +1619,8 @@ def run(play):
                 map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic, start_time, previous_player, save_file
+                text_replacements_generic, start_time, previous_player, save_file,
+                enemies_damage_coefficient
             )
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
@@ -2076,7 +2113,8 @@ def run(play):
 
                     cout("PLURAL: " + enemy[which_enemy]["plural"])
                     enemy_average_damage = (
-                        enemy[which_enemy]["damage"]["min damage"] + enemy[which_enemy]["damage"]["max damage"]
+                        enemy[which_enemy]["damage"]["min damage"] * enemies_damage_coefficient +
+                        enemy[which_enemy]["damage"]["max damage"] * enemies_damage_coefficient
                     ) / 2
                     enemy_average_health = (
                         enemy[which_enemy]["health"]["min spawning health"] + enemy[which_enemy]["health"]["max spawning health"]
@@ -2444,7 +2482,7 @@ def run(play):
                         lists, map_location, enemy, item, drinks,
                         start_player, npcs, zone,
                         mounts, mission, player_damage_coefficient, previous_player,
-                        save_file, map, start_time
+                        save_file, map, start_time, enemies_damage_coefficient
                     )
                 elif choice == 'Get Rid':
                     text = (

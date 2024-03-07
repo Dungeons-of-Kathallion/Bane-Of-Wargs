@@ -13,7 +13,8 @@ def use_item(
     which_item, item_data, player, preferences, drinks,
     enemy, npcs, start_player, lists, zone, dialog, mission,
     mounts, text_replacements_generic, item, map_location,
-    player_damage_coefficient, previous_player, save_file, start_time
+    player_damage_coefficient, previous_player, save_file, start_time,
+    enemies_damage_coefficient
 ):
     # Load the global items data and load the
     # chosen item data and stores it to a variable
@@ -27,7 +28,7 @@ def use_item(
             lists, map_location, enemy, item, drinks,
             start_player, npcs, zone,
             mounts, mission, player_damage_coefficient, previous_player,
-            save_file, map, start_time
+            save_file, map, start_time, enemies_damage_coefficient
         )
         logger_sys.log_message(f"INFO: Item '{which_item}' is an item of type '{which_item_type}' --> consuming it")
     elif (

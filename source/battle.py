@@ -14,7 +14,10 @@ turn = True
 fighting = True
 
 
-def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient):
+def calculate_player_risk(
+    player, item, enemies_remaining, chosen_enemy, enemy,
+    player_damage_coefficient, enemies_damage_coefficient
+):
     # get all stats
     player_hp = player["health"]
     player_agi = player["agility"]
@@ -116,7 +119,7 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
     enemies_count = enemies_number
     player_deaths = 0
     enemy_deaths = 0
-    while count < 50:
+    while count < 65:
         someone_died = False
         # reset enemy health stats
         player_fake_health = player_health_cap + player_hp
@@ -164,7 +167,9 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
             while not player_turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    damage = random.randint(enemy_min_damage, enemy_max_damage) - player_fake_defend * (
+                    damage = random.randint(
+                        enemy_min_damage, enemy_max_damage
+                    ) * enemies_damage_coefficient - player_fake_defend * (
                         player_fake_armor_protection * round(
                             random.uniform(.50, .90), 1
                         )
@@ -192,10 +197,11 @@ def calculate_player_risk(player, item, enemies_remaining, chosen_enemy, enemy, 
         count += 1
 
     # compute percentage of defeat chance
-    defeat_percentage = round(player_deaths * 100 / 50)
+    defeat_percentage = round(player_deaths * 100 / 65)
 
-    if defeat_percentage > 100:
+    if defeat_percentage >= 100:
         defeat_percentage = 100
+        defeat_percentage = random.randint(89, 100)
     elif defeat_percentage <= 0:
         defeat_percentage = random.randint(5, 8)
 
@@ -206,7 +212,7 @@ def encounter_text_show(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
     start_player, dialog, text_replacements_generic, player_damage_coefficient,
-    previous_player, save_file, start_time
+    previous_player, save_file, start_time, enemies_damage_coefficient
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -299,7 +305,7 @@ def encounter_text_show(
                 enemy, npcs, start_player, lists, zone, dialog, mission,
                 mounts, text_replacements_generic, item, map_location,
                 player_damage_coefficient, previous_player, save_file,
-                start_time
+                start_time, enemies_damage_coefficient
             )
             text = '='
             text_handling.print_separator(text)
@@ -339,7 +345,7 @@ def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
     player_damage_coefficient, start_time, text_replacements_generic,
-    previous_player, save_file
+    previous_player, save_file, enemies_damage_coefficient
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -476,7 +482,7 @@ def fight(
                             enemy, npcs, start_player, lists, zone, dialog, mission,
                             mounts, text_replacements_generic, item, map_location,
                             player_damage_coefficient, previous_player, save_file,
-                            start_time
+                            start_time, enemies_damage_coefficient
                         )
                         text = '='
                         text_handling.print_separator(text)
@@ -490,7 +496,7 @@ def fight(
                 if enemy_health > 0:
                     damage = random.randint(
                         enemy_min_damage, enemy_max_damage
-                    ) - defend * (
+                    ) * enemies_damage_coefficient - defend * (
                         armor_protection * round(random.uniform(.50, .90), 1)
                     )
                     damage = round(damage)

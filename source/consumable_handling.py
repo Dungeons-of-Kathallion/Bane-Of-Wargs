@@ -259,14 +259,14 @@ def enemy_spawning_effect(
     current_effect_data, player, lists, map_location, enemy, item,
     start_player, preferences, drinks, npcs, zone, mounts, mission,
     dialog, player_damage_coefficient, text_replacements_generic, previous_player,
-    save_file
+    save_file, enemies_damage_coefficient
 ):
     enemy_list = lists[current_effect_data["enemy list"]]
     enemies_number = current_effect_data["enemies number"]
     enemy_handling.spawn_enemy(
         map_location, enemy_list, enemies_number, enemy, item, lists, start_player, map, player,
         preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-        text_replacements_generic, previous_player, save_file
+        text_replacements_generic, previous_player, save_file, enemies_damage_coefficient
     )
 
 
@@ -297,7 +297,7 @@ def consume_consumable(
     lists, map_location, enemy, item, drinks,
     start_player, npcs, zone,
     mounts, mission, player_damage_coefficient, previous_player,
-    save_file, map, start_time
+    save_file, map, start_time, enemies_damage_coefficient
 ):
     # First, load the consumable data and stores
     # it in a variable, then remove the item
@@ -356,7 +356,7 @@ def consume_consumable(
                         current_effect_data, player, lists, map_location, enemy, item,
                         start_player, preferences, drinks, npcs, zone, mounts, mission,
                         dialog, player_damage_coefficient, text_replacements_generic,
-                        previous_player, save_file
+                        previous_player, save_file, enemies_damage_coefficient
                     )
                 elif current_effect_type == "exp change":
                     exp_change_effect(current_effect_data, player)
