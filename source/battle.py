@@ -480,6 +480,7 @@ def fight(
                         )
                         text = '='
                         text_handling.print_separator(text)
+                        cout(" ")
                 else:
                     cout("'" + action + "' is not a valid option")
                     cout(" ")
