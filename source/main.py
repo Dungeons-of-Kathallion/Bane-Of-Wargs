@@ -1084,7 +1084,7 @@ def run(play):
         elif player["elapsed time game days"] < 80:
             enemies_damage_coefficient = 1.15
         elif player["elapsed time game days"] < 100:
-            enemies_damage_coefficient =  1.25
+            enemies_damage_coefficient = 1.25
         elif player["elapsed time game days"] < 150:
             enemies_damage_coefficient = 1.35
         elif player["elapsed time game days"] < 220:
