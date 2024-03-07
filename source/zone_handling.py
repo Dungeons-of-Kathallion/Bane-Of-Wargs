@@ -867,7 +867,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
             cout(player_orders_to_collect)
             text = '='
             text_handling.print_separator(text)
-            which_order = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+            which_order = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
             logger_sys.log_message(f"INFO: Player has chosen order '{which_order}'")
             if which_order in player_orders_number:
                 current_order_uuid = str(list(player["orders"])[int(which_order)])

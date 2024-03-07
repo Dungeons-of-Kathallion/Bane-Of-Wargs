@@ -2292,21 +2292,30 @@ def run(play):
                 cout("WORN BOOTS: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held boots"] + COLOR_RESET_ALL)
             if player["held shield"] != " ":
                 cout("HELD SHIELD: " + COLOR_RED + COLOR_STYLE_BRIGHT + player["held shield"] + COLOR_RESET_ALL)
-            player_inventory = str(player["inventory"])
             logger_sys.log_message(f"INFO: Printing player inventory")
-            player_inventory = player_inventory.replace("'", '')
-            player_inventory = player_inventory.replace("[", ' -')
-            player_inventory = player_inventory.replace("]", '')
-            player_inventory = player_inventory.replace(", ", '\n -')
+            player_inventory_displayed = []
+            count = 0
+            for i in player["inventory"]:
+                zeros = len(str(len(player["inventory"])))
+                removed = len(str(count))
+                player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+                count += 1
             text = '='
             text_handling.print_separator(text)
             cout("INVENTORY:")
-            cout(player_inventory)
+            for line in player_inventory_displayed:
+                cout(line)
             text = '='
             text_handling.print_separator(text)
-            which_item = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-            logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
-            if which_item in player["inventory"]:
+            which_item = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
+            error = False
+            try:
+                which_item_index = int(which_item)
+                which_item = player["inventory"][which_item_index]
+            except Exception as e:
+                error = True
+            if not error:
+                logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to display information about")
                 text = '='
                 text_handling.print_separator(text)
                 logger_sys.log_message(f"INFO: Printing item '{which_item}' information")
@@ -2457,7 +2466,7 @@ def run(play):
                                 time.sleep(1.5)
                                 cout(" ")
                         else:
-                            player["inventory"].remove(which_item)
+                            del player["inventory"][which_item_index]
                             which_item_number_inventory = 0
                             count = 0
                             p = True
@@ -2481,7 +2490,7 @@ def run(play):
                                 if which_item == player["held shield"]:
                                     player["held shield"] = " "
             else:
-                logger_sys.log_message(f"INFO: Canceling item action --> player doesn't own item '{which_item}'")
+                logger_sys.log_message(f"INFO: Canceling item action --> player haven't entered valid input")
                 cout(COLOR_YELLOW + "You do not have that item." + COLOR_RESET_ALL)
                 time.sleep(1.5)
             continued_command = True
