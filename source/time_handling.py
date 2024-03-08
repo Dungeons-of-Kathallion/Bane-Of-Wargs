@@ -102,6 +102,7 @@ def return_game_day_from_seconds(seconds, time_elapsing_coefficient):
 
     return game_days
 
+
 def traveling_wait(traveling_coefficient):
     traveling_time = traveling_coefficient * TRAVELING_WAIT
     logger_sys.log_message(f"INFO: Running traveling waiting time: {traveling_time * 5} seconds of wait")
