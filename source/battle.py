@@ -230,7 +230,7 @@ def encounter_text_show(
     text_handling.print_separator(text)
 
     if enemies_number > 1:
-        cout("You encounter a group of " + text_handling.a_an_check(enemy_plural) + " that won't let you pass.")
+        cout("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
     else:
         cout("You find a/an " + text_handling.a_an_check(enemy_singular) + " on your way.")
 
