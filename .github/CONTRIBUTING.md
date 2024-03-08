@@ -109,4 +109,4 @@ Here are the main code style conventions:
   - You shouldn't worry about that checks too much
 
 ## Merging Pull Requests
-When you merge a pull request, please `Squash Merge`, remove commit listing, use the [naming convention](#naming-conventions), and add extra details if necessary. You do not have to use the name of a PR in the commit name. Note that before merging, every github action checks must be passing.
+When you merge a pull request, please `Squash Merge`, remove commit listing, use the [naming convention](#naming-conventions), and add extra details if necessary. You do not have to use the name of a PR in the commit name. Note that before merging, every github action checks must be passing. If the PR you're merging updates the `GAME_SOURCE_CODE_VERSION` and `GAME_DATA_VERSION` constants in the `main.py` class, please specify it in the commit description.
