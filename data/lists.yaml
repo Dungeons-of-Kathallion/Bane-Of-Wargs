@@ -8,9 +8,18 @@ generic:
 warg raids:
 - Warg
 - White Warg
+woods:
+- Doomed Horror
+- Ork Archer
+- Ork
+- Goblin
+- Woods Troll
+- Corrupted Ent
 black:
 - Black Ork
 - Dark Marksman
 - Doomed Horror
+desert raids:
+- Mumakil
 dragon bosses:
 - Balrog

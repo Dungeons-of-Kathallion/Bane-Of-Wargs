@@ -953,6 +953,7 @@ Californ Woods:
   name: "Californ Woods"
   description: "The Californ Woods are known to be one of the most dangerous woods of the Stall Island."
   type: dark woods
+  enemy spawning: woods
   map:
     map full: |
       x__________x
@@ -1014,6 +1015,7 @@ Gerud Desert:
   name: "Gerud Desert"
   description: "The Gerud desert is an arid desert in the eastern of the Stall Island. You'll find very dangerous enemies but also great rewards for adventurers."
   type: desert
+  enemy spawning: desert raids
   map:
     map full: |
       x__________x
@@ -1034,6 +1036,7 @@ Gerud Valleys:
   name: "Gerud Valleys"
   description: "The Gerud Valleys are a calm area of the Gerud Desert, so calm that a town has been settled here."
   type: desert valleys
+  enemy spawning: desert raids
   map:
     map full: |
       x__________x
@@ -1074,6 +1077,7 @@ Californ Beaches:
   name: "Californ Beaches"
   description: "The beaches of the Californ Woods in the western Stall Island."
   type: beach
+  enemy spawning: warg raids
   map:
     map full: |
       x__________x

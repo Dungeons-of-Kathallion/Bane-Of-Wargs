@@ -32,8 +32,8 @@ Goblin:
   - Raw Salmon
   - Bone
   - Wooden Stick
-  - Orc Iron Leggings
-  - Orc Shredded Chestplate
+  - Ork Iron Leggings
+  - Ork Shredded Chestplate
   description: "The Goblin may be an easy enemy to beat, but in groups, they can be very annoying to deal with."
 Ork:
   plural: "Orks"
@@ -52,9 +52,9 @@ Ork:
   - Bone
   - Spear
   - Dagger
-  - Orc Iron Leggings
-  - Orc Shredded Chestplate
-  - Orc Bow
+  - Ork Iron Leggings
+  - Ork Shredded Chestplate
+  - Ork Bow
   description: "Orks are the smaller and swifter version of the Goblins. Even if they have low health, they are fast and hard to hit because of their agility."
 Ork Archer:
   plural: "Ork Archers"
@@ -73,10 +73,10 @@ Ork Archer:
   - Bone
   - Spear
   - Dagger
-  - Orc Iron Leggings
-  - Orc Bow
-  - Orc Bag
-  - Orc Shield
+  - Ork Iron Leggings
+  - Ork Bow
+  - Ork Bag
+  - Ork Shield
   - Wooden Stick
   description: "The Ork Archers are specialized in bows and are not different from other Orks."
 Warg:
@@ -135,6 +135,28 @@ Cavern Troll:
   - Mace
   - Spear
   description: "Cavern Trolls are powerful but slow enemies. They can deal huge amounts of damages but they are quit easy to dodge."
+Woods Troll:
+  plural: "Woods Trolls"
+  damage:
+    min damage: 4
+    max damage: 7
+    critical chance: .6
+  health:
+    min spawning health: 6
+    max spawning health: 10
+    max health level: 10
+  agility: .43
+  inventory:
+  - Beef
+  - Porkchop
+  - Bone
+  - Wolf Fur
+  - Wooden Stick
+  - Mace
+  - Spear
+  description: >
+    Woods Trolls are the cousins of Cavern Trolls. They're smaller and swifter than their cousins,
+    but they're still powerful enough to defeat an hero.
 # Black enemies
 Black Ork:
   plural: "Black Orks"
@@ -152,8 +174,8 @@ Black Ork:
   - Porkchop
   - Bone
   - Spear
-  - Orc Shredded Chestplate
-  - Orc Bag
+  - Ork Shredded Chestplate
+  - Ork Bag
   - Warg Fur Shield
   description: "Black Orks are an older species of the Orks, which are way more powerful, but you won't see them often during your journey."
 Dark Marksman:
@@ -171,10 +193,10 @@ Dark Marksman:
   - Porkchop
   - Raw Salmon
   - Bone
-  - Orc Bag
-  - Orc Iron Leggings
-  - Orc Bow
-  description: "Dark Marksman are specialized Black Yrch in arching and are able to be swift and shoot you from long distances"
+  - Ork Bag
+  - Ork Iron Leggings
+  - Ork Bow
+  description: "Dark Marksman are specialized Black Orks in arching and are able to be swift and shoot you from long distances"
 Doomed Horror:
   plural: "Doomed Horrors"
   damage:
@@ -188,7 +210,52 @@ Doomed Horror:
   agility: .35
   inventory:
   - Wooden Stick
-  description: "Doomed Horrors were once men, which are now cursed to anguish in the evil dungeons, roaming them to strike all enemies. They are slow and deal low damages but they have high health."
+  description: "Doomed Horrors were once men, which are now cursed to anguish in the evil places, roaming them to strike all enemies. They are slow and deal low damages but they have high health."
+# Creatures enemies
+Corrupted Ent:
+  plural: Corrupted Ents
+  damage:
+    min damage: 4
+    max damage: 11
+    critical chance: .35
+  health:
+    min spawning health: 9
+    max spawning health: 16
+    max health level: 16
+  agility: .32
+  inventory:
+  - Wooden Stick
+  - Raw Wood
+  - Apple
+  - Tree Log
+  - Wet Tree Log
+  description: >
+    Many stories tales the history of the Ent race. After loosing their wives, some Ents went crazy and now wander in the darkest
+    places of the Californ Woods, destroying every sign of life...
+Mumakil:
+  plural: "Mumakils"
+  damage:
+    min damage: 12
+    max damage: 32
+    critical chance: .68
+  health:
+    min spawning health: 38
+    max spawning health: 56
+    max health level: 56
+  agility: .35
+  inventory:
+  - Sword
+  - Spear
+  - Bow
+  - Agility Potion
+  - Shield
+  - Ork Shield
+  - Stretched Bag
+  - Bone
+  - Mumakil Tusk
+  description: >
+    Mumakils are cousins of the elephants, that've been raised by dark men, who're up with the evil forces... They have blood-lust and
+    arrows can only harm their eyes, not their bodies.
 # Dragon bosses
 Balrog:
   plural: "Balrogs"

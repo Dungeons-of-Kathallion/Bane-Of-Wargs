@@ -386,8 +386,8 @@ Bow (2):
   - Bow String
   - Bow String
   - Flexible String
-Orc Bow:
-  display name: "Orc Bow"
+Ork Bow:
+  display name: "Ork Bow"
   upgrade tier: 0
   type: "Weapon"
   damage: 3
@@ -395,7 +395,7 @@ Orc Bow:
   agility: .25
   gold: 11.56
   critical hit chance: .07
-  description: "Orc bows are less powerful than generic bows but are way more easy to use and transport."
+  description: "Ork bows are less powerful than generic bows but are way more easy to use and transport."
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
@@ -475,7 +475,7 @@ Dagger:
   agility: .2
   gold: 12.3
   critical hit chance: .05
-  description: "The daggers are a generic longer knife that is often used by Yrch."
+  description: "The daggers are a generic longer knife that is often used by Orks."
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1463,13 +1463,13 @@ Chainmail Leggings (4):
   - Flexible Steel
   - Flexible Steel
   - Flexible Steel
-Orc Iron Leggings:
+Ork Iron Leggings:
   upgrade tier: 0
   type: "Armor Piece: Leggings"
   armor protection: .32
   agility: .15
   gold: 25.6
-  description: "The generics leggings of Goblins and Yrch. These leggings continue further along on your legs since Yrch and goblins don't wear boots.'"
+  description: "The generics leggings of Goblins and Orks. These leggings continue further along on your legs since Orks and goblins don't wear boots.'"
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1485,13 +1485,13 @@ Orc Iron Leggings:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
-Orc Shredded Chestplate:
+Ork Shredded Chestplate:
   upgrade tier: 0
   type: "Armor Piece: Chestplate"
   armor protection: .32
   agility: .15
   gold: 26.45
-  description: "The generic chestplate of Goblins and Yrch."
+  description: "The generic chestplate of Goblins and Orks."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1529,13 +1529,13 @@ Shield:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
-Orc Shield:
+Ork Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .05
   agility: .35
   gold: 18.29
-  description: "A shield built for weight; used by the Black Yrch."
+  description: "A shield built for weight; used by the Black Orks."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1557,7 +1557,7 @@ Warg Fur Shield:
   armor protection: .045
   agility: .15
   gold: 9.56
-  description: "A shredded orc shield with warg fur on it."
+  description: "A shredded ork shield with warg fur on it."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1614,11 +1614,11 @@ Tissue Bag:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
-Orc Bag:
+Ork Bag:
   type: "Bag"
   inventory slots: 3
   gold: 13.84
-  description: "A generic orc bag that lets you transport 3 items."
+  description: "A generic ork bag that lets you transport 3 items."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1842,6 +1842,44 @@ Wooden Stick:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Tree Log:
+  type: "Misc"
+  gold: .15
+  description: "A 1½ feet tree log, which is great for making fire."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Wet Tree Log:
+  type: "Misc"
+  gold: .15
+  description: "A 1½ feet tree log, except it's wet; not great for making fire."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 Wolf Skin:
   type: "Misc"
   gold: 4.32
@@ -1941,6 +1979,25 @@ Balrog Horn:
   type: "Misc"
   gold: 325.21
   description: "Balrog Horns are very hard to get and very expensive on the market."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Mumakil Tusk:
+  type: "Misc"
+  gold: 125.21
+  description: "Mumakil Tusks are very hard to get and very expensive on the market."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║

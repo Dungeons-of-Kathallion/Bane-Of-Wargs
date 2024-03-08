@@ -1,0 +1,17 @@
+$BROWN         _ $GREEN.-'$BROWN             
+         _`\`                                            
+     `$GREEN._$BROWN/` ;_.  \,                                       
+        `. /  _ /`                                       
+          ;_ _$GREEN,;$BROWN                                         
+        _/ $LIGHT_GRAY, ,$BROWN /$GREEN_,$BROWN                                       
+        $GREEN`"$BROWN\ $LIGHT_GRAY_$BROWN  |'                                        
+        $GREEN_=$BROWN}  ` ;/                                        
+       .'    `. `$GREEN-._$BROWN                                   
+    ,_/ ,| '    {  `.                                    
+     ] ',/  $GREEN; , ;$BROWN\ , \_                                  
+     `._L`\  `  \ `.` :`                                 
+      $GREEN`"`$BROWN | / ; [   J./_                                 
+         /   .   `. ` $GREEN`"$BROWN                       
+        { $GREEN;'$BROWN |\`._ \                                     
+        | $GREEN`$BROWN  ; J  ` \                                    
+       /_\_/__}{_\_/_)$WHITE

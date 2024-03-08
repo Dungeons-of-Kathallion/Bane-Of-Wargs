@@ -21,7 +21,7 @@ Warg:
       agility addition: .025
       resistance addition: .015
       mph addition: .25
-  description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
+  description: "Wargs are at first Orks mounts but they can be tamed and then used to fight against Orks. Wargs are fast and agile mounts."
 White Warg:
   name: White Warg
   plural: White Wargs
@@ -45,7 +45,7 @@ White Warg:
       agility addition: .015
       resistance addition: .01
       mph addition: .2
-  description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
+  description: "Wargs are at first Orks mounts but they can be tamed and then used to fight against Ork. Wargs are fast and agile mounts."
 Bear:
   name: Bear
   plural: Bears
