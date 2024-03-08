@@ -2768,7 +2768,7 @@ def run(play):
             cout("Dumping player preferences to preferences file...")
             with open(program_dir + '/preferences.yaml', 'w') as f:
                 f.write(dumped)
-                logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+            logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
             continued_command = True
         elif command.lower().startswith('p'):
             logger_sys.log_message("INFO: Pausing game")
@@ -2922,7 +2922,7 @@ logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
 with open(program_dir + '/preferences.yaml', 'w') as f:
     f.write(dumped)
-    logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
 
 text_handling.clear_prompt()
 logger_sys.log_message(f"INFO: GAME RUN END")
