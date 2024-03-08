@@ -87,7 +87,7 @@ def execute_script(
         f"INFO: Loaded script '{file}' required arguments:\n{arguments_list}"
     )
     logger_sys.log_message(
-        f"INFO: Executing script '{file}' with arguments '{global_arguments}'"
+        f"INFO: Executing script '{file}' with arguments '{arguments_list}'"
     )
     try:
         exec(file.read(), global_arguments)
