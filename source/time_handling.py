@@ -1,12 +1,16 @@
 # source imports
+import logger_sys
 from colors import *
+from terminal_handling import cout
 # external imports
 import calendar
+import time
 from datetime import datetime, timedelta
 
 
 # Constants
 COEFFICIENT = (1 / 720)
+TRAVELING_WAIT = (1 / 7.3)
 
 # Handling Functions
 
@@ -15,6 +19,7 @@ def addition_to_date(date, addition):
     # Get month, day and year and then
     # calculate the addition and return
     # the value
+    logger_sys.log_message(f"INFO: Calculating addition of {addition} days to date {date}")
     separated_date = date.split('-', 2)
     month = separated_date[0]
     day = separated_date[1]
@@ -30,6 +35,7 @@ def addition_to_date(date, addition):
     new_year = future_date[0]
 
     future_date = f"{new_month}-{new_day}-{new_year}"
+    logger_sys.log_message(f"INFO: Calculated addition of {addition} days to date {date} --> {future_date}")
 
     return future_date
 
@@ -37,6 +43,7 @@ def addition_to_date(date, addition):
 def date_prettifier(date):
     # Get month, day and year and then
     # prettify them and return the value
+    logger_sys.log_message(f"INFO: Prettifying date {date}")
     separated_date = date.split('-', 2)
     month = calendar.month_name[int(separated_date[0])]
     day = separated_date[1]
@@ -62,6 +69,7 @@ def date_prettifier(date):
     if day.startswith("0"):
         day = day.replace("0", "")
     formatted_date = f"{day} {month}, year {year}"
+    logger_sys.log_message(f"INFO: Prettified data {date} -- > {formatted_date}")
 
     return formatted_date
 
@@ -79,11 +87,32 @@ def get_day_time(game_days):
         day_time = COLOR_GREEN + COLOR_STYLE_BRIGHT + "☼ DAY" + COLOR_RESET_ALL
     elif day_time_decimal > .75 and day_time_decimal:
         day_time = COLOR_YELLOW + COLOR_STYLE_BRIGHT + "▼ EVENING" + COLOR_RESET_ALL
+    logger_sys.log_message(f"INFO: Calculated day time of game day decimal '{game_days}' --> '{day_time}'")
 
     return day_time
 
 
 def return_game_day_from_seconds(seconds, time_elapsing_coefficient):
+    logger_sys.log_message(
+        f"INFO: Calculating in-game days from seconds '{seconds}', with coefficient '{
+            time_elapsing_coefficient * COEFFICIENT
+        }'"
+    )
     game_days = seconds * COEFFICIENT * time_elapsing_coefficient  # 12 minutes irl = one whole game day (1=720*x)
 
     return game_days
+
+
+def traveling_wait(traveling_coefficient):
+    traveling_time = traveling_coefficient * TRAVELING_WAIT
+    logger_sys.log_message(f"INFO: Running traveling waiting time: {traveling_time * 5} seconds of wait")
+    cout("...", end="\r")
+    time.sleep(traveling_time)
+    cout("ø..", end="\r")
+    time.sleep(traveling_time)
+    cout(".ø.", end="\r")
+    time.sleep(traveling_time)
+    cout("..ø", end="\r")
+    time.sleep(traveling_time)
+    cout("...")
+    time.sleep(traveling_time)

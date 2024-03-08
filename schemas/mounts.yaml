@@ -1,6 +1,7 @@
 name: str()
 plural: str()
 gold: num()
+mph: int()
 feed:
   food: list(str())
   feed needs: num()
@@ -15,4 +16,5 @@ levels:
   level stat additions:
     agility addition: num()
     resistance addition: num()
+    mph addition: num()
 description: str()

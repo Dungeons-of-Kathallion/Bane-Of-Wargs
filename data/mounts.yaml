@@ -2,6 +2,7 @@ Warg:
   name: Warg
   plural: Wargs
   gold: 59.36
+  mph: 24
   feed:
     food:
     - Beef
@@ -19,11 +20,13 @@ Warg:
     level stat additions:
       agility addition: .025
       resistance addition: .015
+      mph addition: .25
   description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
 White Warg:
   name: White Warg
   plural: White Wargs
   gold: 320.34
+  mph: 29
   feed:
     food:
     - Beef
@@ -41,11 +44,13 @@ White Warg:
     level stat additions:
       agility addition: .015
       resistance addition: .01
+      mph addition: .2
   description: "Wargs are at first Yrch mounts but they can be tamed and then used to fight against Yrch. Wargs are fast and agile mounts."
 Bear:
   name: Bear
   plural: Bears
   gold: 79.58
+  mph: 15
   feed:
     food:
     - Beef
@@ -62,11 +67,13 @@ Bear:
     level stat additions:
       agility addition: .015
       resistance addition: .15
+      mph addition: .2
   description: "Bears are very big and powerful animals that are very hard to train; they required lot of work."
 Horse:
   name: Horse
   plural: Horses
   gold: 54.23
+  mph: 17
   feed:
     food:
     - Carrot
@@ -84,11 +91,13 @@ Horse:
     level stat additions:
       agility addition: .015
       resistance addition: .005
+      mph addition: .25
   description: "There are many different species of horses that you can find in the Kathallion Plains. This is a generic horse that you can find almost anywhere in the Kathallion Plains."
 Friesian Horse:
   name: Friesian Horse
   plural: Friesian Horses
   gold: 74.35
+  mph: 18
   feed:
     food:
     - Hay Bale
@@ -105,11 +114,13 @@ Friesian Horse:
     level stat additions:
       agility addition: .016
       resistance addition: .007
+      mph addition: .26
   description: "Friesian Horses are breeds who are known for their docile ,energetic and swift high-stepping trot. They are often used by knights."
 Shire Horse:
   name: Shire Horse
   plural: Shire Horses
   gold: 63.35
+  mph: 16
   feed:
     food:
     - Hay Bale
@@ -126,11 +137,13 @@ Shire Horse:
     level stat additions:
       agility addition: .015
       resistance addition: .02
+      mph addition: .15
   description: "Shire Horses are tall horses that are often used by farmers to labor their lands. Despite that, they are also great horses for knights. "
 Camel:
   name: Camel
   plural: Camels
   gold: 76.42
+  mph: 10
   feed:
     food:
     - Wheat
@@ -149,6 +162,7 @@ Camel:
     level stat additions:
       agility addition: .011
       resistance addition: .023
+      mph addition: .1
   description: >
     Camels are mounts used by the merchants of the Gerud Valleys, who often need to cross the whole Gerud Desert
     and sometimes the Badlands to get to their destination.
@@ -156,6 +170,7 @@ Donkey:
   name: Donkey
   plural: Donkeys
   gold: 84.58
+  mph: 11
   feed:
     food:
     - Carrot
@@ -172,6 +187,7 @@ Donkey:
     level stat additions:
       agility addition: .01
       resistance addition: .021
+      mph addition: .13
   description: >
     Donkeys are not from the Stall Island, but some explorer brought them a few centuries ago and they're now often used by
     merchants that want to cross the difficult Goro Mounts or the wild Mangrove Wastes.
