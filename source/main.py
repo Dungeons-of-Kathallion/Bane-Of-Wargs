@@ -871,6 +871,13 @@ def run(play):
                         "level stat additions"
                     ]["resistance addition"] * (round(current_mount_data["level"]) - 1)), 3
                 )
+                player["mounts"][
+                    str(player["current mount"])
+                ]["mph"] = (
+                    mounts[current_mount_type]["mph"] + mounts[current_mount_type]["levels"][
+                        "level stat additions"
+                    ]["mph addition"] * round(current_mount_data["level"] - 1)
+                )
 
         logger_sys.log_message("INFO: Verifying player equipped equipment is in the player's inventory")
         # verify if player worn equipment are in his inventory
@@ -1093,6 +1100,19 @@ def run(play):
             enemies_damage_coefficient = 1.5
         else:
             enemies_damage_coefficient = 1.5
+
+        # Calculating traveling coefficient, depending
+        # on the player inventory size and its mounts
+        # stats, if he has one
+        global traveling_coefficient
+        traveling_coefficient = 1
+
+        player_inventory_weight = len(player["inventory"]) / 100
+        traveling_coefficient += player_inventory_weight
+
+        if player["current mount"] != " ":
+            mount_mph = player["mounts"][player["current mount"]]["mph"]
+            traveling_coefficient -= mount_mph / 100
 
         # All the checks for the player active effects
         # are done here
@@ -1633,6 +1653,11 @@ def run(play):
             if current_item["type"] == 'Utility':
                 utilities_list.append(i)
         logger_sys.log_message(f"INFO: Found utilities items: '{utilities_list}'")
+
+        # Saving oldest coordinates
+        global player_x_old, player_y_old
+        player_x_old = player["x"]
+        player_y_old = player["y"]
 
         logger_sys.log_message(f"INFO: Player ran command '{command}'")
         logger_sys.log_message(f"INFO: Checking if a ground item is present at map point 'point{map_location}'")
@@ -2650,6 +2675,10 @@ def run(play):
                         "  RESISTANCE ADDITION: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
                         str(which_mount_data["stats"]["resistance addition"]) + COLOR_RESET_ALL
                     )
+                    cout(
+                        "  MPH: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
+                        str(which_mount_data["mph"]) + COLOR_RESET_ALL
+                    )
                     cout(" ")
 
                     # get player possible feeding items
@@ -2844,6 +2873,14 @@ def run(play):
             cout("'" + command + "' is not a valid command")
             time.sleep(2)
             cout(" ")
+
+        # Checking if the player has traveled, if
+        # yes, run a traveling wait
+        if (
+            player["x"] != player_x_old or
+            player["y"] != player_y_old
+        ):
+            time_handling.traveling_wait(traveling_coefficient)
 
         # get end time
         end_time = time.time()

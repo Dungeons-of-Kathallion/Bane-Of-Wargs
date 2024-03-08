@@ -513,7 +513,8 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                             "location": "point" + str(map_location),
                             "mount": str(which_mount),
                             "name": str(new_mount_name),
-                            "stats": mount_stats
+                            "stats": mount_stats,
+                            "mph": mounts[which_mount]["mph"]
                         }
                         logger_sys.log_message(f"INFO: Created new mount stats: '{mount_dict}'")
                         player["mounts"][generated_mount_uuid] = mount_dict
