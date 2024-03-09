@@ -181,7 +181,7 @@ def calculate_player_risk(
                     enemy_critical_hit_chance = enemy_fake_critical_hit_chance
                     if enemy_critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
-                    elif round(random.uniform(.30, enemy_agility), 2) > enemy_agility / 1.15:
+                    elif round(random.uniform(.30, player_fake_agility), 2) > enemy_agility / 1.15:
                         player_dodged = True
                     if damage > 0 and not player_dodged:
                         if enemy_critical_hit:
