@@ -1,0 +1,18 @@
+$DARK_BROWN           ____                      ,
+          /---.'.__             ____//
+               '--.\           /.---'
+          _______  \\         //
+        /.------.\  \|      .'/  ______
+       //  ___  \ \ ||$BROWN/|\$DARK_BROWN  //  _/_----.\__
+      |/  /.-.\  \ \:$BROWN|< >|$DARK_BROWN// _/.'..\   '--'
+         //   \'. | \$BROWN'.|.'$DARK_BROWN/ /_/ /  \\
+        //     \ \_\$BROWN/" ' ~\$DARK_BROWN-'.-'    \\
+       //       '-._$BROWN| $RED:H:$BROWN |$DARK_BROWN'-.__     \\
+      //           ($YELLOW/'$GRAY===$YELLOW'\$DARK_BROWN)'-._\     ||
+      ||                        \\    \|
+      ||                         \\    '
+      |/                          \\
+                                   ||
+                                   ||
+                                   \\
+                                    '$WHITE

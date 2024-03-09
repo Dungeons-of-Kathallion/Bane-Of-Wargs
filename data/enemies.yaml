@@ -256,18 +256,35 @@ Mumakil:
   description: >
     Mumakils are cousins of the elephants, that've been raised by dark men, who're up with the evil forces... They have blood-lust and
     arrows can only harm their eyes, not their bodies.
+Giant Spider:
+  plural: "Giant Spiders"
+  damage:
+    min damage: 3
+    max damage: 6
+    critical chance: .65
+  health:
+    min spawning health: 12
+    max spawning health: 23
+    max health level: 23
+  agility: .65
+  inventory:
+  - Bone
+  - Strong String
+  - Flexible String
+  - Flexible String
+  description: "Giant Spiders are evil's creatures who hide in the darkness to attack their prey by surprise."
 # Dragon bosses
 Balrog:
   plural: "Balrogs"
   damage:
-    min damage: 3
-    max damage: 17
+    min damage: 18
+    max damage: 65
     critical chance: .6
   health:
     min spawning health: 45
-    max spawning health: 80
-    max health level: 80
-  agility: .15
+    max spawning health: 165
+    max health level: 165
+  agility: .25
   inventory:
   - Balrog Horn
   - Flaming Whip
