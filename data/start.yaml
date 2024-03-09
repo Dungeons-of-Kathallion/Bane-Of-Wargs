@@ -19,6 +19,7 @@ attributes:
 active missions: []
 done missions:
 - None
+walked miles: 0
 offered missions:
 - None
 orders:

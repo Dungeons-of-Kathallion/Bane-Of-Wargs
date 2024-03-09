@@ -1817,6 +1817,10 @@ def run(play):
                 "ELAPSED DAYS: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(round(player["elapsed time game days"], 1)) + COLOR_RESET_ALL
             )
+            cout(
+                "WALKED MILES: " + COLOR_STYLE_BRIGHT + COLOR_BACK_BLUE +
+                str(player["walked miles"]) + COLOR_RESET_ALL
+            )
             text = '='
             text_handling.print_separator(text)
             options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
@@ -2888,6 +2892,7 @@ def run(play):
             player["y"] != player_y_old
         ):
             time_handling.traveling_wait(traveling_coefficient)
+            player["walked miles"] += 1
 
         # get end time
         end_time = time.time()
