@@ -1,0 +1,6 @@
+type: str()
+description: str()
+map: str()
+thumbnail: str()
+thumbnail raw: str(required=False)
+gold: num()

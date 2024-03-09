@@ -2505,6 +2505,8 @@ def run(play):
                     options = ['Equip', 'Get Rid', 'Exit']
                 elif str(item[which_item]["type"]) == 'Consumable' or str(item[which_item]["type"]) == 'Food':
                     options = ['Consume', 'Get Rid', 'Exit']
+                elif str(item[which_item]["type"]) == 'Map':
+                    options = ['Examine Map', 'Get Rid', 'Exit']
                 else:
                     options = ['Get Rid', 'Exit']
                 choice = terminal_handling.show_menu(options)
@@ -2520,6 +2522,16 @@ def run(play):
                         mounts, mission, player_damage_coefficient, previous_player,
                         save_file, map, start_time, enemies_damage_coefficient
                     )
+                elif choice == 'Examine Map':
+                    if preferences["latest preset"]["type"] == "plugin":
+                        plugin = preferences["latest preset"]["plugin"]
+                    else:
+                        plugin = False
+                    cout("")
+                    cout("╔" + ("═" * 53) + "╗")
+                    text_handling.print_map_art(item[which_item], plugin_name=plugin)
+                    cout("╚" + ("═" * 53) + "╝")
+                    cinput()
                 elif choice == 'Get Rid':
                     text = (
                         "You won't be able to get this item back if you " +

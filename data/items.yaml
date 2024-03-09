@@ -1634,6 +1634,27 @@ Ork Bag:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+# Maps
+Forlindon Woods Map:
+  type: "Map"
+  map: "Forlindon Woods Map"
+  gold: 25.4
+  description: "A small and useful map of the Forlindon Woods. The paper quality is arguable..."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 # Food
 Beef:
   type: "Food"
