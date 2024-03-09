@@ -79430,7 +79430,6 @@ point6862:
   blocked:
   - East
   - North-East
-  - South-East
   map zone: Los Gerudos
   x: -37
   y: 11
@@ -80299,14 +80298,16 @@ point6990:
   y: 10
 point6991:
   blocked:
-  - East
   - North-East
   map zone: Los Gerudos
   x: -37
   y: 10
 point6992:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - South-East
   map zone: Los Gerudos Church
   x: -36
   y: 10
@@ -81179,14 +81180,13 @@ point712:
   y: 59
 point7120:
   blocked:
-  - North-East
+  - None
   map zone: Los Gerudos
   x: -37
   y: 9
 point7121:
   blocked:
   - East
-  - North
   - South-East
   - North-East
   map zone: Los Gerudos
