@@ -255,6 +255,7 @@ def transform_negative_number_to_positive(number):
 
     return number
 
+
 def print_map_art(item_data, plugin_name=False):
     # Get the path of the file, following the map
     # name and if the player's using a plugin or
@@ -262,7 +263,7 @@ def print_map_art(item_data, plugin_name=False):
     # Then, each lines of the file one by one and
     # prettify them, to after print the final result
     # to the player's UI
-    if plugin_name != False:
+    if plugin_name is not False:
         path = f"{program_dir}/plugins/{plugin_name}/imgs/{item_data["map"]}.txt"
     else:
         path = f"{program_dir}/game/imgs/{item_data["map"]}.txt"
