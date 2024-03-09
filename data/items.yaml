@@ -1640,21 +1640,79 @@ Forlindon Woods Map:
   map: "Forlindon Woods Map"
   gold: 25.4
   description: "A small and useful map of the Forlindon Woods. The paper quality is arguable..."
+  thumbnail raw: |
+    ╔══════════════════════════════╗
+    ║     __________________       ║
+    ║    /                  |\     ║
+    ║    |                   ||    ║
+    ║    | ↟↟↟      ╬╬╬╬     ||    ║
+    ║    |  ⟰↟↟↟↟  ↟↟╬╬ ⇞⇞⇞⇞ ||    ║
+    ║    |  ↟↟↟⌂⌂↟↟↟ ⇞⇞⇞⇞⇞   ||    ║
+    ║    | ↟↟    ↟↟     ⇞⇞⇞⇞ ||    ║
+    ║    |             ⇞⇞    ||    ║
+    ║    |        ▲▲ ≡≡≡ ≡≡  ||    ║
+    ║    |  ##  ⟰▲▲▲▲▲≡≡≡≡≡  ||    ║
+    ║    |     ⌂###▲▲▲≡≡≡ ≡  ||    ║
+    ║    |  ####⌂⌂##         ||    ║
+    ║    | __________________||    ║
+    ║    |/===================\    ║
+    ╚══════════════════════════════╝
   thumbnail: |
-    ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ╚════════════════════════════╝
+    ╔══════════════════════════════╗
+    ║     $BROWN__________________       $WHITE║
+    ║    $BROWN/                  $BROWN|$RED\     $WHITE║
+    ║    $BROWN|                   $BROWN|$RED|    $WHITE║
+    ║    $BROWN| $GREEN↟↟↟      ╬╬╬╬     $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $BLUE⟰$GREEN↟↟↟↟  ↟↟╬╬ ⇞⇞⇞⇞ $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN↟↟↟$BLUE⌂⌂$GREEN↟↟↟ ⇞⇞⇞⇞⇞   $BROWN|$RED|    $WHITE║
+    ║    $BROWN| $GREEN↟↟    ↟↟     ⇞⇞⇞⇞ $BROWN|$RED|    $WHITE║
+    ║    $BROWN|             $GREEN⇞⇞    $BROWN|$RED|    $WHITE║
+    ║    $BROWN|        ▲▲ $YELLOW≡$ORANGE≡$YELLOW≡ ≡≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN##  $BLUE⟰$GRAY▲▲▲▲▲$YELLOW≡≡$ORANGE≡≡$YELLOW≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|     $BLUE⌂$GREEN###$GRAY▲▲▲$YELLOW≡$ORANGE≡$YELLOW≡ ≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN####$BLUE⌂⌂$GREEN##         $BROWN|$RED|    $WHITE║
+    ║    $BROWN| __________________|$RED|    $WHITE║
+    ║    $RED|/===================\    $WHITE║
+    ╚══════════════════════════════╝
+Gerud Desert Map:
+  type: "Map"
+  map: "Gerud Desert Map"
+  gold: 38.59
+  description: "A pretty big and useful map of the Gerud Desert and the Los Gerudos bay area."
+  thumbnail raw: |
+    ╔══════════════════════════════╗
+    ║     __________________       ║
+    ║    /                  |\     ║
+    ║    |                   ||    ║
+    ║    | ↟↟↟      ╬╬╬╬     ||    ║
+    ║    |  ⟰↟↟↟↟  ↟↟╬╬ ⇞⇞⇞⇞ ||    ║
+    ║    |  ↟↟↟⌂⌂↟↟↟ ⇞⇞⇞⇞⇞   ||    ║
+    ║    | ↟↟    ↟↟     ⇞⇞⇞⇞ ||    ║
+    ║    |             ⇞⇞    ||    ║
+    ║    |        ▲▲ ≡≡≡ ≡≡  ||    ║
+    ║    |  ##  ⟰▲▲▲▲▲≡≡≡≡≡  ||    ║
+    ║    |     ⌂###▲▲▲≡≡≡ ≡  ||    ║
+    ║    |  ####⌂⌂##         ||    ║
+    ║    | __________________||    ║
+    ║    |/===================\    ║
+    ╚══════════════════════════════╝
+  thumbnail: |
+    ╔══════════════════════════════╗
+    ║     $BROWN__________________       $WHITE║
+    ║    $BROWN/                  $BROWN|$RED\     $WHITE║
+    ║    $BROWN|                   $BROWN|$RED|    $WHITE║
+    ║    $BROWN| $GREEN↟↟↟      ╬╬╬╬     $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $BLUE⟰$GREEN↟↟↟↟  ↟↟╬╬ ⇞⇞⇞⇞ $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN↟↟↟$BLUE⌂⌂$GREEN↟↟↟ ⇞⇞⇞⇞⇞   $BROWN|$RED|    $WHITE║
+    ║    $BROWN| $GREEN↟↟    ↟↟     ⇞⇞⇞⇞ $BROWN|$RED|    $WHITE║
+    ║    $BROWN|             $GREEN⇞⇞    $BROWN|$RED|    $WHITE║
+    ║    $BROWN|        ▲▲ $YELLOW≡$ORANGE≡$YELLOW≡ ≡≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN##  $BLUE⟰$GRAY▲▲▲▲▲$YELLOW≡≡$ORANGE≡≡$YELLOW≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|     $BLUE⌂$GREEN###$GRAY▲▲▲$YELLOW≡$ORANGE≡$YELLOW≡ ≡  $BROWN|$RED|    $WHITE║
+    ║    $BROWN|  $GREEN####$BLUE⌂⌂$GREEN##         $BROWN|$RED|    $WHITE║
+    ║    $BROWN| __________________|$RED|    $WHITE║
+    ║    $RED|/===================\    $WHITE║
+    ╚══════════════════════════════╝
 # Food
 Beef:
   type: "Food"
