@@ -1,7 +1,7 @@
 import random
 import text_handling
 from colors import *
-from terminal_handling import cout. cinput
+from terminal_handling import cout, cinput
 
 
 def dialog_action(player):
