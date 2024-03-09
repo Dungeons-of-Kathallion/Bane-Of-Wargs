@@ -510,25 +510,37 @@ point10072:
   y: -14
 point10073:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
+  - South-East
   map zone: Mangrove Wastes
   x: -51
   y: -14
 point10074:
   blocked:
-  - None
+  - South
+  - South-West
+  - South-East
   map zone: Mangrove Wastes
   x: -50
   y: -14
 point10075:
   blocked:
-  - None
+  - South
+  - South-West
+  - South-East
   map zone: Mangrove Wastes
   x: -49
   y: -14
 point10076:
   blocked:
-  - None
+  - South
+  - East
+  - South-West
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -48
   y: -14
@@ -2490,7 +2502,9 @@ point10369:
   y: -16
 point1037:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Californ Woods
   x: -59
   y: 56
@@ -2622,7 +2636,7 @@ point10389:
   y: -16
 point1039:
   blocked:
-  - None
+  - North-East
   map zone: Californ Woods
   x: -57
   y: 56
@@ -2694,7 +2708,9 @@ point104:
   y: 64
 point1040:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
   map zone: Californ Woods
   x: -56
   y: 56
@@ -11092,7 +11108,8 @@ point11659:
   y: -26
 point1166:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Californ Woods
   x: -59
   y: 55
@@ -11290,7 +11307,7 @@ point11689:
   y: -26
 point1169:
   blocked:
-  - None
+  - North-East
   map zone: Californ Woods
   x: -56
   y: 55
@@ -11362,7 +11379,8 @@ point117:
   y: 64
 point1170:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: Californ Woods
   x: -55
   y: 55
@@ -11428,7 +11446,10 @@ point11709:
   y: -26
 point1171:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - North-West
   map zone: Californ Woods
   x: -54
   y: 55
@@ -11758,7 +11779,11 @@ point11759:
   y: -27
 point1176:
   blocked:
-  - None
+  - North
+  - West
+  - North-East
+  - North-West
+  - South-West
   map zone: The Edge Of Goro Mounts
   x: -49
   y: 55
@@ -11824,7 +11849,9 @@ point11769:
   y: -27
 point1177:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -48
   y: 55
@@ -11890,7 +11917,9 @@ point11779:
   y: -27
 point1178:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -47
   y: 55
@@ -11956,7 +11985,9 @@ point11789:
   y: -27
 point1179:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -46
   y: 55
@@ -12028,7 +12059,9 @@ point118:
   y: 64
 point1180:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -45
   y: 55
@@ -12094,7 +12127,11 @@ point11809:
   y: -27
 point1181:
   blocked:
-  - None
+  - East
+  - North
+  - South-East
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -44
   y: 55
@@ -12424,7 +12461,11 @@ point11859:
   y: -27
 point1186:
   blocked:
-  - None
+  - North
+  - West
+  - North-East
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 55
@@ -12490,7 +12531,11 @@ point11869:
   y: -28
 point1187:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - South-East
+  - North-West
   map zone: Gerud Desert
   x: -38
   y: 55
@@ -19696,7 +19741,8 @@ point12949:
   y: -36
 point1295:
   blocked:
-  - None
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 54
@@ -20038,7 +20084,7 @@ point130:
   y: 63
 point1300:
   blocked:
-  - None
+  - North-East
   map zone: Californ Woods
   x: -54
   y: 54
@@ -20104,7 +20150,8 @@ point13009:
   y: -36
 point1301:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: Californ Woods
   x: -53
   y: 54
@@ -20170,7 +20217,10 @@ point13019:
   y: -36
 point1302:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - North-West
   map zone: Californ Woods
   x: -52
   y: 54
@@ -20368,7 +20418,8 @@ point13049:
   y: -37
 point1305:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -49
   y: 54
@@ -20632,7 +20683,7 @@ point13089:
   y: -37
 point1309:
   blocked:
-  - None
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -45
   y: 54
@@ -20710,7 +20761,10 @@ point131:
   y: 63
 point1310:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -44
   y: 54
@@ -21040,7 +21094,9 @@ point13149:
   y: -37
 point1315:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 54
@@ -21106,7 +21162,9 @@ point13159:
   y: -38
 point1316:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -38
   y: 54
@@ -28310,7 +28368,8 @@ point14239:
   y: -46
 point1424:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 53
@@ -28778,7 +28837,7 @@ point14309:
   y: -46
 point1431:
   blocked:
-  - None
+  - North-East
   map zone: Californ Woods
   x: -52
   y: 53
@@ -28844,7 +28903,8 @@ point14319:
   y: -47
 point1432:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: Californ Woods
   x: -51
   y: 53
@@ -28910,7 +28970,8 @@ point14329:
   y: -47
 point1433:
   blocked:
-  - None
+  - North
+  - North-West
   map zone: Californ Woods
   x: -50
   y: 53
@@ -28976,7 +29037,7 @@ point14339:
   y: -47
 point1434:
   blocked:
-  - None
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -49
   y: 53
@@ -29240,7 +29301,7 @@ point14379:
   y: -47
 point1438:
   blocked:
-  - None
+  - East
   map zone: The Edge Of Goro Mounts
   x: -45
   y: 53
@@ -29642,7 +29703,9 @@ point14439:
   y: -47
 point1444:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 53
@@ -29708,7 +29771,9 @@ point14449:
   y: -48
 point1445:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -38
   y: 53
@@ -36913,7 +36978,9 @@ point15529:
   y: -56
 point1553:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 52
@@ -37843,7 +37910,7 @@ point15669:
   y: -57
 point1567:
   blocked:
-  - None
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -45
   y: 52
@@ -37909,7 +37976,8 @@ point15679:
   y: -57
 point1568:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -44
   y: 52
@@ -37975,7 +38043,10 @@ point15689:
   y: -57
 point1569:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 52
@@ -38245,7 +38316,9 @@ point15729:
   y: -57
 point1573:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 52
@@ -38311,7 +38384,9 @@ point15739:
   y: -58
 point1574:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -38
   y: 52
@@ -44428,7 +44503,9 @@ point1681:
   y: 51
 point1682:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 51
@@ -44530,13 +44607,17 @@ point1697:
   y: 51
 point1698:
   blocked:
-  - None
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 51
 point1699:
   blocked:
-  - None
+  - South
+  - East
+  - North
+  - South-East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 51
@@ -44566,13 +44647,17 @@ point1701:
   y: 51
 point1702:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 51
 point1703:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -38
   y: 51
@@ -45299,7 +45384,9 @@ point1810:
   y: 50
 point1811:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 50
@@ -45401,7 +45488,8 @@ point1826:
   y: 50
 point1827:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 50
@@ -45431,13 +45519,16 @@ point1830:
   y: 50
 point1831:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 50
 point1832:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: Gerud Desert
   x: -38
   y: 50
@@ -46157,7 +46248,8 @@ point194:
   y: 63
 point1940:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Californ Woods
   x: -59
   y: 49
@@ -46259,7 +46351,9 @@ point1955:
   y: 49
 point1956:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 49
@@ -46289,37 +46383,47 @@ point196:
   y: 63
 point1960:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 49
 point1961:
   blocked:
-  - None
+  - North-East
   map zone: Gerud Desert
   x: -38
   y: 49
 point1962:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: Gerud Desert
   x: -37
   y: 49
 point1963:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: Gerud Desert
   x: -36
   y: 49
 point1964:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: Gerud Desert
   x: -35
   y: 49
 point1965:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - North-West
   map zone: Badlands
   x: -34
   y: 49
@@ -47015,13 +47119,16 @@ point2067:
   y: 48
 point2068:
   blocked:
-  - None
+  - North
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 48
 point2069:
   blocked:
-  - None
+  - North-West
   map zone: Californ Woods
   x: -59
   y: 48
@@ -47129,7 +47236,8 @@ point2084:
   y: 48
 point2085:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 48
@@ -47153,7 +47261,9 @@ point2088:
   y: 48
 point2089:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 48
@@ -47189,7 +47299,8 @@ point2093:
   y: 48
 point2094:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: Badlands
   x: -34
   y: 48
@@ -47873,7 +47984,9 @@ point2196:
   y: 47
 point2197:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 47
@@ -47993,19 +48106,24 @@ point2213:
   y: 47
 point2214:
   blocked:
-  - None
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 47
 point2215:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 47
 point2216:
   blocked:
-  - None
+  - North
+  - East
+  - South-East
+  - North-East
+  - North-West
   map zone: The Edge Of Goro Mounts
   x: -41
   y: 47
@@ -48017,7 +48135,9 @@ point2217:
   y: 47
 point2218:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 47
@@ -48053,13 +48173,16 @@ point2222:
   y: 47
 point2223:
   blocked:
-  - None
+  - North-East
   map zone: Badlands
   x: -34
   y: 47
 point2224:
   blocked:
-  - None
+  - East
+  - North
+  - North-East
+  - South-East
   map zone: Badlands
   x: -33
   y: 47
@@ -48737,7 +48860,9 @@ point2325:
   y: 46
 point2326:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 46
@@ -48863,7 +48988,9 @@ point2344:
   y: 46
 point2345:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -41
   y: 46
@@ -48875,7 +49002,9 @@ point2346:
   y: 46
 point2347:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 46
@@ -48917,7 +49046,9 @@ point2352:
   y: 46
 point2353:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -33
   y: 46
@@ -49595,7 +49726,9 @@ point2454:
   y: 45
 point2455:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 45
@@ -49715,13 +49848,17 @@ point2472:
   y: 45
 point2473:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 45
 point2474:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -41
   y: 45
@@ -49733,7 +49870,9 @@ point2475:
   y: 45
 point2476:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: 45
@@ -49775,7 +49914,9 @@ point2481:
   y: 45
 point2482:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -33
   y: 45
@@ -50453,7 +50594,9 @@ point2583:
   y: 44
 point2584:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 44
@@ -50581,7 +50724,8 @@ point2601:
   y: 44
 point2602:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 44
@@ -50599,7 +50743,8 @@ point2604:
   y: 44
 point2605:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Gerud Desert
   x: -39
   y: 44
@@ -50642,7 +50787,9 @@ point2610:
   y: 44
 point2611:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -33
   y: 44
@@ -51325,7 +51472,9 @@ point2712:
   y: 43
 point2713:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 43
@@ -51439,31 +51588,39 @@ point273:
   y: 62
 point2730:
   blocked:
-  - None
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 43
 point2731:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 43
 point2732:
   blocked:
-  - None
+  - North
+  - West
+  - North-East
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -41
   y: 43
 point2733:
   blocked:
-  - None
+  - North
+  - North-West
   map zone: Gerud Desert
   x: -40
   y: 43
 point2734:
   blocked:
-  - None
+  - North-West
   map zone: Gerud Desert
   x: -39
   y: 43
@@ -51505,7 +51662,9 @@ point274:
   y: 62
 point2740:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -33
   y: 43
@@ -52183,7 +52342,9 @@ point2841:
   y: 42
 point2842:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 42
@@ -52285,7 +52446,8 @@ point2857:
   y: 42
 point2858:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 42
@@ -52303,7 +52465,8 @@ point286:
   y: 62
 point2860:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Gerud Desert
   x: -41
   y: 42
@@ -52351,7 +52514,9 @@ point2867:
   y: 42
 point2868:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -33
   y: 42
@@ -53035,7 +53200,9 @@ point297:
   y: 62
 point2970:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 41
@@ -53137,19 +53304,24 @@ point2985:
   y: 41
 point2986:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 41
 point2987:
   blocked:
-  - None
+  - North
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 41
 point2988:
   blocked:
-  - None
+  - North-West
   map zone: Gerud Desert
   x: -41
   y: 41
@@ -53197,13 +53369,16 @@ point2994:
   y: 41
 point2995:
   blocked:
-  - None
+  - South-East
   map zone: Badlands
   x: -34
   y: 41
 point2996:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -33
   y: 41
@@ -53887,7 +54062,9 @@ point3097:
   y: 40
 point3098:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 40
@@ -54007,13 +54184,17 @@ point3114:
   y: 40
 point3115:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 40
 point3116:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 40
@@ -54067,7 +54248,8 @@ point3123:
   y: 40
 point3124:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Badlands
   x: -34
   y: 40
@@ -54751,7 +54933,9 @@ point3226:
   y: 39
 point3227:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 39
@@ -54865,13 +55049,17 @@ point3243:
   y: 39
 point3244:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 39
 point3245:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 39
@@ -54925,7 +55113,9 @@ point3252:
   y: 39
 point3253:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 39
@@ -55609,7 +55799,9 @@ point3355:
   y: 38
 point3356:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 38
@@ -55723,13 +55915,17 @@ point3372:
   y: 38
 point3373:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 38
 point3374:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 38
@@ -55783,7 +55979,9 @@ point3381:
   y: 38
 point3382:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 38
@@ -56467,7 +56665,9 @@ point3484:
   y: 37
 point3485:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 37
@@ -56587,13 +56787,17 @@ point3501:
   y: 37
 point3502:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 37
 point3503:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 37
@@ -56647,7 +56851,9 @@ point3510:
   y: 37
 point3511:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 37
@@ -57331,7 +57537,9 @@ point3613:
   y: 36
 point3614:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 36
@@ -57445,19 +57653,24 @@ point3630:
   y: 36
 point3631:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 36
 point3632:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 36
 point3633:
   blocked:
-  - None
+  - South-West
   map zone: Gerud Desert
   x: -41
   y: 36
@@ -57505,7 +57718,9 @@ point364:
   y: 62
 point3640:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 36
@@ -58189,7 +58404,9 @@ point3742:
   y: 35
 point3743:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 35
@@ -58303,7 +58520,7 @@ point376:
   y: 62
 point3760:
   blocked:
-  - None
+  - East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 35
@@ -58315,7 +58532,8 @@ point3761:
   y: 35
 point3762:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Gerud Desert
   x: -41
   y: 35
@@ -58357,7 +58575,9 @@ point3768:
   y: 35
 point3769:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 35
@@ -59047,7 +59267,9 @@ point3871:
   y: 34
 point3872:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 34
@@ -59158,7 +59380,7 @@ point3888:
   y: 34
 point3889:
   blocked:
-  - None
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 34
@@ -59170,13 +59392,18 @@ point389:
   y: 61
 point3890:
   blocked:
-  - None
+  - North
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 34
 point3891:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -41
   y: 34
@@ -59218,7 +59445,9 @@ point3897:
   y: 34
 point3898:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 34
@@ -59923,7 +60152,9 @@ point4000:
   y: 33
 point4001:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 33
@@ -60031,13 +60262,16 @@ point4017:
   y: 33
 point4018:
   blocked:
-  - None
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 33
 point4019:
   blocked:
-  - None
+  - South
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -42
   y: 33
@@ -60049,7 +60283,9 @@ point402:
   y: 61
 point4020:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -41
   y: 33
@@ -60091,7 +60327,9 @@ point4026:
   y: 33
 point4027:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 33
@@ -60781,7 +61019,9 @@ point413:
   y: 61
 point4130:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 32
@@ -60889,7 +61129,7 @@ point4146:
   y: 32
 point4147:
   blocked:
-  - None
+  - East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 32
@@ -60901,7 +61141,8 @@ point4148:
   y: 32
 point4149:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Gerud Desert
   x: -41
   y: 32
@@ -60949,7 +61190,9 @@ point4155:
   y: 32
 point4156:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 32
@@ -61633,7 +61876,9 @@ point4258:
   y: 31
 point4259:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 31
@@ -61747,19 +61992,24 @@ point4275:
   y: 31
 point4276:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 31
 point4277:
   blocked:
-  - None
+  - North
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 31
 point4278:
   blocked:
-  - None
+  - North-West
   map zone: Gerud Desert
   x: -41
   y: 31
@@ -61807,7 +62057,9 @@ point4284:
   y: 31
 point4285:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 31
@@ -62491,7 +62743,9 @@ point4387:
   y: 30
 point4388:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 30
@@ -62611,13 +62865,17 @@ point4404:
   y: 30
 point4405:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 30
 point4406:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 30
@@ -62671,7 +62929,9 @@ point4413:
   y: 30
 point4414:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 30
@@ -63355,7 +63615,9 @@ point4516:
   y: 29
 point4517:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Beaches
   x: -60
   y: 29
@@ -63469,13 +63731,17 @@ point4533:
   y: 29
 point4534:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 29
 point4535:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 29
@@ -63529,7 +63795,9 @@ point4542:
   y: 29
 point4543:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 29
@@ -64213,7 +64481,9 @@ point4645:
   y: 28
 point4646:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 28
@@ -64327,13 +64597,17 @@ point4662:
   y: 28
 point4663:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 28
 point4664:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 28
@@ -64387,7 +64661,9 @@ point4671:
   y: 28
 point4672:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 28
@@ -65071,7 +65347,9 @@ point4774:
   y: 27
 point4775:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 27
@@ -65179,19 +65457,23 @@ point4790:
   y: 27
 point4791:
   blocked:
-  - None
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -44
   y: 27
 point4792:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -43
   y: 27
 point4793:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Gerud Desert
   x: -42
   y: 27
@@ -65251,7 +65533,9 @@ point4800:
   y: 27
 point4801:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 27
@@ -65935,7 +66219,9 @@ point4903:
   y: 26
 point4904:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 26
@@ -66043,19 +66329,23 @@ point492:
   y: 61
 point4920:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -44
   y: 26
 point4921:
   blocked:
-  - None
+  - North
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -43
   y: 26
 point4922:
   blocked:
-  - None
+  - North-West
   map zone: Gerud Desert
   x: -42
   y: 26
@@ -66109,7 +66399,9 @@ point493:
   y: 61
 point4930:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 26
@@ -66799,7 +67091,9 @@ point5032:
   y: 25
 point5033:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 25
@@ -66883,25 +67177,32 @@ point5045:
   y: 25
 point5046:
   blocked:
-  - None
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -47
   y: 25
 point5047:
   blocked:
-  - None
+  - South
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -46
   y: 25
 point5048:
   blocked:
-  - None
+  - South
+  - South-West
+  - South-East
   map zone: The Edge Of Goro Mounts
   x: -45
   y: 25
 point5049:
   blocked:
-  - None
+  - South
+  - South-West
+  - South-East
+  - East
+  - North-East
   map zone: The Edge Of Goro Mounts
   x: -44
   y: 25
@@ -66913,7 +67214,8 @@ point505:
   y: 61
 point5050:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Gerud Desert
   x: -43
   y: 25
@@ -66967,7 +67269,9 @@ point5058:
   y: 25
 point5059:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 25
@@ -67657,7 +67961,9 @@ point5161:
   y: 24
 point5162:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Seaside Hostels
   x: -60
   y: 24
@@ -67743,7 +68049,8 @@ point5174:
   y: 24
 point5175:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Californ Woods
   x: -47
   y: 24
@@ -67761,13 +68068,16 @@ point5177:
   y: 24
 point5178:
   blocked:
-  - None
+  - West
+  - North
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 24
 point5179:
   blocked:
-  - None
+  - North-West
   map zone: Gerud Desert
   x: -43
   y: 24
@@ -67827,7 +68137,9 @@ point5187:
   y: 24
 point5188:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 24
@@ -68518,7 +68830,9 @@ point5290:
   y: 23
 point5291:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: New Hyru
   x: -60
   y: 23
@@ -68608,7 +68922,9 @@ point5303:
   y: 23
 point5304:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 23
@@ -68626,7 +68942,9 @@ point5306:
   y: 23
 point5307:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 23
@@ -68692,7 +69010,9 @@ point5316:
   y: 23
 point5317:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 23
@@ -69382,7 +69702,9 @@ point542:
   y: 60
 point5420:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 22
@@ -69466,7 +69788,9 @@ point5432:
   y: 22
 point5433:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 22
@@ -69484,7 +69808,9 @@ point5435:
   y: 22
 point5436:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 22
@@ -69550,7 +69876,9 @@ point5445:
   y: 22
 point5446:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 22
@@ -70234,7 +70562,9 @@ point5548:
   y: 21
 point5549:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 21
@@ -70324,7 +70654,9 @@ point5561:
   y: 21
 point5562:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 21
@@ -70342,7 +70674,9 @@ point5564:
   y: 21
 point5565:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 21
@@ -70408,7 +70742,9 @@ point5574:
   y: 21
 point5575:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 21
@@ -71092,7 +71428,9 @@ point5677:
   y: 20
 point5678:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 20
@@ -71182,7 +71520,9 @@ point5690:
   y: 20
 point5691:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 20
@@ -71200,7 +71540,9 @@ point5693:
   y: 20
 point5694:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 20
@@ -71272,7 +71614,9 @@ point5703:
   y: 20
 point5704:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 20
@@ -71956,7 +72300,9 @@ point5806:
   y: 19
 point5807:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 19
@@ -72046,7 +72392,9 @@ point582:
   y: 60
 point5820:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 19
@@ -72064,7 +72412,8 @@ point5822:
   y: 19
 point5823:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 19
@@ -72130,7 +72479,9 @@ point5832:
   y: 19
 point5833:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 19
@@ -72814,7 +73165,9 @@ point5935:
   y: 18
 point5936:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -60
   y: 18
@@ -72898,7 +73251,9 @@ point5948:
   y: 18
 point5949:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 18
@@ -72916,13 +73271,16 @@ point5950:
   y: 18
 point5951:
   blocked:
-  - None
+  - North
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 18
 point5952:
   blocked:
-  - None
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 18
@@ -72988,7 +73346,9 @@ point5961:
   y: 18
 point5962:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Badlands
   x: -34
   y: 18
@@ -73678,19 +74038,24 @@ point6064:
   y: 17
 point6065:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
+  - South-East
   map zone: Californ Woods
   x: -60
   y: 17
 point6066:
   blocked:
-  - None
+  - South
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 17
 point6067:
   blocked:
-  - None
+  - South-West
   map zone: Californ Woods
   x: -58
   y: 17
@@ -73750,19 +74115,24 @@ point6075:
   y: 17
 point6076:
   blocked:
-  - None
+  - South-East
   map zone: Californ Woods
   x: -49
   y: 17
 point6077:
   blocked:
-  - None
+  - South
+  - South-East
   map zone: Californ Woods
   x: -48
   y: 17
 point6078:
   blocked:
-  - None
+  - South
+  - East
+  - South-West
+  - South-East
+  - North-East
   map zone: Californ Woods
   x: -47
   y: 17
@@ -73780,7 +74150,9 @@ point608:
   y: 60
 point6080:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 17
@@ -73828,13 +74200,14 @@ point6087:
   y: 17
 point6088:
   blocked:
-  - None
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 17
 point6089:
   blocked:
-  - None
+  - South
+  - South-East
   map zone: Gerud Desert
   x: -36
   y: 17
@@ -73846,13 +74219,19 @@ point609:
   y: 60
 point6090:
   blocked:
-  - None
+  - South
+  - South-East
+  - South-West
   map zone: Badlands
   x: -35
   y: 17
 point6091:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - South-West
+  - North-East
   map zone: Badlands
   x: -34
   y: 17
@@ -74548,7 +74927,8 @@ point6195:
   y: 16
 point6196:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Californ Woods
   x: -58
   y: 16
@@ -74614,7 +74994,8 @@ point6204:
   y: 16
 point6205:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Californ Woods
   x: -49
   y: 16
@@ -74638,7 +75019,9 @@ point6208:
   y: 16
 point6209:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 16
@@ -74692,7 +75075,8 @@ point6216:
   y: 16
 point6217:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 16
@@ -75412,7 +75796,9 @@ point6324:
   y: 15
 point6325:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -58
   y: 15
@@ -75472,7 +75858,9 @@ point6333:
   y: 15
 point6334:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-West
   map zone: Californ Woods
   x: -49
   y: 15
@@ -75496,7 +75884,9 @@ point6337:
   y: 15
 point6338:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 15
@@ -75550,7 +75940,9 @@ point6345:
   y: 15
 point6346:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 15
@@ -76270,7 +76662,9 @@ point6453:
   y: 14
 point6454:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -58
   y: 14
@@ -76314,25 +76708,27 @@ point646:
   y: 59
 point6460:
   blocked:
-  - None
+  - South-East
   map zone: Mangrove Wastes
   x: -52
   y: 14
 point6461:
   blocked:
-  - None
+  - South
   map zone: Californ Woods
   x: -51
   y: 14
 point6462:
   blocked:
-  - None
+  - South-West
   map zone: Californ Woods
   x: -50
   y: 14
 point6463:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-West
   map zone: Californ Woods
   x: -49
   y: 14
@@ -76356,7 +76752,9 @@ point6466:
   y: 14
 point6467:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 14
@@ -76410,7 +76808,9 @@ point6474:
   y: 14
 point6475:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 14
@@ -77132,19 +77532,24 @@ point6582:
   y: 13
 point6583:
   blocked:
-  - None
+  - West
+  - South
+  - South-East
+  - South-West
+  - North-West
   map zone: Californ Woods
   x: -58
   y: 13
 point6584:
   blocked:
-  - None
+  - South
+  - South-West
   map zone: Californ Woods
   x: -57
   y: 13
 point6585:
   blocked:
-  - None
+  - South-West
   map zone: Californ Woods
   x: -56
   y: 13
@@ -77168,7 +77573,8 @@ point6588:
   y: 13
 point6589:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Mangrove Wastes
   x: -52
   y: 13
@@ -77186,13 +77592,15 @@ point6590:
   y: 13
 point6591:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Californ Woods
   x: -50
   y: 13
 point6592:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: Californ Woods
   x: -49
   y: 13
@@ -77216,7 +77624,9 @@ point6595:
   y: 13
 point6596:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 13
@@ -77276,7 +77686,9 @@ point6603:
   y: 13
 point6604:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 13
@@ -78008,7 +78420,8 @@ point6713:
   y: 12
 point6714:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Mangrove Wastes
   x: -56
   y: 12
@@ -78032,7 +78445,9 @@ point6717:
   y: 12
 point6718:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 12
@@ -78050,25 +78465,32 @@ point672:
   y: 59
 point6720:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -50
   y: 12
 point6721:
   blocked:
-  - None
+  - North-East
   map zone: Mangrove Wastes
   x: -49
   y: 12
 point6722:
   blocked:
-  - None
+  - North
+  - North-East
   map zone: Mangrove Wastes
   x: -48
   y: 12
 point6723:
   blocked:
-  - None
+  - East
+  - North
+  - South-East
+  - North-East
+  - North-West
   map zone: Mangrove Wastes
   x: -47
   y: 12
@@ -78080,7 +78502,9 @@ point6724:
   y: 12
 point6725:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 12
@@ -78134,7 +78558,9 @@ point6732:
   y: 12
 point6733:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Los Gerudos
   x: -37
   y: 12
@@ -78866,7 +79292,9 @@ point6842:
   y: 11
 point6843:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -56
   y: 11
@@ -78890,7 +79318,9 @@ point6846:
   y: 11
 point6847:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 11
@@ -78902,7 +79332,9 @@ point6848:
   y: 11
 point6849:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -50
   y: 11
@@ -78926,7 +79358,9 @@ point6851:
   y: 11
 point6852:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 11
@@ -78938,7 +79372,9 @@ point6853:
   y: 11
 point6854:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 11
@@ -78992,7 +79428,9 @@ point6861:
   y: 11
 point6862:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Los Gerudos
   x: -37
   y: 11
@@ -79724,7 +80162,9 @@ point6971:
   y: 10
 point6972:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -56
   y: 10
@@ -79748,7 +80188,9 @@ point6975:
   y: 10
 point6976:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 10
@@ -79760,7 +80202,9 @@ point6977:
   y: 10
 point6978:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -50
   y: 10
@@ -79784,7 +80228,9 @@ point6980:
   y: 10
 point6981:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 10
@@ -79796,13 +80242,16 @@ point6982:
   y: 10
 point6983:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
   map zone: Gerud Desert
   x: -45
   y: 10
 point6984:
   blocked:
-  - None
+  - South-West
   map zone: Gerud Desert
   x: -44
   y: 10
@@ -79850,7 +80299,8 @@ point6990:
   y: 10
 point6991:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: Los Gerudos
   x: -37
   y: 10
@@ -80594,7 +81044,9 @@ point7100:
   y: 9
 point7101:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -56
   y: 9
@@ -80618,7 +81070,9 @@ point7104:
   y: 9
 point7105:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 9
@@ -80630,7 +81084,9 @@ point7106:
   y: 9
 point7107:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -50
   y: 9
@@ -80654,7 +81110,9 @@ point711:
   y: 59
 point7110:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 9
@@ -80672,7 +81130,8 @@ point7112:
   y: 9
 point7113:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Gerud Desert
   x: -44
   y: 9
@@ -80720,13 +81179,16 @@ point712:
   y: 59
 point7120:
   blocked:
-  - None
+  - North-East
   map zone: Los Gerudos
   x: -37
   y: 9
 point7121:
   blocked:
-  - None
+  - East
+  - North
+  - South-East
+  - North-East
   map zone: Los Gerudos
   x: -36
   y: 9
@@ -81452,7 +81914,9 @@ point723:
   y: 59
 point7230:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -56
   y: 8
@@ -81476,7 +81940,9 @@ point7233:
   y: 8
 point7234:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 8
@@ -81488,7 +81954,9 @@ point7235:
   y: 8
 point7236:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -50
   y: 8
@@ -81506,7 +81974,9 @@ point7238:
   y: 8
 point7239:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 8
@@ -81530,7 +82000,9 @@ point7241:
   y: 8
 point7242:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 8
@@ -81584,7 +82056,9 @@ point725:
   y: 59
 point7250:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Los Gerudos
   x: -36
   y: 8
@@ -82304,7 +82778,8 @@ point7358:
   y: 7
 point7359:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Mangrove Wastes
   x: -56
   y: 7
@@ -82334,7 +82809,9 @@ point7362:
   y: 7
 point7363:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 7
@@ -82346,7 +82823,9 @@ point7364:
   y: 7
 point7365:
   blocked:
-  - None
+  - West
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -50
   y: 7
@@ -82364,7 +82843,9 @@ point7367:
   y: 7
 point7368:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 7
@@ -82388,7 +82869,9 @@ point7370:
   y: 7
 point7371:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 7
@@ -82436,7 +82919,9 @@ point7378:
   y: 7
 point7379:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Los Gerudos
   x: -36
   y: 7
@@ -83150,19 +83635,24 @@ point7485:
   y: 6
 point7486:
   blocked:
-  - None
+  - North
+  - West
+  - North-East
+  - North-West
+  - South-West
   map zone: Mangrove Wastes
   x: -58
   y: 6
 point7487:
   blocked:
-  - None
+  - North
+  - North-West
   map zone: Mangrove Wastes
   x: -57
   y: 6
 point7488:
   blocked:
-  - None
+  - North-West
   map zone: Mangrove Wastes
   x: -56
   y: 6
@@ -83192,7 +83682,8 @@ point7491:
   y: 6
 point7492:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 6
@@ -83204,7 +83695,8 @@ point7493:
   y: 6
 point7494:
   blocked:
-  - None
+  - West
+  - North-West
   map zone: Mangrove Wastes
   x: -50
   y: 6
@@ -83222,7 +83714,9 @@ point7496:
   y: 6
 point7497:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 6
@@ -83252,7 +83746,9 @@ point750:
   y: 59
 point7500:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -44
   y: 6
@@ -83300,7 +83796,9 @@ point7507:
   y: 6
 point7508:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Armorer
   x: -36
   y: 6
@@ -84014,7 +84512,9 @@ point7614:
   y: 5
 point7615:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: 5
@@ -84056,19 +84556,19 @@ point7620:
   y: 5
 point7621:
   blocked:
-  - None
+  - North-East
   map zone: Mangrove Wastes
   x: -52
   y: 5
 point7622:
   blocked:
-  - None
+  - North
   map zone: Mangrove Wastes
   x: -51
   y: 5
 point7623:
   blocked:
-  - None
+  - North-West
   map zone: Mangrove Wastes
   x: -50
   y: 5
@@ -84086,7 +84586,9 @@ point7625:
   y: 5
 point7626:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 5
@@ -84104,7 +84606,11 @@ point7628:
   y: 5
 point7629:
   blocked:
-  - None
+  - West
+  - South
+  - South-West
+  - North-West
+  - South-East
   map zone: Gerud Desert
   x: -44
   y: 5
@@ -84116,13 +84622,14 @@ point763:
   y: 59
 point7630:
   blocked:
-  - None
+  - South
+  - South-West
   map zone: Gerud Desert
   x: -43
   y: 5
 point7631:
   blocked:
-  - None
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 5
@@ -84158,7 +84665,9 @@ point7636:
   y: 5
 point7637:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Los Gerudos
   x: -36
   y: 5
@@ -84872,7 +85381,9 @@ point7743:
   y: 4
 point7744:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: 4
@@ -84884,19 +85395,19 @@ point7745:
   y: 4
 point7746:
   blocked:
-  - None
+  - South-East
   map zone: Mangrove Wastes
   x: -56
   y: 4
 point7747:
   blocked:
-  - None
+  - South
   map zone: Mangrove Wastes
   x: -55
   y: 4
 point7748:
   blocked:
-  - None
+  - South-West
   map zone: Mangrove Wastes
   x: -54
   y: 4
@@ -84946,7 +85457,9 @@ point7754:
   y: 4
 point7755:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 4
@@ -84982,7 +85495,8 @@ point776:
   y: 58
 point7760:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Gerud Desert
   x: -42
   y: 4
@@ -85018,7 +85532,9 @@ point7765:
   y: 4
 point7766:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -36
   y: 4
@@ -85176,7 +85692,11 @@ point7789:
   y: 4
 point779:
   blocked:
-  - None
+  - North
+  - West
+  - North-East
+  - North-West
+  - South-West
   map zone: Californ Woods
   x: -59
   y: 58
@@ -85248,7 +85768,9 @@ point78:
   y: 64
 point780:
   blocked:
-  - None
+  - North
+  - North-East
+  - North-West
   map zone: Californ Woods
   x: -58
   y: 58
@@ -85314,7 +85836,11 @@ point7809:
   y: 4
 point781:
   blocked:
-  - None
+  - East
+  - North
+  - South-East
+  - North-East
+  - North-West
   map zone: Californ Woods
   x: -57
   y: 58
@@ -85734,7 +86260,9 @@ point7872:
   y: 3
 point7873:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: 3
@@ -85746,7 +86274,8 @@ point7874:
   y: 3
 point7875:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Mangrove Wastes
   x: -56
   y: 3
@@ -85758,7 +86287,8 @@ point7876:
   y: 3
 point7877:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Mangrove Wastes
   x: -54
   y: 3
@@ -85800,13 +86330,16 @@ point7882:
   y: 3
 point7883:
   blocked:
-  - None
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: 3
 point7884:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -47
   y: 3
@@ -85836,7 +86369,9 @@ point7888:
   y: 3
 point7889:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -42
   y: 3
@@ -85872,13 +86407,16 @@ point7893:
   y: 3
 point7894:
   blocked:
-  - None
+  - South-East
   map zone: Los Gerudos
   x: -37
   y: 3
 point7895:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - North-East
   map zone: Gerud Desert
   x: -36
   y: 3
@@ -86604,7 +87142,9 @@ point8001:
   y: 2
 point8002:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: 2
@@ -86616,7 +87156,9 @@ point8003:
   y: 2
 point8004:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: 2
@@ -86628,7 +87170,9 @@ point8005:
   y: 2
 point8006:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -54
   y: 2
@@ -86646,7 +87190,7 @@ point8008:
   y: 2
 point8009:
   blocked:
-  - None
+  - South-West
   map zone: Mangrove Wastes
   x: -51
   y: 2
@@ -86658,19 +87202,20 @@ point801:
   y: 58
 point8010:
   blocked:
-  - None
+  - South
   map zone: Mangrove Wastes
   x: -50
   y: 2
 point8011:
   blocked:
-  - None
+  - South-West
   map zone: Mangrove Wastes
   x: -49
   y: 2
 point8012:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: 2
@@ -86706,7 +87251,9 @@ point8017:
   y: 2
 point8018:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -42
   y: 2
@@ -86742,7 +87289,8 @@ point8022:
   y: 2
 point8023:
   blocked:
-  - None
+  - East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 2
@@ -87462,7 +88010,9 @@ point8130:
   y: 1
 point8131:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: 1
@@ -87474,7 +88024,9 @@ point8132:
   y: 1
 point8133:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: 1
@@ -87486,7 +88038,9 @@ point8134:
   y: 1
 point8135:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -54
   y: 1
@@ -87504,7 +88058,7 @@ point8137:
   y: 1
 point8138:
   blocked:
-  - None
+  - East
   map zone: Mangrove Wastes
   x: -51
   y: 1
@@ -87522,13 +88076,15 @@ point814:
   y: 58
 point8140:
   blocked:
-  - None
+  - West
   map zone: Mangrove Wastes
   x: -49
   y: 1
 point8141:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: 1
@@ -87564,7 +88120,9 @@ point8146:
   y: 1
 point8147:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -42
   y: 1
@@ -87600,7 +88158,9 @@ point8151:
   y: 1
 point8152:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 1
@@ -88320,7 +88880,9 @@ point826:
   y: 58
 point8260:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: 0
@@ -88332,7 +88894,9 @@ point8261:
   y: 0
 point8262:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: 0
@@ -88344,7 +88908,9 @@ point8263:
   y: 0
 point8264:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -54
   y: 0
@@ -88362,19 +88928,19 @@ point8266:
   y: 0
 point8267:
   blocked:
-  - None
+  - North-East
   map zone: Mangrove Wastes
   x: -51
   y: 0
 point8268:
   blocked:
-  - None
+  - North
   map zone: Mangrove Wastes
   x: -50
   y: 0
 point8269:
   blocked:
-  - None
+  - North-East
   map zone: Mangrove Wastes
   x: -49
   y: 0
@@ -88386,7 +88952,9 @@ point827:
   y: 58
 point8270:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: 0
@@ -88422,7 +88990,9 @@ point8275:
   y: 0
 point8276:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Gerud Desert
   x: -42
   y: 0
@@ -88458,7 +89028,9 @@ point8280:
   y: 0
 point8281:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: 0
@@ -89172,7 +89744,9 @@ point8388:
   y: -1
 point8389:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: -1
@@ -89190,7 +89764,9 @@ point8390:
   y: -1
 point8391:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: -1
@@ -89202,7 +89778,9 @@ point8392:
   y: -1
 point8393:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -54
   y: -1
@@ -89238,7 +89816,9 @@ point8398:
   y: -1
 point8399:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -1
@@ -89286,31 +89866,40 @@ point8404:
   y: -1
 point8405:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
+  - South-East
   map zone: Gerud Desert
   x: -42
   y: -1
 point8406:
   blocked:
-  - None
+  - South
+  - South-West
+  - South-East
   map zone: Gerud Desert
   x: -41
   y: -1
 point8407:
   blocked:
-  - None
+  - South
+  - South-West
+  - South-East
   map zone: Gerud Desert
   x: -40
   y: -1
 point8408:
   blocked:
-  - None
+  - South
+  - South-West
   map zone: Gerud Desert
   x: -39
   y: -1
 point8409:
   blocked:
-  - None
+  - South-West
   map zone: Gerud Desert
   x: -38
   y: -1
@@ -89322,7 +89911,9 @@ point841:
   y: 58
 point8410:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: -1
@@ -90036,7 +90627,9 @@ point8517:
   y: -2
 point8518:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: -2
@@ -90054,7 +90647,9 @@ point852:
   y: 58
 point8520:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: -2
@@ -90066,7 +90661,9 @@ point8521:
   y: -2
 point8522:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -54
   y: -2
@@ -90102,7 +90699,9 @@ point8527:
   y: -2
 point8528:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -2
@@ -90168,13 +90767,16 @@ point8537:
   y: -2
 point8538:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Gerud Desert
   x: -38
   y: -2
 point8539:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Gerud Desert
   x: -37
   y: -2
@@ -90894,7 +91496,9 @@ point8646:
   y: -3
 point8647:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -58
   y: -3
@@ -90906,7 +91510,9 @@ point8648:
   y: -3
 point8649:
   blocked:
-  - None
+  - East
+  - South-East
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: -3
@@ -90924,7 +91530,9 @@ point8650:
   y: -3
 point8651:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -54
   y: -3
@@ -90960,7 +91568,9 @@ point8656:
   y: -3
 point8657:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -3
@@ -91026,13 +91636,21 @@ point8666:
   y: -3
 point8667:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
+  - South-East
   map zone: Gerud Desert
   x: -38
   y: -3
 point8668:
   blocked:
-  - None
+  - South
+  - East
+  - South-West
+  - South-East
+  - North-East
   map zone: Gerud Desert
   x: -37
   y: -3
@@ -91752,19 +92370,29 @@ point8775:
   y: -4
 point8776:
   blocked:
-  - None
+  - West
+  - North
+  - North-West
+  - South-West
+  - South-East
   map zone: Mangrove Wastes
   x: -58
   y: -4
 point8777:
   blocked:
-  - None
+  - South
+  - South-East
+  - South-West
   map zone: Mangrove Wastes
   x: -57
   y: -4
 point8778:
   blocked:
-  - None
+  - South
+  - East
+  - South-East
+  - South-West
+  - North-East
   map zone: Mangrove Wastes
   x: -56
   y: -4
@@ -91782,25 +92410,32 @@ point878:
   y: 58
 point8780:
   blocked:
-  - None
+  - West
+  - South
+  - North-West
+  - South-West
+  - South-East
   map zone: Mangrove Wastes
   x: -54
   y: -4
 point8781:
   blocked:
-  - None
+  - South
+  - South-East
+  - South-West
   map zone: Mangrove Wastes
   x: -53
   y: -4
 point8782:
   blocked:
-  - None
+  - South
+  - South-West
   map zone: Mangrove Wastes
   x: -52
   y: -4
 point8783:
   blocked:
-  - None
+  - South-West
   map zone: Mangrove Wastes
   x: -51
   y: -4
@@ -91818,7 +92453,9 @@ point8785:
   y: -4
 point8786:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -4
@@ -92664,7 +93301,8 @@ point8911:
   y: -5
 point8912:
   blocked:
-  - None
+  - West
+  - South-West
   map zone: Mangrove Wastes
   x: -51
   y: -5
@@ -92682,7 +93320,9 @@ point8914:
   y: -5
 point8915:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -5
@@ -93530,7 +94170,9 @@ point9040:
   y: -6
 point9041:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -6
@@ -93548,7 +94190,9 @@ point9043:
   y: -6
 point9044:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -6
@@ -93784,7 +94428,9 @@ point9079:
   y: -6
 point908:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Californ Woods
   x: -59
   y: 57
@@ -93922,7 +94568,8 @@ point91:
   y: 64
 point910:
   blocked:
-  - None
+  - East
+  - North-East
   map zone: Californ Woods
   x: -57
   y: 57
@@ -94390,7 +95037,9 @@ point917:
   y: 57
 point9170:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -7
@@ -94408,7 +95057,9 @@ point9172:
   y: -7
 point9173:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -7
@@ -95242,7 +95893,9 @@ point9298:
   y: -8
 point9299:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -8
@@ -95272,7 +95925,9 @@ point9301:
   y: -8
 point9302:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -8
@@ -96106,7 +96761,9 @@ point9427:
   y: -9
 point9428:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -9
@@ -96130,7 +96787,9 @@ point9430:
   y: -9
 point9431:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -9
@@ -96964,7 +97623,9 @@ point9556:
   y: -10
 point9557:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -10
@@ -96988,7 +97649,9 @@ point956:
   y: 57
 point9560:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -10
@@ -97822,7 +98485,9 @@ point9685:
   y: -11
 point9686:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -11
@@ -97840,7 +98505,9 @@ point9688:
   y: -11
 point9689:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -11
@@ -98686,7 +99353,9 @@ point9814:
   y: -12
 point9815:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -12
@@ -98704,7 +99373,9 @@ point9817:
   y: -12
 point9818:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -12
@@ -99544,7 +100215,9 @@ point9943:
   y: -13
 point9944:
   blocked:
-  - None
+  - West
+  - South-West
+  - North-West
   map zone: Mangrove Wastes
   x: -51
   y: -13
@@ -99562,7 +100235,9 @@ point9946:
   y: -13
 point9947:
   blocked:
-  - None
+  - East
+  - North-East
+  - South-East
   map zone: Mangrove Wastes
   x: -48
   y: -13

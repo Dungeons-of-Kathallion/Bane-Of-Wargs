@@ -1006,7 +1006,7 @@ Time Elapsing Potion:
     ║                            $WHITE║
     ╚════════════════════════════╝
 # Utilities
-Map:
+Magic Map:
   type: "Utility"
   key: "M"
   script name: 'map_item.py'
@@ -1015,7 +1015,7 @@ Map:
   - map
   - zone
   - start_time
-  description: "It's a map of Stall Island! [Press 'M' to activate.]"
+  description: "It's a magic map of the world! [Press 'M' to activate.]"
   thumbnail raw: |
     ╔══════════════════════════════╗
     ║     __________________       ║
