@@ -2146,11 +2146,11 @@ def run(play):
                         enemy[which_enemy]["health"]["min spawning health"] + enemy[which_enemy]["health"]["max spawning health"]
                     ) / 2
                     cout(
-                        "AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(round(enemy_average_damage, 2)) +
+                        "AVERAGE DAMAGE: " + COLOR_STYLE_BRIGHT + COLOR_CYAN + str(round(enemy_average_damage, 1)) +
                         COLOR_RESET_ALL
                     )
                     cout(
-                        "AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(round(enemy_average_health, 2)) +
+                        "AVERAGE HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_RED + str(round(enemy_average_health, 1)) +
                         COLOR_RESET_ALL
                     )
                     cout(
