@@ -103,7 +103,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.165
+    GAME_DATA_VERSION = 0.17
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -156,7 +156,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.165
+SOURCE_CODE_VERSION = 0.17
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -2505,6 +2505,8 @@ def run(play):
                     options = ['Equip', 'Get Rid', 'Exit']
                 elif str(item[which_item]["type"]) == 'Consumable' or str(item[which_item]["type"]) == 'Food':
                     options = ['Consume', 'Get Rid', 'Exit']
+                elif str(item[which_item]["type"]) == 'Map':
+                    options = ['Examine Map', 'Get Rid', 'Exit']
                 else:
                     options = ['Get Rid', 'Exit']
                 choice = terminal_handling.show_menu(options)
@@ -2520,6 +2522,16 @@ def run(play):
                         mounts, mission, player_damage_coefficient, previous_player,
                         save_file, map, start_time, enemies_damage_coefficient
                     )
+                elif choice == 'Examine Map':
+                    if preferences["latest preset"]["type"] == "plugin":
+                        plugin = preferences["latest preset"]["plugin"]
+                    else:
+                        plugin = False
+                    cout("")
+                    cout("╔" + ("═" * 53) + "╗")
+                    text_handling.print_map_art(item[which_item], plugin_name=plugin)
+                    cout("╚" + ("═" * 53) + "╝")
+                    cinput()
                 elif choice == 'Get Rid':
                     text = (
                         "You won't be able to get this item back if you " +

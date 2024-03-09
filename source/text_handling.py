@@ -254,3 +254,27 @@ def transform_negative_number_to_positive(number):
         number = int(str(number).replace("-", ""))
 
     return number
+
+
+def print_map_art(item_data, plugin_name=False):
+    # Get the path of the file, following the map
+    # name and if the player's using a plugin or
+    # vanilla data.
+    # Then, each lines of the file one by one and
+    # prettify them, to after print the final result
+    # to the player's UI
+    if plugin_name is not False:
+        path = f"{program_dir}/plugins/{plugin_name}/imgs/{item_data["map"]}.txt"
+    else:
+        path = f"{program_dir}/game/imgs/{item_data["map"]}.txt"
+    with open(path, 'r') as f:
+        art = f.readlines()
+
+    human_civilizations = ['⌂', '⟰', '⤊', '±']
+    for line in art:
+        line = line.replace('\n', '')
+        line = line.replace('≈', '\033[38;2;250;223;199m' + "≈" + '\033[38;2;255;208;166m')
+        for character in human_civilizations:
+            line = line.replace(character, '\033[38;2;255;195;141m' + character + '\033[38;2;255;208;166m')
+        print("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
+    return art
