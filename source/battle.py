@@ -137,7 +137,7 @@ def calculate_player_risk(
                 # if player health is less than 45% and random formula, defend
                 if player_fake_health > player_fake_health * (45 / 100) and round(random.uniform(.20, .60), 2) > .45:
                     defend = 0
-                    defend += random.randint(0, int(player_fake_defend)) * player_fake_agility
+                    defend += random.randint(int(player_fake_defend / 2), int(player_fake_defend)) * player_fake_agility
                     # defend formula
                     player_fake_health += random.randint(0, 3)
                     if player_fake_health > player_fake_health_max:
@@ -147,7 +147,7 @@ def calculate_player_risk(
                     # attack formula
                     enemy_dodged = False
                     player_critical_hit = False
-                    if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15:
+                    if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15 and random.uniform(0, 1) > .65:
                         enemy_dodged = True
                     if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
@@ -184,7 +184,7 @@ def calculate_player_risk(
                     enemy_critical_hit_chance = enemy_fake_critical_hit_chance
                     if enemy_critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
-                    elif round(random.uniform(.30, player_fake_agility), 2) > enemy_agility / 1.15:
+                    elif round(random.uniform(.30, player_fake_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
                         player_dodged = True
                     if damage > 0 and not player_dodged:
                         if enemy_critical_hit:
@@ -235,7 +235,7 @@ def encounter_text_show(
     if enemies_number > 1:
         cout("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
     else:
-        cout("You find a/an " + text_handling.a_an_check(enemy_singular) + " on your way.")
+        cout("You find " + text_handling.a_an_check(enemy_singular) + " on your way.")
 
     # player stats updates
     risk = defeat_percentage
@@ -441,7 +441,7 @@ def fight(
                     global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
-                    if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15:
+                    if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15 and random.uniform(0, 1) > .65:
                         enemy_dodged = True
                         cout("Your enemy dodged your attack!")
                     if critical_hit_chance > random.randint(0, 100):
@@ -458,7 +458,7 @@ def fight(
                 # if player defend
                 elif action.lower().startswith('d'):
                     cout(" ")
-                    defend += round(random.uniform(0, player_defend) * player_agility)
+                    defend += round(random.uniform(player_defend / 2, player_defend) * player_agility)
                     # defend formula
                     player["health"] += random.randint(0, 3)
                     if player["health"] > player["max health"]:
@@ -509,7 +509,7 @@ def fight(
                     if critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
                         cout("Your enemy dealt a critical hit!")
-                    elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
+                    elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
                         player_dodged = True
                         cout("You dodged your enemy attack!")
                     if damage > 0 and not player_dodged:

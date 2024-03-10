@@ -236,6 +236,7 @@ else:
 
 # main menu start
 while menu:
+    global player, previous_player
     # Get player preferences
     logger_sys.log_message(f"INFO: Opening player '{program_dir}/preferences.yaml'")
     with open(program_dir + '/preferences.yaml', 'r') as f:
@@ -287,9 +288,26 @@ while menu:
                 text_handling.exit_game()
             logger_sys.log_message("INFO: Opening Save File")
             with open(save_file) as f:
-                player = yaml.safe_load(f)
-                previous_player = yaml.safe_load(f)
+                error_loading = False
+                try:
+                    player = yaml.safe_load(f)
+                except Exception as error:
+                    error_loading = True
+                previous_player = player
                 check_yaml.examine(save_file)
+                if type(player) is not type({}) and not error_loading:
+                    error_loading = True
+                    error = 'not a yaml file'
+                if error_loading:
+                    cout(COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT + "save corrupted! Check logs files for further information" + COLOR_RESET_ALL)
+                    logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
+                    logger_sys.log_message(
+                        f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                        "a game bug. Please report the bug on the github repo: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                    )
+                    logger_sys.log_message(f"DEBUG: error '{error}'")
+                    time.sleep(5)
+                    text_handling.exit_game()
             play = 1
             menu = False
             logger_sys.log_message("INFO: Starting game and exiting menu")
@@ -366,9 +384,26 @@ while menu:
                     text_handling.exit_game()
                 logger_sys.log_message("INFO: Opening save file")
                 with open(save_file) as f:
-                    player = yaml.safe_load(f)
-                    previous_player = yaml.safe_load(f)
+                    error_loading = False
+                    try:
+                        player = yaml.safe_load(f)
+                    except Exception as error:
+                        error_loading = True
+                    previous_player = player
                     check_yaml.examine(save_file)
+                    if type(player) is not type({}) and not error_loading:
+                        error_loading = True
+                        error = 'not a yaml file'
+                    if error_loading:
+                        cout(COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT + "save corrupted! Check logs files for further information" + COLOR_RESET_ALL)
+                        logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
+                        logger_sys.log_message(
+                            f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                            "a game bug. Please report the bug on the github repo: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                        )
+                        logger_sys.log_message(f"DEBUG: error '{error}'")
+                        time.sleep(5)
+                        text_handling.exit_game()
                 play = 1
                 menu = False
             else:
@@ -398,8 +433,25 @@ while menu:
                 save_file = save_name
                 logger_sys.log_message("INFO: Opening save")
                 with open(save_file) as f:
-                    player = yaml.safe_load(f)
-                    previous_player = yaml.safe_load(f)
+                    error_loading = False
+                    try:
+                        player = yaml.safe_load(f)
+                    except Exception as error:
+                        error_loading = True
+                    previous_player = player
+                    if type(player) is not type({}) and not error_loading:
+                        error_loading = True
+                        error = 'not a yaml file'
+                    if error_loading:
+                        cout(COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT + "save corrupted! Check logs files for further information" + COLOR_RESET_ALL)
+                        logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
+                        logger_sys.log_message(
+                            f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                            "a game bug. Please report the bug on the github repo: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                        )
+                        logger_sys.log_message(f"DEBUG: error '{error}'")
+                        time.sleep(5)
+                        text_handling.exit_game()
                 play = 1
                 menu = False
                 logger_sys.log_message("INFO: Starting game and exiting menu")
@@ -2865,8 +2917,25 @@ def run(play):
                 # Get the file data and write it into
                 # the 'player' dictionary variable
                 with open(temporary_file, 'r') as f:
-                    player = yaml.safe_load(f)
-                    previous_player = yaml.safe_load(f)
+                    error_loading = False
+                    try:
+                        player = yaml.safe_load(f)
+                    except Exception as error:
+                        error_loading = True
+                    previous_player = player
+                    if type(player) is not type({}) and not error_loading:
+                        error_loading = True
+                        error = 'not a yaml file'
+                    if error_loading:
+                        cout(COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT + "save corrupted! Check logs files for further information" + COLOR_RESET_ALL)
+                        logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
+                        logger_sys.log_message(
+                            f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                            "a game bug. Please report the bug on the github repo: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                        )
+                        logger_sys.log_message(f"DEBUG: error '{error}'")
+                        time.sleep(5)
+                        text_handling.exit_game()
             continued_command = True
         elif command.lower().startswith('$game$data$'):
             choices = [
@@ -2901,6 +2970,19 @@ def run(play):
             text_handling.clear_prompt()
             pydoc.pager(data)
 
+            continued_command = True
+        elif command.lower().startswith('$spawn$enemy$'):
+            cout("Select an enemy to spawn")
+            enemy_to_spawn = terminal_handling.show_menu(list(enemy))
+            cout("How many enemies you want to be spawned?")
+            number_of_enemies = int(terminal_handling.show_menu(['1', '2', '3', '4', '6', '8', '12'], length=7))
+            enemy_handling.spawn_enemy(
+                map_location, [enemy_to_spawn],
+                number_of_enemies, enemy, item, lists, start_player, map, player,
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic, start_time, previous_player, save_file,
+                enemies_damage_coefficient
+            )
             continued_command = True
         else:
             continued_utility = False

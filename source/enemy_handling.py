@@ -99,25 +99,20 @@ def spawn_enemy(
         cout(COLOR_RESET_ALL, end="")
         time.sleep(3)
         logger_sys.log_message("INFO: Resetting player save")
-        player = previous_player
+        with open(save_file, "r") as f:
+            player = yaml.safe_load(f)
         dumped = yaml.dump(player)
         logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
         save_file_quit = save_file
         with open(save_file_quit, "w") as f:
             f.write(dumped)
-            logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
-
-        save_name_backup = save_file.replace('save_', '~0 save_')
-
-        with open(save_name_backup, "w") as f:
-            f.write(dumped)
-            logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+        logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
 
         dumped = yaml.dump(preferences)
         logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
         with open(program_dir + '/preferences.yaml', 'w') as f:
             f.write(dumped)
-            logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+        logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
         exit(0)
