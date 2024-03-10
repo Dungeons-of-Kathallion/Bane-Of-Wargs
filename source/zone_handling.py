@@ -37,7 +37,7 @@ def print_forge_information(map_zone, zone, item):
     text_handling.print_long_string(text)
     cout(" ")
     if "None" not in current_forge["forge"]["buys"]:
-        cout("METAL BUYS:")
+        cout("METAL RESALES:")
         count = 0
         metal_buys = current_forge["forge"]["buys"]
         metal_buys_len = len(metal_buys)
@@ -49,7 +49,7 @@ def print_forge_information(map_zone, zone, item):
             )
             count += 1
     if "None" not in current_forge["forge"]["sells"]:
-        cout("METAL SELLS:")
+        cout("METAL SALES:")
         count = 0
         metal_sells = current_forge["forge"]["sells"]
         metal_sells_len = len(metal_sells)
@@ -73,7 +73,7 @@ def print_blacksmith_information(map_zone, zone, item):
     text_handling.print_long_string(text)
     cout("")
     if "None" not in current_black_smith["blacksmith"]["buys"]:
-        cout("EQUIPMENT BUYS:")
+        cout("EQUIPMENT RESALES:")
         count = 0
         weapon_buys = current_black_smith["blacksmith"]["buys"]
         weapon_buys_len = len(weapon_buys)
@@ -136,7 +136,7 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
     cout("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
     options = ['Train Mount', '']
     if "None" not in current_stable["stable"]["sells"]["mounts"]:
-        cout("MOUNTS SELLS:")
+        cout("MOUNTS SALES:")
         count = 0
         stable_mounts = current_stable["stable"]["sells"]["mounts"]
         stable_mounts_len = len(stable_mounts)
@@ -150,7 +150,7 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
             count += 1
     if "None" not in current_stable["stable"]["sells"]["items"]:
         options += ['Buy Item']
-        cout("ITEMS SELLS:")
+        cout("ITEMS SALES:")
         count = 0
         stable_items = current_stable["stable"]["sells"]["items"]
         stable_items_len = len(stable_items)
@@ -208,7 +208,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
     cout(" ")
     cout("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_hostel["sleep gold"]) + COLOR_RESET_ALL)
     if "None" not in current_hostel["sells"]["drinks"]:
-        cout("DRINKS SELLS:")
+        cout("DRINKS SALES:")
         count = 0
         hostel_drinks = current_hostel["sells"]["drinks"]
         hostel_drinks_len = len(hostel_drinks)
@@ -221,7 +221,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
             )
             count += 1
     if "None" not in current_hostel["sells"]["items"]:
-        cout("ITEMS SELLS")
+        cout("ITEMS SALES")
         count = 0
         hostel_items = current_hostel["sells"]["items"]
         hostel_items_len = len(hostel_items)
@@ -234,7 +234,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
             )
             count += 1
     if "None" not in current_hostel["buys"]["items"]:
-        cout("ITEMS BUYS:")
+        cout("ITEMS RESALES:")
         count = 0
         hostel_items = current_hostel["buys"]["items"]
         hostel_items_len = len(hostel_items)
