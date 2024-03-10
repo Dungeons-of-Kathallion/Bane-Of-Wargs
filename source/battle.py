@@ -293,16 +293,25 @@ def encounter_text_show(
     elif startup_action.lower().startswith('f'):
         fighting = True
     elif startup_action.lower().startswith('u'):
-        player_inventory = str(player["inventory"])
-        player_inventory = player_inventory.replace("'", '')
-        player_inventory = player_inventory.replace("[", ' -')
-        player_inventory = player_inventory.replace("]", '')
-        player_inventory = player_inventory.replace(", ", '\n -')
+        count = 0
+        for i in player["inventory"]:
+            zeros = len(str(len(player["inventory"])))
+            removed = len(str(count))
+            player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+            count += 1
         cout("INVENTORY:")
-        cout(player_inventory)
-        item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-        # use item
-        if item_input in player["inventory"]:
+        for line in player_inventory_displayed:
+            cout(line)
+        text = '='
+        text_handling.print_separator(text)
+        item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
+        error = False
+        try:
+            which_item_index = int(which_item)
+            which_item = player["inventory"][which_item_index]
+        except Exception as e:
+            error = True
+        if not error:  # use item
             item_handling.use_item(
                 item_input, item, player, preferences, drinks,
                 enemy, npcs, start_player, lists, zone, dialog, mission,
@@ -467,19 +476,25 @@ def fight(
 
                 # if player use an item
                 elif action.lower().startswith('u'):
-                    player_inventory = str(player["inventory"])
-                    player_inventory = player_inventory.replace("'", '')
-                    player_inventory = player_inventory.replace("[", ' -')
-                    player_inventory = player_inventory.replace("]", '')
-                    player_inventory = player_inventory.replace(", ", '\n -')
-                    cout(" ")
+                    count = 0
+                    for i in player["inventory"]:
+                        zeros = len(str(len(player["inventory"])))
+                        removed = len(str(count))
+                        player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+                        count += 1
+                    cout("INVENTORY:")
+                    for line in player_inventory_displayed:
+                        cout(line)
                     text = '='
                     text_handling.print_separator(text)
-                    cout("INVENTORY:")
-                    cout(player_inventory)
-                    item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-                    # use item
-                    if item_input in player["inventory"]:
+                    item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
+                    error = False
+                    try:
+                        which_item_index = int(which_item)
+                        which_item = player["inventory"][which_item_index]
+                    except Exception as e:
+                        error = True
+                    if not error:  # use item
                         item_handling.use_item(
                             item_input, item, player, preferences, drinks,
                             enemy, npcs, start_player, lists, zone, dialog, mission,
@@ -489,7 +504,6 @@ def fight(
                         )
                         text = '='
                         text_handling.print_separator(text)
-                        cout(" ")
                 else:
                     cout("'" + action + "' is not a valid option")
                     cout(" ")
