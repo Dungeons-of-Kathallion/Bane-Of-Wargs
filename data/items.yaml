@@ -1245,7 +1245,7 @@ Leather Jacket:
     ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
     ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
     ║$DARK_BROWN        |     $TAN:$DARK_BROWN     |       $WHITE║
-    ║$DARK_BROWN        |_____$TAN:$DARK_BROWN|       $WHITE║
+    ║$DARK_BROWN        |_____$TAN:$DARK_BROWN_____|       $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -1278,7 +1278,7 @@ Leather Boots:
     ║        $DARK_BROWN________            $WHITE║
     ║     $DARK_BROWN__(_____  $LIGHT_GRAY<|           $WHITE║
     ║    $DARK_BROWN(____ / $LIGHT_GRAY<$DARK_BROWN| $LIGHT_GRAY<$DARK_BROWN|           $WHITE║
-    ║    $DARK_BROWN(___ /  $LIGHT_GRAY<$DARK_DARK_BROWN| L`-------.   $WHITE║
+    ║    $DARK_BROWN(___ /  $LIGHT_GRAY<$DARK_BROWN| L`-------.   $WHITE║
     ║    $DARK_BROWN(__ /   L`--------.  \  $WHITE║
     ║    $DARK_BROWN/  `.    $LIGHT_GRAY^^^^^ $DARK_BROWN|   \  | $WHITE║
     ║   $DARK_BROWN|     \---------'    |/  $WHITE║

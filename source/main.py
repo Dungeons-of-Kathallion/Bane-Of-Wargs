@@ -2162,6 +2162,43 @@ def run(play):
                         str(round(enemy[which_enemy]["agility"], 2)) + COLOR_RESET_ALL
                     )
 
+                    # risk
+                    risk = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+                    total = 0
+                    for i in range(8):  # generate accurate risk
+                        risk[i] = battle.calculate_player_risk(
+                            player, item, 1, enemy[which_enemy], enemy,
+                            player_damage_coefficient, enemies_damage_coefficient
+                        )
+                    for i in range(8):
+                        total += risk[i]
+                    risk = round(total / 8)
+                    bars = 10
+                    remaining_risk_symbol = "█"
+                    lost_risk_symbol = "_"
+
+                    remaining_risk_bars = round(risk / 100 * bars)
+                    lost_risk_bars = bars - remaining_risk_bars
+
+                    # print HP stats and possible actions for the player
+
+                    if risk > .80 * 100:
+                        health_color = COLOR_RED
+                    elif risk > .60 * 100:
+                        health_color = COLOR_ORANGE_4
+                    elif risk > .45 * 100:
+                        health_color = COLOR_YELLOW
+                    elif risk > .30 * 100:
+                        health_color = COLOR_GREEN
+                    else:
+                        health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
+
+                    cout(f"RISK AGAINST ONE: {risk}%")
+                    cout(
+                        f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}" +
+                        f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|"
+                    )
+
                     # drops
                     enemy_drops = str(enemy[which_enemy]["inventory"])
                     enemy_drops = enemy_drops.replace('[', '')

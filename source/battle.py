@@ -124,9 +124,12 @@ def calculate_player_risk(
         # reset enemy health stats
         player_fake_health = player_health_cap + player_hp
         enemy_fake_health = enemy_health * enemies_number
+        enemy_fake_health_duplicate = enemy_fake_health
         enemies_count = enemies_number
 
-        while not someone_died:
+        # to fix infinite loops
+        times_played = 0
+        while not someone_died and times_played <= enemy_fake_health_duplicate * enemy_fake_health_duplicate:
             # to fix sometimes errors at line 187
             global enemy_dodged
             enemy_dodged = False
@@ -193,6 +196,7 @@ def calculate_player_risk(
                 if player_fake_health <= 0:
                     someone_died = True
                     player_deaths += 1
+            times_played += 1
 
         count += 1
 
@@ -200,7 +204,6 @@ def calculate_player_risk(
     defeat_percentage = round(player_deaths * 100 / 65)
 
     if defeat_percentage >= 100:
-        defeat_percentage = 100
         defeat_percentage = random.randint(89, 100)
     elif defeat_percentage <= 0:
         defeat_percentage = random.randint(5, 8)
@@ -248,9 +251,9 @@ def encounter_text_show(
     # print HP stats and possible actions for the player
 
     if risk > .80 * 100:
-        health_color = COLOR_STYLE_BRIGHT + COLOR_RED
-    elif risk > .60 * 100:
         health_color = COLOR_RED
+    elif risk > .60 * 100:
+        health_color = COLOR_ORANGE_4
     elif risk > .45 * 100:
         health_color = COLOR_YELLOW
     elif risk > .30 * 100:

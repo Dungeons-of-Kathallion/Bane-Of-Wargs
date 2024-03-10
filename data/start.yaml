@@ -1,5 +1,5 @@
 cheat: 0
-health: 40
+health: 20
 armor protection: .95
 current mount: ' '
 agility: .8
@@ -52,7 +52,7 @@ inventory:
 - Stretched Bag
 - Raw Wood
 - Raw Wood
-max health: 40
+max health: 20
 x: -61
 xp: 0
 y: 57
