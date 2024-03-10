@@ -399,7 +399,10 @@ while menu:
                         error_loading = True
                         error = 'not a yaml file'
                     if error_loading:
-                        cout(COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT + "save corrupted! Check logs files for further information" + COLOR_RESET_ALL)
+                        cout(
+                            COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT +
+                            "save corrupted! Check logs files for further information" + COLOR_RESET_ALL
+                        )
                         logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
                         logger_sys.log_message(
                             f"DEBUG: This could have been the result of closing the game at bad moments or " +
@@ -448,7 +451,10 @@ while menu:
                         error_loading = True
                         error = 'not a yaml file'
                     if error_loading:
-                        cout(COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT + "save corrupted! Check logs files for further information" + COLOR_RESET_ALL)
+                        cout(
+                            COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT +
+                            "save corrupted! Check logs files for further information" + COLOR_RESET_ALL
+                        )
                         logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
                         logger_sys.log_message(
                             f"DEBUG: This could have been the result of closing the game at bad moments or " +
@@ -2937,7 +2943,8 @@ def run(play):
                         logger_sys.log_message(f"FATAL ERROR: save '{save_file}' corrupted!")
                         logger_sys.log_message(
                             f"DEBUG: This could have been the result of closing the game at bad moments or " +
-                            "a game bug. Please report the bug on the github repo: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                            "a game bug. Please report the bug on the github repo: " +
+                            "https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
                         )
                         logger_sys.log_message(f"DEBUG: error '{error}'")
                         time.sleep(5)
