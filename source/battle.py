@@ -577,7 +577,7 @@ def fight(
                         cout("You dodged your enemy attack!")
                     if damage > 0 and not player_dodged:
                         if enemy_critical_hit:
-                            damage = damage * 2
+                            damage = enemy_max_damage * 2
                         player["health"] -= damage
                         cout("The enemy dealt " + str(damage) + " points of damage.")
                     cout(" ")
