@@ -606,6 +606,7 @@ def fight(
                         player["mounts"][player["current mount"]]["level"] += round(random.uniform(.05, .20), 3)
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
+                    cout("You killed one {enemy_singular}!")
                     still_playing = False
                     return
             time.sleep(2)
