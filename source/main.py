@@ -488,7 +488,7 @@ while menu:
 
         text = "Please choose an action."
         text_handling.print_speech_text_effect(text, preferences)
-        options = ['Edit Save', 'Delete Save']
+        options = ['Edit Save', 'Manage Save Backups', 'Delete Save']
         choice = terminal_handling.show_menu(options)
         if choice == 'Edit Save':
             text = "Please select a save to edit."
@@ -528,6 +528,86 @@ while menu:
                     editor = 'nano'
                 logger_sys.log_message(f"INFO: Manually editing save file '{save_to_open}' with editor '{editor}'")
                 subprocess.call([editor, save_to_open])
+        elif choice == "Manage Save Backups":
+            text = "Please select a save to manage its backups."
+            text_handling.print_speech_text_effect(text, preferences)
+            open_save = cinput(
+                COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
+                COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
+            )
+            check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
+            if not check_file:
+                cout(
+                    COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" +
+                    program_dir + "/saves/save_" + open_save + ".yaml" +
+                    "'" + " does not exists" + COLOR_RESET_ALL
+                )
+                logger_sys.log_message(f"ERROR: Save file '{program_dir}/saves/save_{open_save}.yaml' does not exists")
+                play = 0
+            text = "Select an action for the selected save."
+            text_handling.print_speech_text_effect(text, preferences)
+            options = ['Create Backup', 'Load Backup']
+            choice = terminal_handling.show_menu(options)
+            if choice == "Create Backup":
+                count = 0
+                finished = False
+                while count < 120 and not finished:
+                    backup_name = program_dir + f"/saves/~{count} save_" + open_save + ".yaml"
+                    if not os.path.isfile(backup_name):
+                        with open(program_dir + "/saves/save_" + open_save + ".yaml", "r") as f:
+                            data = yaml.safe_load(f)
+                        with open(backup_name, "w") as f:
+                            f.write(yaml.dump(data))
+                        cout(f"Created backup of save at '{backup_name}'")
+                        logger_sys.log_message(
+                            f"INFO: Created backup of save at '{backup_name}'"
+                        )
+                        time.sleep(1.5)
+                        finished = True
+
+                    count += 1
+                if not finished:
+                    cout(COLOR_YELLOW + "Could not create backup!" + COLOR_RESET_ALL)
+                    logger_sys.log_message(
+                        "WARNING: Could not create a backup of save " +
+                        f"'{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    )
+                    logger_sys.log_message(
+                        "DEBUG: This could happen because there're more than 120 backups " +
+                        "of this save file, which is the maximum amount that can be handled by the game engine."
+                    )
+                    time.sleep(1.5)
+            else:
+                logger_sys.log_message(
+                    f"INFO: Searching for backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                )
+                finished = False
+                backups = []
+                for i in range(120):
+                    current_backup = program_dir + f"/saves/~{i} save_" + open_save + ".yaml"
+                    if os.path.isfile(current_backup):
+                        backups += [current_backup]
+                if backups == []:
+                    logger_sys.log_message(f"INFO: Found no backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'")
+                    cout(COLOR_YELLOW + "Could not find any backup of this save file" + COLOR_RESET_ALL)
+                    time.sleep(1.5)
+                    finished = True
+                else:
+                    logger_sys.log_message(
+                        f"INFO: Found backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'" +
+                        f": {backups}"
+                    )
+                if not finished:
+                    cout("Select a backup to load:")
+                    selected_backup = terminal_handling.show_menu(backups, length=75)
+                    with open(selected_backup, "r") as f:
+                        data = yaml.safe_load(f)
+                    with open(program_dir + "/saves/save_" + open_save + ".yaml", "w") as f:
+                        f.write(yaml.dump(data))
+                    logger_sys.log_message(
+                        f"INFO: Loaded backup '{selected_backup}' data to save file '" +
+                        f"{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    )
         else:
             text = "Please select a save to delete."
             text_handling.print_speech_text_effect(text, preferences)
