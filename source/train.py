@@ -171,7 +171,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
                 loading -= 1
                 exp_total += exp
                 level_total += level
-            cout(f"You gained {exp_total} experience points")
+            cout(f"You gained {round(exp_total, 2))} experience points")
             cout(f"Your mount gained {round(level_total, 1)} level points")
         elif choice.startswith('e'):
             still_training = False
