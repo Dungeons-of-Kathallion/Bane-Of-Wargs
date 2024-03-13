@@ -588,7 +588,9 @@ while menu:
                     if os.path.isfile(current_backup):
                         backups += [current_backup]
                 if backups == []:
-                    logger_sys.log_message(f"INFO: Found no backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'")
+                    logger_sys.log_message(
+                        f"INFO: Found no backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    )
                     cout(COLOR_YELLOW + "Could not find any backup of this save file" + COLOR_RESET_ALL)
                     time.sleep(1.5)
                     finished = True
