@@ -138,7 +138,7 @@ def calculate_player_risk(
                     defend = 0
                     defend += random.randint(int(player_fake_defend / 2), int(player_fake_defend)) * player_fake_agility
                     # defend formula
-                    player_fake_health += random.randint(0, 3)
+                    player_fake_health += defend
                     if player_fake_health > player_fake_health_max:
                         player_fake_health = player_fake_health_max
                 # else, the player attack
@@ -386,6 +386,105 @@ def fight(
         health_color_enemy = color_blue
 
         while player["health"] > 0:
+            # apply effects
+            # All the checks for the player active effects
+            # are done here
+            #
+            # If the player has any active effects, load
+            # them one by one and update them depending
+            # on their dictionary content and type
+            player_damage_coefficient = 1
+            if player["held item"] != " ":
+                player["critical hit chance"] = item[player["held item"]]["critical hit chance"]
+            else:
+                player["critical hit chance"] = 0
+            if player["active effects"] != {}:
+                for i in list(player["active effects"]):
+                    current_effect = player["active effects"][i]
+                    effect_over = False
+                    # Run the actions for every effect type
+                    if current_effect["type"] == 'healing':
+                        # Check if the effect duration's over
+                        if (
+                            (
+                                current_effect["effect duration"] + current_effect["effect starting time"]
+                            ) < player["elapsed time game days"]
+                        ):
+                            # Remove that effect from the player
+                            # active effects and set the player
+                            # modified stats to before the effect
+                            # happened
+                            player["active effects"].pop(i)
+                            player["health"] = current_effect["before stats"]["health"]
+                            player["max health"] = current_effect["before stats"]["max health"]
+                            effect_over = True
+                        # Check if the effect has already been
+                        # applied or not
+                        if not current_effect["already applied"] and not effect_over:
+                            # Apply that effect changes now
+                            if current_effect["effects"]["health changes"] >= 999:
+                                player["health"] = player["max health"]
+                            else:
+                                player["health"] += current_effect["effects"]["health changes"]
+                            player["max health"] += current_effect["effects"]["max health changes"]
+                            player["active effects"][i]["already applied"] = True
+                    elif current_effect["type"] == 'protection':
+                        # Check if the effect duration's over
+                        if (
+                            (
+                                current_effect["effect duration"] + current_effect["effect starting time"]
+                            ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
+                        ):
+                            # Remove that effect from the player
+                            # active effects
+                            player["active effects"].pop(i)
+                            effect_over = True
+                        # Apply the effect effects if the
+                        # effect isn't over
+                        if not effect_over:
+                            player["armor protection"] = player["armor protection"] * current_effect[
+                                "effects"
+                            ]["protection coefficient"]
+                    elif current_effect["type"] == 'strength':
+                        # Check if the effect duration's over
+                        if (
+                            (
+                                current_effect["effect duration"] + current_effect["effect starting time"]
+                            ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
+                        ):
+                            # Remove that effect from the player
+                            # active effects
+                            player["active effects"].pop(i)
+                            effect_over = True
+                        # Apply the effect effects if the
+                        # effect isn't over
+                        if not effect_over:
+                            player["critical hit chance"] = player["critical hit chance"] * current_effect["effects"][
+                                "critical hit chance coefficient"
+                            ]
+                            # If the player already has an effect that changes
+                            # the damage coefficient and that's greater, don't
+                            # apply the current effect coefficient
+                            # = keep the greater one
+                            if not player_damage_coefficient > current_effect["effects"]["damage coefficient"]:
+                                player_damage_coefficient = current_effect["effects"]["damage coefficient"]
+                    elif current_effect["type"] == 'agility':
+                        # Check if the effect duration's over
+                        if (
+                            (
+                                current_effect["effect duration"] + current_effect["effect starting time"]
+                            ) < player["elapsed time game days"] and current_effect["effect duration"] != 999
+                        ):
+                            # Remove that effect from the player
+                            # active effects
+                            player["active effects"].pop(i)
+                            effect_over = True
+                        # Apply the effect effects if the
+                        # effect isn't over
+                        if not effect_over:
+                            player["agility"] = player["agility"] * current_effect[
+                                "effects"
+                            ]["agility coefficient"]
             # player stats updates
             player_health = player["health"]
             player_max_health = player["max health"]
@@ -476,6 +575,8 @@ def fight(
             cout("  - [U]se Item")
             text_handling.print_separator('=')
             cout("")
+            global skip_attacks
+            skip_attacks = False
             while turn:
                 # display
 
@@ -514,7 +615,7 @@ def fight(
                     defend += round(random.uniform(player_defend / 2, player_defend) * player_agility)
                     cout(f"You defended yourself and gained back {defend} health points")
                     # defend formula
-                    player["health"] += random.randint(0, 3)
+                    player["health"] += defend
                     if player["health"] > player["max health"]:
                         player["health"] = player["max health"]
                     turn = False
@@ -538,13 +639,13 @@ def fight(
                     item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
                     error = False
                     try:
-                        which_item_index = int(which_item)
+                        which_item_index = int(item_input)
                         which_item = player["inventory"][which_item_index]
                     except Exception as e:
                         error = True
                     if not error:  # use item
                         item_handling.use_item(
-                            item_input, item, player, preferences, drinks,
+                            which_item, item, player, preferences, drinks,
                             enemy, npcs, start_player, lists, zone, dialog, mission,
                             mounts, text_replacements_generic, item, map_location,
                             player_damage_coefficient, previous_player, save_file,
@@ -553,6 +654,7 @@ def fight(
                         text = '='
                         text_handling.print_separator(text)
                     turn = False
+                    skip_attacks = True
                 else:
                     cout("'" + action + "' is not a valid option")
                     cout(" ")
@@ -560,27 +662,28 @@ def fight(
             while not turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    damage = random.randint(
-                        enemy_min_damage, enemy_max_damage
-                    ) * enemies_damage_coefficient - defend * (
-                        armor_protection * round(random.uniform(.50, .90), 1)
-                    )
-                    damage = round(damage)
-                    defend = 0
-                    player_dodged = False
-                    enemy_critical_hit = False
-                    if critical_hit_chance > random.randint(0, 100):
-                        enemy_critical_hit = True
-                        cout("Your enemy dealt a critical hit!")
-                    elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
-                        player_dodged = True
-                        cout("You dodged your enemy attack!")
-                    if damage > 0 and not player_dodged:
-                        if enemy_critical_hit:
-                            damage = enemy_max_damage * 2
-                        player["health"] -= damage
-                        cout("The enemy dealt " + str(damage) + " points of damage.")
-                    cout(" ")
+                    if not skip_attacks:
+                        damage = random.randint(
+                            enemy_min_damage, enemy_max_damage
+                        ) * enemies_damage_coefficient - defend * (
+                            armor_protection * round(random.uniform(.50, .90), 1)
+                        )
+                        damage = round(damage)
+                        defend = 0
+                        player_dodged = False
+                        enemy_critical_hit = False
+                        if critical_hit_chance > random.randint(0, 100):
+                            enemy_critical_hit = True
+                            cout("Your enemy dealt a critical hit!")
+                        elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
+                            player_dodged = True
+                            cout("You dodged your enemy attack!")
+                        if damage > 0 and not player_dodged:
+                            if enemy_critical_hit:
+                                damage = enemy_max_damage * 2
+                            player["health"] -= damage
+                            cout("The enemy dealt " + str(damage) + " points of damage.")
+                        cout(" ")
                     turn = True
                 else:
                     cout(" ")
