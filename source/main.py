@@ -2212,6 +2212,17 @@ def run(play):
                                     COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
                                 )
                                 count += 1
+                    elif zone[which_zone]["type"] == "church":
+                        current_church = zone[which_zone]
+                        church_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        church_x = map[church_point]["x"]
+                        church_y = map[church_point]["y"]
+                        church_coordinates = (
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(church_x) +
+                            COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
+                            str(church_y) + COLOR_RESET_ALL + ")"
+                        )
+                        cout("LOCATION: " + church_coordinates)
                     elif zone[which_zone]["type"] == "forge":
                         current_forge = zone[which_zone]
                         forge_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
@@ -3081,6 +3092,13 @@ def run(play):
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+            continued_command = True
+        elif command.lower().startswith('$teleport$zone$'):
+            cout("Select a map zone to spawn to")
+            choice = terminal_handling.show_menu(list(zone))
+            teleportation_point = zone_handling.get_zone_nearest_point(map, player, choice)
+            player["x"] = map[teleportation_point]["x"]
+            player["y"] = map[teleportation_point]["y"]
             continued_command = True
         else:
             continued_utility = False
