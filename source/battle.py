@@ -710,7 +710,9 @@ def fight(
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
                     cout(f"You killed {text_handling.a_an_check(enemy_singular)}!")
+                    time.sleep(2)
                     still_playing = False
+                    turn = True
                     return
             time.sleep(2)
         return
