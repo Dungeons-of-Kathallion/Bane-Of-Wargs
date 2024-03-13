@@ -11,16 +11,16 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 
 def write_message(message):
-    with open(f'{program_dir}/logs/{date.today()}.log', 'a') as f:
-        f.write(f'{datetime.now()}: {message}\n')
+    with open(f'{program_dir}/logs/{date.today()}.log', 'a') as log_file:
+        log_file.write(f'{datetime.now()}: {message}\n')
 
 
 def log_message(message):
     # Open the user's preferences and get the logging
     # level. Then, determines the message logging level
     # and check if the message should be logged.
-    with open(f'{program_dir}/preferences.yaml', 'r') as f:
-        preferences = yaml.safe_load(f)
+    with open(f'{program_dir}/preferences.yaml', 'r') as log_file:
+        preferences = yaml.safe_load(log_file)
 
     info = "INFO: " in message
     debug = "DEBUG: " in message

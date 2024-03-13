@@ -103,7 +103,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.17
+    GAME_DATA_VERSION = 0.18
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -156,7 +156,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.17
+SOURCE_CODE_VERSION = 0.18
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -236,6 +236,7 @@ else:
 
 # main menu start
 while menu:
+    global player, previous_player
     # Get player preferences
     logger_sys.log_message(f"INFO: Opening player '{program_dir}/preferences.yaml'")
     with open(program_dir + '/preferences.yaml', 'r') as f:
@@ -287,9 +288,30 @@ while menu:
                 text_handling.exit_game()
             logger_sys.log_message("INFO: Opening Save File")
             with open(save_file) as f:
-                player = yaml.safe_load(f)
-                previous_player = yaml.safe_load(f)
+                error_loading = False
+                try:
+                    player = yaml.safe_load(f)
+                except Exception as error:
+                    error_loading = True
+                previous_player = player
                 check_yaml.examine(save_file)
+                if type(player) is not type({}) and not error_loading:
+                    error_loading = True
+                    error = 'not a yaml file'
+                if error_loading:
+                    cout(
+                        COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT +
+                        "Save corrupted! Check logs files for further information" + COLOR_RESET_ALL
+                    )
+                    logger_sys.log_message(f"FATAL ERROR: Save '{save_file}' corrupted!")
+                    logger_sys.log_message(
+                        f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                        "a game bug. Please report the bug on the github repo: " +
+                        "https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                    )
+                    logger_sys.log_message(f"DEBUG: error '{error}'")
+                    time.sleep(5)
+                    text_handling.exit_game()
             play = 1
             menu = False
             logger_sys.log_message("INFO: Starting game and exiting menu")
@@ -366,9 +388,30 @@ while menu:
                     text_handling.exit_game()
                 logger_sys.log_message("INFO: Opening save file")
                 with open(save_file) as f:
-                    player = yaml.safe_load(f)
-                    previous_player = yaml.safe_load(f)
+                    error_loading = False
+                    try:
+                        player = yaml.safe_load(f)
+                    except Exception as error:
+                        error_loading = True
+                    previous_player = player
                     check_yaml.examine(save_file)
+                    if type(player) is not type({}) and not error_loading:
+                        error_loading = True
+                        error = 'not a yaml file'
+                    if error_loading:
+                        cout(
+                            COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT +
+                            "Save corrupted! Check logs files for further information" + COLOR_RESET_ALL
+                        )
+                        logger_sys.log_message(f"FATAL ERROR: Save '{save_file}' corrupted!")
+                        logger_sys.log_message(
+                            f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                            "a game bug. Please report the bug on the github repo: " +
+                            "https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                        )
+                        logger_sys.log_message(f"DEBUG: error '{error}'")
+                        time.sleep(5)
+                        text_handling.exit_game()
                 play = 1
                 menu = False
             else:
@@ -398,8 +441,29 @@ while menu:
                 save_file = save_name
                 logger_sys.log_message("INFO: Opening save")
                 with open(save_file) as f:
-                    player = yaml.safe_load(f)
-                    previous_player = yaml.safe_load(f)
+                    error_loading = False
+                    try:
+                        player = yaml.safe_load(f)
+                    except Exception as error:
+                        error_loading = True
+                    previous_player = player
+                    if type(player) is not type({}) and not error_loading:
+                        error_loading = True
+                        error = 'not a yaml file'
+                    if error_loading:
+                        cout(
+                            COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT +
+                            "Save corrupted! Check logs files for further information" + COLOR_RESET_ALL
+                        )
+                        logger_sys.log_message(f"FATAL ERROR: Save '{save_file}' corrupted!")
+                        logger_sys.log_message(
+                            f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                            "a game bug. Please report the bug on the github repo: " +
+                            "https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                        )
+                        logger_sys.log_message(f"DEBUG: error '{error}'")
+                        time.sleep(5)
+                        text_handling.exit_game()
                 play = 1
                 menu = False
                 logger_sys.log_message("INFO: Starting game and exiting menu")
@@ -424,7 +488,7 @@ while menu:
 
         text = "Please choose an action."
         text_handling.print_speech_text_effect(text, preferences)
-        options = ['Edit Save', 'Delete Save']
+        options = ['Edit Save', 'Manage Save Backups', 'Delete Save']
         choice = terminal_handling.show_menu(options)
         if choice == 'Edit Save':
             text = "Please select a save to edit."
@@ -464,6 +528,88 @@ while menu:
                     editor = 'nano'
                 logger_sys.log_message(f"INFO: Manually editing save file '{save_to_open}' with editor '{editor}'")
                 subprocess.call([editor, save_to_open])
+        elif choice == "Manage Save Backups":
+            text = "Please select a save to manage its backups."
+            text_handling.print_speech_text_effect(text, preferences)
+            open_save = cinput(
+                COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
+                COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
+            )
+            check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
+            if not check_file:
+                cout(
+                    COLOR_RED + COLOR_STYLE_BRIGHT + "ERROR: Save file '" +
+                    program_dir + "/saves/save_" + open_save + ".yaml" +
+                    "'" + " does not exists" + COLOR_RESET_ALL
+                )
+                logger_sys.log_message(f"ERROR: Save file '{program_dir}/saves/save_{open_save}.yaml' does not exists")
+                play = 0
+            text = "Select an action for the selected save."
+            text_handling.print_speech_text_effect(text, preferences)
+            options = ['Create Backup', 'Load Backup']
+            choice = terminal_handling.show_menu(options)
+            if choice == "Create Backup":
+                count = 0
+                finished = False
+                while count < 120 and not finished:
+                    backup_name = program_dir + f"/saves/~{count} save_" + open_save + ".yaml"
+                    if not os.path.isfile(backup_name):
+                        with open(program_dir + "/saves/save_" + open_save + ".yaml", "r") as f:
+                            data = yaml.safe_load(f)
+                        with open(backup_name, "w") as f:
+                            f.write(yaml.dump(data))
+                        cout(f"Created backup of save at '{backup_name}'")
+                        logger_sys.log_message(
+                            f"INFO: Created backup of save at '{backup_name}'"
+                        )
+                        time.sleep(1.5)
+                        finished = True
+
+                    count += 1
+                if not finished:
+                    cout(COLOR_YELLOW + "Could not create backup!" + COLOR_RESET_ALL)
+                    logger_sys.log_message(
+                        "WARNING: Could not create a backup of save " +
+                        f"'{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    )
+                    logger_sys.log_message(
+                        "DEBUG: This could happen because there're more than 120 backups " +
+                        "of this save file, which is the maximum amount that can be handled by the game engine."
+                    )
+                    time.sleep(1.5)
+            else:
+                logger_sys.log_message(
+                    f"INFO: Searching for backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                )
+                finished = False
+                backups = []
+                for i in range(120):
+                    current_backup = program_dir + f"/saves/~{i} save_" + open_save + ".yaml"
+                    if os.path.isfile(current_backup):
+                        backups += [current_backup]
+                if backups == []:
+                    logger_sys.log_message(
+                        f"INFO: Found no backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    )
+                    cout(COLOR_YELLOW + "Could not find any backup of this save file" + COLOR_RESET_ALL)
+                    time.sleep(1.5)
+                    finished = True
+                else:
+                    logger_sys.log_message(
+                        f"INFO: Found backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'" +
+                        f": {backups}"
+                    )
+                if not finished:
+                    cout("Select a backup to load:")
+                    selected_backup = terminal_handling.show_menu(backups, length=75)
+                    with open(selected_backup, "r") as f:
+                        data = yaml.safe_load(f)
+                    with open(program_dir + "/saves/save_" + open_save + ".yaml", "w") as f:
+                        f.write(yaml.dump(data))
+                    logger_sys.log_message(
+                        f"INFO: Loaded backup '{selected_backup}' data to save file '" +
+                        f"{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    )
         else:
             text = "Please select a save to delete."
             text_handling.print_speech_text_effect(text, preferences)
@@ -2865,8 +3011,29 @@ def run(play):
                 # Get the file data and write it into
                 # the 'player' dictionary variable
                 with open(temporary_file, 'r') as f:
-                    player = yaml.safe_load(f)
-                    previous_player = yaml.safe_load(f)
+                    error_loading = False
+                    try:
+                        player = yaml.safe_load(f)
+                    except Exception as error:
+                        error_loading = True
+                    previous_player = player
+                    if type(player) is not type({}) and not error_loading:
+                        error_loading = True
+                        error = 'not a yaml file'
+                    if error_loading:
+                        cout(
+                            COLOR_RED + "FATAL ERROR: " + COLOR_STYLE_BRIGHT +
+                            "Save corrupted! Check logs files for further information" + COLOR_RESET_ALL
+                        )
+                        logger_sys.log_message(f"FATAL ERROR: Save '{save_file}' corrupted!")
+                        logger_sys.log_message(
+                            f"DEBUG: This could have been the result of closing the game at bad moments or " +
+                            "a game bug. Please report the bug on the github repo: " +
+                            "https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/issues/new/choose"
+                        )
+                        logger_sys.log_message(f"DEBUG: error '{error}'")
+                        time.sleep(5)
+                        text_handling.exit_game()
             continued_command = True
         elif command.lower().startswith('$game$data$'):
             choices = [
@@ -2901,6 +3068,19 @@ def run(play):
             text_handling.clear_prompt()
             pydoc.pager(data)
 
+            continued_command = True
+        elif command.lower().startswith('$spawn$enemy$'):
+            cout("Select an enemy to spawn")
+            enemy_to_spawn = terminal_handling.show_menu(list(enemy))
+            cout("How many enemies you want to be spawned?")
+            number_of_enemies = int(terminal_handling.show_menu(['1', '2', '3', '4', '6', '8', '12'], length=7))
+            enemy_handling.spawn_enemy(
+                map_location, [enemy_to_spawn],
+                number_of_enemies, enemy, item, lists, start_player, map, player,
+                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic, start_time, previous_player, save_file,
+                enemies_damage_coefficient
+            )
             continued_command = True
         else:
             continued_utility = False

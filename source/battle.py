@@ -1,12 +1,11 @@
 # source imports
 import text_handling
-import script_handling
 import item_handling
 from colors import *
 from terminal_handling import cout, cinput
 # external imports
 import random
-import sys
+import time
 
 # battle stats
 defend = 0
@@ -137,7 +136,7 @@ def calculate_player_risk(
                 # if player health is less than 45% and random formula, defend
                 if player_fake_health > player_fake_health * (45 / 100) and round(random.uniform(.20, .60), 2) > .45:
                     defend = 0
-                    defend += random.randint(0, int(player_fake_defend)) * player_fake_agility
+                    defend += random.randint(int(player_fake_defend / 2), int(player_fake_defend)) * player_fake_agility
                     # defend formula
                     player_fake_health += random.randint(0, 3)
                     if player_fake_health > player_fake_health_max:
@@ -147,7 +146,7 @@ def calculate_player_risk(
                     # attack formula
                     enemy_dodged = False
                     player_critical_hit = False
-                    if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15:
+                    if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15 and random.uniform(0, 1) > .65:
                         enemy_dodged = True
                     if player_critical_hit_chance > random.randint(0, 100):
                         player_critical_hit = True
@@ -184,7 +183,7 @@ def calculate_player_risk(
                     enemy_critical_hit_chance = enemy_fake_critical_hit_chance
                     if enemy_critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
-                    elif round(random.uniform(.30, player_fake_agility), 2) > enemy_agility / 1.15:
+                    elif round(random.uniform(.30, player_fake_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
                         player_dodged = True
                     if damage > 0 and not player_dodged:
                         if enemy_critical_hit:
@@ -235,7 +234,7 @@ def encounter_text_show(
     if enemies_number > 1:
         cout("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
     else:
-        cout("You find a/an " + text_handling.a_an_check(enemy_singular) + " on your way.")
+        cout("You find " + text_handling.a_an_check(enemy_singular) + " on your way.")
 
     # player stats updates
     risk = defeat_percentage
@@ -293,16 +292,26 @@ def encounter_text_show(
     elif startup_action.lower().startswith('f'):
         fighting = True
     elif startup_action.lower().startswith('u'):
-        player_inventory = str(player["inventory"])
-        player_inventory = player_inventory.replace("'", '')
-        player_inventory = player_inventory.replace("[", ' -')
-        player_inventory = player_inventory.replace("]", '')
-        player_inventory = player_inventory.replace(", ", '\n -')
+        player_inventory_displayed = []
+        count = 0
+        for i in player["inventory"]:
+            zeros = len(str(len(player["inventory"])))
+            removed = len(str(count))
+            player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+            count += 1
         cout("INVENTORY:")
-        cout(player_inventory)
-        item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-        # use item
-        if item_input in player["inventory"]:
+        for line in player_inventory_displayed:
+            cout(line)
+        text = '='
+        text_handling.print_separator(text)
+        item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
+        error = False
+        try:
+            which_item_index = int(which_item)
+            which_item = player["inventory"][which_item_index]
+        except Exception as e:
+            error = True
+        if not error:  # use item
             item_handling.use_item(
                 item_input, item, player, preferences, drinks,
                 enemy, npcs, start_player, lists, zone, dialog, mission,
@@ -348,7 +357,7 @@ def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
     player_damage_coefficient, start_time, text_replacements_generic,
-    previous_player, save_file, enemies_damage_coefficient
+    previous_player, save_file, enemies_damage_coefficient, defeat_percentage
 ):
     # import stats
     global turn, defend, fighting, already_encountered
@@ -377,56 +386,100 @@ def fight(
         health_color_enemy = color_blue
 
         while player["health"] > 0:
+            # player stats updates
+            player_health = player["health"]
+            player_max_health = player["max health"]
+
+            text_handling.clear_prompt()
+            # ui
+            text_handling.print_separator('=')
+            if enemies_remaining > 1:
+                noun = f"{enemies_remaining} {enemy_plural}"
+            else:
+                noun = enemy_singular
+            cout(f"Defeat the {noun}!")
+            text_handling.print_separator('=')
+            risk = defeat_percentage
+
+            # display
+            bars = 10
+            remaining_risk_symbol = "█"
+            lost_risk_symbol = "_"
+
+            remaining_risk_bars = round(risk / 100 * bars)
+            lost_risk_bars = bars - remaining_risk_bars
+
+            # print HP stats and possible actions for the player
+
+            if risk > .80 * 100:
+                health_color = COLOR_RED
+            elif risk > .60 * 100:
+                health_color = COLOR_ORANGE_4
+            elif risk > .45 * 100:
+                health_color = COLOR_YELLOW
+            elif risk > .30 * 100:
+                health_color = COLOR_GREEN
+            else:
+                health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
+
+            cout(
+                f" BATTLE RISK: {risk}% " +
+                f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}" +
+                f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|"
+            )
+            text_handling.print_separator('=')
+            bars = 20
+            remaining_health_symbol = "█"
+            lost_health_symbol = "_"
+
+            remaining_health_bars = round(player_health / player_max_health * bars)
+            lost_health_bars = bars - remaining_health_bars
+
+            if remaining_health_bars > 20:
+                remaining_health_bars = 20
+
+            remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
+            lost_health_bars_enemy = bars - remaining_health_bars_enemy
+
+            if remaining_health_bars_enemy > 20:
+                remaining_health_bars_enemy = 20
+
+            # print HP stats and possible actions for the player
+
+            if player_health > .66 * player_max_health:
+                health_color = color_green
+            elif player_health > .33 * player_max_health:
+                health_color = color_yellow
+            else:
+                health_color = color_red
+
+            if enemy_health > .66 * enemy_max_health:
+                health_color_enemy = color_blue
+            elif enemy_health > .33 * enemy_max_health:
+                health_color_enemy = COLOR_CYAN
+            else:
+                health_color_enemy = COLOR_MAGENTA
+
+            cout(f"HEALTH of {enemy_singular}: {enemy_health} / {enemy_max_health}")
+            cout(
+                f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
+                f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
+            )
+            cout(f"HEALTH of {save_file.split('save_', 1)[1].replace('.yaml', '')}: {player_health} / {player_max_health}")
+            cout(
+                f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
+                f"{lost_health_bars * lost_health_symbol}{color_default}|"
+            )
+            text_handling.print_separator('=')
+            cout("  - [A]ttack")
+            cout("  - [D]efend")
+            cout("  - [U]se Item")
+            text_handling.print_separator('=')
+            cout("")
             while turn:
-                # player stats updates
-                player_health = player["health"]
-                player_max_health = player["max health"]
-
                 # display
-                bars = 20
-                remaining_health_symbol = "█"
-                lost_health_symbol = "_"
 
-                remaining_health_bars = round(player_health / player_max_health * bars)
-                lost_health_bars = bars - remaining_health_bars
-
-                if remaining_health_bars > 20:
-                    remaining_health_bars = 20
-
-                remaining_health_bars_enemy = round(enemy_health / enemy_max_health * bars)
-                lost_health_bars_enemy = bars - remaining_health_bars_enemy
-
-                if remaining_health_bars_enemy > 20:
-                    remaining_health_bars_enemy = 20
-
-                # print HP stats and possible actions for the player
-
-                if player_health > .66 * player_max_health:
-                    health_color = color_green
-                elif player_health > .33 * player_max_health:
-                    health_color = color_yellow
-                else:
-                    health_color = color_red
-
-                if enemy_health > .66 * enemy_max_health:
-                    health_color_enemy = color_blue
-                elif enemy_health > .33 * enemy_max_health:
-                    health_color_enemy = COLOR_CYAN
-                else:
-                    health_color_enemy = COLOR_MAGENTA
-
-                cout(f"PLAYER: {player_health} / {player_max_health}")
-                cout(
-                    f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
-                    f"{lost_health_bars * lost_health_symbol}{color_default}|"
-                )
-                cout(f"ENEMY: {enemy_health} / {enemy_max_health}")
-                cout(
-                    f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
-                    f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
-                )
-
-                action = cinput("[A]ttack, [D]efend, [U]se Item? ")
+                action = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
 
                 # if player attack
                 if player["held item"] != " ":
@@ -441,7 +494,7 @@ def fight(
                     global enemy_dodged
                     enemy_dodged = False
                     player_critical_hit = False
-                    if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15:
+                    if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15 and random.uniform(0, 1) > .65:
                         enemy_dodged = True
                         cout("Your enemy dodged your attack!")
                     if critical_hit_chance > random.randint(0, 100):
@@ -458,7 +511,8 @@ def fight(
                 # if player defend
                 elif action.lower().startswith('d'):
                     cout(" ")
-                    defend += round(random.uniform(0, player_defend) * player_agility)
+                    defend += round(random.uniform(player_defend / 2, player_defend) * player_agility)
+                    cout(f"You defended yourself and gained back {defend} health points")
                     # defend formula
                     player["health"] += random.randint(0, 3)
                     if player["health"] > player["max health"]:
@@ -467,19 +521,28 @@ def fight(
 
                 # if player use an item
                 elif action.lower().startswith('u'):
-                    player_inventory = str(player["inventory"])
-                    player_inventory = player_inventory.replace("'", '')
-                    player_inventory = player_inventory.replace("[", ' -')
-                    player_inventory = player_inventory.replace("]", '')
-                    player_inventory = player_inventory.replace(", ", '\n -')
-                    cout(" ")
+                    cout("")
+                    text_handling.print_separator('=')
+                    player_inventory_displayed = []
+                    count = 0
+                    for i in player["inventory"]:
+                        zeros = len(str(len(player["inventory"])))
+                        removed = len(str(count))
+                        player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+                        count += 1
+                    cout("INVENTORY:")
+                    for line in player_inventory_displayed:
+                        cout(line)
                     text = '='
                     text_handling.print_separator(text)
-                    cout("INVENTORY:")
-                    cout(player_inventory)
-                    item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
-                    # use item
-                    if item_input in player["inventory"]:
+                    item_input = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "$ " + COLOR_RESET_ALL)
+                    error = False
+                    try:
+                        which_item_index = int(which_item)
+                        which_item = player["inventory"][which_item_index]
+                    except Exception as e:
+                        error = True
+                    if not error:  # use item
                         item_handling.use_item(
                             item_input, item, player, preferences, drinks,
                             enemy, npcs, start_player, lists, zone, dialog, mission,
@@ -489,7 +552,7 @@ def fight(
                         )
                         text = '='
                         text_handling.print_separator(text)
-                        cout(" ")
+                    turn = False
                 else:
                     cout("'" + action + "' is not a valid option")
                     cout(" ")
@@ -509,12 +572,12 @@ def fight(
                     if critical_hit_chance > random.randint(0, 100):
                         enemy_critical_hit = True
                         cout("Your enemy dealt a critical hit!")
-                    elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15:
+                    elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
                         player_dodged = True
                         cout("You dodged your enemy attack!")
                     if damage > 0 and not player_dodged:
                         if enemy_critical_hit:
-                            damage = damage * 2
+                            damage = enemy_max_damage * 2
                         player["health"] -= damage
                         cout("The enemy dealt " + str(damage) + " points of damage.")
                     cout(" ")
@@ -538,23 +601,15 @@ def fight(
                     if remaining_health_bars_enemy > 20:
                         remaining_health_bars_enemy = 20
 
-                    cout(f"PLAYER: {player_health} / {player_max_health}\n")
-                    cout(
-                        f"|{health_color}{remaining_health_bars * remaining_health_symbol}" +
-                        f"{lost_health_bars * lost_health_symbol}{color_default}|\n"
-                    )
-                    cout(f"ENEMY: {enemy_health} / {enemy_max_health}\n")
-                    cout(
-                        f"|{health_color_enemy}{remaining_health_bars_enemy * remaining_health_symbol}" +
-                        f"{lost_health_bars_enemy * lost_health_symbol}{color_default}|"
-                    )
                     player["xp"] += enemy_max * enemy_max_damage / 3
                     if player["current mount"] in player["mounts"]:
                         player["mounts"][player["current mount"]]["level"] += round(random.uniform(.05, .20), 3)
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
+                    cout(f"You killed {text_handling.a_an_check(enemy_singular)}!")
                     still_playing = False
                     return
+            time.sleep(2)
         return
 
 

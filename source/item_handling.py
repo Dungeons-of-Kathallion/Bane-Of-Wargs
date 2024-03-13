@@ -65,9 +65,9 @@ def equip_item(item_name, player, equipment_type):
         slot = "held shield"
 
     if equipment_type == "Weapon" or equipment_type == "Armor Piece: Shield":
-        cout("You are now holding ", text_handling.a_an_check(item_name))
+        cout("You are now holding " + text_handling.a_an_check(item_name))
     else:
-        cout("You are now wearing ", text_handling.a_an_check(item_name))
+        cout("You are now wearing " + text_handling.a_an_check(item_name))
 
     logger_sys.log_message(f"INFO: Equipping item '{item_name}' of type '{equipment_type}' to player slot '{slot}'")
     player[slot] = item_name
