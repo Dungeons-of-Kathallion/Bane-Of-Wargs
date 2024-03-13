@@ -43,6 +43,8 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
         bars = 25
         remaining_symbol = "█"
         lost_symbol = "_"
+        if player["mounts"][mount_uuid]["level"] > current_mount_data["levels"]["max level"]:
+            player["mounts"][mount_uuid]["level"] == current_mount_data["levels"]["max level"]
         remaining_bars = round(player["mounts"][mount_uuid]["level"] / current_mount_data["levels"]["max level"] * bars)
         lost_bars = bars - remaining_bars
 
