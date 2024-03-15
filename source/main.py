@@ -1763,6 +1763,20 @@ def run(play):
                     count2 += 1
             count += 1
 
+        # Calculate enemy spawning change
+        # variable, depending on the player
+        # difficulty mode.
+        #
+        # Easy: 8%
+        # Normal: 18%
+        # Hard: 28%
+        if player["difficulty mode"] == 0:
+            enemy_spawning_chance = random.uniform(0, 1) > 92
+        elif player["difficulty mode"] == 2:
+            enemy_spawning_chance = random.uniform(0, 1) > 72
+        else:
+            enemy_spawning_chance = random.uniform(0, 1) > 82
+
         logger_sys.log_message(f"INFO: Checking if an enemy at map point 'point{map_location}'")
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
@@ -1776,7 +1790,7 @@ def run(play):
 
         elif (
             day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
-            and round(random.uniform(.20, .80), 3) > .7 and zone[map_zone]["type"] != "hostel"
+            and enemy_spawning_chance and zone[map_zone]["type"] != "hostel"
             and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village"
             and zone[map_zone]["type"] != "blacksmith" and zone[map_zone]["type"] != "forge"
             and zone[map_zone]["type"] != "castle" and zone[map_zone]["type"] != "church"
