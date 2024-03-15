@@ -1798,6 +1798,37 @@ def run(play):
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+
+        # Check if the player's in 'Easy' difficulty. If he
+        # is, then automatically save the player data into
+        # its save file
+        if player["difficulty mode"] == 0:
+            logger_sys.log_message(
+                "INFO: autosaving player data into its save --> player's in 'Easy' difficulty mode"
+            )
+            logger_sys.log_message("INFO: Dumping player RAM save into its save file")
+            dumped = yaml.dump(player)
+            previous_player = player
+            logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+
+            save_file_quit = save_file
+            with open(save_file_quit, "w") as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+
+            save_name_backup = save_file.replace('save_', '~0 save_')
+
+            with open(save_name_backup, "w") as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+
+            dumped = yaml.dump(preferences)
+            logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+
+            with open(program_dir + '/preferences.yaml', 'w') as f:
+                f.write(dumped)
+            logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
 
