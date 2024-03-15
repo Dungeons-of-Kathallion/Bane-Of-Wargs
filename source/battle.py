@@ -134,7 +134,7 @@ def calculate_player_risk(
             enemy_dodged = False
             while player_turn:
                 # if player health is less than 45% and random formula, defend
-                if player_fake_health > player_fake_health * (45 / 100) and round(random.uniform(.20, .60), 2) > .45:
+                if player_fake_health < player_fake_health * (45 / 100) and round(random.uniform(.20, .60), 2) > .45:
                     defend = 0
                     defend += random.randint(int(player_fake_defend / 2), int(player_fake_defend)) * player_fake_agility
                     # defend formula
@@ -266,6 +266,14 @@ def encounter_text_show(
         f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|"
     )
 
+    # run away difficulty coefficient
+    if player["difficulty mode"] == 0:
+        runaway_coefficient = 1.15
+    elif player["difficulty mode"] == 2:
+        runaway_coefficient = 0
+    else:
+        runaway_coefficient = 1
+
     cout("[R]un Away, [F]ight, [U]se Item? ")
 
     text = '='
@@ -280,7 +288,9 @@ def encounter_text_show(
 
     if startup_action.lower().startswith('r'):
         # run away chance
-        if player["agility"] / round(random.uniform(1.10, 1.25), 2) > enemy_agility:
+        if (
+            player["agility"] / round(random.uniform(1.10, 1.25), 2) * runaway_coefficient
+        ) > enemy_agility:
             cout("You succeeded in running away from your enemy!")
             fighting = False
         else:
@@ -289,6 +299,7 @@ def encounter_text_show(
             text = '='
             text_handling.print_separator(text)
             fighting = True
+        time.sleep(1.5)
     elif startup_action.lower().startswith('f'):
         fighting = True
     elif startup_action.lower().startswith('u'):
