@@ -415,7 +415,7 @@ while menu:
                 play = 1
                 menu = False
             else:
-                text = "Please name your save: "
+                text = "Please name your adventurer: "
                 text_handling.print_speech_text_effect(text, preferences)
                 enter_save_name = cinput('> ')
                 player = start_player
