@@ -419,7 +419,6 @@ while menu:
                 text_handling.print_speech_text_effect(text, preferences)
                 enter_save_name = cinput('> ')
                 player = start_player
-                dumped = yaml.dump(player)
                 save_name = program_dir + "/saves/save_" + enter_save_name + ".yaml"
                 save_name_backup = program_dir + "/saves/~0 save_" + enter_save_name + ".yaml"
                 check_file = os.path.isfile(save_name)
@@ -433,6 +432,16 @@ while menu:
                     logger_sys.log_message(f"ERROR: Save file '{save_name}' already exists")
                     play = 0
                     text_handling.exit_game()
+                difficulty_modes = ['Easy', 'Normal', 'Hard']
+                cout("\nPlease select a difficulty:")
+                difficulty = difficulty_modes.index(terminal_handling.show_menu(difficulty_modes))
+                player["difficulty mode"] = difficulty
+                logger_sys.log_message(
+                    "INFO: Player has chosen difficulty " +
+                    f"'{difficulty_modes[difficulty]}'-->'{difficulty}'"
+                )
+                logger_sys.log_message("INFO: Dumping new save data")
+                dumped = yaml.dump(player)
                 logger_sys.log_message("INFO: Creating new save")
                 with open(save_name, "w") as f:
                     f.write(dumped)

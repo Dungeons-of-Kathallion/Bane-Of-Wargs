@@ -5,7 +5,6 @@ Start Dialog:
       - print(You currently have a order to deliver to a friend of yours, at the -62, 59 coordinates.)
       - "print(Hint: check the gameplay guide at https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide)"
   use actions: false
-  scene: Title1
 
 Deliver Raw Wood To Jacky Completed:
   conversation:
