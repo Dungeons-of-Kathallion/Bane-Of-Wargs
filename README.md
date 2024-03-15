@@ -41,35 +41,61 @@ Here's the vanilla starting dialog plot:
 
 <summary>Check some gameplay shots:</summary>
 
-![Screenshot from 2023-12-22 10-38-14](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/5e47a039-fe02-49fa-ba29-1eb71fe5e955)
+![Screenshot from 2024-03-15 19-10-58](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/027e11fe-cf7b-4f08-9e24-9bb165fb089f)
 ---
-![Screenshot from 2023-12-22 10-37-59](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/7a14c64f-1b0f-4fed-b4ca-4352a9cc540d)
+![Screenshot from 2024-03-15 19-10-44](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/4db77509-edcf-4124-945c-b62ecde4b677)
 ---
-![Screenshot from 2023-12-22 10-37-34](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/02cdebb0-67f9-4ca0-816f-36ee844a8070)
+![Screenshot from 2024-03-15 19-10-21](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/22630735-c39a-4d31-aaeb-ecc9dc555440)
 ---
-![Screenshot from 2023-12-22 10-37-24](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/2566d62f-d598-4080-8ecc-4de635dd0a3a)
+![Screenshot from 2024-03-15 19-10-10](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/937e8139-6f6a-4e6f-a9d2-10c2c54b6e0a)
 ---
-![Screenshot from 2023-12-22 10-36-38](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/691c3dd8-aa8d-4bda-b23b-1212c2ec9a96)
+![Screenshot from 2024-03-15 19-10-06](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/a4bd5464-87fa-486b-9e89-f0172532edeb)
 ---
-![Screenshot from 2023-12-22 10-33-00](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/6109440f-bf8f-4394-8d3f-6dcaa1fd59f4)
+![Screenshot from 2024-03-15 19-09-58](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/96e980d1-d085-429e-b056-597194177157)
 ---
-![Screenshot from 2023-12-22 10-32-50](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/ecde99f1-c451-46d9-9471-af36ed9849ea)
+![Screenshot from 2024-03-15 19-09-43](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/5e134855-46a2-496a-a8db-0326b9561b10)
 ---
-![Screenshot from 2023-12-22 10-30-30](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/27c4d3d5-5908-4f64-96d2-c2c6356e85e6)
+![Screenshot from 2024-03-15 19-09-08](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/1162ed85-d2b1-4b81-81a1-925f42713b28)
 ---
-![Screenshot from 2023-12-22 10-28-05](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/185860cf-80e3-4780-8932-1c15d9a441cf)
+![Screenshot from 2024-03-15 19-08-44](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/ccbeb0db-d5e4-4b27-9f7d-11e561e12dd4)
 ---
-![Screenshot from 2023-12-22 10-27-55](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/5aa608ba-11a2-417c-8a69-883313701ead)
+![Screenshot from 2024-03-15 19-08-29](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/bc6aa333-bcf3-4bf2-b9d2-2c28d1a1f634)
 ---
-![Screenshot from 2023-12-22 10-26-54](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/7899e6c3-2d93-4f56-9e96-8031228daf50)
+![Screenshot from 2024-03-15 19-08-17](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/e323d2a4-103f-4ecc-9da0-947ab5b03c3e)
 ---
-![Screenshot from 2023-12-22 10-26-31](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/ac9d3b16-3e50-464e-833b-395e8f89f95f)
+![Screenshot from 2024-03-15 19-07-40](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/7d1cea75-ec80-4ca6-b098-5191584e0e29)
 ---
-![Screenshot from 2023-12-22 10-26-00](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/d7610cd5-87b0-4e40-a100-5b23360a3931)
+![Screenshot from 2024-03-15 19-06-56](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/53a7c07d-15eb-4002-bddc-f40ab4b327e5)
 ---
-![Screenshot from 2023-12-22 10-25-09](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/f6edcccb-3fdb-4f8f-a04b-13fbc8c52be1)
+![Screenshot from 2024-03-15 19-06-33](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/85754f0d-fc1b-4cf4-8226-1962a050628d)
 ---
-![Screenshot from 2023-12-22 10-25-00](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/12e2f30c-4639-404e-aa99-2fb14cd3fea3)
+![Screenshot from 2024-03-15 19-06-23](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/1b33bfc7-feb3-4404-8267-3a4f8de3f817)
+---
+![Screenshot from 2024-03-15 19-06-08](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/e3de6e0e-1b5f-4da2-8e23-333046ac7a16)
+---
+![Screenshot from 2024-03-15 19-05-39](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/88144fe6-ae0c-4027-8667-bd52713bb527)
+---
+![Screenshot from 2024-03-15 19-05-23](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/4333249c-c50b-42e9-b377-9646e01782a7)
+---
+![Screenshot from 2024-03-15 19-05-02](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/f4990255-7f2e-4e76-a0f1-6da970f90070)
+---
+![Screenshot from 2024-03-15 19-04-47](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/ab69ab07-d780-4b9d-ba75-de8ff6c3e86f)
+---
+![Screenshot from 2024-03-15 19-04-18](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/a464e761-d67a-4fce-b5bf-03650618dd96)
+---
+![Screenshot from 2024-03-15 19-04-06](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/bbe57829-d879-42e0-b005-dd00e98b41d6)
+---
+![Screenshot from 2024-03-15 19-03-45](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/00271e64-78be-4638-ad34-3726d5eb45b8)
+---
+![Screenshot from 2024-03-15 19-03-14](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/f9828aea-e5f1-4908-8ca6-e3716580964b)
+---
+![Screenshot from 2024-03-15 19-02-57](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/d28eab41-ab2f-4665-9a2b-36da62219c6c)
+---
+![Screenshot from 2024-03-15 19-02-14](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/bbecaf2c-7766-48b5-8a24-eca909450597)
+---
+![Screenshot from 2024-03-15 19-01-29](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/311137a4-c213-4968-a1c2-fa9585e562da)
+---
+![Screenshot from 2024-03-15 19-01-12](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/assets/87318892/f74178db-e9c0-4c08-9abf-df3ddc25cd9c)
 ---
 
 </details>
