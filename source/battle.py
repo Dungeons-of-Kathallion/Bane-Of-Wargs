@@ -118,6 +118,29 @@ def calculate_player_risk(
     enemies_count = enemies_number
     player_deaths = 0
     enemy_deaths = 0
+    # calculate enemy strength coefficient
+    if player["difficulty mode"] == 0:
+        enemy_strength_coefficient = .9
+    elif player["difficulty mode"] == 2:
+        enemy_strength_coefficient = 1.1
+    else:
+        enemy_strength_coefficient = 1
+
+    # calculate player critical hit chance coefficient
+    if player["difficulty mode"] == 0:
+        player_critic_coefficient = 1.05
+    elif player["difficulty mode"] == 2:
+        player_critic_coefficient = .95
+    else:
+        player_critic_coefficient = 1
+
+    # calculate enemy critical hit chance coefficient
+    if player["difficulty mode"] == 0:
+        enemy_critic_coefficient = .95
+    elif player["difficulty mode"] == 2:
+        enemy_critic_coefficient = 1.05
+    else:
+        enemy_critic_coefficient = 1
     while count < 65:
         someone_died = False
         # reset enemy health stats
@@ -148,7 +171,7 @@ def calculate_player_risk(
                     player_critical_hit = False
                     if round(random.uniform(.30, enemy_agility), 2) > player_fake_agility / 1.15 and random.uniform(0, 1) > .65:
                         enemy_dodged = True
-                    if player_critical_hit_chance > random.randint(0, 100):
+                    if player_critical_hit_chance * player_critic_coefficient > random.randint(0, 100):
                         player_critical_hit = True
                     if not enemy_dodged:
                         player_damage = round(random.uniform(0, int(player_av_dmg)) * player_damage_coefficient)
@@ -176,12 +199,12 @@ def calculate_player_risk(
                             random.uniform(.50, .90), 1
                         )
                     )
-                    damage = round(damage)
+                    damage = round(damage * enemy_strength_coefficient)
                     defend = 0
                     player_dodged = False
                     enemy_critical_hit = False
                     enemy_critical_hit_chance = enemy_fake_critical_hit_chance
-                    if enemy_critical_hit_chance > random.randint(0, 100):
+                    if enemy_critical_hit_chance * enemy_critic_coefficient > random.randint(0, 100):
                         enemy_critical_hit = True
                     elif round(random.uniform(.30, player_fake_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
                         player_dodged = True
@@ -382,6 +405,30 @@ def fight(
     enemy_max_health = enemy_health
 
     critical_hit_chance = player["critical hit chance"]
+
+    # calculate enemy strength coefficient
+    if player["difficulty mode"] == 0:
+        enemy_strength_coefficient = .9
+    elif player["difficulty mode"] == 2:
+        enemy_strength_coefficient = 1.1
+    else:
+        enemy_strength_coefficient = 1
+
+    # calculate player critical hit chance coefficient
+    if player["difficulty mode"] == 0:
+        player_critic_coefficient = 1.05
+    elif player["difficulty mode"] == 2:
+        player_critic_coefficient = .95
+    else:
+        player_critic_coefficient = 1
+
+    # calculate enemy critical hit chance coefficient
+    if player["difficulty mode"] == 0:
+        enemy_critic_coefficient = .95
+    elif player["difficulty mode"] == 2:
+        enemy_critic_coefficient = 1.05
+    else:
+        enemy_critic_coefficient = 1
 
     # while the player is still fighting (for run away)
 
@@ -609,7 +656,7 @@ def fight(
                     if round(random.uniform(.30, enemy_agility), 2) > player_agility / 1.15 and random.uniform(0, 1) > .65:
                         enemy_dodged = True
                         cout("Your enemy dodged your attack!")
-                    if critical_hit_chance > random.randint(0, 100):
+                    if critical_hit_chance * player_critic_coefficient > random.randint(0, 100):
                         player_critical_hit = True
                         cout("You dealt a critical hit to your opponent!")
                     if not enemy_dodged:
@@ -679,11 +726,11 @@ def fight(
                         ) * enemies_damage_coefficient - defend * (
                             armor_protection * round(random.uniform(.50, .90), 1)
                         )
-                        damage = round(damage)
+                        damage = round(damage * enemy_strength_coefficient)
                         defend = 0
                         player_dodged = False
                         enemy_critical_hit = False
-                        if critical_hit_chance > random.randint(0, 100):
+                        if critical_hit_chance * enemy_critic_coefficient > random.randint(0, 100):
                             enemy_critical_hit = True
                             cout("Your enemy dealt a critical hit!")
                         elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
