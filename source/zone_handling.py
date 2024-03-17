@@ -10,6 +10,11 @@ from terminal_handling import cout, cinput
 # external imports
 import random
 import time
+import yaml
+import appdirs
+
+
+program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 
 # Handling functions
@@ -252,7 +257,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
 # Interactions functions
 
 
-def interaction_hostel(map_zone, zone, player, drinks, item):
+def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferences, previous_player):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is an hostel --> can interact")
     text = '='
     text_handling.print_separator(text)
@@ -276,6 +281,29 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
             text = '='
             text_handling.print_separator(text)
             if ask.lower().startswith('y'):
+                if player["difficulty mode"] >= 1:
+                    logger_sys.log_message("INFO: Dumping player RAM save into its save file")
+                    dumped = yaml.dump(player)
+                    previous_player = player
+                    logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+
+                    save_file_quit = save_file
+                    with open(save_file_quit, "w") as f:
+                        f.write(dumped)
+                        logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+
+                    save_name_backup = save_file.replace('save_', '~0 save_')
+
+                    with open(save_name_backup, "w") as f:
+                        f.write(dumped)
+                        logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+
+                    dumped = yaml.dump(preferences)
+                    logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+
+                    with open(program_dir + '/preferences.yaml', 'w') as f:
+                        f.write(dumped)
+                    logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
                 logger_sys.log_message("INFO: Starting player sleeping process")
                 if int(player["gold"]) > int(zone[map_zone]["sleep gold"]):
                     sleep_gold = int(zone[map_zone]["sleep gold"])
@@ -1004,7 +1032,7 @@ def interaction_forge(map_zone, zone, player, item):
             continue_forge_actions = False
 
 
-def interaction_church(map_zone, zone, player):
+def interaction_church(map_zone, zone, player, save_file, preferences, previous_player):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a church --> can interact")
     current_church = zone[map_zone]
     text = '='
@@ -1016,6 +1044,29 @@ def interaction_church(map_zone, zone, player):
         choice = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Rest':
+            if player["difficulty mode"] >= 1:
+                logger_sys.log_message("INFO: Dumping player RAM save into its save file")
+                dumped = yaml.dump(player)
+                previous_player = player
+                logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+
+                save_file_quit = save_file
+                with open(save_file_quit, "w") as f:
+                    f.write(dumped)
+                    logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+
+                save_name_backup = save_file.replace('save_', '~0 save_')
+
+                with open(save_name_backup, "w") as f:
+                    f.write(dumped)
+                    logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+
+                dumped = yaml.dump(preferences)
+                logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+
+                with open(program_dir + '/preferences.yaml', 'w') as f:
+                    f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
             logger_sys.log_message("INFO: Starting player resting process")
             loading = 7
             cout(" ")
