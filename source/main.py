@@ -17,7 +17,6 @@ import time_handling
 import logger_sys
 from colors import *
 from time_handling import *
-from terminal_handling import cout, cinput
 # external imports
 import random
 import yaml
@@ -25,12 +24,10 @@ import os
 import time
 import fade
 import subprocess
-import git
 import tempfile
 import appdirs
 import io
 import pydoc
-from git import Repo
 from sys import exit
 from rich.console import Console
 from rich.markdown import Markdown

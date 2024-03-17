@@ -69,7 +69,7 @@ def date_prettifier(date):
     if day.startswith("0"):
         day = day.replace("0", "")
     formatted_date = f"{day} {month}, year {year}"
-    logger_sys.log_message(f"INFO: Prettified data {date} -- > {formatted_date}")
+    logger_sys.log_message(f"INFO: Prettified date {date} -- > {formatted_date}")
 
     return formatted_date
 

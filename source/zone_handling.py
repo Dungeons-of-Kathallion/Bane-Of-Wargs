@@ -6,7 +6,7 @@ import weapon_upgrade_handling
 import train
 import terminal_handling
 from colors import *
-from terminal_handling import cout, cinput
+from terminal_handling import cout, cinput, cinput_int
 # external imports
 import random
 import time
@@ -1072,7 +1072,7 @@ def interaction_forge(map_zone, zone, player, item):
             which_metal = cinput("Which metal do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen metal '{which_metal}' to sell")
             if which_metal in current_forge["forge"]["buys"]:
-                metal_count = int(cinput("How many count of this metal you want to sell? "))
+                metal_count = cinput_int("How many count of this metal you want to sell? ")
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{metal_count}' of the metal '{which_metal}'")
                 if player["inventory"].count(which_metal) >= metal_count:
                     gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
@@ -1099,7 +1099,7 @@ def interaction_forge(map_zone, zone, player, item):
             which_metal = cinput("Which metal do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_metal}' to buy")
             if which_metal in current_forge["forge"]["sells"]:
-                metal_count = int(cinput("How many count of this metal you want to buy? "))
+                metal_count = cinput_int("How many count of this metal you want to buy? ")
                 if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
                     gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
                     logger_sys.log_message(f"INFO: Removing from player {gold} gold")
@@ -1253,7 +1253,7 @@ def interaction_grocery(map_zone, zone, player, item):
             which_item = cinput("Which item do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
             if which_item in player["inventory"]:
-                item_number = int(cinput("How many items of that type do you want to sell? "))
+                item_number = cinput_int("How many items of that type do you want to sell? ")
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{item_number}' of the item '{which_item}'")
                 if player["inventory"].count(which_item) >= item_number:
                     gold = (
