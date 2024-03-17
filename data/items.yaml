@@ -803,6 +803,63 @@ Knight Beverage:
     ║       $LIGHT_GRAY\____________/       $WHITE║
     ║                            $WHITE║
     ╚════════════════════════════╝
+Gerud Mercenary Beverage:
+  type: "Consumable"
+  effects:
+    - effect 1:
+      type: "healing"
+      health change:
+        augmentation: 999
+    - effect 2:
+      type: "strength"
+      effect time: .7
+      strength change:
+        damage coefficient: 1.27
+        critical hit chance coefficient: 1.27
+    - effect 3:
+      type: "protection"
+      effect time: .7
+      protection change:
+        coefficient: 1.25
+    - effect 4:
+      type: "agility"
+      effect time: .7
+      agility change:
+        coefficient: 1.15
+  gold: 76.48
+  description: >
+    This elixir is commonly used by mercenaries who need to travel the whole Gerud Desert and even sometimes
+    the Badlands, to arrive to their destination and have to face the Mumakils and the South Pillagers.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║            ____            ║
+    ║           [####]           ║
+    ║       ____[####]____       ║
+    ║      /              \      ║
+    ║     /                \     ║
+    ║     |                |     ║
+    ║     | ≈≈≈     ≈≈   ≈ |     ║
+    ║     |≈≈≈≈≈    ≈≈≈≈≈≈≈|     ║
+    ║     \≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈/     ║
+    ║      \≈≈≈≈≈≈≈≈≈≈≈≈≈≈/      ║
+    ║       \____________/       ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║            $BROWN____            $WHITE║
+    ║           $BROWN[####]           $WHITE║
+    ║       $LIGHT_GRAY____$BROWN[####]$LIGHT_GRAY____       $WHITE║
+    ║      $LIGHT_GRAY/              \      $WHITE║
+    ║     $LIGHT_GRAY/                \     $WHITE║
+    ║     $LIGHT_GRAY|                |     $WHITE║
+    ║     $LIGHT_GRAY| $CYAN≈≈$RED≈     $CYAN≈≈   ≈ $LIGHT_GRAY|     $WHITE║
+    ║     $LIGHT_GRAY|$CYAN≈$RED≈≈$GREEN≈≈    ≈≈≈$CYAN≈≈$RED≈≈$LIGHT_GRAY|     $WHITE║
+    ║     $LIGHT_GRAY\$CYAN≈$GREEN≈≈≈$CYAN≈≈≈≈≈≈$GREEN≈≈$RED≈$GREEN≈≈≈$LIGHT_GRAY/     $WHITE║
+    ║      $LIGHT_GRAY\$CYAN≈≈$RED≈≈≈$GREEN≈≈≈$CYAN≈≈$RED≈$GREEN≈≈≈$LIGHT_GRAY/      $WHITE║
+    ║       $LIGHT_GRAY\____________/       $WHITE║
+    ║                            $WHITE║
+    ╚════════════════════════════╝
 Healing Potion:
   type: "Consumable"
   effects:

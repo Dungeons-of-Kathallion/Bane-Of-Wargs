@@ -194,7 +194,7 @@ Ayar Town:
     churches:
     - None
     groceries:
-    - None
+    - Lorry's Grocery Store
 
 New Hyru:
   name: "New Hyru"
@@ -229,7 +229,7 @@ New Hyru:
     churches:
     - Hyru Church
     groceries:
-    - None
+    - Target Grocery
 
 Los Gerudos:
   name: "New Hyru"
@@ -901,6 +901,7 @@ Los Gerudos Grocery Store:
   items sold:
   - Dagger
   - Knight Beverage
+  - Gerud Mercenary Beverage
   - Healing Potion
   - Resistance Potion
   - Strength Potion
@@ -921,6 +922,113 @@ Los Gerudos Grocery Store:
   - Tree log
   - Slime
   - Raw Wood
+  - Raw Aluminum
+
+Lorry's Grocery Store:
+  name: "Lorry's Grocery Store"
+  type: grocery
+  description: "The grocery store of that old guy Lorry. His family owns this place for decades."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$GREE (  $BROWN _____$WHITE|
+      |$GREE( ) $BROWN/$RED-----$WHITE|
+      |$GREE ( ($BROWN|     $WHITE|
+      |$GREEN,,$YELLOW| $BROWN|  $KHAKI() $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | (   _____|
+      |( ) /-----|
+      | ( (|     |
+      |,,| |  () |
+      x__________x
+  cost value: .96
+  items sold:
+  - Dagger
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Forlindon Woods Map
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree log
+  - Slime
+  - Raw Wood
+  - Raw Aluminum
+
+Target Grocery:
+  name: "Target Grocery"
+  type: grocery
+  description: >
+    Probably the biggest grocery store in the Stall Island. At this place, you'll find a large variety of goods
+    that come from around the world. The name seems pretty futuristic right?
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$GREE (  $BROWN _____$WHITE|
+      |$GREE( ) $BROWN/$RED-----$WHITE|
+      |$GREE ( ($BROWN|     $WHITE|
+      |$GREEN,,$YELLOW| $BROWN|  $KHAKI() $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | (   _____|
+      |( ) /-----|
+      | ( (|     |
+      |,,| |  () |
+      x__________x
+  cost value: 1.45
+  items sold:
+  - Dagger
+  - Knight Beverage
+  - Strength Potion
+  - Agility Potion
+  - Gerud Mercenary Beverage
+  - Healing Potion
+  - Resistance Potion
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Mace
+  - Spear
+  - Forlindon Woods Map
+  - Gerud Desert Map
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree Log
+  - Wet Tree Log
+  - Slime
+  - Raw Wood
+  - Mumakil Tusk
+  - Raw Lead
+  - Bow String
+  - Strong String
+  - Flexible String
+  - Stretched Bag
+  - Shield
+  - Leather Boots
+  - Leather Jacket
+  - Rock Paper Scissors
+  - Time Elapsing Potion
   - Raw Aluminum
 
 # Lands
