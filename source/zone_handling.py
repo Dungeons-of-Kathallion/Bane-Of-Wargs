@@ -294,6 +294,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
     text = '='
     text_handling.print_separator(text)
 
+
 def print_grocery_information(map_zone, zone, item, player):
     current_grocery = zone[map_zone]
     current_grocery_name = current_grocery["name"]
@@ -311,6 +312,7 @@ def print_grocery_information(map_zone, zone, item, player):
         cout(i)
     text = '='
     text_handling.print_separator(text)
+
 
 def print_harbor_information(map_zone, zone, map):
     current_harbor = zone[map_zone]
@@ -335,6 +337,7 @@ def print_harbor_information(map_zone, zone, map):
         cout(travel)
     text = '='
     text_handling.print_separator(text)
+
 
 # Interactions functions
 

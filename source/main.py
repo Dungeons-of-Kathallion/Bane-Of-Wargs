@@ -1245,7 +1245,6 @@ def run(play):
                     "items sales": items_sales
                 }
 
-
         # Calculate the enemies global damage
         # coefficient, depending on the player
         # elapsed time in game-days
@@ -2347,7 +2346,10 @@ def run(play):
                         sold_items_list = player["groceries data"][which_zone]["items sales"]
                         sold_items = []
                         for i in sold_items_list:
-                            sold_items += [f" -{i} {COLOR_YELLOW}{round(zone[which_zone]["cost value"] * item[i]["gold"], 2)}{COLOR_RESET_ALL}"]
+                            sold_items += [
+                                f" -{i} {COLOR_YELLOW}{round(zone[which_zone]["cost value"] * item[i]["gold"], 2)}" +
+                                f"{COLOR_RESET_ALL}"
+                            ]
                         cout("SOLD ITEMS:")
                         for i in sold_items:
                             cout(i)
@@ -2367,7 +2369,10 @@ def run(play):
                         count = 0
                         for travel in current_harbor["travels"]:
                             destination = map[f"point{current_harbor["travels"][travel]["destination"]}"]
-                            destination = f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL},{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
+                            destination = (
+                                f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL}," +
+                                f"{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
+                            )
                             travels += [
                                 f" -{list(current_harbor["travels"])[count]} {destination}" +
                                 f" {COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
