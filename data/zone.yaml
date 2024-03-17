@@ -159,6 +159,8 @@ Cocorico Village:
     - Cocorico Church
     groceries:
     - None
+    harbors:
+    - None
 
 Ayar Town:
   name: "Ayar Town"
@@ -194,7 +196,9 @@ Ayar Town:
     churches:
     - None
     groceries:
-    - Lorry's Grocery Store
+    - Lorrys Grocery Store
+    harbors:
+    - None
 
 New Hyru:
   name: "New Hyru"
@@ -230,6 +234,8 @@ New Hyru:
     - Hyru Church
     groceries:
     - Target Grocery
+    harbors:
+    - None
 
 Los Gerudos:
   name: "New Hyru"
@@ -265,6 +271,8 @@ Los Gerudos:
     - Los Gerudos Church
     groceries:
     - Los Gerudos Grocery Store
+    harbors:
+    - Gerud Harbor
 
 Los Gerudos Hostel:
   name: "Los Gerudo Hostel"
@@ -924,7 +932,7 @@ Los Gerudos Grocery Store:
   - Raw Wood
   - Raw Aluminum
 
-Lorry's Grocery Store:
+Lorrys Grocery Store:
   name: "Lorry's Grocery Store"
   type: grocery
   description: "The grocery store of that old guy Lorry. His family owns this place for decades."
@@ -1030,6 +1038,39 @@ Target Grocery:
   - Rock Paper Scissors
   - Time Elapsing Potion
   - Raw Aluminum
+
+Gerud Harbor:
+  name: "Gerud Harbor"
+  type: harbor
+  description: >
+    The Gerud Harbor is one of the greatest human harbor, which's been re-built and restored a hundred times in its life,
+    making it a huge harbor that can take you almost anywhere in the known world.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$RED\/\ $YELLOW.$RED  //$YELLOW|$WHITE|
+      |$YELLOWO|$WHITE/$YELLOW.$WHITE  \$YELLOW|O|$WHITE|
+      | /$TAN=>$WHITE _ \ $YELLOW|$WHITE|
+      |/$YELLOW.$TAN║$WHITE  |$YELLOW.$WHITE \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |\/\ .  //||
+      |O|/.  \|O||
+      | /=> _ \ ||
+      |/.║  |. \||
+      x__________x
+  travels:
+    Californ West Coasts:
+      destination: 2584
+      travel time: 25
+      cost: 38.24
+    Northen Goro Mounts:
+      destination: 2593
+      travel time: 15
+      cost: 24.3
 
 # Lands
 The Edge Of Goro Mounts:

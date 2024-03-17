@@ -12,3 +12,4 @@ content:
   stables: list(str())
   churches: list(str())
   groceries: list(str())
+  harbors: list(str())

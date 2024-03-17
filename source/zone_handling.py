@@ -272,6 +272,28 @@ def print_grocery_information(map_zone, zone, item, player):
     text = '='
     text_handling.print_separator(text)
 
+def print_harbor_information(map_zone, zone, map):
+    current_harbor = zone[map_zone]
+    current_harbor_name = current_harbor["name"]
+    logger_sys.log_message(f"INFO: Printing current harbor '{current_harbor_name}' information to GUI")
+    cout(COLOR_STYLE_BRIGHT + str(current_harbor["name"]) + ":" + COLOR_RESET_ALL)
+    text = current_harbor["description"]
+    text_handling.print_long_string(text)
+    cout()
+    cout("TRAVELS:")
+    travels = []
+    count = 0
+    for travel in current_harbor["travels"]:
+        travels += [
+            f" -{list(current_harbor["travels"])[count]} " +
+            f"{COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
+        ]
+        count += 1
+    for travel in travels:
+        cout(travel)
+    text = '='
+    text_handling.print_separator(text)
+
 # Interactions functions
 
 

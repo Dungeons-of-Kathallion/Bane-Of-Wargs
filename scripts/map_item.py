@@ -360,6 +360,8 @@ def get_zone_color(zone_type):
                 zone_color = COLOR_GREENS_0 + '#'
             elif zone_code == 36:
                 zone_color = COLOR_BLUE_13 + '⟰'
+            elif zone_code == 37:
+                zone_color = COLOR_BLUE_14 + '⇭'
     except Exception as error:
         cout(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"zone type '{zone_type}' is not a valid zone type." + COLOR_RESET_ALL)
         cout(error)

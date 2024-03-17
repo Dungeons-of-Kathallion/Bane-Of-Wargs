@@ -85535,7 +85535,7 @@ point7766:
   - East
   - North-East
   - South-East
-  map zone: Gerud Desert
+  map zone: Gerud Harbor
   x: -36
   y: 4
 point7767:
@@ -85627,7 +85627,7 @@ point778:
   - East
   - North-East
   - South-East
-  map zone: Lorry's Grocery Store
+  map zone: Lorrys Grocery Store
   x: -60
   y: 58
 point7780:
@@ -86408,7 +86408,7 @@ point7893:
 point7894:
   blocked:
   - South-East
-  map zone: Los Gerudos
+  map zone: Gerud Harbor
   x: -37
   y: 3
 point7895:
@@ -86417,7 +86417,7 @@ point7895:
   - East
   - South-East
   - North-East
-  map zone: Gerud Desert
+  map zone: Gerud Harbor
   x: -36
   y: 3
 point7896:
