@@ -281,7 +281,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
             text = '='
             text_handling.print_separator(text)
             if ask.lower().startswith('y'):
-                if player["difficulty mode"] == 2:
+                if player["difficulty mode"] >= 1:
                     logger_sys.log_message("INFO: Dumping player RAM save into its save file")
                     dumped = yaml.dump(player)
                     previous_player = player
@@ -1044,7 +1044,7 @@ def interaction_church(map_zone, zone, player, save_file, preferences, previous_
         choice = terminal_handling.show_menu(options)
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Rest':
-            if player["difficulty mode"] == 2:
+            if player["difficulty mode"] >= 1:
                 logger_sys.log_message("INFO: Dumping player RAM save into its save file")
                 dumped = yaml.dump(player)
                 previous_player = player
