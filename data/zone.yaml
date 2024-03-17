@@ -933,9 +933,9 @@ Lorry's Grocery Store:
   map:
     map full: |
       x__________x
-      |$GREE (  $BROWN _____$WHITE|
-      |$GREE( ) $BROWN/$RED-----$WHITE|
-      |$GREE ( ($BROWN|     $WHITE|
+      |$GREEN (  $BROWN _____$WHITE|
+      |$GREEN( ) $BROWN/$RED-----$WHITE|
+      |$GREEN ( ($BROWN|     $WHITE|
       |$GREEN,,$YELLOW| $BROWN|  $KHAKI() $WHITE|
       x__________x
     map raw: |
@@ -977,17 +977,17 @@ Target Grocery:
   map:
     map full: |
       x__________x
-      |$GREE (  $BROWN _____$WHITE|
-      |$GREE( ) $BROWN/$RED-----$WHITE|
-      |$GREE ( ($BROWN|     $WHITE|
-      |$GREEN,,$YELLOW| $BROWN|  $KHAKI() $WHITE|
+      | $KHAKI________ $WHITE|
+      |$KHAKI/$ORANGEo TARGET$KHAKI\$WHITE|
+      |$ORANGE----------$WHITE|
+      | $RED()       $WHITE|
       x__________x
     map raw: |
       x__________x
-      | (   _____|
-      |( ) /-----|
-      | ( (|     |
-      |,,| |  () |
+      | ________ |
+      |/o TARGET\|
+      |----------|
+      | ()       |
       x__________x
   cost value: 1.45
   items sold:
