@@ -15,6 +15,46 @@ import appdirs
 
 
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
+ZONE_COLORS_DICT = {
+    0: COLOR_GREENS_4 + '╬',
+    1: COLOR_GREENS_5 + '╬',
+    2: COLOR_GREEN + '╬',
+    3: COLOR_GREENS_12 + '╬',
+    4: COLOR_GREENS_2 + '↟',
+    5: COLOR_GREENS_1 + '⇞',
+    6: COLOR_GRAY_4 + '▲',
+    7: COLOR_GRAY_5 + '▲',
+    8: COLOR_GRAY_3 + '▲',
+    9: COLOR_GRAY_1 + '▲',
+    10: COLOR_YELLOW_6 + '≡',
+    11: COLOR_YELLOW_7 + '≡',
+    12: COLOR_YELLOW_7 + '≡',
+    13: COLOR_ORANGE_5 + '≡',
+    14: COLOR_ORANGE_3 + '≡',
+    15: COLOR_ORANGE_4 + '≡',
+    16: COLOR_ORANGE_4 + '≡',
+    17: COLOR_ORANGE_6 + '≡',
+    18: COLOR_ORANGE_6 + '≡',
+    19: COLOR_ORANGE_7 + '≡',
+    20: COLOR_MAGENTA_7 + '#',
+    21: COLOR_YELLOW_8 + '≡',
+    22: COLOR_GREENS_20 + '«',
+    23: COLOR_YELLOW_3 + '«',
+    24: COLOR_RED_1 + '«',
+    25: COLOR_RED_0 + '«',
+    26: COLOR_BLUE_5 + '⌂',
+    27: COLOR_BLUE_13 + '⌂',
+    28: COLOR_BLUE_13 + '⟰',
+    29: COLOR_BLUE_13 + '⟰',
+    30: COLOR_BLUE_13 + '⥣',
+    31: COLOR_BLUE_13 + '⤊',
+    32: COLOR_BLUE_13 + '±',
+    33: COLOR_CYAN_3 + '≈',
+    34: COLOR_CYAN_1 + '≈',
+    35: COLOR_GREENS_0 + '#',
+    36: COLOR_BLUE_13 + '⟰',
+    37: COLOR_BLUE_14 + '⇭'
+}
 
 
 # Handling functions
@@ -1362,3 +1402,18 @@ def determine_grocery_sales(zone_data):
             sales += [sale]
 
     return sales
+
+
+def get_zone_color(zone_type):
+    global zone_color
+    zone_color = COLOR_BLACK
+    try:
+        with open(program_dir + '/game/schemas/zones_colors.yaml', 'r') as f:
+            zones_colors = yaml.safe_load(f)
+            zone_code = zones_colors[str(zone_type)]
+            zone_color = ZONE_COLORS_DICT[zone_code]
+    except Exception as error:
+        cout(COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT + f"zone type '{zone_type}' isn't a valid zone type." + COLOR_RESET_ALL)
+        cout(error)
+        text_handling.exit_game()
+    return zone_color
