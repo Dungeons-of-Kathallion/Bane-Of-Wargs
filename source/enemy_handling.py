@@ -26,11 +26,11 @@ def spawn_enemy(
 ):
     enemies_remaining = enemy_number
     already_encountered = False
+    logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
+    choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
+    choose_rand_enemy = list_enemies[choose_rand_enemy]
+    chosen_enemy = enemy[choose_rand_enemy]
     while enemies_remaining > 0:
-        logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
-        choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
-        choose_rand_enemy = list_enemies[choose_rand_enemy]
-        chosen_enemy = enemy[choose_rand_enemy]
 
         enemy_total_inventory = chosen_enemy["inventory"]
 

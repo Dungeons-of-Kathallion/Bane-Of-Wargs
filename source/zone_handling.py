@@ -249,6 +249,24 @@ def print_hostel_information(map_zone, zone, item, drinks):
     text = '='
     text_handling.print_separator(text)
 
+def print_grocery_information(map_zone, zone, item, player):
+    current_grocery = zone[map_zone]
+    current_grocery_name = current_grocery["name"]
+    logger_sys.log_message(f"INFO: Printing current grocery '{current_grocery_name}' information to GUI")
+    cout(COLOR_STYLE_BRIGHT + str(current_grocery["name"]) + ":" + COLOR_RESET_ALL)
+    text = current_grocery["description"]
+    text_handling.print_long_string(text)
+    cout()
+    cout("ITEMS SALES:")
+    sold_items_list = player["groceries data"][map_zone]["items sales"]
+    sold_items = []
+    for i in sold_items_list:
+        sold_items += [f" -{i} {COLOR_YELLOW}{round(zone[map_zone]["cost value"] * item[i]["gold"], 2)}{COLOR_RESET_ALL}"]
+    for i in sold_items:
+        cout(i)
+    text = '='
+    text_handling.print_separator(text)
+
 # Interactions functions
 
 
@@ -372,7 +390,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item):
                 and which_item in player["inventory"]
             ):
                 logger_sys.log_message(f"INFO: Removing item '{which_item}' from player inventory")
-                player["inventory slots remaining"] -= 1
+                player["inventory slots remaining"] += 1
                 gold = str(item[which_item]["gold"] * zone[map_zone]["cost value"])
                 logger_sys.log_message(f"INFO: Adding to player {gold} gold")
                 player["gold"] += item[which_item]["gold"] * zone[map_zone]["cost value"]
@@ -690,6 +708,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
             which_weapon = cinput("Which equipment do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to sell")
             if which_weapon in zone[map_zone]["blacksmith"]["buys"] and which_weapon in player["inventory"]:
+                player["inventory slots remaining"] += 1
                 gold = str(item[which_weapon]["gold"] * zone[map_zone]["cost value"])
                 player["gold"] += item[which_weapon]["gold"] * zone[map_zone]["cost value"]
                 logger_sys.log_message(f"INFO: Adding to player {gold} gold")
@@ -735,6 +754,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                         selected_item = zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"][count]
                         logger_sys.log_message(f"INFO: Removing from player inventory item '{selected_item}'")
                         player["inventory"].remove(selected_item)
+                        player["inventory slots remaining"] += 1
                         remaining_items_to_remove -= 1
                         count += 1
                     order_uuid = uuid_handling.generate_random_uuid()
@@ -795,6 +815,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                             while count < len(player["inventory"]) and remaining_items_to_remove > 0:
                                 selected_item = item[str(item_next_upgrade_name)]["for this upgrade"][count]
                                 player["inventory"].remove(selected_item)
+                                player["inventory slots remaining"] -= 1
                                 remaining_items_to_remove -= 1
                                 count += 1
                             order_uuid = uuid_handling.generate_random_uuid()
@@ -923,6 +944,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     order = str(player["orders"][current_order_uuid]["ordered weapon"])
                     logger_sys.log_message(f"INFO: Collecting order --> adding to player inventory item '{order}'")
                     player["inventory"].append(str(player["orders"][current_order_uuid]["ordered weapon"]))
+                    player["inventory slots remaining"] -= 1
                     # remove order from player orders
                     player["orders"].pop(current_order_uuid)
             else:
@@ -953,7 +975,7 @@ def interaction_forge(map_zone, zone, player, item):
         logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
         if choice == 'Sell Metals':
             which_metal = cinput("Which metal do you want to sell? ")
-            logger_sys.log_message(f"INFO: Player has chosen metal '{which_metal}' to buy")
+            logger_sys.log_message(f"INFO: Player has chosen metal '{which_metal}' to sell")
             if which_metal in current_forge["forge"]["buys"]:
                 metal_count = int(cinput("How many count of this metal you want to sell? "))
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{metal_count}' of the metal '{which_metal}'")
@@ -965,6 +987,7 @@ def interaction_forge(map_zone, zone, player, item):
                     while count < metal_count:
                         logger_sys.log_message(f"INFO: Removing from player inventory item '{which_metal}'")
                         player["inventory"].remove(which_metal)
+                        player["inventory slots remaining"] += 1
                         count += 1
                 else:
                     logger_sys.log_message(
@@ -990,6 +1013,7 @@ def interaction_forge(map_zone, zone, player, item):
                     while count < metal_count:
                         logger_sys.log_message(f"INFO: Adding to player inventory item '{which_metal}")
                         player["inventory"].append(which_metal)
+                        player["inventory slots remaining"] -= 1
                         count += 1
                 else:
                     logger_sys.log_message(f"INFO: Canceling buying process --> doesn't have enough gold")
@@ -1076,6 +1100,75 @@ def interaction_church(map_zone, zone, player):
             continue_church_actions = False
 
 
+def interaction_grocery(map_zone, zone, player, item):
+    logger_sys.log_message(f"INFO: map zone '{map_zone}' is a grocery --> can interact")
+    current_grocery = zone[map_zone]
+    text = '='
+    text_handling.print_separator(text)
+    options = ['Buy Item', 'Sell Item', 'Exit']
+    continue_grocery_actions = True
+    logger_sys.log_message("INFO: Starting grocery interact loop")
+    while continue_grocery_actions:
+        choice = terminal_handling.show_menu(options)
+        logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
+        if choice == "Buy Item":
+            which_item = cinput("Which item do you want to buy? ")
+            logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
+            if which_item in player["groceries data"][map_zone]["items sales"]:
+                if player["gold"] >= item[which_item]["gold"] * current_grocery["cost value"]:
+                    gold = item[which_item]["gold"] * current_grocery["cost value"]
+                    logger_sys.log_message(f"INFO: Removing from player {gold} gold")
+                    player["gold"] -= gold
+                    logger_sys.log_message(f"INFO: Adding to player inventory item '{which_item}")
+                    player["inventory"].append(which_item)
+                    player["inventory slots remaining"] -= 1
+                else:
+                    logger_sys.log_message(f"INFO: Canceling buying process --> doesn't have enough gold")
+                    cout(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
+            else:
+                logger_sys.log_message(
+                    f"INFO: Canceling buying process --> current grocery '{map_zone}'" +
+                    f" doesn't sell item '{which_item}'"
+                )
+                cout(COLOR_YELLOW + "The current grocery doesn't sells this metal" + COLOR_RESET_ALL)
+        elif choice == 'Sell Item':
+            which_item = cinput("Which item do you want to sell? ")
+            logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
+            if which_item in player["inventory"]:
+                item_number = int(cinput("How many items of that type do you want to sell? "))
+                logger_sys.log_message(f"INFO: Player has chosen to sell '{item_number}' of the item '{which_item}'")
+                if player["inventory"].count(which_item) >= item_number:
+                    gold = (
+                        (
+                            item[which_item]["gold"] * current_grocery["cost value"]
+                        ) * item_number * random.uniform(.85, 1.35)
+                    )
+                    cout(
+                        f"\n{COLOR_YELLOW}You've found someone that accepted to buy " +
+                        f"{item_number} of your \n'{which_item}' for a price of" +
+                        f" {round(gold / item_number, 2)} gold coins per unit.{COLOR_RESET_ALL}"
+                    )
+                    logger_sys.log_message(f"INFO: Adding {gold} gold to player")
+                    player["gold"] += gold
+                    count = 0
+                    while count < item_number:
+                        logger_sys.log_message(f"INFO: Removing from player inventory item '{which_item}'")
+                        player["inventory"].remove(which_item)
+                        player["inventory slots remaining"] += 1
+                        count += 1
+            else:
+                logger_sys.log_message(
+                    "INFO: Canceling selling process --> doesn't has " +
+                    f"'{which_item}' in player's inventory"
+                )
+                cout(COLOR_YELLOW + "You don't own that many count of this item" + COLOR_RESET_ALL)
+        else:
+            continue_grocery_actions = False
+
+
+# Other handling functions
+
+
 def get_map_point_distance_from_player(map, player, current_map_point):
     point_x, point_y = map[current_map_point]["x"], map[current_map_point]["y"]
     point_x, point_y = text_handling.transform_negative_number_to_positive(
@@ -1116,3 +1209,20 @@ def get_zone_nearest_point(map, player, map_zone_name):
             closest_map_point = point
 
     return closest_map_point
+
+
+def determine_grocery_sales(zone_data):
+    # Get the length of the items and define
+    # an approximate number of items that're
+    # going to be sold. After that, randomly
+    # choose the items to be sold
+    sales_length = len(zone_data["items sold"])
+    sales_length -= int(random.uniform(sales_length / 3, sales_length / 4.6))
+
+    sales = []
+    for i in range(sales_length):
+        sale = zone_data["items sold"][i]
+        if sale not in sales and random.uniform(0, 1) > .5:
+            sales += [sale]
+
+    return sales

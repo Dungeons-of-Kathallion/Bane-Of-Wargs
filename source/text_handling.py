@@ -209,10 +209,10 @@ def a_an_check(word):
     logger_sys.log_message(f"INFO: Checking correct grammar of 'a' in front of '{word}'")
     global to_return
     vowels = ['a', 'e', 'i', 'o', 'u']
-    if str(word[0]) in vowels:
+    if str(word.lower()[0]) in vowels:
         to_return = "an " + word
-    elif str(word[0]) == 'h':
-        if str(word[1]) in vowels:
+    elif str(word.lower()[0]) == 'h':
+        if str(word.lower()[1]) in vowels:
             to_return = "an " + word
     else:
         to_return = "a " + word

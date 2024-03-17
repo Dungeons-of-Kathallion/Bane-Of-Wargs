@@ -11,3 +11,4 @@ content:
   forges: list(str())
   stables: list(str())
   churches: list(str())
+  groceries: list(str())
