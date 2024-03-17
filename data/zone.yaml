@@ -157,6 +157,8 @@ Cocorico Village:
     - None
     churches:
     - Cocorico Church
+    groceries:
+    - None
 
 Ayar Town:
   name: "Ayar Town"
@@ -191,6 +193,8 @@ Ayar Town:
     - None
     churches:
     - None
+    groceries:
+    - None
 
 New Hyru:
   name: "New Hyru"
@@ -224,6 +228,8 @@ New Hyru:
     - Clarc Warg Stable
     churches:
     - Hyru Church
+    groceries:
+    - None
 
 Los Gerudos:
   name: "New Hyru"
@@ -257,6 +263,8 @@ Los Gerudos:
     - Kathal Horses
     churches:
     - Los Gerudos Church
+    groceries:
+    - Los Gerudos Grocery Store
 
 Los Gerudos Hostel:
   name: "Los Gerudo Hostel"
@@ -867,6 +875,53 @@ Los Gerudos Church:
       x__________x
   rest hp restoring percentage: .58
   exp exchange max health percentage: .03
+
+Los Gerudos Grocery Store:
+  name: "Los Gerudos Grocery Store"
+  type: grocery
+  description: "The Los Gerudos Grocery Store offers great prices and a wide variety of sales to pick from."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$RED\/\ $YELLOW.$RED  //$YELLOW|$WHITE|
+      |$YELLOWO|$WHITE/$YELLOW.$WHITE  \$YELLOW|O|$WHITE|
+      | /$TAN=>$WHITE _ \ $YELLOW|$WHITE|
+      |/$YELLOW.$TAN║$WHITE  |$YELLOW.$WHITE \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |\/\ .  //||
+      |O|/.  \|O||
+      | /=> _ \ ||
+      |/.║  |. \||
+      x__________x
+  cost value: 1.17
+  items sold:
+  - Dagger
+  - Knight Beverage
+  - Healing Potion
+  - Resistance Potion
+  - Strength Potion
+  - Agility Potion
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Gerud Desert Map
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree log
+  - Slime
+  - Raw Wood
+  - Raw Aluminum
 
 # Lands
 The Edge Of Goro Mounts:
