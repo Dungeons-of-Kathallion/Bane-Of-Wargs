@@ -103,7 +103,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.18
+    GAME_DATA_VERSION = 0.185
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -156,7 +156,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.18
+SOURCE_CODE_VERSION = 0.185
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -415,11 +415,10 @@ while menu:
                 play = 1
                 menu = False
             else:
-                text = "Please name your save: "
+                text = "Please name your adventurer: "
                 text_handling.print_speech_text_effect(text, preferences)
                 enter_save_name = cinput('> ')
                 player = start_player
-                dumped = yaml.dump(player)
                 save_name = program_dir + "/saves/save_" + enter_save_name + ".yaml"
                 save_name_backup = program_dir + "/saves/~0 save_" + enter_save_name + ".yaml"
                 check_file = os.path.isfile(save_name)
@@ -433,6 +432,16 @@ while menu:
                     logger_sys.log_message(f"ERROR: Save file '{save_name}' already exists")
                     play = 0
                     text_handling.exit_game()
+                difficulty_modes = ['Easy', 'Normal', 'Hard']
+                cout("\nPlease select a difficulty:")
+                difficulty = difficulty_modes.index(terminal_handling.show_menu(difficulty_modes))
+                player["difficulty mode"] = difficulty
+                logger_sys.log_message(
+                    "INFO: Player has chosen difficulty " +
+                    f"'{difficulty_modes[difficulty]}'-->'{difficulty}'"
+                )
+                logger_sys.log_message("INFO: Dumping new save data")
+                dumped = yaml.dump(player)
                 logger_sys.log_message("INFO: Creating new save")
                 with open(save_name, "w") as f:
                     f.write(dumped)
@@ -1783,6 +1792,20 @@ def run(play):
                     count2 += 1
             count += 1
 
+        # Calculate enemy spawning change
+        # variable, depending on the player
+        # difficulty mode.
+        #
+        # Easy: 8%
+        # Normal: 18%
+        # Hard: 28%
+        if player["difficulty mode"] == 0:
+            enemy_spawning_chance = random.uniform(0, 1) > 92
+        elif player["difficulty mode"] == 2:
+            enemy_spawning_chance = random.uniform(0, 1) > 72
+        else:
+            enemy_spawning_chance = random.uniform(0, 1) > 82
+
         logger_sys.log_message(f"INFO: Checking if an enemy at map point 'point{map_location}'")
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
@@ -1796,7 +1819,7 @@ def run(play):
 
         elif (
             day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
-            and round(random.uniform(.20, .80), 3) > .7 and zone[map_zone]["type"] != "hostel"
+            and enemy_spawning_chance and zone[map_zone]["type"] != "hostel"
             and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village"
             and zone[map_zone]["type"] != "blacksmith" and zone[map_zone]["type"] != "forge"
             and zone[map_zone]["type"] != "castle" and zone[map_zone]["type"] != "church"
@@ -1819,6 +1842,37 @@ def run(play):
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+
+        # Check if the player's in 'Easy' difficulty. If he
+        # is, then automatically save the player data into
+        # its save file
+        if player["difficulty mode"] == 0:
+            logger_sys.log_message(
+                "INFO: autosaving player data into its save --> player's in 'Easy' difficulty mode"
+            )
+            logger_sys.log_message("INFO: Dumping player RAM save into its save file")
+            dumped = yaml.dump(player)
+            previous_player = player
+            logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+
+            save_file_quit = save_file
+            with open(save_file_quit, "w") as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+
+            save_name_backup = save_file.replace('save_', '~0 save_')
+
+            with open(save_name_backup, "w") as f:
+                f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+
+            dumped = yaml.dump(preferences)
+            logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+
+            with open(program_dir + '/preferences.yaml', 'w') as f:
+                f.write(dumped)
+            logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
 
@@ -2838,7 +2892,9 @@ def run(play):
         elif command.lower().startswith('z'):
             logger_sys.log_message(f"INFO: Trying to interact with current zone '{map_zone}'")
             if zone[map_zone]["type"] == "hostel":
-                zone_handling.interaction_hostel(map_zone, zone, player, drinks, item)
+                zone_handling.interaction_hostel(
+                    map_zone, zone, player, drinks, item, save_file, preferences, previous_player
+                )
             elif zone[map_zone]["type"] == "stable":
                 zone_handling.interaction_stable(
                     map_zone, zone, player, item, drinks, mounts, map_location, preferences, time_elapsing_coefficient
@@ -2848,7 +2904,7 @@ def run(play):
             elif zone[map_zone]["type"] == "forge":
                 zone_handling.interaction_forge(map_zone, zone, player, item)
             elif zone[map_zone]["type"] == "church":
-                zone_handling.interaction_church(map_zone, zone, player)
+                zone_handling.interaction_church(map_zone, zone, player, save_file, preferences, previous_player)
             elif zone[map_zone]["type"] == "grocery":
                 zone_handling.interaction_grocery(map_zone, zone, player, item)
             else:
@@ -3022,32 +3078,42 @@ def run(play):
                 time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('k'):
-            logger_sys.log_message("INFO: Dumping player RAM save into its save file")
-            cout("Collecting player data...")
-            dumped = yaml.dump(player)
-            previous_player = player
-            logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+            if player["difficulty mode"] == 2:
+                text = (
+                    "You can't save the game this way in the 'Hard' difficulty mode." +
+                    " You can only save the game when sleeping at an hostel or resting at a church."
+                )
+                cout(COLOR_YELLOW, end="")
+                text_handling.print_long_string(text)
+                cout(COLOR_RESET_ALL, end="")
+                time.sleep(4)
+            else:
+                logger_sys.log_message("INFO: Dumping player RAM save into its save file")
+                cout("Collecting player data...")
+                dumped = yaml.dump(player)
+                previous_player = player
+                logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
-            save_file_quit = save_file
-            cout("Dumping player data to save files...")
-            with open(save_file_quit, "w") as f:
-                f.write(dumped)
-                logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+                save_file_quit = save_file
+                cout("Dumping player data to save files...")
+                with open(save_file_quit, "w") as f:
+                    f.write(dumped)
+                    logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
 
-            save_name_backup = save_file.replace('save_', '~0 save_')
+                save_name_backup = save_file.replace('save_', '~0 save_')
 
-            with open(save_name_backup, "w") as f:
-                f.write(dumped)
-                logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+                with open(save_name_backup, "w") as f:
+                    f.write(dumped)
+                    logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-            cout("Collecting player preferences...")
-            dumped = yaml.dump(preferences)
-            logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+                cout("Collecting player preferences...")
+                dumped = yaml.dump(preferences)
+                logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
-            cout("Dumping player preferences to preferences file...")
-            with open(program_dir + '/preferences.yaml', 'w') as f:
-                f.write(dumped)
-            logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+                cout("Dumping player preferences to preferences file...")
+                with open(program_dir + '/preferences.yaml', 'w') as f:
+                    f.write(dumped)
+                logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
             continued_command = True
         elif command.lower().startswith('p'):
             logger_sys.log_message("INFO: Pausing game")
@@ -3059,9 +3125,22 @@ def run(play):
             logger_sys.log_message(f"INFO: Finished pausing game --> game pause have lasted {pause_time} seconds")
             continued_command = True
         elif command.lower().startswith('q'):
-            logger_sys.log_message("INFO: Closing & Saving game")
-            text_handling.print_separator('=')
-            play = 0
+            continue_quit = True
+            if player["difficulty mode"] == 2:
+                cout("Are you sure you want to quit the game?")
+                choice = cinput("Changes that haven't been saved will be lost forever! (y/n) ")
+                text = (
+                    "\nHint: in 'Hard' difficulty mode, you can save the game by " +
+                    "sleeping in an hostel or resting at a church"
+                )
+                text_handling.print_long_string(text)
+                time.sleep(4)
+                if not choice.lower().startswith('y'):
+                    continue_quit = False
+            if continue_quit:
+                logger_sys.log_message("INFO: Closing & Saving game")
+                text_handling.print_separator('=')
+                play = 0
             continued_command = True
         elif command.lower().startswith('$player$data$'):
             logger_sys.log_message("INFO: Displaying player data in a pager mode")
@@ -3224,26 +3303,27 @@ if play == 1:
     play = run(1)
 
 # finish up and save
-dumped = yaml.dump(player)
-logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
+if player["difficulty mode"] != 2:
+    dumped = yaml.dump(player)
+    logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
-save_file_quit = save_file
-with open(save_file_quit, "w") as f:
-    f.write(dumped)
-    logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
+    save_file_quit = save_file
+    with open(save_file_quit, "w") as f:
+        f.write(dumped)
+        logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
 
-save_name_backup = save_file.replace('save_', '~0 save_')
+    save_name_backup = save_file.replace('save_', '~0 save_')
 
-with open(save_name_backup, "w") as f:
-    f.write(dumped)
-    logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
+    with open(save_name_backup, "w") as f:
+        f.write(dumped)
+        logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-dumped = yaml.dump(preferences)
-logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
+    dumped = yaml.dump(preferences)
+    logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
-with open(program_dir + '/preferences.yaml', 'w') as f:
-    f.write(dumped)
-logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+    with open(program_dir + '/preferences.yaml', 'w') as f:
+        f.write(dumped)
+    logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
 
 text_handling.clear_prompt()
 logger_sys.log_message(f"INFO: GAME RUN END")
