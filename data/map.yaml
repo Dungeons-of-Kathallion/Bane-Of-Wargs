@@ -11852,7 +11852,7 @@ point1177:
   - North
   - North-East
   - North-West
-  map zone: The Edge Of Goro Mounts
+  map zone: Dwarf Harbor
   x: -48
   y: 55
 point11770:
@@ -11920,7 +11920,7 @@ point1178:
   - North
   - North-East
   - North-West
-  map zone: The Edge Of Goro Mounts
+  map zone: Dwarf Harbor
   x: -47
   y: 55
 point11780:
@@ -11988,7 +11988,7 @@ point1179:
   - North
   - North-East
   - North-West
-  map zone: The Edge Of Goro Mounts
+  map zone: Dwarf Harbor
   x: -46
   y: 55
 point11790:
@@ -50597,7 +50597,7 @@ point2584:
   - West
   - North-West
   - South-West
-  map zone: Seaside Hostels
+  map zone: Seaside Harbor
   x: -60
   y: 44
 point2585:

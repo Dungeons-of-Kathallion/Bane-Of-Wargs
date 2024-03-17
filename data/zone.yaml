@@ -1050,27 +1050,89 @@ Gerud Harbor:
   map:
     map full: |
       x__________x
-      |$RED\/\ $YELLOW.$RED  //$YELLOW|$WHITE|
-      |$YELLOWO|$WHITE/$YELLOW.$WHITE  \$YELLOW|O|$WHITE|
-      | /$TAN=>$WHITE _ \ $YELLOW|$WHITE|
-      |/$YELLOW.$TAN║$WHITE  |$YELLOW.$WHITE \$YELLOW|$WHITE|
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$LIGHT_GRAY__________$WHITE|
+      |$LIGHT_GRAY.  .    . $WHITE|
       x__________x
     map raw: |
       x__________x
-      |\/\ .  //||
-      |O|/.  \|O||
-      | /=> _ \ ||
-      |/.║  |. \||
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |__________|
+      |.  .    . |
       x__________x
   travels:
     Californ West Coasts:
       destination: 2584
       travel time: 25
-      cost: 38.24
+      cost: 78.15
     Northen Goro Mounts:
-      destination: 2593
+      destination: 1179
+      travel time: 15
+      cost: 34.6
+
+Seaside Harbor:
+  name: "Seaside Harbor"
+  type: harbor
+  description: "The Seaside Harbor is part of the company that owns the Seaside Hostels. Most of the boats here are pleasure boats."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈$YELLOW|$BLUE≈≈≈≈≈≈$WHITE|
+      |$BLUE≈$YELLOW__±____$BLUE≈≈$WHITE|
+      |$BLUE≈$YELLOW\_____/$BLUE≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈|≈≈≈≈≈≈|
+      |≈__±____≈≈|
+      |≈\_____/≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+  travels:
+    Northen Goro Mounts:
+      destination: 1179
       travel time: 15
       cost: 24.3
+    Gerud East Coasts:
+      destination: 7766
+      travel time: 25
+      cost: 51.2
+
+Dwarf Harbor:
+  name: "Dwarf Harbor"
+  type: harbor
+  description: "A beautiful harbor that's built in the rock of the Goro Peaks."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$DARK_BLUE≈≈≈$YELLOW|$DARK_BLUE≈≈≈≈≈≈$WHITE|
+      |$DARK_BLUE≈$YELLOW__±____$DARK_BLUE≈≈$WHITE|
+      |$DARK_BLUE≈$YELLOW\_____/$DARK_BLUE≈≈$WHITE|
+      |$DARK_BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈|≈≈≈≈≈≈|
+      |≈__±____≈≈|
+      |≈\_____/≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+  travels:
+    Californ West Coasts:
+      destination: 2584
+      travel time: 15
+      cost: 26.12
+    Gerud East Coasts:
+      destination: 7766
+      travel time: 25
+      cost: 35.4
 
 # Lands
 The Edge Of Goro Mounts:

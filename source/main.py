@@ -2366,9 +2366,11 @@ def run(play):
                         travels = []
                         count = 0
                         for travel in current_harbor["travels"]:
+                            destination = map[f"point{current_harbor["travels"][travel]["destination"]}"]
+                            destination = f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL},{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
                             travels += [
-                                f" -{list(current_harbor["travels"])[count]} " +
-                                f"{COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
+                                f" -{list(current_harbor["travels"])[count]} {destination}" +
+                                f" {COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
                             ]
                             count += 1
                         for travel in travels:
@@ -2942,6 +2944,8 @@ def run(play):
                 zone_handling.interaction_church(map_zone, zone, player, save_file, preferences, previous_player)
             elif zone[map_zone]["type"] == "grocery":
                 zone_handling.interaction_grocery(map_zone, zone, player, item)
+            elif zone[map_zone]["type"] == "harbor":
+                zone_handling.interaction_harbor(map_zone, zone, map, player)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
                 text = (

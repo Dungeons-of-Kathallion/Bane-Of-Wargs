@@ -284,9 +284,11 @@ def print_harbor_information(map_zone, zone, map):
     travels = []
     count = 0
     for travel in current_harbor["travels"]:
+        destination = map[f"point{current_harbor["travels"][travel]["destination"]}"]
+        destination = f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL},{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
         travels += [
-            f" -{list(current_harbor["travels"])[count]} " +
-            f"{COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
+            f" -{list(current_harbor["travels"])[count]} {destination}" +
+            f" {COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
         ]
         count += 1
     for travel in travels:
@@ -1237,6 +1239,67 @@ def interaction_grocery(map_zone, zone, player, item):
                 cout(COLOR_YELLOW + "You don't own that many count of this item" + COLOR_RESET_ALL)
         else:
             continue_grocery_actions = False
+
+
+def interaction_harbor(map_zone, zone, map, player):
+    logger_sys.log_message(f"INFO: map zone '{map_zone}' is a harbor --> can interact")
+    current_harbor = zone[map_zone]
+    text = '='
+    text_handling.print_separator(text)
+    options = ['Buy Ticket', 'Exit']
+    continue_harbor_actions = True
+    logger_sys.log_message("INFO: Starting harbor interact loop")
+    while continue_harbor_actions:
+        choice = terminal_handling.show_menu(options)
+        logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
+        if choice == "Buy Ticket":
+            which_ticket = cinput("Which ticket do you want to buy? ")
+            if which_ticket in list(current_harbor["travels"]):
+                gold = current_harbor["travels"][which_ticket]["cost"]
+                if player["gold"] >= gold:
+                    player["gold"] -= gold
+                    logger_sys.log_message(f"INFO: Removing from player {gold} gold")
+                    destination = map[f"point{current_harbor["travels"][which_ticket]["destination"]}"]
+                    player["x"], player["y"] = destination["x"], destination["y"]
+                    travel_time = current_harbor["travels"][which_ticket]["travel time"]
+                    logger_sys.log_message("INFO: Starting player traveling process")
+                    cout(" ")
+                    overall_time = 0
+                    while overall_time < travel_time:
+                        starting_time = time.time()
+                        cout("Traveling... >--", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... ->-", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... -->", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... ---", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... >--", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... ->-", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... -->", end='\r')
+                        time.sleep(.25)
+                        cout("Traveling... ---", end='\r')
+                        time.sleep(.25)
+                        overall_time += time.time() - starting_time
+                    logger_sys.log_message("INFO: Finished traveling process")
+                    continue_harbor_actions = False
+                else:
+                    logger_sys.log_message(
+                        "INFO: Canceling ticket buying process --> player" +
+                        f"doesn't have enough gold"
+                    )
+                    cout(COLOR_YELLOW + "You don't own enough gold to buy this ticket" + COLOR_RESET_ALL)
+            else:
+                logger_sys.log_message(
+                    "INFO: Canceling ticket buying process --> current harbor" +
+                    f"doesn't have a ticket named '{which_ticket}'"
+                )
+                cout(COLOR_YELLOW + "There isn't any ticket name like that" + COLOR_RESET_ALL)
+        else:
+            continue_harbor_actions = False
 
 
 # Other handling functions
