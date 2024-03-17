@@ -270,7 +270,7 @@ def print_map_art(item_data, plugin_name=False):
     with open(path, 'r') as f:
         art = f.readlines()
 
-    human_civilizations = ['⌂', '⟰', '⤊', '±']
+    human_civilizations = ['⌂', '⟰', '⤊', '±', '⇭']
     for line in art:
         line = line.replace('\n', '')
         line = line.replace('≈', '\033[38;2;250;223;199m' + "≈" + '\033[38;2;255;208;166m')
