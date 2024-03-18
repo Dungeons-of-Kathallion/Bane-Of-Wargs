@@ -17,6 +17,7 @@ import time_handling
 import logger_sys
 from colors import *
 from time_handling import *
+from terminal_handling import cout, cinput
 # external imports
 import random
 import yaml
