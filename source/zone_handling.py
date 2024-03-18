@@ -1038,10 +1038,17 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 if action == 'Collect Order':
                     order = str(player["orders"][current_order_uuid]["ordered weapon"])
                     logger_sys.log_message(f"INFO: Collecting order --> adding to player inventory item '{order}'")
-                    player["inventory"].append(str(player["orders"][current_order_uuid]["ordered weapon"]))
-                    player["inventory slots remaining"] -= 1
-                    # remove order from player orders
-                    player["orders"].pop(current_order_uuid)
+                    if player["inventory remaining slots"] > 0:
+                        player["inventory"].append(str(player["orders"][current_order_uuid]["ordered weapon"]))
+                        player["inventory slots remaining"] -= 1
+                        # remove order from player orders
+                        player["orders"].pop(current_order_uuid)
+                    else:
+                        logger_sys.log_message(
+                            "INFO: Canceling collecting order process --> player hasn't " +
+                            f"enough inventory slots remaining"
+                        )
+                        cout(COLOR_YELLOW + "You don't have enough inventory slots remaining." + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
                     "INFO: Canceling collecting order process --> player has no order " +
@@ -1101,15 +1108,21 @@ def interaction_forge(map_zone, zone, player, item):
             if which_metal in current_forge["forge"]["sells"]:
                 metal_count = cinput_int("How many count of this metal you want to buy? ")
                 if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
-                    gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
-                    logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                    player["gold"] -= item[which_metal]["gold"] * current_forge["cost value"] * metal_count
-                    count = 0
-                    while count < metal_count:
-                        logger_sys.log_message(f"INFO: Adding to player inventory item '{which_metal}")
-                        player["inventory"].append(which_metal)
-                        player["inventory slots remaining"] -= 1
-                        count += 1
+                    if player["inventory slots remaining"] >= metal_count:
+                        gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
+                        logger_sys.log_message(f"INFO: Removing from player {gold} gold")
+                        player["gold"] -= item[which_metal]["gold"] * current_forge["cost value"] * metal_count
+                        count = 0
+                        while count < metal_count:
+                            logger_sys.log_message(f"INFO: Adding to player inventory item '{which_metal}")
+                            player["inventory"].append(which_metal)
+                            player["inventory slots remaining"] -= 1
+                            count += 1
+                    else:
+                        logger_sys.log_message(
+                            f"INFO: Canceling buying process --> doesn't have enough inventory slots"
+                        )
+                        cout(COLOR_YELLOW + "You don't enough remaining inventory slots" + COLOR_RESET_ALL)
                 else:
                     logger_sys.log_message(f"INFO: Canceling buying process --> doesn't have enough gold")
                     cout(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
@@ -1234,12 +1247,17 @@ def interaction_grocery(map_zone, zone, player, item):
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if which_item in player["groceries data"][map_zone]["items sales"]:
                 if player["gold"] >= item[which_item]["gold"] * current_grocery["cost value"]:
-                    gold = item[which_item]["gold"] * current_grocery["cost value"]
-                    logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                    player["gold"] -= gold
-                    logger_sys.log_message(f"INFO: Adding to player inventory item '{which_item}")
-                    player["inventory"].append(which_item)
-                    player["inventory slots remaining"] -= 1
+                    if player["inventory slots remaining"] > 0:
+                        gold = item[which_item]["gold"] * current_grocery["cost value"]
+                        logger_sys.log_message(f"INFO: Removing from player {gold} gold")
+                        player["gold"] -= gold
+                        logger_sys.log_message(f"INFO: Adding to player inventory item '{which_item}")
+                        player["inventory"].append(which_item)
+                        player["inventory slots remaining"] -= 1
+                        logger_sys.log_message(
+                            f"INFO: Canceling buying process --> doesn't have enough inventory slots"
+                        )
+                        cout(COLOR_YELLOW + "You don't have enough space in your inventory" + COLOR_RESET_ALL)
                 else:
                     logger_sys.log_message(f"INFO: Canceling buying process --> doesn't have enough gold")
                     cout(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
