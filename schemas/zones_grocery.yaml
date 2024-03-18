@@ -1,0 +1,9 @@
+name: str()
+type: str()
+description: str()
+news: list(str())
+map:
+  map raw: str(required=False)
+  map full: str()
+cost value: num()
+items sold: list(str())

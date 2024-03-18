@@ -1,7 +1,6 @@
 # source imports
 import battle
 import check_yaml
-import train
 import terminal_handling
 import mission_handling
 import dialog_handling
@@ -17,7 +16,7 @@ import item_handling
 import time_handling
 import logger_sys
 from colors import *
-from terminal_handling import cout, cinput
+from time_handling import *
 # external imports
 import random
 import yaml
@@ -25,12 +24,10 @@ import os
 import time
 import fade
 import subprocess
-import git
 import tempfile
 import appdirs
 import io
 import pydoc
-from git import Repo
 from sys import exit
 from rich.console import Console
 from rich.markdown import Markdown
@@ -103,7 +100,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.185
+    GAME_DATA_VERSION = 0.19
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -156,7 +153,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.185
+SOURCE_CODE_VERSION = 0.19
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -1223,6 +1220,28 @@ def run(play):
             str(player["y"]) + COLOR_RESET_ALL + ")"
         )
 
+        # Handle groceries stores randomly picked
+        # sales and create the corresponding data
+        # in the player dictionary data.
+        groceries = []
+        for i in list(zone):
+            if zone[i]["type"] == "grocery":
+                groceries += [i]
+
+        for grocery in groceries:
+            if grocery not in list(player["groceries data"]):
+                items_sales = zone_handling.determine_grocery_sales(zone[grocery])
+                player["groceries data"][grocery] = {
+                    "date": int(player["elapsed time game days"]),
+                    "items sales": items_sales
+                }
+            elif player["groceries data"][grocery]["date"] != int(player["elapsed time game days"]):
+                items_sales = zone_handling.determine_grocery_sales(zone[grocery])
+                player["groceries data"][grocery] = {
+                    "date": int(player["elapsed time game days"]),
+                    "items sales": items_sales
+                }
+
         # Calculate the enemies global damage
         # coefficient, depending on the player
         # elapsed time in game-days
@@ -1469,7 +1488,8 @@ def run(play):
             player["start dialog"]["heard start dialog"] = True
 
         global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith
-        global is_in_forge, is_in_church, is_in_castle
+        global is_in_forge, is_in_church, is_in_castle, is_in_grocery_store
+        global is_in_harbor
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
@@ -1477,6 +1497,8 @@ def run(play):
         is_in_forge = False
         is_in_church = False
         is_in_castle = False
+        is_in_grocery_store = False
+        is_in_harbor = False
         logger_sys.log_message("INFO: Checking if player is in a village, hostel, stable, blacksmith or forge")
         if (
             zone[map_zone]["type"] == "village"
@@ -1486,6 +1508,8 @@ def run(play):
             or zone[map_zone]["type"] == "forge"
             or zone[map_zone]["type"] == "church"
             or zone[map_zone]["type"] == "castle"
+            or zone[map_zone]["type"] == "grocery"
+            or zone[map_zone]["type"] == "harbor"
         ):
             zone_handling.print_zone_news(zone, map_zone)
         logger_sys.log_message(f"INFO: Checking if a dialog is defined at map point 'point{map_location}'")
@@ -1595,6 +1619,14 @@ def run(play):
         logger_sys.log_message("INFO: Checking if the player is in a castle")
         if zone[map_zone]["type"] == "castle":
             is_in_castle = True
+        logger_sys.log_message("INFO: Checking if the player is in a grocery store")
+        if zone[map_zone]["type"] == "grocery":
+            zone_handling.print_grocery_information(map_zone, zone, item, player)
+            is_in_grocery_store = True
+        logger_sys.log_message("INFO: Checking if the player is in a harbor")
+        if zone[map_zone]["type"] == "harbor":
+            zone_handling.print_harbor_information(map_zone, zone, map)
+            is_in_harbor = True
         cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
@@ -1794,6 +1826,7 @@ def run(play):
             and zone[map_zone]["type"] != "stable" and zone[map_zone]["type"] != "village"
             and zone[map_zone]["type"] != "blacksmith" and zone[map_zone]["type"] != "forge"
             and zone[map_zone]["type"] != "castle" and zone[map_zone]["type"] != "church"
+            and zone[map_zone]["type"] != "grocery" and zone[map_zone]["type"] != "harbor"
         ):
             logger_sys.log_message("INFO: Checking if it's night time")
             logger_sys.log_message(
@@ -2044,7 +2077,16 @@ def run(play):
                     text = '='
                     text_handling.print_separator(text)
                     text_handling.print_zone_map_alone(which_zone, zone)
+                    distance = str(
+                        zone_handling.get_map_point_distance_from_player(
+                            map, player,
+                            zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        )
+                    )
                     cout("NAME: " + zone[which_zone]["name"])
+                    cout(
+                        "DISTANCE " + COLOR_BACK_BLUE + distance + " miles" + COLOR_RESET_ALL
+                    )
                     if zone[which_zone]["type"] == "village":
                         village_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
                         village_x = map[village_point]["x"]
@@ -2084,6 +2126,18 @@ def run(play):
                         content_churches = content_churches.replace(']', '')
                         content_churches = content_churches.replace("'", '')
                         text = "CHURCHES: " + content_churches
+                        text_handling.print_long_string(text)
+                        content_groceries = str(zone[which_zone]["content"]["groceries"])
+                        content_groceries = content_groceries.replace('[', '')
+                        content_groceries = content_groceries.replace(']', '')
+                        content_groceries = content_groceries.replace("'", '')
+                        text = "GROCERIES: " + content_groceries
+                        text_handling.print_long_string(text)
+                        current_harbors = str(zone[which_zone]["content"]["harbors"])
+                        current_harbors = current_harbors.replace('[', '')
+                        current_harbors = current_harbors.replace(']', '')
+                        current_harbors = current_harbors.replace("'", '')
+                        text = "HARBORS: " + current_harbors
                         text_handling.print_long_string(text)
                     elif zone[which_zone]["type"] == "hostel":
                         current_hostel = zone[which_zone]
@@ -2267,7 +2321,6 @@ def run(play):
                                 )
                                 count += 1
                     elif zone[which_zone]["type"] == "church":
-                        current_church = zone[which_zone]
                         church_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
                         church_x = map[church_point]["x"]
                         church_y = map[church_point]["y"]
@@ -2277,6 +2330,53 @@ def run(play):
                             str(church_y) + COLOR_RESET_ALL + ")"
                         )
                         cout("LOCATION: " + church_coordinates)
+                    elif zone[which_zone]["type"] == "grocery":
+                        grocery_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        grocery_x = map[grocery_point]["x"]
+                        grocery_y = map[grocery_point]["y"]
+                        grocery_coordinates = (
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(grocery_x) +
+                            COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
+                            str(grocery_y) + COLOR_RESET_ALL + ")"
+                        )
+                        cout("LOCATION: " + grocery_coordinates)
+                        sold_items_list = player["groceries data"][which_zone]["items sales"]
+                        sold_items = []
+                        for i in sold_items_list:
+                            sold_items += [
+                                f" -{i} {COLOR_YELLOW}{round(zone[which_zone]["cost value"] * item[i]["gold"], 2)}" +
+                                f"{COLOR_RESET_ALL}"
+                            ]
+                        cout("SOLD ITEMS:")
+                        for i in sold_items:
+                            cout(i)
+                    elif zone[which_zone]["type"] == "harbor":
+                        current_harbor = zone[which_zone]
+                        harbor_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
+                        harbor_x = map[harbor_point]["x"]
+                        harbor_y = map[harbor_point]["y"]
+                        harbor_coordinates = (
+                            "(" + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(harbor_x) +
+                            COLOR_RESET_ALL + ", " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
+                            str(harbor_y) + COLOR_RESET_ALL + ")"
+                        )
+                        cout("LOCATION: " + harbor_coordinates)
+                        cout("TRAVELS:")
+                        travels = []
+                        count = 0
+                        for travel in current_harbor["travels"]:
+                            destination = map[f"point{current_harbor["travels"][travel]["destination"]}"]
+                            destination = (
+                                f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL}," +
+                                f"{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
+                            )
+                            travels += [
+                                f" -{list(current_harbor["travels"])[count]} {destination}" +
+                                f" {COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
+                            ]
+                            count += 1
+                        for travel in travels:
+                            cout(travel)
                     elif zone[which_zone]["type"] == "forge":
                         current_forge = zone[which_zone]
                         forge_point = zone_handling.get_zone_nearest_point(map, player, which_zone)
@@ -2844,12 +2944,18 @@ def run(play):
                 zone_handling.interaction_forge(map_zone, zone, player, item)
             elif zone[map_zone]["type"] == "church":
                 zone_handling.interaction_church(map_zone, zone, player, save_file, preferences, previous_player)
+            elif zone[map_zone]["type"] == "grocery":
+                zone_handling.interaction_grocery(map_zone, zone, player, item)
+            elif zone[map_zone]["type"] == "harbor":
+                zone_handling.interaction_harbor(map_zone, zone, map, player)
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
-                cout(
-                    COLOR_YELLOW + "You cannot find any near hostel, stable, blacksmith, forge, church or castle." +
-                    COLOR_RESET_ALL
+                text = (
+                    "You cannot find any near hostel, stable, blacksmith, forge, church, grocery store, harbor or castle."
                 )
+                cout(COLOR_YELLOW, end="")
+                text_handling.print_long_string(text)
+                cout(COLOR_RESET_ALL, end="")
                 time.sleep(1.5)
             continued_command = True
         elif command.lower().startswith('y'):

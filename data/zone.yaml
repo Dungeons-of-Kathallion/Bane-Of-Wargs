@@ -157,6 +157,10 @@ Cocorico Village:
     - None
     churches:
     - Cocorico Church
+    groceries:
+    - None
+    harbors:
+    - None
 
 Ayar Town:
   name: "Ayar Town"
@@ -191,6 +195,10 @@ Ayar Town:
     - None
     churches:
     - None
+    groceries:
+    - Lorrys Grocery Store
+    harbors:
+    - None
 
 New Hyru:
   name: "New Hyru"
@@ -224,6 +232,10 @@ New Hyru:
     - Clarc Warg Stable
     churches:
     - Hyru Church
+    groceries:
+    - Target Grocery
+    harbors:
+    - None
 
 Los Gerudos:
   name: "New Hyru"
@@ -257,6 +269,10 @@ Los Gerudos:
     - Kathal Horses
     churches:
     - Los Gerudos Church
+    groceries:
+    - Los Gerudos Grocery Store
+    harbors:
+    - Gerud Harbor
 
 Los Gerudos Hostel:
   name: "Los Gerudo Hostel"
@@ -867,6 +883,256 @@ Los Gerudos Church:
       x__________x
   rest hp restoring percentage: .58
   exp exchange max health percentage: .03
+
+Los Gerudos Grocery Store:
+  name: "Los Gerudos Grocery Store"
+  type: grocery
+  description: "The Los Gerudos Grocery Store offers great prices and a wide variety of sales to pick from."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$RED\/\ $YELLOW.$RED  //$YELLOW|$WHITE|
+      |$YELLOWO|$WHITE/$YELLOW.$WHITE  \$YELLOW|O|$WHITE|
+      | /$TAN=>$WHITE _ \ $YELLOW|$WHITE|
+      |/$YELLOW.$TAN║$WHITE  |$YELLOW.$WHITE \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |\/\ .  //||
+      |O|/.  \|O||
+      | /=> _ \ ||
+      |/.║  |. \||
+      x__________x
+  cost value: 1.17
+  items sold:
+  - Dagger
+  - Knight Beverage
+  - Gerud Mercenary Beverage
+  - Healing Potion
+  - Resistance Potion
+  - Strength Potion
+  - Agility Potion
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Gerud Desert Map
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree log
+  - Slime
+  - Raw Wood
+  - Raw Aluminum
+
+Lorrys Grocery Store:
+  name: "Lorry's Grocery Store"
+  type: grocery
+  description: "The grocery store of that old guy Lorry. His family owns this place for decades."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$GREEN (  $BROWN _____$WHITE|
+      |$GREEN( ) $BROWN/$RED-----$WHITE|
+      |$GREEN ( ($BROWN|     $WHITE|
+      |$GREEN,,$YELLOW| $BROWN|  $KHAKI() $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | (   _____|
+      |( ) /-----|
+      | ( (|     |
+      |,,| |  () |
+      x__________x
+  cost value: .96
+  items sold:
+  - Dagger
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Forlindon Woods Map
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree log
+  - Slime
+  - Raw Wood
+  - Raw Aluminum
+
+Target Grocery:
+  name: "Target Grocery"
+  type: grocery
+  description: >
+    Probably the biggest grocery store in the Stall Island. At this place, you'll find a large variety of goods
+    that come from around the world. The name seems pretty futuristic right?
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      | $KHAKI________ $WHITE|
+      |$KHAKI/$ORANGEo TARGET$KHAKI\$WHITE|
+      |$ORANGE----------$WHITE|
+      | $RED()       $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ________ |
+      |/o TARGET\|
+      |----------|
+      | ()       |
+      x__________x
+  cost value: 1.45
+  items sold:
+  - Dagger
+  - Knight Beverage
+  - Strength Potion
+  - Agility Potion
+  - Gerud Mercenary Beverage
+  - Healing Potion
+  - Resistance Potion
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Mace
+  - Spear
+  - Forlindon Woods Map
+  - Gerud Desert Map
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree Log
+  - Wet Tree Log
+  - Slime
+  - Raw Wood
+  - Mumakil Tusk
+  - Raw Lead
+  - Bow String
+  - Strong String
+  - Flexible String
+  - Stretched Bag
+  - Shield
+  - Leather Boots
+  - Leather Jacket
+  - Rock Paper Scissors
+  - Time Elapsing Potion
+  - Raw Aluminum
+
+Gerud Harbor:
+  name: "Gerud Harbor"
+  type: harbor
+  description: >
+    The Gerud Harbor is one of the greatest human harbor, which's been re-built and restored a hundred times in its life,
+    making it a huge harbor that can take you almost anywhere in the known world.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$LIGHT_GRAY__________$WHITE|
+      |$LIGHT_GRAY.  .    . $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |__________|
+      |.  .    . |
+      x__________x
+  travels:
+    Californ West Coasts:
+      destination: 2584
+      travel time: 25
+      cost: 78.15
+    Northern Goro Mounts:
+      destination: 1179
+      travel time: 15
+      cost: 34.6
+
+Seaside Harbor:
+  name: "Seaside Harbor"
+  type: harbor
+  description: "The Seaside Harbor is part of the company that owns the Seaside Hostels. Most of the boats here are pleasure boats."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈$YELLOW|$BLUE≈≈≈≈≈≈$WHITE|
+      |$BLUE≈$YELLOW__±____$BLUE≈≈$WHITE|
+      |$BLUE≈$YELLOW\_____/$BLUE≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈|≈≈≈≈≈≈|
+      |≈__±____≈≈|
+      |≈\_____/≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+  travels:
+    Northern Goro Mounts:
+      destination: 1179
+      travel time: 15
+      cost: 24.3
+    Gerud East Coasts:
+      destination: 7766
+      travel time: 25
+      cost: 51.2
+
+Dwarf Harbor:
+  name: "Dwarf Harbor"
+  type: harbor
+  description: "A beautiful harbor that's built in the rock of the Goro Peaks."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$DARK_BLUE≈≈≈$YELLOW|$DARK_BLUE≈≈≈≈≈≈$WHITE|
+      |$DARK_BLUE≈$YELLOW__±____$DARK_BLUE≈≈$WHITE|
+      |$DARK_BLUE≈$YELLOW\_____/$DARK_BLUE≈≈$WHITE|
+      |$DARK_BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈|≈≈≈≈≈≈|
+      |≈__±____≈≈|
+      |≈\_____/≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+  travels:
+    Californ West Coasts:
+      destination: 2584
+      travel time: 15
+      cost: 26.12
+    Gerud East Coasts:
+      destination: 7766
+      travel time: 25
+      cost: 35.4
 
 # Lands
 The Edge Of Goro Mounts:

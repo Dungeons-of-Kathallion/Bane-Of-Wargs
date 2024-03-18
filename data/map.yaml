@@ -11852,7 +11852,7 @@ point1177:
   - North
   - North-East
   - North-West
-  map zone: The Edge Of Goro Mounts
+  map zone: Dwarf Harbor
   x: -48
   y: 55
 point11770:
@@ -11920,7 +11920,7 @@ point1178:
   - North
   - North-East
   - North-West
-  map zone: The Edge Of Goro Mounts
+  map zone: Dwarf Harbor
   x: -47
   y: 55
 point11780:
@@ -11988,7 +11988,7 @@ point1179:
   - North
   - North-East
   - North-West
-  map zone: The Edge Of Goro Mounts
+  map zone: Dwarf Harbor
   x: -46
   y: 55
 point11790:
@@ -50597,7 +50597,7 @@ point2584:
   - West
   - North-West
   - South-West
-  map zone: Seaside Hostels
+  map zone: Seaside Harbor
   x: -60
   y: 44
 point2585:
@@ -67964,7 +67964,7 @@ point5162:
   - West
   - North-West
   - South-West
-  map zone: Seaside Hostels
+  map zone: Target Grocery
   x: -60
   y: 24
 point5163:
@@ -81169,7 +81169,7 @@ point7118:
 point7119:
   blocked:
   - None
-  map zone: Los Gerudos Hostel
+  map zone: Los Gerudos Grocery Store
   x: -38
   y: 9
 point712:
@@ -85535,7 +85535,7 @@ point7766:
   - East
   - North-East
   - South-East
-  map zone: Gerud Desert
+  map zone: Gerud Harbor
   x: -36
   y: 4
 point7767:
@@ -85627,7 +85627,7 @@ point778:
   - East
   - North-East
   - South-East
-  map zone: Forlindon Woods
+  map zone: Lorrys Grocery Store
   x: -60
   y: 58
 point7780:
@@ -86408,7 +86408,7 @@ point7893:
 point7894:
   blocked:
   - South-East
-  map zone: Los Gerudos
+  map zone: Gerud Harbor
   x: -37
   y: 3
 point7895:
@@ -86417,7 +86417,7 @@ point7895:
   - East
   - South-East
   - North-East
-  map zone: Gerud Desert
+  map zone: Gerud Harbor
   x: -36
   y: 3
 point7896:

@@ -30,6 +30,7 @@ start dialog:
   dialog: Start Dialog
   heard start dialog: False
 active effects: {}
+groceries data: {}
 heard dialogs:
 - None
 used keys:
