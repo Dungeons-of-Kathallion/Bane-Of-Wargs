@@ -255,9 +255,11 @@ def encounter_text_show(
     text_handling.print_separator(text)
 
     if enemies_number > 1:
-        cout("You encounter a group of " + str(enemy_plural) + " that won't let you pass.")
+        text = "You encounter a group of " + str(enemy_plural) + " that won't let you pass."
     else:
-        cout("You find " + text_handling.a_an_check(enemy_singular) + " on your way.")
+        text = "You find " + text_handling.a_an_check(enemy_singular) + " on your way."
+
+    text_handling.print_long_string(text)
 
     # player stats updates
     risk = defeat_percentage
