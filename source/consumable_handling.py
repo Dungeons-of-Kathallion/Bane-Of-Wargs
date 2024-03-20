@@ -610,4 +610,3 @@ def print_active_effect_info(effect_data, player):
         cout(i)
 
     return effect
-
