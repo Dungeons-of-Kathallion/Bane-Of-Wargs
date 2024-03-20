@@ -1067,7 +1067,7 @@ Gerud Harbor:
       destination: 2584
       travel time: 25
       cost: 78.15
-    Northen Goro Mounts:
+    Northern Goro Mounts:
       destination: 1179
       travel time: 15
       cost: 34.6
@@ -1094,7 +1094,7 @@ Seaside Harbor:
       |≈≈≈≈≈≈≈≈≈≈|
       x__________x
   travels:
-    Northen Goro Mounts:
+    Northern Goro Mounts:
       destination: 1179
       travel time: 15
       cost: 24.3
