@@ -455,7 +455,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                 which_item in zone[map_zone]["sells"]["items"]
                 and (item[which_item]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
             ):
-                if player["inventory slots remaining"] > 0:
+                if player["inventory slots remaining"] <= 0:
                     player["inventory slots remaining"] -= 1
                     logger_sys.log_message(f"INFO: Adding item '{which_item}' to player inventory")
                     player["inventory"].append(which_item)
@@ -544,7 +544,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 which_item in zone[map_zone]["stable"]["sells"]["items"]
                 and (item[which_item]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
             ):
-                if player["inventory slots remaining"] > 0:
+                if player["inventory slots remaining"] <= 0:
                     logger_sys.log_message(f"INFO: Adding item '{which_item}' from player inventory")
                     player["inventory slots remaining"] -= 1
                     player["inventory"].append(which_item)
@@ -1247,7 +1247,7 @@ def interaction_grocery(map_zone, zone, player, item):
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if which_item in player["groceries data"][map_zone]["items sales"]:
                 if player["gold"] >= item[which_item]["gold"] * current_grocery["cost value"]:
-                    if player["inventory slots remaining"] > 0:
+                    if player["inventory slots remaining"] <= 0:
                         gold = item[which_item]["gold"] * current_grocery["cost value"]
                         logger_sys.log_message(f"INFO: Removing from player {gold} gold")
                         player["gold"] -= gold
