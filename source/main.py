@@ -1812,10 +1812,13 @@ def run(play):
         # Hard: 28%
         if player["difficulty mode"] == 0:
             enemy_spawning_chance = random.uniform(0, 1) > .92
+            enemy_number = random.randint(1, 3)
         elif player["difficulty mode"] == 2:
             enemy_spawning_chance = random.uniform(0, 1) > .72
+            enemy_number = random.randint(3, 6)
         else:
             enemy_spawning_chance = random.uniform(0, 1) > .82
+            enemy_number = random.randint(1, 5)
 
         logger_sys.log_message(f"INFO: Checking if an enemy at map point 'point{map_location}'")
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
@@ -1847,7 +1850,7 @@ def run(play):
             else:
                 enemy_list_to_spawn = lists["generic"]
             enemy_handling.spawn_enemy(
-                map_location, enemy_list_to_spawn, round(random.uniform(1, 5)), enemy,
+                map_location, enemy_list_to_spawn, enemy_number, enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file,
