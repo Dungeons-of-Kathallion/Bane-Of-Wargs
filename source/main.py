@@ -3309,10 +3309,10 @@ def run(play):
             continued_command = True
         else:
             continued_utility = False
-            for i in utilities_list:
+            for current_utility in utilities_list:
                 continued_command = True
-                current_utility = i
-                if command == item[current_utility]["key"] and current_utility in player["inventory"]:
+                command_valid = command.lower().startswith(item[current_utility]["key"].lower())
+                if command_valid and current_utility in player["inventory"]:
                     plugin = preferences["latest preset"]["type"] == "plugin"
                     script_handling.load_script(
                         item[current_utility], preferences, player, map, item, drinks, enemy, npcs,
@@ -3321,9 +3321,9 @@ def run(play):
                     )
                     continued_utility = True
                     cinput()
-                elif current_utility not in player["inventory"] and command == item[current_utility]["key"]:
+                elif current_utility not in player["inventory"] and command_valid:
                     continued_utility = True
-                    logger_sys.log_message(f"INFO: Canceling map examining process --> doesn't have '{current_utility}' item")
+                    logger_sys.log_message(f"INFO: Canceling utility script --> doesn't have '{current_utility}' item")
                     cout(f"You do not have a '{current_utility}'.")
                     cout(" ")
                     cinput()

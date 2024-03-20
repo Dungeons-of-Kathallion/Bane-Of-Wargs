@@ -2196,6 +2196,7 @@ Old Rusted Key:
 Note1:
   type: "Note"
   description: "The note reads: 'Help! Help!'. You wonder what it means..."
+  gold: 1
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
