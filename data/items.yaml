@@ -1067,6 +1067,7 @@ Magic Map:
   type: "Utility"
   key: "M"
   script name: 'map_item.py'
+  gold: 78
   arguments:
   - player
   - map
@@ -1111,6 +1112,7 @@ Teleportation Rock:
   type: Utility
   key: "T"
   script name: "teleportation_rock.py"
+  gold: 1542
   arguments:
   - player
   - map
@@ -1149,6 +1151,7 @@ Heart Stone:
   type: Utility
   key: "H"
   script name: "health_generator.py"
+  gold: 75
   arguments:
   - player
   description: "A weird artifact that can randomly generate health... [Press 'H' to activate]"
@@ -1185,6 +1188,7 @@ Heart Stone:
 Rock Paper Scissors:
   type: Utility
   key: "R"
+  gold: 25
   script name: "rock_paper_scissors_game.py"
   description: "A weird artifact that lets you play a strange game... [Press 'R' to activate]"
   thumbnail raw: |

@@ -157,6 +157,28 @@ Woods Troll:
   description: >
     Woods Trolls are the cousins of Cavern Trolls. They're smaller and swifter than their cousins,
     but they're still powerful enough to defeat an hero.
+Desert Troll:
+  plural: "Desert Trolls"
+  damage:
+    min damage: 8
+    max damage: 11
+    critical chance: .35
+  health:
+    min spawning health: 11
+    max spawning health: 20
+    max health level: 20
+  agility: .32
+  inventory:
+  - Beef
+  - Porkchop
+  - Bone
+  - Wooden Stick
+  - Mace
+  - Spear
+  - Long Sword
+  description: >
+    Desert Trolls are the cousins of Cavern Trolls. They're bigger and slower than their cousins,
+    but they're still powerful enough to defeat an hero.
 # Black enemies
 Black Ork:
   plural: "Black Orks"
@@ -273,6 +295,34 @@ Giant Spider:
   - Flexible String
   - Flexible String
   description: "Giant Spiders are evil's creatures who hide in the darkness to attack their prey by surprise."
+# Human enemies
+South Pillager:
+  plural: "South Pillagers"
+  damage:
+    min damage: 3
+    max damage: 7
+    critical chance: .35
+  health:
+    min spawning health: 11
+    max spawning health: 20
+    max health level: 20
+  agility: .5
+  inventory:
+  - Sword
+  - Bow
+  - Spear
+  - Shield
+  - Stretched Bag
+  - Healing Potion
+  - Long Sword
+  - Beef
+  - Porkchop
+  - Strength Potion
+  - Knight Boots
+  - Gerud Desert Map
+  description: >
+    South Pillagers, who're also known as 'South Men' are cowards, and dangerous enemies, that you'll eventually encounter if you
+    travel in the Gerud Desert or in the Badlands of the Stall Island.
 # Dragon bosses
 Balrog:
   plural: "Balrogs"

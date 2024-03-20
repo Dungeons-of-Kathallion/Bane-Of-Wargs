@@ -8,6 +8,20 @@ from colors import *
 from terminal_handling import cout
 
 
+# Static Variables
+
+# some effects are not displayed in the consumable
+# info because they're 'non-physic' effects, they're
+# invisible
+INVISIBLE_EFFECTS = [
+    'attributes addition',
+    'dialog displaying',
+    'enemy spawning',
+    'coordinate change',
+    'inventory change'
+]
+
+
 # Handling Functions
 
 
@@ -506,3 +520,94 @@ def print_consumable_effects(current_effect_type, current_effect_data):
 
         else:
             cout("     NONE")
+
+
+def print_active_effect_info(effect_data, player):
+    # Get the current active effect type, and
+    # then parse its information to add it to
+    # a list of string, that we then print to
+    # the UI every indexes, one by one
+    global effect_type
+    effect_type = effect_data["type"]
+    effects = effect_data["effects"]
+    effect = []
+
+    time_remaining = round((
+        effect_data["effect starting time"] + effect_data["effect duration"]
+    ) - player["elapsed time game days"], 1)
+    if effect_data["effect duration"] >= 999:
+        time_remaining = "∞INFINITE∞"
+    effect += [f"   Type: {COLOR_CYAN}{effect_type}{COLOR_RESET_ALL}"]
+    effect += [f"   Left Time: {COLOR_BACK_BLUE}{time_remaining}{COLOR_RESET_ALL}"]
+
+    if effect_type == 'healing':
+        changes = "Health Changes"
+    elif effect_type == 'protection':
+        changes = "Protection Changes"
+    elif effect_type == 'strength':
+        changes = "Strength Changes"
+    elif effect_type == 'agility':
+        changes = "Agility Changes"
+    elif effect_type == 'time elapsing':
+        changes = "Time Changes"
+    effect += [f"   {changes}:"]
+
+    if effect_type == 'healing':
+        health_changes, max_health_changes = (
+            effects["health changes"], effects["max health changes"]
+        )
+        if health_changes >= 999:
+            effect += [f"     health -> {COLOR_MAGENTA}MAX HEALTH{COLOR_RESET_ALL}"]
+        elif health_changes > 0:
+            effect += [f"     health {COLOR_GREEN}+{health_changes}{COLOR_RESET_ALL}"]
+        elif health_changes == 0:
+            effect += [f"     health {COLOR_BLUE}+{health_changes}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     health {COLOR_RED}{health_changes}{COLOR_RESET_ALL}"]
+
+        if max_health_changes > 0:
+            effect += [f"     max health {COLOR_GREEN}+{max_health_changes}{COLOR_RESET_ALL}"]
+        elif max_health_changes == 0:
+            effect += [f"     max health {COLOR_BLUE}+{max_health_changes}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     max health {COLOR_RED}{max_health_changes}{COLOR_RESET_ALL}"]
+    elif effect_type == 'protection':
+        coefficient = str(round((effects["protection coefficient"] - 1) * 100)) + "%"
+        if effects["protection coefficient"] >= 1:
+            effect += [f"     protection {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     protection {COLOR_RED}{coefficient}{COLOR_RESET_ALL}"]
+    elif effect_type == 'strength':
+        damage_coefficient = str(
+            round((effects["damage coefficient"] - 1) * 100)
+        ) + "%"
+        if effects["damage coefficient"] >= 1:
+            effect += [f"     global damage {COLOR_GREEN}+{damage_coefficient}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     global damage {COLOR_RED}{damage_coefficient}{COLOR_RESET_ALL}"]
+
+        critical_coefficient = str(
+            round((effects["critical hit chance coefficient"] - 1) * 100)
+        ) + "%"
+        if effects["critical hit chance coefficient"] >= 1:
+            effect += [f"     critical hit chance {COLOR_GREEN}+{critical_coefficient}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     critical hit chance {COLOR_RED}{critical_coefficient}{COLOR_RESET_ALL}"]
+    elif effect_type == 'agility':
+        coefficient = str(round((effects["agility coefficient"] - 1) * 100)) + "%"
+        if effects["agility coefficient"] >= 1:
+            effect += [f"     agility {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     agility {COLOR_RED}{coefficient}{COLOR_RESET_ALL}"]
+    elif effect_type == 'time elapsing':
+        coefficient = str(round((effects["time elapsing coefficient"] - 1) * 100)) + "%"
+        if effects["time elapsing coefficient"] >= 1:
+            effect += [f"     time elapsing {COLOR_GREEN}+{coefficient}{COLOR_RESET_ALL}"]
+        else:
+            effect += [f"     time elapsing {COLOR_RED}{coefficient}{COLOR_RESET_ALL}"]
+
+    for i in effect:
+        cout(i)
+
+    return effect
+

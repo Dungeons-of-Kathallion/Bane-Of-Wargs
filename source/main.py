@@ -17,6 +17,7 @@ import time_handling
 import logger_sys
 from colors import *
 from time_handling import *
+from consumable_handling import *
 from terminal_handling import cout, cinput
 # external imports
 import random
@@ -101,7 +102,7 @@ menu = True
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.19
+    GAME_DATA_VERSION = 0.195
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -154,7 +155,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.19
+SOURCE_CODE_VERSION = 0.195
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -1450,9 +1451,9 @@ def run(play):
         else:
             cout("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
         if "North-East" not in blocked_locations:
-            cout("Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
+            cout("Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "X: " + COLOR_RESET_ALL + "Examine active effects")
         else:
-            cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "M: " + COLOR_RESET_ALL + "Examine world map")
+            cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "X: " + COLOR_RESET_ALL + "Examine active effects")
         if "North-West" not in blocked_locations:
             cout("Can go North-West ⬉" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         else:
@@ -2812,16 +2813,6 @@ def run(play):
                         healing_level + COLOR_RESET_ALL
                     )
                 if item[which_item]["type"] == "Consumable":
-                    # some effects are not displayed in the consumable
-                    # info because they're 'non-physic' effects, they're
-                    # invisible
-                    invisible_effects = [
-                        'attributes addition',
-                        'dialog displaying',
-                        'enemy spawning',
-                        'coordinate change',
-                        'inventory change'
-                    ]
                     cout("")
                     cout("EFFECTS:")
                     logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
@@ -2830,7 +2821,7 @@ def run(play):
                         for effect in item[which_item]["effects"]:
                             current_effect_data = item[which_item]["effects"][count]
                             current_effect_type = current_effect_data["type"]
-                            if current_effect_type not in invisible_effects:
+                            if current_effect_type not in INVISIBLE_EFFECTS:
                                 cout(" -Effect " + str(count + 1) + ": {")
                                 consumable_handling.print_consumable_effects(current_effect_type, current_effect_data)
                                 cout("}")
@@ -3120,6 +3111,36 @@ def run(play):
                 logger_sys.log_message(f"INFO: Canceling mount examining process --> player doesn't own any mounts")
                 cout(COLOR_YELLOW + "It seems you don't own any mounts." + COLOR_RESET_ALL)
                 time.sleep(1.5)
+            continued_command = True
+        elif command.lower().startswith('x'):
+            # First, we create the effects list of
+            # dictionaries, and filter the invisible
+            # effects type. Then, with that effects
+            # database, it's printed to the main UI
+            # with UI formatting.
+            global active_effects
+            active_effects = []
+            for effect in player["active effects"]:
+                effect = player["active effects"][effect]
+                if effect["type"] not in INVISIBLE_EFFECTS:
+                    active_effects += [effect]
+
+            text_handling.print_separator('=')
+            cout("ACTIVE EFFECTS:")
+
+            if active_effects != []:
+                count = 1
+                for effect in active_effects:
+                    cout(f" -Effect {count}:" + " {")
+                    consumable_handling.print_active_effect_info(effect, player)
+                    cout("}")
+
+                    count += 1
+            else:
+                cout(" -None")
+
+            text_handling.print_separator('=')
+            cinput()
             continued_command = True
         elif command.lower().startswith('k'):
             if player["difficulty mode"] == 2:
