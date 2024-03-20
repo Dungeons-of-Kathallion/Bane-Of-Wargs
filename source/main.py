@@ -1452,11 +1452,13 @@ def run(play):
             cout("                 " + "     " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Y: " + COLOR_RESET_ALL + "View owned mounts")
         if "North-East" not in blocked_locations:
             cout(
-                "Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "X: " + COLOR_RESET_ALL + "Examine active effects"
+                "Can go North-East ⬈" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
+                "X: " + COLOR_RESET_ALL + "Examine active effects"
             )
         else:
             cout(
-                "                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "X: " + COLOR_RESET_ALL + "Examine active effects"
+                "                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT +
+                "X: " + COLOR_RESET_ALL + "Examine active effects"
             )
         if "North-West" not in blocked_locations:
             cout("Can go North-West ⬉" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
