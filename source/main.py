@@ -1521,7 +1521,7 @@ def run(play):
             or zone[map_zone]["type"] == "grocery"
             or zone[map_zone]["type"] == "harbor"
         ):
-            zone_handling.print_zone_news(zone, map_zone)
+            zone_handling.print_zone_news(zone, map_zone, player)
         logger_sys.log_message(f"INFO: Checking if a dialog is defined at map point 'point{map_location}'")
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
             current_dialog = map["point" + str(map_location)]["dialog"]

@@ -3,7 +3,7 @@ import logger_sys
 import time_handling
 import terminal_handling
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 # external imports
 import time
 import random
@@ -121,10 +121,23 @@ def overstrike_text(text):
 
 def print_long_string(text):
     new_input = ""
+    dont = False
+    count = 0
     for i, letter in enumerate(text):
-        if i % 55 == 0:
+        if letter == '@':
+            if not dont:
+                dont = True
+            elif dont:
+                dont = False
+
+        if count % 55 == 0:
             new_input += '\n'
-        new_input += letter
+
+        if letter != '@':
+            new_input += letter
+
+        if not dont:
+            count += 1
 
     # this is just because at the beginning too, a `\n` character gets added
     new_input = new_input[1:]

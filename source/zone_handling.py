@@ -69,7 +69,7 @@ SELLING_ZONES = [
 
 
 # Information printing functions
-def print_zone_news(zone, map_zone):
+def print_zone_news(zone, map_zone, player):
     logger_sys.log_message(f"INFO: Printing map zone '{map_zone}' news")
     cout("NEWS:")
     village_news = zone[map_zone]["news"]
@@ -77,6 +77,18 @@ def print_zone_news(zone, map_zone):
     choose_rand_news = random.randint(0, (village_news_len - 1))
     choose_rand_news = village_news[int(choose_rand_news)]
     text_handling.print_long_string(choose_rand_news)
+    if (
+        zone[map_zone]["type"] in SELLING_ZONES and
+        player["discounts"][map_zone]["dropoff"] != None
+    ):
+        cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
+        text = (
+            f"A @{COLOR_GREEN}@-{int(player["discounts"][map_zone]["dropoff"] * 100)}%@{COLOR_RESET_ALL}@ dropoff on every item's" +
+            f" happening at the @\033[38;2;255;128;0m@{zone[map_zone]["name"]}@{COLOR_RESET_ALL}@ shop! Only" +
+            f" @{COLOR_BACK_BLUE}@{round(player["discounts"][map_zone]["remaining time"] * 24)} hours@{COLOR_RESET_ALL}@ remain!"
+        )
+        text_handling.print_long_string(text)
+        cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
     text = '='
     text_handling.print_separator(text)
 
