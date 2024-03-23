@@ -243,7 +243,9 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
             current_mount = str(stable_mounts[int(count)])
             cout(
                 " -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(get_cost(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2), dropoff)) +
+                COLOR_STYLE_BRIGHT + str(
+                    get_cost(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2), dropoff)
+                ) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -257,7 +259,9 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
             current_mount = str(stable_items[int(count)])
             cout(
                 " -" + current_stable["stable"]["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(get_cost(round(item[current_mount]["gold"] * current_stable["cost value"], 2), dropoff)) +
+                COLOR_STYLE_BRIGHT + str(
+                    get_cost(round(item[current_mount]["gold"] * current_stable["cost value"], 2), dropoff)
+                ) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -311,7 +315,10 @@ def print_hostel_information(map_zone, zone, item, drinks, player):
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
-    cout("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_hostel["sleep gold"], dropoff)) + COLOR_RESET_ALL)
+    cout(
+        "SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_hostel["sleep gold"], dropoff)) +
+        COLOR_RESET_ALL
+    )
     if "None" not in current_hostel["sells"]["drinks"]:
         cout("DRINKS SALES:")
         count = 0
@@ -321,7 +328,9 @@ def print_hostel_information(map_zone, zone, item, drinks, player):
             current_drink = str(current_hostel["sells"]["drinks"][int(count)])
             cout(
                 " -" + current_hostel["sells"]["drinks"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(get_cost(round(drinks[current_drink]["gold"] * current_hostel["cost value"], 2), dropoff)) +
+                COLOR_STYLE_BRIGHT + str(
+                    get_cost(round(drinks[current_drink]["gold"] * current_hostel["cost value"], 2), dropoff)
+                ) +
                 COLOR_RESET_ALL
             )
             count += 1
