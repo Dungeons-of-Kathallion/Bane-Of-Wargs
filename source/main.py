@@ -1194,7 +1194,7 @@ def run(play):
             if (
                 current not in list(player["discounts"]) or
                 (
-                    player["discounts"][current]["remaining time"] != None and
+                    player["discounts"][current]["remaining time"] is not None and
                     player["discounts"][current]["remaining time"] <= 0
                 )
             ):  # create it if it doesn't exists or stop the discount
@@ -1222,12 +1222,12 @@ def run(play):
             except Exception as error:
                 game_elapsed_time = 0
             player["discounts"][current]["next discount"] -= game_elapsed_time
-            if player["discounts"][current]["remaining time"] != None:
+            if player["discounts"][current]["remaining time"] is not None:
                 player["discounts"][current]["remaining time"] -= game_elapsed_time
 
             if (
                 player["discounts"][current]["next discount"] <= 0 and
-                player["discounts"][current]["dropoff"] == None
+                player["discounts"][current]["dropoff"] is None
             ):  # start discount
                 # Calculate discount stats
                 remaining_time = (

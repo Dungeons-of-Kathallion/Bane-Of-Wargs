@@ -87,7 +87,7 @@ def print_zone_news(zone, map_zone, player):
     text_handling.print_long_string(choose_rand_news)
     if (
         zone[map_zone]["type"] in SELLING_ZONES and
-        player["discounts"][map_zone]["dropoff"] != None
+        player["discounts"][map_zone]["dropoff"] is not None
     ):
         cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
         text = (
@@ -111,7 +111,7 @@ def print_forge_information(map_zone, zone, item, player):
     cout(" ")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -153,7 +153,7 @@ def print_blacksmith_information(map_zone, zone, item, player):
     cout("")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -218,7 +218,7 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
     cout(" ")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -298,7 +298,7 @@ def print_hostel_information(map_zone, zone, item, drinks, player):
     cout(" ")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -356,7 +356,7 @@ def print_grocery_information(map_zone, zone, item, player):
     cout()
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -381,7 +381,7 @@ def print_harbor_information(map_zone, zone, map, player):
     cout()
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -409,7 +409,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is an hostel --> can interact")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -594,7 +594,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is a stable --> can interact")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -868,7 +868,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is a blacksmith --> can interact")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -1145,7 +1145,7 @@ def interaction_forge(map_zone, zone, player, item):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a forge --> can interact")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
@@ -1327,7 +1327,7 @@ def interaction_grocery(map_zone, zone, player, item):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a grocery --> can interact")
     # Check if there's a discount active at this
     # map zone
-    if player["discounts"][map_zone]["dropoff"] != None:
+    if player["discounts"][map_zone]["dropoff"] is not None:
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
