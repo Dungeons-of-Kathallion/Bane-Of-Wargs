@@ -167,7 +167,9 @@ def print_blacksmith_information(map_zone, zone, item, player):
             current_weapon = str(weapon_buys[int(count)])
             cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(get_cost(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2), dropoff)) + COLOR_RESET_ALL
+                str(
+                    get_cost(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2), dropoff)
+                ) + COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_black_smith["blacksmith"]["orders"]:
@@ -223,8 +225,14 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
         dropoff = player["discounts"][map_zone]["dropoff"]
     else:
         dropoff = 0
-    cout("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_stable["deposit gold"], dropoff)) + COLOR_RESET_ALL)
-    cout("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_stable["training gold"], dropoff)) + COLOR_RESET_ALL)
+    cout(
+        "DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_stable["deposit gold"], dropoff)) +
+        COLOR_RESET_ALL
+    )
+    cout(
+        "TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_stable["training gold"], dropoff)) +
+        COLOR_RESET_ALL
+    )
     options = ['Train Mount', '']
     if "None" not in current_stable["stable"]["sells"]["mounts"]:
         cout("MOUNTS SALES:")
