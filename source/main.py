@@ -1610,11 +1610,11 @@ def run(play):
         logger_sys.log_message("INFO: Checking if the player is in a forge")
         if zone[map_zone]["type"] == "forge":
             is_in_forge = True
-            zone_handling.print_forge_information(map_zone, zone, item)
+            zone_handling.print_forge_information(map_zone, zone, item, player)
         logger_sys.log_message("INFO: Checking if the player is in a blacksmith")
         if zone[map_zone]["type"] == "blacksmith":
             is_in_blacksmith = True
-            zone_handling.print_blacksmith_information(map_zone, zone, item)
+            zone_handling.print_blacksmith_information(map_zone, zone, item, player)
         logger_sys.log_message("INFO: Checking if the player is in a stable")
         if zone[map_zone]["type"] == "stable":
             is_in_stable = True
@@ -1622,7 +1622,7 @@ def run(play):
         logger_sys.log_message("INFO: Checking if the player is an hostel")
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
-            zone_handling.print_hostel_information(map_zone, zone, item, drinks)
+            zone_handling.print_hostel_information(map_zone, zone, item, drinks, player)
         logger_sys.log_message("INFO: Checking if the player is in a church")
         if zone[map_zone]["type"] == "church":
             is_in_church = True
@@ -1635,7 +1635,7 @@ def run(play):
             is_in_grocery_store = True
         logger_sys.log_message("INFO: Checking if the player is in a harbor")
         if zone[map_zone]["type"] == "harbor":
-            zone_handling.print_harbor_information(map_zone, zone, map)
+            zone_handling.print_harbor_information(map_zone, zone, map, player)
             is_in_harbor = True
         cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
