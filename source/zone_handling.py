@@ -91,9 +91,10 @@ def print_zone_news(zone, map_zone, player):
     ):
         cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
         text = (
-            f"A @{COLOR_GREEN}@-{int(player["discounts"][map_zone]["dropoff"] * 100)}%@{COLOR_RESET_ALL}@ dropoff on every item's" +
-            f" happening at the @\033[38;2;255;128;0m@{zone[map_zone]["name"]}@{COLOR_RESET_ALL}@ shop! Only" +
-            f" @{COLOR_BACK_BLUE}@{round(player["discounts"][map_zone]["remaining time"] * 24)} hours@{COLOR_RESET_ALL}@ remain!"
+            f"A @{COLOR_GREEN}@-{int(player["discounts"][map_zone]["dropoff"] * 100)}%@{COLOR_RESET_ALL}@ " +
+            f"dropoff on every item's happening at the @\033[38;2;255;128;0m@{zone[map_zone]["name"]}@{COLOR_RESET_ALL}@ " +
+            f"shop! Only @{COLOR_BACK_BLUE}@{round(player["discounts"][map_zone]["remaining time"] * 24)} " +
+            f"hours@{COLOR_RESET_ALL}@ remain!"
         )
         text_handling.print_long_string(text)
         cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)

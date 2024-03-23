@@ -1183,7 +1183,7 @@ def run(play):
         if "discounts" not in list(player):
             player["discounts"] = {}
 
-        interactive_zones  = []
+        interactive_zones = []
         for i in list(zone):
             if zone[i]["type"] in SELLING_ZONES:
                 interactive_zones += [i]
