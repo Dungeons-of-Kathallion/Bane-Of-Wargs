@@ -115,4 +115,6 @@ def spawn_enemy(
         with open(program_dir + '/preferences.yaml', 'w') as f:
             f.write(dumped)
         logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+        text_handling.clear_prompt()
+        logger_sys.log_message(f"INFO: PROGRAM RUN END")
         exit(0)

@@ -49,7 +49,7 @@ def exit_game():
     logger_sys.log_message("WARNING: closing game now")
     time.sleep(.5)
     clear_prompt()
-    logger_sys.log_message(f"INFO: GAME RUN START")
+    logger_sys.log_message(f"INFO: PROGRAM RUN END")
     exit(1)
 
 

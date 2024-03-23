@@ -36,7 +36,7 @@ from rich.markdown import Markdown
 from rich.table import Table
 
 
-logger_sys.log_message(f"INFO: GAME RUN START")
+logger_sys.log_message(f"INFO: PROGRAM RUN START")
 text_handling.clear_prompt()
 
 # defines console for the rich module
@@ -93,6 +93,17 @@ def print_title():
             with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
                 faded_text = fade.random(f.read())
                 cout(faded_text)
+
+
+def select_save(options, length=52):
+    options += ['EXIT']
+    choice = terminal_handling.show_menu(options, length)
+    if choice == 'EXIT':
+        text_handling.clear_prompt()
+        logger_sys.log_message(f"INFO: PROGRAM RUN END")
+        exit(0)
+        return
+    return choice
 
 
 menu = True
@@ -324,10 +335,7 @@ while menu:
             for search_for_plugins in os.listdir(program_dir + "/plugins/"):
                 res.append(search_for_plugins)
 
-            what_plugin = cinput(
-                COLOR_STYLE_BRIGHT + "Current plugins: " + COLOR_RESET_ALL +
-                COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
-            )
+            what_plugin = select_save(res)
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "plugin"
             preferences["latest preset"]["plugin"] = what_plugin
@@ -358,23 +366,11 @@ while menu:
                 logger_sys.log_message(f"INFO: Searching for saves in the '{program_dir}/saves/' directory")
                 for search_for_saves in os.listdir(program_dir + '/saves/'):
                     if search_for_saves.startswith("save_"):
-                        res.append(search_for_saves)
-
-                char1 = 'save_'
-                char2 = '.yaml'
-
-                for idx, ele in enumerate(res):
-                    res[idx] = ele.replace(char1, '')
-
-                for idx, ele in enumerate(res):
-                    res[idx] = ele.replace(char2, '')
+                        res.append(search_for_saves.replace("save_", "").replace(".yaml", ""))
 
                 text = "Please select a save to open."
                 text_handling.print_speech_text_effect(text, preferences)
-                open_save = cinput(
-                    COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
-                    COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
-                )
+                open_save = select_save(res)
                 logger_sys.log_message("INFO: Updating latest preset")
                 preferences["latest preset"]["save"] = open_save
 
@@ -483,16 +479,7 @@ while menu:
         logger_sys.log_message(f"INFO: Searching for saves in the '{program_dir}/saves/' directory")
         for search_for_saves in os.listdir(program_dir + '/saves/'):
             if search_for_saves.startswith("save_"):
-                res.append(search_for_saves)
-
-        char1 = 'save_'
-        char2 = '.yaml'
-
-        for idx, ele in enumerate(res):
-            res[idx] = ele.replace(char1, '')
-
-        for idx, ele in enumerate(res):
-            res[idx] = ele.replace(char2, '')
+                res.append(search_for_saves.replace("save_", "").replace(".yaml", ""))
 
         text = "Please choose an action."
         text_handling.print_speech_text_effect(text, preferences)
@@ -501,10 +488,7 @@ while menu:
         if choice == 'Edit Save':
             text = "Please select a save to edit."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = cinput(
-                COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
-                COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
-            )
+            open_save = select_save(res)
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
                 cout(
@@ -539,10 +523,7 @@ while menu:
         elif choice == "Manage Save Backups":
             text = "Please select a save to manage its backups."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = cinput(
-                COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
-                COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
-            )
+            open_save = select_save(res)
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
                 cout(
@@ -609,7 +590,12 @@ while menu:
                     )
                 if not finished:
                     cout("Select a backup to load:")
-                    selected_backup = terminal_handling.show_menu(backups, length=75)
+                    backups_str = backups
+                    count = 0
+                    for i in backups_str:
+                        backups_str[count] = i.split('saves/', 1)[1]
+                        count += 1
+                    selected_backup = terminal_handling.show_menu(backups)
                     with open(selected_backup, "r") as f:
                         data = yaml.safe_load(f)
                     with open(program_dir + "/saves/save_" + open_save + ".yaml", "w") as f:
@@ -621,10 +607,7 @@ while menu:
         else:
             text = "Please select a save to delete."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = cinput(
-                COLOR_STYLE_BRIGHT + "Current saves: " + COLOR_RESET_ALL +
-                COLOR_GREEN + str(res) + COLOR_RESET_ALL + " "
-            )
+            open_save = select_save(res)
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
                 cout(
@@ -727,6 +710,7 @@ while menu:
                     pydoc.pager(content)
     else:
         text_handling.clear_prompt()
+        logger_sys.log_message(f"INFO: PROGRAM RUN END")
         exit(0)
 
 
@@ -3400,4 +3384,4 @@ if player["difficulty mode"] != 2:
     logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
 
 text_handling.clear_prompt()
-logger_sys.log_message(f"INFO: GAME RUN END")
+logger_sys.log_message(f"INFO: PROGRAM RUN END")
