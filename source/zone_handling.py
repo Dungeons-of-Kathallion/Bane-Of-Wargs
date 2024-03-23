@@ -1428,6 +1428,12 @@ def interaction_grocery(map_zone, zone, player, item):
 
 def interaction_harbor(map_zone, zone, map, player):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a harbor --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     current_harbor = zone[map_zone]
     text = '='
     text_handling.print_separator(text)
