@@ -1,5 +1,6 @@
 type: str()
 key: str()
+gold: num()
 script name: str()
 description: str()
 arguments: list(required=False)

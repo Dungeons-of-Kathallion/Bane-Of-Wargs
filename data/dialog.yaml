@@ -113,6 +113,6 @@ Saved The Guy In The Woods:
     add attributes:
     - has saved the guy in the forlindon woods
     give item:
-    - Map
+    - Forlindon Woods Map
     gold modification:
       augmentation: $payment

@@ -1254,19 +1254,20 @@ def interaction_grocery(map_zone, zone, player, item):
                         logger_sys.log_message(f"INFO: Adding to player inventory item '{which_item}")
                         player["inventory"].append(which_item)
                         player["inventory slots remaining"] -= 1
+                    else:
                         logger_sys.log_message(
                             f"INFO: Canceling buying process --> doesn't have enough inventory slots"
                         )
                         cout(COLOR_YELLOW + "You don't have enough space in your inventory" + COLOR_RESET_ALL)
                 else:
                     logger_sys.log_message(f"INFO: Canceling buying process --> doesn't have enough gold")
-                    cout(COLOR_YELLOW + "You don't own enough gold to buy that many metal" + COLOR_RESET_ALL)
+                    cout(COLOR_YELLOW + "You don't own enough gold to buy that many item" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
                     f"INFO: Canceling buying process --> current grocery '{map_zone}'" +
                     f" doesn't sell item '{which_item}'"
                 )
-                cout(COLOR_YELLOW + "The current grocery doesn't sells this metal" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "The current grocery doesn't sells this item" + COLOR_RESET_ALL)
         elif choice == 'Sell Item':
             which_item = cinput("Which item do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")

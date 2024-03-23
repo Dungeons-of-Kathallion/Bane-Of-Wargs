@@ -1,24 +1,41 @@
 generic:
 - Goblin
+- Goblin
 - Ork
+- Ork
+- Ork
+- Ork
+- Ork Archer
+- Ork Archer
 - Ork Archer
 - Warg
 - Cavern Troll
 - Slime
+- Slime
 warg raids:
+- Warg
 - Warg
 - White Warg
 woods:
 - Doomed Horror
+- Doomed Horror
+- Goblin
+- Goblin
 - Goblin
 - Woods Troll
 - Corrupted Ent
 - Giant Spider
 black:
 - Black Ork
+- Black Ork
+- Dark Marksman
 - Dark Marksman
 - Doomed Horror
 desert raids:
 - Mumakil
+- South Pillager
+- South Pillager
+- South Pillager
+- Desert Troll
 dragon bosses:
 - Balrog
