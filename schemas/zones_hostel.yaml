@@ -12,3 +12,9 @@ buys:
 map:
   map raw: str(required=False)
   map full: str()
+discounts:
+  time space: num()
+  chance: num()
+  discount:
+    max dropoff: num()
+    min dropoff: num()

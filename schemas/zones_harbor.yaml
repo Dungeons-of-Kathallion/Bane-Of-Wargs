@@ -6,3 +6,9 @@ map:
   map raw: str(required=False)
   map full: str()
 travels: any()
+discounts:
+  time space: num()
+  chance: num()
+  discount:
+    max dropoff: num()
+    min dropoff: num()

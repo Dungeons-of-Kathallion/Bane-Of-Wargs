@@ -90,7 +90,6 @@ def spawn_enemy(
                 else:
                     player["inventory"].append(chosen_item)
         cout(" ")
-        player["defeated enemies"].append(map_location)
     else:
         text = "You just died and your save have been rested to its older state."
         logger_sys.log_message("INFO: Player just died")

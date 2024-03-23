@@ -55,6 +55,14 @@ ZONE_COLORS_DICT = {
     36: COLOR_BLUE_13 + '⟰',
     37: COLOR_BLUE_14 + '⇭'
 }
+SELLING_ZONES = [
+    "hostel",
+    "forge",
+    "stable",
+    "blacksmith",
+    "grocery",
+    "harbor"
+]
 
 
 # Handling functions

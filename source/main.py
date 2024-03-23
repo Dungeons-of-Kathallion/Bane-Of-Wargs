@@ -18,6 +18,7 @@ import logger_sys
 from colors import *
 from time_handling import *
 from consumable_handling import *
+from zone_handling import *
 from terminal_handling import cout, cinput
 # external imports
 import random
@@ -44,14 +45,13 @@ text_handling.clear_prompt()
 console = Console()
 
 # says you are not playing.
+global play, game_elapsed_time, menu
 play = 0
-
-fought_enemy = False
+menu = True
+game_elapsed_time = 0
 
 separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET_ALL
 
-
-menu = True
 
 # Check if player has the config folder if
 # not, create it with all its required content
@@ -1173,6 +1173,79 @@ def run(play):
                     "items sales": items_sales
                 }
 
+        # Handle selling zone discounts. For every selling
+        # zone, check if a current discount is happening,
+        # and if not, randomly generate one.
+        # Plus, if the player hasn't the "discounts"
+        # dictionary in its save data, create it and add
+        # every interactive zones
+
+        if "discounts" not in list(player):
+            player["discounts"] = {}
+
+        interactive_zones  = []
+        for i in list(zone):
+            if zone[i]["type"] in SELLING_ZONES:
+                interactive_zones += [i]
+
+        for current in interactive_zones:
+            data = zone[current]
+
+            if (
+                current not in list(player["discounts"]) or
+                (
+                    player["discounts"][current]["remaining time"] != None and
+                    player["discounts"][current]["remaining time"] <= 0
+                )
+            ):  # create it if it doesn't exists or stop the discount
+                # Calculate randomly next time the discount
+                # is going to happen
+                finished = False
+                count = 0
+                while not finished:
+                    if count > 180:  # stop infinite loops
+                        next_discount = 180
+                    if data["discounts"]["chance"] > random.uniform(0, 1):
+                        next_discount = (
+                            data["discounts"]["time space"] * count
+                        )
+                        finished = True
+                    count += 1
+                player["discounts"][current] = {
+                    "remaining time": None,
+                    "dropoff": None,
+                    "next discount": int(next_discount)
+                }
+            # Update different timers
+            try:
+                game_elapsed_time += 0
+            except Exception as error:
+                game_elapsed_time = 0
+            player["discounts"][current]["next discount"] -= game_elapsed_time
+            if player["discounts"][current]["remaining time"] != None:
+                player["discounts"][current]["remaining time"] -= game_elapsed_time
+
+            if (
+                player["discounts"][current]["next discount"] <= 0 and
+                player["discounts"][current]["dropoff"] == None
+            ):  # start discount
+                # Calculate discount stats
+                remaining_time = (
+                    random.uniform(1, 14)
+                )
+                dropoff = round(
+                    random.uniform(
+                        data["discounts"]["discount"]["min dropoff"],
+                        data["discounts"]["discount"]["max dropoff"]
+                    ), 2
+                )
+                # Activate the discount
+                player["discounts"][current] = {
+                    "remaining time": remaining_time,
+                    "dropoff": dropoff,
+                    "next discount": player["discounts"][current]["next discount"]
+                }
+
         # Calculate the enemies global damage
         # coefficient, depending on the player
         # elapsed time in game-days
@@ -1759,6 +1832,7 @@ def run(play):
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+            player["defeated enemies"].append(map_location)
 
         elif (
             day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL
