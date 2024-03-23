@@ -382,7 +382,10 @@ def print_grocery_information(map_zone, zone, item, player):
     sold_items_list = player["groceries data"][map_zone]["items sales"]
     sold_items = []
     for i in sold_items_list:
-        sold_items += [f" -{i} {COLOR_YELLOW}{get_cost(round(zone[map_zone]["cost value"] * item[i]["gold"], 2), dropoff)}{COLOR_RESET_ALL}"]
+        sold_items += [
+            f" -{i} {COLOR_YELLOW}{get_cost(round(zone[map_zone]["cost value"] * item[i]["gold"], 2), dropoff)}" +
+            COLOR_RESET_ALL
+        ]
     for i in sold_items:
         cout(i)
     text = '='
@@ -779,7 +782,9 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 current_mount_data = mounts[current_mount_type]
                 if current_mount_data["stable"]["required stable"] in zone[map_zone]["stable"]["stables"]:
                     logger_sys.log_message("INFO: Starting mount training of mount '{current_mount_uuid}'")
-                    train.training_loop(current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient, dropoff)
+                    train.training_loop(
+                        current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient, dropoff
+                    )
                 else:
                     logger_sys.log_message(
                         f"INFO: Aborting mount training of mount '{current_mount_uuid}' " +
