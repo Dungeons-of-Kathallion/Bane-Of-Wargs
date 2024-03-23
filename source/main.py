@@ -24,7 +24,6 @@ import random
 import yaml
 import os
 import time
-import fade
 import subprocess
 import tempfile
 import appdirs
@@ -50,60 +49,6 @@ play = 0
 fought_enemy = False
 
 separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET_ALL
-
-
-def print_title():
-    if preferences["theme"] == "OFF":
-        with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-            cout(f.read())
-    else:
-        if preferences["theme"] == "blackwhite":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.blackwhite(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "purplepink":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.purplepink(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "greenblue":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.greenblue(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "water":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.water(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "fire":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.fire(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "pinkred":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.pinkred(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "purpleblue":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.purpleblue(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "brazil":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.brazil(f.read())
-                cout(faded_text)
-        elif preferences["theme"] == "random":
-            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
-                faded_text = fade.random(f.read())
-                cout(faded_text)
-
-
-def select_save(options, length=52):
-    options += ['EXIT']
-    choice = terminal_handling.show_menu(options, length)
-    if choice == 'EXIT':
-        text_handling.clear_prompt()
-        logger_sys.log_message(f"INFO: PROGRAM RUN END")
-        exit(0)
-        return
-    return choice
 
 
 menu = True
@@ -253,13 +198,13 @@ while menu:
         preferences = yaml.safe_load(f)
         check_yaml.examine(program_dir + '/preferences.yaml')
     text_handling.clear_prompt()
-    print_title()
+    text_handling.print_title(preferences)
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Quit']
     choice = terminal_handling.show_menu(options)
     text_handling.clear_prompt()
 
-    print_title()
+    text_handling.print_title(preferences)
 
     if choice == 'Play Game':
         options = ['Use Latest Preset', 'Play Vanilla', 'Play Plugin']
@@ -335,7 +280,7 @@ while menu:
             for search_for_plugins in os.listdir(program_dir + "/plugins/"):
                 res.append(search_for_plugins)
 
-            what_plugin = select_save(res)
+            what_plugin = text_handling.select_save(res)
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "plugin"
             preferences["latest preset"]["plugin"] = what_plugin
@@ -370,7 +315,7 @@ while menu:
 
                 text = "Please select a save to open."
                 text_handling.print_speech_text_effect(text, preferences)
-                open_save = select_save(res)
+                open_save = text_handling.select_save(res)
                 logger_sys.log_message("INFO: Updating latest preset")
                 preferences["latest preset"]["save"] = open_save
 
@@ -488,7 +433,7 @@ while menu:
         if choice == 'Edit Save':
             text = "Please select a save to edit."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = select_save(res)
+            open_save = text_handling.select_save(res)
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
                 cout(
@@ -523,7 +468,7 @@ while menu:
         elif choice == "Manage Save Backups":
             text = "Please select a save to manage its backups."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = select_save(res)
+            open_save = text_handling.select_save(res)
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
                 cout(
@@ -607,7 +552,7 @@ while menu:
         else:
             text = "Please select a save to delete."
             text_handling.print_speech_text_effect(text, preferences)
-            open_save = select_save(res)
+            open_save = text_handling.select_save(res)
             check_file = os.path.isfile(program_dir + "/saves/save_" + open_save + ".yaml")
             if not check_file:
                 cout(

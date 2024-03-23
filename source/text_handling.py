@@ -1,13 +1,14 @@
 # source imports
 import logger_sys
 import time_handling
+import terminal_handling
 from colors import *
 from terminal_handling import cout
 # external imports
-import sys
 import time
 import random
 import appdirs
+import fade
 from sys import exit
 
 
@@ -51,6 +52,60 @@ def exit_game():
     clear_prompt()
     logger_sys.log_message(f"INFO: PROGRAM RUN END")
     exit(1)
+
+
+def print_title(preferences):
+    if preferences["theme"] == "OFF":
+        with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+            cout(f.read())
+    else:
+        if preferences["theme"] == "blackwhite":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.blackwhite(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "purplepink":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.purplepink(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "greenblue":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.greenblue(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "water":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.water(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "fire":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.fire(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "pinkred":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.pinkred(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "purpleblue":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.purpleblue(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "brazil":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.brazil(f.read())
+                cout(faded_text)
+        elif preferences["theme"] == "random":
+            with open(program_dir + '/game/imgs/Title' + str(preferences["title style"]) + '.txt', 'r') as f:
+                faded_text = fade.random(f.read())
+                cout(faded_text)
+
+
+def select_save(options, length=52):
+    options += ['EXIT']
+    choice = terminal_handling.show_menu(options, length)
+    if choice == 'EXIT':
+        clear_prompt()
+        logger_sys.log_message(f"INFO: PROGRAM RUN END")
+        exit(0)
+        return
+    return choice
 
 
 def print_separator(character):
