@@ -201,7 +201,7 @@ def print_blacksmith_information(map_zone, zone, item, player):
             global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
             cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(get_cost(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2), dropoff)) +
+                str(get_cost(round(zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]), dropoff)) +
                 COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + global_current_weapon_materials +
                 COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -480,7 +480,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                         f.write(dumped)
                     logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
                 logger_sys.log_message("INFO: Starting player sleeping process")
-                if int(player["gold"]) > int(zone[map_zone]["sleep gold"]):
+                if int(player["gold"]) > int(get_cost(zone[map_zone]["sleep gold"], dropoff)):
                     sleep_gold = get_cost(zone[map_zone]["sleep gold"], dropoff, False)
                     logger_sys.log_message(f"INFO: Removed {sleep_gold} from player --> sleep costs")
                     player["gold"] -= sleep_gold
@@ -519,7 +519,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
             logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to drink")
             if (
                 which_drink in zone[map_zone]["sells"]["drinks"]
-                and (drinks[which_drink]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
+                and get_cost(drinks[which_drink]["gold"] * zone[map_zone]["cost value"], dropoff) < player["gold"]
             ):
                 drink_cost = get_cost(
                     drinks[which_drink]["gold"] * zone[map_zone]["cost value"], dropoff, False
@@ -544,7 +544,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if (
                 which_item in zone[map_zone]["sells"]["items"]
-                and (item[which_item]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
+                and get_cost(item[which_item]["gold"] * zone[map_zone]["cost value"], dropoff) < player["gold"]
             ):
                 if player["inventory slots remaining"] > 0:
                     player["inventory slots remaining"] -= 1
@@ -572,7 +572,6 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
             if (
                 which_item in zone[map_zone]["buys"]["items"]
-                and (item[which_item]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
                 and which_item in player["inventory"]
             ):
                 logger_sys.log_message(f"INFO: Removing item '{which_item}' from player inventory")
@@ -639,7 +638,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if (
                 which_item in zone[map_zone]["stable"]["sells"]["items"]
-                and (item[which_item]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
+                and get_cost(item[which_item]["gold"] * zone[map_zone]["cost value"], dropoff) < player["gold"]
             ):
                 if player["inventory slots remaining"] > 0:
                     logger_sys.log_message(f"INFO: Adding item '{which_item}' from player inventory")
@@ -666,7 +665,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
             logger_sys.log_message(f"INFO: Player has chosen drink '{which_drink}' to buy")
             if (
                 which_drink in zone[map_zone]["stable"]["sells"]["drinks"]
-                and (drinks[which_drink]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
+                and get_cost(drinks[which_drink]["gold"] * zone[map_zone]["cost value"], dropoff) < player["gold"]
             ):
                 gold = get_cost(drinks[which_drink]["gold"] * zone[map_zone]["cost value"], dropoff, False)
                 logger_sys.log_message(f"INFO: Removing {gold} gold from player")
@@ -930,7 +929,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
             logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to order")
             if (
                 which_weapon in zone[map_zone]["blacksmith"]["orders"]
-                and player["gold"] > zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]
+                and player["gold"] > get_cost(zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"], dropoff)
             ):
                 required_items = False
                 count = 0
@@ -992,7 +991,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
             if which_weapon in player["inventory"]:
                 item_next_upgrade_name = str(weapon_upgrade_handling.check_weapon_next_upgrade_name(which_weapon, item))
                 if item_next_upgrade_name != 'None':
-                    if player["gold"] > item[item_next_upgrade_name]["gold"]:
+                    if player["gold"] > get_cost(item[item_next_upgrade_name]["gold"]):
                         finished = False
                         has_required_items = True
                         player_fake_inventory = player["inventory"]
@@ -1220,7 +1219,9 @@ def interaction_forge(map_zone, zone, player, item):
             logger_sys.log_message(f"INFO: Player has chosen item '{which_metal}' to buy")
             if which_metal in current_forge["forge"]["sells"]:
                 metal_count = cinput_int("How many count of this metal you want to buy? ")
-                if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
+                if player["gold"] >= get_cost(
+                    item[which_metal]["gold"] * current_forge["cost value"] * metal_count, dropoff
+                ):
                     if player["inventory slots remaining"] >= metal_count:
                         gold = get_cost(
                             item[which_metal]["gold"] * current_forge["cost value"] * metal_count, dropoff, False
@@ -1367,7 +1368,9 @@ def interaction_grocery(map_zone, zone, player, item):
             which_item = cinput("Which item do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to buy")
             if which_item in player["groceries data"][map_zone]["items sales"]:
-                if player["gold"] >= item[which_item]["gold"] * current_grocery["cost value"]:
+                if player["gold"] >= get_cost(
+                    item[which_item]["gold"] * current_grocery["cost value"], dropoff
+                ):
                     if player["inventory slots remaining"] > 0:
                         gold = get_cost(
                             item[which_item]["gold"] * current_grocery["cost value"], dropoff, False
