@@ -13,6 +13,6 @@ $BROWN            $YELLOW%$BROWN($YELLOW%$BROWN'  $YELLOW%$BROWN /-. \      '  \
 $BROWN            `'    |$YELLOW%$BROWN   `()         \|  `()
 $BROWN                  ||    /          ()   /
 $BROWN                  ()   0            |  o
-$BROWN                   \  /\ AF         o /
+$BROWN                   \  /\            o /
 $BROWN                   o  `            /-|
 $BROWN                ,-/ `           ,-/$WHITE

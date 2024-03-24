@@ -1,3 +1,5 @@
+# N.M.I. == No More Information (about)
+
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: bane-of-wargs
 Upstream-Contact: Cromha <angelo.longo13@outlook.com>
@@ -11,9 +13,50 @@ License: GPL-3+
 Files: imgs/*
 Copyright: Cromha <angelo.longo13@outlook.com>
            for the most part, taken from ASCII Art Archive (https://asciiart.eu),
-           and then edited with color codes
+           and then edited with color codes. Some others have been generated using
+           https://manytools.org/hacker-tools/convert-images-to-ascii-art/
 License: CC-BY-SA-4.0
 
-Files: imgs/Balrog.txt
-Copyright: ///NONE///
+
+Files:
+  imgs/Old Man.txt
+  imgs/Balrog.txt
+  imgs/Forlindon Woods.txt
+  imgs/Friesian Horse.txt
+  imgs/Jerry The Junk Seller.txt
+Copyright: Anonymous/Unknwon
+License: GPL-3+
+
+Files:
+  imgs/Horse.txt
+  imgs/Steel Gate.txt
+Copyright: jgs (N.M.I.)
+License: GPL-3+
+
+Files: imgs/Giant Spider.txt
+Copyright: Shanaka Dias
+License: GPL-3+
+
+Files: imgs/Bear.txt
+Copyright: Joan G. Stark
+License: GPL-3+
+
+Files: imgs/Camel.txt
+Copyright: AF (N.M.I.)
+License: GPL-3+
+
+Files: imgs/Corrupted Ent.txt
+Copyright: fsc (N.M.I.)
+License: GPL-3+
+
+Files: imgs/Donkey.txt
+Copyright: b'ger (N.I.M.)
+License: GPL-3+
+
+Files: imgs/Mumakil.txt
+Copyright: Targon
+License: GPL-3+
+
+Files: imgs/Shire Horse.txt
+Copyright: sk (N.M.I.)
 License: GPL-3+
