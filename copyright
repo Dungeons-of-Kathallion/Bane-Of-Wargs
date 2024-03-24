@@ -17,21 +17,21 @@ Copyright: Cromha <angelo.longo13@outlook.com>
 License: CC-BY-SA-4.0
 
 Files:
- imgs/Old Man.txt
+ imgs/Old?Man.txt
  imgs/Balrog.txt
- imgs/Forlindon Woods.txt
- imgs/Friesian Horse.txt
- imgs/Jerry The Junk Seller.txt
-Copyright: Anonymous/Unknwon
+ imgs/Forlindon?Woods.txt
+ imgs/Friesian?Horse.txt
+ imgs/Jerry?The?Junk?Seller.txt
+Copyright: Anonymous/Unknown
 License: GPL-3+
 
 Files:
  imgs/Horse.txt
- imgs/Steel Gate.txt
+ imgs/Steel?Gate.txt
 Copyright: jgs (N.M.I.)
 License: GPL-3+
 
-Files: imgs/Giant Spider.txt
+Files: imgs/Giant?Spider.txt
 Copyright: Shanaka Dias
 License: GPL-3+
 
@@ -43,7 +43,7 @@ Files: imgs/Camel.txt
 Copyright: AF (N.M.I.)
 License: GPL-3+
 
-Files: imgs/Corrupted Ent.txt
+Files: imgs/Corrupted?Ent.txt
 Copyright: fsc (N.M.I.)
 License: GPL-3+
 
@@ -55,7 +55,7 @@ Files: imgs/Mumakil.txt
 Copyright: Targon
 License: GPL-3+
 
-Files: imgs/Shire Horse.txt
+Files: imgs/Shire?Horse.txt
 Copyright: sk (N.M.I.)
 License: GPL-3+
 
