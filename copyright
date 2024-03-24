@@ -1,0 +1,19 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: bane-of-wargs
+Upstream-Contact: Cromha <angelo.longo13@outlook.com>
+Source: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
+
+Files: *
+Copyright: Cromha <angelo.longo13@outlook.com>
+           bane-of-wargs contributors (see credits.txt)
+License: GPL-3+
+
+Files: imgs/*
+Copyright: Cromha <angelo.longo13@outlook.com>
+           for the most part, taken from ASCII Art Archive (https://asciiart.eu),
+           and then edited with color codes
+License: CC-BY-SA-4.0
+
+Files: imgs/Balrog.txt
+Copyright: ///NONE///
+License: GPL-3+
