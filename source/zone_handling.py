@@ -5,6 +5,7 @@ import uuid_handling
 import weapon_upgrade_handling
 import train
 import terminal_handling
+import time_handling
 from colors import *
 from terminal_handling import cout, cinput, cinput_int
 # external imports
@@ -1110,9 +1111,12 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     "PAID GOLD: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
                     str(round(player["orders"][current_order_uuid]["paid gold"], 2)) + COLOR_RESET_ALL
                 )
+                ordered_day = time_handling.date_prettifier(
+                    time_handling.addition_to_date(player["starting date"], int(player["orders"][current_order_uuid]["ordered day"]))
+                )
                 cout(
-                    "ORDERED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
-                    str(round(player["orders"][current_order_uuid]["ordered day"], 1)) + COLOR_RESET_ALL
+                    "ORDERED DATE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
+                    ordered_day + COLOR_RESET_ALL
                 )
                 cout("TIME LEFT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(time_left) + COLOR_RESET_ALL)
 
