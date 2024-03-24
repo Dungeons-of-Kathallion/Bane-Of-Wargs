@@ -1524,6 +1524,135 @@ Chainmail Leggings (4):
   - Flexible Steel
   - Flexible Steel
   - Flexible Steel
+Chainmail Chestplate: &chainmail_chestplate
+  display name: "Chainmail Chestplate"
+  upgrade tier: 0
+  type: "Armor Piece: Chestplate"
+  armor protection: .32
+  agility: .18
+  gold: 78.15
+  description: "Chainmail chestplates are light weight but strong and durable armor pieces. They are used by most knights."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Chainmail Chestplate (1):
+  <<: *chainmail_chestplate
+  upgrade tier: 1
+  armor protection: .42
+  agility: .18
+  for this upgrade:
+  - Raw Iron
+  - Raw Iron
+  - Raw Bronze
+Chainmail Chestplate (2):
+  <<: *chainmail_chestplate
+  upgrade tier: 2
+  armor protection: .44
+  agility: .185
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+Chainmail Chestplate (3):
+  <<: *chainmail_chestplate
+  upgrade tier: 3
+  armor protection: .46
+  agility: .192
+  for this upgrade:
+  - Steel
+  - Refined Steel
+  - Flexible Steel
+Chainmail Chestplate (4):
+  <<: *chainmail_chestplate
+  upgrade tier: 4
+  armor protection: .46
+  agility: .198
+  for this upgrade:
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+Dwarf Silver Chestplate: &dwarf_chestplate
+  display name: "Dwarf Silver Chestplate"
+  upgrade tier: 0
+  type: "Armor Piece: Chestplate"
+  armor protection: .28
+  agility: .13
+  gold: 34.2
+  description: >
+    Dwarves civilizations have for always mastered the art of silver goods. But they
+    master more that silver goods, they master silver armors and weapons unlike any
+    other civilization. Their armaments may be heavy, but they're strongly reliable.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Dwarf Silver Chestplate (1):
+  <<: *dwarf_chestplate
+  upgrade tier: 1
+  armor protection: .32
+  agility: .15
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Raw Iron
+Dwarf Silver Chestplate (2):
+  <<: *dwarf_chestplate
+  upgrade tier: 2
+  armor protection: .345
+  agility: .14
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+  - Raw Bronze
+  - Raw Bronze
+Dwarf Silver Chestplate (3):
+  <<: *dwarf_chestplate
+  upgrade tier: 3
+  armor protection: .366
+  agility: .14
+  for this upgrade:
+  - Steel
+  - Refined Steel
+  - Flexible Steel
+Dwarf Silver Chestplate (4):
+  <<: *dwarf_chestplate
+  upgrade tier: 4
+  armor protection: .375
+  agility: .14
+  for this upgrade:
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
 Ork Iron Leggings:
   upgrade tier: 0
   type: "Armor Piece: Leggings"

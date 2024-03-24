@@ -201,7 +201,7 @@ def print_blacksmith_information(map_zone, zone, item, player):
             global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
             cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(get_cost(round(zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]), dropoff)) +
+                str(get_cost(round(zone[map_zone]["blacksmith"]["orders"][current_weapon]["gold"]), dropoff)) +
                 COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + global_current_weapon_materials +
                 COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL

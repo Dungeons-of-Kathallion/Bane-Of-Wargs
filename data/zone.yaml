@@ -660,7 +660,7 @@ James Blacksmith:
         - Raw Iron
         - Raw Iron
         - Wooden Stick
-        gold: 19.6
+        gold: 34.15
         time needed: 3.7
       Broadsword:
         needed materials:
@@ -668,7 +668,7 @@ James Blacksmith:
         - Raw Iron
         - Raw Iron
         - Wooden Stick
-        gold: 8.6
+        gold: 45.87
         time needed: 4.7
       Chainmail Leggings:
         needed materials:
@@ -677,8 +677,17 @@ James Blacksmith:
         - Raw Iron
         - Raw Iron
         - Raw Bronze
-        gold: 13.5
+        gold: 45.7
         time needed: 8.69
+      Chainmail Chestplate:
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Iron
+        - Raw Iron
+        - Raw Bronze
+        gold: 72.1
+        time needed: 12.4
   discounts:
     time space: 18
     chance: .3
@@ -808,6 +817,31 @@ Gerud Armorer:
         - Raw Iron
         - Raw Iron
         - Raw Iron
+      Chainmail Chestplate:
+        gold: 52.18
+        time needed: 9.14
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Iron
+        - Raw Iron
+        - Raw Iron
+      Dwarf Silver Chestplate:
+        gold: 154.25
+        time needed: 13.4
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw Iron
+        - Raw Iron
+        - Raw Bronze
   discounts:
     time space: 18
     chance: .3
