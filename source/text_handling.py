@@ -17,8 +17,7 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 
 def print_speech_text_effect(text, preferences):
-    text += "\n"
-    new_input = print_long_string(text, no_output=True)
+    new_input = print_long_string(text, no_output=True) + "\n"
     if not preferences["speed up"]:
         wait = random.uniform(.05, .1)
     else:
