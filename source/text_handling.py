@@ -17,20 +17,15 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 
 def print_speech_text_effect(text, preferences):
-    text = str(text) + "\n"
-    new_input = ""
-    for i, letter in enumerate(text):
-        if i % 55 == 0:
-            new_input += '\n'
-        new_input += letter
+    text += "\n"
+    new_input = print_long_string(text, no_output=True)
     if not preferences["speed up"]:
-        for character in new_input:
-            cout(character, end="")
-            time.sleep(round(random.uniform(.05, .1), 2))
+        wait = random.uniform(.05, .1)
     else:
-        for character in new_input:
-            cout(character, end="")
-            time.sleep(.02)
+        wait = .02
+    for character in new_input:
+        cout(character, end="")
+        time.sleep(wait)
 
 
 def clear_prompt():
@@ -115,15 +110,17 @@ def print_separator(character):
 def overstrike_text(text):
     result = ""
     for character in text:
-        result = result + character + '\u0336'
+        result += character + '\u0336'
     cout(str(result))
 
 
-def print_long_string(text):
+def print_long_string(text, no_output=False):
     new_input = ""
     dont = False
     count = 0
+    letters = []
     for i, letter in enumerate(text):
+        letters += [letter]
         if letter == '@':
             if not dont:
                 dont = True
@@ -141,7 +138,20 @@ def print_long_string(text):
 
     # this is just because at the beginning too, a `\n` character gets added
     new_input = new_input[1:]
-    cout(str(new_input))
+    new_input_list = new_input.split(' ')
+    count = 0
+    for word in new_input_list:
+        if "\n" in word and not word.startswith('\n') and not word.endswith('\n'):
+            new_input_list[count] = "\n" + word.replace('\n', '')
+        count += 1
+    new_input = ""
+    for word in new_input_list:
+        new_input += word + " "
+    new_input = new_input.replace('\n ', '\n')
+    if no_output:
+        return new_input
+    else:
+        cout(str(new_input))
 
 
 def apply_yaml_data_color_code(to_print):
