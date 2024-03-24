@@ -1146,7 +1146,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 if action == 'Collect Order':
                     order = str(player["orders"][current_order_uuid]["ordered weapon"])
                     logger_sys.log_message(f"INFO: Collecting order --> adding to player inventory item '{order}'")
-                    if player["inventory remaining slots"] > 0:
+                    if player["inventory slots remaining"] > 0:
                         player["inventory"].append(str(player["orders"][current_order_uuid]["ordered weapon"]))
                         player["inventory slots remaining"] -= 1
                         # remove order from player orders
