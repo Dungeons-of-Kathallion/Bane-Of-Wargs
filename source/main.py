@@ -200,7 +200,7 @@ while menu:
     text_handling.clear_prompt()
     text_handling.print_title(preferences)
 
-    options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Quit']
+    options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Credits', 'Quit']
     choice = terminal_handling.show_menu(options)
     text_handling.clear_prompt()
 
@@ -653,6 +653,13 @@ while menu:
                     content = f.read()
 
                     pydoc.pager(content)
+    elif choice == 'Credits':
+        # Get the credits file from github
+        # and get its content
+        credits = data_handling.temporary_git_file_download(
+            'copyright', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
+        )
+        pydoc.pager(credits)
     else:
         text_handling.clear_prompt()
         logger_sys.log_message(f"INFO: PROGRAM RUN END")
