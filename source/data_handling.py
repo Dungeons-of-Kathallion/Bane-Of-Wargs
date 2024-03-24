@@ -374,7 +374,7 @@ def temporary_git_file_download(selected_file, url):
         )
         logger_sys.log_message("DEBUG: " + str(error))
         time.sleep(3)
-        file_text_data = None
+        file_text_data = "null"
 
     return file_text_data
 
