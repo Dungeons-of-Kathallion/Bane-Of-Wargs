@@ -1,19 +1,23 @@
-             $RED\                  /
-    $WHITE_________$RED))                (($WHITE__________
-   $YELLOW/$WHITE.-------.$RED/\\$WHITE    $YELLOW\    /$WHITE    $RED//\$WHITE.--------.$YELLOW\
-  $YELLOW//$BLACK#######$WHITE$RED//$BLACK##$WHITE$RED\\$WHITE   $YELLOW))  (($WHITE   $RED//$BLACK##$WHITE$RED\\$BLACK########$WHITE$YELLOW\\$WHITE
- $YELLOW//$BLACK#######$WHITE$RED//$BLACK###$WHITE$RED(($WHITE  $YELLOW((    ))$WHITE  $RED))$BLACK###$WHITE$RED\\$BLACK########$WHITE$YELLOW\\$WHITE
-$YELLOW(($BLACK#######$WHITE$RED(($BLACK#####$WHITE$RED\\$WHITE  $YELLOW\\  //$WHITE  $RED//$BLACK#####$WHITE$RED))$BLACK########$WHITE$YELLOW))$WHITE
- \$BLACK##$WHITE' `$BLACK###$WHITE$RED\$BLACK######$WHITE$RED\\$WHITE  $YELLOW\)(/$WHITE  $RED//$BLACK######$WHITE$RED/$BLACK####$WHITE' `$BLACK##$WHITE/
-  )'    ``$BLACK#$WHITE)'  `$BLACK##$WHITE$RED\$WHITE`->$REDoo$WHITE<-'$RED/$BLACK##$WHITE'  `($BLACK#$WHITE''     `(
-          (       ``$RED\`..'/$WHITE''       )
-                     $RED\""(
-                      `- )
-                      / /
-                     ( /\
-                     /\| \
-                    (  \
-                        )
-                       /
-                      (
-                      `$WHITE
+$RED                    /\         /\__
+$RED                   // \       (  $BLUE0$RED )_____/\            __
+$RED                  // \ \     ($ORANGEvv          $YELLOWo$RED|          /$ORANGE^v$RED\
+$RED                //    \ \   ($ORANGEvvvv  ___-$YELLOW----^$RED        /$ORANGE^^$RED/\$ORANGEvv$RED\
+$RED              //  /     \ \ |$ORANGEvvvvv/               /$ORANGE^^$RED/    \$ORANGEv$RED\
+$RED             //  /       (\\/$ORANGEvvvv/              /$ORANGE^^$RED/       \$ORANGEv$RED\
+$RED            //  /  /  \ $ORANGE($RED  /$ORANGEvvvv$RED/              /$ORANGE^^$RED/---(     \$ORANGEv$RED\
+$RED           //  /  /    \$ORANGE($RED /$ORANGEvvvv$RED/----(O        /$ORANGE^^$RED/           \$ORANGEv$RED\
+$RED          //  /  /  \  $ORANGE($RED/$ORANGEvvvv$RED/               /$ORANGE^^$RED/             \$ORANGEv$RED|
+$RED        //  /  /    \$ORANGE($RED $ORANGEvvvv$RED/                /$ORANGE^^$RED/               ||
+$RED       //  /  /    $ORANGE($RED  $ORANGEvvvv$RED/                 |$ORANGE^^$RED|              //
+$RED      //  / /    $ORANGE($RED  |$ORANGEvvvv$RED|                  /$ORANGE^^$RED/            //
+$RED     //  / /   $ORANGE($RED    \$ORANGEvvvvv$RED\          )-----/$ORANGE^^$RED/           //
+$RED    // / / $ORANGE($RED          \$ORANGEvvvvv$RED\            /$ORANGE^^^$RED/          //
+$RED   /// /$ORANGE($RED               \$ORANGEvvvvv$RED\        /$ORANGE^^^^$RED/          //
+$RED  ///$ORANGE($RED              )-----\$ORANGEvvvvv$RED\    /$ORANGE^^^^$RED/-----(      \\
+$RED //$ORANGE($RED                        \$ORANGEvvvvv$RED\/$ORANGE^^^^$RED/               \\
+$RED/$ORANGE($RED                            \$ORANGEvvvv^^^$RED/                 //
+$RED                                \vv^/         /        //
+$RED                                             /$YELLOW<$RED______//
+$RED                                            $YELLOW<<<$RED------/
+$RED                                             \$YELLOW<$RED
+                                               \$WHITE
