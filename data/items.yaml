@@ -616,7 +616,7 @@ Throwing Axe (2):
   <<: *throwing_axe
   upgrade tier: 2
   damage: 9.8
-  defend: 1.5
+  defend: 2.6
   agility: .15
   critical hit chance: .53
   for this upgrade:
