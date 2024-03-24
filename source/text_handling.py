@@ -151,7 +151,7 @@ def print_long_string(text, no_output=False):
     new_input = new_input.replace('\n ', '\n')
     new_input_list = list(new_input)
     if new_input.endswith('\n'):
-        new_input_list = list(new_input)[:len(list(new_input)) - 3]
+        new_input_list = list(new_input)[:len(list(new_input)) - 1]
     new_input = ""
     for letter in new_input_list:
         new_input += letter
