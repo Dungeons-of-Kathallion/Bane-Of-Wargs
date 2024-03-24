@@ -992,7 +992,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
             if which_weapon in player["inventory"]:
                 item_next_upgrade_name = str(weapon_upgrade_handling.check_weapon_next_upgrade_name(which_weapon, item))
                 if item_next_upgrade_name != 'None':
-                    if player["gold"] > get_cost(item[item_next_upgrade_name]["gold"]):
+                    if player["gold"] > get_cost(item[item_next_upgrade_name]["gold"], dropoff):
                         finished = False
                         has_required_items = True
                         player_fake_inventory = player["inventory"]
