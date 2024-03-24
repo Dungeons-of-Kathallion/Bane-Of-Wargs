@@ -1,4 +1,4 @@
-Welcome to Bane OF Wargs!
+Welcome to Bane Of Wargs!
 version 0.2-alpha
 
 The player's manual and other
@@ -36,6 +36,12 @@ Artwork
   b'ger (GPL-3+)
   Targon (GPL-3+)
   sk (GPL-3+)
+  gvn (GPL-3+)
+  jah/SSt (GPL-3+)
+  BP (GPL-3+)
+  hjm (GPL-3+)
+  VK (GPL-3+)
+  Joan Stark (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

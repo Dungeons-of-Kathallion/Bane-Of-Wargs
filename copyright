@@ -9,19 +9,32 @@ Copyright: Cromha <angelo.longo13@outlook.com>
            bane-of-wargs contributors (see credits.txt)
 License: GPL-3+
 
-Files: imgs/*
-Copyright: Cromha <angelo.longo13@outlook.com>
-           for the most part, taken from ASCII Art Archive (https://asciiart.eu),
-           and then edited with color codes. Some others have been generated using
-           https://manytools.org/hacker-tools/convert-images-to-ascii-art/
-License: CC-BY-SA-4.0
-
 Files: data/*
 Copyright: Cromha <angelo.longo13@outlook.com>
            the code is Cromha's own, but some ascii art in the zone.yaml
            file are inspired from Ork Slayer Gamedev's game 'Bane Of Orks'
            (https://orkslayergamedev.itch.io/bane-of-orks)
 License: GPL-3+
+
+Files: imgs/*
+Copyright: Cromha <angelo.longo13@outlook.com>
+           for the most part, taken from ASCII Art Archive (https://asciiart.eu),
+           and then edited with color codes. Some others have been generated using
+           https://manytools.org/hacker-tools/convert-images-to-ascii-art/
+License: GPL-3+
+
+Files: data/items.yaml
+Copyright:
+ Anonymous/Unknowns
+ gvn (N.M.I.)
+ jah/SSt (N.M.I.)
+ BP (N.M.I.)
+ hjm (N.M.I.)
+ VK (N.M.I.)
+ Joan Stark
+License: GPL-3+
+Comment: Items thumbnails are the ASCII art taken from various artists.
+         Some are edited and slightly modified
 
 Files:
  imgs/Old?Man.txt
