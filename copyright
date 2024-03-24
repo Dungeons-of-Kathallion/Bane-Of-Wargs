@@ -16,6 +16,13 @@ Copyright: Cromha <angelo.longo13@outlook.com>
            https://manytools.org/hacker-tools/convert-images-to-ascii-art/
 License: CC-BY-SA-4.0
 
+Files: data/*
+Copyright: Cromha <angelo.longo13@outlook.com>
+           the code is Cromha's own, but some ascii art in the zone.yaml
+           file are inspired from Ork Slayer Gamedev's game 'Bane Of Orks'
+           (https://orkslayergamedev.itch.io/bane-of-orks)
+License: GPL-3+
+
 Files:
  imgs/Old?Man.txt
  imgs/Balrog.txt
