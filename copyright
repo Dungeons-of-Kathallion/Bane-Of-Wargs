@@ -1,0 +1,97 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: bane-of-wargs
+Upstream-Contact: Cromha <angelo.longo13@outlook.com>
+Source: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
+Comment: N.M.I. == No More Information (about)
+
+Files: *
+Copyright: Cromha <angelo.longo13@outlook.com>
+           bane-of-wargs contributors (see credits.txt)
+License: GPL-3+
+
+Files: data/*
+Copyright: Cromha <angelo.longo13@outlook.com>
+           the code is Cromha's own, but some ascii art in the zone.yaml
+           file are inspired from Ork Slayer Gamedev's game 'Bane Of Orks'
+           (https://orkslayergamedev.itch.io/bane-of-orks)
+License: GPL-3+
+
+Files: imgs/*
+Copyright: Cromha <angelo.longo13@outlook.com>
+           for the most part, taken from ASCII Art Archive (https://asciiart.eu),
+           and then edited with color codes. Some others have been generated using
+           https://manytools.org/hacker-tools/convert-images-to-ascii-art/
+License: GPL-3+
+
+Files: data/items.yaml
+Copyright:
+ Anonymous/Unknowns
+ gvn (N.M.I.)
+ jah/SSt (N.M.I.)
+ BP (N.M.I.)
+ hjm (N.M.I.)
+ VK (N.M.I.)
+ Joan Stark
+License: GPL-3+
+Comment: Items thumbnails are the ASCII art taken from various artists.
+         Some are edited and slightly modified
+
+Files:
+ imgs/Old?Man.txt
+ imgs/Balrog.txt
+ imgs/Forlindon?Woods.txt
+ imgs/Friesian?Horse.txt
+ imgs/Jerry?The?Junk?Seller.txt
+Copyright: Anonymous/Unknown
+License: GPL-3+
+
+Files:
+ imgs/Horse.txt
+ imgs/Steel?Gate.txt
+Copyright: jgs (N.M.I.)
+License: GPL-3+
+
+Files: imgs/Giant?Spider.txt
+Copyright: Shanaka Dias
+License: GPL-3+
+
+Files: imgs/Bear.txt
+Copyright: Joan G. Stark
+License: GPL-3+
+
+Files: imgs/Camel.txt
+Copyright: AF (N.M.I.)
+License: GPL-3+
+
+Files: imgs/Corrupted?Ent.txt
+Copyright: fsc (N.M.I.)
+License: GPL-3+
+
+Files: imgs/Donkey.txt
+Copyright: b'ger (N.I.M.)
+License: GPL-3+
+
+Files: imgs/Mumakil.txt
+Copyright: Targon
+License: GPL-3+
+
+Files: imgs/Shire?Horse.txt
+Copyright: sk (N.M.I.)
+License: GPL-3+
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General Public
+ License version 3 can be found in "/usr/share/common-licenses/GPL-3".
