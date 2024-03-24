@@ -1112,7 +1112,9 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     str(round(player["orders"][current_order_uuid]["paid gold"], 2)) + COLOR_RESET_ALL
                 )
                 ordered_day = time_handling.date_prettifier(
-                    time_handling.addition_to_date(player["starting date"], int(player["orders"][current_order_uuid]["ordered day"]))
+                    time_handling.addition_to_date(
+                        player["starting date"], int(player["orders"][current_order_uuid]["ordered day"])
+                    )
                 )
                 cout(
                     "ORDERED DATE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
