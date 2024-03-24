@@ -657,7 +657,7 @@ while menu:
         # Get the credits file from github
         # and get its content
         credits = data_handling.temporary_git_file_download(
-            'copyright', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
+            'credits.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
         )
         pydoc.pager(credits)
     else:
