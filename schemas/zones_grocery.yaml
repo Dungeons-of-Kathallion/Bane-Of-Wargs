@@ -7,3 +7,9 @@ map:
   map full: str()
 cost value: num()
 items sold: list(str())
+discounts:
+  time space: num()
+  chance: num()
+  discount:
+    max dropoff: num()
+    min dropoff: num()

@@ -55,13 +55,29 @@ ZONE_COLORS_DICT = {
     36: COLOR_BLUE_13 + '⟰',
     37: COLOR_BLUE_14 + '⇭'
 }
+SELLING_ZONES = [
+    "hostel",
+    "forge",
+    "stable",
+    "blacksmith",
+    "grocery",
+    "harbor"
+]
 
 
 # Handling functions
 
 
+def get_cost(cost, dropoff, round_cost=True):
+    cost = cost - cost * dropoff
+    if round_cost:
+        return round(cost, 2)
+    else:
+        return cost
+
+
 # Information printing functions
-def print_zone_news(zone, map_zone):
+def print_zone_news(zone, map_zone, player):
     logger_sys.log_message(f"INFO: Printing map zone '{map_zone}' news")
     cout("NEWS:")
     village_news = zone[map_zone]["news"]
@@ -69,11 +85,24 @@ def print_zone_news(zone, map_zone):
     choose_rand_news = random.randint(0, (village_news_len - 1))
     choose_rand_news = village_news[int(choose_rand_news)]
     text_handling.print_long_string(choose_rand_news)
+    if (
+        zone[map_zone]["type"] in SELLING_ZONES and
+        player["discounts"][map_zone]["dropoff"] is not None
+    ):
+        cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
+        text = (
+            f"A @{COLOR_GREEN}@-{int(player["discounts"][map_zone]["dropoff"] * 100)}%@{COLOR_RESET_ALL}@ " +
+            f"dropoff on every item's happening at the @\033[38;2;255;128;0m@{zone[map_zone]["name"]}@{COLOR_RESET_ALL}@ " +
+            f"shop! Only @{COLOR_BACK_BLUE}@{round(player["discounts"][map_zone]["remaining time"] * 24)} " +
+            f"hours@{COLOR_RESET_ALL}@ remain!"
+        )
+        text_handling.print_long_string(text)
+        cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
     text = '='
     text_handling.print_separator(text)
 
 
-def print_forge_information(map_zone, zone, item):
+def print_forge_information(map_zone, zone, item, player):
     current_forge = zone[map_zone]
     current_forge_name = current_forge["name"]
     logger_sys.log_message(f"INFO: Printing current forge '{current_forge_name}' information to GUI")
@@ -81,6 +110,12 @@ def print_forge_information(map_zone, zone, item):
     text = current_forge["description"]
     text_handling.print_long_string(text)
     cout(" ")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     if "None" not in current_forge["forge"]["buys"]:
         cout("METAL RESALES:")
         count = 0
@@ -90,7 +125,7 @@ def print_forge_information(map_zone, zone, item):
             current_metal = str(metal_buys[count])
             cout(
                 " -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL
+                str(get_cost(round(item[current_metal]["gold"] * current_forge["cost value"], 2), dropoff)) + COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_forge["forge"]["sells"]:
@@ -102,14 +137,14 @@ def print_forge_information(map_zone, zone, item):
             current_metal = str(metal_sells[count])
             cout(
                 " -" + current_metal + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(round(item[current_metal]["gold"] * current_forge["cost value"], 2)) + COLOR_RESET_ALL
+                str(get_cost(round(item[current_metal]["gold"] * current_forge["cost value"], 2), dropoff)) + COLOR_RESET_ALL
             )
             count += 1
     text = '='
     text_handling.print_separator(text)
 
 
-def print_blacksmith_information(map_zone, zone, item):
+def print_blacksmith_information(map_zone, zone, item, player):
     current_black_smith = zone[map_zone]
     current_black_smith_name = current_black_smith["name"]
     logger_sys.log_message(f"INFO: Printing current blacksmith '{current_black_smith_name}' information to GUI")
@@ -117,6 +152,12 @@ def print_blacksmith_information(map_zone, zone, item):
     text = current_black_smith["description"]
     text_handling.print_long_string(text)
     cout("")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     if "None" not in current_black_smith["blacksmith"]["buys"]:
         cout("EQUIPMENT RESALES:")
         count = 0
@@ -126,7 +167,9 @@ def print_blacksmith_information(map_zone, zone, item):
             current_weapon = str(weapon_buys[int(count)])
             cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) + COLOR_RESET_ALL
+                str(
+                    get_cost(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2), dropoff)
+                ) + COLOR_RESET_ALL
             )
             count += 1
     if "None" not in current_black_smith["blacksmith"]["orders"]:
@@ -148,7 +191,6 @@ def print_blacksmith_information(map_zone, zone, item):
                 count2 += 1
 
             count2 = 0
-            count3 = 0
 
             global_current_weapon_materials = text_handling.multiple_items_in_list_formatting(
                 global_current_weapon_materials
@@ -159,7 +201,7 @@ def print_blacksmith_information(map_zone, zone, item):
             global_current_weapon_materials = global_current_weapon_materials.replace("]", '')
             cout(
                 " -" + current_weapon + " " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                str(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2)) +
+                str(get_cost(round(item[current_weapon]["gold"] * current_black_smith["cost value"], 2), dropoff)) +
                 COLOR_RESET_ALL + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                 " (" + COLOR_RESET_ALL + global_current_weapon_materials +
                 COLOR_GREEN + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
@@ -177,8 +219,20 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
     text = current_stable["description"]
     text_handling.print_long_string(text)
     cout(" ")
-    cout("DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["deposit gold"]) + COLOR_RESET_ALL)
-    cout("TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_stable["training gold"]) + COLOR_RESET_ALL)
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
+    cout(
+        "DEPOSIT COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_stable["deposit gold"], dropoff)) +
+        COLOR_RESET_ALL
+    )
+    cout(
+        "TRAINING COST/DAY: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_stable["training gold"], dropoff)) +
+        COLOR_RESET_ALL
+    )
     options = ['Train Mount', '']
     if "None" not in current_stable["stable"]["sells"]["mounts"]:
         cout("MOUNTS SALES:")
@@ -189,7 +243,9 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
             current_mount = str(stable_mounts[int(count)])
             cout(
                 " -" + current_stable["stable"]["sells"]["mounts"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2)) +
+                COLOR_STYLE_BRIGHT + str(
+                    get_cost(round(mounts[current_mount]["gold"] * current_stable["cost value"], 2), dropoff)
+                ) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -203,7 +259,9 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
             current_mount = str(stable_items[int(count)])
             cout(
                 " -" + current_stable["stable"]["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(round(item[current_mount]["gold"] * current_stable["cost value"], 2)) +
+                COLOR_STYLE_BRIGHT + str(
+                    get_cost(round(item[current_mount]["gold"] * current_stable["cost value"], 2), dropoff)
+                ) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -243,7 +301,7 @@ def print_stable_information(map_zone, zone, mounts, item, player, map_location)
     text_handling.print_separator(text)
 
 
-def print_hostel_information(map_zone, zone, item, drinks):
+def print_hostel_information(map_zone, zone, item, drinks, player):
     current_hostel = zone[map_zone]
     current_hostel_name = current_hostel["name"]
     logger_sys.log_message(f"INFO: Printing current hostel '{current_hostel_name}' information to GUI")
@@ -251,7 +309,16 @@ def print_hostel_information(map_zone, zone, item, drinks):
     text = current_hostel["description"]
     text_handling.print_long_string(text)
     cout(" ")
-    cout("SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(current_hostel["sleep gold"]) + COLOR_RESET_ALL)
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
+    cout(
+        "SLEEP COST: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(get_cost(current_hostel["sleep gold"], dropoff)) +
+        COLOR_RESET_ALL
+    )
     if "None" not in current_hostel["sells"]["drinks"]:
         cout("DRINKS SALES:")
         count = 0
@@ -261,7 +328,9 @@ def print_hostel_information(map_zone, zone, item, drinks):
             current_drink = str(current_hostel["sells"]["drinks"][int(count)])
             cout(
                 " -" + current_hostel["sells"]["drinks"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(round(drinks[current_drink]["gold"] * current_hostel["cost value"], 2)) +
+                COLOR_STYLE_BRIGHT + str(
+                    get_cost(round(drinks[current_drink]["gold"] * current_hostel["cost value"], 2), dropoff)
+                ) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -274,7 +343,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
             current_item = str(current_hostel["sells"]["items"][int(count)])
             cout(
                 " -" + current_hostel["sells"]["items"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) +
+                COLOR_STYLE_BRIGHT + str(get_cost(round(item[current_item]["gold"] * current_hostel["cost value"], 2), dropoff)) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -287,7 +356,7 @@ def print_hostel_information(map_zone, zone, item, drinks):
             current_item = str(current_hostel["buys"]["items"][int(count)])
             cout(
                 " -" + current_hostel["buys"]["items"][int(count)] + " " + COLOR_YELLOW +
-                COLOR_STYLE_BRIGHT + str(round(item[current_item]["gold"] * current_hostel["cost value"], 2)) +
+                COLOR_STYLE_BRIGHT + str(get_cost(round(item[current_item]["gold"] * current_hostel["cost value"], 2), dropoff)) +
                 COLOR_RESET_ALL
             )
             count += 1
@@ -303,18 +372,27 @@ def print_grocery_information(map_zone, zone, item, player):
     text = current_grocery["description"]
     text_handling.print_long_string(text)
     cout()
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     cout("ITEMS SALES:")
     sold_items_list = player["groceries data"][map_zone]["items sales"]
     sold_items = []
     for i in sold_items_list:
-        sold_items += [f" -{i} {COLOR_YELLOW}{round(zone[map_zone]["cost value"] * item[i]["gold"], 2)}{COLOR_RESET_ALL}"]
+        sold_items += [
+            f" -{i} {COLOR_YELLOW}{get_cost(round(zone[map_zone]["cost value"] * item[i]["gold"], 2), dropoff)}" +
+            COLOR_RESET_ALL
+        ]
     for i in sold_items:
         cout(i)
     text = '='
     text_handling.print_separator(text)
 
 
-def print_harbor_information(map_zone, zone, map):
+def print_harbor_information(map_zone, zone, map, player):
     current_harbor = zone[map_zone]
     current_harbor_name = current_harbor["name"]
     logger_sys.log_message(f"INFO: Printing current harbor '{current_harbor_name}' information to GUI")
@@ -322,6 +400,12 @@ def print_harbor_information(map_zone, zone, map):
     text = current_harbor["description"]
     text_handling.print_long_string(text)
     cout()
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     cout("TRAVELS:")
     travels = []
     count = 0
@@ -330,7 +414,7 @@ def print_harbor_information(map_zone, zone, map):
         destination = f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL},{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
         travels += [
             f" -{list(current_harbor["travels"])[count]} {destination}" +
-            f" {COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
+            f" {COLOR_YELLOW}{get_cost(round(current_harbor["travels"][travel]["cost"], 2), dropoff)}{COLOR_RESET_ALL}"
         ]
         count += 1
     for travel in travels:
@@ -344,6 +428,12 @@ def print_harbor_information(map_zone, zone, map):
 
 def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferences, previous_player):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is an hostel --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     text = '='
     text_handling.print_separator(text)
     logger_sys.log_message(f"INFO: Adding correct interactions options depending on the hostel '{map_zone}' capabilities")
@@ -391,9 +481,9 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                     logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
                 logger_sys.log_message("INFO: Starting player sleeping process")
                 if int(player["gold"]) > int(zone[map_zone]["sleep gold"]):
-                    sleep_gold = int(zone[map_zone]["sleep gold"])
+                    sleep_gold = get_cost(zone[map_zone]["sleep gold"], dropoff, False)
                     logger_sys.log_message(f"INFO: Removed {sleep_gold} from player --> sleep costs")
-                    player["gold"] -= zone[map_zone]["sleep gold"]
+                    player["gold"] -= sleep_gold
                     loading = 7
                     cout(" ")
                     while loading > 0:
@@ -417,7 +507,6 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                         loading -= 1
                     logger_sys.log_message("INFO: Finished sleeping process")
                     logger_sys.log_message("INFO: Updating correct day time to morning")
-                    day_time = float(float(round(player["elapsed time game days"] + 1, 0)) + .25)
                     player["elapsed time game days"] = float(float(round(player["elapsed time game days"] + 1, 0)) + .25)
                     continue_hostel_actions = False
                     if player["health"] > player["max health"]:
@@ -432,9 +521,11 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                 which_drink in zone[map_zone]["sells"]["drinks"]
                 and (drinks[which_drink]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
             ):
-                drink_cost = str(drinks[which_drink]["gold"] * zone[map_zone]["cost value"])
+                drink_cost = get_cost(
+                    drinks[which_drink]["gold"] * zone[map_zone]["cost value"], dropoff, False
+                )
                 logger_sys.log_message(f"INFO: Buying drink '{which_drink}' --> removed {drink_cost} gold from player")
-                player["gold"] -= drinks[which_drink]["gold"] * zone[map_zone]["cost value"]
+                player["gold"] -= drink_cost
                 if drinks[which_drink]["healing level"] == 999:
                     logger_sys.log_message("INFO: Healed player to max health")
                     player["health"] = player["max health"]
@@ -459,9 +550,9 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                     player["inventory slots remaining"] -= 1
                     logger_sys.log_message(f"INFO: Adding item '{which_item}' to player inventory")
                     player["inventory"].append(which_item)
-                    item_cost = str(item[which_item]["gold"] * zone[map_zone]["cost value"])
+                    item_cost = get_cost(item[which_item]["gold"] * zone[map_zone]["cost value"], dropoff, False)
                     logger_sys.log_message(f"INFO: Removing {item_cost} gold from player")
-                    player["gold"] -= item[which_item]["gold"] * zone[map_zone]["cost value"]
+                    player["gold"] -= item_cost
                 else:
                     logger_sys.log_message("INFO: Canceling buying process --> doesn't have enough inventory slots")
                     text = (
@@ -486,9 +577,9 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
             ):
                 logger_sys.log_message(f"INFO: Removing item '{which_item}' from player inventory")
                 player["inventory slots remaining"] += 1
-                gold = str(item[which_item]["gold"] * zone[map_zone]["cost value"])
+                gold = get_cost(item[which_item]["gold"] * zone[map_zone]["cost value"], dropoff, False)
                 logger_sys.log_message(f"INFO: Adding to player {gold} gold")
-                player["gold"] += item[which_item]["gold"] * zone[map_zone]["cost value"]
+                player["gold"] += gold
                 player["inventory"].remove(which_item)
                 which_item_number_inventory = 0
                 count = 0
@@ -522,6 +613,12 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
 
 def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_location, preferences, time_elapsing_coefficient):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is a stable --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     options = ["Train Mount", "Deposit Mount", "Ride Mount"]
     if "None" not in zone[map_zone]["stable"]["sells"]["mounts"]:
         options += ["Buy Mount"]
@@ -548,9 +645,9 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     logger_sys.log_message(f"INFO: Adding item '{which_item}' from player inventory")
                     player["inventory slots remaining"] -= 1
                     player["inventory"].append(which_item)
-                    gold = str(item[which_item]["gold"] * zone[map_zone]["cost value"])
+                    gold = get_cost(item[which_item]["gold"] * zone[map_zone]["cost value"], dropoff, False)
                     logger_sys.log_message(f"INFO: Removing {gold} gold from player")
-                    player["gold"] -= item[which_item]["gold"] * zone[map_zone]["cost value"]
+                    player["gold"] -= gold
                 else:
                     logger_sys.log_message("INFO: Canceling buying process -> doesn't gas enough inventory slots")
                     text = (
@@ -571,9 +668,9 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 which_drink in zone[map_zone]["stable"]["sells"]["drinks"]
                 and (drinks[which_drink]["gold"] * zone[map_zone]["cost value"]) < player["gold"]
             ):
-                gold = str(drinks[which_drink]["gold"] * zone[map_zone]["cost value"])
-                logger_sys.log_message(f"INFO: Removing {gold}  gold from player")
-                player["gold"] -= drinks[which_drink]["gold"] * zone[map_zone]["cost value"]
+                gold = get_cost(drinks[which_drink]["gold"] * zone[map_zone]["cost value"], dropoff, False)
+                logger_sys.log_message(f"INFO: Removing {gold} gold from player")
+                player["gold"] -= gold
                 if drinks[which_drink]["healing level"] == 999:
                     logger_sys.log_message(f"INFO: Consuming drink '{which_drink}' --> healing player to max health")
                     player["health"] = player["max health"]
@@ -591,7 +688,7 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
             which_mount = cinput("Which mount do you want to buy? ")
             logger_sys.log_message(f"INFO: Player has chosen mount '{which_mount}' to buy")
             if which_mount in zone[map_zone]["stable"]["sells"]["mounts"]:
-                mount_cost = (mounts[which_mount]["gold"] * zone[map_zone]["cost value"])
+                mount_cost = get_cost(mounts[which_mount]["gold"] * zone[map_zone]["cost value"], dropoff, False)
                 if mount_cost < player["gold"]:
                     logger_sys.log_message(f"INFO: Removing player {mount_cost} gold")
                     player["gold"] -= mount_cost
@@ -685,7 +782,9 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                 current_mount_data = mounts[current_mount_type]
                 if current_mount_data["stable"]["required stable"] in zone[map_zone]["stable"]["stables"]:
                     logger_sys.log_message("INFO: Starting mount training of mount '{current_mount_uuid}'")
-                    train.training_loop(current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient)
+                    train.training_loop(
+                        current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient, dropoff
+                    )
                 else:
                     logger_sys.log_message(
                         f"INFO: Aborting mount training of mount '{current_mount_uuid}' " +
@@ -746,14 +845,14 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                             continue_searching = False
                             which_mount_uuid = str(selected_mount_uuid)
                         count += 1
-                    mount_take_back_cost = round(
+                    mount_take_back_cost = get_cost(round(
                         (
                             player["elapsed time game days"] - player["mounts"][which_mount_uuid]["deposited day"]
                         ) * zone[map_zone]["deposit gold"], 2
-                    )
+                    ), dropoff, False)
                     cout(
                         "If you take back this mount it will cost you " + COLOR_YELLOW +
-                        COLOR_STYLE_BRIGHT + str(mount_take_back_cost) + COLOR_RESET_ALL + " gold. "
+                        COLOR_STYLE_BRIGHT + str(round(mount_take_back_cost, 2)) + COLOR_RESET_ALL + " gold. "
                     )
                     ask = cinput("(y/n) ")
                     if player["gold"] > mount_take_back_cost:
@@ -790,6 +889,12 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
 
 def interaction_blacksmith(map_zone, zone, item, player):
     logger_sys.log_message(f"INFO: Current map zone '{map_zone}' is a blacksmith --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     text = '='
     text_handling.print_separator(text)
 
@@ -804,8 +909,8 @@ def interaction_blacksmith(map_zone, zone, item, player):
             logger_sys.log_message(f"INFO: Player has chosen item '{which_weapon}' to sell")
             if which_weapon in zone[map_zone]["blacksmith"]["buys"] and which_weapon in player["inventory"]:
                 player["inventory slots remaining"] += 1
-                gold = str(item[which_weapon]["gold"] * zone[map_zone]["cost value"])
-                player["gold"] += item[which_weapon]["gold"] * zone[map_zone]["cost value"]
+                gold = get_cost(item[which_weapon]["gold"] * zone[map_zone]["cost value"], dropoff, False)
+                player["gold"] += gold
                 logger_sys.log_message(f"INFO: Adding to player {gold} gold")
                 player["inventory"].remove(which_weapon)
                 logger_sys.log_message(f"INFO: Removing item '{which_weapon}' from player inventory")
@@ -840,9 +945,9 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     required_items = True
                     logger_sys.log_message("INFO: Player has required items --> continuing")
                 if required_items:
-                    gold = str(zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"])
+                    gold = get_cost(zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"], dropoff, False)
                     logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                    player["gold"] -= zone[map_zone]["blacksmith"]["orders"][which_weapon]["gold"]
+                    player["gold"] -= gold
                     count = 0
                     remaining_items_to_remove = len(zone[map_zone]["blacksmith"]["orders"][which_weapon]["needed materials"])
                     while count < len(player["inventory"]) and remaining_items_to_remove != 0:
@@ -855,7 +960,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                     order_uuid = uuid_handling.generate_random_uuid()
                     logger_sys.log_message(f"INFO: Creating order '{order_uuid}' dictionary")
                     order_dict = {
-                        "paid gold": int(gold),
+                        "paid gold": gold,
                         "ordered weapon": which_weapon,
                         "ordered day": player["elapsed time game days"],
                         "ordered blacksmith": zone[map_zone]["name"],
@@ -901,9 +1006,9 @@ def interaction_blacksmith(map_zone, zone, item, player):
                                     has_required_items = False
                             finished = True
                         if has_required_items:
-                            gold = str(item[item_next_upgrade_name]["gold"])
+                            gold = get_cost(item[item_next_upgrade_name]["gold"], dropoff, False)
                             logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                            player["gold"] -= item[item_next_upgrade_name]["gold"]
+                            player["gold"] -= gold
                             player["inventory"].remove(which_weapon)
                             count = 0
                             remaining_items_to_remove = len(item[str(item_next_upgrade_name)]["for this upgrade"])
@@ -916,7 +1021,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                             order_uuid = uuid_handling.generate_random_uuid()
                             logger_sys.log_message(f"INFO: Creating order '{order_uuid}' dictionary")
                             order_dict = {
-                                "paid gold": item[str(item_next_upgrade_name)]["gold"],
+                                "paid gold": gold,
                                 "ordered weapon": str(item_next_upgrade_name),
                                 "ordered day": player["elapsed time game days"],
                                 "ordered blacksmith": zone[map_zone]["name"],
@@ -1004,7 +1109,7 @@ def interaction_blacksmith(map_zone, zone, item, player):
                 )
                 cout(
                     "PAID GOLD: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                    str(round(player["orders"][current_order_uuid]["paid gold"], 1)) + COLOR_RESET_ALL
+                    str(round(player["orders"][current_order_uuid]["paid gold"], 2)) + COLOR_RESET_ALL
                 )
                 cout(
                     "ORDERED DAY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
@@ -1061,6 +1166,12 @@ def interaction_blacksmith(map_zone, zone, item, player):
 
 def interaction_forge(map_zone, zone, player, item):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a forge --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     current_forge = zone[map_zone]
     text = '='
     text_handling.print_separator(text)
@@ -1082,9 +1193,11 @@ def interaction_forge(map_zone, zone, player, item):
                 metal_count = cinput_int("How many count of this metal you want to sell? ")
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{metal_count}' of the metal '{which_metal}'")
                 if player["inventory"].count(which_metal) >= metal_count:
-                    gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
+                    gold = get_cost(
+                        item[which_metal]["gold"] * current_forge["cost value"] * metal_count, dropoff, False
+                    )
                     logger_sys.log_message(f"INFO: Adding {gold} gold to player")
-                    player["gold"] += item[which_metal]["gold"] * current_forge["cost value"] * metal_count
+                    player["gold"] += gold
                     count = 0
                     while count < metal_count:
                         logger_sys.log_message(f"INFO: Removing from player inventory item '{which_metal}'")
@@ -1109,9 +1222,11 @@ def interaction_forge(map_zone, zone, player, item):
                 metal_count = cinput_int("How many count of this metal you want to buy? ")
                 if player["gold"] >= item[which_metal]["gold"] * current_forge["cost value"] * metal_count:
                     if player["inventory slots remaining"] >= metal_count:
-                        gold = item[which_metal]["gold"] * current_forge["cost value"] * metal_count
+                        gold = get_cost(
+                            item[which_metal]["gold"] * current_forge["cost value"] * metal_count, dropoff, False
+                        )
                         logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                        player["gold"] -= item[which_metal]["gold"] * current_forge["cost value"] * metal_count
+                        player["gold"] -= gold
                         count = 0
                         while count < metal_count:
                             logger_sys.log_message(f"INFO: Adding to player inventory item '{which_metal}")
@@ -1233,6 +1348,12 @@ def interaction_church(map_zone, zone, player, save_file, preferences, previous_
 
 def interaction_grocery(map_zone, zone, player, item):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a grocery --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     current_grocery = zone[map_zone]
     text = '='
     text_handling.print_separator(text)
@@ -1248,7 +1369,9 @@ def interaction_grocery(map_zone, zone, player, item):
             if which_item in player["groceries data"][map_zone]["items sales"]:
                 if player["gold"] >= item[which_item]["gold"] * current_grocery["cost value"]:
                     if player["inventory slots remaining"] > 0:
-                        gold = item[which_item]["gold"] * current_grocery["cost value"]
+                        gold = get_cost(
+                            item[which_item]["gold"] * current_grocery["cost value"], dropoff, False
+                        )
                         logger_sys.log_message(f"INFO: Removing from player {gold} gold")
                         player["gold"] -= gold
                         logger_sys.log_message(f"INFO: Adding to player inventory item '{which_item}")
@@ -1275,10 +1398,10 @@ def interaction_grocery(map_zone, zone, player, item):
                 item_number = cinput_int("How many items of that type do you want to sell? ")
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{item_number}' of the item '{which_item}'")
                 if player["inventory"].count(which_item) >= item_number:
-                    gold = (
+                    gold = get_cost(
                         (
                             item[which_item]["gold"] * current_grocery["cost value"]
-                        ) * item_number * random.uniform(.85, 1.35)
+                        ) * item_number * random.uniform(.85, 1.35), dropoff, False
                     )
                     cout(
                         f"\n{COLOR_YELLOW}You've found someone that accepted to buy " +
@@ -1305,6 +1428,12 @@ def interaction_grocery(map_zone, zone, player, item):
 
 def interaction_harbor(map_zone, zone, map, player):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a harbor --> can interact")
+    # Check if there's a discount active at this
+    # map zone
+    if player["discounts"][map_zone]["dropoff"] is not None:
+        dropoff = player["discounts"][map_zone]["dropoff"]
+    else:
+        dropoff = 0
     current_harbor = zone[map_zone]
     text = '='
     text_handling.print_separator(text)
@@ -1317,7 +1446,7 @@ def interaction_harbor(map_zone, zone, map, player):
         if choice == "Buy Ticket":
             which_ticket = cinput("Which ticket do you want to buy? ")
             if which_ticket in list(current_harbor["travels"]):
-                gold = current_harbor["travels"][which_ticket]["cost"]
+                gold = get_cost(current_harbor["travels"][which_ticket]["cost"], dropoff, False)
                 if player["gold"] >= gold:
                     player["gold"] -= gold
                     logger_sys.log_message(f"INFO: Removing from player {gold} gold")

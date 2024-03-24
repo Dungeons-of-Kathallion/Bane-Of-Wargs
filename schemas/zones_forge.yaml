@@ -9,3 +9,9 @@ map:
 forge:
   buys: list(str())
   sells: list(str())
+discounts:
+  time space: num()
+  chance: num()
+  discount:
+    max dropoff: num()
+    min dropoff: num()

@@ -18,6 +18,7 @@ import logger_sys
 from colors import *
 from time_handling import *
 from consumable_handling import *
+from zone_handling import *
 from terminal_handling import cout, cinput
 # external imports
 import random
@@ -44,21 +45,20 @@ text_handling.clear_prompt()
 console = Console()
 
 # says you are not playing.
+global play, game_elapsed_time, menu
 play = 0
-
-fought_enemy = False
+menu = True
+game_elapsed_time = 0
 
 separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET_ALL
 
-
-menu = True
 
 # Check if player has the config folder if
 # not, create it with all its required content
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.195
+    GAME_DATA_VERSION = 0.2
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -111,7 +111,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.195
+SOURCE_CODE_VERSION = 0.2
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -1180,6 +1180,79 @@ def run(play):
                     "items sales": items_sales
                 }
 
+        # Handle selling zone discounts. For every selling
+        # zone, check if a current discount is happening,
+        # and if not, randomly generate one.
+        # Plus, if the player hasn't the "discounts"
+        # dictionary in its save data, create it and add
+        # every interactive zones
+
+        if "discounts" not in list(player):
+            player["discounts"] = {}
+
+        interactive_zones = []
+        for i in list(zone):
+            if zone[i]["type"] in SELLING_ZONES:
+                interactive_zones += [i]
+
+        for current in interactive_zones:
+            data = zone[current]
+
+            if (
+                current not in list(player["discounts"]) or
+                (
+                    player["discounts"][current]["remaining time"] is not None and
+                    player["discounts"][current]["remaining time"] <= 0
+                )
+            ):  # create it if it doesn't exists or stop the discount
+                # Calculate randomly next time the discount
+                # is going to happen
+                finished = False
+                count = 0
+                while not finished:
+                    if count > 180:  # stop infinite loops
+                        next_discount = 180
+                    if data["discounts"]["chance"] > random.uniform(0, 1):
+                        next_discount = (
+                            data["discounts"]["time space"] * count
+                        )
+                        finished = True
+                    count += 1
+                player["discounts"][current] = {
+                    "remaining time": None,
+                    "dropoff": None,
+                    "next discount": int(next_discount)
+                }
+            # Update different timers
+            try:
+                game_elapsed_time += 0
+            except Exception as error:
+                game_elapsed_time = 0
+            player["discounts"][current]["next discount"] -= game_elapsed_time
+            if player["discounts"][current]["remaining time"] is not None:
+                player["discounts"][current]["remaining time"] -= game_elapsed_time
+
+            if (
+                player["discounts"][current]["next discount"] <= 0 and
+                player["discounts"][current]["dropoff"] is None
+            ):  # start discount
+                # Calculate discount stats
+                remaining_time = (
+                    random.uniform(1, 14)
+                )
+                dropoff = round(
+                    random.uniform(
+                        data["discounts"]["discount"]["min dropoff"],
+                        data["discounts"]["discount"]["max dropoff"]
+                    ), 2
+                )
+                # Activate the discount
+                player["discounts"][current] = {
+                    "remaining time": remaining_time,
+                    "dropoff": dropoff,
+                    "next discount": player["discounts"][current]["next discount"]
+                }
+
         # Calculate the enemies global damage
         # coefficient, depending on the player
         # elapsed time in game-days
@@ -1455,7 +1528,7 @@ def run(play):
             or zone[map_zone]["type"] == "grocery"
             or zone[map_zone]["type"] == "harbor"
         ):
-            zone_handling.print_zone_news(zone, map_zone)
+            zone_handling.print_zone_news(zone, map_zone, player)
         logger_sys.log_message(f"INFO: Checking if a dialog is defined at map point 'point{map_location}'")
         if "dialog" in map["point" + str(map_location)] and map_location not in player["heard dialogs"]:
             current_dialog = map["point" + str(map_location)]["dialog"]
@@ -1544,11 +1617,11 @@ def run(play):
         logger_sys.log_message("INFO: Checking if the player is in a forge")
         if zone[map_zone]["type"] == "forge":
             is_in_forge = True
-            zone_handling.print_forge_information(map_zone, zone, item)
+            zone_handling.print_forge_information(map_zone, zone, item, player)
         logger_sys.log_message("INFO: Checking if the player is in a blacksmith")
         if zone[map_zone]["type"] == "blacksmith":
             is_in_blacksmith = True
-            zone_handling.print_blacksmith_information(map_zone, zone, item)
+            zone_handling.print_blacksmith_information(map_zone, zone, item, player)
         logger_sys.log_message("INFO: Checking if the player is in a stable")
         if zone[map_zone]["type"] == "stable":
             is_in_stable = True
@@ -1556,7 +1629,7 @@ def run(play):
         logger_sys.log_message("INFO: Checking if the player is an hostel")
         if zone[map_zone]["type"] == "hostel":
             is_in_hostel = True
-            zone_handling.print_hostel_information(map_zone, zone, item, drinks)
+            zone_handling.print_hostel_information(map_zone, zone, item, drinks, player)
         logger_sys.log_message("INFO: Checking if the player is in a church")
         if zone[map_zone]["type"] == "church":
             is_in_church = True
@@ -1569,7 +1642,7 @@ def run(play):
             is_in_grocery_store = True
         logger_sys.log_message("INFO: Checking if the player is in a harbor")
         if zone[map_zone]["type"] == "harbor":
-            zone_handling.print_harbor_information(map_zone, zone, map)
+            zone_handling.print_harbor_information(map_zone, zone, map, player)
             is_in_harbor = True
         cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
@@ -1766,6 +1839,7 @@ def run(play):
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+            player["defeated enemies"].append(map_location)
 
         elif (
             day_time == COLOR_RED + COLOR_STYLE_BRIGHT + "☾ NIGHT" + COLOR_RESET_ALL

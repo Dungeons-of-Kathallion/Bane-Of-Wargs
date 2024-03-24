@@ -319,6 +319,12 @@ Los Gerudos Hostel:
     - Wolf Skull
     - Wolf Skin
     - Wheat
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Kathal Horses:
   name: "Kathal Horses"
@@ -367,6 +373,12 @@ Kathal Horses:
     stables:
     - Horse Stable
     - Camel Stable
+  discounts:
+    time space: 22
+    chance: .35
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Humil Dwarf Stable:
   name: "Humil Dwarf Stable"
@@ -412,6 +424,12 @@ Humil Dwarf Stable:
     stables:
     - Dwarf Stable
     - Horse Stable
+  discounts:
+    time space: 32
+    chance: .65
+    discount:
+      max dropoff: .25
+      min dropoff: .05
 
 Woodstack Hostel:
   name: "Kathallion Hostel"
@@ -453,6 +471,12 @@ Woodstack Hostel:
       |$BROWNI||----||I$WHITE|
       | $BROWN||--$GRAY0$BROWN-|| $WHITE|
       x__________x
+  discounts:
+    time space: 26
+    chance: .35
+    discount:
+      max dropoff: .3
+      min dropoff: .15
 
 Seaside Hostels:
   name: "Seaside Hostels"
@@ -501,6 +525,12 @@ Seaside Hostels:
       | $YELLOW[  ]$BROWN|$YELLOW;;;;$WHITE|
       | $YELLOW[  ]$BROWN|$YELLOW;;;;$WHITE|
       x__________x
+  discounts:
+    time space: 18
+    chance: .2
+    discount:
+      max dropoff: .25
+      min dropoff: .05
 
 Pickaxe Forge:
   name: "Pickaxe Forge"
@@ -537,6 +567,12 @@ Pickaxe Forge:
     - Raw Silver
     - Raw Copper
     - Raw Bronze
+  discounts:
+    time space: 18
+    chance: .15
+    discount:
+      max dropoff: .15
+      min dropoff: .05
 
 Gerud Forges:
   name: "Gerud Forges"
@@ -577,6 +613,12 @@ Gerud Forges:
     - Steel
     - Refined Steel
     - Flexible Steel
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 James Blacksmith:
   name: "James Blacksmith"
@@ -637,6 +679,12 @@ James Blacksmith:
         - Raw Bronze
         gold: 13.5
         time needed: 8.69
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Gerud Armorer:
   name: "Gerud Armorer"
@@ -760,6 +808,12 @@ Gerud Armorer:
         - Raw Iron
         - Raw Iron
         - Raw Iron
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Clarc Warg Stable:
   name: "Clarc Warg Stable"
@@ -805,6 +859,12 @@ Clarc Warg Stable:
       |$GRAYII$BROWN|====|$GRAYII$WHITE|
       |$GRAYII$BROWN|==//|$GRAYII$WHITE|
       x__________x
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Cocorico Church:
   name: "Cocorico Church"
@@ -931,6 +991,12 @@ Los Gerudos Grocery Store:
   - Slime
   - Raw Wood
   - Raw Aluminum
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Lorrys Grocery Store:
   name: "Lorry's Grocery Store"
@@ -973,6 +1039,12 @@ Lorrys Grocery Store:
   - Slime
   - Raw Wood
   - Raw Aluminum
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Target Grocery:
   name: "Target Grocery"
@@ -1038,6 +1110,12 @@ Target Grocery:
   - Rock Paper Scissors
   - Time Elapsing Potion
   - Raw Aluminum
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Gerud Harbor:
   name: "Gerud Harbor"
@@ -1071,6 +1149,12 @@ Gerud Harbor:
       destination: 1179
       travel time: 15
       cost: 34.6
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Seaside Harbor:
   name: "Seaside Harbor"
@@ -1102,6 +1186,12 @@ Seaside Harbor:
       destination: 7766
       travel time: 25
       cost: 51.2
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 Dwarf Harbor:
   name: "Dwarf Harbor"
@@ -1133,6 +1223,12 @@ Dwarf Harbor:
       destination: 7766
       travel time: 25
       cost: 35.4
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
 
 # Lands
 The Edge Of Goro Mounts:

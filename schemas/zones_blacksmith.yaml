@@ -9,3 +9,9 @@ map:
 blacksmith:
   buys: list(str())
   orders: any()
+discounts:
+  time space: num()
+  chance: num()
+  discount:
+    max dropoff: num()
+    min dropoff: num()

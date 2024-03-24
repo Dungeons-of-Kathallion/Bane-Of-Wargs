@@ -10,7 +10,15 @@ import random
 import time
 
 
-def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coefficient):
+def get_cost(cost, dropoff, round_cost=True):
+    cost = cost - cost * dropoff
+    if round_cost:
+        return round(cost, 2)
+    else:
+        return cost
+
+
+def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coefficient, dropoff):
     logger_sys.log_message(f"INFO: Starting training loop of mount '{mount_uuid}'")
     still_training = True
     current_mount_type = str(player["mounts"][str(mount_uuid)]["mount"])
@@ -28,9 +36,9 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
         elapsed_hours = int(time_handling.return_game_day_from_seconds(
             elapsed_time, time_elapsing_coefficient
         ) * 24)
-        owed_gold = round(
+        owed_gold = get_cost(round(
             stable["training gold"] * time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient), 2
-        )
+        ), dropoff)
         text_handling.clear_prompt()
         text_handling.print_separator('=')
         cout(f"DAY TIME: {current_time}")
@@ -188,7 +196,7 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
     game_elapsed_time = time_handling.return_game_day_from_seconds(elapsed_time, time_elapsing_coefficient)
     game_elapsed_time = round(game_elapsed_time, 2)
     logger_sys.log_message(f"INFO: Getting elapsed game time in training loop: {game_elapsed_time}")
-    gold = stable["training gold"] * game_elapsed_time
+    gold = get_cost(stable["training gold"] * game_elapsed_time, dropoff, False)
     logger_sys.log_message(f"INFO: Getting gold amount to be paid: {gold}")
     player["gold"] -= gold
     gold = round(gold, 2)
