@@ -1797,7 +1797,7 @@ def run(play):
                                 f"with mission enemy data '{current_enemy_data}'"
                             )
                             enemy_handling.spawn_enemy(
-                                map_location, lists[str(current_enemy_data["enemy category"])],
+                                map_location, current_enemy_data["enemy category"],
                                 enemy, item, lists, start_player, map, player,
                                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                                 text_replacements_generic, start_time, previous_player, save_file,
@@ -1831,7 +1831,7 @@ def run(play):
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
             enemy_handling.spawn_enemy(
-                map_location, lists[map["point" + str(map_location)]["enemy type"]], enemy, item, lists, start_player,
+                map_location, map["point" + str(map_location)]["enemy type"], enemy, item, lists, start_player,
                 map, player, preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file, enemies_damage_coefficient
             )
@@ -1852,9 +1852,9 @@ def run(play):
             logger_sys.log_message("INFO: Calculating random chance of enemy spawning")
             logger_sys.log_message("INFO: Spawning enemies")
             if "enemy spawning" in list(zone[map_zone]):
-                enemy_list_to_spawn = lists[str(zone[map_zone]["enemy spawning"])]
+                enemy_list_to_spawn = str(zone[map_zone]["enemy spawning"])
             else:
-                enemy_list_to_spawn = lists["generic"]
+                enemy_list_to_spawn = "generic"
             enemy_handling.spawn_enemy(
                 map_location, enemy_list_to_spawn, enemy,
                 item, lists, start_player, map, player,
