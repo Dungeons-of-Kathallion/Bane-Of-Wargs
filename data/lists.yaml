@@ -1,41 +1,186 @@
 generic:
-- Goblin
-- Goblin
-- Ork
-- Ork
-- Ork
-- Ork
-- Ork Archer
-- Ork Archer
-- Ork Archer
-- Warg
-- Cavern Troll
-- Slime
-- Slime
+  Goblin Raid:
+    name: "You find a group of Goblins on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Goblin: 1
+  Ork Raid:
+    name: "You find a group of Orks on your way!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Ork: .6
+      Ork Archer: .4
+  Mix Ork Raid:
+    name: "You find a group of Orks on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Ork: .55
+      Ork Archer: .25
+      Goblin: .2
+  Troll Raid:
+    name: "You find a Troll on your way!"
+    chance: .15
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 3}
+    enemies spawns:
+      Cavern Troll: 1
+      Ork: .5
+      Goblin: 1
+  Slime Raid:
+    name: "You find a group of Slimes on your way!"
+    chance: .15
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Slime: 1
 warg raids:
-- Warg
-- Warg
-- White Warg
+  Generic Warg:
+    name: "You find a group of Wargs on your way!"
+    chance: .75
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 2, "max": 3}
+    enemies spawns:
+      Warg: 1
+  White Warg Raid:
+    name: "You find a White Warg on your way!"
+    chance: .15
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      White Warg: 1
+      Warg: 1
 woods:
-- Doomed Horror
-- Doomed Horror
-- Goblin
-- Goblin
-- Goblin
-- Woods Troll
-- Corrupted Ent
-- Giant Spider
+  Goblin Raid:
+    name: "You find a group of Goblins on your way!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Goblin: 1
+  Corrupted Ent:
+    name: "You find a Corrupted Ent on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 1, "max": 3}
+    enemies spawns:
+      Corrupted Ent: 1
+  Doomed Horrors:
+    name: "You find a Doomed Horror on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 1, "max": 3}
+    enemies spawns:
+      Doomed Horror: 1
+  Troll Raid:
+    name: "You find a Wood Troll on your way!"
+    chance: .1
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 3}
+    enemies spawns:
+      Wood Troll: 1
+      Ork: .5
+      Goblin: 1
+  Giant Spider:
+    name: "You find a Giant Spider on your way!"
+    chance: .05
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 1, "max": 2}
+    enemies spawns:
+      Giant Spider: 1
 black:
-- Black Ork
-- Black Ork
-- Dark Marksman
-- Dark Marksman
-- Doomed Horror
+  Black Orks:
+    name: "You find a group of Black Orks on your way!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      Black Ork: 1
+  Dark Marksmen:
+    name: "You find a group of Dark Marksmen on your way!"
+    chance: .3
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      Black Ork: 1
+  Mix Orks:
+    name: "You find a group of Black Orks on your way!"
+    chance: .2
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Black Ork: .6
+      Dark Marksman: .4
+  Doomed Horrors:
+    name: "You find a Doomed Horror on your way!"
+    chance: .15
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 1, "max": 3}
+    enemies spawns:
+      Doomed Horror: 1
 desert raids:
-- Mumakil
-- South Pillager
-- South Pillager
-- South Pillager
-- Desert Troll
-dragon bosses:
-- Balrog
+  South Pillagers:
+    name: "You find a group of South Pillagers on your way!"
+    chance: .65
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      South Pillager: 1
+  Mumakil:
+    name: "You find a Mumakil on your way!"
+    chance: .15
+    enemies rate:
+      easy: {"min": 2, "max": 2}
+      normal: {"min": 2, "max": 2}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      Mumakil: 1
+      South Pillager: 1
+  Desert Troll:
+    name: "You find a Desert Troll on your way!"
+    chance: .2
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 1, "max": 2}
+    enemies spawns:
+      Desert Troll: 1
