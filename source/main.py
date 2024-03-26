@@ -1831,10 +1831,9 @@ def run(play):
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
             enemy_handling.spawn_enemy(
-                map_location, lists[map["point" + str(map_location)]["enemy type"]], enemy, item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic, start_time, previous_player, save_file,
-                enemies_damage_coefficient
+                map_location, lists[map["point" + str(map_location)]["enemy type"]], enemy, item, lists, start_player,
+                map, player,preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic, start_time, previous_player, save_file, enemies_damage_coefficient
             )
             player["defeated enemies"].append(map_location)
 

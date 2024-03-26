@@ -444,7 +444,6 @@ def fight(
 
             player["armor protection"] = round(global_armor_protection, 2)
 
-
             # Calculate player global agility and stores
             # it in a player variable
             global_agility = 0
