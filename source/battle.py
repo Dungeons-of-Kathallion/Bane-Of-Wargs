@@ -575,12 +575,9 @@ def fight(
             text_handling.clear_prompt()
             # ui
             text_handling.print_separator('=')
-            if enemies_remaining > 1:
-                noun = f"{enemies_remaining} {enemy_plural}"
-            else:
-                noun = enemy_singular
-            cout(f"Defeat the {noun}!")
+            cout(f"Defeat the {enemy_singular}!")
             text_handling.print_separator('=')
+            cout(f"Enemies Remaining: {enemies_remaining}/{len(enemies)}")
             risk = defeat_percentage
 
             # display
@@ -605,7 +602,7 @@ def fight(
                 health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
 
             cout(
-                f" BATTLE RISK: {risk}% " +
+                f"BATTLE RISK: {risk}% " +
                 f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}" +
                 f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|"
             )
