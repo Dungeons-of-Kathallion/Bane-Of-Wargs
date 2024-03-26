@@ -2072,6 +2072,27 @@ Cactus:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Rotten Flesh:
+  type: "Food"
+  max bonus: 0
+  healing level: -2
+  gold: .7
+  description: "These pieces of flesh come from undeads, and it doesn't look quite tasty."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 # Misc
 Bone:
   type: "Misc"

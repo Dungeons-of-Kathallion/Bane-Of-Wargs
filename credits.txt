@@ -43,6 +43,7 @@ Artwork
   VK (GPL-3+)
   Joan Stark (GPL-3+)
   Vander Zwaag (GPL-3+)
+  ZOT (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

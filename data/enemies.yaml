@@ -319,6 +319,55 @@ South Pillager:
   description: >
     South Pillagers, who're also known as 'South Men' are cowards, and dangerous enemies, that you'll eventually encounter if you
     travel in the Gerud Desert or in the Badlands of the Stall Island.
+# Undead enemies
+Mangrove Undead:
+  plural: Mangrove Undeads
+  damage:
+    min damage: 1
+    max damage: 5
+    critical chance: .4
+  health:
+    min spawning health: 5
+    max spawning health: 15
+    max health level: 15
+  agility: .35
+  inventory:
+  - Bone
+  - Bone
+  - Bone
+  - Rotten Flesh
+  - Rotten Flesh
+  - Rotten Flesh
+  - Beef
+  - Porkchop
+  - Wooden Stick
+  description: >
+    These monsters have been wandering in the Stall Island for a long time. So long that depending on the place you're, it's a different
+    species that you'll have to slay. Mangrove Wastes Undeads are known to be the slowest and the most annoying.
+Desert Undead:
+  plural: Desert Undeads
+  damage:
+    min damage: 2
+    max damage: 5
+    critical chance: .65
+  health:
+    min spawning health: 8
+    max spawning health: 18
+    max health level: 18
+  agility: .45
+  inventory:
+  - Bone
+  - Bone
+  - Bone
+  - Rotten Flesh
+  - Rotten Flesh
+  - Rotten Flesh
+  - Beef
+  - Porkchop
+  - Wooden Stick
+  description: >
+    These monsters have been wandering in the Stall Island for a long time. So long that depending on the place you're, it's a different
+    species that you'll have to slay. Desert undeads are known to be the most dangerous one, often coming in large groups.
 # Dragon bosses
 Balrog:
   plural: "Balrogs"
