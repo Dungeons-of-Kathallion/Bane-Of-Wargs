@@ -1798,7 +1798,7 @@ def run(play):
                             )
                             enemy_handling.spawn_enemy(
                                 map_location, lists[str(current_enemy_data["enemy category"])],
-                                current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
+                                enemy, item, lists, start_player, map, player,
                                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                                 text_replacements_generic, start_time, previous_player, save_file,
                                 enemies_damage_coefficient
@@ -1822,20 +1822,16 @@ def run(play):
         # Hard: 28%
         if player["difficulty mode"] == 0:
             enemy_spawning_chance = random.uniform(0, 1) > .92
-            enemy_number = random.randint(1, 3)
         elif player["difficulty mode"] == 2:
             enemy_spawning_chance = random.uniform(0, 1) > .72
-            enemy_number = random.randint(3, 6)
         else:
             enemy_spawning_chance = random.uniform(0, 1) > .82
-            enemy_number = random.randint(1, 5)
 
         logger_sys.log_message(f"INFO: Checking if an enemy at map point 'point{map_location}'")
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
             enemy_handling.spawn_enemy(
-                map_location, lists[map["point" + str(map_location)]["enemy type"]],
-                map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
+                map_location, lists[map["point" + str(map_location)]["enemy type"]], enemy, item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
@@ -1861,7 +1857,7 @@ def run(play):
             else:
                 enemy_list_to_spawn = lists["generic"]
             enemy_handling.spawn_enemy(
-                map_location, enemy_list_to_spawn, enemy_number, enemy,
+                map_location, enemy_list_to_spawn, enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file,
@@ -3312,13 +3308,27 @@ def run(play):
             enemy_to_spawn = terminal_handling.show_menu(list(enemy))
             cout("How many enemies you want to be spawned?")
             number_of_enemies = int(terminal_handling.show_menu(['1', '2', '3', '4', '6', '8', '12'], length=7))
+            number_temp = {"min": number_of_enemies, "max": number_of_enemies}
+            lists["$temp$enemy$spawn$"] = {}
+            lists["$temp$enemy$spawn$"]["$enemy$"] = {
+                "name": f"Enemy spawned successfully!",
+                "chance": 1,
+                "enemies rate": {
+                    "easy": number_temp,
+                    "normal": number_temp,
+                    "hard": number_temp
+                },
+                "enemies spawns": {
+                    f"{enemy_to_spawn}": 1
+                }
+            }
             enemy_handling.spawn_enemy(
-                map_location, [enemy_to_spawn],
-                number_of_enemies, enemy, item, lists, start_player, map, player,
+                map_location, "$temp$enemy$spawn$", enemy, item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+            lists.pop("$temp$enemy$spawn$")
             continued_command = True
         elif command.lower().startswith('$teleport$zone$'):
             cout("Select a map zone to spawn to")

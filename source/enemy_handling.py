@@ -8,7 +8,6 @@ from terminal_handling import cout
 # external imports
 import random
 import appdirs
-import sys
 import yaml
 import time
 from sys import exit
@@ -18,43 +17,93 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 # Handling function
 
 
+def generate_enemies_from_list(lists, list_enemies, player):
+    # First, we settle up some variables.
+    # Then, we choose which entry to choose. After
+    # determining the entry to choose, we determine
+    # how many enemies to spawn and then, finally,
+    # we generate the list of enemies to spawn.
+    list_enemies = lists[list_enemies]
+    enemies = []
+    chosen_entry = None
+    enemies_number = None
+    difficulty = None
+
+    count = 0
+    finished = False
+    while not finished:
+        entry = list_enemies[list(list_enemies)[count]]
+        if entry["chance"] > random.uniform(0, 1):
+            chosen_entry = entry
+            finished = True
+        count += 1
+        if count > len(list(list_enemies)) - 1:  # forces to choose
+            count = 0
+
+    if player["difficulty mode"] == 0:
+        difficulty = "easy"
+    elif player["difficulty mode"] == 1:
+        difficulty = "normal"
+    else:
+        difficulty = "hard"
+
+    enemies_number = random.randint(
+        chosen_entry["enemies rate"][difficulty]["min"],
+        chosen_entry["enemies rate"][difficulty]["max"]
+    )
+
+    count = 0
+    while len(enemies) < enemies_number:
+        enemy_id = list(chosen_entry["enemies spawns"])[count]
+        enemy = chosen_entry["enemies spawns"][enemy_id]
+        if enemy > random.uniform(0, 1):
+            enemies += [enemy_id]
+
+        count += 1
+        if count > len(list(chosen_entry["enemies spawns"])) - 1:  # forces to choose
+            count = 0
+
+    return enemies, entry
+
+
 def spawn_enemy(
-    map_location, list_enemies, enemy_number, enemy, item, lists, start_player, map, player,
+    map_location, list_enemies, enemy, item, lists, start_player, map, player,
     preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
     text_replacements_generic, start_time, previous_player, save_file,
     enemies_damage_coefficient
 ):
-    enemies_remaining = enemy_number
     already_encountered = False
-    logger_sys.log_message(f"INFO: Choosing random enemy from the list '{list_enemies}'")
-    choose_rand_enemy = random.randint(0, len(list_enemies) - 1)
-    choose_rand_enemy = list_enemies[choose_rand_enemy]
-    chosen_enemy = enemy[choose_rand_enemy]
+    logger_sys.log_message(f"INFO: Choosing random enemies from the list '{list_enemies}'")
+    enemies, entry_data = generate_enemies_from_list(lists, list_enemies, player)
+    enemies_remaining = len(enemies)
     while enemies_remaining > 0:
 
-        enemy_total_inventory = chosen_enemy["inventory"]
+        enemies_total_inventory = []
+        for entry in enemies:
+            entry = enemy[entry]["inventory"]
+            for i in entry:
+                enemies_total_inventory += [i]
 
-        enemy_items_number = len(enemy_total_inventory)
+        enemies_items_number = len(enemies_total_inventory)
         logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
-        chosen_item = enemy_total_inventory[random.randint(0, enemy_items_number - 1)]
+        chosen_item = enemies_total_inventory[random.randint(0, enemies_items_number - 1)]
+
         logger_sys.log_message("INFO: Calculating battle risk for the player")
-        defeat_percentage = battle.calculate_player_risk(
-            player, item, enemies_remaining, chosen_enemy, enemy, player_damage_coefficient,
-            enemies_damage_coefficient
-        )
-        logger_sys.log_message("INFO: Getting enemy stats")
-        battle.get_enemy_stats(
-            player, item, enemy, map, map_location, lists, choose_rand_enemy,
-            chosen_enemy, chosen_item, enemy_items_number,
-            enemy_total_inventory, enemies_remaining
+        risk = 0
+        for chosen_enemy in enemies:
+            risk += battle.calculate_player_risk(
+                player, item, enemies_remaining, enemy[chosen_enemy], enemy, player_damage_coefficient,
+                enemies_damage_coefficient
             )
+        risk = int(risk / len(enemies))
         if not already_encountered:
             logger_sys.log_message("INFO: Display enemy encounter text")
             battle.encounter_text_show(
                 player, item, enemy, map, map_location, enemies_remaining, lists,
-                defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
+                risk, preferences, drinks, npcs, zone, mounts, mission,
                 start_player, dialog, text_replacements_generic, player_damage_coefficient,
-                previous_player, save_file, start_time, enemies_damage_coefficient
+                previous_player, save_file, start_time, enemies_damage_coefficient,
+                entry_data, enemies
             )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")
@@ -62,7 +111,8 @@ def spawn_enemy(
             player, item, enemy, map, map_location, enemies_remaining, lists,
             preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
             player_damage_coefficient, start_time, text_replacements_generic,
-            previous_player, save_file, enemies_damage_coefficient, defeat_percentage
+            previous_player, save_file, enemies_damage_coefficient, risk,
+            entry_data, enemies
         )
         enemies_remaining -= 1
 
