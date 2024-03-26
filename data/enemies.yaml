@@ -116,6 +116,7 @@ White Warg:
   - Wolf Skull
   - Beef
   description: "White Wargs are even bigger Wolves than came from Snowy Peaks. They are captains of the Wargs."
+# Troll enemies
 Cavern Troll:
   plural: "Cavern Trolls"
   damage:
@@ -266,13 +267,8 @@ Mumakil:
     max health level: 56
   agility: .35
   inventory:
-  - Sword
-  - Spear
-  - Bow
-  - Agility Potion
-  - Shield
-  - Ork Shield
-  - Stretched Bag
+  - Bone
+  - Bone
   - Bone
   - Mumakil Tusk
   description: >
@@ -337,7 +333,30 @@ Balrog:
   agility: .25
   inventory:
   - Balrog Horn
+  - Balrog Horn
+  - Balrog Horn
   - Flaming Whip
   description: >
     Balrogs are extremely deadly dragons that can produce huge amounts of flame and heat around them.
     Their weapon is the Flaming Whip, a deadly weapon. Balrogs are one of the most powerful monsters in the world.
+Shire Flying Beast:
+  plural: "Shire Flying Beasts"
+  damage:
+    min damage: 9
+    max damage: 45
+    critical chance: .75
+  health:
+    min spawning health: 45
+    max spawning health: 115
+    max health level: 115
+  agility: .32
+  inventory:
+  - Dragon Tooth
+  - Dragon Tooth
+  - Dragon Tooth
+  - Green Dragon Scale
+  - Green Dragon Scale
+  description: >
+    The `Shire Flying Beast`, is one of the green dragons, who've been terrorizing the Shire Island for centuries.
+    It's the last known green dragon to be alive, even if he hasn't been seen for decades. Some says that he
+    still lives under the Shire Hills, sleeping for decades, waiting for a brave hero to awake him....

@@ -1,0 +1,14 @@
+$DARK_GREEN                  ______________                               
+$GREEN            ,$DARK_GREEN===:$GREEN'.,            `-._                           
+$GREEN            `:.`---.__         `-._                       
+$GREEN              `:.     `--.         `.                     
+$GREEN                $DARK_GREEN\$GREEN.        `.         `.                   
+$GREEN        $DARK_GREEN($GREEN,,$DARK_GREEN($GREEN,    $DARK_GREEN\$GREEN.         `.   $DARK_GREEN____$GREEN,-`.,                
+$GREEN     $DARK_GREEN($GREEN,'     `$DARK_GREEN/$GREEN   $DARK_GREEN\$GREEN.   ,--.$DARK_GREEN___$GREEN`.'                         
+$GREEN ,  ,'  ,--.  `,   $DARK_GREEN\$GREEN.;'         `                         
+$DARK_GREEN  `{$REDD$GREEN, {    \  :    $DARK_GREEN\$GREEN;                                    
+$GREEN    V,,'    /  /    $DARK_GREEN//$GREEN                                    
+$GREEN    j;;    /  ,' ,-$DARK_GREEN//$GREEN.    ,---.      ,                    
+$GREEN    \;'   /  ,' /  _  \  /  _  \   ,'/                    
+$GREEN          \   `'  / \  `'  / \  `.' /                     
+$GREEN           `.$DARK_GREEN___$GREEN,'   `.$DARK_GREEN__$GREEN,'   `.$DARK_GREEN__$GREEN,'$WHITE

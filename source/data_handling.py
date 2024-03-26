@@ -153,17 +153,17 @@ def load_game_data(which_type, what_plugin=None):
 
         with Progress() as progress:
 
-            task_map = progress.add_task("[cyan]Loading Game Map Data...", total=100)
-            task_item = progress.add_task("[cyan]Loading Game Items Data...", total=100)
-            task_drink = progress.add_task("[cyan]Loading Game Drinks Data...", total=100)
-            task_enemy = progress.add_task("[cyan]Loading Game Enemies Data...", total=100)
-            task_npc = progress.add_task("[cyan]Loading Game NPCS Data...", total=100)
-            task_start = progress.add_task("[cyan]Loading Game Start Data...", total=3)
-            task_lists = progress.add_task("[cyan]Loading Game Lists Data...", total=100)
-            task_zone = progress.add_task("[cyan]Loading Game Zones Data...", total=100)
-            task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
-            task_mission = progress.add_task("[cyan]Loading Game Missions Data...", total=100)
-            task_mount = progress.add_task("[cyan]Loading Game Mounts Data...", total=100)
+            task_map = progress.add_task("[cyan]Loading Plugin Map Data...", total=100)
+            task_item = progress.add_task("[cyan]Loading Plugin Items Data...", total=100)
+            task_drink = progress.add_task("[cyan]Loading Plugin Drinks Data...", total=100)
+            task_enemy = progress.add_task("[cyan]Loading Plugin Enemies Data...", total=100)
+            task_npc = progress.add_task("[cyan]Loading Plugin NPCS Data...", total=100)
+            task_start = progress.add_task("[cyan]Loading Plugin Start Data...", total=3)
+            task_lists = progress.add_task("[cyan]Loading Plugin Lists Data...", total=100)
+            task_zone = progress.add_task("[cyan]Loading Plugin Zones Data...", total=100)
+            task_dialog = progress.add_task("[cyan]Loading Plugin Dialogs Data...", total=100)
+            task_mission = progress.add_task("[cyan]Loading Plugin Missions Data...", total=100)
+            task_mount = progress.add_task("[cyan]Loading Plugin Mounts Data...", total=100)
             task_requirements = progress.add_task("[cyan]Loading Plugin Requirements...", total=100)
 
             with open(program_dir + "/plugins/" + what_plugin + "/map.yaml") as f:

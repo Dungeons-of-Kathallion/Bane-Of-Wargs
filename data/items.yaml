@@ -2263,6 +2263,44 @@ Balrog Horn:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Dragon Tooth:
+  type: "Misc"
+  gold: 234.1
+  description: "Dragon Teeth are very hard to get and very expensive on the market."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Green Dragon Scale:
+  type: "Misc"
+  gold: 314
+  description: "Green Dragon Scales are very hard to get and very expensive on the market."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 Mumakil Tusk:
   type: "Misc"
   gold: 125.21
