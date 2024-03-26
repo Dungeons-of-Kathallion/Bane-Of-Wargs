@@ -314,9 +314,13 @@ def examine_npc(data):
 
 def examine_list(data):
     try:
-        data = yamale.make_data(content=str(data))
-        schema = yamale.make_schema(f'{program_dir}/game/schemas/lists.yaml')
-        yamale.validate(schema, data)
+        count = 0
+        while count < len(list(data)):
+            entry = data[list(data)[count]]
+            data = yamale.make_data(content=str(entry))
+            schema = yamale.make_schema(f'{program_dir}/game/schemas/lists.yaml')
+            yamale.validate(schema, data)
+            count += 1
     except Exception as error:
         cout(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +

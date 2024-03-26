@@ -1,1 +1,13 @@
-list(str())
+name: str()
+chance: num()
+enemies rate:
+  easy:
+    min: int()
+    max: int()
+  normal:
+    min: int()
+    max: int()
+  hard:
+    min: int()
+    max: int()
+enemies spawns: any()

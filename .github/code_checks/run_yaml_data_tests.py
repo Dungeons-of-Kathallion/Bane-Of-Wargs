@@ -217,9 +217,13 @@ def examine_npc(data):
 
 def examine_list(data):
     try:
-        data = yamale.make_data(content=str(data))
-        schema = yamale.make_schema(f'schemas/lists.yaml')
-        yamale.validate(schema, data)
+        count = 0
+        while count < len(list(data)):
+            entry = data[list(data)[count]]
+            data = yamale.make_data(content=str(entry))
+            schema = yamale.make_schema(f'schemas/lists.yaml')
+            yamale.validate(schema, data)
+            count += 1
     except Exception as error:
         print(
             COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
@@ -279,8 +283,8 @@ def examine_mount(data):
             "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
         )
         exit_game()
-        
-        
+
+
 def consumable_effect_output_error(message):
     print(
         COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
@@ -507,7 +511,7 @@ def run():
         mounts = yaml.safe_load(f)
     for i in list(mounts):
         examine_mount(mounts[i])
-        
+
 run()
 
 # deinitialize colorama
