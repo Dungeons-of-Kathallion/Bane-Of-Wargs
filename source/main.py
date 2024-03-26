@@ -115,18 +115,19 @@ SOURCE_CODE_VERSION = 0.2
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
+count = 0
+continuing = True
+while count < len(latest_main_class) and continuing:
+    if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
+        latest_version = latest_main_class[count].split("= ", 1)[1]
+        continuing = False
+    count += 1
 
-if latest_main_class == []:  # if the file didn't download
+if latest_main_class == [] or latest_version is None:  # if the file didn't download
     cout("Skipping game updating process...")
     time.sleep(1)
 else:
     continuing = True
-    count = 0
-    while count < len(latest_main_class) and continuing:
-        if latest_main_class[count].startswith('SOURCE_CODE_VERSION = '):
-            latest_version = latest_main_class[count].split("= ", 1)[1]
-            continuing = False
-        count += 1
 
     if float(latest_version) > float(SOURCE_CODE_VERSION):
         latest_version = float(str(latest_version).replace('\n', ''))
