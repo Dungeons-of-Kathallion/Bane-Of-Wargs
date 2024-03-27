@@ -515,7 +515,7 @@ Dwarf Axe: &dwarf_axe
   agility: .05
   gold: 25.36
   critical hit chance: .085
-  description: "A generic dwarf axe used by the Dwarves. A slow but deadly weapon."
+  description: "A generic dwarf axe used by the Dwarfs. A slow but deadly weapon."
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1594,7 +1594,7 @@ Dwarf Silver Chestplate: &dwarf_chestplate
   agility: .13
   gold: 34.2
   description: >
-    Dwarves civilizations have for always mastered the art of silver goods. But they
+    Dwarfs civilizations have for always mastered the art of silver goods. But they
     master more that silver goods, they master silver armors and weapons unlike any
     other civilization. Their armaments may be heavy, but they're strongly reliable.
   thumbnail: |
@@ -2057,6 +2057,27 @@ Cactus:
   healing level: 3
   gold: 5.12
   description: "Cactuses from the Gerud Valleys got a pretty good taste actually."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Rotten Flesh:
+  type: "Food"
+  max bonus: 0
+  healing level: -2
+  gold: .7
+  description: "These pieces of flesh come from undeads, and it doesn't look quite tasty."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║

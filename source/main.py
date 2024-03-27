@@ -58,7 +58,7 @@ separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.2
+    GAME_DATA_VERSION = 0.21
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -111,7 +111,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.2
+SOURCE_CODE_VERSION = 0.21
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -1797,8 +1797,8 @@ def run(play):
                                 f"with mission enemy data '{current_enemy_data}'"
                             )
                             enemy_handling.spawn_enemy(
-                                map_location, lists[str(current_enemy_data["enemy category"])],
-                                current_enemy_data["enemy number"], enemy, item, lists, start_player, map, player,
+                                map_location, current_enemy_data["enemy category"],
+                                enemy, item, lists, start_player, map, player,
                                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                                 text_replacements_generic, start_time, previous_player, save_file,
                                 enemies_damage_coefficient
@@ -1822,23 +1822,18 @@ def run(play):
         # Hard: 28%
         if player["difficulty mode"] == 0:
             enemy_spawning_chance = random.uniform(0, 1) > .92
-            enemy_number = random.randint(1, 3)
         elif player["difficulty mode"] == 2:
             enemy_spawning_chance = random.uniform(0, 1) > .72
-            enemy_number = random.randint(3, 6)
         else:
             enemy_spawning_chance = random.uniform(0, 1) > .82
-            enemy_number = random.randint(1, 5)
 
         logger_sys.log_message(f"INFO: Checking if an enemy at map point 'point{map_location}'")
         if "enemy" in map["point" + str(map_location)] and map_location not in player["defeated enemies"]:
             logger_sys.log_message(f"INFO: Found enemies at map point 'point{map_location}'")
             enemy_handling.spawn_enemy(
-                map_location, lists[map["point" + str(map_location)]["enemy type"]],
-                map["point" + str(map_location)]["enemy"], enemy, item, lists, start_player, map, player,
-                preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
-                text_replacements_generic, start_time, previous_player, save_file,
-                enemies_damage_coefficient
+                map_location, map["point" + str(map_location)]["enemy type"], enemy, item, lists, start_player,
+                map, player, preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
+                text_replacements_generic, start_time, previous_player, save_file, enemies_damage_coefficient
             )
             player["defeated enemies"].append(map_location)
 
@@ -1857,11 +1852,11 @@ def run(play):
             logger_sys.log_message("INFO: Calculating random chance of enemy spawning")
             logger_sys.log_message("INFO: Spawning enemies")
             if "enemy spawning" in list(zone[map_zone]):
-                enemy_list_to_spawn = lists[str(zone[map_zone]["enemy spawning"])]
+                enemy_list_to_spawn = str(zone[map_zone]["enemy spawning"])
             else:
-                enemy_list_to_spawn = lists["generic"]
+                enemy_list_to_spawn = "generic"
             enemy_handling.spawn_enemy(
-                map_location, enemy_list_to_spawn, enemy_number, enemy,
+                map_location, enemy_list_to_spawn, enemy,
                 item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file,
@@ -3312,13 +3307,27 @@ def run(play):
             enemy_to_spawn = terminal_handling.show_menu(list(enemy))
             cout("How many enemies you want to be spawned?")
             number_of_enemies = int(terminal_handling.show_menu(['1', '2', '3', '4', '6', '8', '12'], length=7))
+            number_temp = {"min": number_of_enemies, "max": number_of_enemies}
+            lists["$temp$enemy$spawn$"] = {}
+            lists["$temp$enemy$spawn$"]["$enemy$"] = {
+                "name": f"Enemy spawned successfully!",
+                "chance": 1,
+                "enemies rate": {
+                    "easy": number_temp,
+                    "normal": number_temp,
+                    "hard": number_temp
+                },
+                "enemies spawns": {
+                    f"{enemy_to_spawn}": 1
+                }
+            }
             enemy_handling.spawn_enemy(
-                map_location, [enemy_to_spawn],
-                number_of_enemies, enemy, item, lists, start_player, map, player,
+                map_location, "$temp$enemy$spawn$", enemy, item, lists, start_player, map, player,
                 preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
                 text_replacements_generic, start_time, previous_player, save_file,
                 enemies_damage_coefficient
             )
+            lists.pop("$temp$enemy$spawn$")
             continued_command = True
         elif command.lower().startswith('$teleport$zone$'):
             cout("Select a map zone to spawn to")

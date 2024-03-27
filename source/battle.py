@@ -8,7 +8,8 @@ import random
 import time
 
 # battle stats
-defend = 0
+global defend, turn, fighting
+defend = 1
 turn = True
 fighting = True
 
@@ -237,28 +238,23 @@ def encounter_text_show(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
     start_player, dialog, text_replacements_generic, player_damage_coefficient,
-    previous_player, save_file, start_time, enemies_damage_coefficient
+    previous_player, save_file, start_time, enemies_damage_coefficient,
+    entry_data, enemies
 ):
-    # import stats
-    global turn, defend, fighting, already_encountered
-    global enemy_singular, enemy_plural, enemy_max
-    global enemy_health, enemy_max_damage, enemy_min_damage
-    global enemy_agility, enemy_damage, chosen_item
-    player_agility = player["agility"]
     cout(" ")  # do not merge with possible actions text
     # load and create enemies list type
 
     health_color = COLOR_GREEN
     enemies_number = enemies_remaining
+    enemy_agility = 0
+    for entry in enemies:
+        if enemy[entry]["agility"] > enemy_agility:
+            enemy_agility = enemy[entry]["agility"]
 
     text = '='
     text_handling.print_separator(text)
 
-    if enemies_number > 1:
-        text = "You encounter a group of " + str(enemy_plural) + " that won't let you pass."
-    else:
-        text = "You find " + text_handling.a_an_check(enemy_singular) + " on your way."
-
+    text = entry_data["name"]
     text_handling.print_long_string(text)
 
     # player stats updates
@@ -364,50 +360,14 @@ def encounter_text_show(
     cout(" ")
 
 
-def get_enemy_stats(
-    player, item, enemy, map, map_location,
-    lists, choose_rand_enemy, chosen_enemy,
-    chosen_item, enemy_items_number,
-    enemy_total_inventory, enemies_remaining
-):
-    global enemy_singular, enemy_plural, enemy_max, enemy_health
-    global enemy_max_damage, enemy_min_damage, enemy_agility, enemy_damage
-    # load enemy stat
-
-    # enemy stats
-    enemy_singular = choose_rand_enemy
-    enemy_plural = chosen_enemy["plural"]
-    enemy_max = chosen_enemy["health"]["max health level"]
-    enemy_health = random.randint(chosen_enemy["health"]["min spawning health"], chosen_enemy["health"]["max spawning health"])
-    enemy_max_damage = chosen_enemy["damage"]["max damage"]
-    enemy_min_damage = chosen_enemy["damage"]["min damage"]
-    enemy_critical_chance = chosen_enemy["damage"]["critical chance"]
-    enemy_damage = 0
-    enemy_agility = chosen_enemy["agility"]
-
-    if choose_rand_enemy not in player["enemies list"]:
-        player["enemies list"].append(choose_rand_enemy)
-
-
 def fight(
     player, item, enemy, map, map_location, enemies_remaining, lists,
     preferences, drinks, npcs, start_player, zone, dialog, mission, mounts,
     player_damage_coefficient, start_time, text_replacements_generic,
-    previous_player, save_file, enemies_damage_coefficient, defeat_percentage
+    previous_player, save_file, enemies_damage_coefficient, defeat_percentage,
+    entry_data, enemies
 ):
-    # import stats
-    global turn, defend, fighting, already_encountered
-    global enemy_singular, enemy_plural, enemy_max
-    global enemy_health, enemy_max_damage, enemy_min_damage
-    global enemy_agility, enemy_damage, chosen_item
-    armor_protection = player["armor protection"]
-    player_agility = player["agility"]
-    # load and create enemies list type
-
-    enemy_max_health = enemy_health
-
-    critical_hit_chance = player["critical hit chance"]
-
+    global turn, defend, fighting
     # calculate enemy strength coefficient
     if player["difficulty mode"] == 0:
         enemy_strength_coefficient = .9
@@ -445,8 +405,68 @@ def fight(
         health_color = color_green
         health_color_enemy = color_blue
 
+        # Enemy stats
+        current_enemy = enemies[len(enemies) - enemies_remaining]
+        enemy_singular = current_enemy
+        enemy_plural = enemy[current_enemy]["plural"]
+        enemy_health = random.randint(
+            enemy[current_enemy]["health"]["min spawning health"],
+            enemy[current_enemy]["health"]["max spawning health"]
+        )
+        enemy_max_health = enemy_health
+        enemy_agility = enemy[current_enemy]["agility"]
+        enemy_min_damage = enemy[current_enemy]["damage"]["min damage"]
+        enemy_max_damage = enemy[current_enemy]["damage"]["max damage"]
+
         while player["health"] > 0:
-            # apply effects
+            # Reload player stats
+            # Calculate player global armor protection
+            # and stores it in a player variable
+            global_armor_protection = 0
+
+            # First, get every item in the player equipment
+            # and add their protection value to the global
+            # armor protection new created variable
+            held_item_list = [
+                'held boots', 'held chestplate',
+                'held leggings', 'held shield'
+            ]
+            for i in held_item_list:
+                item_name = player[i]
+                if item_name != " ":
+                    global_armor_protection += item[item_name]["armor protection"]
+
+            # Then, calculate the player ridden mount -- if he has
+            # one -- protection stat and add it to the global armor
+            # protection variable
+            if player["current mount"] in player["mounts"]:
+                global_armor_protection += player["mounts"][player["current mount"]]["stats"]["resistance addition"]
+
+            player["armor protection"] = round(global_armor_protection, 2)
+
+            # Calculate player global agility and stores
+            # it in a player variable
+            global_agility = 0
+
+            # First, get every item in the player equipment
+            # and add their agility value to the global agility
+            # new created variable
+            held_item_list = [
+                'held boots', 'held chestplate', 'held item',
+                'held leggings', 'held shield'
+            ]
+            for i in held_item_list:
+                item_name = player[i]
+                if item_name != " ":
+                    global_agility += item[item_name]["agility"]
+
+            # Then, calculate the player ridden mount -- if he has
+            # one -- agility stat and add it to the global agility
+            # variable
+            if player["current mount"] in player["mounts"]:
+                global_agility += player["mounts"][player["current mount"]]["stats"]["agility addition"]
+
+            player["agility"] = round(global_agility, 2)  # here we round the actual value
             # All the checks for the player active effects
             # are done here
             #
@@ -545,19 +565,19 @@ def fight(
                             player["agility"] = player["agility"] * current_effect[
                                 "effects"
                             ]["agility coefficient"]
-            # player stats updates
+            # Import stats
             player_health = player["health"]
             player_max_health = player["max health"]
+            player_agility = player["agility"]
+            critical_hit_chance = player["critical hit chance"]
+            armor_protection = player["armor protection"]
 
             text_handling.clear_prompt()
             # ui
             text_handling.print_separator('=')
-            if enemies_remaining > 1:
-                noun = f"{enemies_remaining} {enemy_plural}"
-            else:
-                noun = enemy_singular
-            cout(f"Defeat the {noun}!")
+            cout(f"Defeat the {enemy_singular}!")
             text_handling.print_separator('=')
+            cout(f"Enemies Remaining: {enemies_remaining}/{len(enemies)}")
             risk = defeat_percentage
 
             # display
@@ -582,7 +602,7 @@ def fight(
                 health_color = COLOR_STYLE_BRIGHT + COLOR_GREEN
 
             cout(
-                f" BATTLE RISK: {risk}% " +
+                f"BATTLE RISK: {risk}% " +
                 f"|{health_color}{remaining_risk_bars * remaining_risk_symbol}" +
                 f"{lost_risk_bars * lost_risk_symbol}{COLOR_RESET_ALL}|"
             )
@@ -729,7 +749,7 @@ def fight(
                             armor_protection * round(random.uniform(.50, .90), 1)
                         )
                         damage = round(damage * enemy_strength_coefficient)
-                        defend = 0
+                        defend = 1
                         player_dodged = False
                         enemy_critical_hit = False
                         if critical_hit_chance * enemy_critic_coefficient > random.randint(0, 100):
@@ -764,7 +784,7 @@ def fight(
                     if remaining_health_bars_enemy > 20:
                         remaining_health_bars_enemy = 20
 
-                    player["xp"] += enemy_max * enemy_max_damage / 3
+                    player["xp"] += (enemy_max_health * enemy_max_damage) / 3.5
                     if player["current mount"] in player["mounts"]:
                         player["mounts"][player["current mount"]]["level"] += round(random.uniform(.05, .20), 3)
                     player["health"] += random.randint(0, 3)

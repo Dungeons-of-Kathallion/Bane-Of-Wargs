@@ -275,10 +275,9 @@ def enemy_spawning_effect(
     dialog, player_damage_coefficient, text_replacements_generic, previous_player,
     save_file, enemies_damage_coefficient
 ):
-    enemy_list = lists[current_effect_data["enemy list"]]
-    enemies_number = current_effect_data["enemies number"]
+    enemy_list = current_effect_data["enemy list"]
     enemy_handling.spawn_enemy(
-        map_location, enemy_list, enemies_number, enemy, item, lists, start_player, map, player,
+        map_location, enemy_list, enemy, item, lists, start_player, map, player,
         preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
         text_replacements_generic, previous_player, save_file, enemies_damage_coefficient
     )
