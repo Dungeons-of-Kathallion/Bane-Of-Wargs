@@ -578,7 +578,7 @@ def fight(
             text_handling.print_separator('=')
             cout(f"Defeat the {enemy_singular}!")
             text_handling.print_separator('=')
-            cout(f"Enemies Remaining: {enemies_remaining}/{len(enemies)}")
+            cout(f"ENEMIES REMAINING: {enemies_remaining}/{len(enemies)}")
             risk = defeat_percentage
 
             # display
