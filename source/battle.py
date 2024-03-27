@@ -241,6 +241,7 @@ def encounter_text_show(
     previous_player, save_file, start_time, enemies_damage_coefficient,
     entry_data, enemies
 ):
+    global fighting
     cout(" ")  # do not merge with possible actions text
     # load and create enemies list type
 
