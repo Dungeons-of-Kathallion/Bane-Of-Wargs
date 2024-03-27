@@ -5,9 +5,9 @@ Sword: &generic_sword
   type: "Weapon"
   damage: 5
   defend: 6
-  agility: .1
+  agility: .2
   gold: 18.59
-  critical hit chance: .05
+  critical hit chance: .25
   description: "A generic sword."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -44,8 +44,8 @@ Sword (1):
   upgrade tier: 1
   damage: 6.4
   defend: 7
-  agility: .12
-  critical hit chance: .065
+  agility: .22
+  critical hit chance: .265
   for this upgrade:
   - Raw Wood
   - Raw Iron
@@ -54,8 +54,8 @@ Sword (2):
   upgrade tier: 2
   damage: 7.2
   defend: 7.6
-  agility: .125
-  critical hit chance: .071
+  agility: .225
+  critical hit chance: .271
   for this upgrade:
   - Raw Wood
   - Raw Bronze
@@ -65,8 +65,8 @@ Sword (3):
   upgrade tier: 3
   damage: 7.4
   defend: 7.7
-  agility: .129
-  critical hit chance: .072
+  agility: .229
+  critical hit chance: .272
   for this upgrade:
   - Raw Silver
   - Raw Copper
@@ -77,9 +77,9 @@ Broadsword: &broadsword
   type: "Weapon"
   damage: 7
   defend: 6
-  agility: .04
+  agility: .12
   gold: 37.8
-  critical hit chance: .09
+  critical hit chance: .42
   description: "The Broadsword is a large sword and powerful sword that not anyone can use well."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -116,8 +116,8 @@ Broadsword (1):
   upgrade tier: 1
   damage: 8
   defend: 7
-  agility: .045
-  critical hit chance: .095
+  agility: .15
+  critical hit chance: .495
   for this upgrade:
   - Raw Iron
   - Raw Iron
@@ -128,8 +128,8 @@ Broadsword (2):
   upgrade tier: 2
   damage: 9.3
   defend: 7.6
-  agility: .48
-  critical hit chance: .1
+  agility: .175
+  critical hit chance: .5
   for this upgrade:
   - Raw Iron
   - Raw Iron
@@ -141,9 +141,9 @@ Long Sword: &long_sword
   type: "Weapon"
   damage: 6
   defend: 8
-  agility: .08
+  agility: .09
   gold: 29.8
-  critical hit chance: .05
+  critical hit chance: .6
   description: "A very long sword that is very practical to defend yourself from monsters."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -181,7 +181,7 @@ Long Sword (1):
   damage: 6.7
   defend: 8
   agility: .085
-  critical hit chance: .0625
+  critical hit chance: .6625
   for this upgrade:
   - Raw Wood
   - Raw Wood
@@ -193,7 +193,7 @@ Long Sword (2):
   damage: 7
   defend: 8
   agility: .094
-  critical hit chance: .0645
+  critical hit chance: .6645
   for this upgrade:
   - Raw Bronze
   - Raw Bronze
@@ -208,7 +208,7 @@ Rapier: &Rapier
   damage: 6
   defend: 7
   agility: .19
-  critical hit chance: .03
+  critical hit chance: .38
   description: "A long, thin sword with an elaborate hilt and a flexible blade."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -247,7 +247,7 @@ Rapier (1):
   damage: 6.6
   defend: 7.4
   agility: .207
-  critical hit chance: .034
+  critical hit chance: .39
   for this upgrade:
   - Flexible Steel
   - Raw Bronze
@@ -297,8 +297,8 @@ Katana (1):
   upgrade tier: 1
   damage: 7.9
   defend: 7.6
-  agility: .28
-  critical hit chance: .19
+  agility: .25
+  critical hit chance: .23
   for this upgrade:
   - Refined Steel
   - Flexible Steel
@@ -311,7 +311,7 @@ Katana (2):
   upgrade tier: 2
   damage: 8.3
   defend: 8.2
-  agility: .32
+  agility: .305
   critical hit chance: .24
   for this upgrade:
   - Refined Steel
@@ -328,7 +328,7 @@ Bow: &generic_bow
   defend: 9
   agility: .15
   gold: 12.7
-  critical hit chance: .06
+  critical hit chance: .7
   description: "A generic bow."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -366,7 +366,7 @@ Bow (1):
   damage: 5.2
   defend: 8.7
   agility: .135
-  critical hit chance: .075
+  critical hit chance: .72
   for this upgrade:
   - Raw Wood
   - Raw Wood
@@ -377,7 +377,7 @@ Bow (2):
   damage: 5.7
   defend: 9
   agility: .145
-  critical hit chance: .087
+  critical hit chance: .73
   for this upgrade:
   - Raw Wood
   - Raw Wood
@@ -386,16 +386,16 @@ Bow (2):
   - Bow String
   - Bow String
   - Flexible String
-Ork Bow:
-  display name: "Ork Bow"
+Elf Bow: &elf_bow
+  display name: "Elf Bow"
   upgrade tier: 0
   type: "Weapon"
-  damage: 3
-  defend: 7
-  agility: .25
-  gold: 11.56
-  critical hit chance: .07
-  description: "Ork bows are less powerful than generic bows but are way more easy to use and transport."
+  damage: 4.8
+  defend: 9.2
+  agility: .17
+  gold: 34.58
+  critical hit chance: .75
+  description: "The bows that the elves make are strong and powerful, while being flexible and lightweight."
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
@@ -419,12 +419,79 @@ Ork Bow:
     ║           $GRAY/     $BROWN\\         $WHITE║
     ║          $GRAY/       $BROWN::        $WHITE║
     ║         $GRAY/        $BROWN||        $WHITE║
-    ║        $GRAY:)$WHITE>>>$BROWN--,-'-)$GRAY>       $WHITE║
+    ║        $GRAY:)$PURPLE>>>$DARK_BROWN--,-'-)$PURPLE>       $WHITE║
     ║         $GRAY\        $BROWN||        $WHITE║
     ║          $GRAY\       $BROWN;;        $WHITE║
     ║           $GRAY\     $BROWN//         $WHITE║
     ║            $GRAY\   $BROWN;'          $WHITE║
     ║             $GRAY\$BROWN,'            $WHITE║
+    ╚════════════════════════════╝
+Elf Bow (1):
+  <<: *elf_bow
+  upgrade tier: 1
+  damage: 5.2
+  defend: 9.2
+  agility: .173
+  critical hit chance: .755
+  for this upgrade:
+  - Raw Wood
+  - Raw Wood
+  - Strong String
+Elf Bow (2):
+  <<: *elf_bow
+  upgrade tier: 2
+  damage: 5.7
+  defend: 9.2
+  agility: .175
+  critical hit chance: .78
+  for this upgrade:
+  - Raw Wood
+  - Raw Wood
+  - Raw Wood
+  - Bow String
+  - Bow String
+  - Flexible String
+  - Flexible String
+  - Flexible String
+Ork Bow:
+  display name: "Ork Bow"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 3
+  defend: 7
+  agility: .21
+  gold: 17.56
+  critical hit chance: .4
+  description: "Ork bows are less powerful than generic bows but are way more easy to use and transport."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║             /`.            ║
+    ║            /   :.          ║
+    ║           /     \\         ║
+    ║          /       ::        ║
+    ║         /        ||        ║
+    ║        :)>>>--,-'-)>       ║
+    ║         \        ||        ║
+    ║          \       ;;        ║
+    ║           \     //         ║
+    ║            \   ;'          ║
+    ║             \,'            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║             $GRAY/$DARK_BROWN`.            $WHITE║
+    ║            $GRAY/   $DARK_BROWN:.          $WHITE║
+    ║           $GRAY/     $DARK_BROWN\\         $WHITE║
+    ║          $GRAY/       $DARK_BROWN::        $WHITE║
+    ║         $GRAY/        $DARK_BROWN||        $WHITE║
+    ║        $GRAY:)$WHITE>>>$DARK_BROWN--,-'-)$GRAY>       $WHITE║
+    ║         $GRAY\        $DARK_BROWN||        $WHITE║
+    ║          $GRAY\       $DARK_BROWN;;        $WHITE║
+    ║           $GRAY\     $DARK_BROWN//         $WHITE║
+    ║            $GRAY\   $DARK_BROWN;'          $WHITE║
+    ║             $GRAY\$DARK_BROWN,'            $WHITE║
     ╚════════════════════════════╝
 Knife:
   display name: "Knife"
@@ -434,7 +501,7 @@ Knife:
   defend: 5
   agility: .25
   gold: 9.85
-  critical hit chance: .04
+  critical hit chance: .15
   description: "A simple knife. Fast and easy to use. Most goblins uses this weapon."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -474,7 +541,7 @@ Dagger:
   defend: 4
   agility: .2
   gold: 12.3
-  critical hit chance: .05
+  critical hit chance: .12
   description: "The daggers are a generic longer knife that is often used by Orks."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -514,7 +581,7 @@ Dwarf Axe: &dwarf_axe
   defend: 5
   agility: .05
   gold: 25.36
-  critical hit chance: .085
+  critical hit chance: .6
   description: "A generic dwarf axe used by the Dwarfs. A slow but deadly weapon."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -552,7 +619,7 @@ Dwarf Axe (1):
   damage: 9
   defend: 7.5
   agility: .035
-  critical hit chance: .094
+  critical hit chance: .65
   for this upgrade:
   - Refined Steel
   - Refined Steel
@@ -632,8 +699,8 @@ Mace:
   damage: 9
   defend: 2
   agility: -0.15
-  gold: 15.46
-  critical hit chance: .17
+  gold: 34.46
+  critical hit chance: .8
   description: "A huge mace used by cavern trolls. It is an extremely damaging weapon but also a very slow weapon."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -673,7 +740,7 @@ Spear:
   defend: 14
   agility: .2
   gold: 24.56
-  critical hit chance: .13
+  critical hit chance: .25
   description: "The spear is a fast and agile weapon that lets you attack your enemy without letting them the time to attack you."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -712,8 +779,8 @@ Flaming Whip:
   damage: 14
   defend: 12
   agility: .18
-  gold: 67.58
-  critical hit chance: .4
+  gold: 167.58
+  critical hit chance: .45
   description: "The Flaming Whip is the powerful weapon that Balrogs uses. It is a very fast and agile weapon that can easily outcome any adventurer. "
   thumbnail raw: |
     @══════════════════════════════@
