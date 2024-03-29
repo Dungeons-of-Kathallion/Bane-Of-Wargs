@@ -32,6 +32,8 @@ Copyright:
  hjm (N.M.I.)
  VK (N.M.I.)
  Joan Stark
+ hjw (N.M.I.)
+ I-Am-The-Evil-Guy-Who-Wil-Destroy-The-World-Now
 License: GPL-3+
 Comment: Items thumbnails are the ASCII art taken from various artists.
          Some are edited and slightly modified
@@ -46,9 +48,10 @@ Copyright: Anonymous/Unknown
 License: GPL-3+
 
 Files:
+ imgs/Bear.txt
  imgs/Horse.txt
  imgs/Steel?Gate.txt
-Copyright: jgs (N.M.I.)
+Copyright: Joan G. Stark
 License: GPL-3+
 
 Files:
@@ -59,10 +62,6 @@ License: GPL-3+
 
 Files: imgs/Giant?Spider.txt
 Copyright: Shanaka Dias
-License: GPL-3+
-
-Files: imgs/Bear.txt
-Copyright: Joan G. Stark
 License: GPL-3+
 
 Files: imgs/Camel.txt

@@ -27,8 +27,7 @@ Storyline & Plot Authors
   lumbar527
 
 Artwork
-  Cromha (CC-BY-SA-4.0)
-  jgs (GPL-3+)
+  Cromha (GPL-3+)
   Shanaka Dias (GPL-3+)
   Joan G. Stark (GPL-3+)
   AF (GPL-3+)
@@ -44,6 +43,8 @@ Artwork
   Joan Stark (GPL-3+)
   Vander Zwaag (GPL-3+)
   ZOT (GPL-3+)
+  hjw (GPL-3+)
+  I-Am-The-Evil-Guy-Who-Wil-Destroy-The-World-Now (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

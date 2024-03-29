@@ -1496,19 +1496,34 @@ Knight Boots: &knight_boots
   agility: .2
   gold: 34.5
   description: "The generic boots of any good knight."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║        ________            ║
+    ║     __(_____  <|           ║
+    ║    (____ / <| <|           ║
+    ║    (___ /  <| L`-------.   ║
+    ║    (__ /   L`--------.  \  ║
+    ║    /  `.    ^^^^^ |   \  | ║
+    ║   |     \---------'    |/  ║
+    ║   |______|____________/]   ║
+    ║   [_____|`-.__________]    ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$SILVER        ________            $WHITE║
+    ║$SILVER     __(_____  LIGHT_GRAY<$SILVER|           $WHITE║
+    ║$SILVER    (____ / LIGHT_GRAY<$SILVER| LIGHT_GRAY<$SILVER|           $WHITE║
+    ║$SILVER    (___ /  LIGHT_GRAY<$SILVER| L`-------.   $WHITE║
+    ║$SILVER    (__ /   L`--------.  \  $WHITE║
+    ║$SILVER    /  `.    $LIGHT_GRAY^^^^^$SILVER |   \  | $WHITE║
+    ║$SILVER   |     \---------'    |/  $WHITE║
+    ║$LIGHT_GRAY   |______|____________/]   $WHITE║
+    ║$LIGHT_GRAY   [_____|`-.__________]    $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Knight Boots (1):
@@ -1537,19 +1552,34 @@ Chainmail Leggings: &chainmail_leggings
   agility: .17
   gold: 45.63
   description: "Chainmail leggings are light weight but strong and durable armor pieces. They are used by most knights."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║        //// /\ \\\\        ║
+    ║        /////88\\\\\        ║
+    ║       /////8888\\\\\       ║
+    ║       /888888888888\       ║
+    ║        88888  88888        ║
+    ║        8888    8888        ║
+    ║        8888    8888        ║
+    ║        8888    8888        ║
+    ║        8888    8888        ║
+    ║        8888    8888        ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$LIGHT_GRAY        //// /\ \\\\        $WHITE║
+    ║$LIGHT_GRAY        /////$SILVER88$LIGHT_GRAY\\\\\        $WHITE║
+    ║$LIGHT_GRAY       /////$SILVER8888$LIGHT_GRAY\\\\\       $WHITE║
+    ║$LIGHT_GRAY       /$SILVER888888888888$LIGHT_GRAY\       $WHITE║
+    ║$SILVER        88888  88888        $WHITE║
+    ║$SILVER        8888    8888        $WHITE║
+    ║$SILVER        8888    8888        $WHITE║
+    ║$SILVER        8888    8888        $WHITE║
+    ║$SILVER        8888    8888        $WHITE║
+    ║$SILVER        8888    8888        $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Chainmail Leggings (1):
@@ -1599,17 +1629,34 @@ Chainmail Chestplate: &chainmail_chestplate
   agility: .18
   gold: 78.15
   description: "Chainmail chestplates are light weight but strong and durable armor pieces. They are used by most knights."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║  
+    ║                            ║
+    ║        .=='\   /`==.       ║
+    ║      .'\   (`:')   /`.     ║
+    ║    _/_ |_.-' : `-._|__\_   ║
+    ║   <___>'\    :   / `<___>  ║
+    ║          >=======<         ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
     ║                            ║
+    ║                            ║  
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$SILVER        .$LIGHT_GRAY==$SILVER'\   /`$LIGHT_GRAY==$SILVER.       $WHITE║
+    ║$SILVER      .'\   (`$LIGHT_GRAY:$SILVER')   /`.     $WHITE║
+    ║$SILVER    _/_ |_.-' $LIGHT_GRAY:$SILVER `-._|__\_   $WHITE║
+    ║$SILVER   <___>'\    $LIGHT_GRAY:$SILVER   / `<___>  $WHITE║
+    ║$SILVER          >$LIGHT_GRAY=======$SILVER<         $WHITE║
     ║                            ║
     ║                            ║
     ║                            ║
@@ -1664,17 +1711,34 @@ Dwarf Silver Chestplate: &dwarf_chestplate
     Dwarfs civilizations have for always mastered the art of silver goods. But they
     master more that silver goods, they master silver armors and weapons unlike any
     other civilization. Their armaments may be heavy, but they're strongly reliable.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║  
+    ║                            ║
+    ║        .=='\   /`==.       ║
+    ║      .'\   (`:')   /`.     ║
+    ║    _/_ |_.-' : `-._|__\_   ║
+    ║   <___>'\    :   / `<___>  ║
+    ║          >=======<         ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
     ║                            ║
+    ║                            ║  
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$SILVER        .$LIGHT_GRAY==$SILVER'\   /`$LIGHT_GRAY==$SILVER.       $WHITE║
+    ║$SILVER      .'\   (`$LIGHT_GRAY:$SILVER')   /`.     $WHITE║
+    ║$SILVER    _/_ |_.-' $LIGHT_GRAY:$SILVER `-._|__\_   $WHITE║
+    ║$SILVER   <___>'\    $LIGHT_GRAY:$SILVER   / `<___>  $WHITE║
+    ║$SILVER          >$LIGHT_GRAY=======$SILVER<         $WHITE║
     ║                            ║
     ║                            ║
     ║                            ║
@@ -1726,21 +1790,36 @@ Ork Iron Leggings:
   armor protection: .32
   agility: .15
   gold: 25.6
-  description: "The generics leggings of Goblins and Orks. These leggings continue further along on your legs since Orks and goblins don't wear boots.'"
+  description: "The generics leggings of Goblins and Orks. These leggings continue further along on your legs since Orks and goblins don't wear boots."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║        //// /\ \\\\        ║
+    ║        /////8 \\\\\        ║
+    ║       /////8888\\\\\       ║
+    ║       /8 88 888 888\       ║
+    ║        88888  88888        ║
+    ║        8 88    88 8        ║
+    ║        8888    8888        ║
+    ║        8 88     888        ║
+    ║        8888    8888        ║
+    ║         888    88 8        ║
+    ║        8  8    888         ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$GRAY        //// /\ \\\\        $WHITE║
+    ║$GRAY        /////$LIGHT_GRAY8 $GRAY\\\\\        $WHITE║
+    ║$GRAY       /////$LIGHT_GRAY8888$GRAY\\\\\       $WHITE║
+    ║$GRAY       /$LIGHT_GRAY8 88 888 888$GRAY\       $WHITE║
+    ║$LIGHT_GRAY        88888  88888        $WHITE║
+    ║$LIGHT_GRAY        8 88    88 8        $WHITE║
+    ║$LIGHT_GRAY        8888    8888        $WHITE║
+    ║$LIGHT_GRAY        8 88     888        $WHITE║
+    ║$LIGHT_GRAY        8888    8888        $WHITE║
+    ║$LIGHT_GRAY         888    88 8        $WHITE║
+    ║$LIGHT_GRAY        8  8    888         $WHITE║
     ╚════════════════════════════╝
 Ork Shredded Chestplate:
   upgrade tier: 0
@@ -1749,17 +1828,34 @@ Ork Shredded Chestplate:
   agility: .15
   gold: 26.45
   description: "The generic chestplate of Goblins and Orks."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║  
+    ║                            ║
+    ║        .=='\     ==.       ║
+    ║      .'    (`:')   /`.     ║
+    ║    _/_ |_.-' : `-._  _\_   ║
+    ║     __>'\    :   / `<___>  ║
+    ║          >==  ===<         ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
     ║                            ║
+    ║                            ║  
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$LIGHT_GRAY        .$GRAY==$LIGHT_GRAY'\     $GRAY==$LIGHT_GRAY.       $WHITE║
+    ║$LIGHT_GRAY      .'    (`$GRAY:$LIGHT_GRAY')   /`.     $WHITE║
+    ║$LIGHT_GRAY    _/_ |_.-' $GRAY:$LIGHT_GRAY `-._  _\_   $WHITE║
+    ║$LIGHT_GRAY     __>'\    $GRAY:$LIGHT_GRAY   / `<___>  $WHITE║
+    ║$LIGHT_GRAY          >$GRAY==  ===$LIGHT_GRAY<         $WHITE║
     ║                            ║
     ║                            ║
     ║                            ║
@@ -1768,51 +1864,66 @@ Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .1
-  agility: .2
+  agility: -0.15
   gold: 16.24
   description: "While not very strong, this shield will serve you well in deflecting enemy attacks."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║        |`-._/\_.-`|        ║
+    ║        |    ||    |        ║
+    ║        |___o()o___|        ║
+    ║        |__((<>))__|        ║
+    ║        \   o\/o   /        ║
+    ║         \   ||   /         ║
+    ║          \  ||  /          ║
+    ║           '.||.'           ║
+    ║             ``             ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$BROWN        |`-._$YELLOW/\$BROWN_.-`|        $WHITE║
+    ║$BROWN        |    $YELLOW||    |        $WHITE║
+    ║$BROWN        |$YELLOW___$CYANo$BROWN()$CYANo$YELLOW___$BROWN|        $WHITE║
+    ║$BROWN        |$YELLOW__$BROWN(($BLUE<>$BROWN))$YELLOW__$BROWN|        $WHITE║
+    ║$BROWN        \   o\/o   /        $WHITE║
+    ║$BROWN         \   $YELLOW||$BROWN   /         $WHITE║
+    ║$BROWN          \  $YELLOW||$BROWN  /          $WHITE║
+    ║$BROWN           '.$YELLOW||$BROWN.'           $WHITE║
+    ║$BROWN             ``             $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Ork Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
-  armor protection: .05
-  agility: .35
+  armor protection: .12
+  agility: -0.25
   gold: 18.29
   description: "A shield built for weight; used by the Black Orks."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$GRAY       |\ _..--.._ /|       $WHITE║
+    ║$GRAY       |            |       $WHITE║
+    ║$GRAY        )          (        $WHITE║
+    ║$GRAY     ._/  .$ORANGE'$RED//\\$GRAY$ORANGE'$GRAY.  \_.     $WHITE║
+    ║$GRAY      .__) $RED((()))$GRAY (__.      $WHITE║
+    ║$GRAY       \  $ORANGE'$GRAY.$RED\\//$GRAY.$ORANGE'$GRAY  /       $WHITE║
+    ║$GRAY        \    $RED\/$GRAY    /        $WHITE║
+    ║$GRAY        /,.      .,\        $WHITE║
+    ║$GRAY       (  \  __  /  )       $WHITE║
+    ║$GRAY           $ORANGE"$GRAY($RED\/$GRAY)$ORANGE"           $WHITE║
+    ║$GRAY             )(             $WHITE║
     ╚════════════════════════════╝
 Warg Fur Shield:
   upgrade tier: 0
   type: "Armor Piece: Shield"
   armor protection: .045
-  agility: .15
+  agility: -0.1
   gold: 9.56
   description: "A shredded ork shield with warg fur on it."
   thumbnail: |
