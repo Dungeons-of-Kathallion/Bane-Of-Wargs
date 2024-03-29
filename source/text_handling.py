@@ -185,6 +185,7 @@ def apply_yaml_data_color_code(to_print):
     to_print = to_print.replace('$GRAY', '\033[1;30m')
     to_print = to_print.replace('$LIGHT_GRAY', '\033[38;2;192;192;192m')
     to_print = to_print.replace('$KHAKI', '\033[38;2;240;230;140m')
+    to_print = to_print.replace('$SILVER', '\033[38;2;245;245;245m')
 
     return to_print
 
