@@ -1904,6 +1904,21 @@ Ork Shield:
   agility: -0.25
   gold: 18.29
   description: "A shield built for weight; used by the Black Orks."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║       |\ _..--.._ /|       ║
+    ║       |            |       ║
+    ║        )          (        ║
+    ║     ._/  .'//\\'.  \_.     ║
+    ║      .__) ((())) (__.      ║
+    ║       \  '.\\//.'  /       ║
+    ║        \    \/    /        ║
+    ║        /,.      .,\        ║
+    ║       (  \  __  /  )       ║
+    ║           `(\/)`           ║
+    ║             )(             ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -1916,7 +1931,7 @@ Ork Shield:
     ║$GRAY        \    $RED\/$GRAY    /        $WHITE║
     ║$GRAY        /,.      .,\        $WHITE║
     ║$GRAY       (  \  __  /  )       $WHITE║
-    ║$GRAY           $ORANGE"$GRAY($RED\/$GRAY)$ORANGE"           $WHITE║
+    ║$GRAY           $ORANGE`$GRAY($RED\/$GRAY)$ORANGE`           $WHITE║
     ║$GRAY             )(             $WHITE║
     ╚════════════════════════════╝
 Warg Fur Shield:
