@@ -1634,7 +1634,7 @@ Chainmail Chestplate: &chainmail_chestplate
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║  
+    ║                            ║
     ║                            ║
     ║        .=='\   /`==.       ║
     ║      .'\   (`:')   /`.     ║
@@ -1650,7 +1650,7 @@ Chainmail Chestplate: &chainmail_chestplate
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║  
+    ║                            ║
     ║                            ║
     ║$SILVER        .$LIGHT_GRAY==$SILVER'\   /`$LIGHT_GRAY==$SILVER.       $WHITE║
     ║$SILVER      .'\   (`$LIGHT_GRAY:$SILVER')   /`.     $WHITE║
@@ -1716,7 +1716,7 @@ Dwarf Silver Chestplate: &dwarf_chestplate
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║  
+    ║                            ║
     ║                            ║
     ║        .=='\   /`==.       ║
     ║      .'\   (`:')   /`.     ║
@@ -1732,7 +1732,7 @@ Dwarf Silver Chestplate: &dwarf_chestplate
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║  
+    ║                            ║
     ║                            ║
     ║$SILVER        .$LIGHT_GRAY==$SILVER'\   /`$LIGHT_GRAY==$SILVER.       $WHITE║
     ║$SILVER      .'\   (`$LIGHT_GRAY:$SILVER')   /`.     $WHITE║
@@ -1833,7 +1833,7 @@ Ork Shredded Chestplate:
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║  
+    ║                            ║
     ║                            ║
     ║        .=='\     ==.       ║
     ║      .'    (`:')   /`.     ║
@@ -1849,7 +1849,7 @@ Ork Shredded Chestplate:
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║  
+    ║                            ║
     ║                            ║
     ║$LIGHT_GRAY        .$GRAY==$LIGHT_GRAY'\     $GRAY==$LIGHT_GRAY.       $WHITE║
     ║$LIGHT_GRAY      .'    (`$GRAY:$LIGHT_GRAY')   /`.     $WHITE║
