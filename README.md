@@ -148,4 +148,4 @@ The planned game engine is currently in progress, and for the most of it done. T
 ## Licensing
 
 Bane Of Wargs is a free, open source game. The [source code](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/tree/master/source) and every file you will find on this repository is available under the [GPL v3 license](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs?tab=GPL-3.0-1-ov-file#readme).
-All its work and artwork is all public domain. Feel free to fork, or copy the game source to make your own version of the engine.
+All its work and artwork is all [copyrighted](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/copyright) and [credited](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/credits.txt). Feel free to fork, or copy the game source to make your own version of the engine.
