@@ -49,6 +49,29 @@ generic:
       hard: {"min": 2, "max": 5}
     enemies spawns:
       Slime: 1
+generic difficult:
+  Mix Ork Raid:
+    name: "You find a group of Orks on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Ork: .55
+      Ork Archer: .25
+      Goblin: .2
+  Troll Raid:
+    name: "You find a Troll on your way!"
+    chance: .15
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 3}
+    enemies spawns:
+      Cavern Troll: 1
+      Ork: .5
+      Goblin: 1
 warg raids:
   Generic Warg:
     name: "You find a group of Wargs on your way!"
@@ -193,3 +216,14 @@ desert raids:
       hard: {"min": 2, "max": 5}
     enemies spawns:
       Desert Undead: 1
+balrog boss:
+  Balrog:
+    name: "You encounter a Balrog on your way!"
+    chance: 1
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 2, "max": 2}
+    enemies spawns:
+      Balrog: 1
+      Cavern Troll: 1

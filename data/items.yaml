@@ -1516,9 +1516,9 @@ Knight Boots: &knight_boots
     ║                            ║
     ║                            ║
     ║$SILVER        ________            $WHITE║
-    ║$SILVER     __(_____  LIGHT_GRAY<$SILVER|           $WHITE║
-    ║$SILVER    (____ / LIGHT_GRAY<$SILVER| LIGHT_GRAY<$SILVER|           $WHITE║
-    ║$SILVER    (___ /  LIGHT_GRAY<$SILVER| L`-------.   $WHITE║
+    ║$SILVER     __(_____  $LIGHT_GRAY<$SILVER|           $WHITE║
+    ║$SILVER    (____ / $LIGHT_GRAY<$SILVER| $LIGHT_GRAY<$SILVER|           $WHITE║
+    ║$SILVER    (___ /  $LIGHT_GRAY<$SILVER| L`-------.   $WHITE║
     ║$SILVER    (__ /   L`--------.  \  $WHITE║
     ║$SILVER    /  `.    $LIGHT_GRAY^^^^^$SILVER |   \  | $WHITE║
     ║$SILVER   |     \---------'    |/  $WHITE║

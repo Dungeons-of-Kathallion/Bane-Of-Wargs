@@ -1451,7 +1451,7 @@ Gerud Valleys:
 
 Badlands:
   name: "Badlands"
-  description: "The Badlands are a highly dangerous place, with many enemies wanting your death. In the past, there were drawves mines but they seem to be gone..."
+  description: "The Badlands are a highly dangerous place, with many enemies wanting your death. In the past, there were dwarfs mines but they seem to be gone..."
   type: badlands
   map:
     map full: |
@@ -1489,3 +1489,58 @@ Californ Beaches:
       |;≈;;≈≈;;;;|
       |;;;;;;;;;;|
       x__________x
+
+# Dungeons
+
+Goro Mounts Mines Dungeon:
+  name: "Goro Mounts Mines Dungeon"
+  description: "The great dungeon of the Goro Mounts. The legend says that you'll find a Balrog there..."
+  type: dungeon
+  enemy spawning: black
+  map:
+    map full: |
+      x__________x
+      |$CYAN*  $WHITE__$CYAN  * *$WHITE|
+      | $CYAN*$WHITE/$CYAN* $WHITE\__$CYAN* $WHITE|
+      | /$CYAN~~$WHITE/$CYAN~~~$WHITE\$CYAN*$WHITE|
+      |$CYAN/  /*  \ \$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |*  __  * *|
+      | */* \__* |
+      | /~~/~~~\*|
+      |/  /*  \ \|
+      x__________x
+  dungeon:
+    name: "Goro Mounts Mines Dungeon"
+    rooms number: 5
+    reward dialog: Goro Mounts Mines Dungeon Reward
+    rooms:
+      Guardians Room:
+        room type: fight
+        room digit: 1
+        room fight data:
+          enemy list spawn: generic
+      Levers Enigma:
+        room type: enigma
+        room digit: 2
+        room enigma data:
+          script name: levers_enigma.py
+      Mid-Boss Room:
+        room type: boss-fight
+        room digit: 3
+        room fight data:
+          enemy list spawn: generic difficult
+          gold reward: 10
+      Second Guardians Room:
+        room type: fight
+        room digit: 4
+        room fight data:
+          enemy list spawn: generic
+      Boss Room:
+        room type: boss-fight
+        room digit: 5
+        room fight data:
+          enemy list spawn: balrog boss
+          item reward: "Balrog Horn"
