@@ -9,6 +9,7 @@ from terminal_handling import cout, cinput
 # external imports
 import time
 
+
 def dungeon_loop(
     player, current_dungeon, lists, enemy, start_player, item, start_time, preferences,
     npcs, drinks, zone, mounts, dialog, mission, map_location, text_replacements_generic,
@@ -194,7 +195,10 @@ def dungeon_loop(
         color_room = COLOR_BLUE
         if current_room == current_dungeon["dungeon"]["rooms number"]:
             color_room = COLOR_GREEN
-        cout(f"CURRENT ROOM: {color_room}{current_room}{COLOR_RESET_ALL}/{COLOR_GREEN}{current_dungeon["dungeon"]["rooms number"]}{COLOR_RESET_ALL}")
+        cout(
+            f"CURRENT ROOM: {color_room}{current_room}{COLOR_RESET_ALL}/" +
+            f"{COLOR_GREEN}{current_dungeon["dungeon"]["rooms number"]}{COLOR_RESET_ALL}"
+        )
 
         # Check if the player has completed the dungeon
         if current_room > current_dungeon["dungeon"]["rooms number"]:
@@ -232,7 +236,7 @@ def dungeon_loop(
             if type_room == COLOR_ORANGE_5 + "Boss Fight" or type_room == COLOR_YELLOW + "Fight":
                 enemy_handling.spawn_enemy(
                     map_location, current_room_data["room fight data"]["enemy list spawn"],
-                    enemy, item, lists,start_player, map, player, preferences, drinks, npcs,
+                    enemy, item, lists, start_player, map, player, preferences, drinks, npcs,
                     zone, mounts, mission, dialog, player_damage_coefficient,
                     text_replacements_generic, start_time, previous_player, save_file,
                     enemies_damage_coefficient,
