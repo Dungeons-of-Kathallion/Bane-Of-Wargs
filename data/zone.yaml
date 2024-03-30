@@ -1522,6 +1522,7 @@ Goro Mounts Mines Dungeon:
         room digit: 1
         room fight data:
           enemy list spawn: generic
+          no run away: false
       Levers Enigma:
         room type: enigma
         room digit: 2
@@ -1532,15 +1533,19 @@ Goro Mounts Mines Dungeon:
         room digit: 3
         room fight data:
           enemy list spawn: generic difficult
+          no run away: true
           gold reward: 10
       Second Guardians Room:
         room type: fight
         room digit: 4
         room fight data:
           enemy list spawn: generic
+          no run away: false
       Boss Room:
         room type: boss-fight
         room digit: 5
         room fight data:
           enemy list spawn: balrog boss
-          item reward: "Balrog Horn"
+          no run away: true
+          item reward:
+          - Balrog Horn

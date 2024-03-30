@@ -1507,7 +1507,8 @@ def interaction_harbor(map_zone, zone, map, player):
 
 def interaction_dungeon(
     map_zone, zone, map, player, dialog, item, preferences, text_replacements_generic,
-    drinks, enemy, npcs, start_player, lists, mission, mounts, start_time
+    drinks, enemy, npcs, start_player, lists, mission, mounts, start_time,
+    map_location, player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file
 ):
     logger_sys.log_message(f"INFO: map zone '{map_zone}' is a dungeon --> can interact")
     current_dungeon = zone[map_zone]
@@ -1528,8 +1529,12 @@ def interaction_dungeon(
                 ask = cinput("until you complete it. (y/n) ")
                 if ask.lower().startswith('y'):
                     enter_dungeon = dungeon.dungeon_loop(
-                        player, current_dungeon, lists, enemy, start_player, item
+                        player, current_dungeon, lists, enemy, start_player, item, start_time, preferences,
+                        npcs, drinks, zone, mounts, dialog, mission, map_location, text_replacements_generic,
+                        player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file,
+                        map, map_zone
                     )
+                    text_handling.clear_prompt()
                     if enter_dungeon:  # check if the player has completed the dungeon and not just exited it
                         player["completed dungeons"] += [map_zone]
                         dialog_handling.print_dialog(
@@ -1537,6 +1542,8 @@ def interaction_dungeon(
                             text_replacements_generic, player, drinks, item, enemy, npcs,
                             start_player, lists, zone, mission, mounts, start_time, map
                         )
+                        cinput("\nPress enter to continue...")
+                    continue_dungeon_actions = False
             elif choice == 'Check Dungeon Map':
                 if preferences["latest preset"]["type"] == "plugin":
                     plugin = preferences["latest preset"]["plugin"]
@@ -1554,6 +1561,7 @@ def interaction_dungeon(
                 continue_dungeon_actions = False
     else:
         cout(COLOR_YELLOW + "You've already completed this dungeon!" + COLOR_RESET_ALL)
+        time.sleep(2)
 
 
 # Other handling functions

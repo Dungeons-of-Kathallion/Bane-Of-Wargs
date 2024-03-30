@@ -2967,7 +2967,8 @@ def run(play):
             elif zone[map_zone]["type"] == "dungeon":
                 zone_handling.interaction_dungeon(
                     map_zone, zone, map, player, dialog, item, preferences, text_replacements_generic,
-                    drinks, enemy, npcs, start_player, lists, mission, mounts, start_time
+                    drinks, enemy, npcs, start_player, lists, mission, mounts, start_time,
+                    map_location, player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file
                 )
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")

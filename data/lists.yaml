@@ -54,9 +54,9 @@ generic difficult:
     name: "You find a group of Orks on your way!"
     chance: .25
     enemies rate:
-      easy: {"min": 1, "max": 2}
-      normal: {"min": 1, "max": 4}
-      hard: {"min": 2, "max": 5}
+      easy: {"min": 2, "max": 4}
+      normal: {"min": 3, "max": 6}
+      hard: {"min": 5, "max": 9}
     enemies spawns:
       Ork: .55
       Ork Archer: .25
@@ -65,9 +65,9 @@ generic difficult:
     name: "You find a Troll on your way!"
     chance: .15
     enemies rate:
-      easy: {"min": 1, "max": 2}
-      normal: {"min": 1, "max": 3}
-      hard: {"min": 2, "max": 3}
+      easy: {"min": 2, "max": 3}
+      normal: {"min": 2, "max": 4}
+      hard: {"min": 3, "max": 4}
     enemies spawns:
       Cavern Troll: 1
       Ork: .5
