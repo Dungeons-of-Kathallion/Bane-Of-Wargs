@@ -1368,7 +1368,7 @@ Californ Woods:
 
 Forlindon Woods:
   name: "Forlindon Woods"
-  description: "A small and quite forest where you find a small village, living apart of the other great cities."
+  description: "A small and quiet forest where you find a small village, living apart of the other great cities."
   type: woods
   enemy spawning: warg raids
   map:

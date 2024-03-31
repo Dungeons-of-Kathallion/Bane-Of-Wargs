@@ -269,7 +269,7 @@ def dungeon_loop(
                     drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts,
                     start_time, text_replacements_generic, plugin
                 )
-                cinput()
+                cinput("Press enter to continue...\n")
             current_room += 1
         elif action.startswith('c') and "dungeon map" in current_dungeon["dungeon"]:
             if preferences["latest preset"]["type"] == "plugin":
