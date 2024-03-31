@@ -222,13 +222,14 @@ def dungeon_loop(
             cout("  - [C]heck Dungeon Map")
         cout("  - [U]se Item")
         cout("  - [P]ause Game")
-        cout("  - [E]xit Dungeon")
+        if not current_dungeon["dungeon"]["no escape"]:
+            cout("  - [E]xit Dungeon")
         text_handling.print_separator('=')
         cout()
         action = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL).lower()
         cout()
         logger_sys.log_message(f"Player has chosen action '{action}'")
-        if action.startswith('s'):
+        if action.startswith('s') and "dungeon map" in current_dungeon["dungeon"]:
             logger_sys.log_message(
                 f"Loading dungeon '{current_dungeon["dungeon"]["name"]}' room {current_room}" +
                 f" --> is a '{type_room}{COLOR_RESET_ALL}' room type"
@@ -321,7 +322,7 @@ def dungeon_loop(
             pause_end = time.time()
             start_time -= pause_end - pause_start
             logger_sys.log_message(f"INFO: Finished pausing game --> game pause have lasted {pause_end - pause_start} seconds")
-        elif action.startswith('e'):
+        elif action.startswith('e') and not current_dungeon["dungeon"]["no escape"]:
             cout("Are you sure you want to qui the dungeon?")
             ask = cinput("All your progress here will be reset (y/n) ").lower()
             if ask.startswith('y'):

@@ -1516,6 +1516,7 @@ Goro Mounts Mines Dungeon:
     name: "Goro Mounts Mines Dungeon"
     rooms number: 5
     reward dialog: Goro Mounts Mines Dungeon Reward
+    no escape: false
     rooms:
       Guardians Room:
         room type: fight

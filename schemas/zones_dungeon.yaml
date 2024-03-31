@@ -10,4 +10,5 @@ dungeon:
   dungeon map: str(required=False)
   rooms number: int()
   reward dialog: str()
+  no escape: bool()
   rooms: any()
