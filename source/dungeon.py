@@ -229,7 +229,7 @@ def dungeon_loop(
         action = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL).lower()
         cout()
         logger_sys.log_message(f"Player has chosen action '{action}'")
-        if action.startswith('s') and "dungeon map" in current_dungeon["dungeon"]:
+        if action.startswith('s'):
             logger_sys.log_message(
                 f"Loading dungeon '{current_dungeon["dungeon"]["name"]}' room {current_room}" +
                 f" --> is a '{type_room}{COLOR_RESET_ALL}' room type"
@@ -271,7 +271,7 @@ def dungeon_loop(
                 )
                 cinput()
             current_room += 1
-        elif action.startswith('c'):
+        elif action.startswith('c') and "dungeon map" in current_dungeon["dungeon"]:
             if preferences["latest preset"]["type"] == "plugin":
                 plugin = preferences["latest preset"]["plugin"]
             else:
