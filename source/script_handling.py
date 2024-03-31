@@ -27,7 +27,7 @@ def load_script(
             execute_script(
                 script_data, f, player, map, item, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts, start_time,
-                generic_text_replacements
+                generic_text_replacements, preferences
             )
     else:
         with open(
@@ -36,14 +36,15 @@ def load_script(
             execute_script(
                 script_data, f, player, map, item, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts, start_time,
-                generic_text_replacements
+                generic_text_replacements, preferences
             )
+
 
 
 def execute_script(
     script_data, file, player, map, item, drinks, enemy, npcs,
     start_player, lists, zone, dialog, mission, mounts, start_time,
-    generic_text_replacements
+    generic_text_replacements, preferences
 ):
     logger_sys.log_message(
         f"INFO: Starting execution process of script '{file}'"
@@ -82,6 +83,8 @@ def execute_script(
             global_arguments["start_time"] = start_time
         if "generic_text_replacements" in arguments:
             global_arguments["generic_text_replacements"] = generic_text_replacements
+        if "preferences" in arguments:
+            global_arguments["preferences"] = preferences
     arguments_list = list(global_arguments)
     logger_sys.log_message(
         f"INFO: Loaded script '{file}' required arguments:\n{arguments_list}"
