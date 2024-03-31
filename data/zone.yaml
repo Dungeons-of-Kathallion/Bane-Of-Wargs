@@ -202,7 +202,7 @@ Ayar Town:
 
 New Hyru:
   name: "New Hyru"
-  description: "Located in the Californ Woods, it is a quit dangerous place, but also welcoming if you're careful."
+  description: "Located in the Californ Woods, it is a quite dangerous place, but also welcoming if you're careful."
   type: village
   news:
   - "..."
@@ -930,7 +930,7 @@ Hyru Church:
   name: "Hyru Cathedral"
   type: church
   description: >
-    Thy Hyru Cathedral is a great church, that was and still used as a watchtower to track
+    The Hyru Cathedral is a great church, that was and still used as a watchtower to track
     ork patrols at night. This cathedral has saved the New Hyru town many times from orks.
   news:
   - "..."
@@ -1409,7 +1409,7 @@ Mangrove Wastes:
 
 Gerud Desert:
   name: "Gerud Desert"
-  description: "The Gerud desert is an arid desert in the eastern of the Stall Island. You'll find very dangerous enemies but also great rewards for adventurers."
+  description: "The Gerud Desert is an arid desert in the eastern Stall Island. You'll find very dangerous enemies but also great rewards for adventurers."
   type: desert
   enemy spawning: desert raids
   map:

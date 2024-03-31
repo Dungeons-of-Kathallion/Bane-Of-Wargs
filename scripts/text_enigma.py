@@ -11,8 +11,7 @@ def run(zone):
     finished_sentence = True
     sentence = zone[
         list(zone)[random.randint(0, len(list(zone)) - 1)]
-    ]["description"]
-    time_limit = (sentence.count("") - 1)
+    ]["description"].replace('\n', '')
     sentence_randomzed = sentence.split(" ")
     random.shuffle(sentence_randomzed)
     sentence_randomzed_str = ""
@@ -23,20 +22,29 @@ def run(zone):
         text_handling.clear_prompt()
         cout("Reconstitute the following phrase:")
         cout(sentence_randomzed_str)
-        starting_time = time.time()
-        player_sentece = cinput(f"\n> {COLOR_STYLE_DIM}")
-        ending_time = time.time()
+        player_sentence = cinput(f"\n> {COLOR_STYLE_DIM}").replace('\n', '')
         cout(COLOR_RESET_ALL)
-        
-        if player_sentece == sentence and (ending_time - starting_time) <= time_limit:
+
+        if player_sentence == sentence:
             cout(COLOR_CYAN + "Good job! You've reconstituted the sentence!" + COLOR_RESET_ALL)
             completed = True
             return completed
-        elif (ending_time - starting_time) > time_limit:
-            cout(COLOR_YELLOW + "Too slow! Try again!" + COLOR_RESET_ALL)
-            time.sleep(2.5)
         else:
             cout(COLOR_YELLOW + "This isn't the right sentence! Try again!" + COLOR_RESET_ALL)
+
+            hint_sentence = ""
+            count = 0
+            for word in sentence:
+                if count > len(player_sentence) - 1:
+                    hint_sentence += f"{COLOR_STYLE_DIM}_{COLOR_RESET_ALL}"
+                elif word == player_sentence[count]:
+                    hint_sentence += f"{COLOR_GREEN}{word}{COLOR_RESET_ALL}"
+                elif word != player_sentence[count]:
+                    hint_sentence += f"{COLOR_RED}{player_sentence[count]}{COLOR_RESET_ALL}"
+                else:
+                    hint_sentence += f"{COLOR_STYLE_DIM}_{COLOR_RESET_ALL}"
+                count += 1
+            cout("Hint: " + hint_sentence)
             time.sleep(2.5)
 
 
