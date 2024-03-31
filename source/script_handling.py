@@ -40,7 +40,6 @@ def load_script(
             )
 
 
-
 def execute_script(
     script_data, file, player, map, item, drinks, enemy, npcs,
     start_player, lists, zone, dialog, mission, mounts, start_time,
