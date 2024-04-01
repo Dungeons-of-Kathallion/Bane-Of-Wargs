@@ -1636,5 +1636,5 @@ Gerud Ancient Dungeon:
             room type: boss-fight
             room digit: 6
             room fight data:
-              enemy list spawn: mumakil
+              enemy list spawn: mumakil boss
               no run away: true
