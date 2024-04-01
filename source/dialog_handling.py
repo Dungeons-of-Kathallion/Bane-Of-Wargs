@@ -156,13 +156,17 @@ def print_dialog(
                     player["max health"] += augmentation
         if "gold modification" in actions:
             if "diminution" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Removing " + str(actions["gold modification"]["diminution"]) + " gold to the player")
+                logger_sys.log_message(
+                    "INFO: Removing " + str(actions["gold modification"]["diminution"]) + " gold to the player"
+                )
                 diminution = actions["gold modification"]["diminution"]
                 if str(diminution).replace('$', '') in list(new_text_replacements):
                     diminution = new_text_replacements[str(diminution).replace('$', '')]
                 player["gold"] -= diminution
             if "augmentation" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Adding " + str(actions["gold modification"]["augmentation"]) + " gold to the player")
+                logger_sys.log_message(
+                    "INFO: Adding " + str(actions["gold modification"]["augmentation"]) + " gold to the player"
+                )
                 augmentation = actions["gold modification"]["augmentation"]
                 if str(augmentation).replace('$', '') in list(new_text_replacements):
                     augmentation = new_text_replacements[str(augmentation).replace('$', '')]
