@@ -202,7 +202,7 @@ Ayar Town:
 
 New Hyru:
   name: "New Hyru"
-  description: "Located in the Californ Woods, it is a quit dangerous place, but also welcoming if you're careful."
+  description: "Located in the Californ Woods, it is a quite dangerous place, but also welcoming if you're careful."
   type: village
   news:
   - "..."
@@ -930,7 +930,7 @@ Hyru Church:
   name: "Hyru Cathedral"
   type: church
   description: >
-    Thy Hyru Cathedral is a great church, that was and still used as a watchtower to track
+    The Hyru Cathedral is a great church, that was and still used as a watchtower to track
     ork patrols at night. This cathedral has saved the New Hyru town many times from orks.
   news:
   - "..."
@@ -1368,7 +1368,7 @@ Californ Woods:
 
 Forlindon Woods:
   name: "Forlindon Woods"
-  description: "A small and quite forest where you find a small village, living apart of the other great cities."
+  description: "A small and quiet forest where you find a small village, living apart of the other great cities."
   type: woods
   enemy spawning: warg raids
   map:
@@ -1409,7 +1409,7 @@ Mangrove Wastes:
 
 Gerud Desert:
   name: "Gerud Desert"
-  description: "The Gerud desert is an arid desert in the eastern of the Stall Island. You'll find very dangerous enemies but also great rewards for adventurers."
+  description: "The Gerud Desert is an arid desert in the eastern Stall Island. You'll find very dangerous enemies but also great rewards for adventurers."
   type: desert
   enemy spawning: desert raids
   map:
@@ -1451,7 +1451,7 @@ Gerud Valleys:
 
 Badlands:
   name: "Badlands"
-  description: "The Badlands are a highly dangerous place, with many enemies wanting your death. In the past, there were drawves mines but they seem to be gone..."
+  description: "The Badlands are a highly dangerous place, with many enemies wanting your death. In the past, there were dwarfs mines but they seem to be gone..."
   type: badlands
   map:
     map full: |
@@ -1489,3 +1489,157 @@ Californ Beaches:
       |;≈;;≈≈;;;;|
       |;;;;;;;;;;|
       x__________x
+
+# Dungeons
+
+Goro Mounts Mines Dungeon:
+  name: "Goro Mounts Mines Dungeon"
+  description: "The great dungeon of the Goro Mounts. The legend says that you'll find a Balrog there..."
+  type: dungeon
+  enemy spawning: black
+  map:
+    map full: |
+      x__________x
+      | $BROWN________ $WHITE|
+      | $BROWN|  $GRAY||  $BROWN| $WHITE|
+      | $BROWN/ $YELLOW/$GRAY||$YELLOW\ $BROWN\ $WHITE|
+      |$BROWN/ $YELLOW/ $GRAY|| $YELLOW\ $BROWN\$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ________ |
+      | |  ||  | |
+      | / /||\ \ |
+      |/ / || \ \|
+      x__________x
+  dungeon:
+    name: "Goro Mounts Mines Dungeon"
+    rooms number: 9
+    reward dialog: Goro Mounts Mines Dungeon Reward
+    no escape: false
+    rooms:
+      Guardians Room:
+        room type: fight
+        room digit: 1
+        room fight data:
+          enemy list spawn: generic
+          no run away: false
+      Levers Enigma:
+        room type: enigma
+        room digit: 2
+        room enigma data:
+          script name: levers_enigma.py
+      Text Enigma:
+        room type: enigma
+        room digit: 3
+        room enigma data:
+          script name: text_enigma.py
+          arguments:
+          - zone
+      Mid-Boss Room:
+        room type: boss-fight
+        room digit: 4
+        room fight data:
+          enemy list spawn: generic difficult
+          no run away: true
+          gold reward: 10
+      Second Guardians Room:
+        room type: fight
+        room digit: 5
+        room fight data:
+          enemy list spawn: generic
+          no run away: false
+      Wargs Raid:
+        room type: fight
+        room digit: 6
+        room fight data:
+          enemy list spawn: warg raids
+          no run away: false
+      Stronger Enemies Before Boss:
+        room type: fight
+        room digit: 7
+        room fight data:
+          enemy list spawn: black
+          no run away: true
+      Levers Enigma 2:
+        room type: enigma
+        room digit: 8
+        room enigma data:
+          script name: levers_enigma.py
+      Boss Room:
+        room type: boss-fight
+        room digit: 9
+        room fight data:
+          enemy list spawn: balrog boss
+          no run away: true
+          item reward:
+          - Balrog Horn
+
+Gerud Ancient Dungeon:
+  name: "Gerud Ancient Dungeon"
+  description: "This old dungeon is full of South Pillagers and orks. Defeat them!"
+  type: dungeon
+  enemy spawning: black
+  map:
+    map full: |
+      x__________x
+      | $TAN________ $WHITE|
+      | $TAN|  $GRAY||  $TAN| $WHITE|
+      | $TAN/ $YELLOW/$GRAY||$YELLOW\ $TAN\ $WHITE|
+      |$TAN/ $YELLOW/ $GRAY|| $YELLOW\ $TAN\$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ________ |
+      | |  ||  | |
+      | / /||\ \ |
+      |/ / || \ \|
+      x__________x
+  dungeon:
+    name: "Gerud Ancient Dungeon"
+    rooms number: 6
+    reward dialog: Gerud Ancient Dungeon Reward
+    no escape: true
+    rooms:
+      Entrance Enigma:
+        room type: enigma
+        room digit: 1
+        room enigma data:
+          script name: levers_enigma.py
+      South Pillagers:
+        room type: fight
+        room digit: 2
+        room fight data:
+          enemy list spawn: south pillagers
+          no run away: false
+      Desert Undeads:
+        room type: fight
+        room digit: 3
+        room fight data:
+          enemy list spawn: desert undeads
+          gold reward: 5
+          no run away: false
+      Middle Enigma:
+        room type: enigma
+        room digit: 4
+        room enigma data:
+          script name: drawing_enigma.py
+          arguments:
+          - enemy
+          - preferences
+      Desert Trolls:
+        room type: boss-fight
+        room digit: 5
+        room fight data:
+          enemy list spawn: desert trolls
+          gold reward: 25
+          no run away: true
+      Mumakil Boss:
+        room type: boss-fight
+        room digit: 6
+        room fight data:
+          enemy list spawn: mumakil boss
+          gold reward: 35
+          item reward:
+          - Mumakil Tusk
+          no run away: true

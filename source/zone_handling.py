@@ -4,8 +4,10 @@ import text_handling
 import uuid_handling
 import weapon_upgrade_handling
 import train
+import dungeon
 import terminal_handling
 import time_handling
+import dialog_handling
 from colors import *
 from terminal_handling import cout, cinput, cinput_int
 # external imports
@@ -54,7 +56,8 @@ ZONE_COLORS_DICT = {
     34: COLOR_CYAN_1 + '≈',
     35: COLOR_GREENS_0 + '#',
     36: COLOR_BLUE_13 + '⟰',
-    37: COLOR_BLUE_14 + '⇭'
+    37: COLOR_BLUE_14 + '⇭',
+    38: COLOR_BLUE_14 + '±'
 }
 SELLING_ZONES = [
     "hostel",
@@ -1497,9 +1500,68 @@ def interaction_harbor(map_zone, zone, map, player):
                     "INFO: Canceling ticket buying process --> current harbor" +
                     f"doesn't have a ticket named '{which_ticket}'"
                 )
-                cout(COLOR_YELLOW + "There isn't any ticket name like that" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "There isn't any ticket named that" + COLOR_RESET_ALL)
         else:
             continue_harbor_actions = False
+
+
+def interaction_dungeon(
+    map_zone, zone, map, player, dialog, item, preferences, text_replacements_generic,
+    drinks, enemy, npcs, start_player, lists, mission, mounts, start_time,
+    map_location, player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file
+):
+    logger_sys.log_message(f"INFO: map zone '{map_zone}' is a dungeon --> can interact")
+    current_dungeon = zone[map_zone]
+    if map_zone not in player["completed dungeons"]:
+        text = '='
+        text_handling.print_separator(text)
+        options = ['Enter Dungeon', 'Check Dungeon Map', 'Exit']
+        if "dungeon map" not in current_dungeon["dungeon"]:
+            options.remove(options[1])
+        continue_dungeon_actions = True
+        logger_sys.log_message("INFO: Starting dungeon interact loop")
+        while continue_dungeon_actions:
+            choice = terminal_handling.show_menu(options)
+            logger_sys.log_message(f"INFO: Player has chosen option '{choice}'")
+            if choice == 'Enter Dungeon':
+                cout("\nAre you sure you want to enter the dungeon?")
+                cout("You won't be able to exit the dungeon once in it,")
+                ask = cinput("until you complete it. (y/n) ")
+                if ask.lower().startswith('y'):
+                    enter_dungeon = dungeon.dungeon_loop(
+                        player, current_dungeon, lists, enemy, start_player, item, start_time, preferences,
+                        npcs, drinks, zone, mounts, dialog, mission, map_location, text_replacements_generic,
+                        player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file,
+                        map, map_zone
+                    )
+                    text_handling.clear_prompt()
+                    if enter_dungeon:  # check if the player has completed the dungeon and not just exited it
+                        player["completed dungeons"] += [map_zone]
+                        dialog_handling.print_dialog(
+                            current_dungeon["dungeon"]["reward dialog"], dialog, preferences,
+                            text_replacements_generic, player, drinks, item, enemy, npcs,
+                            start_player, lists, zone, mission, mounts, start_time, map
+                        )
+                        cinput("\nPress enter to continue...")
+                    continue_dungeon_actions = False
+            elif choice == 'Check Dungeon Map':
+                if preferences["latest preset"]["type"] == "plugin":
+                    plugin = preferences["latest preset"]["plugin"]
+                else:
+                    plugin = False
+                cout("")
+                cout("╔" + ("═" * 53) + "╗")
+                map_data = {
+                    "map": current_dungeon["dungeon"]["dungeon map"]
+                }
+                text_handling.print_map_art(map_data, plugin_name=plugin)
+                cout("╚" + ("═" * 53) + "╝")
+                cinput()
+            else:
+                continue_dungeon_actions = False
+    else:
+        cout(COLOR_YELLOW + "You've already completed this dungeon!" + COLOR_RESET_ALL)
+        time.sleep(2)
 
 
 # Other handling functions

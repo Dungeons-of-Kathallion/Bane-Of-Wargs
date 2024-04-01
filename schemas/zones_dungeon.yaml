@@ -1,0 +1,14 @@
+name: str()
+description: str()
+type: str()
+map:
+  map full: str()
+  map raw: str(required=False)
+enemy spawning: str(required=False)
+dungeon:
+  name: str()
+  dungeon map: str(required=False)
+  rooms number: int()
+  reward dialog: str()
+  no escape: bool()
+  rooms: any()

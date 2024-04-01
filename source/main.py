@@ -58,7 +58,7 @@ separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 first_start = False
 if not os.path.exists(program_dir):
-    GAME_DATA_VERSION = 0.21
+    GAME_DATA_VERSION = 0.22
     os.mkdir(program_dir)
     # Open default config file and store the text into
     # a variable to write it into the user config file
@@ -111,7 +111,7 @@ with open(program_dir + '/preferences.yaml', 'r') as f:
 logger_sys.log_message("INFO: Checking if game source code is up to date")
 global latest_version
 latest_version = None  # placeholder
-SOURCE_CODE_VERSION = 0.21
+SOURCE_CODE_VERSION = 0.22
 latest_main_class = io.StringIO(data_handling.temporary_git_file_download(
     'source/main.py', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
 )).readlines()
@@ -1254,6 +1254,10 @@ def run(play):
                     "next discount": player["discounts"][current]["next discount"]
                 }
 
+        # Create a new key, added since alpha-0.22
+        if "completed dungeons" not in list(player):
+            player["completed dungeons"] = []
+
         # Calculate the enemies global damage
         # coefficient, depending on the player
         # elapsed time in game-days
@@ -1507,7 +1511,7 @@ def run(play):
 
         global is_in_village, is_in_hostel, is_in_stable, is_in_blacksmith
         global is_in_forge, is_in_church, is_in_castle, is_in_grocery_store
-        global is_in_harbor
+        global is_in_harbor, is_in_dungeon
         is_in_village = False
         is_in_hostel = False
         is_in_stable = False
@@ -1517,6 +1521,7 @@ def run(play):
         is_in_castle = False
         is_in_grocery_store = False
         is_in_harbor = False
+        is_in_dungeon = False
         logger_sys.log_message("INFO: Checking if player is in a village, hostel, stable, blacksmith or forge")
         if (
             zone[map_zone]["type"] == "village"
@@ -1645,6 +1650,9 @@ def run(play):
         if zone[map_zone]["type"] == "harbor":
             zone_handling.print_harbor_information(map_zone, zone, map, player)
             is_in_harbor = True
+        logger_sys.log_message("INFO: Checking if the player is in a dungeon")
+        if zone[map_zone]["type"] == "dungeon":
+            is_in_dungeon = True
         cout("")
         logger_sys.log_message(f"INFO: Checking if an item is on the ground at map point 'point{map_location}'")
         if "item" in map["point" + str(map_location)] and map_location not in player["taken items"]:
@@ -2955,10 +2963,17 @@ def run(play):
                 zone_handling.interaction_grocery(map_zone, zone, player, item)
             elif zone[map_zone]["type"] == "harbor":
                 zone_handling.interaction_harbor(map_zone, zone, map, player)
+            elif zone[map_zone]["type"] == "dungeon":
+                zone_handling.interaction_dungeon(
+                    map_zone, zone, map, player, dialog, item, preferences, text_replacements_generic,
+                    drinks, enemy, npcs, start_player, lists, mission, mounts, start_time,
+                    map_location, player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file
+                )
             else:
                 logger_sys.log_message(f"INFO: Map zone '{map_zone}' cannot have interactions")
                 text = (
-                    "You cannot find any near hostel, stable, blacksmith, forge, church, grocery store, harbor or castle."
+                    "You cannot find any near hostel, stable, blacksmith, forge, " +
+                    "church, grocery store, harbor, castle or dungeon."
                 )
                 cout(COLOR_YELLOW, end="")
                 text_handling.print_long_string(text)

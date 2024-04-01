@@ -38,13 +38,15 @@ Artwork
   gvn (GPL-3+)
   jah/SSt (GPL-3+)
   BP (GPL-3+)
-  hjm (GPL-3+)
   VK (GPL-3+)
   Joan Stark (GPL-3+)
   Vander Zwaag (GPL-3+)
   ZOT (GPL-3+)
   hjw (GPL-3+)
   I-Am-The-Evil-Guy-Who-Wil-Destroy-The-World-Now (GPL-3+)
+  AoS (GPL-3+)
+  cf (GPL-3+)
+  mga (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

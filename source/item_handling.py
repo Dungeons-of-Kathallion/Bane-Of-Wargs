@@ -3,7 +3,7 @@ import logger_sys
 import script_handling
 import text_handling
 import consumable_handling
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 
 
 # Handling Function
@@ -14,7 +14,7 @@ def use_item(
     enemy, npcs, start_player, lists, zone, dialog, mission,
     mounts, text_replacements_generic, item, map_location,
     player_damage_coefficient, previous_player, save_file, start_time,
-    enemies_damage_coefficient
+    enemies_damage_coefficient, map
 ):
     # Load the global items data and load the
     # chosen item data and stores it to a variable
@@ -44,8 +44,10 @@ def use_item(
             plugin = True
         script_handling.load_script(
             item[which_item], preferences, player, map, item_data, drinks, enemy, npcs,
-            start_player, lists, zone, dialog, mission, mounts, plugin
+            start_player, lists, zone, dialog, mission, mounts, start_time,
+            text_replacements_generic, plugin
         )
+        cinput()
 
 
 def equip_item(item_name, player, equipment_type):

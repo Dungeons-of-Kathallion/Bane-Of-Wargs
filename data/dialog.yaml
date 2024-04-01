@@ -116,3 +116,23 @@ Saved The Guy In The Woods:
     - Forlindon Woods Map
     gold modification:
       augmentation: $payment
+
+Goro Mounts Mines Dungeon Reward:
+  conversation:
+    - label 1:
+      - print(You've completed the Goro Mounts Mines Dungeon, brave hero!)
+  use actions: true
+  actions:
+    add attributes:
+    - completed goro mounts mines dungeon
+
+Gerud Ancient Dungeon Reward:
+  conversation:
+    - label 1:
+      - print(You've completed the Gerud Ancient Dungeon, brave hero!)
+  use actions: true
+  actions:
+    add attributes:
+    - completed gerud ancient dungeon
+    health modification:
+      augmentation: 999

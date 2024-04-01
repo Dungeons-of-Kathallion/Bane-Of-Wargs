@@ -239,7 +239,7 @@ def encounter_text_show(
     defeat_percentage, preferences, drinks, npcs, zone, mounts, mission,
     start_player, dialog, text_replacements_generic, player_damage_coefficient,
     previous_player, save_file, start_time, enemies_damage_coefficient,
-    entry_data, enemies
+    entry_data, enemies, no_run_away=False
 ):
     global fighting
     cout(" ")  # do not merge with possible actions text
@@ -291,7 +291,7 @@ def encounter_text_show(
     # run away difficulty coefficient
     if player["difficulty mode"] == 0:
         runaway_coefficient = 1.15
-    elif player["difficulty mode"] == 2:
+    elif player["difficulty mode"] == 2 or no_run_away:
         runaway_coefficient = 0
     else:
         runaway_coefficient = 1
@@ -350,7 +350,7 @@ def encounter_text_show(
                 enemy, npcs, start_player, lists, zone, dialog, mission,
                 mounts, text_replacements_generic, item, map_location,
                 player_damage_coefficient, previous_player, save_file,
-                start_time, enemies_damage_coefficient
+                start_time, enemies_damage_coefficient, map
             )
             text = '='
             text_handling.print_separator(text)
@@ -708,9 +708,9 @@ def fight(
                     player_inventory_displayed = []
                     count = 0
                     for i in player["inventory"]:
-                        zeros = len(str(len(player["inventory"])))
+                        zeroes = len(str(len(player["inventory"])))
                         removed = len(str(count))
-                        player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+                        player_inventory_displayed += [f"{"0" * (zeroes - removed)}{count}> {i}"]
                         count += 1
                     cout("INVENTORY:")
                     for line in player_inventory_displayed:
@@ -730,7 +730,7 @@ def fight(
                             enemy, npcs, start_player, lists, zone, dialog, mission,
                             mounts, text_replacements_generic, item, map_location,
                             player_damage_coefficient, previous_player, save_file,
-                            start_time, enemies_damage_coefficient
+                            start_time, enemies_damage_coefficient, map
                         )
                         text = '='
                         text_handling.print_separator(text)

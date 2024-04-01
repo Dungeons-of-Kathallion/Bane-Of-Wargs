@@ -2,7 +2,7 @@ import random
 import terminal_handling
 import text_handling
 from colors import *
-from terminal_handling import cout
+from terminal_handling import cout, cinput
 
 
 def print_action(action1, action2):

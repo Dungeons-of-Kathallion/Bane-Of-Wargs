@@ -70,7 +70,7 @@ def spawn_enemy(
     map_location, list_enemies, enemy, item, lists, start_player, map, player,
     preferences, drinks, npcs, zone, mounts, mission, dialog, player_damage_coefficient,
     text_replacements_generic, start_time, previous_player, save_file,
-    enemies_damage_coefficient
+    enemies_damage_coefficient, no_run_away=False
 ):
     already_encountered = False
     logger_sys.log_message(f"INFO: Choosing random enemies from the list '{list_enemies}'")
@@ -103,7 +103,7 @@ def spawn_enemy(
                 risk, preferences, drinks, npcs, zone, mounts, mission,
                 start_player, dialog, text_replacements_generic, player_damage_coefficient,
                 previous_player, save_file, start_time, enemies_damage_coefficient,
-                entry_data, enemies
+                entry_data, enemies, no_run_away
             )
             already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")
@@ -141,7 +141,7 @@ def spawn_enemy(
                     player["inventory"].append(chosen_item)
         cout(" ")
     else:
-        text = "You just died and your save have been rested to its older state."
+        text = "You just died and your save has been rested to its older state."
         logger_sys.log_message("INFO: Player just died")
         cout(COLOR_RED + COLOR_STYLE_BRIGHT, end="")
         text_handling.print_long_string(text)
