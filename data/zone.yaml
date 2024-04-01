@@ -1630,7 +1630,7 @@ Gerud Ancient Dungeon:
         room type: boss-fight
         room digit: 5
         room fight data:
-        enemy list spawn: desert trolls
+          enemy list spawn: desert trolls
           no run away: true
       Mumakil Boss:
         room type: boss-fight
