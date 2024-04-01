@@ -1561,7 +1561,7 @@ Goro Mounts Mines Dungeon:
         room fight data:
           enemy list spawn: black
           no run away: true
-      Levers Enigma:
+      Levers Enigma 2:
         room type: enigma
         room digit: 8
         room enigma data:
@@ -1576,65 +1576,65 @@ Goro Mounts Mines Dungeon:
           - Balrog Horn
 
 Gerud Ancient Dungeon:
-      name: "Gerud Ancient Dungeon"
-      description: "This old dungeon is full of South Pillagers and orks. Defeat them!"
-      type: dungeon
-      enemy spawning: black
-      map:
-        map full: |
-          x__________x
-          | $TAN________ $WHITE|
-          | $TAN|  $GRAY||  $TAN| $WHITE|
-          | $TAN/ $YELLOW/$GRAY||$YELLOW\ $TAN\ $WHITE|
-          |$TAN/ $YELLOW/ $GRAY|| $YELLOW\ $TAN\$WHITE|
-          x__________x
-        map raw: |
-          x__________x
-          | ________ |
-          | |  ||  | |
-          | / /||\ \ |
-          |/ / || \ \|
-          x__________x
-      dungeon:
-        name: "Gerud Ancient Dungeon"
-        rooms number: 6
-        reward dialog: Gerud Ancient Dungeon Reward
-        no escape: true
-        rooms:
-          Entrance Enigma:
-            room type: enigma
-            room digit: 1
-            room enigma data:
-              script name: levers_enigma.py
-          South Pillagers:
-            room type: fight
-            room digit: 2
-            room fight data:
-              enemy list spawn: south pillagers
-              no run away: false
-          Desert Undeads:
-            room type: fight
-            room digit: 3
-            room fight data:
-              enemy list spawn: desert undeads
-              no run away: false
-          Middle Enigma:
-            room type: enigma
-            room digit: 4
-            room enigma data:
-              script name: drawing_enigma.py
-              arguments:
-              - enemy
-              - preferences
-          Desert Trolls:
-            room type: boss-fight
-            room digit: 5
-            room fight data:
-              enemy list spawn: desert trolls
-              no run away: true
-          Mumakil Boss:
-            room type: boss-fight
-            room digit: 6
-            room fight data:
-              enemy list spawn: mumakil boss
-              no run away: true
+  name: "Gerud Ancient Dungeon"
+  description: "This old dungeon is full of South Pillagers and orks. Defeat them!"
+  type: dungeon
+  enemy spawning: black
+  map:
+    map full: |
+      x__________x
+      | $TAN________ $WHITE|
+      | $TAN|  $GRAY||  $TAN| $WHITE|
+      | $TAN/ $YELLOW/$GRAY||$YELLOW\ $TAN\ $WHITE|
+      |$TAN/ $YELLOW/ $GRAY|| $YELLOW\ $TAN\$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ________ |
+      | |  ||  | |
+      | / /||\ \ |
+      |/ / || \ \|
+      x__________x
+  dungeon:
+    name: "Gerud Ancient Dungeon"
+    rooms number: 6
+    reward dialog: Gerud Ancient Dungeon Reward
+    no escape: true
+    rooms:
+      Entrance Enigma:
+        room type: enigma
+        room digit: 1
+        room enigma data:
+          script name: levers_enigma.py
+      South Pillagers:
+        room type: fight
+        room digit: 2
+        room fight data:
+          enemy list spawn: south pillagers
+          no run away: false
+      Desert Undeads:
+        room type: fight
+        room digit: 3
+        room fight data:
+          enemy list spawn: desert undeads
+          no run away: false
+      Middle Enigma:
+        room type: enigma
+        room digit: 4
+        room enigma data:
+          script name: drawing_enigma.py
+          arguments:
+          - enemy
+          - preferences
+      Desert Trolls:
+        room type: boss-fight
+        room digit: 5
+        room fight data:
+        enemy list spawn: desert trolls
+          no run away: true
+      Mumakil Boss:
+        room type: boss-fight
+        room digit: 6
+        room fight data:
+          enemy list spawn: mumakil boss
+          no run away: true
