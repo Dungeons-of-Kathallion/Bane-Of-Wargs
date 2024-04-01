@@ -117,7 +117,7 @@ def print_dialog(
         if "health modification" in actions:
             if "diminution" in actions["health modification"]:
                 logger_sys.log_message(
-                    "INFO: Removing " + actions["health modification"]["diminution"] +
+                    "INFO: Removing " + str(actions["health modification"]["diminution"]) +
                     " hp from the player's health"
                 )
                 diminution = actions["health modification"]["diminution"]
@@ -126,7 +126,7 @@ def print_dialog(
                 player["health"] -= diminution
             if "augmentation" in actions["health modification"]:
                 logger_sys.log_message(
-                    "INFO: Adding " + actions["health modification"]["augmentation"] +
+                    "INFO: Adding " + str(actions["health modification"]["augmentation"]) +
                     " hp from the player's health"
                 )
                 augmentation = actions["health modification"]["augmentation"]
@@ -138,7 +138,7 @@ def print_dialog(
             if "max health" in actions["health modification"]:
                 if "diminution" in actions["health modification"]["max health"]:
                     logger_sys.log_message(
-                        "INFO: Removing " + actions["health modification"]["max health"]["diminution"] +
+                        "INFO: Removing " + str(actions["health modification"]["max health"]["diminution"]) +
                         " hp from the player's max health"
                         )
                     diminution = actions["health modification"]["max health"]["diminution"]
@@ -147,7 +147,7 @@ def print_dialog(
                     player["max health"] -= diminution
                 if "augmentation" in actions["health modification"]["max health"]:
                     logger_sys.log_message(
-                        "INFO: Adding " + actions["health modification"]["max health"]["augmentation"] +
+                        "INFO: Adding " + str(actions["health modification"]["max health"]["augmentation"]) +
                         " hp from the player's max health"
                         )
                     augmentation = actions["health modification"]["max health"]["augmentation"]
@@ -156,13 +156,13 @@ def print_dialog(
                     player["max health"] += augmentation
         if "gold modification" in actions:
             if "diminution" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Removing " + actions["gold modification"]["diminution"] + " gold to the player")
+                logger_sys.log_message("INFO: Removing " + str(actions["gold modification"]["diminution"]) + " gold to the player")
                 diminution = actions["gold modification"]["diminution"]
                 if diminution.replace('$', '') in list(new_text_replacements):
                     diminution = new_text_replacements[diminution.replace('$', '')]
                 player["gold"] -= diminution
             if "augmentation" in actions["gold modification"]:
-                logger_sys.log_message("INFO: Adding " + actions["gold modification"]["augmentation"] + " gold to the player")
+                logger_sys.log_message("INFO: Adding " + str(actions["gold modification"]["augmentation"]) + " gold to the player")
                 augmentation = actions["gold modification"]["augmentation"]
                 if augmentation.replace('$', '') in list(new_text_replacements):
                     augmentation = new_text_replacements[augmentation.replace('$', '')]

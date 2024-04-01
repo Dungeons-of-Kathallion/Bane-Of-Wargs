@@ -1617,6 +1617,7 @@ Gerud Ancient Dungeon:
         room digit: 3
         room fight data:
           enemy list spawn: desert undeads
+          gold reward: 5
           no run away: false
       Middle Enigma:
         room type: enigma
@@ -1631,10 +1632,14 @@ Gerud Ancient Dungeon:
         room digit: 5
         room fight data:
           enemy list spawn: desert trolls
+          gold reward: 25
           no run away: true
       Mumakil Boss:
         room type: boss-fight
         room digit: 6
         room fight data:
           enemy list spawn: mumakil boss
+          gold reward: 35
+          item reward:
+          - Mumakil Tusk
           no run away: true
