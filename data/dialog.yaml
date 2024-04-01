@@ -135,5 +135,4 @@ Gerud Ancient Dungeon Reward:
     add attributes:
     - completed gerud ancient dungeon
     health modification:
-      max health:
-        augmentation: 999
+      augmentation: 999
