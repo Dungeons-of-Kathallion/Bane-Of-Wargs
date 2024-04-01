@@ -1529,7 +1529,7 @@ Goro Mounts Mines Dungeon:
         room digit: 2
         room enigma data:
           script name: levers_enigma.py
-      Levers Enigma:
+      Text Enigma:
         room type: enigma
         room digit: 3
         room enigma data:
