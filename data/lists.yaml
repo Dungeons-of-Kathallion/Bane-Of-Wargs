@@ -216,6 +216,54 @@ desert raids:
       hard: {"min": 2, "max": 5}
     enemies spawns:
       Desert Undead: 1
+south pillagers:
+  South Pillagers Stronger:
+    name: "You find a group of South Pillagers on your way!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 2, "max": 3}
+      normal: {"min": 2, "max": 5}
+      hard: {"min": 3, "max": 5}
+    enemies spawns:
+      South Pillager: 1
+  South Pillagers:
+    name: "You find a group of South Pillagers on your way!"
+    chance: .55
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      South Pillager: 1
+desert undeads:
+  Undeads Group:
+    name: "You find a group of undeads on your way!"
+    chance: .55
+    enemies rate:
+      easy: {"min": 1, "max": 3}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Desert Undead: 1
+  Undeads Group Stronger:
+    name: "You find a group of undeads on your way!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 2, "max": 4}
+      normal: {"min": 3, "max": 5}
+      hard: {"min": 3, "max": 6}
+    enemies spawns:
+      Desert Undead: 1
+desert trolls:
+  Desert Troll:
+    name: "You find a group of Desert Trolls on your way!"
+    chance: 1
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 2, "max": 3}
+    enemies spawns:
+      Desert Troll: 1
 balrog boss:
   Balrog:
     name: "You encounter a Balrog on your way!"
@@ -227,3 +275,14 @@ balrog boss:
     enemies spawns:
       Balrog: 1
       Cavern Troll: 1
+mumakil boss:
+  Mumakil:
+    name: "You encounter a Mumakil on your way!"
+    chance: 1
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 2, "max": 2}
+    enemies spawns:
+      Mumakil: 1
+      Desert Troll: 1

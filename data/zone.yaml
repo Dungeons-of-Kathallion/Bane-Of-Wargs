@@ -1500,21 +1500,21 @@ Goro Mounts Mines Dungeon:
   map:
     map full: |
       x__________x
-      |$CYAN*  $WHITE__$CYAN  * *$WHITE|
-      | $CYAN*$WHITE/$CYAN* $WHITE\__$CYAN* $WHITE|
-      | /$CYAN~~$WHITE/$CYAN~~~$WHITE\$CYAN*$WHITE|
-      |$CYAN/  /*  \ \$WHITE|
+      | $BROWN________ $WHITE|
+      | $BROWN|  $GRAY||  $BROWN| $WHITE|
+      | $BROWN/ $YELLOW/$GRAY||$YELLOW\ $BROWN\ $WHITE|
+      |$BROWN/ $YELLOW/ $GRAY|| $YELLOW\ $BROWN\$WHITE|
       x__________x
     map raw: |
       x__________x
-      |*  __  * *|
-      | */* \__* |
-      | /~~/~~~\*|
-      |/  /*  \ \|
+      | ________ |
+      | |  ||  | |
+      | / /||\ \ |
+      |/ / || \ \|
       x__________x
   dungeon:
     name: "Goro Mounts Mines Dungeon"
-    rooms number: 5
+    rooms number: 9
     reward dialog: Goro Mounts Mines Dungeon Reward
     no escape: false
     rooms:
@@ -1529,24 +1529,112 @@ Goro Mounts Mines Dungeon:
         room digit: 2
         room enigma data:
           script name: levers_enigma.py
+      Levers Enigma:
+        room type: enigma
+        room digit: 3
+        room enigma data:
+          script name: text_enigma.py
+          arguments:
+          - zone
       Mid-Boss Room:
         room type: boss-fight
-        room digit: 3
+        room digit: 4
         room fight data:
           enemy list spawn: generic difficult
           no run away: true
           gold reward: 10
       Second Guardians Room:
         room type: fight
-        room digit: 4
+        room digit: 5
         room fight data:
           enemy list spawn: generic
           no run away: false
+      Wargs Raid:
+        room type: fight
+        room digit: 6
+        room fight data:
+          enemy list spawn: warg raids
+          no run away: false
+      Stronger Enemies Before Boss:
+        room type: fight
+        room digit: 7
+        room fight data:
+          enemy list spawn: black
+          no run away: true
+      Levers Enigma:
+        room type: enigma
+        room digit: 8
+        room enigma data:
+          script name: levers_enigma.py
       Boss Room:
         room type: boss-fight
-        room digit: 5
+        room digit: 9
         room fight data:
           enemy list spawn: balrog boss
           no run away: true
           item reward:
           - Balrog Horn
+
+Gerud Ancient Dungeon:
+      name: "Gerud Ancient Dungeon"
+      description: "This old dungeon is full of South Pillagers and orks. Defeat them!"
+      type: dungeon
+      enemy spawning: black
+      map:
+        map full: |
+          x__________x
+          | $TAN________ $WHITE|
+          | $TAN|  $GRAY||  $TAN| $WHITE|
+          | $TAN/ $YELLOW/$GRAY||$YELLOW\ $TAN\ $WHITE|
+          |$TAN/ $YELLOW/ $GRAY|| $YELLOW\ $TAN\$WHITE|
+          x__________x
+        map raw: |
+          x__________x
+          | ________ |
+          | |  ||  | |
+          | / /||\ \ |
+          |/ / || \ \|
+          x__________x
+      dungeon:
+        name: "Gerud Ancient Dungeon"
+        rooms number: 6
+        reward dialog: Gerud Ancient Dungeon Reward
+        no escape: true
+        rooms:
+          Entrance Enigma:
+            room type: enigma
+            room digit: 1
+            room enigma data:
+              script name: levers_enigma.py
+          South Pillagers:
+            room type: fight
+            room digit: 2
+            room fight data:
+              enemy list spawn: south pillagers
+              no run away: false
+          Desert Undeads:
+            room type: fight
+            room digit: 3
+            room fight data:
+              enemy list spawn: desert undeads
+              no run away: false
+          Middle Enigma:
+            room type: enigma
+            room digit: 4
+            room enigma data:
+              script name: drawing_enigma.py
+              arguments:
+              - enemy
+              - preferences
+          Desert Trolls:
+            room type: boss-fight
+            room digit: 5
+            room fight data:
+              enemy list spawn: desert trolls
+              no run away: true
+          Mumakil Boss:
+            room type: boss-fight
+            room digit: 6
+            room fight data:
+              enemy list spawn: mumakil
+              no run away: true
