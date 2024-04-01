@@ -1500,7 +1500,7 @@ def interaction_harbor(map_zone, zone, map, player):
                     "INFO: Canceling ticket buying process --> current harbor" +
                     f"doesn't have a ticket named '{which_ticket}'"
                 )
-                cout(COLOR_YELLOW + "There isn't any ticket named like that" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + "There isn't any ticket named that" + COLOR_RESET_ALL)
         else:
             continue_harbor_actions = False
 
