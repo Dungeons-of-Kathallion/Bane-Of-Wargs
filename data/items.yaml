@@ -1941,19 +1941,34 @@ Warg Fur Shield:
   agility: -0.1
   gold: 9.56
   description: "A shredded ork shield with warg fur on it."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║            _..._           ║
+    ║        .-'_.---._'-.       ║
+    ║        ||####|(__)||       ║
+    ║        ((####|(**)))       ║
+    ║         '\###|_''/'        ║
+    ║          \\()|##//         ║
+    ║           \\ |#//          ║
+    ║            .\_/.           ║
+    ║             L.J            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$BROWN            _..._           $WHITE║
+    ║$BROWN        .-'_.---._'-.       $WHITE║
+    ║$BROWN        ||$TAN####$BROWN|(__)||       $WHITE║
+    ║$BROWN        (($TAN####$BROWN|($DARK_BROWN**$TAN)))       $WHITE║
+    ║$BROWN         '\$TAN###$BROWN|_''/'        $WHITE║
+    ║$BROWN          \\()|$TAN##$BROWN//         $WHITE║
+    ║$BROWN           \\ |$TAN#$BROWN//          $WHITE║
+    ║$BROWN            .\_/.           $WHITE║
+    ║$LIGHT_GRAY             L.J            $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 # Bags
@@ -1962,60 +1977,105 @@ Stretched Bag:
   inventory slots: 9
   gold: 11.1
   description: "An old stretched bag that lets you transport 9 items."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║           .--._ .          ║
+    ║            \ ).'           ║
+    ║             )|/            ║
+    ║          _.'''-._          ║
+    ║         (        \         ║
+    ║          \        )        ║
+    ║          )'-.    (         ║
+    ║         /     _.-'\        ║
+    ║        /           )       ║
+    ║       ('-._       /        ║
+    ║        \        _/         ║
+    ║         '-.__==''          ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$TAN           $BROWN.--._$TAN .          $WHITE║
+    ║$TAN            \ ).'           $WHITE║
+    ║$TAN             )|/            $WHITE║
+    ║$TAN          _$BROWN.'''-.$TAN_          $WHITE║
+    ║$TAN         (        \         $WHITE║
+    ║$TAN          \        )        $WHITE║
+    ║$TAN          )$BROWN'-.$TAN    (         $WHITE║
+    ║$TAN         /     $BROWN_.-'$TAN\        $WHITE║
+    ║$TAN        /           )       $WHITE║
+    ║$TAN       ($BROWN'-._$TAN       /        $WHITE║
+    ║$TAN        \        _/         $WHITE║
+    ║$TAN         '-.__$BROWN==''$TAN          $WHITE║
     ╚════════════════════════════╝
 Tissue Bag:
   type: "Bag"
-  inventory slots: 4
+  inventory slots: 5
   gold: 16.54
-  description: "A tissue but still strong bag to stores up to 4 items."
+  description: "A tissue but still strong bag to stores up to 5 items."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║           .--._ .          ║
+    ║            \ ).'           ║
+    ║             )|/            ║
+    ║          _.'''-._          ║
+    ║         (        \         ║
+    ║          \        )        ║
+    ║          )'-.    (         ║
+    ║         /     _.-'\        ║
+    ║        /           )       ║
+    ║       ('-._       /        ║
+    ║        \        _/         ║
+    ║         '-.__==''          ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$TAN           $BROWN.--._$TAN .          $WHITE║
+    ║$TAN            \ ).'           $WHITE║
+    ║$TAN             )|/            $WHITE║
+    ║$TAN          _$BROWN.'''-.$TAN_          $WHITE║
+    ║$TAN         (        \         $WHITE║
+    ║$TAN          \        )        $WHITE║
+    ║$TAN          )$BROWN'-.$TAN    (         $WHITE║
+    ║$TAN         /     $BROWN_.-'$TAN\        $WHITE║
+    ║$TAN        /           )       $WHITE║
+    ║$TAN       ($BROWN'-._$TAN       /        $WHITE║
+    ║$TAN        \        _/         $WHITE║
+    ║$TAN         '-.__$BROWN==''$TAN          $WHITE║
     ╚════════════════════════════╝
 Ork Bag:
   type: "Bag"
   inventory slots: 3
   gold: 13.84
   description: "A generic ork bag that lets you transport 3 items."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║           .--._ .          ║
+    ║            \ ).'           ║
+    ║             )|/            ║
+    ║          _.'''-._          ║
+    ║         (        \         ║
+    ║          \        )        ║
+    ║          )'-.    (         ║
+    ║         /     _.-'\        ║
+    ║        /           )       ║
+    ║       ('-._       /        ║
+    ║        \        _/         ║
+    ║         '-.__==''          ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$KHAKI           $DARK_BROWN.--._$KHAKI .          $WHITE║
+    ║$KHAKI            \ ).'           $WHITE║
+    ║$KHAKI             )|/            $WHITE║
+    ║$KHAKI          _$DARK_BROWN.'''-.$KHAKI_          $WHITE║
+    ║$KHAKI         (        \         $WHITE║
+    ║$KHAKI          \        )        $WHITE║
+    ║$KHAKI          )$DARK_BROWN'-.$KHAKI    (         $WHITE║
+    ║$KHAKI         /     $DARK_BROWN_.-'$KHAKI\        $WHITE║
+    ║$KHAKI        /           )       $WHITE║
+    ║$KHAKI       ($DARK_BROWN'-._$KHAKI       /        $WHITE║
+    ║$KHAKI        \        _/         $WHITE║
+    ║$KHAKI         '-.__$DARK_BROWN==''$KHAKI          $WHITE║
     ╚════════════════════════════╝
 # Maps
 Forlindon Woods Map:
@@ -2102,20 +2162,35 @@ Beef:
   max bonus: 0
   healing level: 6
   gold: 4.53
-  description: "A generic cooked beef than can restore your energy."
+  description: "A baked steak than restores your energy."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║      _______________       ║
+    ║     /    %%% %      \      ║
+    ║    /       %%   XX   \     ║
+    ║   /  X XX        XXX  \    ║
+    ║   |   XX XX       XX  []   ║
+    ║    \   XXXXX       XX []   ║
+    ║     \________\%   XX  /    ║
+    ║          ____/ %%    /     ║
+    ║         /___________/      ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$DARK_BROWN      _______________       $WHITE║
+    ║$BROWN     /    $RED%%% %$BROWN      \      $WHITE║
+    ║$BROWN    /       $RED%%   $DARK_REDXX$BROWN   \     $WHITE║
+    ║$BROWN   /  $DARK_REDX XX$BROWN        $DARK_REDXXX$BROWN  \    $WHITE║
+    ║$BROWN   |   $DARK_REDXX XX$BROWN       $DARK_REDXX$BROWN  $SILVER[]   $WHITE║
+    ║$BROWN    \   $DARK_REDXXXXX$BROWN       $DARK_REDXX$BROWN $SILVER[]   $WHITE║
+    ║$BROWN     \$DARK_BROWN________$BROWN\$RED%   $DARK_REDXX$BROWN  /    $WHITE║
+    ║$BROWN          $DARK_BROWN____$BROWN/ $RED%%$BROWN    /     $WHITE║
+    ║$BROWN         /$DARK_BROWN___________$BROWN/      $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Chicken:
@@ -2123,21 +2198,36 @@ Chicken:
   max bonus: 0
   healing level: 4
   gold: 3.2
-  description: "A generic cooked chicken leg that can restore your energy."
+  description: "A baked chicken wing that restores your energy."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║           __________       ║
+    ║          /          |      ║
+    ║         /    /      |      ║
+    ║        /    |       |      ║
+    ║        |    |       |      ║
+    ║        |            |      ║
+    ║        \___[[]]_____/      ║
+    ║            {}{}            ║
+    ║            {}{}            ║
+    ║            {}{}            ║
+    ║            {}{}            ║
+    ║           {  }{  }         ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$ORANGE           __________       $WHITE║
+    ║$ORANGE          /          |      $WHITE║
+    ║$ORANGE         /    /      |      $WHITE║
+    ║$ORANGE        /    |       |      $WHITE║
+    ║$ORANGE        |    |       |      $WHITE║
+    ║$ORANGE        |            |      $WHITE║
+    ║$ORANGE        \___$SILVER[[]]$ORANGE_____/      $WHITE║
+    ║            $SILVER{}{}            $WHITE║
+    ║            $SILVER{}{}            $WHITE║
+    ║            $SILVER{}{}            $WHITE║
+    ║            $SILVER{}{}            $WHITE║
+    ║           $SILVER{  }{  }         $WHITE║
     ╚════════════════════════════╝
 Apple:
   type: "Food"
@@ -2145,17 +2235,32 @@ Apple:
   healing level: 1
   gold: 1.7
   description: "Apples are not great for energy but are easy to find."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║          ,--./,-.          ║
+    ║         / #      \         ║
+    ║        |          |        ║
+    ║         \        /         ║
+    ║          `._,._,'          ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$RED          ,--.$GREEN/,$RED-.          $WHITE║
+    ║$RED         / $DARK_RED#$RED      \         $WHITE║
+    ║$RED        |          |        $WHITE║
+    ║$RED         \        /         $WHITE║
+    ║$RED          `._,._,'          $WHITE║
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2166,18 +2271,33 @@ Carrot:
   healing level: 2
   gold: 1.7
   description: "Carrot are great food for horses but not for humans."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                \/_         ║
+    ║              __/           ║
+    ║             (,;;)          ║
+    ║             (,;.)          ║
+    ║             (,;)           ║
+    ║             (,;)           ║
+    ║             |;/            ║
+    ║             |/             ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║                $GREEN\/_         $WHITE║
+    ║$TAN              __$GREEN/           $WHITE║
+    ║$ORANGE             (,;;)          $WHITE║
+    ║$ORANGE             (,;.)          $WHITE║
+    ║$ORANGE             (,;)           $WHITE║
+    ║$ORANGE             (,;)           $WHITE║
+    ║$ORANGE             |;/            $WHITE║
+    ║$ORANGE             |/             $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2185,41 +2305,71 @@ Porkchop:
   type: "Food"
   max bonus: 0
   healing level: 5
-  gold: 8.73
-  description: "Cooked porkchops are great food that restore your energy by a lot."
+  gold: 9.73
+  description: "Baked porkchops are great food that restores your energy by a lot."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║      _______________       ║
+    ║     /    %%% %      \      ║
+    ║    /       %%   XX   \     ║
+    ║   /  X XX        XXX  \    ║
+    ║   |   XX XX       XX  []   ║
+    ║    \   XXXXX       XX []   ║
+    ║     \________\%   XX  /    ║
+    ║          ____/ %%    /     ║
+    ║         /___________/      ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$DARK_BROWN      _______________       $WHITE║
+    ║$BROWN     /    $RED%%% %$BROWN      \      $WHITE║
+    ║$BROWN    /       $RED%%   $DARK_REDXX$BROWN   \     $WHITE║
+    ║$BROWN   /  $DARK_REDX XX$BROWN        $DARK_REDXXX$BROWN  \    $WHITE║
+    ║$BROWN   |   $DARK_REDXX XX$BROWN       $DARK_REDXX$BROWN  $SILVER[]   $WHITE║
+    ║$BROWN    \   $DARK_REDXXXXX$BROWN       $DARK_REDXX$BROWN $SILVER[]   $WHITE║
+    ║$BROWN     \$DARK_BROWN________$BROWN\$RED%   $DARK_REDXX$BROWN  /    $WHITE║
+    ║$BROWN          $DARK_BROWN____$BROWN/ $RED%%$BROWN    /     $WHITE║
+    ║$BROWN         /$DARK_BROWN___________$BROWN/      $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Raw Salmon:
   type: "Food"
   max bonus: 0
   healing level: 2
-  gold: 3.2
+  gold: 5.2
   description: "A raw salmon may not be the best thing to eat but it's always better than nothing."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║           /`·_,            ║
+    ║          /,___,`:·         ║
+    ║      ,_·´  ,   `·_,_·´)    ║
+    ║     : X ):´,      ,  {     ║
+    ║      `·_, `·  ,_·´\`·,)    ║
+    ║          `\\´´\,_·´        ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$RED           /`·_,            $WHITE║
+    ║$RED          /,___,`:·         $WHITE║
+    ║$SILVER      ,_·$RED´  ,   `·_,_·´)    $WHITE║
+    ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
+    ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
+    ║$RED          `\\´´\,_·´        $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2227,21 +2377,36 @@ Bread:
   type: "Food"
   max bonus: 0
   healing level: 6
-  gold: 5.32
+  gold: 7.52
   description: "Bread is a great food and energy source for adventurers. It is cheap and full of energy."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║          ____________      ║
+    ║         /.       '   )     ║
+    ║        /     ;       |     ║
+    ║       /  '    .     '|     ║
+    ║      /__________     |     ║
+    ║      (  '       ) ; /      ║
+    ║       |       '|   /       ║
+    ║       |.       |. /        ║
+    ║       |    ;   | /         ║
+    ║       |________|/          ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$TAN          ____________      $WHITE║
+    ║$TAN         /$YELLOW.$TAN       '   )     $WHITE║
+    ║$TAN        /     ;       |     $WHITE║
+    ║$TAN       /  '    $YELLOW.$TAN     '|     $WHITE║
+    ║$TAN      /__________     |     $WHITE║
+    ║$TAN      (  '       ) ; /      $WHITE║
+    ║$TAN       |       '|   /       $WHITE║
+    ║$TAN       |$YELLOW.$TAN       |$YELLOW.$TAN /        $WHITE║
+    ║$TAN       |    ;   | /         $WHITE║
+    ║$TAN       |________|/          $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 Cactus:
@@ -2250,40 +2415,74 @@ Cactus:
   healing level: 3
   gold: 5.12
   description: "Cactuses from the Gerud Valleys got a pretty good taste actually."
+  thumbnail raw: |
+    ╔═══════════════════════════════╗
+    ║               _    _          ║
+    ║              | |  | |         ║
+    ║             -| |  | |-        ║
+    ║         _    | |- | |         ║
+    ║       -| |   | |  | |-        ║
+    ║        |.|  -| ||/  |         ║
+    ║        | |-  |  ___/          ║
+    ║       -|.|   | | |            ║
+    ║        |  \_|| |              ║
+    ║         \____  |              ║
+    ║          |   | |-             ║
+    ║              | |              ║
+    ║             -| |              ║
+    ║              |_|              ║
+    ╚═══════════════════════════════╝
   thumbnail: |
-    ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ╚════════════════════════════╝
+    ╔═══════════════════════════════╗
+    ║$GREEN               _    _          ║
+    ║$GREEN              | |  | |         ║
+    ║             $DARK_GREEN-$GREEN| |  | |$DARK_GREEN-$GREEN        ║
+    ║$GREEN         _    | |$DARK_GREEN-$GREEN | |         ║
+    ║$GREEN       $DARK_GREEN-$GREEN| |   | |  | |$DARK_GREEN-$GREEN        ║
+    ║$GREEN        |.|  $DARK_GREEN-$GREEN| ||/  |         ║
+    ║$GREEN        | |$DARK_GREEN-$GREEN  |  ___/          ║
+    ║       $DARK_GREEN-$GREEN|.|   | | |            ║
+    ║$GREEN        |  \_|| |              ║
+    ║$GREEN         \____  |              ║
+    ║$GREEN          |   | |$DARK_GREEN-$GREEN             ║
+    ║$GREEN              | |              ║
+    ║             $DARK_GREEN-$GREEN| |              ║
+    ║$GREEN              |_|              ║
+    ╚═══════════════════════════════╝
 Rotten Flesh:
   type: "Food"
   max bonus: 0
   healing level: -2
   gold: .7
   description: "These pieces of flesh come from undeads, and it doesn't look quite tasty."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║      _______________       ║
+    ║     /    %%% %      \      ║
+    ║    /       %%   XX   \     ║
+    ║   /  X XX        XXX  \    ║
+    ║   |   XX XX       XX  []   ║
+    ║    \   XXXXX       XX []   ║
+    ║     \________\%   XX  /    ║
+    ║          ____/ %%    /     ║
+    ║         /___________/      ║
+    ║                            ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$DARK_BROWN      _______________       $WHITE║
+    ║$DARK_BROWN     /    $DARK_RED%%% %$DARK_BROWN      \      $WHITE║
+    ║$DARK_BROWN    /       $DARK_RED%%   $DARK_REDXX$DARK_BROWN   \     $WHITE║
+    ║$DARK_BROWN   /  $DARK_REDX XX$DARK_BROWN        $DARK_REDXXX$DARK_BROWN  \    $WHITE║
+    ║$DARK_BROWN   |   $DARK_REDXX XX$DARK_BROWN       $DARK_REDXX$DARK_BROWN  $SILVER[]   $WHITE║
+    ║$DARK_BROWN    \   $DARK_REDXXXXX$DARK_BROWN       $DARK_REDXX$DARK_BROWN $SILVER[]   $WHITE║
+    ║$DARK_BROWN     \$DARK_BROWN________$DARK_BROWN\$DARK_RED%   $DARK_REDXX$DARK_BROWN  /    $WHITE║
+    ║$DARK_BROWN          $DARK_BROWN____$DARK_BROWN/ $DARK_RED%%$DARK_BROWN    /     $WHITE║
+    ║$DARK_BROWN         /$DARK_BROWN___________$DARK_BROWN/      $WHITE║
     ║                            ║
     ╚════════════════════════════╝
 # Misc
