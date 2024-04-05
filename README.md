@@ -1,17 +1,22 @@
 # Bane Of Wargs (BETA)
 
 ```bash
-lolo@fedora ~ $ python main.py
+
 ████████████████████████████████████████████████████████████████████▀███████
 █▄─▄─▀██▀▄─██▄─▀█▄─▄█▄─▄▄─███─▄▄─█▄─▄▄─███▄─█▀▀▀█─▄██▀▄─██▄─▄▄▀█─▄▄▄▄█─▄▄▄▄█
 ██─▄─▀██─▀─███─█▄▀─███─▄█▀███─██─██─▄██████─█─█─█─███─▀─███─▄─▄█─██▄─█▄▄▄▄─█
 ▀▄▄▄▄▀▀▄▄▀▄▄▀▄▄▄▀▀▄▄▀▄▄▄▄▄▀▀▀▄▄▄▄▀▄▄▄▀▀▀▀▀▀▄▄▄▀▄▄▄▀▀▄▄▀▄▄▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀
 
-> Play Game
-  Manage Saves
-  Preferences
-  Check Update
-  Quit
+╭────────────────────────────────────────────────────╮
+│ 0> Play Game                                       │
+│ 1> Manage Saves                                    │
+│ 2> Preferences                                     │
+│ 3> Gameplay Guide                                  │
+│ 4> Check Logs                                      │
+│ 5> Credits                                         │
+│ 6> Quit                                            │
+╰────────────────────────────────────────────────────╯
+$ _
 ```
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 ![Python Version](https://badgen.net/badge/python/3.12/blue?icon=python)
