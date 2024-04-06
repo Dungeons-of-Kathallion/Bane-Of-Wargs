@@ -384,7 +384,7 @@ def temporary_git_file_download(selected_file, url):
     global file_text_data
     # Create a temporary directory to after
     # clone the repository and select the chosen
-    # file and export its data in a string
+    # file and export its data into a string
 
     try:
         temporary_dir = tempfile.mkdtemp()
