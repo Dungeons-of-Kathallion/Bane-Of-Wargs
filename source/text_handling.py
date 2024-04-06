@@ -255,16 +255,8 @@ def print_zone_map_alone(zone_name, zone):
 
 def print_npc_thumbnail(npc, preferences):
     logger_sys.log_message(f"INFO: Printing NPC '{npc}' thumbnail")
-    if preferences["latest preset"]["type"] == "vanilla":
-        with open(program_dir + '/game/imgs/' + npc + ".txt") as f:
-            to_print = str(f.read())
-    else:
-        with open(
-            program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
-            '/imgs/' + npc + ".txt"
-        ) as f:
-            to_print = str(f.read())
-    to_print = apply_yaml_data_color_code(to_print)
+    with open(program_dir + '/temp/imgs/' + npc + ".txt") as f:
+        cout(apply_yaml_data_color_code(f.read()))
 
     count = 0
     for line in to_print.splitlines():
@@ -274,16 +266,8 @@ def print_npc_thumbnail(npc, preferences):
 
 def print_enemy_thumbnail(enemy, preferences):
     logger_sys.log_message(f"INFO: Printing enemy '{enemy}' thumbnail")
-    if preferences["latest preset"]["type"] == "vanilla":
-        with open(program_dir + '/game/imgs/' + enemy + ".txt") as f:
-            to_print = str(f.read())
-    else:
-        with open(
-            program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
-            '/imgs/' + enemy + ".txt"
-        ) as f:
-            to_print = str(f.read())
-    to_print = apply_yaml_data_color_code(to_print)
+    with open(program_dir + '/temp/imgs/' + enemy + ".txt") as f:
+        to_print = cout(apply_yaml_data_color_code(f.read()))
 
     count = 0
     for line in to_print.splitlines():
@@ -342,17 +326,12 @@ def transform_negative_number_to_positive(number):
     return number
 
 
-def print_map_art(item_data, plugin_name=False):
-    # Get the path of the file, following the map
-    # name and if the player's using a plugin or
-    # vanilla data.
+def print_map_art(item_data):
+    # Get the path of the file
     # Then, each lines of the file one by one and
     # prettify them, to after print the final result
     # to the player's UI
-    if plugin_name is not False:
-        path = f"{program_dir}/plugins/{plugin_name}/imgs/{item_data["map"]}.txt"
-    else:
-        path = f"{program_dir}/game/imgs/{item_data["map"]}.txt"
+    path = f"{program_dir}/temp/imgs/{item_data["map"]}.txt"
     with open(path, 'r') as f:
         art = f.readlines()
 

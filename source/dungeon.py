@@ -272,15 +272,11 @@ def dungeon_loop(
                 cinput("Press enter to continue...\n")
             current_room += 1
         elif action.startswith('c') and "dungeon map" in current_dungeon["dungeon"]:
-            if preferences["latest preset"]["type"] == "plugin":
-                plugin = preferences["latest preset"]["plugin"]
-            else:
-                plugin = False
             cout("╔" + ("═" * 53) + "╗")
             map_data = {
                 "map": current_dungeon["dungeon"]["dungeon map"]
             }
-            text_handling.print_map_art(map_data, plugin_name=plugin)
+            text_handling.print_map_art(map_data)
             cout("╚" + ("═" * 53) + "╝")
             cinput()
         elif action.startswith('u'):

@@ -19,25 +19,14 @@ def load_script(
     start_player, lists, zone, dialog, mission, mounts, start_time,
     generic_text_replacements, plugin=False
 ):
-    if plugin:
-        with open(
-            program_dir + '/plugins/' + preferences["latest preset"]["plugin"] +
-            '/scripts/' + script_data["script name"]
-        ) as f:
-            execute_script(
-                script_data, f, player, map, item, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts, start_time,
-                generic_text_replacements, preferences
-            )
-    else:
-        with open(
-            program_dir + '/game/scripts/' + script_data["script name"]
-        ) as f:
-            execute_script(
-                script_data, f, player, map, item, drinks, enemy, npcs,
-                start_player, lists, zone, dialog, mission, mounts, start_time,
-                generic_text_replacements, preferences
-            )
+    with open(
+        program_dir + '/temp/scripts/' + script_data["script name"]
+    ) as f:
+        execute_script(
+            script_data, f, player, map, item, drinks, enemy, npcs,
+            start_player, lists, zone, dialog, mission, mounts, start_time,
+            generic_text_replacements, preferences
+        )
 
 
 def execute_script(

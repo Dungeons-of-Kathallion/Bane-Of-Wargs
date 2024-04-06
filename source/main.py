@@ -3005,13 +3005,9 @@ def run(play):
                         save_file, map, start_time, enemies_damage_coefficient
                     )
                 elif choice == 'Examine Map':
-                    if preferences["latest preset"]["type"] == "plugin":
-                        plugin = preferences["latest preset"]["plugin"]
-                    else:
-                        plugin = False
                     cout("")
                     cout("╔" + ("═" * 53) + "╗")
-                    text_handling.print_map_art(item[which_item], plugin_name=plugin)
+                    text_handling.print_map_art(item[which_item])
                     cout("╚" + ("═" * 53) + "╝")
                     cinput()
                 elif choice == 'Get Rid':

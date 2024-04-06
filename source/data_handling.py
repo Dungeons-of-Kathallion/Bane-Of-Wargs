@@ -16,6 +16,7 @@ import fsspec
 import time
 import io
 import subprocess
+import shutil
 from rich.progress import Progress
 
 
@@ -49,6 +50,28 @@ def load_game_data(which_type):
     global mission_plugin, mounts_plugin
 
     cout()
+    # Create a dir, where all game imgs/ files willl
+    # be stored. First, we create the directory if
+    # he doesn't exist yet. If he already exists, empty
+    # it. Same for scripts.
+    if not os.path.exists(program_dir + "/temp"):
+        os.mkdir(program_dir + "/temp")
+    imgs_dir = program_dir + "/temp/imgs/"
+    if not os.path.exists(imgs_dir):
+        os.mkdir(imgs_dir)
+    else:
+        for file in os.listdir(imgs_dir):
+            file = os.path.join(imgs_dir, file)
+            os.remove(file)
+
+    scripts_dir = program_dir + "/temp/scripts/"
+    if not os.path.exists(scripts_dir):
+        os.mkdir(scripts_dir)
+    else:
+        for file in os.listdir(scripts_dir):
+            file = os.path.join(scripts_dir, file)
+            os.remove(file)
+
     # Load the vanilla game data, and then if the inputted
     # `which_type` variable is equal to 'plugin', also
     # load every data of every plugin in the folder, if
@@ -147,6 +170,14 @@ def load_game_data(which_type):
         for i in list(mounts):
             check_yaml.examine_mount(mounts[i])
             progress.update(task_mount, advance=1)
+
+        # Add the images and the scripts to the shared folder
+        for image in os.listdir(program_dir + "/game/imgs"):
+            image_path = os.path.join(program_dir + "/game/imgs/", image)
+            shutil.copy(image_path, imgs_dir + image)
+        for script in os.listdir(program_dir + "/game/scripts"):
+            script_path = os.path.join(program_dir + "/game/scripts/", script)
+            shutil.copy(script_path, scripts_dir + script)
 
     if which_type == 'plugin':
         for what_plugin in os.listdir(program_dir + "/plugins/"):
@@ -282,6 +313,14 @@ def load_game_data(which_type):
                         dialog = dialog | dialog_plugin
                         mission = mission | mission_plugin
                         mounts = mounts | mounts_plugin
+
+                        # Add the images and scripts to the shared folder
+                        for image in os.listdir(program_dir + "/plugins/" + what_plugin + "/imgs/"):
+                            image_path = os.path.join(program_dir + "/plugins/" + what_plugin + "/imgs/", image)
+                            shutil.copy(image_path, imgs_dir + image)
+                        for script in os.listdir(program_dir + "/plugins/" + what_plugin + "/scripts/"):
+                            script_path = os.path.join(program_dir + "/plugins/" + what_plugin + "/scripts/", script)
+                            shutil.copy(script_path, scripts_dir + script)
     else:
         return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 
