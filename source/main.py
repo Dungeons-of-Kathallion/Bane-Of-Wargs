@@ -3466,6 +3466,11 @@ def run(play):
             player["x"] = map[teleportation_point]["x"]
             player["y"] = map[teleportation_point]["y"]
             continued_command = True
+        elif command.lower().startswith('$find$point$'):
+            x_coordinate = terminal_handling.cinput_int("X: ")
+            y_coordinate = terminal_handling.cinput_int("Y: ")
+            cinput("Found map point: " + str(search(x_coordinate, y_coordinate)))
+            continued_command = True
         else:
             continued_utility = False
             for current_utility in utilities_list:
