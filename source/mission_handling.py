@@ -291,11 +291,11 @@ def offer_mission(
                 )
                 if "force accept" in list(data):
                     if not data["force accept"]:
-                        accept = cinput("Do you want to accept this task? (y/n)")
+                        accept = cinput("Do you want to accept this task? (y/n) ")
                     else:
                         accept = "y"
                 else:
-                    accept = cinput("Do you want to accept this task? (y/n)")
+                    accept = cinput("Do you want to accept this task? (y/n) ")
                 text_handling.print_separator('=')
                 if accept.startswith('y'):
                     if player["active missions"] is None:

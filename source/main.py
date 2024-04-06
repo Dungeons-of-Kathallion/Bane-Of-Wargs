@@ -1807,7 +1807,7 @@ def run(play):
 
         # Check if the player has a mission that
         # have a stopover at the current map location
-        # If he does, at the current map location
+        # If he does, add the current map location
         # to the player save to let the program
         # known that
         logger_sys.log_message(

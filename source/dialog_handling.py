@@ -50,7 +50,7 @@ def print_dialog(
         )
         logger_sys.log_message(
             f"ERROR: an error occurred when trying to run dialog '{current_dialog_name}' " +
-            "conversations:\n{error} --> shutting down game"
+            f"conversations:\n{error} --> shutting down game"
         )
         text_handling.exit_game()
 
@@ -305,12 +305,11 @@ def conversation_print(conversation_input, preferences, new_text_replacements):
     conversation_input = conversation_input.replace('print(', '')
     conversation_input = conversation_input.replace(')', '')
     count = 0
-    while count < len(list(new_text_replacements)):
+    for repacement in list(new_text_replacements):
         conversation_input = conversation_input.replace(
-            '$' + list(new_text_replacements)[count], str(new_text_replacements[list(new_text_replacements)[count]])
+            replacement, str(new_text_replacements[replacement])
         )
 
-        count += 1
     text_handling.print_speech_text_effect(conversation_input, preferences)
 
 
