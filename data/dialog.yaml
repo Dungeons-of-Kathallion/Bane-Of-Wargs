@@ -1,8 +1,8 @@
 Start Dialog:
   conversation:
     - label 1:
-      - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the Stall Island. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarfs, great mountains, adventure...)"
-      - print(You currently have a order to deliver to a friend of yours, at the -62, 59 coordinates.)
+      - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this calm forest: your home's in a small town that lives apart from the other great cities in the Stall Island, Kathallion Archipelago. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarfs, great mountains, adventure...)"
+      - "print(You currently have an order to deliver to a friend of yours, at the -62, 59 coordinates.)"
       - "print(Hint: check the gameplay guide at https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide)"
   use actions: false
 
