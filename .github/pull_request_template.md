@@ -31,6 +31,9 @@ This PR addresses the game progression goal #{{goal}}
 {{Describe how you tested these changes. Ensure that new issues aren't introduced.}}
 {{If this is a new feature, have you added any automated tests using the unit or integration testing framework?}}
 
+## Testing Method
+{{Provide detailed and concise method that the reviewers can use to test your changes.}}
+
 ## Save File
 This save file can be used to test these changes:
 {{Attach a save file that allows people to easily test your added mission content or see your new in-game art.}}
