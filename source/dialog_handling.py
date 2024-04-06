@@ -305,7 +305,7 @@ def conversation_print(conversation_input, preferences, new_text_replacements):
     conversation_input = conversation_input.replace('print(', '')
     conversation_input = conversation_input.replace(')', '')
     count = 0
-    for repacement in list(new_text_replacements):
+    for replacement in list(new_text_replacements):
         conversation_input = conversation_input.replace(
             replacement, str(new_text_replacements[replacement])
         )
