@@ -84,17 +84,17 @@ if not os.path.exists(program_dir):
         f.write(default_config_data)
     logger_sys.log_message(f"INFO: Created player preferences at '{program_dir}/preferences.yaml'")
     # Create the plugins, saves, game data folder in the config file
-    logger_sys.log_message("INFO: Creating directory '{program_dir}/plugins'")
+    logger_sys.log_message(f"INFO: Creating directory '{program_dir}/plugins'")
     os.mkdir(program_dir + "/plugins")
-    logger_sys.log_message("INFO: Creating directory '{program_dir}/saves'")
+    logger_sys.log_message(f"INFO: Creating directory '{program_dir}/saves'")
     os.mkdir(program_dir + "/saves")
-    logger_sys.log_message("INFO: Creating directory '{program_dir}/game'")
+    logger_sys.log_message(f"INFO: Creating directory '{program_dir}/game'")
     os.mkdir(program_dir + "/game")
-    logger_sys.log_message("INFO: Creating directory '{program_dir}/logs'")
+    logger_sys.log_message(f"INFO: Creating directory '{program_dir}/logs'")
     os.mkdir(program_dir + "/logs")
-    logger_sys.log_message("INFO: Creating directory '{program_dir}/docs'")
+    logger_sys.log_message(f"INFO: Creating directory '{program_dir}/docs'")
     os.mkdir(program_dir + "/docs")
-    logger_sys.log_message("INFO: Writing game data version to '{program_dir}/game/VERSION.bow'")
+    logger_sys.log_message(f"INFO: Writing game data version to '{program_dir}/game/VERSION.bow'")
     with open(f"{program_dir}/game/VERSION.bow", 'w') as f:
         f.write(str(GAME_DATA_VERSION))
     first_start = True
