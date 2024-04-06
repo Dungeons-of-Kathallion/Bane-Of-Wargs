@@ -612,19 +612,19 @@ while menu:
                         )
                     elif parameter == 'Download Organization/User':
                         preferences["game data download"]["org"] = cinput(
-                            "Which github orginization or user you want the data to be downloaded from?\n"
+                            "Which github organization or user you want the data to be downloaded from?\n"
                         )
                     elif parameter == 'Download Repository':
                         preferences["game data download"]["repository"] = cinput(
                             "Which github repository you want the data to be downloaded from?\n"
                         )
                     else:
-                        temp_file =  tempfile.mkdtemp() + '/.gitignore'
+                        temp_file = tempfile.mkdtemp() + '/.gitignore'
                         download = preferences["game data download"]
                         test = data_handling.fsspec_download(
                             '.gitignore', temp_file, download["branch"], download["repository"], download["org"]
                         )
-                        if test == True:
+                        if test:
                             cout("\nTest passed successfully!")
                             time.sleep(2)
                         else:
