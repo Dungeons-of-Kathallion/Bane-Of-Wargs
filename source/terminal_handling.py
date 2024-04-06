@@ -66,21 +66,21 @@ def show_menu(options, length=52):
     choice_number = len(options)
 
     # Print the box with the choices displayed
-    print("╭" + int(length) * '─' + '╮')
+    cout("╭" + int(length) * '─' + '╮')
 
     count = 0
     while count < choice_number:
         number_of_spaces_remaining = (length - 2) - (2 + len(list(str(options[count]))))
         if len(str(count)) > 1:
             number_of_spaces_remaining -= 1
-        print(
+        cout(
             "│ " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(count) +
             '> ' + COLOR_RESET_ALL + str(options[count]) + int(number_of_spaces_remaining) * ' ' + '│'
         )
 
         count += 1
 
-    print("╰" + int(length) * '─' + '╯')
+    cout("╰" + int(length) * '─' + '╯')
 
     while continue_action:
         error_happened = False
@@ -95,14 +95,14 @@ def show_menu(options, length=52):
 
         # Check if the input is an integer
         if input_type != "<class 'int'>":
-            print(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
+            cout(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
             time.sleep(.5)
             error_happened = True
 
         # Check if the input is in the choices
         if not error_happened:
             if int(get_input) < 0 or int(get_input) > (choice_number - 1):
-                print(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
+                cout(COLOR_YELLOW + f"Option '{get_input}' is not valid!" + COLOR_RESET_ALL)
                 time.sleep(.5)
                 error_happened = True
 

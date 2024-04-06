@@ -245,50 +245,19 @@ def print_zone_map(zone_name, zone, player, preferences):
 def print_zone_map_alone(zone_name, zone):
     logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
     to_print = zone[zone_name]["map"]["map full"]
-    to_print = apply_yaml_data_color_code(to_print)
-
-    count = 0
-    for line in to_print.splitlines():
-        cout(line)
-        count += 1
+    cout(apply_yaml_data_color_code(to_print))
 
 
 def print_npc_thumbnail(npc, preferences):
     logger_sys.log_message(f"INFO: Printing NPC '{npc}' thumbnail")
-    if preferences["latest preset"]["type"] == "vanilla":
-        with open(program_dir + '/game/imgs/' + npc + ".txt") as f:
-            to_print = str(f.read())
-    else:
-        with open(
-            program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
-            '/imgs/' + npc + ".txt"
-        ) as f:
-            to_print = str(f.read())
-    to_print = apply_yaml_data_color_code(to_print)
-
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
+    with open(program_dir + '/temp/imgs/' + npc + ".txt") as f:
+        cout(apply_yaml_data_color_code(f.read()))
 
 
 def print_enemy_thumbnail(enemy, preferences):
     logger_sys.log_message(f"INFO: Printing enemy '{enemy}' thumbnail")
-    if preferences["latest preset"]["type"] == "vanilla":
-        with open(program_dir + '/game/imgs/' + enemy + ".txt") as f:
-            to_print = str(f.read())
-    else:
-        with open(
-            program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
-            '/imgs/' + enemy + ".txt"
-        ) as f:
-            to_print = str(f.read())
-    to_print = apply_yaml_data_color_code(to_print)
-
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
+    with open(program_dir + '/temp/imgs/' + enemy + ".txt") as f:
+        to_print = cout(apply_yaml_data_color_code(f.read()))
 
 
 def a_an_check(word):
@@ -307,9 +276,7 @@ def a_an_check(word):
 
 
 def print_item_thumbnail(to_print):
-    to_print = apply_yaml_data_color_code(to_print)
-
-    print(to_print)
+    cout(apply_yaml_data_color_code(to_print))
     return to_print
 
 
@@ -342,17 +309,12 @@ def transform_negative_number_to_positive(number):
     return number
 
 
-def print_map_art(item_data, plugin_name=False):
-    # Get the path of the file, following the map
-    # name and if the player's using a plugin or
-    # vanilla data.
+def print_map_art(item_data):
+    # Get the path of the file
     # Then, each lines of the file one by one and
     # prettify them, to after print the final result
     # to the player's UI
-    if plugin_name is not False:
-        path = f"{program_dir}/plugins/{plugin_name}/imgs/{item_data["map"]}.txt"
-    else:
-        path = f"{program_dir}/game/imgs/{item_data["map"]}.txt"
+    path = f"{program_dir}/temp/imgs/{item_data["map"]}.txt"
     with open(path, 'r') as f:
         art = f.readlines()
 
@@ -362,5 +324,5 @@ def print_map_art(item_data, plugin_name=False):
         line = line.replace('≈', '\033[38;2;250;223;199m' + "≈" + '\033[38;2;255;208;166m')
         for character in human_civilizations:
             line = line.replace(character, '\033[38;2;255;195;141m' + character + '\033[38;2;255;208;166m')
-        print("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
+        cout("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
     return art

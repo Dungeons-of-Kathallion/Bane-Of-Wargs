@@ -227,12 +227,10 @@ while menu:
                     lists, zone, dialog, mission, mounts
                 ) = data_handling.load_game_data('vanilla')
             else:
-
-                what_plugin = preferences["latest preset"]["plugin"]
                 (
                     map, item, drinks, enemy, npcs, start_player,
                     lists, zone, dialog, mission, mounts
-                ) = data_handling.load_game_data('plugin', what_plugin)
+                ) = data_handling.load_game_data('plugin')
 
             open_save = preferences["latest preset"]["save"]
             save_file = program_dir + "/saves/save_" + open_save + ".yaml"
@@ -273,27 +271,16 @@ while menu:
             logger_sys.log_message("INFO: Starting game and exiting menu")
 
         elif choice == 'Play Plugin':
-            text = "Please select a plugin to use"
-            text_handling.print_speech_text_effect(text, preferences)
-            res = []
-
-            logger_sys.log_message(f"INFO: Searching for plugins in the '{program_dir}/plugins/' directory")
-            for search_for_plugins in os.listdir(program_dir + "/plugins/"):
-                res.append(search_for_plugins)
-
-            what_plugin = text_handling.select_save(res)
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "plugin"
-            preferences["latest preset"]["plugin"] = what_plugin
 
             (
                 map, item, drinks, enemy, npcs, start_player,
                 lists, zone, dialog, mission, mounts
-            ) = data_handling.load_game_data('plugin', what_plugin)
+            ) = data_handling.load_game_data('plugin')
         else:
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "vanilla"
-            preferences["latest preset"]["plugin"] = "none"
 
             (
                 map, item, drinks, enemy, npcs, start_player,
@@ -301,7 +288,7 @@ while menu:
             ) = data_handling.load_game_data('vanilla')
 
         if not using_latest_preset:
-            text = "Please select an action:"
+            text = "\nPlease select an action:"
             text_handling.print_speech_text_effect(text, preferences)
             options = ['Open Save', 'New Save']
             choice = terminal_handling.show_menu(options)
@@ -572,12 +559,145 @@ while menu:
                 os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
                 os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
     elif choice == 'Preferences':
-        logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml'")
-        logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
-        data_handling.open_file(program_dir + "/preferences.yaml")
-        with open(program_dir + '/preferences.yaml') as f:
-            new_preferences = yaml.safe_load(f)
-        logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
+        cout("Which type of editing do you want to use to update your preferences?")
+        which_type = terminal_handling.show_menu(['GUI Editing', 'Manual Editing'])
+        if which_type == 'GUI Editing':
+            preferences_menu = True
+            while preferences_menu:
+                text_handling.clear_prompt()
+                text_handling.print_title(preferences)
+                options = [
+                    'Title Theme', 'Title Style', 'Game Speed', 'Game Updating',
+                    'Logging Level', 'Enabled Plugins', 'Exit'
+                ]
+                choice = terminal_handling.show_menu(options)
+                cout()
+                if choice == 'Title Theme':
+                    choices = [
+                        'blackwhite', 'purplepink', 'greenblue', 'darkblueblue',
+                        'yellowred', 'pinkred', 'purpleblue', 'greenyellow',
+                        'random', 'OFF'
+                    ]
+                    preferences["theme"] = terminal_handling.show_menu(choices)
+                elif choice == 'Title Style':
+                    choices = ['Vanilla Style', 'Alternative Style']
+                    style = terminal_handling.show_menu(choices)
+                    if style == choices[0]:
+                        preferences["title style"] = 1
+                    else:
+                        preferences["title style"] = 2
+                elif choice == 'Game Speed':
+                    choices = ['Normal Speed', 'Faster Speed']
+                    speed = terminal_handling.show_menu(choices)
+                    if speed == choices[0]:
+                        preferences["speed up"] = False
+                    else:
+                        preferences["speed up"] = True
+                elif choice == 'Game Updating':
+                    cout("Which parameter you wish to change?")
+                    parameter = terminal_handling.show_menu([
+                        'Auto Updating', 'Download Branch', 'Download Organization/User',
+                        'Download Repository', 'Test Settings'
+                    ])
+                    if parameter == 'Auto Updating':
+                        choices = ['Enable', 'Disable']
+                        speed = terminal_handling.show_menu(choices)
+                        if speed == choices[0]:
+                            preferences["auto update"] = True
+                        else:
+                            preferences["auto update"] = False
+                    elif parameter == 'Download Branch':
+                        preferences["game data download"]["branch"] = cinput(
+                            "Which github branch or tag you want the data to be downloaded from?\n"
+                        )
+                    elif parameter == 'Download Organization/User':
+                        preferences["game data download"]["org"] = cinput(
+                            "Which github organization or user you want the data to be downloaded from?\n"
+                        )
+                    elif parameter == 'Download Repository':
+                        preferences["game data download"]["repository"] = cinput(
+                            "Which github repository you want the data to be downloaded from?\n"
+                        )
+                    else:
+                        temp_file = tempfile.mkdtemp() + '/.gitignore'
+                        download = preferences["game data download"]
+                        test = data_handling.fsspec_download(
+                            '.gitignore', temp_file, download["branch"], download["repository"], download["org"]
+                        )
+                        if test:
+                            cout("\nTest passed successfully!")
+                            time.sleep(2)
+                        else:
+                            time.sleep(4)
+                elif choice == 'Logging Level':
+                    choices = ['Full Logging', 'No Info', 'Only Errors']
+                    logging = terminal_handling.show_menu(choices)
+                    if logging == choices[0]:
+                        preferences["logging level"] = 1
+                    elif logging == choices[1]:
+                        preferences["logging level"] = 2
+                    else:
+                        preferences["logging level"] = 3
+                elif choice == 'Enabled Plugins':
+                    plugins = os.listdir(program_dir + "/plugins/")
+                    plugins_data = {}
+
+                    # Run checks so that we're sure that
+                    # every plugin has his own `.game.BOW` file
+                    for plugin in plugins:
+                        file = f"{program_dir}/plugins/{plugin}/.game.BOW"
+                        if not os.path.isfile(file):
+                            with open(file, "w") as f:
+                                f.write("True")
+
+                    # Generate the data about the plugins
+                    # (if each plugin is enabled or not)
+                    for plugin in plugins:
+                        file = f"{program_dir}/plugins/{plugin}/.game.BOW"
+                        with open(file, "r") as f:
+                            plugins_data[plugin] = f.readlines()[0]
+
+                    # Plugin enabling loop starts here
+                    plugin_changes = True
+                    while plugin_changes:
+                        # Generate the menu entries
+                        options = []
+                        for plugin in list(plugins_data):
+                            status = plugins_data[plugin]
+                            if status == "True":
+                                status = "ON"
+                            else:
+                                status = "OFF"
+                            options += [f"{plugin}; {status}"]
+                        options += ['EXIT']
+
+                        # Ask for the user which plugin
+                        # should be enabled or not
+                        text_handling.clear_prompt()
+                        text_handling.print_title(preferences)
+                        action_chosen = terminal_handling.show_menu(options)
+                        if action_chosen == 'EXIT':
+                            plugin_changes = False
+                        else:
+                            chosen_plugin = plugins[options.index(action_chosen)]
+                            file = f"{program_dir}/plugins/{chosen_plugin}/.game.BOW"
+                            if plugins_data[chosen_plugin] == "True":
+                                plugins_data[chosen_plugin] = "False"
+                                with open(file, "w") as f:
+                                    f.write("False")
+                            else:
+                                plugins_data[chosen_plugin] = "True"
+                                with open(file, "w") as f:
+                                    f.write("True")
+                else:
+                    preferences_menu = False
+        elif which_type == 'Manual Editing':
+            logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml'")
+            logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
+            data_handling.open_file(program_dir + "/preferences.yaml")
+            with open(program_dir + '/preferences.yaml') as f:
+                new_preferences = yaml.safe_load(f)
+            logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
     elif choice == 'Gameplay Guide':
         first_timer = time.time()
         logger_sys.log_message("INFO: Downloading game documentation")
@@ -655,11 +775,10 @@ while menu:
 
                     pydoc.pager(content)
     elif choice == 'Credits':
-        # Get the credits file from github
-        # and get its content
-        credits = data_handling.temporary_git_file_download(
-            'credits.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
-        )
+        # Get the credits file and
+        # display it in a pager style
+        with open(f"{program_dir}/game/docs/credits.txt"):
+            credits = f.read()
         pydoc.pager(credits)
     else:
         text_handling.clear_prompt()
@@ -2886,13 +3005,9 @@ def run(play):
                         save_file, map, start_time, enemies_damage_coefficient
                     )
                 elif choice == 'Examine Map':
-                    if preferences["latest preset"]["type"] == "plugin":
-                        plugin = preferences["latest preset"]["plugin"]
-                    else:
-                        plugin = False
                     cout("")
                     cout("╔" + ("═" * 53) + "╗")
-                    text_handling.print_map_art(item[which_item], plugin_name=plugin)
+                    text_handling.print_map_art(item[which_item])
                     cout("╚" + ("═" * 53) + "╝")
                     cinput()
                 elif choice == 'Get Rid':

@@ -29,44 +29,10 @@ def print_dialog(
         current_dialog_scene = str(current_dialog["scene"])
         logger_sys.log_message(
             f"INFO: Printing dialog '{current_dialog_name}' scene at " +
-            f"'{program_dir}/game/imgs/{current_dialog_scene}.txt'"
+            f"'{program_dir}/temp/imgs/{current_dialog_scene}.txt'"
         )
-        if preferences["latest preset"]["type"] == 'vanilla':
-            with open(program_dir + '/game/imgs/' + str(current_dialog["scene"]) + '.txt') as f:
-                to_print = str(f.read())
-                to_print = to_print.replace('$RED', '\033[0;31m')
-                to_print = to_print.replace('$GREEN', '\033[0;32m')
-                to_print = to_print.replace('$YELLOW', '\033[0;33m')
-                to_print = to_print.replace('$BLUE', '\033[0;34m')
-                to_print = to_print.replace('$PURPLE', '\033[0;34m')
-                to_print = to_print.replace('$CYAN', '\033[0;36m')
-                to_print = to_print.replace('$WHITE', '\033[0;37m')
-                to_print = to_print.replace('$BLACK', '\033[0;30m')
-                to_print = to_print.replace('$BROWN', '\033[0;33m')
-                to_print = to_print.replace('$GRAY', '\033[1;30m')
-                cout(to_print)
-        else:
-            current_plugin = str(preferences["latest preset"]["plugin"])
-            logger_sys.log_message(
-                f"INFO: Printing dialog '{current_dialog_name}' scene at " +
-                f"'{program_dir}/plugins/{current_plugin}/imgs/{current_dialog_scene}.txt'"
-            )
-            with open(
-                program_dir + '/plugins/' + str(preferences["latest preset"]["plugin"]) +
-                '/imgs/' + str(current_dialog["scene"]) + '.txt'
-            ) as f:
-                to_print = str(f.read())
-                to_print = to_print.replace('$RED', '\033[0;31m')
-                to_print = to_print.replace('$GREEN', '\033[0;32m')
-                to_print = to_print.replace('$YELLOW', '\033[0;33m')
-                to_print = to_print.replace('$BLUE', '\033[0;34m')
-                to_print = to_print.replace('$PURPLE', '\033[0;34m')
-                to_print = to_print.replace('$CYAN', '\033[0;36m')
-                to_print = to_print.replace('$WHITE', '\033[0;37m')
-                to_print = to_print.replace('$BLACK', '\033[0;30m')
-                to_print = to_print.replace('$BROWN', '\033[0;33m')
-                to_print = to_print.replace('$GRAY', '\033[1;30m')
-                cout(to_print)
+        with open(f"{program_dir}/temp/imgs/{current_dialog_scene}.txt") as f:
+            cout(text_handling.apply_yaml_data_color_code(f.read()))
     count = 0
 
     # Conversation loop
