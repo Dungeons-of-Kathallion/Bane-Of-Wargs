@@ -245,12 +245,7 @@ def print_zone_map(zone_name, zone, player, preferences):
 def print_zone_map_alone(zone_name, zone):
     logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
     to_print = zone[zone_name]["map"]["map full"]
-    to_print = apply_yaml_data_color_code(to_print)
-
-    count = 0
-    for line in to_print.splitlines():
-        cout(line)
-        count += 1
+    cout(apply_yaml_data_color_code(to_print))
 
 
 def print_npc_thumbnail(npc, preferences):
@@ -258,21 +253,11 @@ def print_npc_thumbnail(npc, preferences):
     with open(program_dir + '/temp/imgs/' + npc + ".txt") as f:
         cout(apply_yaml_data_color_code(f.read()))
 
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
-
 
 def print_enemy_thumbnail(enemy, preferences):
     logger_sys.log_message(f"INFO: Printing enemy '{enemy}' thumbnail")
     with open(program_dir + '/temp/imgs/' + enemy + ".txt") as f:
         to_print = cout(apply_yaml_data_color_code(f.read()))
-
-    count = 0
-    for line in to_print.splitlines():
-        print(line)
-        count += 1
 
 
 def a_an_check(word):
@@ -291,9 +276,7 @@ def a_an_check(word):
 
 
 def print_item_thumbnail(to_print):
-    to_print = apply_yaml_data_color_code(to_print)
-
-    print(to_print)
+    cout(apply_yaml_data_color_code(to_print))
     return to_print
 
 
@@ -341,5 +324,5 @@ def print_map_art(item_data):
         line = line.replace('≈', '\033[38;2;250;223;199m' + "≈" + '\033[38;2;255;208;166m')
         for character in human_civilizations:
             line = line.replace(character, '\033[38;2;255;195;141m' + character + '\033[38;2;255;208;166m')
-        print("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
+        cout("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
     return art
