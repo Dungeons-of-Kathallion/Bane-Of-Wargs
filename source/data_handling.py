@@ -366,13 +366,18 @@ def fsspec_download(github_file, destination_point, download_branch, download_re
     except Exception as error:
         cout(
             COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
-            " an error occurred when trying to download game data to '" +
+            " an error occurred when trying to download a github file to '" +
             destination + "'"
         )
-        logger_sys.log_message(f"WARNING: An error occurred when downloading game data to '{destination}'")
+        cout(COLOR_YELLOW + "Check the log files for more information" + COLOR_RESET_ALL)
+        logger_sys.log_message(f"WARNING: An error occurred when downloading github file to '{destination}'")
+        logger_sys.log_message(f"DEBUG: target file-->'{github_file}'; destination file-->'{destination_point}'")
+        logger_sys.log_message(f"DEBUG: branch/tag: '{download_branch}'; repo: '{download_repo}'; org: '{download_org}'")
         logger_sys.log_message("DEBUG: " + str(error))
         cout(COLOR_YELLOW + str(error) + COLOR_RESET_ALL)
         time.sleep(.5)
+        return False
+    return True
 
 
 def temporary_git_file_download(selected_file, url):
