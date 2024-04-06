@@ -227,12 +227,10 @@ while menu:
                     lists, zone, dialog, mission, mounts
                 ) = data_handling.load_game_data('vanilla')
             else:
-
-                what_plugin = preferences["latest preset"]["plugin"]
                 (
                     map, item, drinks, enemy, npcs, start_player,
                     lists, zone, dialog, mission, mounts
-                ) = data_handling.load_game_data('plugin', what_plugin)
+                ) = data_handling.load_game_data('plugin')
 
             open_save = preferences["latest preset"]["save"]
             save_file = program_dir + "/saves/save_" + open_save + ".yaml"
@@ -273,27 +271,16 @@ while menu:
             logger_sys.log_message("INFO: Starting game and exiting menu")
 
         elif choice == 'Play Plugin':
-            text = "Please select a plugin to use"
-            text_handling.print_speech_text_effect(text, preferences)
-            res = []
-
-            logger_sys.log_message(f"INFO: Searching for plugins in the '{program_dir}/plugins/' directory")
-            for search_for_plugins in os.listdir(program_dir + "/plugins/"):
-                res.append(search_for_plugins)
-
-            what_plugin = text_handling.select_save(res)
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "plugin"
-            preferences["latest preset"]["plugin"] = what_plugin
 
             (
                 map, item, drinks, enemy, npcs, start_player,
                 lists, zone, dialog, mission, mounts
-            ) = data_handling.load_game_data('plugin', what_plugin)
+            ) = data_handling.load_game_data('plugin')
         else:
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "vanilla"
-            preferences["latest preset"]["plugin"] = "none"
 
             (
                 map, item, drinks, enemy, npcs, start_player,
@@ -301,7 +288,7 @@ while menu:
             ) = data_handling.load_game_data('vanilla')
 
         if not using_latest_preset:
-            text = "Please select an action:"
+            text = "\nPlease select an action:"
             text_handling.print_speech_text_effect(text, preferences)
             options = ['Open Save', 'New Save']
             choice = terminal_handling.show_menu(options)
@@ -655,11 +642,10 @@ while menu:
 
                     pydoc.pager(content)
     elif choice == 'Credits':
-        # Get the credits file from github
-        # and get its content
-        credits = data_handling.temporary_git_file_download(
-            'credits.txt', 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.git'
-        )
+        # Get the credits file and
+        # dislay it in a pager style
+        with open(f"{program_dir}/game/docs/credits.txt"):
+            credits = f.read()
         pydoc.pager(credits)
     else:
         text_handling.clear_prompt()

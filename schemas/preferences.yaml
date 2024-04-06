@@ -1,5 +1,4 @@
 latest preset:
-  plugin: str()
   save: str()
   type: str()
 speed up: bool()
