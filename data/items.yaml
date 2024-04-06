@@ -2527,7 +2527,7 @@ Wooden Stick:
 Tree Log:
   type: "Misc"
   gold: .15
-  description: "A 1½ feet tree log, which is great for making fire."
+  description: "A 1½ feet long tree log, which is great for making fire."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -2546,7 +2546,7 @@ Tree Log:
 Wet Tree Log:
   type: "Misc"
   gold: .15
-  description: "A 1½ feet tree log, except it's wet; not great for making fire."
+  description: "A 1½ feet long tree log, except it's wet; not great for making fire."
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║

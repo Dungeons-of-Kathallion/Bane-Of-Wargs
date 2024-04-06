@@ -5,6 +5,8 @@ import dialog_handling
 import text_handling
 from colors import *
 from terminal_handling import cout, cinput
+# external imports
+import random
 
 
 # Functions to handle missions
@@ -129,6 +131,8 @@ def mission_checks(mission_data, player, which_key):
             checks.append('Known Npcs')
         if "has items" in list(mission_data[which_key]):
             checks.append('Has Items')
+        if "random" in list(mission_data[which_key]):
+            checks.append('Random')
 
         # Check if checks are passing
         # and the action can continue
@@ -199,6 +203,13 @@ def mission_checks(mission_data, player, which_key):
 
                 count += 1
             count = 0
+
+        # Random chance check
+        if 'Random' in checks:
+            if mission_data[which_key]["random"] > random.uniform(0, 1):
+                checks_passed = True
+            else:
+                checks_passed = False
 
     return checks_passed
 
