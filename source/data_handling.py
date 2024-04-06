@@ -50,7 +50,7 @@ def load_game_data(which_type):
     global mission_plugin, mounts_plugin
 
     cout()
-    # Create a dir, where all game imgs/ files willl
+    # Create a dir, where all game imgs/ files will
     # be stored. First, we create the directory if
     # he doesn't exist yet. If he already exists, empty
     # it. Same for scripts.
