@@ -777,7 +777,7 @@ while menu:
     elif choice == 'Credits':
         # Get the credits file and
         # display it in a pager style
-        with open(f"{program_dir}/game/docs/credits.txt"):
+        with open(f"{program_dir}/game/docs/credits.txt") as f:
             credits = f.read()
         pydoc.pager(credits)
     else:
