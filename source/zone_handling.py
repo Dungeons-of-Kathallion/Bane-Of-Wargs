@@ -8,12 +8,12 @@ import dungeon
 import terminal_handling
 import time_handling
 import dialog_handling
+import yaml_handling
 from colors import *
 from terminal_handling import cout, cinput, cinput_int
 # external imports
 import random
 import time
-import yaml
 import appdirs
 
 
@@ -462,7 +462,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
             if ask.lower().startswith('y'):
                 if player["difficulty mode"] >= 1:
                     logger_sys.log_message("INFO: Dumping player RAM save into its save file")
-                    dumped = yaml.dump(player)
+                    dumped = yaml_handling.dump(player)
                     previous_player = player
                     logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
@@ -477,7 +477,7 @@ def interaction_hostel(map_zone, zone, player, drinks, item, save_file, preferen
                         f.write(dumped)
                         logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-                    dumped = yaml.dump(preferences)
+                    dumped = yaml_handling.dump(preferences)
                     logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
                     with open(program_dir + '/preferences.yaml', 'w') as f:
@@ -1275,7 +1275,7 @@ def interaction_church(map_zone, zone, player, save_file, preferences, previous_
         if choice == 'Rest':
             if player["difficulty mode"] >= 1:
                 logger_sys.log_message("INFO: Dumping player RAM save into its save file")
-                dumped = yaml.dump(player)
+                dumped = yaml_handling.dump(player)
                 previous_player = player
                 logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
@@ -1290,7 +1290,7 @@ def interaction_church(map_zone, zone, player, save_file, preferences, previous_
                     f.write(dumped)
                     logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-                dumped = yaml.dump(preferences)
+                dumped = yaml_handling.dump(preferences)
                 logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
                 with open(program_dir + '/preferences.yaml', 'w') as f:
@@ -1627,7 +1627,7 @@ def get_zone_color(zone_type):
     zone_color = COLOR_BLACK
     try:
         with open(program_dir + '/game/schemas/zones_colors.yaml', 'r') as f:
-            zones_colors = yaml.safe_load(f)
+            zones_colors = yaml_handling.safe_load(f)
             zone_code = zones_colors[str(zone_type)]
             zone_color = ZONE_COLORS_DICT[zone_code]
     except Exception as error:

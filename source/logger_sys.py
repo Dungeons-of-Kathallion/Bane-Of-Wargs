@@ -1,6 +1,7 @@
+# source imports
+import yaml_handling
 # external imports
 import appdirs
-import yaml
 from datetime import *
 
 
@@ -20,7 +21,7 @@ def log_message(message):
     # level. Then, determines the message logging level
     # and check if the message should be logged.
     with open(f'{program_dir}/preferences.yaml', 'r') as log_file:
-        preferences = yaml.safe_load(log_file)
+        preferences = yaml_handling.safe_load(log_file)
 
     info = "INFO: " in message
     debug = "DEBUG: " in message
