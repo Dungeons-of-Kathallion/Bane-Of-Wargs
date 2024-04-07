@@ -12,7 +12,7 @@ import time
 # Handling functions
 
 
-def safe_load(file, crash=False) -> dict:
+def safe_load(file, crash=True) -> dict:
     output = None
     try:
         output = yaml.safe_load(file)
@@ -25,12 +25,12 @@ def safe_load(file, crash=False) -> dict:
         logger_sys.log_message(f"ERROR: Failed to parse yaml file '{file}'")
         logger_sys.log_message(f"DEBUG: {debug}")
         time.sleep(2)
-        if not crash:
+        if crash:
             text_handling.exit_game()
     return output
 
 
-def dump(data, crash=False) -> str:
+def dump(data, crash=True) -> str:
     output = None
     try:
         output = yaml.dump(data)
@@ -43,6 +43,6 @@ def dump(data, crash=False) -> str:
         logger_sys.log_message(f"ERROR: Failed to dump data '{dict(itertools.islice(data.items(), 7))}...'")
         logger_sys.log_message(f"DEBUG: {debug}")
         time.sleep(2)
-        if not crash:
+        if crash:
             text_handling.exit_game()
     return output
