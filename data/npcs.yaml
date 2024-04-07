@@ -38,3 +38,20 @@ Jerry The Junk Seller:
     items:
     - None
   description: "This guys sells really bad stuff but sometimes it's really rare"
+  
+Marry Joselina:
+  name: "Marry Joselina"
+  cost value: 1
+  speech:
+  - Hello! My name is Marry Joselina! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    A chubby lady, whose dog haven been brought back to her by you.
+    She then gave to you 2 gold ingots, worth 1,025 gold coins.
