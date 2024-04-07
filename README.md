@@ -25,9 +25,9 @@ $ _
 [![Spell Checks](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/spell_checks.yaml/badge.svg)](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/actions/workflows/spell_checks.yaml)
 ---
 
-Bane Of Wargs is a python text-game engine with pre-built plot an the ability to create custom plugins/mods that completely change the game content. The game is very customizable and you will find ton of in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining etc... So in overall a very customizable and enjoyable python terminal-text based RPG.
+Bane Of Wargs is a python text-game engine with pre-built plots and the ability to create custom plugins/mods that completely change the game content. The game is very customizable and you will find many in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining, etc. This provides a very customizable and enjoyable python terminal-text based RPG.
 
-You will have to fight monsters, bossses to get keys to after unlock new places of the map. The map is divised in points, determined by x and y coordinates, letting the possibility to map up to 128x128 wide (so up to 16,384 places to explore), and more in the future of the engine development.
+You will have to fight monsters and bossses to get keys to unlock new areas on the map. The map is divided into points, determined by x and y coordinates, allowing maps up to 128x128 wide (so up to 16,384 places to explore), and more will be available as the engine progresses.
 
 See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide) wiki page or check or the [Creating Mod](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods) wiki page if you're interested in modding the game.
 
@@ -112,7 +112,7 @@ pip install -r requirements.txt
 python source/main.py
 ```
 
-**It's highly recommende to use a clean terminal, with the ability to zomm in or out, in fullscreen, with a monospace font for the best gameplay experience.**
+**It's highly recommended to use a clean terminal with the ability to zoom in or out. It is also recommended to use fullscreen with a monospace font for the best gameplay experience.**
 
 _If you have any problems, check the full documentation on how to run the game from nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md)._
 _Note that you can also download the pre-built game executable from the [Continuous Build](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/releases/tag/9.9.9-continuous)._
@@ -123,7 +123,7 @@ We recommend to build the game using the [PyInstaller](https://pyinstaller.org/e
 
 ## System Requirements
 
-Bane Of Wargs is a minimal game but you will have to install/updated some python modules.
+Bane Of Wargs is a minimal game (requires a small number of dependencies), but you will have to install/update some python modules.
 All required modules are in the `requirements.txt` file.
 
 | Module    | PyPi Link                                                   | Version        |
@@ -140,7 +140,7 @@ All required modules are in the `requirements.txt` file.
 
 ---
 
-_If you have previously ran the `pip install -r requirements.txt` command, you won't have to install all of theses modules since you already did._
+_If you have already run the `pip install -r requirements.txt` command, then you won't have to install these modules as they were installed for you._
 
 ## Contributing
 
