@@ -48,3 +48,4 @@ This save file can be used to test these changes:
 
 {{If this PR is adding any file that goes in the `data/`, `imgs/`, `scripts/` or `schemas/`,}}
 {{make sure to make a PR at the BOW-Progression repo (https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs-Progression) that update its data.}}
+{{If this PR is adding any artwork (ASCII art), that is yours or not, update the `copyright` file.}}
