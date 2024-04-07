@@ -1,0 +1,10 @@
+$DARK_BROWN              _,-""""-..__
+$DARK_BROWN         |`,-'_. `  ` ``  `--'""".
+$DARK_BROWN         ;  ,'  | ``  ` `  ` ```  `.
+$DARK_BROWN       ,-'   ..-' ` ` `` `  `` `  ` |$BROWN==.
+$DARK_BROWN     ,'    $RED^$DARK_BROWN    `  `    `` `  ` `.  ;   $BROWN\
+$DARK_BROWN    `}_$SILVER,-^-$DARK_BROWN   _ .  ` \ `  ` __ `   ;    $BROWN#
+$DARK_BROWN       `"---"' `-`. ` \---""`.`.  `;
+$DARK_BROWN                  \\` ;       ; `. `,
+$DARK_BROWN                   ||`;      / / | |
+$DARK_BROWN                  //_;`    ,_;' ,_;"$WHITE

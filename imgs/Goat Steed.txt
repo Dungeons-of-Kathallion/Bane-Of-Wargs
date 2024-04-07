@@ -1,0 +1,16 @@
+$SILVER          ___.
+$SILVER         //  \\
+$SILVER        ((   ''
+$SILVER         \\__,
+$DARK_BROWN         /$CYAN6 (%)$DARK_BROWN\,
+$DARK_BROWN          (__/$BROWN:";,;$DARK_BROWN\--____----_
+$BROWN          ;; :';,:';`;,';,;';`,`_
+$BROWN          ;:,;;';';,;':,';';,-Y\
+$BROWN          ;,;,;';';,;':;';'; Z/
+$DARK_BROWN          /$BROWN ;,';';,;';,;';;'
+$DARK_BROWN         / / |$BROWN';$DARK_BROWN/$BROWN~~~~~$DARK_BROWN\$BROWN';;'
+$DARK_BROWN        ( K  | |      || |
+$DARK_BROWN         \_\ | |      || |
+$DARK_BROWN          \Z | |      || |
+$DARK_BROWN             L_|      LL_|
+$BLACK             LW/      LLW/$WHITE

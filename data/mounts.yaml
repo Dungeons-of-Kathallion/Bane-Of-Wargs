@@ -69,6 +69,60 @@ Bear:
       resistance addition: .15
       mph addition: .2
   description: "Bears are very big and powerful animals that are very hard to train; they required lot of work."
+Goat Steed:
+  name: Goat Steed
+  plural: Goat Steeds
+  gold: 453.14
+  mph: 25
+  feed:
+    food:
+    - Wheat
+    - Hay Bale
+    - Carrot
+    - Apple
+    feed needs: 1.8
+  stable:
+    required stable: Dwarf Stable
+    stable slot usage: 2
+  stats:
+    agility addition: .15
+    resistance addition: .15
+  levels:
+    max level: 17
+    level stat additions:
+      agility addition: .015
+      resistance addition: .015
+      mph addition: .25
+  description: >
+    For a long time, dwarfs have been training and breeding goats, in order to make them a cavalry mount.
+    These goats are a unique breed between goats and wild boars.
+Dwarf Boar:
+  name: Dwarf Boar
+  plural: Dwarf Boars
+  gold: 187.4
+  mph: 15
+  feed:
+    food:
+    - Wheat
+    - Hay Bale
+    - Carrot
+    - Apple
+    feed needs: 2.3
+  stable:
+    required stable: Dwarf Stable
+    stable slot usage: 2
+  stats:
+    agility addition: .1
+    resistance addition: .2
+  levels:
+    max level: 15
+    level stat additions:
+      agility addition: .01
+      resistance addition: .02
+      mph addition: .1
+  description: >
+    Wild boars have been since a long time ago, been trained and bred by dwarfs, making them one of their
+    favorite cavalry mount. They often use boars for long travels in mountains.
 Horse:
   name: Horse
   plural: Horses
