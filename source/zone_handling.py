@@ -1428,6 +1428,12 @@ def interaction_grocery(map_zone, zone, player, item):
                         player["inventory"].remove(which_item)
                         player["inventory slots remaining"] += 1
                         count += 1
+                else:
+                    logger_sys.log_message(
+                        "INFO: Canceling selling process --> doesn't has " +
+                        f"'{which_item}' in player's inventory"
+                    )
+                    cout(COLOR_YELLOW + "You don't own that many count of this item" + COLOR_RESET_ALL)
             else:
                 logger_sys.log_message(
                     "INFO: Canceling selling process --> doesn't has " +
