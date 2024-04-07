@@ -43,3 +43,8 @@ This save file can be used to test these changes:
 
 ## Check-List
 {{If this PR is in progress, write major actions that need to be done here.}}
+- [ ] Review my own code
+- [ ] Fix the workflow checks
+
+{{If this PR is adding any file that goes in the `data/`, `imgs/`, `scripts/` or `schemas/`,}}
+{{make sure to make a PR at the BOW-Progression repo (https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs-Progression) that update its data.}}
