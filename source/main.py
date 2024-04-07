@@ -3471,6 +3471,15 @@ def run(play):
             y_coordinate = terminal_handling.cinput_int("Y: ")
             cinput("Found map point: " + str(search(x_coordinate, y_coordinate)))
             continued_command = True
+        elif command.lower().startswith('$teleport$point$'):
+            x_coordinate = terminal_handling.cinput_int("X: ")
+            y_coordinate = terminal_handling.cinput_int("Y: ")
+            if search(x_coordinate, y_coordinate) is None:
+                cout(COLOR_YELLOW + "This location is undefined. Try again!" + COLOR_RESET_ALL)
+                time.sleep(2)
+            else:
+                player["x"], player["y"] = x_coordinate, y_coordinate
+            continued_command = True
         else:
             continued_utility = False
             for current_utility in utilities_list:
