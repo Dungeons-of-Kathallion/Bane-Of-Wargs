@@ -3,12 +3,12 @@ import battle
 import logger_sys
 import terminal_handling
 import text_handling
+import yaml_handling
 from colors import *
 from terminal_handling import cout
 # external imports
 import random
 import appdirs
-import yaml
 import time
 from sys import exit
 
@@ -149,8 +149,8 @@ def spawn_enemy(
         time.sleep(3)
         logger_sys.log_message("INFO: Resetting player save")
         with open(save_file, "r") as f:
-            player = yaml.safe_load(f)
-        dumped = yaml.dump(player)
+            player = yaml_handling.safe_load(f)
+        dumped = yaml_handling.dump(player)
         logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
         save_file_quit = save_file
@@ -158,7 +158,7 @@ def spawn_enemy(
             f.write(dumped)
         logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
 
-        dumped = yaml.dump(preferences)
+        dumped = yaml_handling.dump(preferences)
         logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
         with open(program_dir + '/preferences.yaml', 'w') as f:

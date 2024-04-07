@@ -1,4 +1,3 @@
-import yaml
 import appdirs
 import time
 import text_handling

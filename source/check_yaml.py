@@ -1,11 +1,11 @@
 # source imports
 import logger_sys
 import text_handling
+import yaml_handling
 from colors import *
 from terminal_handling import cout
 # external imports
 import yamale
-import yaml
 import appdirs
 
 # Create the variable for the program
@@ -16,7 +16,7 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 def check_yaml(file_path):
     file_type = 'none'
     with open(file_path, 'r') as f:
-        file = yaml.safe_load(f)
+        file = yaml_handling.safe_load(f)
     if file_path.endswith('dialog.yaml'):
         file_type = 'dialogs'
     elif file_path.endswith('drinks.yaml'):

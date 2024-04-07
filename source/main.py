@@ -15,6 +15,7 @@ import consumable_handling
 import item_handling
 import time_handling
 import logger_sys
+import yaml_handling
 from colors import *
 from time_handling import *
 from consumable_handling import *
@@ -22,7 +23,6 @@ from zone_handling import *
 from terminal_handling import cout, cinput
 # external imports
 import random
-import yaml
 import os
 import time
 import subprocess
@@ -79,7 +79,7 @@ if not os.path.exists(program_dir):
             "org": "Dungeons-Of-Kathallion"
         }
     }
-    default_config_data = yaml.dump(default_config_data)
+    default_config_data = yaml_handling.dump(default_config_data)
     with open(program_dir + '/preferences.yaml', 'w') as f:
         f.write(default_config_data)
     logger_sys.log_message(f"INFO: Created player preferences at '{program_dir}/preferences.yaml'")
@@ -103,7 +103,7 @@ if not os.path.exists(program_dir):
 # and install them (auto-update)
 logger_sys.log_message("INFO: Loading user preferences")
 with open(program_dir + '/preferences.yaml', 'r') as f:
-    preferences = yaml.safe_load(f)
+    preferences = yaml_handling.safe_load(f)
     check_yaml.examine(program_dir + '/preferences.yaml')
 
 # Compare the latest source code version with
@@ -196,7 +196,7 @@ while menu:
     # Get player preferences
     logger_sys.log_message(f"INFO: Opening player '{program_dir}/preferences.yaml'")
     with open(program_dir + '/preferences.yaml', 'r') as f:
-        preferences = yaml.safe_load(f)
+        preferences = yaml_handling.safe_load(f)
         check_yaml.examine(program_dir + '/preferences.yaml')
     text_handling.clear_prompt()
     text_handling.print_title(preferences)
@@ -244,7 +244,7 @@ while menu:
             with open(save_file) as f:
                 error_loading = False
                 try:
-                    player = yaml.safe_load(f)
+                    player = yaml_handling.safe_load(f)
                 except Exception as error:
                     error_loading = True
                 previous_player = player
@@ -318,7 +318,7 @@ while menu:
                 with open(save_file) as f:
                     error_loading = False
                     try:
-                        player = yaml.safe_load(f)
+                        player = yaml_handling.safe_load(f)
                     except Exception as error:
                         error_loading = True
                     previous_player = player
@@ -369,7 +369,7 @@ while menu:
                     f"'{difficulty_modes[difficulty]}'-->'{difficulty}'"
                 )
                 logger_sys.log_message("INFO: Dumping new save data")
-                dumped = yaml.dump(player)
+                dumped = yaml_handling.dump(player)
                 logger_sys.log_message("INFO: Creating new save")
                 with open(save_name, "w") as f:
                     f.write(dumped)
@@ -380,7 +380,7 @@ while menu:
                 with open(save_file) as f:
                     error_loading = False
                     try:
-                        player = yaml.safe_load(f)
+                        player = yaml_handling.safe_load(f)
                     except Exception as error:
                         error_loading = True
                     previous_player = player
@@ -477,9 +477,9 @@ while menu:
                     backup_name = program_dir + f"/saves/~{count} save_" + open_save + ".yaml"
                     if not os.path.isfile(backup_name):
                         with open(program_dir + "/saves/save_" + open_save + ".yaml", "r") as f:
-                            data = yaml.safe_load(f)
+                            data = yaml_handling.safe_load(f)
                         with open(backup_name, "w") as f:
-                            f.write(yaml.dump(data))
+                            f.write(yaml_handling.dump(data))
                         cout(f"Created backup of save at '{backup_name}'")
                         logger_sys.log_message(
                             f"INFO: Created backup of save at '{backup_name}'"
@@ -530,9 +530,9 @@ while menu:
                         count += 1
                     selected_backup = terminal_handling.show_menu(backups)
                     with open(selected_backup, "r") as f:
-                        data = yaml.safe_load(f)
+                        data = yaml_handling.safe_load(f)
                     with open(program_dir + "/saves/save_" + open_save + ".yaml", "w") as f:
-                        f.write(yaml.dump(data))
+                        f.write(yaml_handling.dump(data))
                     logger_sys.log_message(
                         f"INFO: Loaded backup '{selected_backup}' data to save file '" +
                         f"{program_dir + "/saves/save_" + open_save + ".yaml"}'"
@@ -696,7 +696,7 @@ while menu:
             logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
             data_handling.open_file(program_dir + "/preferences.yaml")
             with open(program_dir + '/preferences.yaml') as f:
-                new_preferences = yaml.safe_load(f)
+                new_preferences = yaml_handling.safe_load(f)
             logger_sys.log_message(f"DEBUG: After editing preferences: {new_preferences}")
     elif choice == 'Gameplay Guide':
         first_timer = time.time()
@@ -1998,7 +1998,7 @@ def run(play):
                 "INFO: autosaving player data into its save --> player's in 'Easy' difficulty mode"
             )
             logger_sys.log_message("INFO: Dumping player RAM save into its save file")
-            dumped = yaml.dump(player)
+            dumped = yaml_handling.dump(player)
             previous_player = player
             logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
@@ -2013,7 +2013,7 @@ def run(play):
                 f.write(dumped)
                 logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-            dumped = yaml.dump(preferences)
+            dumped = yaml_handling.dump(preferences)
             logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
             with open(program_dir + '/preferences.yaml', 'w') as f:
@@ -3300,7 +3300,7 @@ def run(play):
             else:
                 logger_sys.log_message("INFO: Dumping player RAM save into its save file")
                 cout("Collecting player data...")
-                dumped = yaml.dump(player)
+                dumped = yaml_handling.dump(player)
                 previous_player = player
                 logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
@@ -3317,7 +3317,7 @@ def run(play):
                     logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
                 cout("Collecting player preferences...")
-                dumped = yaml.dump(preferences)
+                dumped = yaml_handling.dump(preferences)
                 logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
                 cout("Dumping player preferences to preferences file...")
@@ -3355,7 +3355,7 @@ def run(play):
         elif command.lower().startswith('$player$data$'):
             logger_sys.log_message("INFO: Displaying player data in a pager mode")
             choice = terminal_handling.show_menu(['Check', 'Edit'], length=12)
-            player_data = str(yaml.dump(player))
+            player_data = str(yaml_handling.dump(player))
             if choice == 'Check':
                 to_display = player_data
                 text_handling.clear_prompt()
@@ -3376,7 +3376,7 @@ def run(play):
                 with open(temporary_file, 'r') as f:
                     error_loading = False
                     try:
-                        player = yaml.safe_load(f)
+                        player = yaml_handling.safe_load(f)
                     except Exception as error:
                         error_loading = True
                     previous_player = player
@@ -3406,27 +3406,27 @@ def run(play):
             ]
             choice = terminal_handling.show_menu(choices, length=20)
             if choice == 'map':
-                data = str(yaml.dump(map))
+                data = str(yaml_handling.dump(map))
             elif choice == 'item':
-                data = str(yaml.dump(item))
+                data = str(yaml_handling.dump(item))
             elif choice == 'drinks':
-                data = str(yaml.dump(drinks))
+                data = str(yaml_handling.dump(drinks))
             elif choice == 'enemy':
-                data = str(yaml.dump(enemy))
+                data = str(yaml_handling.dump(enemy))
             elif choice == 'npcs':
-                data = str(yaml.dump(npcs))
+                data = str(yaml_handling.dump(npcs))
             elif choice == 'start_player':
-                data = str(yaml.dump(start_player))
+                data = str(yaml_handling.dump(start_player))
             elif choice == 'lists':
-                data = str(yaml.dump(lists))
+                data = str(yaml_handling.dump(lists))
             elif choice == 'zone':
-                data = str(yaml.dump(zone))
+                data = str(yaml_handling.dump(zone))
             elif choice == 'dialog':
-                data = str(yaml.dump(dialog))
+                data = str(yaml_handling.dump(dialog))
             elif choice == 'mission':
-                data = str(yaml.dump(mission))
+                data = str(yaml_handling.dump(mission))
             else:
-                data = str(yaml.dump(mounts))
+                data = str(yaml_handling.dump(mounts))
 
             text_handling.clear_prompt()
             pydoc.pager(data)
@@ -3533,7 +3533,7 @@ if play == 1:
 
 # finish up and save
 if player["difficulty mode"] != 2:
-    dumped = yaml.dump(player)
+    dumped = yaml_handling.dump(player)
     logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
 
     save_file_quit = save_file
@@ -3547,7 +3547,7 @@ if player["difficulty mode"] != 2:
         f.write(dumped)
         logger_sys.log_message(f"INFO: Dumping player save data to backup save '{save_name_backup}'")
 
-    dumped = yaml.dump(preferences)
+    dumped = yaml_handling.dump(preferences)
     logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
 
     with open(program_dir + '/preferences.yaml', 'w') as f:
