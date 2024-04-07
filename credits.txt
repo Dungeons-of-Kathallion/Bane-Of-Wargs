@@ -56,3 +56,4 @@ people on GitHub who have
 contributed to Bane Of Wargs:
   Cromha
   lumbar527
+  MonkeyMatrix
