@@ -1,8 +1,8 @@
 Start Dialog:
   conversation:
     - label 1:
-      - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this calm forest: your home's in a small town that lives apart from the other great cities in the Stall Island, Kathallion Archipelago. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarfs, great mountains, adventure...)"
-      - "print(You currently have an order to deliver to a friend of yours, at the -62, 59 coordinates.)"
+      - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the Stall Island. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarfs, great mountains, adventure...)"
+      - print(You currently have a order to deliver to a friend of yours, at the -62, 59 coordinates.)
       - "print(Hint: check the gameplay guide at https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide)"
   use actions: false
 
@@ -136,3 +136,45 @@ Gerud Ancient Dungeon Reward:
     - completed gerud ancient dungeon
     health modification:
       augmentation: 999
+
+Found Dog Mitchell:
+  conversation:
+    - label 1:
+      - print(While you walk into the Los Gerudos grand avenue, and admire the sea, visible from a long distance, you hear a noise, coming from behind you. You slowly turn behind. You find a dog; he must have followed you since you've left that little juwelery store. He must have been lost by his dear owners!)
+      - print(You decide to take a look...)
+      - wait(2)
+      - "print(You found a golden collar on his neck, with inscribed letters on it. It says: “Mitchell - property of the Coopers; Please return this dog if you find him at the 13 Yasward Drive, Los Gerudos“. The dog looks at you with big eyes, seeming like he wants you to take him back to its owners.\n)"
+  use actions: false
+
+Given Back Dog Mitchell:
+  conversation:
+    - label 1:
+      - print(You finally arrive to the 13 Yasward Drive, Los Gerudos, the village of the Coopers. You knock at the door.)
+      - wait(2)
+      - print(A bulter finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddently, the bulter shouts:)
+      - print(“Mrs. Cooper! We've found Mitchell back!“\n)
+      - wait(1)
+      - print(A chubby lady suddently goes down the main stairs, running towards the opened doors.)
+      - print(“Mitchell! Oh my godness! Finally! you're here! Where did you find him bulter?“, says the chubby lady.)
+      - print(“Actually it's me who've found him, in the grand avenue. I read his collar and then I came here.“, you respond to her.)
+      - print(“What is your name? I'm so grateful, and I couldn't be more.“)
+      - print(“My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty much sure you haven't heard of this place before.“)
+      - print(“The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch there. What can I do for you? Is there anything you'd like to have?“, the lady asks)
+      - print(“Please, I dind't do much.“)
+      - print(“You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
+      - print(She holds in here hands two gold ingots, that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
+      - choice():
+        - create-choice(Accept the payment., goto(label 2))
+        - create-choice(Refuse the payment., goto(label 3))
+    - label 2:
+      - print(You take the two ingots and store them into your bag. The chubby lad then hugs you and kisses you before you leave.)
+      - create-variable(gold_payment, 1025)
+    - label 3:
+      - print(You kiss the chubby lady's hand, before leaving.)
+      - create-variable(gold_payment, 0)
+  use actions: true
+  actions:
+    gold modification:
+      augmentation: $gold_payment
+    add attributes:
+    - given back mitchell the dog
