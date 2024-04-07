@@ -48,3 +48,20 @@ Save Someone In The Woods:
       enemy category: warg raids
       location: 1165
       dialog: "Saved The Guy In The Woods"
+
+Bring A Lost Dog To Yasward Drive:
+  name: "Bring A Lost Dog To Yasward Drive"
+  description: >
+    A poor dog named “Mitchell“ has been lost in the Los Gerudos grand avenue.
+    Bring him back to its owners, whose address is 13 Yasward Drive, Los Gerudos ($destination).
+  source: 7508
+  destination: 6733
+  invisible: false
+  force accept: false
+  to offer:
+    random: .15
+  on offer:
+    dialog: Found Dog Mitchell
+  on complete:
+    dialog: Given Back Dog Mitchell
+    exp addition: 15
