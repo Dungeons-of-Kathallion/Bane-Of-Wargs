@@ -121,14 +121,14 @@ woods:
     enemies spawns:
       Doomed Horror: 1
   Troll Raid:
-    name: "You find a Wood Troll on your way!"
+    name: "You find a Woods Troll on your way!"
     chance: .1
     enemies rate:
       easy: {"min": 1, "max": 2}
       normal: {"min": 1, "max": 3}
       hard: {"min": 2, "max": 3}
     enemies spawns:
-      Wood Troll: 1
+      Woods Troll: 1
       Ork: .5
       Goblin: 1
   Giant Spider:

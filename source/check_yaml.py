@@ -531,7 +531,7 @@ def consumable_run_test(data, effect_type):
                     consumable_effect_output_error("'removals' key should be a list")
             if "additions" in data["inventory change"]:
                 if type(['1']) is not type(data["inventory change"]["additions"]):
-                    consumable_effect_output_error("'x' key should be a list")
+                    consumable_effect_output_error("'additions' key should be a list")
 
 
 def examine_consumable(data):

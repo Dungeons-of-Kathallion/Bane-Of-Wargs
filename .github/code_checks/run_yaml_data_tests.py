@@ -1,5 +1,6 @@
 import yamale
 import yaml
+import re
 from colorama import Fore, Back, Style, init, deinit
 
 # initialize colorama
@@ -291,7 +292,7 @@ def consumable_effect_output_error(message):
         "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(message)
     )
     logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{message}")
-    text_handling.exit_game()
+    exit_game()
 
 
 def check_if_is_a_number(variable_to_test):
@@ -419,7 +420,7 @@ def consumable_run_test(data, effect_type):
                     consumable_effect_output_error("'removals' key should be a list")
             if "additions" in data["inventory change"]:
                 if type(['1']) != type(data["inventory change"]["additions"]):
-                    consumable_effect_output_error("'x' key should be a list")
+                    consumable_effect_output_error("'additions' key should be a list")
 
 
 def examine_consumable(data):
@@ -431,18 +432,2842 @@ def examine_consumable(data):
         for effect in data["effects"]:
             current_effect_data = data["effects"][count]
             current_effect_type = current_effect_data["type"]
-
             consumable_run_test(current_effect_data, current_effect_type)
 
             count += 1
     except Exception as error:
         print(
-        COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
-        "An error happened when examining item:\n" + COLOR_RESET_ALL + str(data)
+            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+            "An error happened when examining item:\n" + COLOR_RESET_ALL + str(data)
         )
         logger_sys.log_message(f"ERROR: A error happened when examining item:\n{data}")
-        text_handling.exit_game()
+        exit_game()
 
+
+def verify_data(
+    map, item, drinks, enemy, npcs, start_player, lists,
+    zone, dialog, mission, mounts
+):
+    # Specific checks for the map dictionary
+    # The checks are:
+    # - verify the map point id is valid
+    # - check if the map point coordinates are unique
+    # - check if the map point zone exists
+    # - check if the blocked directions are syntaxically good
+    # - check if all the items on the ground exists
+    # - verify the validity of the key entry
+    # - check if enemy list spawned exists
+    # - check if dialog exists
+    # - check if npcs exist
+    for map_point_id in list(map):
+        map_point = map[map_point_id]
+        # Check map point id using pattern
+        if not bool(re.fullmatch(r"point[0-9]+", map_point_id)):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"Map point id '{map_point_id}' isn't valid --> invalid pattern" +
+                COLOR_RESET_ALL
+            )
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                "The pattern is `point{digits}`" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        # Verify duplicate coordinates
+        for i in list(map):
+            if (
+                map[i]["x"] == map_point["x"] and
+                map[i]["y"] == map_point["y"] and
+                i != map_point_id
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point '{map_point_id}' isn't valid --> " +
+                    f"duplicate coordinates with map point '{i}'" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        # Verify map zone
+        if map_point["map zone"] not in list(zone):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"Map point id '{map_point_id}' isn't valid --> "
+                f"map zone '{map_point["map zone"]}' doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        # Verify blocked directions syntax
+        directions = [
+            'North', 'South', 'West', 'East','North-East',
+            'North-West', 'South-East', 'South-West', 'None'
+        ]
+        if 'None' in map_point["blocked"] and len(map_point["blocked"]) > 1:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"Map point id '{map_point_id}' isn't valid --> "
+                f"entry `{direction}` in blocked directions isn't required" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        for direction in directions:
+            if map_point["blocked"].count(direction) > 1:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"too many `{direction}` entries in blocked directions" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+        for direction in map_point["blocked"]:
+            if direction not in directions:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `{direction}` in blocked directions isn't valid" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        # Ground items check
+        if "item" in map_point:
+            if type(map_point["item"]) is not type([]):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `item` isn't a list" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            for i in map_point["item"]:
+                if i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Map point id '{map_point_id}' isn't valid --> "
+                        f"item `{i}` in ground items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if map_point["item"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Map point id '{map_point_id}' isn't valid --> "
+                        f"item `{i}` in ground items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        # Keys checks
+        if "key" in map_point:
+            if type(map_point["key"]) is not type({}):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `key` isn't a dictionary" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if "remove key" not in map_point["key"]:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"missing `remove key` entry in key dictionary" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if "required keys" not in map_point["key"]:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"missing `required keys` entry in key dictionary" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            if type(map_point["key"]["remove key"]) is not type(True):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"key `remove key` isn't a boolean" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if type(map_point["key"]["required keys"]) is not type([]):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `required keys` in key dictionary isn't a list" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if map_point["key"]["required keys"] == []:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `required keys` in key dictionary is empty" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            for key in map_point["key"]["required keys"]:
+                if key not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Map point id '{map_point_id}' isn't valid --> "
+                        f"item `{key}` in required keys doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if map_point["key"]["required keys"].count(key) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Map point id '{map_point_id}' isn't valid --> "
+                        f"key `{ke}` in required keys is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        # Enemy, dialog and npcs checks
+        if "enemy type" in map_point:
+            if type(map_point["enemy type"]) is not type(""):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `enemy type` isn't a string" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if map_point["enemy type"] not in list(lists):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"enemy list `{map_point["enemy type"]}` doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+        if "dialog" in map_point:
+            if type(map_point["dialog"]) is not type(""):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `dialog` isn't a string" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if map_point["dialog"] not in list(dialog):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"dialog `{map_point["dialog"]}` doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+        if "npcs" in map_point:
+            if type(map_point["npc"]) is not type([]):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"Map point id '{map_point_id}' isn't valid --> "
+                    f"entry `nps` isn't a list" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            for npc in map_point["npc"]:
+                if npc not in list(npcs):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Map point id '{map_point_id}' isn't valid --> "
+                        f"npc `{npc}` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if map_point["npc"].count(npc) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Map point id '{map_point_id}' isn't valid --> "
+                        f"key `{npc}` in npcs is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        # Specific checks for the item dictionary
+        # The checks are:
+        # EVERY TYPE
+        # - check if every requires keys are valid
+        # WEAPONS:
+        # - check if there're every keys
+        # - check if every key i the right class (bool, str, float...)
+        # - check if every item for the upgrade exists
+        # ARMOR PIECES:
+        # - check if there're every keys
+        # - check if every key i the right class (bool, str, float...)
+        # - check if every item for the upgrade exists
+        # CONSUMABLES:
+        # - check if there're every keys
+        # - check if every key i the right class (bool, str, float...)
+        # UTILITIES:
+        # - check if there're every keys
+        # - check if every key i the right class (bool, str, float...)
+        # - check if every arguments exist
+        # BAGS:
+        # - checks for the inventory slots keys
+        # FOOD:
+        # - check if there're every keys
+        # - check if every key i the right class (bool, str, float...)
+        # MAPS:
+        # - checks for the inventory slots keys
+        for current in list(item):
+            item_data = item[current]
+
+            if "type" not in item_data:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"missing required `type` key" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if "gold" not in item_data:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"missing required `gold` key" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if "description" not in item_data:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"missing required `description` key" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if "thumbnail" not in item_data:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"missing required `thumbnail` key" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            if type(item_data["type"]) is not type(""):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"entry `type` isn't a string" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                type(item_data["gold"]) is not type(.1) and
+                type(item_data["gold"]) is not type(1)
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"entry `gold` isn't an integer or floating number" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if type(item_data["description"]) is not type(""):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"entry `description` isn't a string" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if type(item_data["thumbnail"]) is not type(""):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"entry `thumbnail` isn't a string" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            if item_data["type"] == 'Weapon':
+                if "display name" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `display name` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "upgrade tier" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `upgrade tier` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "damage" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `damage` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "defend" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `defend` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "agility" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `agility` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "critical hit chance" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `critical hit chance` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "for this upgrade" not in item_data and item_data["upgrade tier"] > 0:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `for this upgrade` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(item_data["display name"]) is not type(""):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `display name` isn't a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(item_data["upgrade tier"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `upgrade tier` isn't an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(item_data["damage"]) is not type(.1) and
+                    type(item_data["damage"]) is not type(1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `damage` isn't an integer of a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(item_data["defend"]) is not type(.1) and
+                    type(item_data["defend"]) is not type(1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `defend` isn't an integer of a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(item_data["agility"]) is not type(.1) and
+                    type(item_data["agility"]) is not type(1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `agility` isn't an integer of a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(item_data["critical hit chance"]) is not type(.1) and
+                    type(item_data["critical hit chance"]) is not type(1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `critical hit chance` isn't an integer of a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    item_data["upgrade tier"] > 0 and
+                    type(item_data["for this upgrade"]) is not type([])
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `for this upgrade` isn't a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if item_data["upgrade tier"] > 0:
+                    for metal in item_data["for this upgrade"]:
+                        if metal not in list(item):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"item id '{current}' isn't valid --> "
+                                f"item `{metal}` in `for this upgrade` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+
+            elif item_data["type"].startswith('Armor Piece: '):
+                if "upgrade tier" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `upgrade tier` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "armor protection" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `armor protection` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "agility" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `agility` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "for this upgrade" not in item_data and item_data["upgrade tier"] > 0:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `for this upgrade` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if (
+                    "display name" in item_data and
+                    type(item_data["display name"]) is not type("")
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `display name` isn't a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(item_data["upgrade tier"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `upgrade tier` isn't an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(item_data["agility"]) is not type(.1) and
+                    type(item_data["agility"]) is not type(1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `agility` isn't an integer of a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(item_data["armor protection"]) is not type(.1) and
+                    type(item_data["armor protection"]) is not type(1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `armor protection` isn't an integer of a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    item_data["upgrade tier"] > 0 and
+                    type(item_data["for this upgrade"]) is not type([])
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `for this upgrade` isn't a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if item_data["upgrade tier"] > 0:
+                    for metal in item_data["for this upgrade"]:
+                        if metal not in list(item):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"item id '{current}' isn't valid --> "
+                                f"item `{metal}` in `for this upgrade` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+
+            elif item_data["type"] == "Consumable":
+                if "effects" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `effects` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(item_data["effects"]) is not type([]):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `effects` isn't a list of dictionaries" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            elif item_data["type"] == "Utility":
+                if "key" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `key` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "script name" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `script name` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(item_data["key"]) is not type(""):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `key` isn't a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(item_data["script name"]) is not type(""):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `script name` isn't a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    "arguments" in item_data and
+                    type(item_data["arguments"]) is not type([])
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `arguments` isn't a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                possible_arguments = [
+                    "player", "map", "item", "drinks", "enemy", "npcs",
+                    "start_player", "lists", "zone", "dialog", "mission",
+                    "mounts", "start_time", "generic_text_replacements",
+                    "preferences"
+                ]
+                if "arguments" in item_data:
+                    for argument in item_data["arguments"]:
+                        if argument not in possible_arguments:
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"item id '{current}' isn't valid --> "
+                                f"argument `{argument}` in arguments key " +
+                                "is not a valid one" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+
+            elif item_data["type"] == "Bag":
+                if "inventory slots" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `inventory slots` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(item_data["inventory slots"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `inventory slots` isn't an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            elif item_data["type"] == "Food":
+                if "max bonus" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `max bonus` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "healing level" not in item_data:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"missing required `healing level` key" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(item_data["max bonus"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `max bonus` isn't an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(item_data["healing level"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"item id '{current}' isn't valid --> "
+                        f"entry `healing level` isn't an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                elif item_data["type"] == "Map":
+                    if "map" not in item_data:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"item id '{current}' isn't valid --> "
+                            f"missing required `map` key" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if type(item_data["inventory slots"]) is not type(""):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"item id '{current}' isn't valid --> "
+                            f"entry `map` isn't an string" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+            item_types = [
+                "Weapon", "Armor Piece: Chestplate", "Armor Piece: Leggings",
+                "Armor Piece: Boots", "Consumable", "Utility", "Bag", "Food",
+                "Key", "Note", "Map", "Metal", "Primary Material", "Misc",
+                "Armor Piece: Shield"
+            ]
+
+            if item_data["type"] not in item_types:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"item id '{current}' isn't valid --> "
+                    f"item type `{item_data["type"]}` doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            # Verify game main commands
+            existing_keys = [
+                "n", "e", "w", "s", "sw", "se", "ne", "nw",
+                "d", "i", "z", "y", "x", "p", "q", "k",
+                "$player$data$", "$game$data$", "$spawn$enemy$",
+                "$teleport$zone$", "$find$point$", "$teleport$point$"
+            ]
+            for current in list(item):
+                if item[current]["type"] == "Utility":
+                    existing_keys += [item[current]["key"].lower()]
+
+            for key in existing_keys:
+                if existing_keys.count(key) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"Duplicated game main command `{key}` -->" +
+                        " check the utility items" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+    # Specific checks for the `drinks` dictionary
+    # CHECKS:
+    # - check if every keys is there
+    # - check if every key is valid
+    for current in list(drinks):
+        drink_data = drinks[current]
+
+        if "gold" not in drink_data:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"missing required `gold` key" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if "healing level" not in drink_data:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"missing required `healing level` key" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if "description" not in drink_data:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"missing required `description` key" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if (
+            type(drink_data["gold"]) is not type(1) and
+            type(drink_data["gold"]) is not type(.1)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"key `gold` isn't an integer or a floating number" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if (
+            type(drink_data["healing level"]) is not type(1) and
+            type(drink_data["healing level"]) is not type(.1)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"key `healing level` isn't an integer or a floating number" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if drink_data["healing level"] > 999:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"key `healing level` is greater than 999" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if type(drink_data["description"]) is not type(""):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"drink id '{current}' isn't valid --> "
+                f"key `description` isn't a string" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+    # Specific checks for the `enemy` dictionary
+    # CHECKS:
+    # - check if its inventory has existing items
+    for current in list(enemy):
+        enemy_data = enemy[current]
+
+        for i in enemy_data["inventory"]:
+            if i not in list(item):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"enemy id '{current}' isn't valid --> "
+                    f"item `{i}` in `inventory` doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+    # Specific checks for the `npcs` dictionary
+    # CHECKS:
+    # - check if sold drinks exist
+    # - check if sold items exist
+    # - check if bought items exist
+    for current in list(npcs):
+        npc_data = npcs[current]
+
+        for i in npc_data["sells"]["drinks"]:
+            if (
+                npc_data["sells"]["drinks"].count("None") > 0 and
+                len(npc_data["sells"]["drinks"]) > 2
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"`None` entry is used in sold drinks," +
+                    " but other drinks are present" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if i != "None" and i not in list(drinks):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"drink `{i}` in sold drinks doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if npc_data["sells"]["drinks"].count(i) > 1:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"drink `{i}` in sold drinks is duplicated" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+        for i in npc_data["sells"]["items"]:
+            if (
+                npc_data["sells"]["items"].count("None") > 0 and
+                len(npc_data["sells"]["items"]) > 2
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"`None` entry is used in sold items," +
+                    " but other items are present" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if i != "None" and i not in list(item):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"item `{i}` in sold items doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if npc_data["sells"]["items"].count(i) > 1:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"item `{i}` in sold items is duplicated" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+        for i in npc_data["buys"]["items"]:
+            if (
+                npc_data["buys"]["items"].count("None") > 0 and
+                len(npc_data["buys"]["items"]) > 2
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"`None` entry is used in bought items," +
+                    " but other items are present" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if i != "None" and i not in list(item):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"item `{i}` in bought items doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if npc_data["buys"]["items"].count(i) > 1:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"npc id '{current}' isn't valid --> " +
+                    f"item `{i}` in bougt items is duplicated" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+    # Specific checks of `lists` dictionary
+    # CHECKS:
+    # - for every pool in a list:
+    #   * verify if the spawning text is not too long
+    #   * verify if the chance is under or equal to 1
+    #   * verify if the chance is over 0
+    #   * for every rates:
+    #     - check if any min or max amount is over 0
+    #     - check if the min is greater than the mount
+    #   * check if the spawned enemies exist
+    for current in list(lists):
+        list_data = lists[current]
+        for current2 in list(list_data):
+            pool_data = list_data[current2]
+
+            if len(pool_data["name"]) > 54:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"pool '{current2}' in list id '{current}' isn't valid --> " +
+                    "text shown is too long (>54)" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                pool_data["chance"] > 1 or
+                pool_data["chance"] < 0
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"pool '{current2}' in list id '{current}' isn't valid --> " +
+                    f"spawning chance {pool_data["chance"]} must be over 0 and under 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            for rate in list(pool_data["enemies rate"]):
+                rate = pool_data["enemies rate"][rate]
+                if rate["min"] <= 0 or rate["max"] <= 0:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"pool '{current2}' in list id '{current}' isn't valid --> " +
+                        "enemies spawning rate min and max values should be over 0" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if rate["min"] > rate["max"]:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"pool '{current2}' in list id '{current}' isn't valid --> " +
+                        "min spawning rate should be under max spawning rate" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            for i in list(pool_data["enemies spawns"]):
+                if i not in list(enemy):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"pool '{current2}' in list id '{current}' isn't valid --> " +
+                        f"enemy `{i}` in enemies spawns doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+    # Specific checks of the `zone` dictionary
+    # CHECKS:
+    # EVERY TYPE:
+    # - check if zone type exists
+    # - check if enemy spawning pool exists
+    # VILLAGES:
+    # - check if the put contents exist
+    # HOSTELS:
+    # - check if sold items and drinks exist
+    # - check if bought items exist
+    # - checks on discounts:
+    #   * check if time space is grater than 0
+    #   * check if chance is over or equal to 0 and under or equal to 1
+    #   * check if max dropoff is greater or equal than min dropoff
+    # FORGES:
+    # - check if sold items exist
+    # - check if bought items exist
+    # - checks on discounts:
+    #   * check if time space is grater than 0
+    #   * check if chance is over or equal to 0 and under or equal to 1
+    #   * check if max dropoff is greater or equal than min dropoff
+    # STABLES:
+    # - check if the sold mounts exist
+    # - check if the sold drinks exist
+    # - check if the sold items exist
+    # - checks on discounts:
+    #   * check if time space is grater than 0
+    #   * check if chance is over or equal to 0 and under or equal to 1
+    #   * check if max dropoff is greater or equal than min dropoff
+    # BLACKSMITHS:
+    # - check if bought items exist
+    # - checks on orders:
+    #   * check if ordered item exist
+    #   * check if time needed is greater or equal to 0
+    #   * check if needed materials exist
+    # - checks on discounts:
+    #   * check if time space is grater than 0
+    #   * check if chance is over or equal to 0 and under or equal to 1
+    #   * check if max dropoff is greater or equal than min dropoff
+    # GROCERY STORES:
+    # - check if the sold items exist
+    # - checks on discounts:
+    #   * check if time space is grater than 0
+    #   * check if chance is over or equal to 0 and under or equal to 1
+    #   * check if max dropoff is greater or equal than min dropoff
+    # HARBORS:
+    # - checks on destinations:
+    #   * check if every keys are there
+    #   * check if every keys are the right type
+    #   * check if the destination point exists
+    # - checks on discounts:
+    #   * check if time space is grater than 0
+    #   * check if chance is over or equal to 0 and under or equal to 1
+    #   * check if max dropoff is greater or equal than min dropoff
+    # DUNGEONS:
+    # - check if rooms number is equal to the length of the rooms dictionary
+    # - check if the reward dialog exists
+    # - checks on rooms:
+    #   * check if every keys are there
+    #   * check if every keys are the right type
+    #   * check if type is valid
+    #   * check if room digit is in between 0 and the rooms number
+    #   * check if the room digit isn't duplicated
+    #   * check if required data is there
+    #   * check if spawned enemy list exists
+    #   * check if reward items exist
+    #   * check if script arguments exist
+    for current in list(zone):
+        current_zone = zone[current]
+        existing_types = [
+            "fields", "hills", "valleys", "woods", "dark woods", "mountains",
+            "low mountains", "high mountains", "black rocky mountains", "desert",
+            "desert hills", "desert valleys", "badlands", "badlands canyon",
+            "badlands hills", "badland valleys", "badlands plateau", "badlands butte",
+            "badlands landforms", "flatlands", "beach", "plains canyon", "desert canyons",
+            "rocky canyons", "black rocky canyons", "village", "hostel", "forge", "blacksmith",
+            "stable", "church", "lake", "sea", "grocery", "harbor", "dungeon", "swamps"
+        ]
+
+        if current_zone["type"] not in existing_types:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"map zone id '{current}' isn't valid --> "
+                f"zone type `{current_zone["type"]}` doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if (
+            "enemy spawning" in current_zone and
+            current_zone["enemy spawning"] not in list(lists)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"map zone id '{current}' isn't valid --> "
+                f"enemy list `{current_zone["enemy spawning"]}` doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if current_zone["type"] == "village":
+            for content_id in list(current_zone["content"]):
+                content = current_zone["content"][content_id]
+                for i in content:
+                    if (
+                        content.count("None") > 0 and
+                        len(content) > 2
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"map zone id '{current}' isn't valid --> " +
+                            f"`None` entry is used in '{content_id}' content," +
+                            " but other map zones are present" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if i != "None" and i not in list(zone):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"map zone id '{current}' isn't valid --> " +
+                            f"map zone `{i}` in '{content_id}' content doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if content.count(i) > 1:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"map zone id '{current}' isn't valid --> " +
+                            f"map zone `{i}` in '{content_id}' content is duplicated" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+        elif current_zone["type"] == "hostel":
+            for i in current_zone["sells"]["drinks"]:
+                if (
+                    current_zone["sells"]["drinks"].count("None") > 0 and
+                    len(current_zone["sells"]["drinks"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"`None` entry is used in sold drinks," +
+                        " but other drinks are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(drinks):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"drink `{i}` in sold drinks doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["sells"]["drinks"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"drink `{i}` in sold drinks is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+            for i in current_zone["sells"]["items"]:
+                if (
+                    current_zone["sells"]["items"].count("None") > 0 and
+                    len(current_zone["sells"]["items"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"`None` entry is used in sold items," +
+                        " but other items are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["sells"]["items"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+            for i in current_zone["buys"]["items"]:
+                if (
+                    current_zone["buys"]["items"].count("None") > 0 and
+                    len(current_zone["buys"]["items"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in bought items," +
+                        " but other items are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in bought items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["buys"]["items"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in bought items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if current_zone["discounts"]["time space"] < 0:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts time space should be greater or equal to 0" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["chance"] < 0 or
+                current_zone["discounts"]["chance"] > 1
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts chance should be greater or equal " +
+                    "to 0, and over or equal to 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["discount"]["max dropoff"] <
+                current_zone["discounts"]["discount"]["max dropoff"]
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts max dropoff should be greater or " +
+                    "equal to the min dropoff" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        elif current_zone["type"] == "forge":
+            for i in current_zone["forge"]["buys"]:
+                if (
+                    current_zone["forge"]["buys"].count("None") > 0 and
+                    len(current_zone["forge"]["buys"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in bought items," +
+                        " but other items are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in bought items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["forge"]["buys"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in bought items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+            for i in current_zone["forge"]["sells"]:
+                if (
+                    current_zone["forge"]["sells"].count("None") > 0 and
+                    len(current_zone["forge"]["sells"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in sold items," +
+                        " but other items are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["forge"]["sells"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if current_zone["discounts"]["time space"] < 0:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts time space should be greater or equal to 0" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["chance"] < 0 or
+                current_zone["discounts"]["chance"] > 1
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts chance should be greater or equal " +
+                    "to 0, and over or equal to 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["discount"]["max dropoff"] <
+                current_zone["discounts"]["discount"]["max dropoff"]
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts max dropoff should be greater or " +
+                    "equal to the min dropoff" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        elif current_zone["type"] == "stable":
+            for i in current_zone["stable"]["sells"]["mounts"]:
+                if (
+                    current_zone["stable"]["sells"]["mounts"].count("None") > 0 and
+                    len(current_zone["stable"]["sells"]["mounts"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in sold mounts," +
+                        " but other mounts are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(mounts):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"mount `{i}` in sold mounts doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["stable"]["sells"]["mounts"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"mount `{i}` in sold mounts is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+            for i in current_zone["stable"]["sells"]["drinks"]:
+                if (
+                    current_zone["stable"]["sells"]["drinks"].count("None") > 0 and
+                    len(current_zone["stable"]["sells"]["drinks"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in sold drinks," +
+                        " but other drinks are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(drinks):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"drink `{i}` in sold drinks doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["stable"]["sells"]["drinks"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"drink `{i}` in sold drinks is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+            for i in current_zone["stable"]["sells"]["items"]:
+                if (
+                    current_zone["stable"]["sells"]["items"].count("None") > 0 and
+                    len(current_zone["stable"]["sells"]["items"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in sold items," +
+                        " but other items are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["stable"]["sells"]["items"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if current_zone["discounts"]["time space"] < 0:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts time space should be greater or equal to 0" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["chance"] < 0 or
+                current_zone["discounts"]["chance"] > 1
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts chance should be greater or equal " +
+                    "to 0, and over or equal to 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["discount"]["max dropoff"] <
+                current_zone["discounts"]["discount"]["max dropoff"]
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts max dropoff should be greater or " +
+                    "equal to the min dropoff" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        elif current_zone["type"] == "blacksmith":
+            for i in current_zone["blacksmith"]["buys"]:
+                if (
+                    current_zone["blacksmith"]["buys"].count("None") > 0 and
+                    len(current_zone["blacksmith"]["buys"]) > 2
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        "`None` entry is used in bought items," +
+                        " but other items are present" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if i != "None" and i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in bought items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_zone["blacksmith"]["buys"].count(i) > 1:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in bought items is duplicated" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            for order_id in list(current_zone["blacksmith"]["orders"]):
+                order = current_zone["blacksmith"]["orders"][order_id]
+
+                if order_id not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"order id '{order_id}' in map zone id '{current}' isn't valid --> " +
+                        f"item `{order_id}` in order item doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if order["time needed"] < 0:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"order id '{order_id}' in map zone id '{current}' isn't valid --> " +
+                        f"time needed should be over or equal to 0" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                for i in order["needed materials"]:
+                    if i not in list(item):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"order id '{order_id}' in map zone id '{current}' isn't valid --> " +
+                            f"item `{i}` in needed materials doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+            if current_zone["discounts"]["time space"] < 0:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts time space should be greater or equal to 0" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["chance"] < 0 or
+                current_zone["discounts"]["chance"] > 1
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts chance should be greater or equal " +
+                    "to 0, and over or equal to 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["discount"]["max dropoff"] <
+                current_zone["discounts"]["discount"]["max dropoff"]
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts max dropoff should be greater or " +
+                    "equal to the min dropoff" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        elif current_zone["type"] == "grocery":
+            for i in current_zone["items sold"]:
+                if i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"map zone id '{current}' isn't valid --> " +
+                        f"item `{i}` in sold items doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if current_zone["discounts"]["time space"] < 0:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts time space should be greater or equal to 0" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["chance"] < 0 or
+                current_zone["discounts"]["chance"] > 1
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts chance should be greater or equal " +
+                    "to 0, and over or equal to 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["discount"]["max dropoff"] <
+                current_zone["discounts"]["discount"]["max dropoff"]
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts max dropoff should be greater or " +
+                    "equal to the min dropoff" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        elif current_zone["type"] == "harbor":
+            for travel_id in list(current_zone["travels"]):
+                travel = current_zone["travels"][travel_id]
+                if "destination" not in travel:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "`destination` key isn't specified" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "travel time" not in travel:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "`travel time` key isn't specified" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "cost" not in travel:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "`cost` key isn't specified" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(travel["destination"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `destination` should be an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(travel["travel time"]) is not type(1) and
+                    type(travel["travel time"]) is not type(.1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `travel time` should be an integer or a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    type(travel["cost"]) is not type(1) and
+                    type(travel["cost"]) is not type(.1)
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `cost` should be an integer or a floating number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if f"point{travel["destination"]}" not in list(map):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
+                        "destination points doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if current_zone["discounts"]["time space"] < 0:
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts time space should be greater or equal to 0" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["chance"] < 0 or
+                current_zone["discounts"]["chance"] > 1
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts chance should be greater or equal " +
+                    "to 0, and over or equal to 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if (
+                current_zone["discounts"]["discount"]["max dropoff"] <
+                current_zone["discounts"]["discount"]["max dropoff"]
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "discounts max dropoff should be greater or " +
+                    "equal to the min dropoff" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        elif current_zone["type"] == "dungeon":
+            dungeon = current_zone["dungeon"]
+            if dungeon["rooms number"] > len(list(dungeon["rooms"])):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "the specified amount of rooms number is over" +
+                    " the length of the defined rooms" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+            if dungeon["rooms number"] < len(list(dungeon["rooms"])):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    "too many rooms are defined in the rooms dictionary" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            if dungeon["reward dialog"] not in list(dialog):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"map zone id '{current}' isn't valid --> " +
+                    f"dialog `{dungeon["reward dialog"]}` in reward " +
+                    "dialog doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            for room_id in list(dungeon["rooms"]):
+                room = dungeon["rooms"][room_id]
+
+                if "room type" not in room:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `room type` isn't specified" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "room digit" not in room:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `room digit` isn't specified" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(room["room type"]) is not type(""):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `room type` should be a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(room["room digit"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `room digit` should be an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if room["room type"] not in ["fight", "boss-fight", "enigma"]:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `room type` doesn't specify a valid room type" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if room["room digit"] < 1 or room["room digit"] > dungeon["rooms number"]:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                        "key `room digit` should be in greater or equal to 1 " +
+                        "and lower than the dungeon rooms number" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                for i in dungeon["rooms"]:
+                    ii = dungeon["rooms"][i]
+                    if i != room_id and ii["room digit"] == room["room digit"]:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "room digit is duplicated with an other room" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                if room["room type"] in ["fight", "boss-fight"]:
+                    if "room fight data" not in room:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "dictionary `room fight data` can't be found" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if "enemy list spawn" not in room["room fight data"]:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `enemy list spawn` in `room fight data` dictionary can't be found" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if "no run away" not in room["room fight data"]:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `no run away` in `room fight data` dictionary can't be found" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if type(room["room fight data"]["enemy list spawn"]) is not type(""):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `enemy list spawn` in `room fight data` dictionary should be a string" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if type(room["room fight data"]["no run away"]) is not type(True):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `no run away` in `room fight data` dictionary should be a boolean" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "item reward" in room["room fight data"] and
+                        type(room["room fight data"]["item reward"]) is not type([])
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `item reward` in `room fight data` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "gold reward" in room["room fight data"] and
+                        type(room["room fight data"]["gold reward"]) is not type(1) and
+                        type(room["room fight data"]["gold reward"]) is not type(.1)
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `gold reward` in `room fight data` dictionary " +
+                            "should be an integer or a floating number" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if room["room fight data"]["enemy list spawn"] not in list(lists):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `enemy list spawn` doesn't specify an existing enemy list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if "item reward" in room["room fight data"]:
+                        for i in room["room fight data"]["item reward"]:
+                            if i not in list(item):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                                    f"item '{i}' in `item reward` list doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+
+                else:
+                    if "room enigma data" not in room:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "dictionary `room enigma data` can't be found" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if "script name" not in room["room enigma data"]:
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `script name` in `room enigma data` dictionary can't be found" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if type(room["room enigma data"]["script name"]) is not type(""):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `script name` in `room enigma data` dictionary should be a string" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "arguments" in room["room enigma data"] and
+                        type(room["room enigma data"]["arguments"]) is not type([])
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                            "key `arguments` in `room enigma data` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+                    if "arguments" in room["room enigma data"]:
+                        possible_arguments = [
+                            "player", "map", "item", "drinks", "enemy", "npcs",
+                            "start_player", "lists", "zone", "dialog", "mission",
+                            "mounts", "start_time", "generic_text_replacements",
+                            "preferences"
+                        ]
+                        for argument in room["room enigma data"]["arguments"]:
+                            if argument not in possible_arguments:
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"room id '{room_id}' in map zone id '{current}' isn't valid --> " +
+                                    f"argument `{argument}` in arguments key " +
+                                    "is not a valid one" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+
+    # Specific checks for the `dialog` dictionary
+    # CHECKS:
+    # - checks on `to display` dictionary:
+    #   * check if every key is the right type
+    #   * check if locations exist
+    #   * check if enemies exist
+    #   * check if npcs exist
+    # - check if the `actions` dictionary is unneeded
+    # - check if the `actions` dictionary isn't specified
+    # - check if everything in the `actions` dictionary is of a correct type
+    for current_id in list(dialog):
+        current = dialog[current_id]
+
+        if "to display" in current:
+            for key in [
+                "player attributes", "visited locations",
+                "known enemies", "known npcs"
+            ]:
+                if (
+                    key in current["to display"] and
+                    type(current["to display"][key]) is not type([])
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        f"key `{key}` in to `display` dictionary should be a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if "visited locations" in current["to display"]:
+                for i in current["to display"]["visited locations"]:
+                    if f"point{i}" not in list(map):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"map point '{i}' in `visited locations` key " +
+                            "in `to display` dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if "known enemies" in current["to display"]:
+                for i in current["to display"]["known enemies"]:
+                    if i not in list(enemy):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"enemy '{i}' in `known enemies` key " +
+                            "in `to display` dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if "known npcs" in current["to display"]:
+                for i in current["to display"]["known npcs"]:
+                    if i not in list(npcs):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"npc '{i}' in `known npcs` key " +
+                            "in `to display` dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+        if current["use actions"] and "actions" not in current:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"dialog id '{current_id}' isn't valid --> " +
+                "key `use actions` is set to True but the `actions`" +
+                " dictionary isn't defined" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if not current["use actions"] and "actions" in current:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"dialog id '{current_id}' isn't valid --> " +
+                "key `use actions` is set to False but the `actions`" +
+                " dictionary is still defined" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if "actions" in current:
+            if (
+                "add attributes" in current["actions"] and
+                type(current["actions"]["add attributes"]) is not type([])
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"dialog id '{current_id}' isn't valid --> " +
+                    "key `add attributes` in `actions` dictionary should be a list" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+            if "give item" in current["actions"]:
+                if type(current["actions"]["give item"]) is not type([]):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `give item` in `actions` dictionary should be a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                for i in current["actions"]["give item"]:
+                    if i not in list(item) and (
+                        not i.startswith("$")
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"item '{i}' in `give item` list in `actions` " +
+                            "dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if "remove item" in current["actions"]:
+                if type(current["actions"]["remove item"]) is not type([]):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `remove item` in `actions` dictionary should be a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                for i in current["actions"]["remove item"]:
+                    if i not in list(item) and (
+                        not i.startswith("$")
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"item '{i}' in `remove item` list in `actions` " +
+                            "dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if "use drink" in current["actions"]:
+                if type(current["actions"]["use drink"]) is not type([]):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `use drink` in `actions` dictionary should be a list" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                for i in current["actions"]["use drink"]:
+                    if i not in list(drinks) and (
+                        not i.startswith("$")
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"item '{i}' in `use drink` list in `actions` " +
+                            "dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+            if "health modification" in current["actions"]:
+                if (
+                    "diminution" in current["actions"]["health modification"] and
+                    type(current["actions"]["health modification"]["diminution"]) is not type(1) and
+                    not str(current["actions"]["health modification"]["diminution"]).startswith("$")
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `diminution` in `health modification` " +
+                        "in `actions` dictionary should be an integer" +
+                        " or a variable created in the conversation" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    "augmentation" in current["actions"]["health modification"] and
+                    type(current["actions"]["health modification"]["augmentation"]) is not type(1) and
+                    not str(current["actions"]["health modification"]["augmentation"]).startswith("$")
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `augmentation` in `health modification` " +
+                        "in `actions` dictionary should be an integer" +
+                        " or a variable created in the conversation" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "max health" in current["actions"]["health modification"]:
+                    if (
+                        "diminution" in current["actions"]["health modification"]["max health"] and
+                        type(current["actions"]["health modification"]["max health"]["diminution"]) is not type(1) and
+                        not str(current["actions"]["health modification"]["max health"]["diminution"]).startswith("$")
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `diminution` in `max health` in `health modification` " +
+                            "in `actions` dictionary should be an integer" +
+                            " or a variable created in the conversation" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "augmentation" in current["actions"]["health modification"]["max health"] and
+                        type(current["actions"]["health modification"]["max health"]["augmentation"]) is not type(1) and
+                        not str(current["actions"]["health modification"]["max health"]["augmentation"]).startswith("$")
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `augmentation` in `max health` in `health modification` " +
+                            "in `actions` dictionary should be an integer" +
+                            " or a variable created in the conversation" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+            if "gold modification" in current["actions"]:
+                if (
+                    "diminution" in current["actions"]["gold modification"] and
+                    type(current["actions"]["gold modification"]["diminution"]) is not type(1) and
+                    type(current["actions"]["gold modification"]["diminution"]) is not type(.1) and
+                    not str(current["actions"]["gold modification"]["diminution"]).startswith("$")
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `diminution` in `gold modification` " +
+                        "in `actions` dictionary should be an integer or a floating number" +
+                        " or a variable created in the conversation" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if (
+                    "augmentation" in current["actions"]["gold modification"] and
+                    type(current["actions"]["gold modification"]["augmentation"]) is not type(1) and
+                    type(current["actions"]["gold modification"]["augmentation"]) is not type(.1) and
+                    not str(current["actions"]["gold modification"]["augmentation"]).startswith("$")
+                ):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"dialog id '{current_id}' isn't valid --> " +
+                        "key `augmentation` in `gold modification` " +
+                        "in `actions` dictionary should be an integer or a floating number" +
+                        " or a variable created in the conversation" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+            if "add to diary" in current["actions"]:
+                if "known zones" in current["actions"]["add to diary"]:
+                    if type(current["actions"]["add to diary"]["known zones"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `known zones` in `add to diary` " +
+                            "in `actions` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current["actions"]["add to diary"]["known zones"]:
+                        if i not in list(zone) and (
+                            not i.startswith("$")
+                        ):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"dialog id '{current_id}' isn't valid --> " +
+                                f"zone '{i}' in key `known zones` in `add to diary` " +
+                                "in `actions` dictionary doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known enemies" in current["actions"]["add to diary"]:
+                    if type(current["actions"]["add to diary"]["known enemies"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `known enemies` in `add to diary` " +
+                            "in `actions` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current["actions"]["add to diary"]["known enemies"]:
+                        if i not in list(enemy) and (
+                            not i.startswith("$")
+                        ):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"dialog id '{current_id}' isn't valid --> " +
+                                f"enemy '{i}' in key `known enemies` in `add to diary` " +
+                                "in `actions` dictionary doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known npcs" in current["actions"]["add to diary"]:
+                    if type(current["actions"]["add to diary"]["known npcs"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `known npcs `in `add to diary` " +
+                            "in `actions` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current["actions"]["add to diary"]["known npcs"]:
+                        if i not in list(npcs) and (
+                            not i.startswith("$")
+                        ):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"dialog id '{current_id}' isn't valid --> " +
+                                f"npc '{i}' in key `known npcs` in `add to diary` " +
+                                "in `actions` dictionary doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+            if "remove to diary" in current["actions"]:
+                if "known zones" in current["actions"]["remove to diary"]:
+                    if type(current["actions"]["remove to diary"]["known zones"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `known zones` in `remove to diary` " +
+                            "in `actions` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current["actions"]["remove to diary"]["known zones"]:
+                        if i not in list(zone) and (
+                            not i.startswith("$")
+                        ):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"dialog id '{current_id}' isn't valid --> " +
+                                f"zone '{i}' in key `known zones` in `remove to diary` " +
+                                "in `actions` dictionary doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known enemies" in current["actions"]["remove to diary"]:
+                    if type(current["actions"]["remove to diary"]["known enemies"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `known enemies` in `remove to diary` " +
+                            "in `actions` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current["actions"]["remove to diary"]["known enemies"]:
+                        if i not in list(enemy) and (
+                            not i.startswith("$")
+                        ):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"dialog id '{current_id}' isn't valid --> " +
+                                f"enemy '{i}' in key `known enemies` in `remove to diary` " +
+                                "in `actions` dictionary doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known npcs" in current["actions"]["remove to diary"]:
+                    if type(current["actions"]["remove to diary"]["known npcs"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            "key `known npcs `in `remove to diary` " +
+                            "in `actions` dictionary should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current["actions"]["remove to diary"]["known npcs"]:
+                        if i not in list(npcs) and (
+                            not i.startswith("$")
+                        ):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"dialog id '{current_id}' isn't valid --> " +
+                                f"npc '{i}' in key `known npcs` in `remove to diary` " +
+                                "in `actions` dictionary doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                # scripts tests TODO (for later maybe)
+
+    # Specific checks of `mission` dictionary
+    # CHECKS:
+    # - check if source, destination and stopovers exist
+    # - checks on conditions:
+    #   * check if every keys is the right type
+    #   * check if the visited locations exist
+    #   * check if the known enemies exist
+    #   * check if the known npcs exist
+    #   * check if the known zones exist
+    #   * check if the required items exist
+    #   * check if random i in between 0 and 1
+    # - checks on triggers:
+    #   * check if every key is the right type
+    #   * check if the dialog exists
+    # - checks on mission enemies:
+    #   * check if every keys are there
+    #   * check if every keys are the right type
+    #   * check if the spanwed enemy list exist
+    #   * check if the enemy's location exist
+    #   * check if the death dialog exists
+    #   * check for the spawning conditions:
+    #      > check if every key is the right type
+    #      > check if random is in between 0 and 1
+    for current_id in list(mission):
+        current = mission[current_id]
+
+        if f"point{current["source"]}" not in list(map):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"mission id '{current_id}' isn't valid --> " +
+                f"map point 'point{current["source"]}' in `source`" +
+                " key doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if f"point{current["destination"]}" not in list(map):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"mission id '{current_id}' isn't valid --> " +
+                f"map point 'point{current["destination"]}' in `destination`" +
+                " key doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+        if "stopovers" in current:
+            for stopover in current["stopovers"]:
+                if f"point{stopover}" not in list(map):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"mission id '{current_id}' isn't valid --> " +
+                        f"map point 'point{stopover}' in `stopovers`" +
+                        " key doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        for condition in ["to offer", "to complete", "to fail"]:
+            if condition in current:
+                if "player attributes" in current[condition]:
+                    if type(current[condition]["player attributes"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `player attributes` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                if "visited locations" in current[condition]:
+                    if type(current[condition]["visited locations"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `visited locations` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for location in current[condition]["visited locations"]:
+                        if f"point{location}" not in list(map):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"map point 'point{location}' in `visited locations`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known enemies" in current[condition]:
+                    if type(current[condition]["known enemies"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `known enemies` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current[condition]["known enemies"]:
+                        if i not in list(enemy):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"enemy '{i}' in `known enemies`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known zones" in current[condition]:
+                    if type(current[condition]["known zones"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `known zones` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current[condition]["known zones"]:
+                        if i not in list(zone):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"zone '{i}' in `known zones`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "known npcs" in current[condition]:
+                    if type(current[condition]["known npcs"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `known npcs` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current[condition]["known npcs"]:
+                        if i not in list(npcs):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"npc '{i}' in `known npcs`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "has items" in current[condition]:
+                    if type(current[condition]["has items"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `has items` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current[condition]["has items"]:
+                        if i not in list(item):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"item '{i}' in `has items`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+
+                if "random" in current[condition]:
+                    if (
+                        current[condition]["random"] > 1 or
+                        current[condition]["random"] < 0
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `random` in `{condition}`" +
+                            " should be in between 0 and 1" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+        for trigger in ["on offer", "on complete", "on fail"]:
+            if trigger in current:
+                if "dialog" in current[trigger]:
+                    if type(current[trigger]["dialog"]) is not type(""):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `dialog` in `{trigger}`" +
+                            " should be a string" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if current[trigger]["dialog"] not in list(dialog):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"dialog '{current[trigger]["dialog"]}' in `dialog` " +
+                            f"in `{condition}` doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "payment" in current[trigger] and
+                        type(current[trigger]["payment"]) is not type(1) and
+                        type(current[trigger]["payment"]) is not type(.1)
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `payment` in `{trigger}`" +
+                            " should be a floating number or an integer" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "fine" in current[trigger] and
+                        type(current[trigger]["fine"]) is not type(1) and
+                        type(current[trigger]["fine"]) is not type(.1)
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `fine` in `{trigger}`" +
+                            " should be a floating number or an integer" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    if (
+                        "exp addition" in current[trigger] and
+                        type(current[trigger]["exp addition"]) is not type(1) and
+                        type(current[trigger]["exp addition"]) is not type(.1)
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `exp addition` in `{trigger}`" +
+                            " should be a floating number or an integer" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+        if "enemies" in current:
+            for i in current["enemies"]:
+                current_enemy = current["enemies"][i]
+                if "enemy category" not in current_enemy:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"key `enemy category` is missing" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "location" not in current_enemy:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"key `location` is missing" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if "dialog" not in current_enemy:
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"key `dialog` is missing" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if type(current_enemy["enemy category"]) is not type(""):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"key `enemy category` should be a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(current_enemy["location"]) is not type(1):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"key `enemy category` should be an integer" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if type(current_enemy["dialog"]) is not type(""):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"key `dialog` should be a string" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                if current_enemy["enemy category"] not in list(lists):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"enemy pool list '{current_enemy["enemy category"]}' in key `enemy category`" +
+                        "doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if f"point{current_enemy["location"]}" not in list(map):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"map point 'point{current_enemy["location"]}' in key `location`" +
+                        "doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+                if current_enemy["dialog"] not in list(dialog):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                        f"dialog '{current_enemy["dialog"]}' in key `dialog`" +
+                        "doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+                for condition in ["to spawn", "to despawn"]:
+                    if condition in current_enemy:
+                        if "player attributes" in current_enemy[condition]:
+                            if type(current_enemy[condition]["player attributes"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `player attributes` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                        if "visited locations" in current_enemy[condition]:
+                            if type(current_enemy[condition]["visited locations"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `visited locations` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for location in current_enemy[condition]["visited locations"]:
+                                if f"point{location}" not in list(map):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"map point 'point{location}' in `visited locations`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
+                        if "known enemies" in current_enemy[condition]:
+                            if type(current_enemy[condition]["known enemies"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `known enemies` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for i2 in current_enemy[condition]["known enemies"]:
+                                if i2 not in list(enemy):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"enemy '{i2}' in `known enemies`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
+                        if "known zones" in current_enemy[condition]:
+                            if type(current_enemy[condition]["known zones"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `known zones` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for i2 in current_enemy[condition]["known zones"]:
+                                if i2 not in list(zone):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"zone '{i2}' in `known zones`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
+                        if "known npcs" in current_enemy[condition]:
+                            if type(current_enemy[condition]["known npcs"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `known npcs` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for i2 in current_enemy[condition]["known npcs"]:
+                                if i2 not in list(npcs):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"npc '{i2}' in `known npcs`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
+                        if "has items" in current_enemy[condition]:
+                            if type(current_enemy[condition]["has items"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `has items` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for i2 in current_enemy[condition]["has items"]:
+                                if i2 not in list(item):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"item '{i2}' in `has items`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
+
+                        if "random" in current[condition]:
+                            if (
+                                current_enemy[condition]["random"] > 1 or
+                                current_enemy[condition]["random"] < 0
+                            ):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `random` in `{condition}`" +
+                                    " should be in between 0 and 1" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+
+    # Specifc checks for the `mounts` dictionary
+    # CHECKS:
+    # - check if feeding items exist
+    for mount_id in list(mounts):
+        mount = mounts[mount_id]
+        for i in mount["feed"]["food"]:
+            if i not in list(item):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"mount id '{mount_id}' isn't valid --> " +
+                    f"item '{i}' in `food` in `feed` doesn't exist" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
 
 # Main Function
 def run():
@@ -511,6 +3336,12 @@ def run():
         mounts = yaml.safe_load(f)
     for i in list(mounts):
         examine_mount(mounts[i])
+
+    print("Verifying data...")
+    verify_data(
+        map, item, drinks, enemy, npcs, start_player, lists,
+        zone, dialog, mission, mounts
+    )
 
 run()
 

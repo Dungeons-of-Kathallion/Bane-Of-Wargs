@@ -45372,7 +45372,8 @@ point1809:
   - South
   - East
   - North-East
-  - West-East
+  - South-East
+  - South-West
   map zone: Forlindon Woods
   x: -61
   y: 50
