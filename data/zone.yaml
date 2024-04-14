@@ -277,7 +277,7 @@ Los Gerudos:
 Los Gerudos Prison:
   name: "Los Gerudos Prison"
   description: >
-    The prison of the Los Gerudos city. Many bandits are imprisonned here.
+    The prison of the Los Gerudos city. Many bandits are imprisoned here.
     This prison his handled by the Los Gerudos sheriff himself.
   type: village
   news:

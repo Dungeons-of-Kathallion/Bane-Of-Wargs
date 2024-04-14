@@ -195,7 +195,7 @@ Wanted Bandit Introduction:
       - print(“A bandint known as 'The Dagger' has murdered one of the Los Gerudos prince 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two das ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
       - choice():
         - create-choice(“Why can't you do it yourself?“, goto(label 3))
-        - create-choice(“Can I take care of this misson?“, goto(label 4))
+        - create-choice(“Can I take care of this mission?“, goto(label 4))
     - label 3:
       - print(“As a sheriff of the Los Gerudos city, I've got plenty of missions who're more important than this 'Dagger'! Now get the hell outta here if you're trying to mess with me!“)
     - label 4:
