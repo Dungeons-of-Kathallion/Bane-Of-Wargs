@@ -453,7 +453,7 @@ def verify_data(
     # - verify the map point id is valid
     # - check if the map point coordinates are unique
     # - check if the map point zone exists
-    # - check if the blocked directions are syntaxically good
+    # - check if the blocked directions are syntactically good
     # - check if all the items on the ground exists
     # - verify the validity of the key entry
     # - check if enemy list spawned exists
@@ -3254,7 +3254,7 @@ def verify_data(
                                 )
                                 exit_game()
 
-    # Specifc checks for the `mounts` dictionary
+    # Specific checks for the `mounts` dictionary
     # CHECKS:
     # - check if feeding items exist
     for mount_id in list(mounts):
