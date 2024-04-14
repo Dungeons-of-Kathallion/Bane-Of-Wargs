@@ -1,3 +1,16 @@
+# Copyright (c) 2024 by @Cromha
+#
+# Bane Of Wargs is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Bane Of Wargs is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
 Deliver Raw Wood To Jacky:
   name: "Deliver Raw Wood To Jacky"
   description: "Deliver 2 bags of raw wood to your friend jacky at $destination. He promised you to pay you 15 gold coins."
