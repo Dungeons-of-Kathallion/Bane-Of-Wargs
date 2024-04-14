@@ -321,8 +321,16 @@ def load_game_data(which_type):
                         for script in os.listdir(program_dir + "/plugins/" + what_plugin + "/scripts/"):
                             script_path = os.path.join(program_dir + "/plugins/" + what_plugin + "/scripts/", script)
                             shutil.copy(script_path, scripts_dir + script)
-    else:
-        return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+
+    # Run integration tests
+    with Progress() as progress:
+        task_verify = progress.add_task(f"[cyan]Analzing Data...", total=None)
+        check_yaml.verify_data(
+            map, item, drinks, enemy, npcs, start_player, lists,
+            zone, dialog, mission, mounts
+        )
+        progress.update(task_verify, total=1)
+        progress.update(task_verify, advance=1)
 
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 

@@ -502,7 +502,7 @@ def verify_data(
 
         # Verify blocked directions syntax
         directions = [
-            'North', 'South', 'West', 'East','North-East',
+            'North', 'South', 'West', 'East', 'North-East',
             'North-West', 'South-East', 'South-West', 'None'
         ]
         if 'None' in map_point["blocked"] and len(map_point["blocked"]) > 1:
