@@ -319,6 +319,26 @@ South Pillager:
   description: >
     South Pillagers, who're also known as 'South Men' are cowards, and dangerous enemies, that you'll eventually encounter if you
     travel in the Gerud Desert or in the Badlands of the Stall Island.
+The Dagger:
+  plural: "The Dagger"
+  damage:
+    min damage: 4
+    max damage: 12
+    critical chance: .65
+  health:
+    min spawning health: 20
+    max spawning health: 25
+    max health level: 25
+  agility: .65
+  inventory:
+  - Dagger
+  - Healing Potion
+  - Gerud Mercenary Beverage
+  - Porkchop
+  - Knight Boots
+  - Gerud Desert Map
+  description: >
+    The bandit who murdered one of the Los Gerudos prince. He's wanted for 465 gold coins.
 # Undead enemies
 Mangrove Undead:
   plural: Mangrove Undeads

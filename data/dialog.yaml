@@ -181,3 +181,45 @@ Given Back Dog Mitchell:
       augmentation: $gold_payment
     add attributes:
     - given back mitchell the dog
+
+Wanted Bandit Introduction:
+  conversation:
+    - label 1:
+      - print(As you walk next to the grand avenue, you see the Los Gerudos Prison a few dozen of feet away. You can see sheets on a wall, with inscriptions on it. They seem interesting, maybe it's for some paid job?)
+      - choice():
+        - create-choice(Walk towards the sheets, goto(label 2))
+        - create-choice(Ignore them and continue walking, wait(0))
+    - label 2:
+      - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscription reads: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
+      - print(You decide to go to the sheriff and ask him about the job. He first says to you a little more piece of information about it:)
+      - print(“A bandint known as 'The Dagger' has murdered one of the Los Gerudos prince 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two das ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
+      - choice():
+        - create-choice(“Why can't you do it yourself?“, goto(label 3))
+        - create-choice(“Can I take care of this misson?“, goto(label 4))
+    - label 3:
+      - print(“As a sheriff of the Los Gerudos city, I've got plenty of missions who're more important than this 'Dagger'! Now get the hell outta here if you're trying to mess with me!“)
+    - label 4:
+      - print(“Of course my guy! I'd really much appreciate your help! Come back here when you've found him! Good luck!“)
+  use actions: false
+
+Wanted Bandit Complete:
+  conversation:
+    - label 1:
+      - print(You go see the sheriff and tells him about everything.)
+      - print(“Great! That's amazing! Here's 465 gold coins. Have a nice day!“)
+  use actions: true
+  actions:
+    add to diary:
+      known npcs:
+      - Los Gerudos Sheriff
+    add attributes:
+    - finished wanted bandint mission
+
+Wanted Bandit Killed:
+  conversation:
+    - label 1:
+      - print(You've found the bandint but you've killed him! You guess it's fine for the sheriff...)
+  use actions: true
+  actions:
+    add attributes:
+    - found bandit

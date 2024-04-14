@@ -238,7 +238,7 @@ New Hyru:
     - None
 
 Los Gerudos:
-  name: "New Hyru"
+  name: "Los Gerudos"
   description: "Located in the Gerud Valleys, Los Gerudos is a great town for adventurers that are willing to train and challenge themselves."
   type: village
   news:
@@ -273,6 +273,45 @@ Los Gerudos:
     - Los Gerudos Grocery Store
     harbors:
     - Gerud Harbor
+
+Los Gerudos Prison:
+  name: "Los Gerudos Prison"
+  description: >
+    The prison of the Los Gerudos city. Many bandits are imprisonned here.
+    This prison his handled by the Los Gerudos sheriff himself.
+  type: village
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$RED\/\    //$YELLOW|$WHITE|
+      |$YELLOWO|$WHITE/   \$YELLOW|O|$WHITE|
+      | /     \ $YELLOW|$WHITE|
+      |/       \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |\/\    //||
+      |O|/   \|O||
+      | /     \ ||
+      |/       \||
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
 
 Los Gerudos Hostel:
   name: "Los Gerudo Hostel"

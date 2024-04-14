@@ -55,3 +55,21 @@ Marry Joselina:
   description: >
     A chubby lady, whose dog haven been brought back to her by you.
     She then gave to you 2 gold ingots, worth 1,025 gold coins.
+
+Los Gerudos Sheriff:
+  name: "Los Gerudos Sheriff"
+  cost value: 1
+  speech:
+  - Hello! My name is Mark Hanson! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    This man has been handling the Los Gerudos crimes since he was 25. You helped
+    him to catch 'The Dagger', a bandint who killed one of the Los Gerudos prince.
+    His real name is Mark Hanson.

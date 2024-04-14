@@ -286,3 +286,13 @@ mumakil boss:
     enemies spawns:
       Mumakil: 1
       Desert Troll: 1
+bandit:
+  Wanted Bandint:
+    name: "You encounter “The Dagger“ on your way!"
+    chance: 1
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 1, "max": 1}
+    enemies spawns:
+      The Dagger: 1

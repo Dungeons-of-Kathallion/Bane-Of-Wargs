@@ -1,0 +1,16 @@
+$DARK_BROWN      .------\ /------.
+$DARK_BROWN      |       -       |
+$DARK_BROWN      |               |
+$DARK_BROWN      |               |
+$DARK_BROWN      |               |
+$DARK_BROWN   _______________________
+$KHAKI   ===========.===========
+$TAN     / $BROWN~~~~~     ~~~~~ $TAN\
+$TAN    /|     |     |     |\
+$TAN    W   ---  / \  ---   W
+$TAN    \.      |$BLACKo o$TAN|      ./
+$TAN     |                 |
+$TAN     \    $BROWN#########    $TAN/
+$TAN      \  $BROWN## $TAN----- $BROWN##  $TAN/
+$TAN       \$BROWN##         ##$TAN/
+$TAN        \_____v_____/$WHITE

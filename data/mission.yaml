@@ -65,3 +65,31 @@ Bring A Lost Dog To Yasward Drive:
   on complete:
     dialog: Given Back Dog Mitchell
     exp addition: 15
+
+Wanted Bandit:
+  name: "Wanted Bandit"
+  description: >
+    A wanted bandit known as “The Dagger“, who's been taken to prison for murdering a Los Gerudos prince,
+    has escaped the Los Gerudos Prison ($destination) and is researched in the whole region. Find him for a payment of
+    $payment gold coins by the Los Gerudos sheriff. Some citizens have told seen him going near the south-western Los Gerudos,
+    near the Gerud Forges, in order to escape the town.
+  source: 6730
+  destination: 6730
+  invisible: false
+  force accept: false
+  to offer:
+    random: .15
+  to complete:
+    player attributes:
+    - found bandit
+  on offer:
+    dialog: Wanted Bandit Introduction
+  on complete:
+    dialog: Wanted Bandit Complete
+    payment: 465
+    exp addition: 20
+  enemies:
+    The Dagger:
+      enemy category: bandit
+      location: 7635
+      dialog: Wanted Bandit Killed
