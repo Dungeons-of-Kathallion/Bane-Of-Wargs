@@ -227,6 +227,7 @@ def execute_triggers(
         which_key != 'on offer'
         and which_key != 'on complete'
         and which_key != 'on fail'
+        and which_key != 'on abort'
     ):
         logger_sys.log_message(f"ERROR: Stopping mission checks for mission data '{mission_data}' --> invalid key '{which_key}'")
         text_handling.exit_game()

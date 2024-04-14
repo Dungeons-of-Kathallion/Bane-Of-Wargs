@@ -2814,6 +2814,11 @@ def run(play):
                         wait = cinput("Are you sure you want to abort this mission? (y/n) ")
                         if wait.startswith('y'):
                             player["active missions"].remove(mission[mission_id]["name"])
+                            mission_handling.execute_triggers(
+                                mission[mission_id], player, "on abort", dialog, preferences,
+                                text_replacements_generic, drinks, item, enemy, npcs, start_player,
+                                lists, zone, mission, mounts, start_time, map
+                            )
                 else:
                     cout("")
                     cout(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)

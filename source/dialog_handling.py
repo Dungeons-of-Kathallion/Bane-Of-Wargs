@@ -180,7 +180,7 @@ def print_dialog(
                     selected_npc = added_known_npcs[count]
                     if str(selected_npc).replace('$', '') in list(new_text_replacements):
                         selected_npc = new_text_replacements[str(selected_npc).replace('$', '')]
-                    player["met npcs name"].append(selected_npc)
+                    player["met npcs names"].append(selected_npc)
                     count += 1
         if "remove to diary" in actions:
             if "known zones" in actions["remove to diary"]:
@@ -214,7 +214,7 @@ def print_dialog(
                     selected_npc = removed_known_npcs[count]
                     if str(selected_npc).replace('$', '') in list(new_text_replacements):
                         selected_npc = new_text_replacements[str(selected_npc).replace('$', '')]
-                    player["met npcs name"].append(selected_npc)
+                    player["met npcs names"].append(selected_npc)
                     count += 1
         if "use drink" in actions:
             used_drinks = actions["use drink"]

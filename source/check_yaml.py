@@ -3099,7 +3099,7 @@ def verify_data(
                         )
                         text_handling.exit_game()
 
-        for trigger in ["on offer", "on complete", "on fail"]:
+        for trigger in ["on offer", "on complete", "on fail", "on abort"]:
             if trigger in current:
                 if "dialog" in current[trigger]:
                     if type(current[trigger]["dialog"]) is not type(""):
