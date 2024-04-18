@@ -415,7 +415,7 @@ def conversation_choice_maker(conversation_input, choices_dict, new_text_replace
         choice_name = choice_name.split(",", 1)[0]
         choices += [str(choice_name)]
 
-    player_choice = terminal_handling.show_menu(choices)
+    player_choice = terminal_handling.show_menu(choices, length=85)
     choice_position = choices.index(player_choice)
 
     choice_action = choices_dict[choice_position]

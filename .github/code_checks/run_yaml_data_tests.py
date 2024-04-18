@@ -3003,7 +3003,7 @@ def verify_data(
                             COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                             f"mission id '{current_id}' isn't valid --> " +
                             f"dialog '{current[trigger]["dialog"]}' in `dialog` " +
-                            f"in `{condition}` doesn't exist" +
+                            f"in `{trigger}` doesn't exist" +
                             COLOR_RESET_ALL
                         )
                         exit_game()

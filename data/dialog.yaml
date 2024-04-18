@@ -25,8 +25,8 @@ Deliver Raw Wood To Jacky Completed:
       - print(You arrive to the house of your friend Jack. You knock on his doors...)
       - wait(4)
       - print(The doors finally opens, and you greet Jacky.)
-      - print(“Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me.” You say.)
-      - print(“Hi! Thanks for the deliver! How many gold do you want me to pay you?” Jacky says.)
+      - print(“- Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me. You say.)
+      - print(- Hi! Thanks for the deliver! How many gold do you want me to pay you? Jacky says”.)
       - goto(label 2)
     - label 2:
       - choice():
@@ -35,16 +35,16 @@ Deliver Raw Wood To Jacky Completed:
         - create-choice(25 gold coins, goto(label 5))
         - create-choice(45 gold coins, goto(label 6))
     - label 3:
-      - print(“10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins.”)
+      - print(“- 10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins.”)
       - create-variable(gold_augmentation, 10)
     - label 4:
-      - print(“20 gold coins? What a nice price, thanks! Here's 20 gold coins.”)
+      - print(“- 20 gold coins? What a nice price, thanks! Here's 20 gold coins.”)
       - create-variable(gold_augmentation, 20)
     - label 5:
-      - print(“25 gold coins? Seems fair. Here's 25 gold coins.”)
+      - print(“- 25 gold coins? Seems fair. Here's 25 gold coins.”)
       - create-variable(gold_augmentation, 25)
     - label 6:
-      - print(“45 gold coins?! Are you crazy?! I'm not paying 45 fucking gold coins for 2 bags of raw wood!”)
+      - print(“- 45 gold coins?! Are you crazy?! I'm not paying 45 fucking gold coins for 2 bags of raw wood!”)
       - goto(label 2)
   use actions: true
   actions:
@@ -111,15 +111,15 @@ Encounter Warg Attacking A Guy:
 Saved The Guy In The Woods:
   conversation:
     - label 1:
-      - print(“Thanks man! You saved my life! How could I thank you?”)
+      - print(“- Thanks man! You saved my life! How could I thank you?”)
       - choice():
         - create-choice(“Have you got any gold on you?“, goto(label 2))
         - create-choice(“Have you got any valuable item on you?“, goto(label 3))
     - label 2:
-      - print(“Sure! Here's 45 gold coins! Here's also a map!”)
+      - print(“- Sure! Here's 45 gold coins! Here's also a map!”)
       - create-variable(payment, 45)
     - label 3:
-      - print(“I have a magic map, here it is!”)
+      - print(“- I have a magic map, here it is!”)
       - create-variable(payment, 0)
   use actions: true
   actions:
@@ -153,28 +153,32 @@ Gerud Ancient Dungeon Reward:
 Found Dog Mitchell:
   conversation:
     - label 1:
-      - print(While you walk into the Los Gerudos grand avenue, and admire the sea, visible from a long distance, you hear a noise, coming from behind you. You slowly turn behind. You find a dog; he must have followed you since you've left that little juwelery store. He must have been lost by his dear owners!)
+      - print(While you walk into the Los Gerudos grand avenue, and admire the sea, visible from a long distance, you hear a noise, coming from behind you. You slowly turn behind. You find a dog; he must have followed you since you've left that little jewelry store. He must have been lost by his dear owners!)
       - print(You decide to take a look...)
       - wait(2)
       - "print(You found a golden collar on his neck, with inscribed letters on it. It says: “Mitchell - property of the Coopers; Please return this dog if you find him at the 13 Yasward Drive, Los Gerudos“. The dog looks at you with big eyes, seeming like he wants you to take him back to its owners.\n)"
-  use actions: false
+  use actions: true
+  actions:
+    add to diary:
+      known npcs:
+      - Marry Joselina
 
 Given Back Dog Mitchell:
   conversation:
     - label 1:
       - print(You finally arrive to the 13 Yasward Drive, Los Gerudos, the village of the Coopers. You knock at the door.)
       - wait(2)
-      - print(A bulter finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddently, the bulter shouts:)
-      - print(“Mrs. Cooper! We've found Mitchell back!“\n)
+      - print(A bulter finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddenly, the bulter shouts:)
+      - print(“- Mrs. Cooper! We've found Mitchell back!“\n)
       - wait(1)
-      - print(A chubby lady suddently goes down the main stairs, running towards the opened doors.)
-      - print(“Mitchell! Oh my godness! Finally! you're here! Where did you find him bulter?“, says the chubby lady.)
-      - print(“Actually it's me who've found him, in the grand avenue. I read his collar and then I came here.“, you respond to her.)
-      - print(“What is your name? I'm so grateful, and I couldn't be more.“)
-      - print(“My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty much sure you haven't heard of this place before.“)
-      - print(“The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch there. What can I do for you? Is there anything you'd like to have?“, the lady asks)
-      - print(“Please, I dind't do much.“)
-      - print(“You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
+      - print(A chubby lady suddenly goes down the main stairs, running towards the opened doors.)
+      - print(“- Mitchell! Oh my godness! Finally! you're here! Where did you find him bulter?, says the chubby lady.)
+      - print(- Actually it's me who've found him, in the grand avenue. I read his collar and then I came here., you respond to her.)
+      - print(- What is your name? I'm so grateful, and I couldn't be more.)
+      - print(- My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty much sure you haven't heard of this place before.)
+      - print(- The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch there. What can I do for you? Is there anything you'd like to have?, the lady asks.)
+      - print(- Please, I didn't do much.)
+      - print(- You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
       - print(She holds in here hands two gold ingots, that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
       - choice():
         - create-choice(Accept the payment., goto(label 2))
@@ -187,9 +191,6 @@ Given Back Dog Mitchell:
       - create-variable(gold_payment, 0)
   use actions: true
   actions:
-    add to diary:
-      known npcs:
-      - Marry Joselina
     gold modification:
       augmentation: $gold_payment
     add attributes:
@@ -205,34 +206,83 @@ Wanted Bandit Introduction:
     - label 2:
       - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscription reads: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
       - print(You decide to go to the sheriff and ask him about the job. He first says to you a little more piece of information about it:)
-      - print(“A bandint known as 'The Dagger' has murdered one of the Los Gerudos prince 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two das ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
+      - print(“- A bandit known as 'The Dagger' has murdered one of the Los Gerudos prince 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two days ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
       - choice():
         - create-choice(“Why can't you do it yourself?“, goto(label 3))
         - create-choice(“Can I take care of this mission?“, goto(label 4))
     - label 3:
-      - print(“As a sheriff of the Los Gerudos city, I've got plenty of missions who're more important than this 'Dagger'! Now get the hell outta here if you're trying to mess with me!“)
+      - print(“- As a sheriff of the Los Gerudos city, I've got plenty of missions who're more important than this 'Dagger'! Now get the hell outta here if you're trying to mess with me!“)
     - label 4:
-      - print(“Of course my guy! I'd really much appreciate your help! Come back here when you've found him! Good luck!“)
-  use actions: false
-
-Wanted Bandit Complete:
-  conversation:
-    - label 1:
-      - print(You go see the sheriff and tells him about everything.)
-      - print(“Great! That's amazing! Here's 465 gold coins. Have a nice day!“)
+      - print(“- Of course my guy! I'd really much appreciate your help! Come back here when you've found him! Good luck!“)
   use actions: true
   actions:
     add to diary:
       known npcs:
       - Los Gerudos Sheriff
+
+Wanted Bandit Complete:
+  conversation:
+    - label 1:
+      - print(You go see the sheriff and tells him about everything.)
+      - print(“- Great! That's amazing! Here's 465 gold coins. Have a nice day!“)
+  use actions: true
+  actions:
     add attributes:
     - finished wanted bandint mission
 
 Wanted Bandit Killed:
   conversation:
     - label 1:
-      - print(You've found the bandint but you've killed him! You guess it's fine for the sheriff...)
+      - print(You've found the bandit but you've killed him! You guess it's fine for the sheriff...)
   use actions: true
   actions:
     add attributes:
     - found bandit
+
+Wendy Escort Offer:
+  conversation:
+    - label 1:
+      - print(You enter the Los Gerudos Hostel, and directly go to the bar and ask for a cold beer. You take your time drinking it and start a little conversation with the barmaid:)
+      - print(“- From where did you get this beer? I've never drinked one that good! you say to the barmaid.)
+      - print(- Actually, since the creation of the Los Gerudos Grand Hostel by my great great grandfather, we brew our own beer in a destillery actually located in the Badlands region, where the conditions are perfect. And at this day, my cousin's in charge of the distillery.“)
+      - goto(label 2)
+    - label 2:
+      - choice():
+        - create-choice(“Hmmm perfect conditions...? Could you tell me more about that?“, goto(label 3))
+        - create-choice(“The Badlands you're saying? It's a long and hard way up to here!“, goto(label 4))
+        - create-choice(“Anyway; I think I'm gonna go to the poolroom; bye!“, goto(label 5))
+    - label 3:
+      - print(“- Well, as you must know, the Badlands is an arid region, but which's also full of cactuses. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste; says the barmaid.)
+      - "print(- So this beer comes from around the island: the wheat grains are high-quality grains coming from the far Stall Fields and the special spice ingredient from the arid Badlands. I can now understand why it's so expensive compared to a regular beer.“)"
+      - goto(label 2)
+    - label 4:
+      - "print(“- Yes, it's quite tough to bring every ingredients to the distillery in the Badlands and then smuggle the beer to the Los Gerudos city. The wheat grains are coming from the Stall Fields, and they travel through the Goro Mounts and the Gerud Desert to get to the Badlands, but that's the pretty easy part: the only hurdle is weather and the rough terrain; but smuggling the beer from the distillery located in the Badlands to Los Gerudos, that's the big problem. Our beer must take a longer path to avoid possible South Pillagers and their Mumakils, that brings the smuggling covet to rough regions and arid weather. Bringing 50 of our beers to Los Gerudos costs to us about 1,850 gold, with everything.)"
+      - print(- I didn't thought it was that of a difficulty... I guess I now understand why these beers are so expensive compared to regular ones. You beers are really unique!“)
+      - goto(label 2)
+    - label 5:
+      - print(You decide to play some games at the poolroom. You ask as young woman who's near if she'd like to have a fun game of billards with you:)
+      - print(“- Hi! Wanna play billards? And maybe bet some money? you say.)
+      - print(- Sorry, but I ain't really in the mood right now... says the young woman, as she starts to shed some tears.)
+      - print(- What's happening? Did I say somethin' wrong?)
+      - print(- No, you're kind. and she starts to cry.)
+      - print(- What's your name and how can I help you in any way? Somethin's wrong?)
+      - print(- I'm Wendy. Wendy Tucker. I received a letter from the mayor of the Cocorico Village, it's a small town in the Stall Fields. The letter said that my dad got hurt really bad while farming, and that he's in a really bad situation. But I can't afford the travel... And I'm staying here while my dad's probably dying... and she starts to cry even more.)
+      - "print(You move a chair and sit on her right, next to her and start to recomfort her. You're thinking: should I escort her to the Cocorico Village or not?)"
+  use actions: true
+  actions:
+    use drink:
+    - Los Gerudos Beer
+    add to diary:
+      known npcs:
+      - Wendy Tucker
+
+Wendy Escort Complete:
+  conversation:
+    - label 1:
+      - print(You successfully deposit Wendy to the Woodstack Hostel and let her go see her dad. You decide to have a whisky at the Woodstack Hostel...)
+      - wait(5)
+      - print(A few minutes later, Wendy comes back with tears on her face, and express to you how she is grateful from you. She gives you 125 gold.)
+  use actions: true
+  actions:
+    use drink:
+    - Whisky

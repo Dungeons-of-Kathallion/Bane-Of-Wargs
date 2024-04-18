@@ -106,3 +106,21 @@ Wanted Bandit:
       enemy category: bandit
       location: 7635
       dialog: Wanted Bandit Killed
+
+Escort Wendy To Cocorico Village:
+  name: "Escort Wendy To Cocorico Village"
+  description: >
+    You met a young woman named Wendy, whose father is sick. Escort her to the Woodstack Hostel, Cocorico Village
+    which is located in the Stall Fields; where she'll be able to say goodbye to her dear father.
+  source: 6990
+  destination: 2075
+  invisible: false
+  force accept: false
+  to offer:
+    random: .05
+  on offer:
+    dialog: Wendy Escort Offer
+  on complete:
+    dialog: Wendy Escort Complete
+    payment: 125
+    exp addition: 25

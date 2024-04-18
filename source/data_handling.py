@@ -40,7 +40,7 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 # Handling functions
 
 
-def load_game_data(which_type):
+def load_game_data(which_type, preferences):
 
     # Check if the which_type variable is valid,
     # so if it is not either 'vanilla' or
@@ -337,14 +337,15 @@ def load_game_data(which_type):
                             shutil.copy(script_path, scripts_dir + script)
 
     # Run integration tests
-    with Progress() as progress:
-        task_verify = progress.add_task(f"[cyan]Analzing Data...", total=None)
-        check_yaml.verify_data(
-            map, item, drinks, enemy, npcs, start_player, lists,
-            zone, dialog, mission, mounts
-        )
-        progress.update(task_verify, total=1)
-        progress.update(task_verify, advance=1)
+    if preferences["game data analyzing"]:
+        with Progress() as progress:
+            task_verify = progress.add_task(f"[cyan]Analzing Data...", total=None)
+            check_yaml.verify_data(
+                map, item, drinks, enemy, npcs, start_player, lists,
+                zone, dialog, mission, mounts
+            )
+            progress.update(task_verify, total=1)
+            progress.update(task_verify, advance=1)
 
     return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
 

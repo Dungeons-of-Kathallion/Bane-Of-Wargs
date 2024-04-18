@@ -86,3 +86,21 @@ Los Gerudos Sheriff:
     This man has been handling the Los Gerudos crimes since he was 25. You helped
     him to catch 'The Dagger', a bandint who killed one of the Los Gerudos prince.
     His real name is Mark Hanson.
+
+Wendy Tucker:
+  name: "Wendy Tucker"
+  cost value: 1
+  speech:
+  - Hello! My name is Wendy Tucker! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    This young woman who you've met in the Los Gerudos Grand Avenue famous poolroom.
+    Her dad who lives in the Cocorico Village was dying and she asked you to escort
+    her to her dad's house because she couldn't afford the travel.
