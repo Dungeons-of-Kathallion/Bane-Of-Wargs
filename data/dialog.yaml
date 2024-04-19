@@ -169,7 +169,7 @@ Given Back Dog Mitchell:
       - print(You finally arrive to the 13 Yasward Drive, Los Gerudos, the village of the Coopers. You knock at the door.)
       - wait(2)
       - print(A bulter finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddenly, the bulter shouts:)
-      - print(“- Mrs. Cooper! We've found Mitchell back!“\n)
+      - print(“- Mrs. Cooper! Mitchell is back!“\n)
       - wait(1)
       - print(A chubby lady suddenly goes down the main stairs, running towards the opened doors.)
       - print(“- Mitchell! Oh my godness! Finally! you're here! Where did you find him bulter?, says the chubby lady.)
