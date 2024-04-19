@@ -206,7 +206,7 @@ Wanted Bandit Introduction:
     - label 2:
       - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscription reads: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
       - print(You decide to go to the sheriff and ask him about the job. He first says to you a little more piece of information about it:)
-      - print(“- A bandit known as 'The Dagger' has murdered one of the Los Gerudos prince 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two days ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
+      - print(“- A bandit known as 'The Dagger' has murdered one of the Los Gerudos princes 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two days ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
       - choice():
         - create-choice(“Why can't you do it yourself?“, goto(label 3))
         - create-choice(“Can I take care of this mission?“, goto(label 4))
