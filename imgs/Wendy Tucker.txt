@@ -1,0 +1,11 @@
+$YELLOW                 _.._      
+$YELLOW               .'  ..=`_   
+$YELLOW              / _ ='. )`,  
+$YELLOW             | .--:'./`\ \ 
+$YELLOW            .'    .-'   | )
+$YELLOW           / /:';' $TAN_   _$YELLOW( |
+$YELLOW          /.' | |  $CYAN" $TAN| $CYAN"$YELLOW| |
+$YELLOW         (  .|  |   $TAN__$YELLOW  ' /
+$YELLOW         |  |/ / $TAN\  `- /$YELLOW( |
+$YELLOW         )_.:./)   $TAN`--'.$YELLOW_\
+$TAN        .'    `,    +  :\)$WHITE

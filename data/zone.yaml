@@ -351,6 +351,7 @@ Los Gerudos Hostel:
   sleep gold: 12
   sells:
     drinks:
+    - Los Gerudos Beer
     - Beer
     - Whisky
     - Wine

@@ -87,6 +87,7 @@ if not os.path.exists(program_dir):
         "title style": 1,
         "auto update": False,
         "logging level": 2,
+        "game data analyzing": True,
         "game data download": {
             "branch": "master",
             "repository": "Bane-Of-Wargs",
@@ -239,12 +240,12 @@ while menu:
                 (
                     map, item, drinks, enemy, npcs, start_player,
                     lists, zone, dialog, mission, mounts
-                ) = data_handling.load_game_data('vanilla')
+                ) = data_handling.load_game_data('vanilla', preferences)
             else:
                 (
                     map, item, drinks, enemy, npcs, start_player,
                     lists, zone, dialog, mission, mounts
-                ) = data_handling.load_game_data('plugin')
+                ) = data_handling.load_game_data('plugin', preferences)
 
             open_save = preferences["latest preset"]["save"]
             save_file = program_dir + "/saves/save_" + open_save + ".yaml"
@@ -291,7 +292,7 @@ while menu:
             (
                 map, item, drinks, enemy, npcs, start_player,
                 lists, zone, dialog, mission, mounts
-            ) = data_handling.load_game_data('plugin')
+            ) = data_handling.load_game_data('plugin', preferences)
         else:
             logger_sys.log_message("INFO: Updating latest preset")
             preferences["latest preset"]["type"] = "vanilla"
@@ -299,7 +300,7 @@ while menu:
             (
                 map, item, drinks, enemy, npcs, start_player,
                 lists, zone, dialog, mission, mounts
-            ) = data_handling.load_game_data('vanilla')
+            ) = data_handling.load_game_data('vanilla', preferences)
 
         if not using_latest_preset:
             text = "\nPlease select an action:"
@@ -582,7 +583,7 @@ while menu:
                 text_handling.print_title(preferences)
                 options = [
                     'Title Theme', 'Title Style', 'Game Speed', 'Game Updating',
-                    'Logging Level', 'Enabled Plugins', 'Exit'
+                    'Game Data Analyzing', 'Logging Level', 'Enabled Plugins', 'Exit'
                 ]
                 choice = terminal_handling.show_menu(options)
                 cout()
@@ -607,6 +608,13 @@ while menu:
                         preferences["speed up"] = False
                     else:
                         preferences["speed up"] = True
+                elif choice == 'Game Data Analyzing':
+                    choices = ['Enabled', 'Disabled']
+                    speed = terminal_handling.show_menu(choices)
+                    if speed == choices[0]:
+                        preferences["game data analyzing"] = True
+                    else:
+                        preferences["game data analyzing"] = False
                 elif choice == 'Game Updating':
                     cout("Which parameter you wish to change?")
                     parameter = terminal_handling.show_menu([
@@ -705,6 +713,8 @@ while menu:
                                     f.write("True")
                 else:
                     preferences_menu = False
+                    with open(program_dir + '/preferences.yaml', 'w') as f:
+                        f.write(yaml_handling.dump(preferences))
         elif which_type == 'Manual Editing':
             logger_sys.log_message(f"INFO: Manually editing preferences '{program_dir}/preferences.yaml'")
             logger_sys.log_message(f"DEBUG: Before editing preferences: {preferences}")
@@ -3498,6 +3508,18 @@ def run(play):
                 time.sleep(2)
             else:
                 player["x"], player["y"] = x_coordinate, y_coordinate
+            continued_command = True
+        elif command.lower().startswith('$run$dialog$'):
+            chosen_dialog = terminal_handling.show_menu(list(dialog))
+            text_handling.clear_prompt()
+            cout("$GAME$WIDTH$: 54")
+            cout("=" * 54)
+            cout("$START$")
+            dialog_handling.print_dialog(
+                chosen_dialog, dialog, preferences, text_replacements_generic, player, drinks,
+                item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map
+            )
+            cinput("$END$\n")
             continued_command = True
         else:
             continued_utility = False

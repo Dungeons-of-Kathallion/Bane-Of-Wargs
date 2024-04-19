@@ -48,7 +48,8 @@ Artwork
   cf (GPL-3+)
   mga (GPL-3+)
   valkyrie (GPL-3+)
-  jrei (GPL-3+
+  jrei (GPL-3+)
+  Micheal J. Penick (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.
