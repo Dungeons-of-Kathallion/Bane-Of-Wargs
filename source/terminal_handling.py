@@ -131,6 +131,7 @@ def show_menu(options, length=52):
 
     return user_input
 
+
 def format_string_separator(text: str):
     __numbers = [int(s) for s in text.split() if s.isdigit()]
     for number in __numbers:
