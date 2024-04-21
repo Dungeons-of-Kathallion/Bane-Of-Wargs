@@ -36,9 +36,14 @@ def print_speech_text_effect(text, preferences):
         wait = random.uniform(.05, .1)
     else:
         wait = .02
+    count = 0
     for character in new_input:
         cout(character, end="")
-        time.sleep(wait)
+        if character + new_input[count+1] == "\n":
+            time.sleep(wait * random.uniform(1.4, 2))
+        else:
+            time.sleep(wait)
+        count += 1
 
 
 def clear_prompt():

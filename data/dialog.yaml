@@ -228,7 +228,7 @@ Wanted Bandit Complete:
   use actions: true
   actions:
     add attributes:
-    - finished wanted bandint mission
+    - finished wanted bandit mission
 
 Wanted Bandit Killed:
   conversation:
@@ -286,3 +286,70 @@ Wendy Escort Complete:
   actions:
     use drink:
     - Whisky
+
+Escort Gerud Beer Covet Offer:
+  conversation:
+    - label 1:
+      - print(You decide to rest a little at the Los Gerudos Grand Hostel, and have a glass of Wine; you start drinking it. A few minutes later, a man sits next to you, at your left. He starts to talk:)
+      - print(“- Hey. Have I seen you at the Los Gerudos Prison in the sheriff's office? says the man)
+      - print(- Maybe, once I went there because I wanted to help him for some kind of missions; you respond to the man.)
+      - print(- Well, the sheriff is looking for someone who's willing to take high risks for a mission. Are you interested?“)
+      - choice():
+        - create-choice(“Depends...could you tell me more about the mission?“, goto(label 2))
+        - create-choice(“Maybe...what is it?“, goto(label 2))
+        - create-choice(“Yeah I'm not really sure about that...“, goto(label 3))
+    - label 2:
+      - "print(“- Okay, here's further info about the mission: it consists in first travelling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling covet 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
+      - print(- This seems interesting... But how can I be sure you're not messing with me right now? you respond to the man.)
+      - print(- My name is Joseph K. Baker, and I'm a Los Gerudos Law Enforcement officer, here's my badge.“)
+      - print(The man seems to not lie.)
+      - goto(label 4)
+    - label 3:
+      - print(“- Let me at least give you some more information about the mission! says the man.)
+      - print(- I guess..., you respond to him.)
+      - "print(- Okay, here's further info about the mission: it consists in first travelling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling covet 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
+      - print(- This seems interesting... But how can I be sure you're not messing with me right now? you respond to the man.)
+      - print(- My name is Joseph K. Baker, and I'm a Los Gerudos Law Enforcement officer, here's my badge.“)
+      - print(The man seems to not lie.)
+      - goto(label 4)
+    - label 4:
+      - choice():
+        - create-choice(“Okay! I'm in!“, accept())
+        - create-choice(“Ehh...maybe an other time?“, defer())
+        - create-choice(“Sorry but it's too risky for me!“, decline())
+  use actions: true
+  actions:
+    add to diary:
+      known npcs:
+      - Joseph Baker
+    use drink:
+    - Wine
+
+Escort Gerud Beer Covet Stopover:
+  to display:
+    has missions active:
+    - Escort Gerud Beer Covet
+  conversation:
+    - label 1:
+      - print(hey)
+  use actions: true
+  actions:
+    run scripts:
+      - script 0:
+        arguments:
+        - player
+        script name: turn_night.py
+    add attributes:
+    - escort gerud beer covet started escorting
+
+Escort Gerud Beer Covet Fail:
+  conversation:
+    - label 1:
+      - print(Suddenly, a South Pillager campment semms to appear behind the hill you're going towards, you and the covet. A South Pillager patrol who's making rounds around the campment sees you and starts chasing you! You better run fast! You flee from the covet and run far away. You've left 65 gold coins there.)
+  use actions: false
+
+Escort Gerud Beer Covet Complete:
+  conversation:
+    - label 1:
+      - print(hey)
+  use actions: false

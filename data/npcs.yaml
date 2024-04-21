@@ -104,3 +104,21 @@ Wendy Tucker:
     This young woman who you've met in the Los Gerudos Grand Avenue famous poolroom.
     Her dad who lives in the Cocorico Village was dying and she asked you to escort
     her to her dad's house because she couldn't afford the travel.
+
+Joseph Baker:
+  name: "Joseph K. Baker"
+  cost value: 1
+  speech:
+  - Hello! My name is Joseph Baker! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    Joseph Baker is one of the most dedicaded Los Gerudos Law Enforcement officer, whose boss is the sheriff
+    Mark Hanson. He offered to you a special mission about escorting a smuggling covet through the whole
+    Gerud Desert and Badlands without getting caught by any south pillager raid camp.

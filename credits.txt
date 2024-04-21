@@ -50,6 +50,7 @@ Artwork
   valkyrie (GPL-3+)
   jrei (GPL-3+)
   Micheal J. Penick (GPL-3+)
+  Tim Campbell (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

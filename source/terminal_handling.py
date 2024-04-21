@@ -23,13 +23,13 @@ import sys
 
 def cout(__text: object = "", end="\n"):
     # Write to stdout the text and flush
-    sys.stdout.write(str(__text) + str(end))
+    sys.stdout.write(str(format_string_separator(__text)) + str(end))
     sys.stdout.flush()
 
 
 def cinput(__text: object = ""):
     # Ask basic input
-    return input(__text)
+    return input(format_string_separator(__text))
 
 
 def cinput_int(__text: object = ""):
@@ -41,7 +41,7 @@ def cinput_int(__text: object = ""):
     while not __var:
         __var = True
         try:
-            __input = int(cinput(__text))
+            __input = int(cinput(format_string_separator(__text)))
         except ValueError as error:
             cout(COLOR_YELLOW + "Input isn't valid!" + COLOR_RESET_ALL)
             __var = False
@@ -130,3 +130,9 @@ def show_menu(options, length=52):
             user_input = None
 
     return user_input
+
+def format_string_separator(text: str):
+    __numbers = [int(s) for s in text.split() if s.isdigit()]
+    for number in __numbers:
+        text = text.replace(str(number), f"{number:,}")
+    return text
