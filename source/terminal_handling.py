@@ -16,6 +16,7 @@
 from colors import *
 # external imports
 import time
+import re
 import sys
 
 
@@ -133,7 +134,17 @@ def show_menu(options, length=52):
 
 
 def format_string_separator(text: str):
-    __numbers = [int(s) for s in text.split() if s.isdigit()]
+    __numbers = []
+    __regex = r'[\d]+[.\d]+|[\d]*[.][\d]+|[\d]+'
+    if re.search(__regex, text) is not None:
+        for catch in re.finditer(__regex, text):
+            __numbers += [catch[0]]
     for number in __numbers:
-        text = text.replace(str(number), f"{number:,}")
+        if number.isnumeric():
+            text = text.replace(str(number), f"{int(number):,}")
+        else:
+            try:
+                text = text.replace(str(number), f"{float(number):,}")
+            except Exception as err:
+                pass
     return text
