@@ -167,7 +167,8 @@ def print_dialog(
                 selected_item = removed_items[count]
                 if str(selected_item).replace('$', '') in list(new_text_replacements):
                     selected_item = new_text_replacements[str(selected_item).replace('$', '')]
-                player["inventory"].remove(selected_item)
+                if selected_item in player["inventory"]:
+                    player["inventory"].remove(selected_item)
                 count += 1
         if "add to diary" in actions:
             if "known zones" in actions["add to diary"]:
@@ -213,7 +214,8 @@ def print_dialog(
                     selected_zone = removed_visited_zones[count]
                     if str(selected_zone).replace('$', '') in list(new_text_replacements):
                         selected_zone = new_text_replacements[str(selected_zone).replace('$', '')]
-                    player["visited zones"].remove(selected_zone)
+                    if selected_zone in player["visited zones"]:
+                        player["visited zones"].remove(selected_zone)
                     count += 1
             if "known enemies" in actions["remove to diary"]:
                 removed_known_enemies = actions["remove to diary"]["known enemies"]
@@ -224,7 +226,8 @@ def print_dialog(
                     selected_enemy = removed_known_npcs[count]
                     if str(selected_enemy).replace('$', '') in list(new_text_replacements):
                         selected_enemy = new_text_replacements[str(selected_enemy).replace('$', '')]
-                    player["enemies list"].remove(selected_enemy)
+                    if selected_enemy in player["enemies list"]:
+                        player["enemies list"].remove(selected_enemy)
                     count += 1
             if "known npcs" in actions["remove to diary"]:
                 removed_known_npcs = actions["remove to diary"]["known npcs"]
@@ -235,7 +238,8 @@ def print_dialog(
                     selected_npc = removed_known_npcs[count]
                     if str(selected_npc).replace('$', '') in list(new_text_replacements):
                         selected_npc = new_text_replacements[str(selected_npc).replace('$', '')]
-                    player["met npcs names"].append(selected_npc)
+                    if selected_npc in player["met nps names"]:
+                        player["met npcs names"].append(selected_npc)
                     count += 1
         if "use drink" in actions:
             used_drinks = actions["use drink"]

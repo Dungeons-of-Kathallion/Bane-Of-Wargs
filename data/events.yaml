@@ -1,0 +1,15 @@
+Enters South Pillager Raid Camp:
+  repeat: true
+  source:
+    map zone:
+    - South Pillager Raid Camp
+    player attributes:
+    - escort gerud beer covet started escorting
+    has missions active:
+    - Escort Gerud Beer Covet
+    random: .65
+  actions:
+    run dialog: Escort Gerud Beer Covet Fail
+    fail mission:
+    - Escort Gerud Beer Covet
+    player gold: -65

@@ -134,6 +134,7 @@ def show_menu(options, length=52):
 
 
 def format_string_separator(text: str):
+    text = str(text)  # make sure it's a string
     __numbers = []
     __regex = r'[\d]+[.\d]+|[\d]*[.][\d]+|[\d]+'
     if re.search(__regex, text) is not None:

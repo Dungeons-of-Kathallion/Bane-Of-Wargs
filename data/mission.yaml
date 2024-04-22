@@ -137,17 +137,10 @@ Escort Gerud Beer Covet:
   - 3899
   invisible: false
   force accept: false
-  to fail:
-    player attributes:
-    - encountered south pillager raid camp
-    - escort gerud beer covet started escorting
   to offer:
     random: .1
   on offer:
     dialog: Escort Gerud Beer Covet Offer
-  on fail:
-    dialog: Escort Gerud Beer Covet Fail
-    fine: 65
   on complete:
     dialog: Escort Gerud Beer Covet Complete
     payment: 125

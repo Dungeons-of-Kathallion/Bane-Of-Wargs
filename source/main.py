@@ -17,6 +17,7 @@ import battle
 import check_yaml
 import terminal_handling
 import mission_handling
+import event_handling
 import dialog_handling
 import enemy_handling
 import data_handling
@@ -239,12 +240,12 @@ while menu:
             if preferences["latest preset"]["type"] == 'vanilla':
                 (
                     map, item, drinks, enemy, npcs, start_player,
-                    lists, zone, dialog, mission, mounts
+                    lists, zone, dialog, mission, mounts, event
                 ) = data_handling.load_game_data('vanilla', preferences)
             else:
                 (
                     map, item, drinks, enemy, npcs, start_player,
-                    lists, zone, dialog, mission, mounts
+                    lists, zone, dialog, mission, mounts, event
                 ) = data_handling.load_game_data('plugin', preferences)
 
             open_save = preferences["latest preset"]["save"]
@@ -291,7 +292,7 @@ while menu:
 
             (
                 map, item, drinks, enemy, npcs, start_player,
-                lists, zone, dialog, mission, mounts
+                lists, zone, dialog, mission, mounts, event
             ) = data_handling.load_game_data('plugin', preferences)
         else:
             logger_sys.log_message("INFO: Updating latest preset")
@@ -299,7 +300,7 @@ while menu:
 
             (
                 map, item, drinks, enemy, npcs, start_player,
-                lists, zone, dialog, mission, mounts
+                lists, zone, dialog, mission, mounts, event
             ) = data_handling.load_game_data('vanilla', preferences)
 
         if not using_latest_preset:
@@ -1790,7 +1791,7 @@ def run(play):
                         count += 1
                 if (
                     "random" in dialog[str(current_dialog)]["to display"] and
-                    dialog[str(current_dialog)]["to display"]["random"] < random.uniform(0, 1)
+                    not dialog[str(current_dialog)]["to display"]["random"] > random.uniform(0, 1)
                 ):
                     has_required_random = False
                     logger_sys.log_message("INFO: Player doesn't have required random chance to display this dialog")
@@ -1864,6 +1865,24 @@ def run(play):
             cout(take_item)
             cout("")
         logger_sys.log_message(f"INFO: Checking if an npc is present at map point 'point{map_location}'")
+
+        # Check if the player can trigger
+        # an event. Also updates the player
+        # data to add the required attributes
+        # if he does not have any.
+        if "triggered events" not in list(player):
+            player["triggered events"] = []
+
+        for i in list(event):
+            if event_handling.event_triggering_checks(i, event, player, map, zone):
+                player["triggered events"] += [i]
+                event_handling.trigger_event(
+                    i, event, player, mission, dialog, preferences,
+                    text_replacements_generic, drinks, item, enemy, npcs,
+                    start_player, lists, zone, mounts, start_time,
+                    map, save_file, map_location, player_damage_coefficient,
+                    previous_player, enemies_damage_coefficient
+                )
 
         # Check if the player can get
         # a mission from current map
@@ -1939,7 +1958,9 @@ def run(play):
         while count < len(player["active missions"]):
             current_mission_data = mission[str(player["active missions"][count])]
             if current_mission_data["destination"] == map_location:
-                logger_sys.log_message(f"INFO: Running mission completing checks for mission data '{current_mission_data}'")
+                logger_sys.log_message(
+                    f"INFO: Running mission completing checks for mission '{str(player["active missions"][count])}'"
+                )
                 mission_handling.mission_completing_checks(
                     str(player["active missions"][count]), mission, player, dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs, start_player,
@@ -1962,7 +1983,9 @@ def run(play):
             if "to fail" in current_mission_data:
                 fail = mission_handling.mission_checks(current_mission_data, player, 'to fail')
                 if fail:
-                    logger_sys.log_message(f"INFO: Executing failing triggers of mission data '{current_mission_data}'")
+                    logger_sys.log_message(
+                        f"INFO: Executing failing triggers of mission '{str(player["active missions"][count])}'"
+                    )
                     mission_handling.execute_triggers(
                         current_mission_data, player, 'on fail', dialog, preferences,
                         text_replacements_generic, drinks, item, enemy, npcs,

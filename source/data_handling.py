@@ -61,7 +61,7 @@ def load_game_data(which_type, preferences):
     global map_plugin, item_plugin, drinks_plugin
     global enemy_plugin, npcs_plugin, start_player_plugin
     global lists_plugin, zone_plugin, dialog_plugin
-    global mission_plugin, mounts_plugin
+    global mission_plugin, mounts_plugin, event_plugin
 
     cout()
     # Create a dir, where all game imgs/ files will
@@ -104,6 +104,7 @@ def load_game_data(which_type, preferences):
         task_zone = progress.add_task("[cyan]Loading Game Zones Data...", total=100)
         task_dialog = progress.add_task("[cyan]Loading Game Dialogs Data...", total=100)
         task_mission = progress.add_task("[cyan]Loading Game Missions Data...", total=100)
+        task_event = progress.add_task("[cyan]Loading Game Events Data...", total=100)
         task_mount = progress.add_task("[cyan]Loading Game Mounts Data...", total=100)
 
         with open(program_dir + "/game/data/map.yaml") as f:
@@ -178,6 +179,13 @@ def load_game_data(which_type, preferences):
             check_yaml.examine_mission(mission[i])
             progress.update(task_mission, advance=1)
 
+        with open(program_dir + "/game/data/events.yaml") as f:
+            event = yaml_handling.safe_load(f)
+        progress.update(task_event, total=len(list(event)))
+        for i in list(event):
+            check_yaml.examine_event(event[i])
+            progress.update(task_event, advance=1)
+
         with open(program_dir + "/game/data/mounts.yaml") as f:
             mounts = yaml_handling.safe_load(f)
         progress.update(task_mount, total=len(list(mounts)))
@@ -217,6 +225,7 @@ def load_game_data(which_type, preferences):
                         task_zone = progress.add_task(f"[cyan]Loading Plugin '{what_plugin}' Zones Data...", total=100)
                         task_dialog = progress.add_task(f"[cyan]Loading Plugin '{what_plugin}' Dialogs Data...", total=100)
                         task_mission = progress.add_task(f"[cyan]Loading Plugin '{what_plugin}' Missions Data...", total=100)
+                        task_event = progress.add_task(f"[cyan]Loading Plugin '{what_plugin}' Events Data...", total=100)
                         task_mount = progress.add_task(f"[cyan]Loading Plugin '{what_plugin}' Mounts Data...", total=100)
                         task_requirements = progress.add_task(f"[cyan]Loading Plugin '{what_plugin}' Requirements...", total=100)
 
@@ -292,6 +301,13 @@ def load_game_data(which_type, preferences):
                             check_yaml.examine_mission(mission_plugin[i])
                             progress.update(task_mission, advance=1)
 
+                        with open(program_dir + "/plugins/" + what_plugin + "/events.yaml") as f:
+                            event_plugin = yaml_handling.safe_load(f)
+                        progress.update(task_event, total=len(list(event_plugin)))
+                        for i in list(event_plugin):
+                            check_yaml.examine_event(event_plugin[i])
+                            progress.update(task_event, advance=1)
+
                         with open(program_dir + "/plugins/" + what_plugin + "/mounts.yaml") as f:
                             mounts_plugin = yaml_handling.safe_load(f)
                         progress.update(task_mount, total=len(list(mounts_plugin)))
@@ -326,6 +342,7 @@ def load_game_data(which_type, preferences):
                         zone = zone | zone_plugin
                         dialog = dialog | dialog_plugin
                         mission = mission | mission_plugin
+                        event = event | event_plugin
                         mounts = mounts | mounts_plugin
 
                         # Add the images and scripts to the shared folder
@@ -342,12 +359,12 @@ def load_game_data(which_type, preferences):
             task_verify = progress.add_task(f"[cyan]Analzing Data...", total=None)
             check_yaml.verify_data(
                 map, item, drinks, enemy, npcs, start_player, lists,
-                zone, dialog, mission, mounts
+                zone, dialog, mission, mounts, event
             )
             progress.update(task_verify, total=1)
             progress.update(task_verify, advance=1)
 
-    return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts
+    return map, item, drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts, event
 
 
 def update_game_data(preferences, latest_game_data_version):

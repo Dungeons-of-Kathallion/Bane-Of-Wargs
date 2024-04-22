@@ -1,6 +1,7 @@
 import yamale
 import yaml
 import re
+from datetime import datetime
 from colorama import Fore, Back, Style, init, deinit
 
 # initialize colorama
@@ -290,6 +291,19 @@ def examine_mount(data):
         exit_game()
 
 
+def examine_event(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'schemas/events.yaml')
+        yamale.validate(schema, data)
+    except Exception as error:
+        print(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        exit_game()
+
+
 def consumable_effect_output_error(message):
     print(
         COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
@@ -450,7 +464,7 @@ def examine_consumable(data):
 
 def verify_data(
     map, item, drinks, enemy, npcs, start_player, lists,
-    zone, dialog, mission, mounts
+    zone, dialog, mission, mounts, event
 ):
     # Specific checks for the map dictionary
     # The checks are:
@@ -3411,6 +3425,257 @@ def verify_data(
                 )
                 exit_game()
 
+    # Specific checks for the `event` dictionary
+    # CHECKS:
+    # - checks on condition:
+    #   * check if map points exist
+    #   * check if map zones exist
+    #   * check if regions exist
+    #   * check if date is correct
+    #   * check if items exist
+    #   * check if missions exist
+    #   * check if random is correct
+    # - checks on actions:
+    #   * check if failed mission exists
+    #   * check if ran dialog exists
+    #   * check if given and removed items exist
+    #   * check if enemy list spawned exists
+    #   * check if drunk drinks exist
+    #   * check on added/remove diary stuff
+    #      - check if zones exist
+    #      - check if npcs exist
+    #      - check if enemies exist
+    #   * checks on ran scripts:
+    #      - check if arguments exist
+    for event_id in list(event):
+        current = event[event_id]
+        regions = {
+            "fields": 0,
+            "hills": 1,
+            "plains": 2,
+            "valleys": 3,
+            "woods": 4,
+            "dark woods": 5,
+            "mountains": 6,
+            "low mountains": 7,
+            "high mountains": 8,
+            "black rocky mountains": 9,
+            "desert": 10,
+            "desert hills": 11,
+            "desert valleys": 12,
+            "badlands": 13,
+            "badlands canyon": 14,
+            "badlands hills": 15,
+            "badlands valleys": 16,
+            "badlands plateaus": 17,
+            "badlands butte": 18,
+            "badlands landforms": 19,
+            "flatlands": 20,
+            "beach": 21,
+            "plains canyon": 22,
+            "desert canyons": 23,
+            "rocky canyons": 24,
+            "black rocky canyons": 25,
+            "village": 26,
+            "hostel": 27,
+            "forge": 28,
+            "blacksmith": 29,
+            "stable": 30,
+            "church": 31,
+            "castle": 32,
+            "lake": 33,
+            "sea": 34,
+            "swamps": 35,
+            "grocery": 36,
+            "harbor": 37,
+            "dungeon": 38
+        }
+
+        if "map point" in current["source"]:
+            for i in current["source"]["map point"]:
+                if f"point{i}" not in list(map):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"map point '{i}' in `map point` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "map zone" in current["source"]:
+            for i in current["source"]["map zone"]:
+                if i not in list(zone):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"zone '{i}' in `map zone` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "region" in current["source"]:
+            for i in current["source"]["region"]:
+                if i not in list(regions):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"region '{i}' in `region` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        if (
+            "date" in current["source"] and not
+            bool(datetime.strptime(current["source"]["date"], '%m-%d-%Y'))
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"event id '{event_id}' isn't valid --> " +
+                f"date '{current["source"]["date"]}' in `date` in `source`" +
+                " does not use the required format: <month>-<day>-<year>" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if "has items" in current["source"]:
+            for i in current["source"]["has items"]:
+                if i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"item '{i}' in `has items` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "has missions offered" in current["source"]:
+            for i in current["source"]["has missions offered"]:
+                if i not in list(mission):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"missions '{i}' in `has missions offered` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "has missions active" in current["source"]:
+            for i in current["source"]["has missions active"]:
+                if i not in list(mission):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"missions '{i}' in `has missions offered` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        if "random" in current["source"]:
+            if (
+                current["source"]["random"] > 1 or
+                current["source"]["random"] < 0
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"mission id '{current_id}' isn't valid --> " +
+                    f"key `random` in `source`" +
+                    " should be in between 0 and 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        if "fail mission" in current["actions"]:
+            for i in current["actions"]["fail mission"]:
+                if i not in list(mission):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"missions '{i}' in `fail mission` in `actions` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        if (
+            "run dialog" in current["actions"] and
+            current["actions"]["run dialog"] not in list(dialog)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"event id '{event_id}' isn't valid --> " +
+                f"dialog '{current["actions"]["run dialog"]}' in `run dialog` in `actions` doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        for key in ["give item", "remove item"]:
+            if key in current["actions"]:
+                for i in current["actions"][key]:
+                    if i not in list(item):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"event id '{event_id}' isn't valid --> " +
+                            f"item '{i}' in `{key}` in `actions` doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+        if (
+            "enemy spawn" in current["actions"] and
+            current["actions"]["enemy spawn"] not in list(enemy)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"event id '{event_id}' isn't valid --> " +
+                f"enemy '{current["actions"]["enemy spawn"]}' in `enemy spawn` " +
+                "in `actions` doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if "use drink" in current["actions"]:
+            for i in current["actions"]["use drink"]:
+                if i not in list(drinks):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"drink '{i}' in `use drink` in `actions` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        for key in ["add to diary", "remove to diary"]:
+            if key in current["actions"]:
+                count = 0
+                for key2 in ["known zones", "known enemies", "known npcs"]:
+                    if key2 in current["actions"][key]:
+                        for key3 in current["actions"][key][key2]:
+                            if count == 0 and key3 not in list(zone):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"event id '{event_id}' isn't valid --> " +
+                                    f"zone '{key3}' in `{key2}` in `{key}`" +
+                                    "in `actions` doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            elif count == 1 and key3 not in list(enemy):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"event id '{event_id}' isn't valid --> " +
+                                    f"enemy '{key3}' in `{key2}` in `{key}`" +
+                                    "in `actions` doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            elif count == 2 and key3 not in list(npcs):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"event id '{event_id}' isn't valid --> " +
+                                    f"npc '{key3}' in `{key2}` in `{key}`" +
+                                    "in `actions` doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                    count += 1
+
+        # scripts tests TODO (for later maybe)
+
 # Main Function
 def run():
     print("Analyzing map...")
@@ -3479,10 +3744,16 @@ def run():
     for i in list(mounts):
         examine_mount(mounts[i])
 
+    print("Analyzing events...")
+    with open("data/events.yaml") as f:
+        event = yaml.safe_load(f)
+    for i in list(event):
+        examine_event(event[i])
+
     print("Verifying data...")
     verify_data(
         map, item, drinks, enemy, npcs, start_player, lists,
-        zone, dialog, mission, mounts
+        zone, dialog, mission, mounts, event
     )
 
 run()
