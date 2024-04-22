@@ -391,6 +391,7 @@ def examine_mission(data):
         logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
         text_handling.exit_game()
 
+
 def examine_event(data):
     try:
         data = yamale.make_data(content=str(data))
