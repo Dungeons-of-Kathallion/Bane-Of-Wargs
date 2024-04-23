@@ -20,14 +20,16 @@ Files: imgs/*
 Copyright: Cromha <angelo.longo13@outlook.com>
            for the most part, taken from ASCII Art Archive (https://asciiart.eu),
            and then edited with color codes. Some others have been generated using
-           https://manytools.org/hacker-tools/convert-images-to-ascii-art/
+           https://manytools.org/hacker-tools/convert-images-to-ascii-art/. Others
+           come from https://www.oocities.org/spunk1111/men.htm.
 License: GPL-3+
 
 Files: data/items.yaml
 Copyright:
  Anonymous/Unknowns
  gvn (N.M.I.)
- jah/SSt (N.M.I.)
+ jah (N.M.I.)
+ SSt (N.M.I.)
  BP (N.M.I.)
  VK (N.M.I.)
  Joan G. Stark
@@ -55,6 +57,8 @@ Files:
  imgs/Bear.txt
  imgs/Horse.txt
  imgs/Steel?Gate.txt
+ imgs/Aaron?Kyro.txt
+ imgs/William?June.txt
 Copyright: Joan G. Stark
 License: GPL-3+
 
@@ -102,6 +106,16 @@ License: GPL-3+
 
 Files: imgs/Wendy?Tucker.txt
 Copyright: Michael J. Penick
+License: GPL-3+
+
+Files: imgs/Joseph?Baker.txt
+Copyright: Tim Campbell
+License: GPL-3+
+
+Files: imgs/Jerry?Owen.txt
+Copyright:
+  Joan G. Stark
+  nic (N.M.I.)
 License: GPL-3+
 
 License: GPL-3+

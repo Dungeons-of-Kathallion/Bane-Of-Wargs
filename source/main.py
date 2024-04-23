@@ -17,6 +17,7 @@ import battle
 import check_yaml
 import terminal_handling
 import mission_handling
+import event_handling
 import dialog_handling
 import enemy_handling
 import data_handling
@@ -239,12 +240,12 @@ while menu:
             if preferences["latest preset"]["type"] == 'vanilla':
                 (
                     map, item, drinks, enemy, npcs, start_player,
-                    lists, zone, dialog, mission, mounts
+                    lists, zone, dialog, mission, mounts, event
                 ) = data_handling.load_game_data('vanilla', preferences)
             else:
                 (
                     map, item, drinks, enemy, npcs, start_player,
-                    lists, zone, dialog, mission, mounts
+                    lists, zone, dialog, mission, mounts, event
                 ) = data_handling.load_game_data('plugin', preferences)
 
             open_save = preferences["latest preset"]["save"]
@@ -291,7 +292,7 @@ while menu:
 
             (
                 map, item, drinks, enemy, npcs, start_player,
-                lists, zone, dialog, mission, mounts
+                lists, zone, dialog, mission, mounts, event
             ) = data_handling.load_game_data('plugin', preferences)
         else:
             logger_sys.log_message("INFO: Updating latest preset")
@@ -299,7 +300,7 @@ while menu:
 
             (
                 map, item, drinks, enemy, npcs, start_player,
-                lists, zone, dialog, mission, mounts
+                lists, zone, dialog, mission, mounts, event
             ) = data_handling.load_game_data('vanilla', preferences)
 
         if not using_latest_preset:
@@ -1645,7 +1646,7 @@ def run(play):
             dialog_handling.print_dialog(
                 start_dialog, dialog, preferences, text_replacements_generic, player, drinks,
                 item, enemy, npcs, start_player, lists, zone,
-                mission, mounts, start_time, map
+                mission, mounts, start_time, map, save_file
             )
             text = '='
             text_handling.print_separator(text)
@@ -1685,6 +1686,10 @@ def run(play):
             has_required_locations = True
             has_required_enemies = True
             has_required_npcs = True
+            has_required_items = True
+            has_required_active_missions = True
+            has_required_offered_missions = True
+            has_required_random = True
             if "to display" in dialog[str(current_dialog)]:
                 if "player attributes" in dialog[str(current_dialog)]["to display"]:
                     count = 0
@@ -1742,7 +1747,59 @@ def run(play):
                             has_required_npcs = False
                             logger_sys.log_message("INFO: Player doesn't have required known npcs to display this dialog")
                         count += 1
-            if has_required_attributes and has_required_locations and has_required_enemies and has_required_npcs:
+                if "has items" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_items = dialog[str(current_dialog)]["to display"]["has item"]
+                    required_items_len = len(required_items)
+                    logger_sys.log_message(
+                        f"INFO: Checking if player has required active item '{required_items}'" +
+                        f" to display dialog '{current_dialog}'"
+                    )
+                    while count < required_items_len and has_required_items:
+                        selected_item = required_items[count]
+                        if selected_item not in player["inventory"]:
+                            has_required_items = False
+                            logger_sys.log_message("INFO: Player doesn't have required items to display this dialog")
+                        count += 1
+                if "has missions active" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_missions = dialog[str(current_dialog)]["to display"]["has missions active"]
+                    required_missions_len = len(required_missions)
+                    logger_sys.log_message(
+                        f"INFO: Checking if player has required mission '{required_missions}'" +
+                        f" to display dialog '{current_dialog}'"
+                    )
+                    while count < required_missions_len and has_required_active_missions:
+                        selected_mission = required_missions[count]
+                        if selected_mission not in player["active missions"]:
+                            has_required_active_missions = False
+                            logger_sys.log_message("INFO: Player doesn't have required active missions to display this dialog")
+                        count += 1
+                if "has missions offered" in dialog[str(current_dialog)]["to display"]:
+                    count = 0
+                    required_missions = dialog[str(current_dialog)]["to display"]["has missions offered"]
+                    required_missions_len = len(required_missions)
+                    logger_sys.log_message(
+                        f"INFO: Checking if player has required offered mission '{required_missions}'" +
+                        f" to display dialog '{current_dialog}'"
+                    )
+                    while count < required_missions_len and has_required_active_missions:
+                        selected_mission = required_missions[count]
+                        if selected_mission not in player["offered missions"]:
+                            has_required_active_missions = False
+                            logger_sys.log_message("INFO: Player doesn't have required offered missions to display this dialog")
+                        count += 1
+                if (
+                    "random" in dialog[str(current_dialog)]["to display"] and
+                    not dialog[str(current_dialog)]["to display"]["random"] > random.uniform(0, 1)
+                ):
+                    has_required_random = False
+                    logger_sys.log_message("INFO: Player doesn't have required random chance to display this dialog")
+            if (
+                has_required_attributes and has_required_locations and has_required_enemies and has_required_npcs
+                and has_required_items and has_required_active_missions and has_required_offered_missions
+                and has_required_random
+            ):
                 logger_sys.log_message(
                     f"INFO: Player has all required stuff to display dialog '{current_dialog}'" +
                     f" --> displaying it and adding map location '{map_location}' to the player's heard dialogs save list"
@@ -1750,7 +1807,7 @@ def run(play):
                 dialog_handling.print_dialog(
                     current_dialog, dialog, preferences, text_replacements_generic, player, drinks,
                     item, enemy, npcs, start_player, lists, zone,
-                    mission, mounts, start_time, map
+                    mission, mounts, start_time, map, save_file
                 )
                 player["heard dialogs"].append(map_location)
                 text = '='
@@ -1809,13 +1866,32 @@ def run(play):
             cout("")
         logger_sys.log_message(f"INFO: Checking if an npc is present at map point 'point{map_location}'")
 
+        # Check if the player can trigger
+        # an event. Also updates the player
+        # data to add the required attributes
+        # if he does not have any.
+        if "triggered events" not in list(player):
+            player["triggered events"] = []
+
+        for i in list(event):
+            if event_handling.event_triggering_checks(i, event, player, map, zone):
+                player["triggered events"] += [i]
+                event_handling.trigger_event(
+                    i, event, player, mission, dialog, preferences,
+                    text_replacements_generic, drinks, item, enemy, npcs,
+                    start_player, lists, zone, mounts, start_time,
+                    map, save_file, map_location, player_damage_coefficient,
+                    previous_player, enemies_damage_coefficient
+                )
+
         # Check if the player can get
         # a mission from current map
         # location
 
         logger_sys.log_message(f"INFO: Checking if the player can get a mission from current map location '{map_location}'")
         count = 0
-        while count < len(list(mission)):
+        mission_offered = False
+        while count < len(list(mission)) and not mission_offered:
             current_mission_data = mission[list(mission)[count]]
             if int(current_mission_data["source"]) == int(map_location) and str(
                 list(mission)[count]
@@ -1824,8 +1900,10 @@ def run(play):
                 mission_handling.offer_mission(
                     str(list(mission)[count]), player, mission, dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs,
-                    start_player, lists, zone, mission, mounts, start_time, map
+                    start_player, lists, zone, mission, mounts, start_time, map,
+                    save_file
                 )
+                mission_offered = True
 
             count += 1
 
@@ -1880,11 +1958,13 @@ def run(play):
         while count < len(player["active missions"]):
             current_mission_data = mission[str(player["active missions"][count])]
             if current_mission_data["destination"] == map_location:
-                logger_sys.log_message(f"INFO: Running mission completing checks for mission data '{current_mission_data}'")
+                logger_sys.log_message(
+                    f"INFO: Running mission completing checks for mission '{str(player["active missions"][count])}'"
+                )
                 mission_handling.mission_completing_checks(
                     str(player["active missions"][count]), mission, player, dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs, start_player,
-                    lists, zone, mission, mounts, start_time
+                    lists, zone, mission, mounts, start_time, save_file
                 )
 
             count += 1
@@ -1902,12 +1982,15 @@ def run(play):
             current_mission_data = mission[str(player["active missions"][count])]
             if "to fail" in current_mission_data:
                 fail = mission_handling.mission_checks(current_mission_data, player, 'to fail')
-                if not fail:
-                    logger_sys.log_message(f"INFO: Executing failing triggers of mission data '{current_mission_data}'")
+                if fail:
+                    logger_sys.log_message(
+                        f"INFO: Executing failing triggers of mission '{str(player["active missions"][count])}'"
+                    )
                     mission_handling.execute_triggers(
                         current_mission_data, player, 'on fail', dialog, preferences,
                         text_replacements_generic, drinks, item, enemy, npcs,
-                        start_player, lists, zone, mission, mounts, start_time, map
+                        start_player, lists, zone, mission, mounts, start_time, map,
+                        save_file
                     )
                     cout(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" +
@@ -1958,7 +2041,7 @@ def run(play):
                                 dialog_handling.print_dialog(
                                     current_enemy_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                                     item, enemy, npcs, start_player, lists, zone,
-                                    mission, mounts, start_time, map
+                                    mission, mounts, start_time, map, save_file
                                 )
 
                     count2 += 1
@@ -2723,12 +2806,8 @@ def run(play):
                     text_handling.print_npc_thumbnail(which_npc, preferences)
                     cout(" ")
 
-                    cout("NAME: " + which_npc)
+                    cout("NAME: " + npcs[which_npc]["name"])
 
-                    cout(
-                        "COST VALUE: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
-                        str(npcs[which_npc]["cost value"]) + COLOR_RESET_ALL
-                    )
                     sells_list_drinks = str(npcs[which_npc]["sells"]["drinks"])
                     sells_list_items = str(npcs[which_npc]["sells"]["items"])
                     buys_list = str(npcs[which_npc]["buys"]["items"])
@@ -2841,7 +2920,7 @@ def run(play):
                             mission_handling.execute_triggers(
                                 mission[mission_id], player, "on abort", dialog, preferences,
                                 text_replacements_generic, drinks, item, enemy, npcs, start_player,
-                                lists, zone, mission, mounts, start_time, map
+                                lists, zone, mission, mounts, start_time, map, save_file
                             )
                 else:
                     cout("")
@@ -3517,7 +3596,8 @@ def run(play):
             cout("$START$")
             dialog_handling.print_dialog(
                 chosen_dialog, dialog, preferences, text_replacements_generic, player, drinks,
-                item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map
+                item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map,
+                save_file
             )
             cinput("$END$\n")
             continued_command = True

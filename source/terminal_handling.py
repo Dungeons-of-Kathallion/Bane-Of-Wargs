@@ -16,6 +16,7 @@
 from colors import *
 # external imports
 import time
+import re
 import sys
 
 
@@ -23,13 +24,13 @@ import sys
 
 def cout(__text: object = "", end="\n"):
     # Write to stdout the text and flush
-    sys.stdout.write(str(__text) + str(end))
+    sys.stdout.write(str(format_string_separator(__text)) + str(end))
     sys.stdout.flush()
 
 
 def cinput(__text: object = ""):
     # Ask basic input
-    return input(__text)
+    return input(format_string_separator(__text))
 
 
 def cinput_int(__text: object = ""):
@@ -41,7 +42,7 @@ def cinput_int(__text: object = ""):
     while not __var:
         __var = True
         try:
-            __input = int(cinput(__text))
+            __input = int(cinput(format_string_separator(__text)))
         except ValueError as error:
             cout(COLOR_YELLOW + "Input isn't valid!" + COLOR_RESET_ALL)
             __var = False
@@ -130,3 +131,21 @@ def show_menu(options, length=52):
             user_input = None
 
     return user_input
+
+
+def format_string_separator(text: str):
+    text = str(text)  # make sure it's a string
+    __numbers = []
+    __regex = r'[\d]+[.\d]+|[\d]*[.][\d]+|[\d]+'
+    if re.search(__regex, text) is not None:
+        for catch in re.finditer(__regex, text):
+            __numbers += [catch[0]]
+    for number in __numbers:
+        if number.isnumeric():
+            text = text.replace(str(number), f"{int(number):,}")
+        else:
+            try:
+                text = text.replace(str(number), f"{float(number):,}")
+            except Exception as err:
+                pass
+    return text

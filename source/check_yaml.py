@@ -172,7 +172,11 @@ def check_dialog_conversations(dialog_data, dialog_name):
         # Check if the functions in the label are valid,
         # if not, close the program and output an error
         # message in the UI and in logging
-        possible_functions = ['print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(', 'choice(', 'create-variable(']
+        possible_functions = [
+            'print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(',
+            'choice(', 'create-variable(', 'accept(', 'decline(', 'defer(', 'die(',
+            'display-scen('
+        ]
 
         count2 = 0
         while count2 < len(conversation[count][current_label_name]):
@@ -388,6 +392,20 @@ def examine_mission(data):
         text_handling.exit_game()
 
 
+def examine_event(data):
+    try:
+        data = yamale.make_data(content=str(data))
+        schema = yamale.make_schema(f'{program_dir}/game/schemas/events.yaml')
+        yamale.validate(schema, data)
+    except Exception as error:
+        cout(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
+
+
 def examine_mount(data):
     try:
         data = yamale.make_data(content=str(data))
@@ -573,7 +591,7 @@ def examine_consumable(data):
 
 def verify_data(
     map, item, drinks, enemy, npcs, start_player, lists,
-    zone, dialog, mission, mounts
+    zone, dialog, mission, mounts, event
 ):
     # Specific checks for the map dictionary
     # The checks are:
@@ -2559,7 +2577,8 @@ def verify_data(
         if "to display" in current:
             for key in [
                 "player attributes", "visited locations",
-                "known enemies", "known npcs"
+                "known enemies", "known npcs", "has items",
+                "has missions active", "has missions offered"
             ]:
                 if (
                     key in current["to display"] and
@@ -2606,6 +2625,51 @@ def verify_data(
                             COLOR_RESET_ALL
                         )
                         text_handling.exit_game()
+            if "has items" in current["to display"]:
+                for i in current["to display"]["has items"]:
+                    if i not in list(item):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"item '{i}' in `has items` key " +
+                            "in `to display` dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if "has missions active" in current["to display"]:
+                for i in current["to display"]["has missions active"]:
+                    if i not in list(mission):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"mission '{i}' in `has missions active` key " +
+                            "in `to display` dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if "has missions offered" in current["to display"]:
+                for i in current["to display"]["has missions offered"]:
+                    if i not in list(mission):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"dialog id '{current_id}' isn't valid --> " +
+                            f"mission '{i}' in `has missions offered` key " +
+                            "in `to display` dictionary doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+            if (
+                "random" in current["to display"] and
+                type(current["to display"]["random"]) is not type(.1) and
+                type(current["to display"]["random"]) is not type(1)
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"dialog id '{current_id}' isn't valid --> " +
+                    f"key `random` in to `display` dictionary should be a floating number or an integer" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
 
         if current["use actions"] and "actions" not in current:
             print(
@@ -3078,6 +3142,46 @@ def verify_data(
                                 COLOR_RESET_ALL
                             )
                             text_handling.exit_game()
+                if "has missions active" in current[condition]:
+                    if type(current[condition]["has missions active"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `has missions active` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current[condition]["has missions active"]:
+                        if i not in list(mission):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"mission '{i}' in `has missions active`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+                if "has missions offered" in current[condition]:
+                    if type(current[condition]["has missions offered"]) is not type([]):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `has missions offered` in `{condition}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+                    for i in current[condition]["has missions offered"]:
+                        if i not in list(mission):
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"mission id '{current_id}' isn't valid --> " +
+                                f"mission '{i}' in `has missions offered`" +
+                                f" in `{condition}` doesn't exist" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
                 if "has items" in current[condition]:
                     if type(current[condition]["has items"]) is not type([]):
                         print(
@@ -3113,7 +3217,7 @@ def verify_data(
                         )
                         text_handling.exit_game()
 
-        for trigger in ["on offer", "on complete", "on fail", "on abort"]:
+        for trigger in ["on offer", "on complete", "on fail", "on abort", "on accept"]:
             if trigger in current:
                 if "dialog" in current[trigger]:
                     if type(current[trigger]["dialog"]) is not type(""):
@@ -3173,6 +3277,18 @@ def verify_data(
                             COLOR_RESET_ALL
                         )
                         text_handling.exit_game()
+                    if (
+                        "add attributes" in current[trigger] and
+                        type(current[trigger]["add attribute"]) is not type([])
+                    ):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"mission id '{current_id}' isn't valid --> " +
+                            f"key `add attribute` in `{trigger}`" +
+                            " should be a list" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
         if "enemies" in current:
             for i in current["enemies"]:
                 current_enemy = current["enemies"][i]
@@ -3346,6 +3462,46 @@ def verify_data(
                                         COLOR_RESET_ALL
                                     )
                                     text_handling.exit_game()
+                        if "has missions offered" in current_enemy[condition]:
+                            if type(current_enemy[condition]["has missions offered"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `has missions offered` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for i2 in current_enemy[condition]["has missions offered"]:
+                                if i2 not in list(mission):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"mission '{i2}' in `has missions offered`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
+                        if "has missions active" in current_enemy[condition]:
+                            if type(current_enemy[condition]["has missions active"]) is not type([]):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                    f"key `has missions active` in `{condition}`" +
+                                    " should be a list" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            for i2 in current_enemy[condition]["has missions active"]:
+                                if i2 not in list(mission):
+                                    print(
+                                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                        f"enemy id '{i}' mission id '{current_id}' isn't valid --> " +
+                                        f"mission '{i2}' in `has missions active`" +
+                                        f" in `{condition}` doesn't exist" +
+                                        COLOR_RESET_ALL
+                                    )
+                                    exit_game()
                         if "has items" in current_enemy[condition]:
                             if type(current_enemy[condition]["has items"]) is not type([]):
                                 print(
@@ -3395,3 +3551,254 @@ def verify_data(
                     COLOR_RESET_ALL
                 )
                 text_handling.exit_game()
+
+    # Specific checks for the `event` dictionary
+    # CHECKS:
+    # - checks on condition:
+    #   * check if map points exist
+    #   * check if map zones exist
+    #   * check if regions exist
+    #   * check if date is correct
+    #   * check if items exist
+    #   * check if missions exist
+    #   * check if random is correct
+    # - checks on actions:
+    #   * check if failed mission exists
+    #   * check if ran dialog exists
+    #   * check if given and removed items exist
+    #   * check if enemy list spawned exists
+    #   * check if drunk drinks exist
+    #   * check on added/remove diary stuff
+    #      - check if zones exist
+    #      - check if npcs exist
+    #      - check if enemies exist
+    #   * checks on ran scripts:
+    #      - check if arguments exist
+    for event_id in list(event):
+        current = event[event_id]
+        regions = {
+            "fields": 0,
+            "hills": 1,
+            "plains": 2,
+            "valleys": 3,
+            "woods": 4,
+            "dark woods": 5,
+            "mountains": 6,
+            "low mountains": 7,
+            "high mountains": 8,
+            "black rocky mountains": 9,
+            "desert": 10,
+            "desert hills": 11,
+            "desert valleys": 12,
+            "badlands": 13,
+            "badlands canyon": 14,
+            "badlands hills": 15,
+            "badlands valleys": 16,
+            "badlands plateaus": 17,
+            "badlands butte": 18,
+            "badlands landforms": 19,
+            "flatlands": 20,
+            "beach": 21,
+            "plains canyon": 22,
+            "desert canyons": 23,
+            "rocky canyons": 24,
+            "black rocky canyons": 25,
+            "village": 26,
+            "hostel": 27,
+            "forge": 28,
+            "blacksmith": 29,
+            "stable": 30,
+            "church": 31,
+            "castle": 32,
+            "lake": 33,
+            "sea": 34,
+            "swamps": 35,
+            "grocery": 36,
+            "harbor": 37,
+            "dungeon": 38
+        }
+
+        if "map point" in current["source"]:
+            for i in current["source"]["map point"]:
+                if f"point{i}" not in list(map):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"map point '{i}' in `map point` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "map zone" in current["source"]:
+            for i in current["source"]["map zone"]:
+                if i not in list(zone):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"zone '{i}' in `map zone` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "region" in current["source"]:
+            for i in current["source"]["region"]:
+                if i not in list(regions):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"region '{i}' in `region` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        if (
+            "date" in current["source"] and not
+            bool(datetime.strptime(current["source"]["date"], '%m-%d-%Y'))
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"event id '{event_id}' isn't valid --> " +
+                f"date '{current["source"]["date"]}' in `date` in `source`" +
+                " does not use the required format: <month>-<day>-<year>" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if "has items" in current["source"]:
+            for i in current["source"]["has items"]:
+                if i not in list(item):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"item '{i}' in `has items` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "has missions offered" in current["source"]:
+            for i in current["source"]["has missions offered"]:
+                if i not in list(mission):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"missions '{i}' in `has missions offered` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+        if "has missions active" in current["source"]:
+            for i in current["source"]["has missions active"]:
+                if i not in list(mission):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"missions '{i}' in `has missions offered` in `source` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        if "random" in current["source"]:
+            if (
+                current["source"]["random"] > 1 or
+                current["source"]["random"] < 0
+            ):
+                print(
+                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                    f"mission id '{current_id}' isn't valid --> " +
+                    f"key `random` in `source`" +
+                    " should be in between 0 and 1" +
+                    COLOR_RESET_ALL
+                )
+                exit_game()
+
+        if "fail mission" in current["actions"]:
+            for i in current["actions"]["fail mission"]:
+                if i not in list(mission):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"missions '{i}' in `fail mission` in `actions` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        if (
+            "run dialog" in current["actions"] and
+            current["actions"]["run dialog"] not in list(dialog)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"event id '{event_id}' isn't valid --> " +
+                f"dialog '{current["actions"]["run dialog"]}' in `run dialog` in `actions` doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        for key in ["give item", "remove item"]:
+            if key in current["actions"]:
+                for i in current["actions"][key]:
+                    if i not in list(item):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"event id '{event_id}' isn't valid --> " +
+                            f"item '{i}' in `{key}` in `actions` doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        exit_game()
+
+        if (
+            "enemy spawn" in current["actions"] and
+            current["actions"]["enemy spawn"] not in list(enemy)
+        ):
+            print(
+                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                f"event id '{event_id}' isn't valid --> " +
+                f"enemy '{current["actions"]["enemy spawn"]}' in `enemy spawn` " +
+                "in `actions` doesn't exist" +
+                COLOR_RESET_ALL
+            )
+            exit_game()
+
+        if "use drink" in current["actions"]:
+            for i in current["actions"]["use drink"]:
+                if i not in list(drinks):
+                    print(
+                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                        f"event id '{event_id}' isn't valid --> " +
+                        f"drink '{i}' in `use drink` in `actions` doesn't exist" +
+                        COLOR_RESET_ALL
+                    )
+                    exit_game()
+
+        for key in ["add to diary", "remove to diary"]:
+            if key in current["actions"]:
+                count = 0
+                for key2 in ["known zones", "known enemies", "known npcs"]:
+                    if key2 in current["actions"][key]:
+                        for key3 in current["actions"][key][key2]:
+                            if count == 0 and key3 not in list(zone):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"event id '{event_id}' isn't valid --> " +
+                                    f"zone '{key3}' in `{key2}` in `{key}`" +
+                                    "in `actions` doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            elif count == 1 and key3 not in list(enemy):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"event id '{event_id}' isn't valid --> " +
+                                    f"enemy '{key3}' in `{key2}` in `{key}`" +
+                                    "in `actions` doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                            elif count == 2 and key3 not in list(npcs):
+                                print(
+                                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                    f"event id '{event_id}' isn't valid --> " +
+                                    f"npc '{key3}' in `{key2}` in `{key}`" +
+                                    "in `actions` doesn't exist" +
+                                    COLOR_RESET_ALL
+                                )
+                                exit_game()
+                    count += 1
+
+        # scripts tests TODO (for later maybe)

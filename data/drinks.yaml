@@ -27,6 +27,18 @@ Wine:
   gold: 3.4
   healing level: 11
   description: "A great drink for any human."
+Vodka:
+  gold: 3.8
+  healing level: 4
+  description: "A drink invinted by orks and goblins."
+Champagne:
+  gold: 4.2
+  healing level: 11
+  description: "A famous drink."
+Suspicious Cocktail:
+  gold: 2.8
+  healing level: 6
+  description: "A weird looking alcohol cocktail."
 Purple Elixir:
   gold: 6.2
   healing level: 12

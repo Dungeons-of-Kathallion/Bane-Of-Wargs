@@ -326,9 +326,85 @@ Los Gerudos Prison:
     harbors:
     - None
 
+Los Gerudos Warehouse:
+  name: "Los Gerudos Warehouse"
+  description: "This warehouse is used my many privates, but also great companies like the Los Gerudos Grand Hostel or the Gerud Forges, to stock their goods."
+  type: village
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$YELLOW| $ORANGEo   o  $YELLOW|$WHITE|
+      |$YELLOW| $RED__$BROWN[]$RED_  $YELLOW|$WHITE|
+      |$YELLOW|$WHITE/     \ $YELLOW|$WHITE|
+      |/       \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      || o   o  ||
+      || __[]_  ||
+      ||/     \ ||
+      |/       \||
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
+Los Gerudos Distillery:
+  name: "Los Gerudos Distillery"
+  description: >
+    The distillery specialized in 'Gerud Beers'. Dale W. Marshall built it
+    many decades ago, and it's still a great distillery.
+  type: village
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |  $BROWN,___,   $WHITE|
+      |$YELLOW~;$BROWN|$TANo$BROWN  |$GREENI$YELLOW~;$WHITE|
+      |$YELLOW;~$BROWN|___|$YELLOW~;;$WHITE|
+      |$YELLOW;$GREEN[]$YELLOW;~;;;$GREEN[]$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |  ,___,   |
+      |~;|o  |I~;|
+      |;~|___|~;;|
+      |;[];~;;;[]|
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
 Los Gerudos Hostel:
-  name: "Los Gerudo Hostel"
-  description: "The hostel of the town of Los Gerudos. It was originally a Yrch outpost, but a century ago, it has been taken by an adventurer called Cromha MCcloud... From there, the town has been built around this hostel."
+  name: "Los Gerudos Grand Hostel"
+  description: "The hostel of the town of Los Gerudos. It was originally an ork outpost, but a century ago, it has been taken by an adventurer called Cromha MCcloud... From there, the town has been built around this hostel."
   type: hostel
   news:
   - "..."
@@ -355,6 +431,8 @@ Los Gerudos Hostel:
     - Beer
     - Whisky
     - Wine
+    - Champagne
+    - Suspicious Cocktail
     - Purple Elixir
     - Green Elixir
     - Hot Chocolate
@@ -502,6 +580,7 @@ Woodstack Hostel:
   sells:
     drinks:
     - Beer
+    - Vodka
     - Green Elixir
     items:
     - Porkchop
@@ -546,6 +625,7 @@ Seaside Hostels:
     - Beer
     - Whisky
     - Wine
+    - Champagne
     - Purple Elixir
     - Coffee
     - Hot Chocolate
@@ -1318,6 +1398,27 @@ Dwarf Harbor:
     discount:
       max dropoff: .5
       min dropoff: .15
+
+South Pillager Raid Camp:
+  name: "South Pillager Raid Camp"
+  type: desert
+  description: "South Pillagers often plan raids in these camps."
+  enemy spawning: desert raids
+  map:
+    map full: |
+      x__________x
+      |    $KHAKI/ \   $WHITE|
+      |$YELLOW.;;$KHAKI/ /$CYAN_$KHAKI\$YELLOW;;$WHITE|
+      |$YELLOW;.$KHAKI/$CYAN_$KHAKI/   \$YELLOW.$WHITE|
+      |$YELLOW;$KHAKI/ $KHAKI/ $PURPLE{}  $KHAKI\$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |    / \   |
+      |.;;/ /_\;;|
+      |;./_/   \.|
+      |;/ / {}  \|
+      x__________x
 
 # Lands
 The Edge Of Goro Mounts:

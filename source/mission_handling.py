@@ -17,6 +17,7 @@ import terminal_handling
 import logger_sys
 import dialog_handling
 import text_handling
+import player_handling
 from colors import *
 from terminal_handling import cout, cinput
 # external imports
@@ -145,6 +146,10 @@ def mission_checks(mission_data, player, which_key):
             checks.append('Known Npcs')
         if "has items" in list(mission_data[which_key]):
             checks.append('Has Items')
+        if "has missions active" in list(mission_data[which_key]):
+            checks.append('Has Missions Active')
+        if "has missions offered" in list(mission_data[which_key]):
+            checks.append('Has Missions Offered')
         if "random" in list(mission_data[which_key]):
             checks.append('Random')
 
@@ -218,11 +223,27 @@ def mission_checks(mission_data, player, which_key):
                 count += 1
             count = 0
 
+        # Has Missions checks
+        if 'Has Missions Active' in checks:
+            while count < len(mission_data[which_key]["has missions active"]) and checks_passed:
+                current_enemy = mission_data[which_key]["has missions active"][count]
+                if current_enemy not in player["active missions"]:
+                    checks_passed = False
+
+                count += 1
+            count = 0
+        if 'Has Missions Offered' in checks:
+            while count < len(mission_data[which_key]["has missions offered"]) and checks_passed:
+                current_enemy = mission_data[which_key]["has missions offered"][count]
+                if current_enemy not in player["offered missions"]:
+                    checks_passed = False
+
+                count += 1
+            count = 0
+
         # Random chance check
         if 'Random' in checks:
-            if mission_data[which_key]["random"] > random.uniform(0, 1):
-                checks_passed = True
-            else:
+            if mission_data[which_key]["random"] < random.uniform(0, 1):
                 checks_passed = False
 
     return checks_passed
@@ -232,7 +253,7 @@ def execute_triggers(
     mission_data, player, which_key, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs,
     start_player, lists, zone, mission, mounts, start_time,
-    map
+    map, save_file
 ):
     # If which_key input is invalid, quit
     # the game and output the error to the
@@ -242,6 +263,7 @@ def execute_triggers(
         and which_key != 'on complete'
         and which_key != 'on fail'
         and which_key != 'on abort'
+        and which_key != 'on accept'
     ):
         logger_sys.log_message(f"ERROR: Stopping mission checks for mission data '{mission_data}' --> invalid key '{which_key}'")
         text_handling.exit_game()
@@ -251,7 +273,7 @@ def execute_triggers(
             dialog_handling.print_dialog(
                 mission_data[which_key]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                 item, enemy, npcs, start_player, lists, zone,
-                mission, mounts, start_time, map
+                mission, mounts, start_time, map, save_file
             )
             text_handling.print_separator('=')
         if "payment" in mission_data[which_key]:
@@ -260,13 +282,16 @@ def execute_triggers(
             player["gold"] -= mission_data[which_key]["fine"]
         if "exp addition" in mission_data[which_key]:
             player["xp"] += mission_data[which_key]["exp addition"]
+        if "add attributes" in mission_data[which_key]:
+            for attribute in mission_data[which_key]["add attributes"]:
+                player["attributes"] += [attribute]
 
 
 def offer_mission(
     mission_id, player, missions_data, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs,
     start_player, lists, zone, mission, mounts, start_time,
-    map
+    map, save_file
 ):
     logger_sys.log_message(f"INFO: Offering mission '{mission_id}' to player")
     data = missions_data[mission_id]
@@ -299,26 +324,31 @@ def offer_mission(
             # Only ask for accepting mission if there is a dialog,
             # else, make the player automatically accept it
             if "dialog" in list(data["on offer"]):
-                dialog_handling.print_dialog(
+                action_done = dialog_handling.print_dialog(
                     data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                     item, enemy, npcs, start_player, lists, zone,
-                    mission, mounts, start_time, map
+                    mission, mounts, start_time, map, save_file, mission_offered=mission_id
                 )
-                if "force accept" in list(data):
-                    if not data["force accept"]:
-                        accept = cinput("Do you want to accept this task? (y/n) ")
+                if not action_done:
+                    if "force accept" in list(data):
+                        if not data["force accept"]:
+                            accept = cinput("Do you want to accept this task? (y/n) ")
+                        else:
+                            accept = "y"
                     else:
-                        accept = "y"
-                else:
-                    accept = cinput("Do you want to accept this task? (y/n) ")
-                text_handling.print_separator('=')
-                if accept.startswith('y'):
-                    if player["active missions"] is None:
-                        player["active missions"] = []
-                    player["active missions"].append(mission_id)
-                    cout(
-                        COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL
-                    )
+                        accept = cinput("Do you want to accept this task? (y/n) ")
+                    text_handling.print_separator('=')
+                    if accept.startswith('y'):
+                        if player["active missions"] is None:
+                            player["active missions"] = []
+                        player["active missions"].append(mission_id)
+                        execute_triggers(
+                            data, player, 'on accept', dialog, preferences, text_replacements_generic, drinks, item, enemy,
+                            npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file
+                        )
+                        cout(
+                            COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL
+                        )
             else:
                 if player["active missions"] is None:
                     player["active missions"] = []
@@ -333,6 +363,10 @@ def offer_mission(
             if player["active missions"] is None:
                 player["active missions"] = []
             player["active missions"].append(mission_id)
+            execute_triggers(
+                data, player, 'on accept', dialog, preferences, text_replacements_generic, drinks, item, enemy,
+                npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file
+            )
             cout(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL)
         logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
 
@@ -340,7 +374,7 @@ def offer_mission(
 def mission_completing_checks(
     mission_id, missions_data, player, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs, start_player,
-    lists, zone, mission, mounts, start_time
+    lists, zone, mission, mounts, start_time, save_file
 ):
     # Load mission data and check if the
     # required attributes to complete the
@@ -373,7 +407,7 @@ def mission_completing_checks(
             mission_data, player, 'on complete', dialog, preferences,
             text_replacements_generic, drinks, item, enemy, npcs,
             start_player, lists, zone, mission, mounts, start_time,
-            map
+            map, save_file
         )
 
         logger_sys.log_message(f"INFO: Set mission '{mission_id}' as done")

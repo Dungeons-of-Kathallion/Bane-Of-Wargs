@@ -48176,7 +48176,7 @@ point222:
 point2220:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -37
   y: 47
 point2221:
@@ -49069,7 +49069,7 @@ point2353:
   - East
   - South-East
   - North-East
-  map zone: Badlands
+  map zone: South Pillager Raid Camp
   x: -33
   y: 46
 point2354:
@@ -52529,7 +52529,7 @@ point2866:
 point2867:
   blocked:
   - None
-  map zone: Badlands
+  map zone: South Pillager Raid Camp
   x: -35
   y: 42
 point2868:
@@ -53372,7 +53372,7 @@ point2991:
 point2992:
   blocked:
   - None
-  map zone: Badlands
+  map zone: South Pillager Raid Camp
   x: -38
   y: 41
 point2993:
@@ -54233,7 +54233,7 @@ point3118:
 point3119:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -40
   y: 40
 point312:
@@ -55970,7 +55970,7 @@ point3377:
 point3378:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -39
   y: 38
 point3379:
@@ -55988,7 +55988,7 @@ point338:
 point3380:
   blocked:
   - None
-  map zone: Badlands
+  map zone: South Pillager Raid Camp
   x: -37
   y: 38
 point3381:
@@ -59474,7 +59474,8 @@ point3899:
   - East
   - South-East
   - North-East
-  map zone: Badlands
+  dialog: Escort Gerud Beer Covet Stopover
+  map zone: Los Gerudos Distillery
   x: -34
   y: 34
 point39:
@@ -62908,7 +62909,7 @@ point4407:
 point4408:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -41
   y: 30
 point4409:
@@ -62932,7 +62933,7 @@ point4410:
 point4411:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -38
   y: 30
 point4412:
@@ -65548,7 +65549,7 @@ point480:
 point4800:
   blocked:
   - None
-  map zone: Badlands
+  map zone: South Pillager Raid Camp
   x: -36
   y: 27
 point4801:
@@ -69879,7 +69880,7 @@ point5442:
 point5443:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -38
   y: 22
 point5444:
@@ -69905,7 +69906,7 @@ point5447:
   - East
   - South-East
   - North-East
-  map zone: Badlands
+  map zone: South Pillager Raid Camp
   x: -34
   y: 22
 point5448:
@@ -71581,7 +71582,7 @@ point5696:
 point5697:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: South Pillager Raid Camp
   x: -42
   y: 20
 point5698:
@@ -72440,7 +72441,7 @@ point5824:
   blocked:
   - West
   - North-West
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -44
   y: 19
 point5825:
@@ -72494,7 +72495,7 @@ point5831:
 point5832:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -36
   y: 19
 point5833:
@@ -74197,7 +74198,7 @@ point6083:
 point6084:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: South Pillager Raid Camp
   x: -42
   y: 17
 point6085:
@@ -79449,7 +79450,7 @@ point6861:
 point6862:
   blocked:
   - None
-  map zone: Los Gerudos
+  map zone: Los Gerudos Warehouse
   x: -38
   y: 11
 point6863:
@@ -81159,7 +81160,7 @@ point7114:
   blocked:
   - West
   - South-West
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -44
   y: 9
 point7115:
@@ -82053,7 +82054,7 @@ point7246:
 point7247:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: South Pillager Raid Camp
   x: -40
   y: 8
 point7248:
@@ -86410,13 +86411,13 @@ point7890:
 point7891:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -41
   y: 3
 point7892:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: South Pillager Raid Camp
   x: -40
   y: 3
 point7893:

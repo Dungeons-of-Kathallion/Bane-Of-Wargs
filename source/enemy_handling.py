@@ -18,6 +18,7 @@ import logger_sys
 import terminal_handling
 import text_handling
 import yaml_handling
+import player_handling
 from colors import *
 from terminal_handling import cout
 # external imports
@@ -155,29 +156,4 @@ def spawn_enemy(
                     player["inventory"].append(chosen_item)
         cout(" ")
     else:
-        text = "You just died and your save has been rested to its older state."
-        logger_sys.log_message("INFO: Player just died")
-        cout(COLOR_RED + COLOR_STYLE_BRIGHT, end="")
-        text_handling.print_long_string(text)
-        cout(COLOR_RESET_ALL, end="")
-        time.sleep(3)
-        logger_sys.log_message("INFO: Resetting player save")
-        with open(save_file, "r") as f:
-            player = yaml_handling.safe_load(f)
-        dumped = yaml_handling.dump(player)
-        logger_sys.log_message(f"INFO: Dumping player save data: '{dumped}'")
-
-        save_file_quit = save_file
-        with open(save_file_quit, "w") as f:
-            f.write(dumped)
-        logger_sys.log_message(f"INFO: Dumping player save data to save '{save_file_quit}'")
-
-        dumped = yaml_handling.dump(preferences)
-        logger_sys.log_message(f"INFO: Dumping player preferences data: '{dumped}'")
-
-        with open(program_dir + '/preferences.yaml', 'w') as f:
-            f.write(dumped)
-        logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
-        text_handling.clear_prompt()
-        logger_sys.log_message(f"INFO: PROGRAM RUN END")
-        exit(0)
+        player_handling.player_death(preferences, save_file)

@@ -53,7 +53,7 @@ Jerry The Junk Seller:
   description: "This guys sells really bad stuff but sometimes it's really rare"
 
 Marry Joselina:
-  name: "Marry Joselina"
+  name: "Marry B. Joselina"
   cost value: 1
   speech:
   - Hello! My name is Marry Joselina! You're not supposed to see that text!
@@ -70,7 +70,7 @@ Marry Joselina:
     She then gave to you 2 gold ingots, worth 1,025 gold coins.
 
 Los Gerudos Sheriff:
-  name: "Los Gerudos Sheriff"
+  name: "Mark W. Hanson"
   cost value: 1
   speech:
   - Hello! My name is Mark Hanson! You're not supposed to see that text!
@@ -88,7 +88,7 @@ Los Gerudos Sheriff:
     His real name is Mark Hanson.
 
 Wendy Tucker:
-  name: "Wendy Tucker"
+  name: "Wendy M. Tucker"
   cost value: 1
   speech:
   - Hello! My name is Wendy Tucker! You're not supposed to see that text!
@@ -104,3 +104,73 @@ Wendy Tucker:
     This young woman who you've met in the Los Gerudos Grand Avenue famous poolroom.
     Her dad who lives in the Cocorico Village was dying and she asked you to escort
     her to her dad's house because she couldn't afford the travel.
+
+Joseph Baker:
+  name: "Joseph K. Baker"
+  cost value: 1
+  speech:
+  - Hello! My name is Joseph Baker! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    Joseph Baker is one of the most dedicaded Los Gerudos Law Enforcement officer, whose boss is the sheriff
+    Mark Hanson. He offered to you a special mission about escorting a smuggling covet through the whole
+    Gerud Desert and Badlands without getting caught by any south pillager raid camp.
+
+Jerry Owen:
+  name: "Jerry L. Owen"
+  cost value: 1
+  speech:
+  - Hello! My name is Jerry Owen! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    You escorted his covet through the Badlands and the Gerud Desert and valleys. He works as a salesman at the
+    Los Gerudos Warehouse, but he sometimes participate in special missions, as he's also an adventurer.
+
+Aaron Kyro:
+  name: "Aaron A. Kyro"
+  cost value: 1
+  speech:
+  - Hello! My name is Aaron Kyro! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    You escorted his covet through the Badlands and the Gerud Desert and valleys. He works for the Los Gerudos Law
+    Inforcement north department, and often executes missions from the seriff.
+
+William June:
+  name: "William S. June"
+  cost value: 1
+  speech:
+  - Hello! My name is William June! You're not supposed to see that text!
+  sells:
+    drinks:
+    - None
+    items:
+    - None
+  buys:
+    items:
+    - None
+  description: >
+    You escorted his covet through the Badlands and the Gerud Desert and valleys. He is an adventurer who often
+    takes part in different missions across the Stall Island. He says he once participated in a mission that
+    consisted in escort an elf king through the whole island, but no one believes him...

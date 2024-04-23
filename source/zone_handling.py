@@ -1560,7 +1560,8 @@ def interaction_dungeon(
                         dialog_handling.print_dialog(
                             current_dungeon["dungeon"]["reward dialog"], dialog, preferences,
                             text_replacements_generic, player, drinks, item, enemy, npcs,
-                            start_player, lists, zone, mission, mounts, start_time, map
+                            start_player, lists, zone, mission, mounts, start_time, map,
+                            save_file
                         )
                         cinput("\nPress enter to continue...")
                     continue_dungeon_actions = False
