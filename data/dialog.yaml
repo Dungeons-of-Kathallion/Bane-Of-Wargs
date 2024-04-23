@@ -302,7 +302,7 @@ Escort Gerud Beer Covet Offer:
       - "print(“- Okay, here's further info about the mission: it consists in first travelling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling covet 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
       - print(- This seems interesting... But how can I be sure you're not messing with me right now? you respond to the man.)
       - print(- My name is Joseph K. Baker, and I'm a Los Gerudos Law Enforcement officer, here's my badge.“)
-      - print(The man seems to not lie.)
+      - print(The man seems to not be lying.)
       - goto(label 4)
     - label 3:
       - print(“- Let me at least give you some more information about the mission! says the man.)
