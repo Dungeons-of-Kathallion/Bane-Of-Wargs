@@ -236,7 +236,7 @@ desert raids:
       Desert Undead: 1
   Desert Worm:
     name: "You find a Desert Worm on your way!"
-    chnce: .05
+    chance: .05
     enemies rate:
       easy: {"min": 1, "max": 1}
       normal: {"min": 1, "max": 1}
