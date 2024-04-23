@@ -292,7 +292,7 @@ Escort Gerud Beer Covet Offer:
     - label 1:
       - print(You decide to rest a little at the Los Gerudos Grand Hostel, and have a glass of Wine; you start drinking it. A few minutes later, a man sits next to you, at your left. He starts to talk:)
       - print(“- Hey. Have I seen you at the Los Gerudos Prison in the sheriff's office? says the man)
-      - print(- Maybe, once I went there because I wanted to help him for some kind of missions; you respond to the man.)
+      - print(- Maybe, once I went there because I wanted to help him for some kind of missions; you respond.)
       - print(- Well, the sheriff is looking for someone who's willing to take high risks for a mission. Are you interested?“)
       - choice():
         - create-choice(“Depends...could you tell me more about the mission?“, goto(label 2))
