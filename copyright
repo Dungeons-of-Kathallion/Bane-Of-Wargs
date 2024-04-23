@@ -57,7 +57,6 @@ Files:
  imgs/Bear.txt
  imgs/Horse.txt
  imgs/Steel?Gate.txt
- imgs/Jerry?Owen.txt
  imgs/Aaron?Kyro.txt
  imgs/William?June.txt
 Copyright: Joan G. Stark
@@ -114,7 +113,9 @@ Copyright: Tim Campbell
 License: GPL-3+
 
 Files: imgs/Jerry?Owen.txt
-Copyright: nic (N.M.I.)
+Copyright:
+  Joan G. Stark
+  nic (N.M.I.)
 License: GPL-3+
 
 License: GPL-3+
