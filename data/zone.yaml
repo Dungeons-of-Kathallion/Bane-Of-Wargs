@@ -326,6 +326,43 @@ Los Gerudos Prison:
     harbors:
     - None
 
+Los Gerudos Warehouse:
+  name: "Los Gerudos Warehouse"
+  description: "This warehouse is used my many privates, but also great companies like the Los Gerudos Grand Hostel or the Gerud Forges, to stock their goods."
+  type: village
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$YELLOW| $ORANGEo   o  $YELLOW|$WHITE|
+      |$YELLOW| $RED__$BROWN[]$RED_  $YELLOW|$WHITE|
+      |$YELLOW|$WHITE/     \ $YELLOW|$WHITE|
+      |/       \$YELLOW|$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      || o   o  ||
+      || __[]_  ||
+      ||/     \ ||
+      |/       \||
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
 Los Gerudos Distillery:
   name: "Los Gerudos Distillery"
   description: >

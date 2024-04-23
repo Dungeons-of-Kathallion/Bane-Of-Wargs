@@ -28,18 +28,18 @@ Storyline & Plot Authors
 
 Artwork
   Cromha (GPL-3+)
-  Shanaka Dias (GPL-3+)
   Joan G. Stark (GPL-3+)
+  Shanaka Dias (GPL-3+)
   AF (GPL-3+)
   fsc (GPL-3+)
   b'ger (GPL-3+)
   Targon (GPL-3+)
   sk (GPL-3+)
   gvn (GPL-3+)
-  jah/SSt (GPL-3+)
+  jah (GPL-3+)
+  SSt (GPL-3+)
   BP (GPL-3+)
   VK (GPL-3+)
-  Joan Stark (GPL-3+)
   Vander Zwaag (GPL-3+)
   ZOT (GPL-3+)
   hjw (GPL-3+)
@@ -51,6 +51,7 @@ Artwork
   jrei (GPL-3+)
   Micheal J. Penick (GPL-3+)
   Tim Campbell (GPL-3+)
+  nic (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

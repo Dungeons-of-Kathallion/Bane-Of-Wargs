@@ -1,0 +1,9 @@
+$BROWN    _______
+$BROWN  .'       '.
+$BROWN  |  .__._  |
+$BROWN  \ ;_____\ /
+$TAN  ($BROWN|| $BLUE0$TAN|$BLUE0 $BROWN||$TAN)
+$BROWN   |'$TAN-(_)-'$BROWN|
+$BROWN   \ .___. /
+$BROWN    '.-  .'
+$BROWN      '-'$WHITE

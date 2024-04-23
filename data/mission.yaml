@@ -129,10 +129,10 @@ Escort Gerud Beer Covet:
   name: "Escort Gerud Beer Covet"
   description: >
     Go to $stopovers, to meet up with the Gerud Beer covet, and the escort them through the Badlands and the
-    Gerud Desert to the Los Gerudos Grand Hostel ($destination). They'll pay you $payment gold.
+    Gerud Desert to the Los Gerudos Warehouse ($destination). They'll pay you $payment gold.
     P.-S.: make sure to not encounter any South Pillager camp on your way.
   source: 6990
-  destination: 6990
+  destination: 6862
   stopovers:
   - 3899
   invisible: false

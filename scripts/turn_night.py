@@ -12,9 +12,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-def run():
+def run(player):
     decimal, numeric = str(player["elapsed time game days"]).split('.', 1)
-    player["elapsed time game days"] = float(str(decimal) + '.' + '9')
+    player["elapsed time game days"] = float(str(decimal) + '.' + '84')
 
 # Actually run the action, and tells the game which arguments to use
 run(player)

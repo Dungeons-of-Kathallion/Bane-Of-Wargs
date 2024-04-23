@@ -1,0 +1,7 @@
+$ORANGE       .-$YELLOW""$ORANGE-.
+$ORANGE      /-.$PURPLE{}$ORANGE  \
+$ORANGE      | _\__.|
+$ORANGE      \$TAN/$BLUE^$TAN)$BLUE^ $TAN\$ORANGE/
+$TAN       \ =  /
+$RED  $ORANGE.$RED---$ORANGE.$RED/`$TAN--$RED`\$ORANGE.$RED--$ORANGE.$RED_
+$RED /     `$TAN;--'$RED`     \$WHITE

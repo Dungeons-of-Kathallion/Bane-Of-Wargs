@@ -331,7 +331,29 @@ Escort Gerud Beer Covet Stopover:
     - Escort Gerud Beer Covet
   conversation:
     - label 1:
-      - print(hey)
+      - print(You finally arrive to the location Joseph Baker indicated to you. You realize that this is the location of a distillery; you can't see the covet you were supposed to escort, so you decide to enter the distillery and search for it.)
+      - "print(You approach of what seems to be the entrance of the building, but the door is one-way: only people from the inside can open or close it. You hear a man that seems to be speaking to you, and realize that he's in a small room built in the wall of the building and that he probably is the guy who's watching the entrance:)"
+      - print(“- Hey my guy! Searching for the entry? says the man.)
+      - print(- Hi. Well, I'm supposed to escort a covet 'till Los Gerudos; Joseph K. Baker's sending me, the assistant of the Los Gerudos sheriff. I can't find the covet, you respond to the man.)
+      - print(- You ain't searching at the right place! They're inside wait for you, at the warehouse. Enter! says the man before opening the entrance and letting you enter the building.“)
+      - "print(You then enter the building by the entrance and start walking through a bright corridor, which seems to last forever. You can't stop yourself from stopping every 20 feet: the corridor side walls are decorated of paintings. After walking about 160 feet, the corridor side walls now start to have doors. You keep walking until you see a door different from the others, with a sign saying “Warehouse - hall third entrance“. You open that door and enter what seems to be indeed a warehouse. You see a cart in the middle of the warehouse, and 3 men sitting on it.)"
+      - print(“- Hey man! We've been waitin' for you for 2 days! says the man who seems to be the boss of the covet.)
+      - print(- We gotta go now, night's comin' soon, and the undeads too! says the man layed down in the back of the cart.)
+      - print(- And trust me, you don't wanna see any desert undeads at night, with the Gerud beers we're carrying! Let's go! says the third man, who's petting one of the two horses.“)
+      - goto(label 2)
+    - label 2:
+      - choice():
+        - create-choice(“Desert undeads? What are these?“, goto(label 3))
+        - create-choice(“Gerud beers? What are these?“, goto(label 4))
+        - create-choice(“Alright! Let's get going!“, goto(label 5))
+    - label 3:
+      - print(“They're monsters who've been wanderin' in large groups in different places of the Stall Island for centuries. But you also ain't wanna encounter any south pillager campment, or we're done.“ says the man already sat on the cart and ready to go.)
+      - goto(label 2)
+    - label 4:
+      - print(“These are the special beers the Los Gerudos Grand Hostel sells, that are only sold there. Its fermentation's strict and the only place where it can be, is the Badlands. Now get on the road and let's go!“ says the man petting the horse.)
+      - goto(label 2)
+    - label 5:
+      - print(“Alright then! We must be quick!“)
   use actions: true
   actions:
     run scripts:
@@ -351,5 +373,14 @@ Escort Gerud Beer Covet Fail:
 Escort Gerud Beer Covet Complete:
   conversation:
     - label 1:
-      - print(hey)
-  use actions: false
+      - print(You arrive to the destination, at the Los Gerudos Warehouse, after encountering many orks and undeads on the travel. The cart men congratulate and welcome you for the help:)
+      - print(“Nice work dude! Don't esitate working with us on other missions again! say the three men.)
+      - print(I'd be glad to! you say.“)
+      - print(They give you two gold ingots, worth 125 gold coins.)
+  use actions: true
+  actions:
+    add to diary:
+      known npcs:
+      - Jerry Owen
+      - Aaron Kyro
+      - William June

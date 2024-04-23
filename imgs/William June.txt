@@ -1,0 +1,10 @@
+$BROWN         .--..--.
+$BROWN        /    V   \
+$BROWN     __|__________|__
+$BROWN    '--$YELLOW///      \\\$BROWN--'
+$TAN      (    $BLUE6  6    $TAN) 
+$TAN       :     )    ;
+$TAN        \   $SILVER==$TAN   /
+$TAN         `-.__.-`
+$KHAKI      __ _($GREEN\__/$KHAKI)_ __
+$KHAKI    /`  / \$RED(><)$KHAKI/ \  `\$WHITE
