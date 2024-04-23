@@ -338,7 +338,7 @@ Escort Gerud Beer Covet Stopover:
       - print(- You ain't searching at the right place! They're inside wait for you, at the warehouse. Enter! says the man before opening the entrance and letting you enter the building.“)
       - "print(You then enter the building by the entrance and start walking through a bright corridor, which seems to last forever. You can't stop yourself from stopping every 20 feet: the corridor side walls are decorated of paintings. After walking about 160 feet, the corridor side walls now start to have doors. You keep walking until you see a door different from the others, with a sign saying “Warehouse - hall third entrance“. You open that door and enter what seems to be indeed a warehouse. You see a cart in the middle of the warehouse, and 3 men sitting on it.)"
       - print(“- Hey man! We've been waitin' for you for 2 days! says the man who seems to be the boss of the covet.)
-      - print(- We gotta go now, night's comin' soon, and the undeads too! says the man layed down in the back of the cart.)
+      - print(- We gotta go now, night's comin' soon, and the undeads too! says the man laid down in the back of the cart.)
       - print(- And trust me, you don't wanna see any desert undeads at night, with the Gerud beers we're carrying! Let's go! says the third man, who's petting one of the two horses.“)
       - goto(label 2)
     - label 2:
