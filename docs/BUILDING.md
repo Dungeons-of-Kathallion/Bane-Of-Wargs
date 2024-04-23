@@ -20,9 +20,10 @@ fade
 GitPython
 colorama
 PyYaml
-Yamale
-Fsspec
-AppDirs
+yamale
+fsspec
+appdirs
+requests
 rich
 ```
 
