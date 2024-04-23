@@ -2727,6 +2727,44 @@ Green Dragon Scale:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Desert Worm Tooth:
+  type: "Misc"
+  gold: 256.2
+  description: "Desert Worm Teeth are very hard to get and very expensive on the market."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Desert Worm Scale:
+  type: "Misc"
+  gold: 314
+  description: "Desert Worm Scales are very hard to get and very expensive on the market."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 Mumakil Tusk:
   type: "Misc"
   gold: 125.21

@@ -62,6 +62,7 @@ generic:
       hard: {"min": 2, "max": 5}
     enemies spawns:
       Slime: 1
+
 generic difficult:
   Mix Ork Raid:
     name: "You find a group of Orks on your way!"
@@ -85,6 +86,7 @@ generic difficult:
       Cavern Troll: 1
       Ork: .5
       Goblin: 1
+
 warg raids:
   Generic Warg:
     name: "You find a group of Wargs on your way!"
@@ -105,6 +107,7 @@ warg raids:
     enemies spawns:
       White Warg: 1
       Warg: 1
+
 woods:
   Goblin Raid:
     name: "You find a group of Goblins on your way!"
@@ -153,6 +156,7 @@ woods:
       hard: {"min": 1, "max": 2}
     enemies spawns:
       Giant Spider: 1
+
 black:
   Black Orks:
     name: "You find a group of Black Orks on your way!"
@@ -191,6 +195,7 @@ black:
       hard: {"min": 1, "max": 3}
     enemies spawns:
       Doomed Horror: 1
+
 desert raids:
   South Pillagers:
     name: "You find a group of South Pillagers on your way!"
@@ -229,6 +234,16 @@ desert raids:
       hard: {"min": 2, "max": 5}
     enemies spawns:
       Desert Undead: 1
+  Desert Worm:
+    name: "You find a Desert Worm on your way!"
+    chnce: .05
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 1, "max": 1}
+    enemies spawns:
+      Desert Worm: 1
+
 south pillagers:
   South Pillagers Stronger:
     name: "You find a group of South Pillagers on your way!"
@@ -248,6 +263,7 @@ south pillagers:
       hard: {"min": 2, "max": 4}
     enemies spawns:
       South Pillager: 1
+
 desert undeads:
   Undeads Group:
     name: "You find a group of undeads on your way!"
@@ -267,6 +283,7 @@ desert undeads:
       hard: {"min": 3, "max": 6}
     enemies spawns:
       Desert Undead: 1
+
 desert trolls:
   Desert Troll:
     name: "You find a group of Desert Trolls on your way!"
@@ -277,6 +294,7 @@ desert trolls:
       hard: {"min": 2, "max": 3}
     enemies spawns:
       Desert Troll: 1
+
 balrog boss:
   Balrog:
     name: "You encounter a Balrog on your way!"
@@ -288,6 +306,7 @@ balrog boss:
     enemies spawns:
       Balrog: 1
       Cavern Troll: 1
+
 mumakil boss:
   Mumakil:
     name: "You encounter a Mumakil on your way!"
@@ -299,6 +318,7 @@ mumakil boss:
     enemies spawns:
       Mumakil: 1
       Desert Troll: 1
+
 bandit:
   Wanted Bandint:
     name: "You encounter “The Dagger“ on your way!"

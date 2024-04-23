@@ -52,6 +52,7 @@ Artwork
   Micheal J. Penick (GPL-3+)
   Tim Campbell (GPL-3+)
   nic (GPL-3+)
+  Chev (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

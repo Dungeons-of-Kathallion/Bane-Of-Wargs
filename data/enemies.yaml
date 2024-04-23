@@ -287,6 +287,28 @@ Mumakil:
   description: >
     Mumakils are cousins of the elephants, that've been raised by dark men, who're up with the evil forces... They have blood-lust and
     arrows can only harm their eyes, not their bodies.
+Desert Worm:
+  plural: "Desert Worms"
+  damage:
+    min damage: 18
+    max damage: 55
+    critical chance: .72
+  health:
+    min spawning health: 45
+    max spawning health: 110
+    max health level: 110
+  agility: .38
+  inventory:
+  - Bone
+  - Bone
+  - Bone
+  - Bone
+  - Desert Worm Tooth
+  - Desert Worm Scale
+  description: >
+    These humongous worms have been wandering in the deserts of the world for a long time.
+    Some people say that theylive in far into the ground, miles away down from the ground,
+    and that they go back at the surface when men are doing troubles to the world.
 Giant Spider:
   plural: "Giant Spiders"
   damage:

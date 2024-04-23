@@ -1,0 +1,12 @@
+$YELLOW                                                /$GREEN~~$YELLOW\
+$YELLOW  ____                                         /'$REDo$YELLOW  |
+$YELLOW.'$ORANGE;;$YELLOW|$ORANGE;;$YELLOW\            _,-$ORANGE;;;$YELLOW\$ORANGE;$YELLOW-_               ,'  _/'|
+$YELLOW`\_/$ORANGE;;;$YELLOW/$ORANGE;$YELLOW\         /$ORANGE;;$YELLOW\$ORANGE;;;;$YELLOW\$ORANGE;;;$YELLOW,             |     .'
+$YELLOW    `$ORANGE;$YELLOW/$ORANGE;;;$YELLOW|      ,$ORANGE;$YELLOW\$ORANGE;;;$YELLOW|$ORANGE;;;$YELLOW|$ORANGE;;;$YELLOW|$ORANGE;$YELLOW\          ,'$ORANGE;;$YELLOW\  |
+$YELLOW     |$ORANGE;;;$YELLOW/$ORANGE;:$YELLOW     |$ORANGE;;;$YELLOW\;/~~~~\$ORANGE;$YELLOW/$ORANGE;;;$YELLOW|        ,$ORANGE;;;;;;$YELLOW.'
+$YELLOW     |$ORANGE;$YELLOW/$ORANGE;;;$YELLOW|     |$ORANGE;;;$YELLOW,'      `\$ORANGE;;$YELLOW/$ORANGE;$YELLOW|      /$ORANGE;$YELLOW\$ORANGE;;;;$YELLOW/
+$YELLOW      `|$ORANGE;;;$YELLOW/$ORANGE;$YELLOW\___/$ORANGE;$YELLOW~\$ORANGE;$YELLOW|         |$ORANGE;;;;;$YELLOW----\$ORANGE;;;$YELLOW|$ORANGE;;$YELLOW/'
+$YELLOW       `$ORANGE;$YELLOW/$ORANGE;;;$YELLOW|$ORANGE;;;$YELLOW|$ORANGE;;;$YELLOW,'         |$ORANGE;;;;$YELLOW|$ORANGE;;;;;$YELLOW|$ORANGE;;$YELLOW|/'
+$YELLOW        `\$ORANGE;;;$YELLOW|$ORANGE;;;$YELLOW/$ORANGE;;$YELLOW,'           `\$ORANGE;$YELLOW/$ORANGE;;;;;;$YELLOW|/~'
+$YELLOW          `\/$ORANGE;;$YELLOW/$ORANGE;;;$YELLOW/               `~------'
+$YELLOW            `~~~~~$WHITE
