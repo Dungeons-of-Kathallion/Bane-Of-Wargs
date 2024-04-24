@@ -200,6 +200,7 @@ else:
         )
         time.sleep(3)
         cout("\nDo you want to update your game data right now?")
+        cout("Note that you may want to update the game source code version for compatibility reasons")
         want_to_update = terminal_handling.show_menu(["Yes", "No"])
         if want_to_update == "Yes":
             text_handling.clear_prompt()
