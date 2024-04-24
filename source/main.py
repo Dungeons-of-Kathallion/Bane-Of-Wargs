@@ -1298,7 +1298,7 @@ def run(play):
 
         cout("DAY TIME: " + day_time)
         cout(
-            "LOCATION: " + map_zone + " (" + COLOR_STYLE_BRIGHT + COLOR_GREEN +
+            "LOCATION: " + zone[map_zone]["name"] + " (" + COLOR_STYLE_BRIGHT + COLOR_GREEN +
             str(player["x"]) + COLOR_RESET_ALL + ", " + COLOR_STYLE_BRIGHT + COLOR_GREEN +
             str(player["y"]) + COLOR_RESET_ALL + ")"
         )
