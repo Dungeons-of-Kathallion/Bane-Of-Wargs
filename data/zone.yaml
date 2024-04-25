@@ -1333,7 +1333,7 @@ Paradise Harbor:
   name: "Paradise Harbor"
   type: harbor
   description: >
-    The small harbor that connects the Paradise Island to Los Gerudos, and therfore the Stall Island.
+    The small harbor that connects the Paradise Island to Los Gerudos, and therefore the Stall Island.
   news:
   - "..."
   map:
@@ -1781,7 +1781,7 @@ Goro Mounts Mines Dungeon:
         room digit: 8
         room enigma data:
           script name: levers_enigma.py
-      Mineshaft Cemetary:
+      Mineshaft Cemetery:
         room type: fight
         room digit: 9
         room fight data:
