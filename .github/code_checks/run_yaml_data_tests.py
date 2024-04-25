@@ -1424,7 +1424,6 @@ def verify_data(
     # Specific checks of `lists` dictionary
     # CHECKS:
     # - for every pool in a list:
-    #   * verify if the spawning text is not too long
     #   * verify if the chance is under or equal to 1
     #   * verify if the chance is over 0
     #   * for every rates:
@@ -1436,14 +1435,6 @@ def verify_data(
         for current2 in list(list_data):
             pool_data = list_data[current2]
 
-            if len(pool_data["name"]) > 54:
-                print(
-                    COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
-                    f"pool '{current2}' in list id '{current}' isn't valid --> " +
-                    "text shown is too long (>54)" +
-                    COLOR_RESET_ALL
-                )
-                exit_game()
             if (
                 pool_data["chance"] > 1 or
                 pool_data["chance"] < 0

@@ -95,6 +95,8 @@ def spawn_enemy(
 
         enemies_total_inventory = []
         for entry in enemies:
+            if entry not in player["enemies list"]:
+                player["enemies list"] += [entry]
             entry = enemy[entry]["inventory"]
             for i in entry:
                 enemies_total_inventory += [i]
