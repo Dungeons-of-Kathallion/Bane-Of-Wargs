@@ -1318,12 +1318,50 @@ Gerud Harbor:
       destination: 1179
       travel time: 15
       cost: 34.6
+    Paradise Island:
+      destination: 6608
+      travel time: 5
+      cost: 17.3
   discounts:
     time space: 18
     chance: .3
     discount:
       max dropoff: .5
       min dropoff: .15
+
+Paradise Harbor:
+  name: "Paradise Harbor"
+  type: harbor
+  description: >
+    The small harbor that connects the Paradise Island to Los Gerudos, and therfore the Stall Island.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$SILVER,,$CYAN≈$SILVER,,,$CYAN≈$SILVER,,,$WHITE|
+      |$SILVER;;;;;;;;;;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |,,≈,,,≈,,,|
+      |;;;;;;;;;;|
+      x__________x
+  travels:
+    Los Gerudos:
+      destination: 7767
+      travel time: 10
+      cost: 24.1
+  discounts:
+    time space: 16
+    chance: .45
+    discount:
+      max dropoff: .8
+      min dropoff: .4
 
 Seaside Harbor:
   name: "Seaside Harbor"
@@ -1643,6 +1681,27 @@ Californ Beaches:
       |≈≈≈≈≈≈≈≈≈≈|
       |≈≈≈≈≈≈≈≈≈≈|
       |;≈;;≈≈;;;;|
+      |;;;;;;;;;;|
+      x__________x
+
+Los Gerudos Paradise Island:
+  name: "Paradise Island"
+  description: "The small coast island near that is a part of Los Gerudos."
+  type: woods
+  enemy spawning: warg raids
+  map:
+    map full: |
+      x__________x
+      |$GREEN ()) () ))$WHITE|
+      |$GREEN($BLUE≈$BROWN|$BLUE≈$GREEN)$BLUE≈$BROWN\$BLUE≈$BROWN|$GREEN)$WHITE|
+      |$GREEN($YELLOW;$BROWN|$YELLOW;;;$BROWN|$YELLOW;$BROWN|$YELLOW;$WHITE|
+      |$YELLOW;;;;;;;;;;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ()) () ))|
+      |(≈|≈)≈\≈|)|
+      |(;|;;;|;|;|
       |;;;;;;;;;;|
       x__________x
 

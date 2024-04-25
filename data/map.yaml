@@ -77733,8 +77733,14 @@ point6607:
   y: 13
 point6608:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - North
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Paradise Harbor
   x: -34
   y: 13
 point6609:
@@ -78605,8 +78611,13 @@ point6736:
   y: 12
 point6737:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Los Gerudos Paradise Island
   x: -34
   y: 12
 point6738:
@@ -79474,8 +79485,13 @@ point6865:
   y: 11
 point6866:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Los Gerudos Paradise Island
   x: -34
   y: 11
 point6867:
@@ -80346,8 +80362,14 @@ point6994:
   y: 10
 point6995:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - South
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Los Gerudos Paradise Island
   x: -34
   y: 10
 point6996:
