@@ -420,5 +420,5 @@ Collect Humanitarian Resources Stopover:
 Collect Humanitarian Resources Complete:
   conversation:
     - label 1:
-      - print(hey)
+      - print(You approach the dock of the Gerud Harbor, and the Gemini navy boat. You depose the resources you've collected and leave with a payment of 85 gold.)
   use actions: false

@@ -149,9 +149,9 @@ Escort Gerud Beer Covet:
 Collect Humanitarian Resources:
   name: "Collect Humanitarian Resources"
   description:
-    Go to $stopovers to collect different humanitarian resources, and then go to the Gerud Harbor
-    ($destination) to these resources to the Los Gerudos Humanitarian City Department, for a
-    payment of $payment gold.
+    Go to the Los Gerudos Warehouse and Grocery to collect different humanitarian resources, and
+    then go to the Gerud Harbor($destination) to these resources to the Los Gerudos Humanitarian
+    City Department, for a payment of $payment gold.
   force accept: false
   invisible: false
   source: 7767
