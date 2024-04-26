@@ -77733,8 +77733,14 @@ point6607:
   y: 13
 point6608:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - North
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Paradise Harbor
   x: -34
   y: 13
 point6609:
@@ -78605,8 +78611,13 @@ point6736:
   y: 12
 point6737:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Los Gerudos Paradise Island
   x: -34
   y: 12
 point6738:
@@ -79450,7 +79461,7 @@ point6861:
 point6862:
   blocked:
   - None
-  map zone: Los Gerudos Warehouse
+  map zone: Los Gerudos
   x: -38
   y: 11
 point6863:
@@ -79474,8 +79485,13 @@ point6865:
   y: 11
 point6866:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Los Gerudos Paradise Island
   x: -34
   y: 11
 point6867:
@@ -80302,7 +80318,7 @@ point6988:
 point6989:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos
   x: -40
   y: 10
 point699:
@@ -80346,8 +80362,14 @@ point6994:
   y: 10
 point6995:
   blocked:
-  - None
-  map zone: Stall Seas Bay
+  - South
+  - East
+  - West
+  - North-East
+  - North-West
+  - South-East
+  - South-West
+  map zone: Los Gerudos Paradise Island
   x: -34
   y: 10
 point6996:
@@ -81184,13 +81206,13 @@ point7117:
 point7118:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos
   x: -40
   y: 9
 point7119:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos
   x: -39
   y: 9
 point712:
@@ -82054,19 +82076,19 @@ point7246:
 point7247:
   blocked:
   - None
-  map zone: South Pillager Raid Camp
+  map zone: Los Gerudos
   x: -40
   y: 8
 point7248:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos
   x: -39
   y: 8
 point7249:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos
   x: -38
   y: 8
 point725:
@@ -82923,19 +82945,19 @@ point7375:
 point7376:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos
   x: -40
   y: 7
 point7377:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -39
   y: 7
 point7378:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -38
   y: 7
 point7379:
@@ -83800,19 +83822,19 @@ point7504:
 point7505:
   blocked:
   - None
-  map zone: Gerud Valleys
+  map zone: Los Gerudos Warehouse
   x: -40
   y: 6
 point7506:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -39
   y: 6
 point7507:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -38
   y: 6
 point7508:
@@ -84669,13 +84691,13 @@ point7633:
 point7634:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos Warehouse
   x: -40
   y: 5
 point7635:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -39
   y: 5
 point7636:
@@ -85536,13 +85558,13 @@ point7762:
 point7763:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos Warehouse
   x: -40
   y: 4
 point7764:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -39
   y: 4
 point7765:
@@ -86417,13 +86439,13 @@ point7891:
 point7892:
   blocked:
   - None
-  map zone: South Pillager Raid Camp
+  map zone: Los Gerudos
   x: -40
   y: 3
 point7893:
   blocked:
   - None
-  map zone: Gerud Desert
+  map zone: Los Gerudos
   x: -39
   y: 3
 point7894:

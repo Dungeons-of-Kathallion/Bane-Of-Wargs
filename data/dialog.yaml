@@ -384,3 +384,41 @@ Escort Gerud Beer Covet Complete:
       - Jerry Owen
       - Aaron Kyro
       - William June
+
+Collect Humanitarian Resources Offer:
+  conversation:
+    - label 1:
+      - "print(You walk in the avenue of the harbor dock, and admire the different boats you see docked: you notice a nice-looking boat, painted in red with blue lines on the top of the hull. It seems to be a fishing boat. A dozen of feet away from, you notice an outstanding boat, that must be high 45 feet with its sail and 20 feet long. The boat has a particular design, kinda a futuristic design, with red sails and white hull. You continue walking a few hundred of feet, until you stop to admire a beautiful boat. Its wooden hull shines, is sail reflects the light of the bright sun of Los Gerudos. It's a ship of the Los Gerudos Defense Vessels, whose roles are to patrol, and defend the coast from pirates, pillagers, and other unwanted creatures. The boat is humongous, with its 150 feet long hull and its 200 feet long sails. It's the famous
+      “Gemini - Intrepid“. You see someone in the crowd, and feel like you've met him before. You walk towards him and before you can react, he turns towards you and greets you:)"
+      - print(“- Hey man! Remember me? I'm William June, we were in an covet escortin' mission a few time ago. says the smily man.)
+      - print(- Of course! What are you doing here?)
+      - print(- You may not know but a hurricane recently destroyed a small coast island that's actually a part of Los Gerudos. The Los Gerudos Defense Vessels City Department offered their help by transporting humanitarian resources with this boat, the 'Gemini - Intrepid'. Right now, the Los Gerudos Humanitarian City Department is collecting these resources before the boat goes to the island. I'm a part of the mission!“)
+      - choice():
+        - create-choice(“That's amazing! How could I help?“, goto(label 2))
+        - create-choice(“That's nice from you.“, goto(label 3))
+    - label 2:
+      - print(“- Well, you could try to get some humanitarian resources, says William.)
+      - goto(label 4)
+    - label 3:
+      - print(“- I guess... You could participate too!“)
+      - choice():
+        - create-choice(“Sure! Why not?“, goto(label 4))
+        - create-choice(“Yeah... I'm not really sure. Maybe another time?“, defer())
+        - create-choice(“Sorry but not for me.“, decline())
+    - label 4:
+      - print(“- Sure! Why not? you say.)
+      - print(- You can try looking at the warehouse and the grocery.“)
+      - accept()
+  use actions: false
+
+Collect Humanitarian Resources Stopover:
+  conversation:
+    - label 1:
+      - print(You collect the resources from your location and go.)
+  use actions: false
+
+Collect Humanitarian Resources Complete:
+  conversation:
+    - label 1:
+      - print(You approach the dock of the Gerud Harbor, and the Gemini navy boat. You depose the resources you've collected and leave with a payment of 85 gold.)
+  use actions: false

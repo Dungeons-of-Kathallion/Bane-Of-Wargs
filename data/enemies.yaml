@@ -193,6 +193,25 @@ Desert Troll:
   description: >
     Desert Trolls are the cousins of Cavern Trolls. They're bigger and slower than their cousins,
     but they're still powerful enough to defeat an hero.
+Mines Troll:
+  plural: "Mines Trolls"
+  damage:
+    min damage: 5
+    max damage: 12
+    critical chance: .62
+  health:
+    min spawning health: 8
+    max spawning health: 17
+    max health level: 17
+  agility: .34
+  inventory:
+  - Beef
+  - Porkchop
+  - Bone
+  - Wolf Fur
+  - Mace
+  - Spear
+  description: "Mines Trolls are powerful variants of Cavern Trolls, that you find in abandoned dwarf mineshafts."
 # Black enemies
 Black Ork:
   plural: "Black Orks"
@@ -464,3 +483,22 @@ Shire Flying Beast:
     The `Shire Flying Beast`, is one of the green dragons, who've been terrorizing the Shire Island for centuries.
     It's the last known green dragon to be alive, even if he hasn't been seen for decades. Some says that he
     still lives under the Shire Hills, sleeping for decades, waiting for a brave hero to awake him....
+Fellbeast:
+  plural: "Fellbeasts"
+  damage:
+    min damage: 9
+    max damage: 19
+    critical chance: .7
+  health:
+    min spawning health: 12
+    max spawning health: 30
+    max health level: 30
+  agility: .38
+  inventory:
+  - Dragon Tooth
+  - Bone
+  - Bone
+  - Beef
+  description: >
+    Fellbeasts may look like dragons, they do not have the power of breathing fire, but they have huge clawed hands.
+    They are often used by the evil forces wizards.

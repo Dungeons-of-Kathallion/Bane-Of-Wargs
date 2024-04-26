@@ -105,6 +105,12 @@ def run():
         "lever 2": False,
         "lever 3": False
     }
+
+    # generate random combination
+    combination = {}
+    for i in [1, 2, 3]:
+        combination[f"lever{i}"] = random.choice([True, False])
+
     while not completed:
         text_handling.clear_prompt()
         text_handling.print_separator("=")
@@ -112,7 +118,11 @@ def run():
         text_handling.print_separator("=")
         cout()
 
-        if not levers["lever 1"] and levers["lever 2"] and not levers["lever 3"]:
+        if (
+            levers["lever 1"] == combination["lever 1"] and
+            levers["lever 2"] == combination["lever 1"] and
+            levers["lever 3"] == combination["lever 1"]
+        ):
             completed = True
             cout(f"\n{COLOR_CYAN}You completed the enigma! You pass the room.{COLOR_RESET_ALL}")
             time.sleep(3)

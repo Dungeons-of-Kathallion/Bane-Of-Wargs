@@ -1318,12 +1318,50 @@ Gerud Harbor:
       destination: 1179
       travel time: 15
       cost: 34.6
+    Paradise Island:
+      destination: 6608
+      travel time: 5
+      cost: 17.3
   discounts:
     time space: 18
     chance: .3
     discount:
       max dropoff: .5
       min dropoff: .15
+
+Paradise Harbor:
+  name: "Paradise Harbor"
+  type: harbor
+  description: >
+    The small harbor that connects the Paradise Island to Los Gerudos, and therefore the Stall Island.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$SILVER,,$CYAN≈$SILVER,,,$CYAN≈$SILVER,,,$WHITE|
+      |$SILVER;;;;;;;;;;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |,,≈,,,≈,,,|
+      |;;;;;;;;;;|
+      x__________x
+  travels:
+    Los Gerudos:
+      destination: 7767
+      travel time: 10
+      cost: 24.1
+  discounts:
+    time space: 16
+    chance: .45
+    discount:
+      max dropoff: .8
+      min dropoff: .4
 
 Seaside Harbor:
   name: "Seaside Harbor"
@@ -1646,6 +1684,27 @@ Californ Beaches:
       |;;;;;;;;;;|
       x__________x
 
+Los Gerudos Paradise Island:
+  name: "Paradise Island"
+  description: "The small coast island near that is a part of Los Gerudos."
+  type: woods
+  enemy spawning: warg raids
+  map:
+    map full: |
+      x__________x
+      |$GREEN ()) () ))$WHITE|
+      |$GREEN($BLUE≈$BROWN|$BLUE≈$GREEN)$BLUE≈$BROWN\$BLUE≈$BROWN|$GREEN)$WHITE|
+      |$GREEN($YELLOW;$BROWN|$YELLOW;;;$BROWN|$YELLOW;$BROWN|$YELLOW;$WHITE|
+      |$YELLOW;;;;;;;;;;$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ()) () ))|
+      |(≈|≈)≈\≈|)|
+      |(;|;;;|;|;|
+      |;;;;;;;;;;|
+      x__________x
+
 # Dungeons
 
 Goro Mounts Mines Dungeon:
@@ -1670,7 +1729,7 @@ Goro Mounts Mines Dungeon:
       x__________x
   dungeon:
     name: "Goro Mounts Mines Dungeon"
-    rooms number: 9
+    rooms number: 10
     reward dialog: Goro Mounts Mines Dungeon Reward
     no escape: false
     rooms:
@@ -1678,7 +1737,7 @@ Goro Mounts Mines Dungeon:
         room type: fight
         room digit: 1
         room fight data:
-          enemy list spawn: generic
+          enemy list spawn: generic difficult
           no run away: false
       Levers Enigma:
         room type: enigma
@@ -1696,14 +1755,14 @@ Goro Mounts Mines Dungeon:
         room type: boss-fight
         room digit: 4
         room fight data:
-          enemy list spawn: generic difficult
+          enemy list spawn: goro mines mid-boss
           no run away: true
-          gold reward: 10
+          gold reward: 25
       Second Guardians Room:
         room type: fight
         room digit: 5
         room fight data:
-          enemy list spawn: generic
+          enemy list spawn: generic difficult
           no run away: false
       Wargs Raid:
         room type: fight
@@ -1722,12 +1781,22 @@ Goro Mounts Mines Dungeon:
         room digit: 8
         room enigma data:
           script name: levers_enigma.py
+      Mineshaft Cemetery:
+        room type: fight
+        room digit: 9
+        room fight data:
+          enemy list spawn: doomed horrors
+          no run away: true
+          gold reward: 5
+          item reward:
+          - Healing Potion
       Boss Room:
         room type: boss-fight
-        room digit: 9
+        room digit: 10
         room fight data:
           enemy list spawn: balrog boss
           no run away: true
+          gold reward: 25
           item reward:
           - Balrog Horn
 
@@ -1753,49 +1822,78 @@ Gerud Ancient Dungeon:
       x__________x
   dungeon:
     name: "Gerud Ancient Dungeon"
-    rooms number: 6
+    rooms number: 10
     reward dialog: Gerud Ancient Dungeon Reward
     no escape: true
     rooms:
-      Entrance Enigma:
+      Entrance Room:
         room type: enigma
         room digit: 1
         room enigma data:
           script name: levers_enigma.py
-      South Pillagers:
+      Cave River Black Orks:
         room type: fight
         room digit: 2
         room fight data:
-          enemy list spawn: south pillagers
-          no run away: false
-      Desert Undeads:
+          enemy list spawn: black
+          no run away: true
+          gold reward: 15
+      Second Cave River:
         room type: fight
         room digit: 3
         room fight data:
-          enemy list spawn: desert undeads
-          gold reward: 5
+          enemy list spawn: generic difficult
           no run away: false
-      Middle Enigma:
-        room type: enigma
+          gold reward: 5
+      Cemeteray Undeads:
+        room type: fight
         room digit: 4
+        room fight data:
+          enemy list spawn: desert undeads
+          no run away: false
+      Crate Room Enigma:
+        room type: enigma
+        room digit: 5
         room enigma data:
           script name: drawing_enigma.py
           arguments:
           - enemy
+          - player
           - preferences
-      Desert Trolls:
-        room type: boss-fight
-        room digit: 5
-        room fight data:
-          enemy list spawn: desert trolls
-          gold reward: 25
-          no run away: true
-      Mumakil Boss:
+      Mid-Boss Fellbeast:
         room type: boss-fight
         room digit: 6
         room fight data:
+          enemy list spawn: fellbeast mid-boss
+          no run away: true
+          gold reward: 30
+      Doomed Horrors:
+        room type: fight
+        room digit: 7
+        room fight data:
+          enemy list spawn: doomed horrors
+          no run away: false
+          gold reward: 5
+      Third Cave River Black Orks:
+        room type: fight
+        room digit: 8
+        room fight data:
+          enemy list spawn: black
+          no run away: true
+          gold reward: 15
+      Fourth Cave River:
+        room type: fight
+        room digit: 9
+        room fight data:
+          enemy list spawn: generic difficult
+          no run away: false
+          gold reward: 5
+      Mumakil Boss:
+        room type: boss-fight
+        room digit: 10
+        room fight data:
           enemy list spawn: mumakil boss
-          gold reward: 35
+          no run away: true
+          gold reward: 45
           item reward:
           - Mumakil Tusk
-          no run away: true

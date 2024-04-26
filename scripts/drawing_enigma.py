@@ -25,12 +25,14 @@ from terminal_handling import cout, cinput
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 
 
-def run(enemy, preferences):
+def run(enemy, player, preferences):
     completed = False
 
-    chosen_enemy = list(enemy)[
-        random.randint(0, len(list(enemy))) - 1
-    ]
+    chosen_enemy = ""
+    while chosen_enemy not in player["enemies list"]:
+        chosen_enemy = list(enemy)[
+            random.randint(0, len(list(enemy))) - 1
+        ]
     chosen_enemy_data = enemy[chosen_enemy]
 
     options = [chosen_enemy]
@@ -58,4 +60,4 @@ def run(enemy, preferences):
 
 
 # Actually run the action, and tells the game which arguments to use
-run(enemy, preferences)
+run(enemy, player, preferences)

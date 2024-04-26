@@ -26,3 +26,14 @@ Enters South Pillager Raid Camp:
     fail mission:
     - Escort Gerud Beer Covet
     player gold: -65
+
+Collect Humanitarian Resources Stopover:
+  repeat: true
+  source:
+    map point:
+    - 6862
+    - 7120
+    has missions active:
+    - Collect Humanitarian Resources
+  actions:
+    run dialog: Collect Humanitarian Resources Stopover

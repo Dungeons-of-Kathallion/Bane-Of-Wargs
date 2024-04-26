@@ -145,3 +145,26 @@ Escort Gerud Beer Covet:
     dialog: Escort Gerud Beer Covet Complete
     payment: 125
     exp addition: 15
+
+Collect Humanitarian Resources:
+  name: "Collect Humanitarian Resources"
+  description:
+    Go to the Los Gerudos Warehouse and Grocery to collect different humanitarian resources, and
+    then go to the Gerud Harbor($destination) to these resources to the Los Gerudos Humanitarian
+    City Department, for a payment of $payment gold.
+  force accept: false
+  invisible: false
+  source: 7767
+  destination: 7767
+  stopovers:
+  - 6862  # Los Gerudos Warehouse
+  - 7120  # Los Gerudos Grocery
+  to offer:
+    known npcs:  # check if the player has completed `Escort Gerud Beer Covet` mission
+    - William June
+    random: .1
+  on offer:
+    dialog: Collect Humanitarian Resources Offer
+  on complete:
+    dialog: Collect Humanitarian Resources Complete
+    payment: 85

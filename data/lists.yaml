@@ -329,3 +329,49 @@ bandit:
       hard: {"min": 1, "max": 1}
     enemies spawns:
       The Dagger: 1
+
+goro mines mid-boss:
+  Mines Troll:
+    name: "You enter what seems to be a dwarf chapel, but a humongous Mines Troll stands in front of you."
+    chance: .7
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 3}
+    enemies spawns:
+      Mines Troll: 1
+      Goblin: 1
+      Ork Archer: 1
+  Dark Marksmen:
+    name: "You enter what seems to be a dwarf chapel, but a group of dark marksmen stands in front of you."
+    chance: .3
+    enemies rate:
+      easy: {"min": 2, "max": 3}
+      normal: {"min": 2, "max": 5}
+      hard: {"min": 3, "max": 7}
+    enemies spawns:
+      Dark Marksman: 1
+      Ork Archer: .4
+
+doomed horrors:
+  Doomed Horrors:
+    name: "As you walk, you see many dead bodies. Suddenly, a group of doomed horrors appear behind you."
+    chance: 1
+    enemies rate:
+      easy: {"min": 1, "max": 3}
+      normal: {"min": 2, "max": 6}
+      hard: {"min": 4, "max": 6}
+    enemies spawns:
+      Doomed Horror: 1
+
+fellbeast mid-boss:
+  Fellbeast:
+    name: "You encounter a Fellbeast on your way!"
+    chance: 1
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 2}
+      hard: {"min": 2, "max": 2}
+    enemies spawns:
+      Fellbeast: 1
+      Dark Marksman: 1

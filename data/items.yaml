@@ -148,6 +148,92 @@ Broadsword (2):
   - Raw Iron
   - Raw Copper
   - Raw Silver
+Chuckle Sword: &chuckle_sword
+  display name: "Chuckle Sword"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 8
+  defend: 6
+  agility: .12
+  gold: 67.23
+  critical hit chance: .4
+  description: "These swords are used by the most advanced knights, and they can cost a fortune to forge."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║            |]\             ║
+    ║            |║|\            ║
+    ║            |║||            ║
+    ║            |║||            ║
+    ║            |║||            ║
+    ║            |║||            ║
+    ║            |║||            ║
+    ║          [--+--]           ║
+    ║             0              ║
+    ║             0              ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║$SILVER            |]\             $WHITE║
+    ║$SILVER            |$GRAY║$SILVER|\            $WHITE║
+    ║$SILVER            |$GRAY║$SILVER||            $WHITE║
+    ║$SILVER            |$GRAY║$SILVER||            $WHITE║
+    ║$SILVER            |$GRAY║$SILVER||            $WHITE║
+    ║$SILVER            |$GRAY║$SILVER||            $WHITE║
+    ║$SILVER            |$GRAY║$SILVER||            $WHITE║
+    ║          $BROWN[$YELLOW--$CYAN+$YELLOW--$BROWN]           $WHITE║
+    ║             $RED0              $WHITE║
+    ║             $RED0              $WHITE║
+    ║                            ║
+    ╚════════════════════════════╝
+Chuckle Sword (1):
+  <<: *chuckle_sword
+  upgrade tier: 1
+  damage: 9
+  defend: 8
+  agility: .11
+  critical hit chance: .55
+  for this upgrade:
+  - Refined Steel
+  - Flexible Steel
+  - Raw Bronze
+Chuckle Sword (2):
+  <<: *chuckle_sword
+  upgrade tier: 2
+  damage: 9.4
+  defend: 8.4
+  agility: .12
+  critical hit chance: .55
+  for this upgrade:
+  - Flexible Steel
+  - Flexible Steel
+  - Raw Lead
+  - Raw Lead
+Chuckle Sword (3):
+  <<: *chuckle_sword
+  upgrade tier: 3
+  damage: 9.4
+  defend: 9
+  agility: .105
+  critical hit chance: .63
+  for this upgrade:
+  - Steel
+  - Raw Aluminum
+  - Raw Aluminum
+Chuckle Sword (4):
+  <<: *chuckle_sword
+  upgrade tier: 3
+  damage: 9.8
+  defend: 9.1
+  agility: .105
+  critical hit chance: .67
+  for this upgrade:
+  - Raw Iron
+  - Raw Copper
+  - Raw Silver
+  - Raw Lead
 Long Sword: &long_sword
   display name: "Long Sword"
   upgrade tier: 0
