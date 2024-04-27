@@ -109,9 +109,9 @@ def print_zone_news(zone, map_zone, player):
     ):
         cout(COLOR_RED + COLOR_STYLE_BRIGHT + "!!!SALES DISCOUNT!!!" + COLOR_RESET_ALL)
         text = (
-            f"A @{COLOR_GREEN}@-{int(player["discounts"][map_zone]["dropoff"] * 100)}%@{COLOR_RESET_ALL}@ " +
-            f"dropoff on every item's happening at @\033[38;2;255;128;0m@{zone[map_zone]["name"]}@{COLOR_RESET_ALL}@" +
-            f"! Only @{COLOR_BACK_BLUE}@{round(player["discounts"][map_zone]["remaining time"] * 24)} " +
+            f"A @{COLOR_GREEN}@-{int(player['discounts'][map_zone]['dropoff'] * 100)}%@{COLOR_RESET_ALL}@ " +
+            f"dropoff on every item's happening at @\033[38;2;255;128;0m@{zone[map_zone]['name']}@{COLOR_RESET_ALL}@" +
+            f"! Only @{COLOR_BACK_BLUE}@{round(player['discounts'][map_zone]['remaining time'] * 24)} " +
             f"hours@{COLOR_RESET_ALL}@ remain!"
         )
         text_handling.print_long_string(text)
@@ -401,7 +401,7 @@ def print_grocery_information(map_zone, zone, item, player):
     sold_items = []
     for i in sold_items_list:
         sold_items += [
-            f" -{i} {COLOR_YELLOW}{get_cost(round(zone[map_zone]["cost value"] * item[i]["gold"], 2), dropoff)}" +
+            f" -{i} {COLOR_YELLOW}{get_cost(round(zone[map_zone]['cost value'] * item[i]['gold'], 2), dropoff)}" +
             COLOR_RESET_ALL
         ]
     for i in sold_items:
@@ -428,11 +428,11 @@ def print_harbor_information(map_zone, zone, map, player):
     travels = []
     count = 0
     for travel in current_harbor["travels"]:
-        destination = map[f"point{current_harbor["travels"][travel]["destination"]}"]
-        destination = f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL},{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
+        destination = map[f"point{current_harbor['travels'][travel]['destination']}"]
+        destination = f"({COLOR_GREEN}{destination['x']} {COLOR_RESET_ALL},{COLOR_GREEN}{destination['y']}{COLOR_RESET_ALL})"
         travels += [
-            f" -{list(current_harbor["travels"])[count]} {destination}" +
-            f" {COLOR_YELLOW}{get_cost(round(current_harbor["travels"][travel]["cost"], 2), dropoff)}{COLOR_RESET_ALL}"
+            f" -{list(current_harbor['travels'])[count]} {destination}" +
+            f" {COLOR_YELLOW}{get_cost(round(current_harbor['travels'][travel]['cost'], 2), dropoff)}{COLOR_RESET_ALL}"
         ]
         count += 1
     for travel in travels:
@@ -1482,7 +1482,7 @@ def interaction_harbor(map_zone, zone, map, player):
                 if player["gold"] >= gold:
                     player["gold"] -= gold
                     logger_sys.log_message(f"INFO: Removing from player {gold} gold")
-                    destination = map[f"point{current_harbor["travels"][which_ticket]["destination"]}"]
+                    destination = map[f"point{current_harbor['travels'][which_ticket]['destination']}"]
                     player["x"], player["y"] = destination["x"], destination["y"]
                     travel_time = current_harbor["travels"][which_ticket]["travel time"]
                     logger_sys.log_message("INFO: Starting player traveling process")

@@ -30,7 +30,7 @@ def dungeon_loop(
     player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file,
     map, map_zone
 ):
-    logger_sys.log_message(f"INFO: Starting dungeon loop of dungeon '{current_dungeon["dungeon"]["name"]}'")
+    logger_sys.log_message(f"INFO: Starting dungeon loop of dungeon '{current_dungeon['dungeon']['name']}'")
     still_in_dungeon = True
     current_room = 1
     # Get some dungeon rooms stats
@@ -198,7 +198,7 @@ def dungeon_loop(
 
         text_handling.clear_prompt()
         text_handling.print_separator('=')
-        cout(f"Defy the dungeon '{current_dungeon["dungeon"]["name"]}'!")
+        cout(f"Defy the dungeon '{current_dungeon['dungeon']['name']}'!")
         text_handling.print_separator('=')
         cout(
             f"PROGRESS: {progression}% |{COLOR_CYAN}{COLOR_STYLE_BRIGHT}{remaining_bars * remaining_symbol}" +
@@ -211,7 +211,7 @@ def dungeon_loop(
             color_room = COLOR_GREEN
         cout(
             f"CURRENT ROOM: {color_room}{current_room}{COLOR_RESET_ALL}/" +
-            f"{COLOR_GREEN}{current_dungeon["dungeon"]["rooms number"]}{COLOR_RESET_ALL}"
+            f"{COLOR_GREEN}{current_dungeon['dungeon']['rooms number']}{COLOR_RESET_ALL}"
         )
 
         # Check if the player has completed the dungeon
@@ -245,7 +245,7 @@ def dungeon_loop(
         logger_sys.log_message(f"Player has chosen action '{action}'")
         if action.startswith('s'):
             logger_sys.log_message(
-                f"Loading dungeon '{current_dungeon["dungeon"]["name"]}' room {current_room}" +
+                f"Loading dungeon '{current_dungeon['dungeon']['name']}' room {current_room}" +
                 f" --> is a '{type_room}{COLOR_RESET_ALL}' room type"
             )
             if type_room == COLOR_ORANGE_5 + "Boss Fight" or type_room == COLOR_YELLOW + "Fight":
@@ -260,7 +260,7 @@ def dungeon_loop(
                 if "item reward" in current_room_data["room fight data"]:
                     logger_sys.log_message(
                         "INFO: Adding to player inventory items " +
-                        f"'{current_room_data["room fight data"]["item reward"]}'"
+                        f"'{current_room_data['room fight data']['item reward']}'"
                     )
                     for i in current_room_data["room fight data"]["item reward"]:
                         player["inventory"] += [i]
@@ -300,7 +300,7 @@ def dungeon_loop(
             for i in player["inventory"]:
                 zeroes = len(str(len(player["inventory"])))
                 removed = len(str(count))
-                player_inventory_displayed += [f"{"0" * (zeroes - removed)}{count}> {i}"]
+                player_inventory_displayed += [f"{'0' * (zeroes - removed)}{count}> {i}"]
                 count += 1
             cout("INVENTORY:")
             for line in player_inventory_displayed:

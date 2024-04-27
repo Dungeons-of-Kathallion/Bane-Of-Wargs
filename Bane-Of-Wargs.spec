@@ -1,13 +1,15 @@
 # -*- mode: python ; coding: utf-8 -*-
 from PyInstaller.utils.hooks import collect_submodules
 
-hiddenimports = ['appdirs', 'fsspec']
+hiddenimports = ['appdirs', 'fsspec', 'git', 'gitpython']
 hiddenimports += collect_submodules('fsspec')
 hiddenimports += collect_submodules('appdirs')
+hiddenimports += collect_submodules('git')
+hiddenimports += collect_submodules('gitpython')
 
 
 a = Analysis(
-    ['source/main.py', 'source/battle.py', 'source/check_yaml.py', 'source/colors.py', 'source/train.py', 'source/logger_sys.py', 'source/terminal_handling.py', 'source/mission_handling.py', 'source/dialog_handling.py', 'source/enemy_handling.py', 'source/data_handling.py', 'source/npc_handling.py', 'source/text_handling.py', 'source/zone_handling.py', 'source/uuid_handling.py', 'source/weapon_upgrade_handling.py', 'source/script_handling.py', 'source/consumable_handling.py', 'source/item_handling.py', 'source/dungeon.py', 'source/yaml_handling.py', 'source/player_handling.py', 'source/event_handling.py'],
+    ['source/main.py', 'source/battle.py', 'source/check_yaml.py', 'source/colors.py', 'source/train.py', 'source/logger_sys.py', 'source/terminal_handling.py', 'source/mission_handling.py', 'source/dialog_handling.py', 'source/enemy_handling.py', 'source/data_handling.py', 'source/npc_handling.py', 'source/text_handling.py', 'source/zone_handling.py', 'source/uuid_handling.py', 'source/weapon_upgrade_handling.py', 'source/script_handling.py', 'source/consumable_handling.py', 'source/item_handling.py', 'source/dungeon.py', 'source/yaml_handling.py', 'source/player_handling.py', 'source/event_handling.py', 'source/time_handling.py'],
     pathex=[],
     binaries=[],
     datas=[('yamale/VERSION', 'yamale')],

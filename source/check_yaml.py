@@ -99,7 +99,7 @@ def check_yaml(file_path):
             elif current_object_data["type"].startswith('Armor Piece: Shield'):
                 file_schema = str(f'{program_dir}/game/schemas/{file_type}_Armor Piece Shield.yaml')
             else:
-                file_schema = str(f'{program_dir}/game/schemas/{file_type}_{current_object_data["type"]}.yaml')
+                file_schema = str(f"{program_dir}/game/schemas/{file_type}_{current_object_data['type']}.yaml")
 
             schema = yamale.make_schema(str(file_schema))
             data = yamale.make_data(content=str(current_object_data))
@@ -640,7 +640,7 @@ def verify_data(
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"Map point id '{map_point_id}' isn't valid --> "
-                f"map zone '{map_point["map zone"]}' doesn't exist" +
+                f"map zone '{map_point['map zone']}' doesn't exist" +
                 COLOR_RESET_ALL
             )
             text_handling.exit_game()
@@ -787,7 +787,7 @@ def verify_data(
                 print(
                     COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                     f"Map point id '{map_point_id}' isn't valid --> "
-                    f"enemy list `{map_point["enemy type"]}` doesn't exist" +
+                    f"enemy list `{map_point['enemy type']}` doesn't exist" +
                     COLOR_RESET_ALL
                 )
                 text_handling.exit_game()
@@ -804,7 +804,7 @@ def verify_data(
                 print(
                     COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                     f"Map point id '{map_point_id}' isn't valid --> "
-                    f"dialog `{map_point["dialog"]}` doesn't exist" +
+                    f"dialog `{map_point['dialog']}` doesn't exist" +
                     COLOR_RESET_ALL
                 )
                 text_handling.exit_game()
@@ -1339,7 +1339,7 @@ def verify_data(
                 print(
                     COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                     f"item id '{current}' isn't valid --> "
-                    f"item type `{item_data["type"]}` doesn't exist" +
+                    f"item type `{item_data['type']}` doesn't exist" +
                     COLOR_RESET_ALL
                 )
                 text_handling.exit_game()
@@ -1569,7 +1569,7 @@ def verify_data(
                 print(
                     COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                     f"pool '{current2}' in list id '{current}' isn't valid --> " +
-                    f"spawning chance {pool_data["chance"]} must be over 0 and under 1" +
+                    f"spawning chance {pool_data['chance']} must be over 0 and under 1" +
                     COLOR_RESET_ALL
                 )
                 text_handling.exit_game()
@@ -1686,7 +1686,7 @@ def verify_data(
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"map zone id '{current}' isn't valid --> "
-                f"zone type `{current_zone["type"]}` doesn't exist" +
+                f"zone type `{current_zone['type']}` doesn't exist" +
                 COLOR_RESET_ALL
             )
             text_handling.exit_game()
@@ -1697,7 +1697,7 @@ def verify_data(
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"map zone id '{current}' isn't valid --> "
-                f"enemy list `{current_zone["enemy spawning"]}` doesn't exist" +
+                f"enemy list `{current_zone['enemy spawning']}` doesn't exist" +
                 COLOR_RESET_ALL
             )
             text_handling.exit_game()
@@ -2268,7 +2268,7 @@ def verify_data(
                     )
                     text_handling.exit_game()
 
-                if f"point{travel["destination"]}" not in list(map):
+                if f"point{travel['destination']}" not in list(map):
                     print(
                         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                         f"travel id '{travel_id}' in map zone id '{current}' isn't valid --> " +
@@ -2334,7 +2334,7 @@ def verify_data(
                 print(
                     COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                     f"map zone id '{current}' isn't valid --> " +
-                    f"dialog `{dungeon["reward dialog"]}` in reward " +
+                    f"dialog `{dungeon['reward dialog']}` in reward " +
                     "dialog doesn't exist" +
                     COLOR_RESET_ALL
                 )
@@ -3011,20 +3011,20 @@ def verify_data(
     for current_id in list(mission):
         current = mission[current_id]
 
-        if f"point{current["source"]}" not in list(map):
+        if f"point{current['source']}" not in list(map):
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"mission id '{current_id}' isn't valid --> " +
-                f"map point 'point{current["source"]}' in `source`" +
+                f"map point 'point{current['source']}' in `source`" +
                 " key doesn't exist" +
                 COLOR_RESET_ALL
             )
             text_handling.exit_game()
-        if f"point{current["destination"]}" not in list(map):
+        if f"point{current['destination']}" not in list(map):
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"mission id '{current_id}' isn't valid --> " +
-                f"map point 'point{current["destination"]}' in `destination`" +
+                f"map point 'point{current['destination']}' in `destination`" +
                 " key doesn't exist" +
                 COLOR_RESET_ALL
             )
@@ -3224,7 +3224,7 @@ def verify_data(
                         print(
                             COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                             f"mission id '{current_id}' isn't valid --> " +
-                            f"dialog '{current[trigger]["dialog"]}' in `dialog` " +
+                            f"dialog '{current[trigger]['dialog']}' in `dialog` " +
                             f"in `{trigger}` doesn't exist" +
                             COLOR_RESET_ALL
                         )
@@ -3337,16 +3337,16 @@ def verify_data(
                     print(
                         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                         f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
-                        f"enemy pool list '{current_enemy["enemy category"]}' in key `enemy category`" +
+                        f"enemy pool list '{current_enemy['enemy category']}' in key `enemy category`" +
                         "doesn't exist" +
                         COLOR_RESET_ALL
                     )
                     text_handling.exit_game()
-                if f"point{current_enemy["location"]}" not in list(map):
+                if f"point{current_enemy['location']}" not in list(map):
                     print(
                         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                         f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
-                        f"map point 'point{current_enemy["location"]}' in key `location`" +
+                        f"map point 'point{current_enemy['location']}' in key `location`" +
                         "doesn't exist" +
                         COLOR_RESET_ALL
                     )
@@ -3355,7 +3355,7 @@ def verify_data(
                     print(
                         COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                         f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
-                        f"dialog '{current_enemy["dialog"]}' in key `dialog`" +
+                        f"dialog '{current_enemy['dialog']}' in key `dialog`" +
                         "doesn't exist" +
                         COLOR_RESET_ALL
                     )
@@ -3647,7 +3647,7 @@ def verify_data(
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"event id '{event_id}' isn't valid --> " +
-                f"date '{current["source"]["date"]}' in `date` in `source`" +
+                f"date '{current['source']['date']}' in `date` in `source`" +
                 " does not use the required format: <month>-<day>-<year>" +
                 COLOR_RESET_ALL
             )
@@ -3716,7 +3716,7 @@ def verify_data(
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"event id '{event_id}' isn't valid --> " +
-                f"dialog '{current["actions"]["run dialog"]}' in `run dialog` in `actions` doesn't exist" +
+                f"dialog '{current['actions']['run dialog']}' in `run dialog` in `actions` doesn't exist" +
                 COLOR_RESET_ALL
             )
             exit_game()
@@ -3740,7 +3740,7 @@ def verify_data(
             print(
                 COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
                 f"event id '{event_id}' isn't valid --> " +
-                f"enemy '{current["actions"]["enemy spawn"]}' in `enemy spawn` " +
+                f"enemy '{current['actions']['enemy spawn']}' in `enemy spawn` " +
                 "in `actions` doesn't exist" +
                 COLOR_RESET_ALL
             )

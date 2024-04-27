@@ -108,9 +108,8 @@ def get_day_time(game_days):
 
 def return_game_day_from_seconds(seconds, time_elapsing_coefficient):
     logger_sys.log_message(
-        f"INFO: Calculating in-game days from seconds '{seconds}', with coefficient '{
-            time_elapsing_coefficient * COEFFICIENT
-        }'"
+        f"INFO: Calculating in-game days from seconds '{seconds}'" +
+        f", with coefficient '{time_elapsing_coefficient * COEFFICIENT}'"
     )
     game_days = seconds * COEFFICIENT * time_elapsing_coefficient  # 12 minutes irl = one whole game day (1=720*x)
 

@@ -70,8 +70,8 @@ def training_loop(mount_uuid, player, item, mounts, stable, time_elapsing_coeffi
         lost_bars = bars - remaining_bars
 
         cout(
-            f"LEVEL of {mount_name}: {round(player["mounts"][mount_uuid]["level"], 1)}" +
-            f"/{current_mount_data["levels"]["max level"]}"
+            f"LEVEL of {mount_name}: {round(player['mounts'][mount_uuid]['level'], 1)}" +
+            f"/{current_mount_data['levels']['max level']}"
         )
         cout(
                 f"|{COLOR_GREEN}{COLOR_STYLE_BRIGHT}{remaining_bars * remaining_symbol}" +

@@ -10,6 +10,12 @@ wget-log
 .vscode/**
 build
 build/**
+repo
+repo/**
+build-dir
+build-dir/**
+.flatpak-builder
+.flatpak-builder/**
 dist
 dist/**
 yamale

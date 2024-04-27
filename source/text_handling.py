@@ -328,7 +328,7 @@ def print_map_art(item_data):
     # Then, each lines of the file one by one and
     # prettify them, to after print the final result
     # to the player's UI
-    path = f"{program_dir}/temp/imgs/{item_data["map"]}.txt"
+    path = f"{program_dir}/temp/imgs/{item_data['map']}.txt"
     with open(path, 'r') as f:
         art = f.readlines()
 

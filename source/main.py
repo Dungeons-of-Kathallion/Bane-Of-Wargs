@@ -51,7 +51,6 @@ from rich.markdown import Markdown
 from rich.table import Table
 
 
-logger_sys.log_message(f"INFO: PROGRAM RUN START")
 text_handling.clear_prompt()
 
 # defines console for the rich module
@@ -98,6 +97,7 @@ if not os.path.exists(program_dir):
     default_config_data = yaml_handling.dump(default_config_data)
     with open(program_dir + '/preferences.yaml', 'w') as f:
         f.write(default_config_data)
+    logger_sys.log_message(f"INFO: PROGRAM RUN START")
     logger_sys.log_message(f"INFO: Created player preferences at '{program_dir}/preferences.yaml'")
     # Create the plugins, saves, game data folder in the config file
     logger_sys.log_message(f"INFO: Creating directory '{program_dir}/plugins'")
@@ -120,7 +120,6 @@ if not os.path.exists(program_dir):
 logger_sys.log_message("INFO: Loading user preferences")
 with open(program_dir + '/preferences.yaml', 'r') as f:
     preferences = yaml_handling.safe_load(f)
-    check_yaml.examine(program_dir + '/preferences.yaml')
 
 # Compare the latest source code version with
 # the current code version
@@ -184,6 +183,9 @@ else:
 
     if preferences["auto update"] or first_start:
         data_handling.update_game_data(preferences, latest_game_data_version)
+
+    # we exmine it after the update, or errors happen because of required files to there yet
+    check_yaml.examine(program_dir + '/preferences.yaml')
 
     # Compare the latest game data version with
     # the current game data version
@@ -509,7 +511,7 @@ while menu:
                     cout(COLOR_YELLOW + "Could not create backup!" + COLOR_RESET_ALL)
                     logger_sys.log_message(
                         "WARNING: Could not create a backup of save " +
-                        f"'{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                        program_dir + "/saves/save_" + open_save + ".yaml"
                     )
                     logger_sys.log_message(
                         "DEBUG: This could happen because there're more than 120 backups " +
@@ -518,7 +520,7 @@ while menu:
                     time.sleep(1.5)
             else:
                 logger_sys.log_message(
-                    f"INFO: Searching for backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                    f"INFO: Searching for backups of save '{program_dir}/saves/save_{open_save}.yaml'"
                 )
                 finished = False
                 backups = []
@@ -528,14 +530,14 @@ while menu:
                         backups += [current_backup]
                 if backups == []:
                     logger_sys.log_message(
-                        f"INFO: Found no backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                        f"INFO: Found no backups of save '{program_dir}/saves/save_{open_save}.yaml'"
                     )
                     cout(COLOR_YELLOW + "Could not find any backup of this save file" + COLOR_RESET_ALL)
                     time.sleep(1.5)
                     finished = True
                 else:
                     logger_sys.log_message(
-                        f"INFO: Found backups of save '{program_dir + "/saves/save_" + open_save + ".yaml"}'" +
+                        f"INFO: Found backups of save '{program_dir}/saves/save_{open_save}.yaml'" +
                         f": {backups}"
                     )
                 if not finished:
@@ -552,7 +554,7 @@ while menu:
                         f.write(yaml_handling.dump(data))
                     logger_sys.log_message(
                         f"INFO: Loaded backup '{selected_backup}' data to save file '" +
-                        f"{program_dir + "/saves/save_" + open_save + ".yaml"}'"
+                        f"{program_dir}/saves/save_{open_save}.yaml'"
                     )
         else:
             text = "Please select a save to delete."
@@ -1960,7 +1962,7 @@ def run(play):
             current_mission_data = mission[str(player["active missions"][count])]
             if current_mission_data["destination"] == map_location:
                 logger_sys.log_message(
-                    f"INFO: Running mission completing checks for mission '{str(player["active missions"][count])}'"
+                    f"INFO: Running mission completing checks for mission '{str(player['active missions'][count])}'"
                 )
                 mission_handling.mission_completing_checks(
                     str(player["active missions"][count]), mission, player, dialog, preferences,
@@ -1985,7 +1987,7 @@ def run(play):
                 fail = mission_handling.mission_checks(current_mission_data, player, 'to fail')
                 if fail:
                     logger_sys.log_message(
-                        f"INFO: Executing failing triggers of mission '{str(player["active missions"][count])}'"
+                        f"INFO: Executing failing triggers of mission '{str(player['active missions'][count])}'"
                     )
                     mission_handling.execute_triggers(
                         current_mission_data, player, 'on fail', dialog, preferences,
@@ -2596,7 +2598,7 @@ def run(play):
                         sold_items = []
                         for i in sold_items_list:
                             sold_items += [
-                                f" -{i} {COLOR_YELLOW}{round(zone[which_zone]["cost value"] * item[i]["gold"], 2)}" +
+                                f" -{i} {COLOR_YELLOW}{round(zone[which_zone]['cost value'] * item[i]['gold'], 2)}" +
                                 f"{COLOR_RESET_ALL}"
                             ]
                         cout("SOLD ITEMS:")
@@ -2617,14 +2619,14 @@ def run(play):
                         travels = []
                         count = 0
                         for travel in current_harbor["travels"]:
-                            destination = map[f"point{current_harbor["travels"][travel]["destination"]}"]
+                            destination = map[f"point{current_harbor['travels'][travel]['destination']}"]
                             destination = (
-                                f"({COLOR_GREEN}{destination["x"]} {COLOR_RESET_ALL}," +
-                                f"{COLOR_GREEN}{destination["y"]}{COLOR_RESET_ALL})"
+                                f"({COLOR_GREEN}{destination['x']} {COLOR_RESET_ALL}," +
+                                f"{COLOR_GREEN}{destination['y']}{COLOR_RESET_ALL})"
                             )
                             travels += [
-                                f" -{list(current_harbor["travels"])[count]} {destination}" +
-                                f" {COLOR_YELLOW}{round(current_harbor["travels"][travel]["cost"], 2)}{COLOR_RESET_ALL}"
+                                f" -{list(current_harbor['travels'])[count]} {destination}" +
+                                f" {COLOR_YELLOW}{round(current_harbor['travels'][travel]['cost'], 2)}{COLOR_RESET_ALL}"
                             ]
                             count += 1
                         for travel in travels:
@@ -2973,7 +2975,7 @@ def run(play):
             for i in player["inventory"]:
                 zeros = len(str(len(player["inventory"])))
                 removed = len(str(count))
-                player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+                player_inventory_displayed += [f"{'0' * (zeros - removed)}{count}> {i}"]
                 count += 1
             text = '='
             text_handling.print_separator(text)

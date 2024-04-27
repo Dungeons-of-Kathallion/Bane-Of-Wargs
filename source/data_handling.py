@@ -23,7 +23,6 @@ from terminal_handling import cout
 # external imports
 import appdirs
 import os
-import git
 import tempfile
 import time
 import fsspec
@@ -468,7 +467,11 @@ def temporary_git_file_download(selected_file, url):
     try:
         temporary_dir = tempfile.mkdtemp()
         logger_sys.log_message(f"INFO: Creating temporary directory at '{temporary_dir}'")
-        git.Repo.clone_from(url, temporary_dir, depth=1)
+
+        download_org = url.split('github.com/', 1)[1].split('/', 1)[0]
+        download_repo = url.split('github.com/', 1)[1].split('/', 1)[1].replace('.git', '')
+        fs = fsspec.filesystem("github", org=download_org, repo=download_repo)
+        fs.get(fs.ls(github_file), temporary_dir)
 
         with open(temporary_dir + '/' + selected_file, 'r') as f:
             file_text_data = f.read()

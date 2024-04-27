@@ -344,7 +344,7 @@ def encounter_text_show(
         for i in player["inventory"]:
             zeros = len(str(len(player["inventory"])))
             removed = len(str(count))
-            player_inventory_displayed += [f"{"0" * (zeros - removed)}{count}> {i}"]
+            player_inventory_displayed += [f"{'0' * (zeros - removed)}{count}> {i}"]
             count += 1
         cout("INVENTORY:")
         for line in player_inventory_displayed:
@@ -724,7 +724,7 @@ def fight(
                     for i in player["inventory"]:
                         zeroes = len(str(len(player["inventory"])))
                         removed = len(str(count))
-                        player_inventory_displayed += [f"{"0" * (zeroes - removed)}{count}> {i}"]
+                        player_inventory_displayed += [f"{'0' * (zeroes - removed)}{count}> {i}"]
                         count += 1
                     cout("INVENTORY:")
                     for line in player_inventory_displayed:

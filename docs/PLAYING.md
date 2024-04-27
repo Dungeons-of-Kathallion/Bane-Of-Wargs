@@ -191,9 +191,9 @@ All of these modules/libraries are contained in the [requirements.txt](https://g
 * **[PyYaml](https://pypi.org/project/PyYAML/)** // the module that makes using yaml files as a data base for the game possible.
 * **[yamale](https://pypi.org/project/yamale/)** // the module that makes the verification and debug by the game of every opened yaml files by the program possible.
 * **[fsspec](https://filesystem-spec.readthedocs.io/en/latest/index.html)** // the module that makes downloading game data from the github repository and moving them to the game data folder possible.
-* **[appdirs](https://pypi.org/project/appdirs/)** // the module that make cross-platform game config and data storing in users directories possible
+* **[appdirs](https://pypi.org/project/appdirs/)** // the module that makes cross-platform game config and data storing in users directories possible
 * **[requests](https://pypi.org/project/requests/)** // the module that makes downloading game data from the github repository and moving them to the game data folder possible.
-* **[rich](https://pypi.org/project/rich/)** // the module that make displaying markdown files in terminal possible
+* **[rich](https://pypi.org/project/rich/)** // the module that makes displaying markdown files in terminal possible
 
 #### Installing
 
