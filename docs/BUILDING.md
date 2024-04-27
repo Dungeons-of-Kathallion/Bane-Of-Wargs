@@ -1,5 +1,7 @@
 # Build instructions
 
+## Generic Build
+
 First you need to get the source code of the game (here use your fork's url if you want to compile your fork).
 
 ```powershell
@@ -10,7 +12,7 @@ The game root directory, the folder that has been created after cloning the repo
 
 Next, you'll have to install a few dependencies in order to be able to make the whole compiling process.
 
-## Installing Build Dependencies
+### Installing Build Dependencies
 
 Well of course first, you'll need to have the Python interpreter installed as well as a python package manager PIP. You can check the [`docs/PLAYING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md#get-python-installed-windows-linux-macos) document if you need help installing the Python interpreter.
 
@@ -32,6 +34,24 @@ You can also find them in the `requirements.txt` file, located in the root direc
 And finally, you'll need to install the python package [`PyInstaller`](https://pyinstaller.org/en/stable/), which is used to compile the source code of the game. Install this package the same way you did for the last ones.
 
 *Note: there is no specific version required for these packages but make sure it's the latest version just in case.*
+
+## Flatpak Build
+
+Alternatively, you can build the game engine as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), even if for now the program isn't published in any public repository, but it shouldn't last long until it does. Note that if you build t as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), the game directory won't any longer be in your user config folder, but in the flatpak program config folder, usually at `.var/app/com.Cromha.BaneOfWargs/config`. Lucky for you, the Bane Of Wargs github repository has everyting you need to build the app in a few commands:
+
+* first, you want to install the required runtime (_valid versions: '5.15-23.08'_):
+```bash
+flatpak install org.kde.Platform
+```
+* then, you want to install the tool used for building flatpak apps: [flatpak-builder](https://github.com/flatpak/flatpak-builder), that you can install from dnf, apt or flatpak:
+```bash
+dnf install flatpak-builder
+flatpak install flatpak install flathub org.flatpak.Builder
+```
+* you can then compile the program using [flatpak-builder](https://github.com/flatpak/flatpak-builder):
+```bash
+flatpak-builder --user --install --force-clean build-dir com.Cromha.BaneOfWargs.yaml
+```
 
 ## Building The Game
 
