@@ -1,7 +1,5 @@
 # Build instructions
 
-## Generic Build
-
 First you need to get the source code of the game (here use your fork's url if you want to compile your fork).
 
 ```powershell
@@ -35,27 +33,9 @@ And finally, you'll need to install the python package [`PyInstaller`](https://p
 
 *Note: there is no specific version required for these packages but make sure it's the latest version just in case.*
 
-## Flatpak Build
-
-Alternatively, you can build the game engine as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), even if for now the program isn't published in any public repository, but it shouldn't last long until it does. Note that if you build t as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), the game directory won't any longer be in your user config folder, but in the flatpak program config folder, usually at `.var/app/com.Cromha.BaneOfWargs/config`. Lucky for you, the Bane Of Wargs github repository has everyting you need to build the app in a few commands:
-
-* first, you want to install the required runtime (_valid versions: '5.15-23.08'_):
-```bash
-flatpak install org.kde.Platform
-```
-* then, you want to install the tool used for building flatpak apps: [flatpak-builder](https://github.com/flatpak/flatpak-builder), that you can install from dnf, apt or flatpak:
-```bash
-dnf install flatpak-builder
-flatpak install flatpak install flathub org.flatpak.Builder
-```
-* you can then compile the program using [flatpak-builder](https://github.com/flatpak/flatpak-builder):
-```bash
-flatpak-builder --user --install --force-clean build-dir com.Cromha.BaneOfWargs.yaml
-```
-
 ## Building The Game
 
-#### Building From The Command Line
+#### Generic Build
 
 Here's a summary of each command case per case that you'll need to run to compile the program.
 
@@ -71,7 +51,27 @@ Alternatively, you can run the bash script `compile.sh` in the root directory **
 
 The compiled executable file will be found in the `dist/` directory, which is located in the root directory.
 
-## Additional: Making A Desktop Shortcut (Linux)
+---
+
+#### Flatpak Build
+
+Alternatively, you can build the game engine as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), even if for now the program isn't published in any public repository, but it shouldn't last long until it does. Note that if you build t as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), the game directory won't any longer be in your user config folder, but in the flatpak program config folder, usually at `~/.var/app/com.Cromha.BaneOfWargs/config`. Lucky for you, the Bane Of Wargs github repository has everyting you need to build the app in a few commands:
+
+* first, you want to install the required runtime (_valid versions: '5.15-23.08'_):
+```bash
+flatpak install org.kde.Platform
+```
+* then, you want to install the tool used for building flatpak apps: [flatpak-builder](https://github.com/flatpak/flatpak-builder), that you can install from dnf, apt or flatpak:
+```bash
+dnf install flatpak-builder
+flatpak install flatpak install flathub org.flatpak.Builder
+```
+* you can then compile the program using [flatpak-builder](https://github.com/flatpak/flatpak-builder):
+```bash
+flatpak-builder --user --install --force-clean build-dir com.Cromha.BaneOfWargs.yaml
+```
+
+## Additional: Making A Desktop Shortcut (GNU/Linux)
 
 The next step to make the game a real app is to create a desktop shortcut for it. Here I will only cover doing this on linux desktops simply because that's my desktop.
 
