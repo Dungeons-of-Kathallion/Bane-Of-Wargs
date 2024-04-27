@@ -55,7 +55,7 @@ The compiled executable file will be found in the `dist/` directory, which is lo
 
 #### Flatpak Build
 
-Alternatively, you can build the game engine as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), even if for now the program isn't published in any public repository, but it shouldn't last long until it does. Note that if you build t as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), the game directory won't any longer be in your user config folder, but in the flatpak program config folder, usually at `~/.var/app/com.Cromha.BaneOfWargs/config`. Lucky for you, the Bane Of Wargs github repository has everyting you need to build the app in a few commands:
+Alternatively, you can build the game engine as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), even if for now the program isn't published in any public repository, but it shouldn't last long until it does. Note that if you build t as a [flatpak package](https://docs.flatpak.org/en/latest/introduction.html), the game directory won't any longer be in your user config folder, but in the flatpak program config folder, usually at `~/.var/app/com.Cromha.BaneOfWargs/config`. Lucky for you, the Bane Of Wargs github repository has everything you need to build the app in a few commands:
 
 * first, you want to install the required runtime (_valid versions: '5.15-23.08'_):
 ```bash
