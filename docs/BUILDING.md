@@ -70,6 +70,10 @@ flatpak install flatpak install flathub org.flatpak.Builder
 ```bash
 flatpak-builder --user --install --force-clean build-dir com.Cromha.BaneOfWargs.yaml
 ```
+* and it's done! you can run the game using:
+```bash
+flatpak run com.Cromha.BaneOfWargs
+```
 
 ## Additional: Making A Desktop Shortcut (GNU/Linux)
 
