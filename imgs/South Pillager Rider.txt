@@ -1,0 +1,17 @@
+$ORANGE     ~~~~$SILVER:
+$ORANGE   ~~~~$SILVER.:::.
+$ORANGE ~~$SILVER   | _ _ |
+$SILVER      |  |  |
+$SILVER      |_____|
+$SILVER   -$YELLOW+$SILVER-__) (__-$YELLOW+$SILVER-
+$SILVER  {             }
+$SILVER:. |   .:      |
+$BROWN| :...: |  $DARK_BROWN|\$BROWNxxxx$DARK_BROWN/|
+$BROWN|       |  $DARK_BROWN/   $BROWNxx$DARK_BROWN  \
+$BROWN|       | $DARK_BROWN/   $ORANGE*$DARK_BROWN)    )
+$BROWN|       |$DARK_BROWN/          \
+$BROWN:       :$DARK_BROWN            \
+$BROWN \_____/$DARK_BROWN     \___     \
+$DARK_BROWN               / \  )  )
+$DARK_BROWN               \  \___/
+$DARK_BROWN                )$WHITE

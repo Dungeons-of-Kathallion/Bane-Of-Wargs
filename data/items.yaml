@@ -2661,6 +2661,25 @@ Wet Tree Log:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Horse Saddle:
+  type: "Misc"
+  gold: 18
+  description: "A generic horse saddle, used by mainly by men."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 Wolf Skin:
   type: "Misc"
   gold: 4.32

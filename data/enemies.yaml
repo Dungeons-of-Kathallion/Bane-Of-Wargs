@@ -373,6 +373,33 @@ South Pillager:
   description: >
     South Pillagers, who're also known as 'South Men' are cowards, and dangerous enemies, that you'll eventually encounter if you
     travel in the Gerud Desert or in the Badlands of the Stall Island.
+South Pillager Rider:
+  plural: "South Pillager Riders"
+  damage:
+    min damage: 3
+    max damage: 7
+    critical chance: .4
+  health:
+    min spawning health: 16
+    max spawning health: 24
+    max health level: 24
+  agility: .65
+  inventory:
+  - Horse Saddle
+  - Sword
+  - Bow
+  - Spear
+  - Shield
+  - Stretched Bag
+  - Healing Potion
+  - Long Sword
+  - Beef
+  - Porkchop
+  - Strength Potion
+  - Knight Boots
+  - Gerud Desert Map
+  description: >
+    These South Pillagers ride tall horses, making them even more dangerous: they are fast and powerful enemies, in addition of a decent health.
 The Dagger:
   plural: "The Dagger"
   damage:
