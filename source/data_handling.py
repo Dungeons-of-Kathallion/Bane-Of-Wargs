@@ -471,9 +471,11 @@ def temporary_git_file_download(selected_file, url):
         download_org = url.split('github.com/', 1)[1].split('/', 1)[0]
         download_repo = url.split('github.com/', 1)[1].split('/', 1)[1].replace('.git', '')
         fs = fsspec.filesystem("github", org=download_org, repo=download_repo)
-        fs.get(fs.ls(github_file), temporary_dir)
+        fs.get(fs.ls(selected_file), temporary_dir)
 
-        with open(temporary_dir + '/' + selected_file, 'r') as f:
+        with open(
+            temporary_dir + '/' + os.path.basename(os.path.normpath(selected_file)), 'r'
+        ) as f:
             file_text_data = f.read()
     except Exception as error:
         cout(
