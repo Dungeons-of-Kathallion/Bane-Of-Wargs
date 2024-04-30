@@ -15,6 +15,11 @@
 * [script_handling.py](#script_handlingpy)
 * [terminal_handling.py](#terminal_handlingpy)
 * [text_handling.py](#text_handlingpy)
+* [time_handling.py](#time_handlingpy)
+* [train.py](#trainpy)
+* [uuid_handling.py](#uuid_handlingpy)
+* [weapon_upgrade_handling.py](#weapon_upgrade_handlingpy)
+* [yaml_handling.py](#yaml_handlingpy)
 
 ## battle.py
 
@@ -187,3 +192,52 @@ The [`text_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
 | multiple_items_in_list_formatting()     | `list_to_format`                             | Format list `list_to_format`, to replace every different occurrences by 'X{occurrences}{text}. Used from required metals in weapon upgrades  |
 | transform_negative_number_to_positive() | `number`                                     | Returns negative integer `number` into a positive integer.                                                                                   |
 | print_map_art()                         | `item_data`                                  | Formats map item ASCII art to add proper map colors, and returns it to the console, using its data `item_data`                               |
+
+## time_handling.py
+
+The [`time_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/time_handling.py) class contains functions to calculate date and time related stuff:
+
+| Name                           | Arguments                              | Description                                                                                                                                                                 |
+|--------------------------------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| addition_to_date()             | `date`, `addition`                     | Returns date `date` after adding `addition` days to it (date format: '{month}-{day}-{year}'                                                                                 |
+| date_prettifier()              | `date`                                 | Prettifies date `date` (transform '{month}-{day}-{year}' to '{day}{st/nd/rd/th} {month name}, {year}'                                                                       |
+| get_day_time()                 | `game_days`                            | Returns the day time of bane of wargs day unit `game_days` (night/morning/day/evening)                                                                                      |
+| return_game_day_from_seconds() | `seconds`, `time_elapsing_coefficient` | Transforms `seconds` seconds to bane of wargs day units (`time_elapsing_coefficient` is usually 1, but it gets modified by consumable effects)                              |
+| traveling_wait()               | `traveling_coefficient`                | Runs traveling wait actions (check [here](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Traveling-Time-Handling) for more info about `traveling_coefficient` |
+
+## train.py
+
+The [`train.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/train.py) class contains the train UI loop:
+
+| Name            | Arguments                                                                                  | Description                                                                                                              |
+|-----------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| get_cost()      | `cost`, `dropoff`, `round_cost`=True                                                       | Returns gold `cost` with dropoff decimal percentage `dropoff` applied                                                    |
+| training_loop() | `mount_uuid`, `player`, `item`, `mounts`, `stable`, `time_elapsing_coefficient`, `dropoff` | Starts the training for player's mount uuid `mount_uuid` (`dropoff` is 1 unless the current stable has a dropoff active) |
+
+## uuid_handling.py
+
+The [`uuid_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/uuid_handling.py) class contains functions to randomly generate UUIDs ([Universal Unique Identifier](https://www.google.com/search?client=firefox-b-d&q=uuid)):
+
+| Name                   | Arguments | Description                                                                                |
+|------------------------|-----------|--------------------------------------------------------------------------------------------|
+| generate_random_uuid() |           | Returns a randomly generated UUID using python built-in uuid module and its uuid4() method |
+
+## weapon_upgrade_handling.py
+
+The [`weapon_upgrade_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/weapon_upgrade_handling.py) class contains a few functions that are useful when doing weapon/armor upgrade related actions:
+
+| Name                               | Arguments           | Description                                                                                  |
+|------------------------------------|---------------------|----------------------------------------------------------------------------------------------|
+| check_for_item()                   | `item_name`, `item` | Checks if item id `item_name` exists                                                         |
+| check_weapon_next_upgrade_name()   | `item_name`, `item` | Returns weapon/armor piece id `item_name` next upgrade id                                    |
+| check_weapon_max_upgrade()         | `item_name`, `item` | Returns weapon/armor piece id `item_name` max upgrade id                                     |
+| detect_weapon_next_upgrade_items() | `item_name`, `item` | Returns a string that contains every next upgrade items of weapon/armor piece id `item_name` |
+
+## yaml_handling.py
+
+The [`yaml_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/yaml_handling.py) class contains functions to load and dump yaml data:
+
+| Name        | Arguments            | Description                                                                                                                                                         |
+|-------------|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| safe_load() | `file`, `crash`=True | Loads yaml content of opened file data `file`, and returns python-converted data (`crash` determines if the program should be stopped if an error gets encountered) |
+| dump()      | `data`, `crash`=True | Returns a yaml-parsed string from python data `data` (`crash` determines if the program should be stopped if an error gets encountered)                             |
