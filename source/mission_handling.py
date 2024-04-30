@@ -253,7 +253,7 @@ def execute_triggers(
     mission_data, player, which_key, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs,
     start_player, lists, zone, mission, mounts, start_time,
-    map, save_file
+    map, save_file, player_damage_coefficient
 ):
     # If which_key input is invalid, quit
     # the game and output the error to the
@@ -273,7 +273,8 @@ def execute_triggers(
             dialog_handling.print_dialog(
                 mission_data[which_key]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                 item, enemy, npcs, start_player, lists, zone,
-                mission, mounts, start_time, map, save_file
+                mission, mounts, start_time, map, save_file, player_damage_coefficient, enemies_damage_coefficient,
+                previous_player
             )
             text_handling.print_separator('=')
         if "payment" in mission_data[which_key]:
@@ -291,7 +292,8 @@ def offer_mission(
     mission_id, player, missions_data, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs,
     start_player, lists, zone, mission, mounts, start_time,
-    map, save_file
+    map, save_file, player_damage_coefficient,
+    enemies_damage_coefficient, previous_player
 ):
     logger_sys.log_message(f"INFO: Offering mission '{mission_id}' to player")
     data = missions_data[mission_id]
@@ -327,7 +329,9 @@ def offer_mission(
                 action_done = dialog_handling.print_dialog(
                     data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                     item, enemy, npcs, start_player, lists, zone,
-                    mission, mounts, start_time, map, save_file, mission_offered=mission_id
+                    mission, mounts, start_time, map, save_file, player_damage_coefficient,
+                    enemies_damage_coefficient, enemies_damage_coefficient,
+                    previous_player, mission_offered=mission_id
                 )
                 if not action_done:
                     if "force accept" in list(data):
@@ -344,7 +348,8 @@ def offer_mission(
                         player["active missions"].append(mission_id)
                         execute_triggers(
                             data, player, 'on accept', dialog, preferences, text_replacements_generic, drinks, item, enemy,
-                            npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file
+                            npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file,
+                            player_damage_coefficient
                         )
                         cout(
                             COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL
@@ -365,7 +370,7 @@ def offer_mission(
             player["active missions"].append(mission_id)
             execute_triggers(
                 data, player, 'on accept', dialog, preferences, text_replacements_generic, drinks, item, enemy,
-                npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file
+                npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file, player_damage_coefficient
             )
             cout(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL)
         logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
@@ -374,7 +379,8 @@ def offer_mission(
 def mission_completing_checks(
     mission_id, missions_data, player, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs, start_player,
-    lists, zone, mission, mounts, start_time, save_file
+    lists, zone, mission, mounts, start_time, save_file,
+    player_damage_coefficient
 ):
     # Load mission data and check if the
     # required attributes to complete the
@@ -407,7 +413,7 @@ def mission_completing_checks(
             mission_data, player, 'on complete', dialog, preferences,
             text_replacements_generic, drinks, item, enemy, npcs,
             start_player, lists, zone, mission, mounts, start_time,
-            map, save_file
+            map, save_file, player_damage_coefficient
         )
 
         logger_sys.log_message(f"INFO: Set mission '{mission_id}' as done")

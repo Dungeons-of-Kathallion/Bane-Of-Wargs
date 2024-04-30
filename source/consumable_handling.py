@@ -270,7 +270,7 @@ def attributes_addition_effect(current_effect_data, player):
 def dialog_displaying_effect(
     current_effect_data, player, dialog, preferences, text_replacements_generic, drinks,
     item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map,
-    save_file
+    save_file, player_damage_coefficient, enemies_damage_coefficient, previous_player
 ):
     cout("")
     text_handling.print_separator("=")
@@ -278,7 +278,9 @@ def dialog_displaying_effect(
         current_effect_data["dialog"], dialog, preferences,
         text_replacements_generic, player, drinks,
         item, enemy, npcs, start_player, lists, zone,
-        mission, mounts, start_time, map, save_file
+        mission, mounts, start_time, map, save_file,
+        player_damage_coefficient, enemies_damage_coefficient,
+        previous_player
     )
     text_handling.print_separator("=")
     cout("")
@@ -378,7 +380,7 @@ def consume_consumable(
                     dialog_displaying_effect(
                         current_effect_data, player, dialog, preferences, text_replacements_generic, drinks,
                         item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map,
-                        save_file
+                        save_file, player_damage_coefficient, enemies_damage_coefficient, previous_player
                     )
                 elif current_effect_type == "enemy spawning":
                     enemy_spawning_effect(

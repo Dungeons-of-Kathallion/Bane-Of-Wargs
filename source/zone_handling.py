@@ -1552,7 +1552,7 @@ def interaction_dungeon(
                         player, current_dungeon, lists, enemy, start_player, item, start_time, preferences,
                         npcs, drinks, zone, mounts, dialog, mission, map_location, text_replacements_generic,
                         player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file,
-                        map, map_zone
+                        map
                     )
                     text_handling.clear_prompt()
                     if enter_dungeon:  # check if the player has completed the dungeon and not just exited it
@@ -1561,7 +1561,8 @@ def interaction_dungeon(
                             current_dungeon["dungeon"]["reward dialog"], dialog, preferences,
                             text_replacements_generic, player, drinks, item, enemy, npcs,
                             start_player, lists, zone, mission, mounts, start_time, map,
-                            save_file
+                            save_file, player_damage_coefficient, enemies_damage_coefficient,
+                            previous_player
                         )
                         cinput("\nPress enter to continue...")
                     continue_dungeon_actions = False

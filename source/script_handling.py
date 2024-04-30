@@ -31,7 +31,8 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 def load_script(
     script_data, preferences, player, map, item, drinks, enemy, npcs,
     start_player, lists, zone, dialog, mission, mounts, start_time,
-    generic_text_replacements, plugin=False
+    generic_text_replacements, save_file, player_damage_coefficient,
+    enemies_damage_coefficient, previous_player, plugin=False
 ):
     with open(
         program_dir + '/temp/scripts/' + script_data["script name"]
@@ -39,14 +40,18 @@ def load_script(
         execute_script(
             script_data, f, player, map, item, drinks, enemy, npcs,
             start_player, lists, zone, dialog, mission, mounts, start_time,
-            generic_text_replacements, preferences
+            generic_text_replacements, preferences, save_file,
+            player_damage_coefficient, enemies_damage_coefficient,
+            previous_player
         )
 
 
 def execute_script(
     script_data, file, player, map, item, drinks, enemy, npcs,
     start_player, lists, zone, dialog, mission, mounts, start_time,
-    generic_text_replacements, preferences
+    generic_text_replacements, preferences, save_file,
+    player_damage_coefficient, enemies_damage_coefficient,
+    previous_player
 ):
     logger_sys.log_message(
         f"INFO: Starting execution process of script '{file}'"
@@ -57,36 +62,59 @@ def execute_script(
     )
     if "arguments" in script_data:
         arguments = script_data['arguments']
-        if "player" in arguments:
-            global_arguments["player"] = player
-        if "map" in arguments:
-            global_arguments["map"] = map
-        if "item" in arguments:
-            global_arguments["item"] = item
-        if "drinks" in arguments:
-            global_arguments["drinks"] = drinks
-        if "enemy" in arguments:
-            global_arguments["enemy"] = enemy
-        if "npcs" in arguments:
-            global_arguments["npcs"] = npcs
-        if "start_player" in arguments:
-            global_arguments["start_player"] = start_player
-        if "lists" in arguments:
-            global_arguments["lists"] = lists
-        if "zone" in arguments:
-            global_arguments["zone"] = zone
-        if "dialog" in arguments:
-            global_arguments["dialog"] = dialog
-        if "mission" in arguments:
-            global_arguments["mission"] = mission
-        if "mounts" in arguments:
-            global_arguments["mounts"] = mounts
-        if "start_time" in arguments:
-            global_arguments["start_time"] = start_time
-        if "generic_text_replacements" in arguments:
-            global_arguments["generic_text_replacements"] = generic_text_replacements
-        if "preferences" in arguments:
-            global_arguments["preferences"] = preferences
+        count = 0
+        for argument in arguments:
+            argument_variable = None
+            succeeded = True
+            if argument == "player":
+                argument_variable = player
+            elif argument == "map":
+                argument_variable = map
+            elif argument == "item":
+                argument_variable = item
+            elif argument == "drinks":
+                argument_variable = drinks
+            elif argument == "enemy":
+                argument_variable = enemy
+            elif argument == "npcs":
+                argument_variable = npcs
+            elif argument == "start_player":
+                argument_variable = start_player
+            elif argument == "lists":
+                argument_variable = lists
+            elif argument == "zone":
+                argument_variable = zone
+            elif argument == "dialog":
+                argument_variable = dialog
+            elif argument == "mission":
+                argument_variable = mission
+            elif argument == "mounts":
+                argument_variable = mounts
+            elif argument == "start_time":
+                argument_variable = start_time
+            elif argument == "generic_text_replacements":
+                argument_variable = generic_text_replacements
+            elif argument == "preferences":
+                argument_variable = preferences
+            elif argument == "map_location":
+                argument_variable = search(player["x"], player["y"], map)
+            elif argument == "save_file":
+                argument_variable = save_file
+            elif argument == "previous_player":
+                argument_variable = previous_player
+            elif argument == "player_damage_coefficient":
+                argument_variable = player_damage_coefficient
+            elif argument == "enemies_damage_coefficient":
+                argument_variable = enemies_damage_coefficient
+            elif type(argument) is type({}):  # if it's a custom set variable
+                argument_variable = argument[list(arguments[count])[0]]
+                argument = list(arguments[count])[0]
+            else:
+                succeeded = False
+
+            if succeeded:
+                global_arguments[str(argument)] = argument_variable
+            count += 1
     arguments_list = list(global_arguments)
     logger_sys.log_message(
         f"INFO: Loaded script '{file}' required arguments:\n{arguments_list}"
@@ -124,3 +152,14 @@ def install_requirement(module):
         [executable, "-m", "pip", "install", module],
         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
     )
+
+def search(x, y, map):
+    logger_sys.log_message(f"INFO: Searching for map point corresponding to coordinates x:{x}, y:{y}")
+    global map_location
+    map_point_count = int(len(list(map)))
+    for i in range(0, map_point_count):
+        point_i = map["point" + str(i)]
+        point_x, point_y = point_i["x"], point_i["y"]
+        if point_x == x and point_y == y:
+            map_location = i
+            return map_location
