@@ -11,6 +11,8 @@
 * [main.py](#mainpy)
 * [mission_handling.py](#mission_handlingpy)
 * [npc_handling.py](#npc_handlingpy)
+* [player_handling.py](#player_handlingpy)
+* [script_handling.py](#script_handlingpy)
 
 ## battle.py
 
@@ -128,3 +130,21 @@ The [`npc_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/
 | Name       | Arguments                                                                | Description                                                                                                      |
 |------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 | init_npc() | `map_location`, `player`, `npcs`, `drinks`, `item`, `preferences`, `map` |  Init the interaction loop between the player and the npc at the player's current map point digit `map_location` |
+
+## player_handling.py
+
+The [`player_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/player_handling.py) class handles all major actions that can be done on the player, as death:
+
+| Name           | Arguments                  | Description                                                       |
+|----------------|----------------------------|-------------------------------------------------------------------|
+| player_death() | `preferences`, `save_file` | Init player death process, and reset the save to its older state. |
+
+## script_handling.py
+
+The [`script_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/script_handling.py) class handles custom scripts runs, and python modules installation:
+
+| Name                  | Arguments                                                                                                                                                                                                                                                                                              | Description                                                                                                                                                               |
+|-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| load_script()         | `script_data`, `preferences`, `player`, `map`, `item`, `drinks`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `dialog`, `mission`, `mounts`, `start_time`, `generic_text_replacements`, `save_file`, `player_damage_coefficient`, `enemies_damage_coefficient`, `previous_player`, `plugin`=False | Init a script running process, with its data `script_data` (a dictionary containing '{"script name": "script.py", arguments: []}') (run execute_script() afterwards)      |
+| execute_script()      | `script_data`, `file`, `player`, `map`, `item`, `drinks`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `dialog`, `mission`, `mounts`, `start_time`, `generic_text_replacements`, `preferences`, `save_file`, `player_damage_coefficient`, `enemies_damage_coefficient`, `previous_player`         | Execute a script from file `file` with its data `script_data` (a dictionary containing '{"script name": "script.py", arguments: []}') (use load_script() to run scripts!) |
+| install_requirement() | `module`                                                                                                                                                                                                                                                                                               | Try to install python module `module` using either 'python -m pip install `module`' and 'python3 -m pip install `module`'                                                 |
