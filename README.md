@@ -113,6 +113,7 @@ python source/main.py
 ```
 
 **It's highly recommended to use a clean terminal with the ability to zoom in or out. It is also recommended to use fullscreen with a monospace font for the best gameplay experience.**
+**Also note that the color system is "truecolor", making that lower color systems terminal as Windows legacy terminal will go crazy. The new windows terminal does support "truecolor" color systems.**
 
 _If you have any problems, check the full documentation on how to run the game from nothing at [`docs/PLAYING.MD`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/PLAYING.md)._
 _Note that you can also download the pre-built game executable from the [Continuous Build](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/releases/tag/9.9.9-continuous)._
