@@ -153,6 +153,7 @@ def install_requirement(module):
         stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT
     )
 
+
 def search(x, y, map):
     logger_sys.log_message(f"INFO: Searching for map point corresponding to coordinates x:{x}, y:{y}")
     global map_location
