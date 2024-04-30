@@ -43,7 +43,7 @@ def get_mission_id_from_name(mission_name, mission_data):
 
 
 def print_description(mission_data, map):
-    logger_sys.log_message(f"INFO: Printing mission '{mission_data}' description to GUI")
+    logger_sys.log_message(f"INFO: Printing mission data '{mission_data}' description to GUI")
 
     logger_sys.log_message(f"INFO: Generating mission text replacements")
     # Get text replacements

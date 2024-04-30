@@ -50,3 +50,4 @@ This save file can be used to test these changes:
 {{make sure to make a PR at the BOW-Progression repo (https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs-Progression) that update its data.}}
 {{If this PR is adding any artwork (ASCII art), that is yours or not, update the `copyright` file.}}
 {{If this PR is adding any new attribute to a data type, please update the corresponding `schemas/` and data checks (check_yaml.py class and yaml data test workflow script).}}
+{{If this PR drastically changes or adds any functions to the game engine (or a new class), please update the game engine's documentation at docs/ENGINE_FUNCTIONS.md}}
