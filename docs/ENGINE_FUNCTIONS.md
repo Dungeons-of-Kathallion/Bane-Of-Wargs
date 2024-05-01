@@ -37,11 +37,11 @@ The [`battle.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/m
 
 ## check_yaml.py
 
-The [`check_yaml.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/check_yaml.py) class won't be a class you'll use for custom scripting, as it contains the functions to run tests on the loaded game data. But if you're interested in contributing, you might want to check yourself the class and analyze it.
+The [`check_yaml.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/check_yaml.py) class won't be a class you'll use for custom scripting, as it contains the functions to run tests on the loaded game data. But if you're interested in contributing, you might want to check out the class yourself and analyze it.
 
 ## colors.py
 
-The [`colors.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/colors.py) class is a database of color codes, used for colored terminal input. Just check the class if you need a color code you're searching for.
+The [`colors.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/colors.py) class is a database of color codes; used for colored terminal input. Just check the class if you need a color code you're searching for.
 
 ## consumable_handling.py
 
@@ -75,7 +75,7 @@ The [`dialog_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-War
 
 ## dungeon.py
 
-The [`dungeon.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/dungeon.py) class handles the dungeon UI. It only contains one function, that starts the dungeon loop:
+The [`dungeon.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/dungeon.py) class handles the dungeon UI. It only contains one function, one that starts the dungeon loop:
 
 | Name           | Arguments                                                                                                                                                                                                                                                                                                              | Description                                         |
 |----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------|
@@ -119,7 +119,7 @@ The [`logger_sys.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/bl
 
 ## main.py
 
-The [`main.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/main.py) class doesn't have any function, as it is the game engine's root, that contains the master loop of the game.
+The [`main.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/main.py) class doesn't have any function, as it is the game engine's root containing the master loop of the game.
 
 ## mission_handling.py
 
@@ -144,7 +144,7 @@ The [`npc_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/
 
 ## player_handling.py
 
-The [`player_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/player_handling.py) class handles all major actions that can be done on the player, as death:
+The [`player_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/player_handling.py) class handles all major actions that can be done on the player, such as death:
 
 | Name           | Arguments                  | Description                                                       |
 |----------------|----------------------------|-------------------------------------------------------------------|
@@ -174,7 +174,7 @@ The [`terminal_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-W
 
 ## text_handling.py
 
-The [`text_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/text_handling.py) class contains many useful functions to format and/or output text, that are often used:
+The [`text_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/text_handling.py) class contains many useful functions to format and/or output text that are often used:
 
 | Name                                    | Arguments                                    | Description                                                                                                                                  |
 |-----------------------------------------|----------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|

@@ -98,7 +98,7 @@ Every python script or data file should have a copyright header:
 
 ```html
 # python_script.py //only if it's a script
-# Copyright (c) 2024 by <creator>
+# Copyright (c) <year> by <creator>
 #
 # Bane Of Wargs is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
