@@ -110,7 +110,8 @@ def trigger_event(
         dialog_handling.print_dialog(
             actions["run dialog"], dialog, preferences, text_replacements_generic,
             player, drinks, item, enemy, npcs, start_player, lists, zone,
-            mission, mounts, start_time, map, save_file
+            mission, mounts, start_time, map, save_file, player_damage_coefficient,
+            enemies_damage_coefficient, previous_player
         )
     if "add attributes" in actions:
         for attribute in actions["add attributes"]:
@@ -175,7 +176,8 @@ def trigger_event(
             script_handling.load_script(
                 current_script_data, preferences,  player, map, item, drinks, enemy, npcs,
                 start_player, lists, zone, dialog, mission, mounts, start_time,
-                text_replacements_generic, plugin
+                text_replacements_generic, save_file, player_damage_coefficient,
+                enemies_damage_coefficient, previous_player, plugin
             )
             count += 1
 

@@ -28,7 +28,7 @@ def dungeon_loop(
     player, current_dungeon, lists, enemy, start_player, item, start_time, preferences,
     npcs, drinks, zone, mounts, dialog, mission, map_location, text_replacements_generic,
     player_damage_coefficient, enemies_damage_coefficient, previous_player, save_file,
-    map, map_zone
+    map
 ):
     logger_sys.log_message(f"INFO: Starting dungeon loop of dungeon '{current_dungeon['dungeon']['name']}'")
     still_in_dungeon = True
@@ -281,7 +281,8 @@ def dungeon_loop(
                 script_handling.load_script(
                     current_room_data["room enigma data"], preferences, player, map, item,
                     drinks, enemy, npcs, start_player, lists, zone, dialog, mission, mounts,
-                    start_time, text_replacements_generic, plugin
+                    start_time, text_replacements_generic, save_file, player_damage_coefficient,
+                    enemies_damage_coefficient, previous_player, plugin
                 )
                 cinput("Press enter to continue...\n")
             current_room += 1

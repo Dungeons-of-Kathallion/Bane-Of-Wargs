@@ -34,7 +34,8 @@ program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
 def print_dialog(
     current_dialog, dialog, preferences, text_replacements_generic, player, drinks,
     item, enemy, npcs, start_player, lists, zone,
-    mission, mounts, start_time, map, save_file, mission_offered=None
+    mission, mounts, start_time, map, save_file, player_damage_coefficient,
+    enemies_damage_coefficient, previous_player, mission_offered=None
 ):
     actions_done_total = []
     current_dialog_name = current_dialog
@@ -264,7 +265,8 @@ def print_dialog(
                 script_handling.load_script(
                     current_script_data, preferences,  player, map, item, drinks, enemy, npcs,
                     start_player, lists, zone, dialog, mission, mounts, start_time,
-                    text_replacements_generic, plugin
+                    text_replacements_generic, save_file, player_damage_coefficient,
+                    enemies_damage_coefficient, previous_player, plugin
                 )
                 count += 1
     if True in actions_done_total:
