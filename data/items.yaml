@@ -2589,20 +2589,35 @@ Bone:
   type: "Misc"
   gold: .25
   description: "An old bone that seems to come from a great beast."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║          .-.     _         ║
+    ║         (   `. .' )        ║
+    ║          `\  `  .'         ║
+    ║            |   |           ║
+    ║            |  ,|           ║
+    ║            |  _|           ║
+    ║            | |             ║
+    ║            |  \|           ║
+    ║            |   |           ║
+    ║          .'     \          ║
+    ║         (    ,   )         ║
+    ║           '--' '-'         ║
+    ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
+    ║$GRAY          .-.     _         $WHITE║
+    ║$GRAY         (   `. .' )        $WHITE║
+    ║$GRAY          `\  `  .'         $WHITE║
+    ║$GRAY            |   |           $WHITE║
+    ║$GRAY            |  ,|           $WHITE║
+    ║$GRAY            |  _|           $WHITE║
+    ║$GRAY            | |             $WHITE║
+    ║$GRAY            |  \|           $WHITE║
+    ║$GRAY            |   |           $WHITE║
+    ║$GRAY          .'     \          $WHITE║
+    ║$GRAY         (    ,   )         $WHITE║
+    ║$GRAY           '--' '-'         $WHITE║
     ╚════════════════════════════╝
 Wooden Stick:
   type: "Misc"
