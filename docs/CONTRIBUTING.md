@@ -92,7 +92,25 @@ You'll use the following syntax:
 * Please make your commit description the most compact, understandable and changes-related possible.
 
 ## Code Style
-In order to make the code clean, optimized and themed, so that everyone can understand it better, we have a code style convention. Apart from keeping the code clean, optimized and themed, it keeps the code organized. We have different github actions that check the code style and syntax for you automatically when you create a pull request to the master branch of the Bane-Of-Wargs repo. Theses checks are required to be passing for the pull request to be merged by an inflow control or an admin. These checks verify the yaml data present in the `data/` directory (the actual yaml syntax and if the data is correct for it to work in the game engin), the spelling across most files, if the program compiles right, and finally, the actual python code style & syntax. The spelling should be american and not any other (british etc...)
+In order to make the code clean, optimized and themed, so that everyone can understand it better, we have a code style convention. Apart from keeping the code clean, optimized and themed, it keeps the code organized. We have different github actions that check the code style and syntax for you automatically when you create a pull request to the master branch of the Bane-Of-Wargs repo. Theses checks are required to be passing for the pull request to be merged by an inflow control or an admin. These checks verify the yaml data present in the `data/` directory (the actual yaml syntax and if the data is correct for it to work in the game engin), the spelling across most files, if the program compiles right, and finally, the actual python code style & syntax. The spelling should be american and not any other (british etc...). If every game engine class gets added/removed/updated, make sure the game engine documentation ([`ENGINE_FUNCTIONS.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/ENGINE_FUNCTIONS.md)) gets updated.
+
+Every python script or data file should have a copyright header:
+
+```html
+# python_script.py //only if it's a script
+# Copyright (c) <year> by <creator>
+#
+# Bane Of Wargs is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Bane Of Wargs is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+```
 
 Here are the main code style conventions:
 

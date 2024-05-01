@@ -59,7 +59,8 @@ def use_item(
         script_handling.load_script(
             item[which_item], preferences, player, map, item_data, drinks, enemy, npcs,
             start_player, lists, zone, dialog, mission, mounts, start_time,
-            text_replacements_generic, plugin
+            text_replacements_generic, save_file, player_damage_coefficient,
+            enemies_damage_coefficient, previous_player, plugin
         )
         cinput()
 

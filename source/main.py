@@ -1649,7 +1649,8 @@ def run(play):
             dialog_handling.print_dialog(
                 start_dialog, dialog, preferences, text_replacements_generic, player, drinks,
                 item, enemy, npcs, start_player, lists, zone,
-                mission, mounts, start_time, map, save_file
+                mission, mounts, start_time, map, save_file, player_damage_coefficient,
+                enemies_damage_coefficient, previous_player
             )
             text = '='
             text_handling.print_separator(text)
@@ -1810,7 +1811,8 @@ def run(play):
                 dialog_handling.print_dialog(
                     current_dialog, dialog, preferences, text_replacements_generic, player, drinks,
                     item, enemy, npcs, start_player, lists, zone,
-                    mission, mounts, start_time, map, save_file
+                    mission, mounts, start_time, map, save_file, player_damage_coefficient,
+                    enemies_damage_coefficient, previous_player
                 )
                 player["heard dialogs"].append(map_location)
                 text = '='
@@ -1904,7 +1906,8 @@ def run(play):
                     str(list(mission)[count]), player, mission, dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs,
                     start_player, lists, zone, mission, mounts, start_time, map,
-                    save_file
+                    save_file, player_damage_coefficient, enemies_damage_coefficient,
+                    previous_player
                 )
                 mission_offered = True
 
@@ -1967,7 +1970,7 @@ def run(play):
                 mission_handling.mission_completing_checks(
                     str(player["active missions"][count]), mission, player, dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs, start_player,
-                    lists, zone, mission, mounts, start_time, save_file
+                    lists, zone, mission, mounts, start_time, save_file, player_damage_coefficient
                 )
 
             count += 1
@@ -2044,7 +2047,8 @@ def run(play):
                                 dialog_handling.print_dialog(
                                     current_enemy_data["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                                     item, enemy, npcs, start_player, lists, zone,
-                                    mission, mounts, start_time, map, save_file
+                                    mission, mounts, start_time, map, save_file, player_damage_coefficient,
+                                    enemies_damage_coefficient, previous_player
                                 )
 
                     count2 += 1
@@ -3600,7 +3604,7 @@ def run(play):
             dialog_handling.print_dialog(
                 chosen_dialog, dialog, preferences, text_replacements_generic, player, drinks,
                 item, enemy, npcs, start_player, lists, zone, mission, mounts, start_time, map,
-                save_file
+                save_file, player_damage_coefficient, enemies_damage_coefficient, previous_player
             )
             cinput("$END$\n")
             continued_command = True
@@ -3614,7 +3618,8 @@ def run(play):
                     script_handling.load_script(
                         item[current_utility], preferences, player, map, item, drinks, enemy, npcs,
                         start_player, lists, zone, dialog, mission, mounts, start_time,
-                        text_replacements_generic, plugin
+                        text_replacements_generic, save_file, player_damage_coefficient,
+                        enemies_damage_coefficient, previous_player, plugin
                     )
                     continued_utility = True
                     cinput()
