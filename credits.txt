@@ -1,5 +1,5 @@
 Welcome to Bane Of Wargs!
-version 0.23-alpha
+version 0.24-alpha
 
 The player's manual and other
 resources are available at:
