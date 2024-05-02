@@ -494,8 +494,9 @@ def temporary_git_file_download(selected_file, url):
 
     return file_text_data
 
+
 def wget_download(url):
-    # Retreive file from given url to a temporary directory,
+    # Retrieve file from given url to a temporary directory,
     # and the open it and return its content
     global file_text_data
 
@@ -522,6 +523,7 @@ def wget_download(url):
         file_text_data = "null"
 
     return file_text_data
+
 
 def open_file(file_path):
     try:
