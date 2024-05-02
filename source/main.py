@@ -78,7 +78,6 @@ if not os.path.exists(program_dir):
     # a variable to write it into the user config file
     default_config_data = {
         "latest preset": {
-            "plugin": " ",
             "save": " ",
             "type": 'vanilla'
         },

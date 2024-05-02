@@ -100,7 +100,7 @@ Categories=Game;
 - `Name` // the name that will displayed under the icon.
 - `Comment` // a fast and compact description of the program.
 - `Keywords` // the keywords that will make the shortcut appears in the search bar.
-- `Exec` // the path to the executable. For example, me I would put '~/Documents/vscode-cloned-repositories/Bane-Of-Wargs/dist/Bane-Of-Wargs'
+- `Exec` // the path to the executable. For example, me I would put '~/Documents/vscode-cloned-repositories/Bane-Of-Wargs/dist/Bane-Of-Wargs'. If you built it using flatpak, put '<flatpak binary> run com.Cromha.BaneOfWargs': for example '/usr/bin/flatpak run com.Cromha.BaneOfWargs'
 - `Icon` // the path of the icon that will be displayed on top of the app name. This is not required, you can remove it, if you do, it's the default app icon that will be shown.
 - `Terminal` // make so that it will open the terminal when executing the program specified at `Exec`.
 - `Categories` // the list of categories of program this program is in.
