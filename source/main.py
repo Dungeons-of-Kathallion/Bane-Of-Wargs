@@ -734,8 +734,8 @@ while menu:
 
         # Download documentation files
         file = 'Gameplay-Guide.md'
-        md_file = data_handling.temporary_git_file_download(
-            file, 'https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs.wiki.git'
+        md_file = data_handling.wget_download(
+            'https://raw.githubusercontent.com/wiki/Dungeons-of-Kathallion/Bane-Of-Wargs/Gameplay-Guide.md'
         )
 
         last_timer = time.time()

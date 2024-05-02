@@ -30,6 +30,7 @@ import time
 import io
 import subprocess
 import shutil
+import urllib.request
 from rich.progress import Progress
 
 
@@ -471,10 +472,10 @@ def temporary_git_file_download(selected_file, url):
         download_org = url.split('github.com/', 1)[1].split('/', 1)[0]
         download_repo = url.split('github.com/', 1)[1].split('/', 1)[1].replace('.git', '')
         fs = fsspec.filesystem("github", org=download_org, repo=download_repo)
-        fs.get(fs.ls(selected_file), temporary_dir)
+        fs.get(fs.ls(selected_file), temporary_dir + '/' + selected_file)
 
         with open(
-            temporary_dir + '/' + os.path.basename(os.path.normpath(selected_file)), 'r'
+            temporary_dir + '/' + selected_file, 'r'
         ) as f:
             file_text_data = f.read()
     except Exception as error:
@@ -493,6 +494,34 @@ def temporary_git_file_download(selected_file, url):
 
     return file_text_data
 
+def wget_download(url):
+    # Retreive file from given url to a temporary directory,
+    # and the open it and return its content
+    global file_text_data
+
+    try:
+        temporary_dir = tempfile.mkdtemp()
+        urllib.request.urlretrieve(url, f"{temporary_dir}/file")
+
+        with open(
+            f"{temporary_dir}/file", 'r'
+        ) as f:
+            file_text_data = f.read()
+    except Exception as error:
+        cout(
+            COLOR_YELLOW + COLOR_STYLE_BRIGHT + "WARNING:" + COLOR_RESET_ALL +
+            f" an error occurred when trying to download " +
+            f" url '{url}' contents"
+        )
+        logger_sys.log_message(
+            f"WARNING: An error occurred when downloading url" +
+            f" '{url}' contents"
+        )
+        logger_sys.log_message("DEBUG: " + str(error))
+        time.sleep(3)
+        file_text_data = "null"
+
+    return file_text_data
 
 def open_file(file_path):
     try:
