@@ -33,7 +33,7 @@ def cout(__text: object = "", end="\n"):
 
 def cinput(__text: object = ""):
     # Ask basic input
-    return input(format_string_separator(__text))
+    return input(format_string_color(format_string_separator(__text)))
 
 
 def cinput_int(__text: object = ""):
@@ -45,7 +45,7 @@ def cinput_int(__text: object = ""):
     while not __var:
         __var = True
         try:
-            __input = int(cinput(format_string_separator(__text)))
+            __input = int(cinput(__text))
         except ValueError as error:
             cout(COLOR_YELLOW + "Input isn't valid!" + COLOR_RESET_ALL)
             __var = False
