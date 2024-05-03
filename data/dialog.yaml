@@ -171,7 +171,7 @@ Given Back Dog Mitchell:
       - print(A bulter finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddenly, the bulter shouts:)
       - print(“- Mrs. Cooper! Mitchell is back!“\n)
       - wait(1)
-      - print(A chubby lady suddenly goes down the main stairs, running towards the opened doors.)
+      - print(A chubby lady suddenly goes down the main stairs, running toward the opened doors.)
       - print(“- Mitchell! Oh my godness! Finally! you're here! Where did you find him bulter?, says the chubby lady.)
       - print(- Actually it's me who've found him, in the grand avenue. I read his collar and then I came here., you respond to her.)
       - print(- What is your name? I'm so grateful, and I couldn't be more.)
@@ -201,7 +201,7 @@ Wanted Bandit Introduction:
     - label 1:
       - print(As you walk next to the grand avenue, you see the Los Gerudos Prison a few dozen of feet away. You can see sheets on a wall, with inscriptions on it. They seem interesting, maybe it's for some paid job?)
       - choice():
-        - create-choice(Walk towards the sheets, goto(label 2))
+        - create-choice(Walk toward the sheets, goto(label 2))
         - create-choice(Ignore them and continue walking, wait(0))
     - label 2:
       - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscription reads: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
@@ -367,7 +367,7 @@ Escort Gerud Beer Covet Stopover:
 Escort Gerud Beer Covet Fail:
   conversation:
     - label 1:
-      - print(Suddenly, a South Pillager campment semms to appear behind the hill you're going towards, you and the covet. A South Pillager patrol who's making rounds around the campment sees you and starts chasing you! You better run fast! You flee from the covet and run far away. You've left 65 gold coins there.)
+      - print(Suddenly, a South Pillager campment semms to appear behind the hill you're going toward, you and the covet. A South Pillager patrol who's making rounds around the campment sees you and starts chasing you! You better run fast! You flee from the covet and run far away. You've left 65 gold coins there.)
   use actions: false
 
 Escort Gerud Beer Covet Complete:
@@ -389,7 +389,7 @@ Collect Humanitarian Resources Offer:
   conversation:
     - label 1:
       - "print(You walk in the avenue of the harbor dock, and admire the different boats you see docked: you notice a nice-looking boat, painted in red with blue lines on the top of the hull. It seems to be a fishing boat. A dozen of feet away from, you notice an outstanding boat, that must be high 45 feet with its sail and 20 feet long. The boat has a particular design, kinda a futuristic design, with red sails and white hull. You continue walking a few hundred of feet, until you stop to admire a beautiful boat. Its wooden hull shines, is sail reflects the light of the bright sun of Los Gerudos. It's a ship of the Los Gerudos Defense Vessels, whose roles are to patrol, and defend the coast from pirates, pillagers, and other unwanted creatures. The boat is humongous, with its 150 feet long hull and its 200 feet long sails. It's the famous
-      “Gemini - Intrepid“. You see someone in the crowd, and feel like you've met him before. You walk towards him and before you can react, he turns towards you and greets you:)"
+      “Gemini - Intrepid“. You see someone in the crowd, and feel like you've met him before. You walk toward him and before you can react, he turns toward you and greets you:)"
       - print(“- Hey man! Remember me? I'm William June, we were in an covet escortin' mission a few time ago. says the smily man.)
       - print(- Of course! What are you doing here?)
       - print(- You may not know but a hurricane recently destroyed a small coast island that's actually a part of Los Gerudos. The Los Gerudos Defense Vessels City Department offered their help by transporting humanitarian resources with this boat, the 'Gemini - Intrepid'. Right now, the Los Gerudos Humanitarian City Department is collecting these resources before the boat goes to the island. I'm a part of the mission!“)
