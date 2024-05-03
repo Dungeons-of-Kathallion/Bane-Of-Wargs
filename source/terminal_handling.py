@@ -16,15 +16,18 @@
 from colors import *
 # external imports
 import time
+import os
 import re
 import sys
+import colorsys
+from rich.console import Console
 
 
 # Handling Function
 
 def cout(__text: object = "", end="\n"):
     # Write to stdout the text and flush
-    sys.stdout.write(str(format_string_separator(__text)) + str(end))
+    sys.stdout.write(format_string_color(format_string_separator(__text)) + str(end))
     sys.stdout.flush()
 
 
@@ -133,7 +136,12 @@ def show_menu(options, length=52):
     return user_input
 
 
-def format_string_separator(text: str):
+def format_string_separator(text: str) -> str:
+    # First, apply a regex to the string a extract every
+    # number in the string. Then, replace in the string each
+    # extracted number by himself, but formatted with thousands
+    # separators.
+
     text = str(text)  # make sure it's a string
     __numbers = []
     __regex = r'[\d]+[.\d]+|[\d]*[.][\d]+|[\d]+'
@@ -149,3 +157,86 @@ def format_string_separator(text: str):
             except Exception as err:
                 pass
     return text
+
+
+def format_string_color(text: str) -> str:
+    # First, we go through each character in the
+    # string and find out if it's the beginning of
+    # a RGB ANSI color code. If it does, save the gotten
+    # number to a list index.
+    # Then, depending on the user's terminal color system,
+    # fix the color so that it can be displayed.
+
+    __color_codes = []
+    __color_system = get_terminal_color_system()
+    text = str(text)  # make sure it's a string
+    count = 0
+    for character in text:
+        try:
+            if text[count:].startswith(r'[38;2'):
+                __color_codes += [text[count:].split("m", 1)[0]]
+        except Exception as error:
+            continue
+        count += 1
+
+    for color in __color_codes:
+        color_rgb = get_color_rgb(color)
+        matchings = {}
+
+        # If the user's terminal color system is either 'standard' or '256',
+        # find the closest standard color to the original color, and replace
+        # it, so it's compatible
+        if __color_system == "standard" or __color_system == "256":
+            for match in STANDARD_COLORS:
+                # Get the match rgb code, and then compare it with the
+                # original color code. Store that 'matching score' into
+                # a dictionary
+                match_rgb = get_color_rgb(match)
+
+                red_difference = abs(color_rgb[0] - match_rgb[0])  # make it positive
+                green_difference = abs(color_rgb[1] - match_rgb[1])  # make it positive
+                blue_difference = abs(color_rgb[2] - match_rgb[2])  # make it positive
+                matchings[match] = red_difference + green_difference + blue_difference
+        # Elif the user's using legacy windows terminal, find the closest standard color
+        # to the original color, and replace it, so it's compatible
+        elif __color_system == "windows":
+            for match in LEGACY_COLORS:
+                # Get the match rgb code, and then compare it with the
+                # original color code. Store that 'matching score' into
+                # a dictionary
+                match_rgb = get_color_rgb(match)
+
+                red_difference = abs(color_rgb[0] - match_rgb[0])  # make it positive
+                green_difference = abs(color_rgb[1] - match_rgb[1])  # make it positive
+                blue_difference = abs(color_rgb[2] - match_rgb[2])  # make it positive
+                matchings[match] = red_difference + green_difference + blue_difference
+        # If the user's using a truecolor terminal color system,
+        # skip the replace process
+        else:
+            matchings[color] = 1
+
+        if __color_system != "truecolor":
+            closest_matching = min(matchings, key=matchings.get)
+            text = text.replace(
+                color + "m", STANDARD_COLORS[
+                    list(matchings.keys()).index(closest_matching)
+                ]
+            )
+
+    return text
+
+
+def get_color_rgb(color_code: str) -> list:
+    color_r = int(color_code.split("38;2;", 1)[1].split(";", 1)[0])
+    color_g = int(color_code.split("38;2;", 1)[1].split(";", 2)[1])
+    color_b = int(color_code.split("38;2;", 1)[1].split(";", 2)[2].replace("m", ""))
+
+    return [color_r, color_g, color_b]
+
+
+def get_size() -> tuple:
+    return os.get_terminal_size()
+
+
+def get_terminal_color_system() -> str:
+    return Console().color_system

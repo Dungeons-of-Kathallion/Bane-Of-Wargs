@@ -65,6 +65,7 @@ menu = True
 game_elapsed_time = 0
 
 separator = COLOR_STYLE_BRIGHT + "###############################" + COLOR_RESET_ALL
+COLUMNS, LINES = terminal_handling.get_size()
 
 
 # Check if player has the config folder if
@@ -806,7 +807,7 @@ while menu:
         # display it in a pager style
         with open(f"{program_dir}/game/docs/credits.txt") as f:
             credits = f.read()
-        pydoc.pager(credits)
+        text_handling.print_moving_text(credits)
     else:
         text_handling.clear_prompt()
         logger_sys.log_message(f"INFO: PROGRAM RUN END")

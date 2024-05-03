@@ -172,6 +172,10 @@ The [`terminal_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-W
 | cinput_multi()            | `text`="", `type`="list" | Returns gotten user input through multiple line, until a EOFE break (Ctrl + D), and return                                                     |
 | show_menu()               | `options`, `length`=52   | Displays a choice box with list of choices `options`. The `length` argument is deprecated since [v0.23-alpha](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/releases/tag/0.23-alpha), as it's automatically determined. Returns the selected choice as a string |
 | format_string_separator() | `text`                   | Formats `text` to add thousands separators to every number present in it, and returns the formatted string                                     |
+| format_string_color() | `text`                   | Formats `text` to replace every present ANSI RGB color codes, if needed, by compatible color codes (if the terminal doesn't accept "truecolor" color system)                                     |
+| get_color_rgb() | `color_code`                  | Takes in input an RGB ANSI color code (`\033[38;2;<r>;<g>;<b>m`) and returns its RGB values in an integer list                                     |
+| get_size() |                   | Returns the terminal size in a tuple (columns, lines)                                     |
+| get_terminal_color_system() |                   | Returns the terminal color system (None, "standard", "256", "truecolor", "windows") (check [this page](https://rich.readthedocs.io/en/stable/console.html#color-systems) for information about terminal color systems)                                     |
 
 ## text_handling.py
 
@@ -197,6 +201,7 @@ The [`text_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
 | multiple_items_in_list_formatting()     | `list_to_format`                             | Format list `list_to_format`, to replace every different occurrences by 'X{occurrences}{text}. Used from required metals in weapon upgrades  |
 | transform_negative_number_to_positive() | `number`                                     | Returns negative integer `number` into a positive integer.                                                                                   |
 | print_map_art()                         | `item_data`                                  | Formats map item ASCII art to add proper map colors, and returns it to the console, using its data `item_data`                               |
+| print_moving_text()                         | `text`                                  | Outputs string `text` to the console using an ending movie credits (used for the credits.txt file display)                               |
 
 ## time_handling.py
 

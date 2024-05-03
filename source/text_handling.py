@@ -23,6 +23,7 @@ import time
 import random
 import appdirs
 import fade
+import io
 from sys import exit
 
 
@@ -340,3 +341,26 @@ def print_map_art(item_data):
             line = line.replace(character, '\033[38;2;255;195;141m' + character + '\033[38;2;255;208;166m')
         cout("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
     return art
+
+
+def print_moving_text(text):
+    clear_prompt()
+    finished = False
+    text = text.split("\n")
+    columns, lines = terminal_handling.get_size()
+
+    count = 0
+    while not finished:
+        try:
+            for i in range(lines):
+                cout(text[count])
+                count += 1
+            count2 = 0
+            while (count + count2) < len(text) - 1:
+                time.sleep(random.uniform(1, 2))
+                cout(text[count+count2])
+                count2 += 1
+            finished = True
+        except EOFError as stop:
+            finished = True
+    time.sleep(2.5)
