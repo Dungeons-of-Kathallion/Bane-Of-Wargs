@@ -27,7 +27,7 @@ $ _
 
 Bane Of Wargs is a python text-game engine with pre-built plots and the ability to create custom plugins/mods that completely change the game content. The game is very customizable and you will find many in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining, etc. This provides a very customizable and enjoyable python terminal-text based RPG.
 
-You will have to fight monsters and bossses to get keys to unlock new areas on the map. The map is divided into points, determined by x and y coordinates, allowing maps up to 128x128 wide (so up to 16,384 places to explore), and more will be available as the engine progresses.
+You will have to fight monsters and bosses to get keys to unlock new areas on the map. The map is divided into points, determined by x and y coordinates, allowing maps up to 128x128 wide (so up to 16,384 places to explore), and more will be available as the engine progresses.
 
 See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide) wiki page or check or the [Creating Mod](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods) wiki page if you're interested in modding the game.
 
@@ -35,11 +35,11 @@ See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
 
 Here's the vanilla starting dialog plot:
 > “
-> You're a lumberjack who lives in a small village in the _Forlindon Woods_, a quiet a calm place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the _Stall Island_, _Kathallion Archipelago_. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear "the world": dragons, gold, elves, dwarfs, great mountains, adventure...
+> You're a lumberjack who lives in a small village in the _Forlindon Woods_, a quiet and calm place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the _Stall Island_, _Kathallion Archipelago_. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear "the world": dragons, gold, elves, dwarfs, great mountains, adventure...
 >
 > A day like others, you get a message in your mailbox: a dwarf king from the _Goro Mountains Peaks_ has heard from the mayor of the village, who keeps contact with him because they provide the village in stone, that you have great woodcraft skills. This dwarf king requests you to come to his castle in the mountains of the _Goro Peaks_ to participate to a great project...
 >
-> You decide to accept the deal, because of the great promiced remuneration. You'll travel into many places like the _Californ Woods_, the _Stall Fields_, and many other great places.
+> You decide to accept the deal, because of the great promised remuneration. You'll travel into many places like the _Californ Woods_, the _Stall Fields_, and many other great places.
 > ”
 
 <details>
@@ -120,7 +120,7 @@ _Note that you can also download the pre-built game executable from the [Continu
 
 ## Building From Source
 
-We recommend to build the game using the [PyInstaller](https://pyinstaller.org/en/stable/) program, but you could use any if you'd like, but we only support PyInstaller.There's a full documentation about building the game using PyInstaller at [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md).
+We recommend to build the game using the [PyInstaller](https://pyinstaller.org/en/stable/) program. You can use any if you like, but we only support PyInstaller. There's a full documentation about building the game using PyInstaller at [`docs/BUILDING.md`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/docs/BUILDING.md).
 
 ## System Requirements
 
@@ -141,7 +141,7 @@ All required modules are in the `requirements.txt` file.
 
 ---
 
-_If you have already run the `pip install -r requirements.txt` command, then you won't have to install these modules as they were installed for you._
+_If you have already run the `pip install -r requirements.txt` command, then you won't have to install these modules as they will have been installed for you._
 
 ## Contributing
 
@@ -149,9 +149,9 @@ As a free and open source game, the source code is accessible to reading and mod
 
 ## Development Progress
 
-The planned game engine is currently in progress, and for the most of it done. The vanilla gameplay is not ready at all by you could always [create your own mod!](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods). If you're interested by the game progress and development, check the wiki page about the [Goals](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Game-Progression) of the game.
+The planned game engine is currently in progress, and for the most of it done. The vanilla gameplay is not ready at all but you could always [create your own mod!](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods). If you're interested in the game progress and development, check the wiki page about the [Goals](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Game-Progression) of the game.
 
 ## Licensing
 
 Bane Of Wargs is a free, open source game. The [source code](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/tree/master/source) and every file you will find on this repository is available under the [GPL v3 license](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs?tab=GPL-3.0-1-ov-file#readme).
-All its work and artwork is all [copyrighted](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/copyright) and [credited](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/credits.txt). Feel free to fork, or copy the game source to make your own version of the engine.
+All its work and artwork is [copyrighted](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/copyright) and [credited](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/credits.txt). Feel free to fork or copy the game source to make your own version of the engine.
