@@ -15,7 +15,7 @@ Start Dialog:
   conversation:
     - label 1:
       - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the Stall Island. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarfs, great mountains, adventure...)"
-      - print(You currently have a order to deliver to a friend of yours, at the -62, 59 coordinates.)
+      - "print(You currently have an order to deliver to a friend of yours, at the -62, 59 coordinates.)"
       - "print(Hint: check the gameplay guide at https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide)"
   use actions: false
 
@@ -26,7 +26,7 @@ Deliver Raw Wood To Jacky Completed:
       - wait(4)
       - print(The doors finally opens, and you greet Jacky.)
       - print(“- Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me. You say.)
-      - print(- Hi! Thanks for the deliver! How many gold do you want me to pay you? Jacky says”.)
+      - print(- Hi! Thanks for the delivery! How much gold do you want me to pay you?" Jacky asks.)
       - goto(label 2)
     - label 2:
       - choice():
@@ -44,7 +44,7 @@ Deliver Raw Wood To Jacky Completed:
       - print(“- 25 gold coins? Seems fair. Here's 25 gold coins.”)
       - create-variable(gold_augmentation, 25)
     - label 6:
-      - print(“- 45 gold coins?! Are you crazy?! I'm not paying 45 fucking gold coins for 2 bags of raw wood!”)
+      - print(“- 45 gold coins?! Are you crazy?! I'm not paying 45 gold coins for 2 bags of raw wood!”)
       - goto(label 2)
   use actions: true
   actions:
@@ -93,7 +93,7 @@ Heard Someone Shouting In The Woods:
     - label 1:
       - print(You're walking in the woods when you hear some noise around you. The sound seems to come from the south.)
       - wait(2)
-      - print(You listen and you can hear “HELP!!!”, “HELP!!!”. You need to help the man!)
+      - print(You listen and you can hear “HELP!!!”, “HELP!!!”. You should help the man!)
   use actions: true
   actions:
     add attributes:
@@ -105,7 +105,7 @@ Encounter Warg Attacking A Guy:
     - heard someone shouting in the woods
   conversation:
     - label 1:
-      - print(You see the man who shouted sooner! He's being attacked by a warg! Fight the warg and save the man!)
+      - print(You see the man who shouted sooner! He's being attacked by a Warg! Fight the Warg and save the man!)
   use actions: false
 
 Saved The Guy In The Woods:
@@ -156,7 +156,7 @@ Found Dog Mitchell:
       - print(While you walk into the Los Gerudos grand avenue, and admire the sea, visible from a long distance, you hear a noise, coming from behind you. You slowly turn behind. You find a dog; he must have followed you since you've left that little jewelry store. He must have been lost by his dear owners!)
       - print(You decide to take a look...)
       - wait(2)
-      - "print(You found a golden collar on his neck, with inscribed letters on it. It says: “Mitchell - property of the Coopers; Please return this dog if you find him at the 13 Yasward Drive, Los Gerudos“. The dog looks at you with big eyes, seeming like he wants you to take him back to its owners.\n)"
+      - "print(You find a golden collar on his neck, with inscribed letters on it. It says: “Mitchell - property of the Coopers; Please return this dog if you find him at the 13 Yasward Drive, Los Gerudos“. The dog looks at you with big eyes, seeming like he wants you to take him back to its owners.\n)"
   use actions: true
   actions:
     add to diary:
@@ -168,23 +168,23 @@ Given Back Dog Mitchell:
     - label 1:
       - print(You finally arrive to the 13 Yasward Drive, Los Gerudos, the village of the Coopers. You knock at the door.)
       - wait(2)
-      - print(A bulter finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddenly, the bulter shouts:)
+      - print(A butler finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddenly, the bulter shouts:)
       - print(“- Mrs. Cooper! Mitchell is back!“\n)
       - wait(1)
       - print(A chubby lady suddenly goes down the main stairs, running toward the opened doors.)
-      - print(“- Mitchell! Oh my godness! Finally! you're here! Where did you find him bulter?, says the chubby lady.)
-      - print(- Actually it's me who've found him, in the grand avenue. I read his collar and then I came here., you respond to her.)
+      - print(“- Mitchell! Oh my goodness! Finally! You're here! Where did you find him butler?, says the chubby lady.)
+      - print(- "Actually it's me who found him, in the grand avenue. I read his collar and then I came here," you respond to her.)
       - print(- What is your name? I'm so grateful, and I couldn't be more.)
-      - print(- My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty much sure you haven't heard of this place before.)
-      - print(- The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch there. What can I do for you? Is there anything you'd like to have?, the lady asks.)
-      - print(- Please, I didn't do much.)
-      - print(- You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
-      - print(She holds in here hands two gold ingots, that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
+      - print(- My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty sure you haven't heard of this place before.)
+      - print(- "The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch here. What can I do for you? Is there anything you'd like to have?" the lady asks.)
+      - print(- "Please, I didn't do much.")
+      - print(- "You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
+      - print(She holds in her hands two gold ingots, that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
       - choice():
         - create-choice(Accept the payment., goto(label 2))
         - create-choice(Refuse the payment., goto(label 3))
     - label 2:
-      - print(You take the two ingots and store them into your bag. The chubby lad then hugs you and kisses you before you leave.)
+      - print(You take the two ingots and store them into your bag. The chubby lady then hugs and kisses you before you leave.)
       - create-variable(gold_payment, 1025)
     - label 3:
       - print(You kiss the chubby lady's hand, before leaving.)
@@ -199,13 +199,13 @@ Given Back Dog Mitchell:
 Wanted Bandit Introduction:
   conversation:
     - label 1:
-      - print(As you walk next to the grand avenue, you see the Los Gerudos Prison a few dozen of feet away. You can see sheets on a wall, with inscriptions on it. They seem interesting, maybe it's for some paid job?)
+      - print(As you walk next to the grand avenue, you see the Los Gerudos Prison a few dozen of feet away. You can see sheets on a wall, with inscriptions on them. They seem interesting, maybe it's for some paid job?)
       - choice():
         - create-choice(Walk toward the sheets, goto(label 2))
         - create-choice(Ignore them and continue walking, wait(0))
     - label 2:
       - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscription reads: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
-      - print(You decide to go to the sheriff and ask him about the job. He first says to you a little more piece of information about it:)
+      - print(You decide to go to the sheriff and ask him about the job. He first gives you a little more information about it:)
       - print(“- A bandit known as 'The Dagger' has murdered one of the Los Gerudos princes 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two days ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
       - choice():
         - create-choice(“Why can't you do it yourself?“, goto(label 3))
@@ -243,8 +243,8 @@ Wendy Escort Offer:
   conversation:
     - label 1:
       - print(You enter the Los Gerudos Hostel, and directly go to the bar and ask for a cold beer. You take your time drinking it and start a little conversation with the barmaid:)
-      - print(“- From where did you get this beer? I've never drinked one that good! you say to the barmaid.)
-      - print(- Actually, since the creation of the Los Gerudos Grand Hostel by my great great grandfather, we brew our own beer in a distillery actually located in the Badlands region, where the conditions are perfect. And at this day, my cousin's in charge of the distillery.“)
+      - print(“- "From where did you get this beer? I've never drunk any this good!" you say to the barmaid.)
+      - print(- "Actually, since the creation of the Los Gerudos Grand Hostel by my great great grandfather, we brew our own beer in a distillery actually located in the Badlands region, where the conditions are perfect. And at this day, my cousin's in charge of the distillery."“)
       - goto(label 2)
     - label 2:
       - choice():
@@ -252,7 +252,7 @@ Wendy Escort Offer:
         - create-choice(“The Badlands you're saying? It's a long and hard way up to here!“, goto(label 4))
         - create-choice(“Anyway; I think I'm gonna go to the poolroom; bye!“, goto(label 5))
     - label 3:
-      - print(“- Well, as you must know, the Badlands is an arid region, but which's also full of cactuses. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste; says the barmaid.)
+      - print(“- "Well, as you must know, the Badlands is an arid region, but which's also full of cacti. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste," says the barmaid.)
       - "print(- So this beer comes from around the island: the wheat grains are high-quality grains coming from the far Stall Fields and the special spice ingredient from the arid Badlands. I can now understand why it's so expensive compared to a regular beer.“)"
       - goto(label 2)
     - label 4:
