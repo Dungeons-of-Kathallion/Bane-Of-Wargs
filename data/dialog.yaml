@@ -15,7 +15,7 @@ Start Dialog:
   conversation:
     - label 1:
       - "print(You're a lumberjack who lives in a small village in the Forlindon Woods, a quiet place to live. You've always wondered what's after this quiet forest; because your little village is a small town that lives apart from the other great cities in the Stall Island. You've heard some stories and tales about the rest of the world. Only some words come to your mind when you hear “the world”: dragons, gold, elves, dwarfs, great mountains, adventure...)"
-      - "print(You currently have an order to deliver to a friend of yours, at the -62, 59 coordinates.)"
+      - print(You currently have an order to deliver to a friend of yours, at the -62, 59 coordinates.)
       - "print(Hint: check the gameplay guide at https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide)"
   use actions: false
 
@@ -25,8 +25,8 @@ Deliver Raw Wood To Jacky Completed:
       - print(You arrive to the house of your friend Jack. You knock on his doors...)
       - wait(4)
       - print(The doors finally opens, and you greet Jacky.)
-      - print(“- "Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered from me," you say.)
-      - print(- "Hi! Thanks for the delivery! How much gold do you want me to pay you?" Jacky asks.)
+      - print(“- Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered from me, you say.)
+      - print(- Hi! Thanks for the delivery! How much gold do you want me to pay you? Jacky asks.”)
       - goto(label 2)
     - label 2:
       - choice():
@@ -35,16 +35,16 @@ Deliver Raw Wood To Jacky Completed:
         - create-choice(25 gold coins, goto(label 5))
         - create-choice(45 gold coins, goto(label 6))
     - label 3:
-      - print(“- "10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins."”)
+      - print(“- 10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins.”)
       - create-variable(gold_augmentation, 10)
     - label 4:
-      - print(“- "20 gold coins? What a nice price, thanks! Here's 20 gold coins."”)
+      - print(“- 20 gold coins? What a nice price, thanks! Here's 20 gold coins.”)
       - create-variable(gold_augmentation, 20)
     - label 5:
-      - print(“- "25 gold coins? Seems fair. Here's 25 gold coins."”)
+      - print(“- 25 gold coins? Seems fair. Here's 25 gold coins.”)
       - create-variable(gold_augmentation, 25)
     - label 6:
-      - print(“- "45 gold coins?! Are you crazy?! I'm not paying 45 gold coins for 2 bags of raw wood!"”)
+      - print(“- 45 gold coins?! Are you crazy?! I'm not paying 45 gold coins for 2 bags of raw wood!”)
       - goto(label 2)
   use actions: true
   actions:
@@ -173,13 +173,13 @@ Given Back Dog Mitchell:
       - wait(1)
       - print(A chubby lady suddenly goes down the main stairs, running toward the opened doors.)
       - print(“- Mitchell! Oh my goodness! Finally! You're here! Where did you find him butler?, says the chubby lady.)
-      - print(- "Actually it's me who found him, in the grand avenue. I read his collar and then I came here," you respond to her.)
+      - print(- Actually it's me who found him, in the grand avenue. I read his collar and then I came here,, you respond to her.)
       - print(- What is your name? I'm so grateful, and I couldn't be more.)
       - print(- My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty sure you haven't heard of this place before.)
-      - print(- "The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch here. What can I do for you? Is there anything you'd like to have?" the lady asks.)
-      - print(- "Please, I didn't do much.")
-      - print(- "You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
-      - print(She holds in her hands two gold ingots, that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
+      - print(- The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch here. What can I do for you? Is there anything you'd like to have? the lady asks.)
+      - print(- Please, I didn't do much.)
+      - print(- You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
+      - print(She holds in her hands two gold ingots that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
       - choice():
         - create-choice(Accept the payment., goto(label 2))
         - create-choice(Refuse the payment., goto(label 3))
@@ -243,8 +243,8 @@ Wendy Escort Offer:
   conversation:
     - label 1:
       - print(You enter the Los Gerudos Hostel, and directly go to the bar and ask for a cold beer. You take your time drinking it and start a little conversation with the barmaid:)
-      - print(“- "From where did you get this beer? I've never drunk any this good!" you say to the barmaid.)
-      - print(- "Actually, since the creation of the Los Gerudos Grand Hostel by my great great grandfather, we brew our own beer in a distillery actually located in the Badlands region, where the conditions are perfect. And at this day, my cousin's in charge of the distillery."“)
+      - print(“- From where did you get this beer? I've never drunk any this good! you say to the barmaid.)
+      - print(- Actually, since the creation of the Los Gerudos Grand Hostel by my great great grandfather, we brew our own beer in a distillery actually located in the Badlands region, where the conditions are perfect. And at this day, my cousin's in charge of the distillery.“)
       - goto(label 2)
     - label 2:
       - choice():
@@ -252,7 +252,7 @@ Wendy Escort Offer:
         - create-choice(“The Badlands you're saying? It's a long and hard way up to here!“, goto(label 4))
         - create-choice(“Anyway; I think I'm gonna go to the poolroom; bye!“, goto(label 5))
     - label 3:
-      - print(“- "Well, as you must know, the Badlands is an arid region, but which's also full of cacti. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste," says the barmaid.)
+      - print(“- Well, as you must know, the Badlands is an arid region, but which's also full of cacti. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste, says the barmaid.)
       - "print(- So this beer comes from around the island: the wheat grains are high-quality grains coming from the far Stall Fields and the special spice ingredient from the arid Badlands. I can now understand why it's so expensive compared to a regular beer.“)"
       - goto(label 2)
     - label 4:
