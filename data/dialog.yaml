@@ -248,16 +248,16 @@ Wendy Escort Offer:
       - goto(label 2)
     - label 2:
       - choice():
-        - create-choice(“Hmmm perfect conditions...? Could you tell me more about that?“, goto(label 3))
-        - create-choice(“The Badlands you're saying? It's a long and hard way up to here!“, goto(label 4))
+        - create-choice(“Hmmm, perfect conditions...? Could you tell me more about that?“, goto(label 3))
+        - create-choice(“The Badlands, you're saying? It's a long and hard way up to here!“, goto(label 4))
         - create-choice(“Anyway; I think I'm gonna go to the poolroom; bye!“, goto(label 5))
     - label 3:
-      - print(“- Well, as you must know, the Badlands is an arid region, but which's also full of cacti. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste, says the barmaid.)
+      - print(“- Well, as you must know, the Badlands is an arid region, but is also full of cacti. How we brew our beers is that we use high-quality wheat grains from the Stall Fields farms, that we brew as you would for a classic beer, but at a certain point of the fermentation process, we add some special spice to the yeast, that comes from fermented Badlands cactuses that we call 'Badlands cumin'. We then finish the process like common beers. It's the 'Badlands cumin' spice that gives to the beer that special taste, says the barmaid.)
       - "print(- So this beer comes from around the island: the wheat grains are high-quality grains coming from the far Stall Fields and the special spice ingredient from the arid Badlands. I can now understand why it's so expensive compared to a regular beer.“)"
       - goto(label 2)
     - label 4:
-      - "print(“- Yes, it's quite tough to bring every ingredients to the distillery in the Badlands and then smuggle the beer to the Los Gerudos city. The wheat grains are coming from the Stall Fields, and they travel through the Goro Mounts and the Gerud Desert to get to the Badlands, but that's the pretty easy part: the only hurdle is weather and the rough terrain; but smuggling the beer from the distillery located in the Badlands to Los Gerudos, that's the big problem. Our beer must take a longer path to avoid possible South Pillagers and their Mumakils, that brings the smuggling covet to rough regions and arid weather. Bringing 50 of our beers to Los Gerudos costs to us about 1,850 gold, with everything.)"
-      - print(- I didn't thought it was that of a difficulty... I guess I now understand why these beers are so expensive compared to regular ones. You beers are really unique!“)
+      - "print(“- Yes, it's quite tough to bring every ingredient to the distillery in the Badlands and then smuggle the beer to the Los Gerudos city. The wheat grains are coming from the Stall Fields, and they travel through the Goro Mounts and the Gerud Desert to get to the Badlands, but that's the pretty easy part: the only hurdle is weather and the rough terrain; but smuggling the beer from the distillery located in the Badlands to Los Gerudos, that's the big problem. Our beer must take a longer path to avoid possible South Pillagers and their Mumakils, that brings the smuggling covet to rough regions and arid weather. Bringing 50 of our beers to Los Gerudos costs to us about 1,850 gold, with everything.)"
+      - print(- I didn't think it was that much difficulty... I guess I now understand why these beers are so expensive compared to regular ones. Your beers are really unique!“)
       - goto(label 2)
     - label 5:
       - print(You decide to play some games at the poolroom. You ask as young woman who's near if she'd like to have a fun game of billards with you:)
@@ -281,7 +281,7 @@ Wendy Escort Complete:
     - label 1:
       - print(You successfully deposit Wendy to the Woodstack Hostel and let her go see her dad. You decide to have a whisky at the Woodstack Hostel...)
       - wait(5)
-      - print(A few minutes later, Wendy comes back with tears on her face, and express to you how she is grateful from you. She gives you 125 gold.)
+      - print(A few minutes later, Wendy comes back with tears on her face, and express to you how she is grateful to you. She gives you 125 gold.)
   use actions: true
   actions:
     use drink:
@@ -290,9 +290,9 @@ Wendy Escort Complete:
 Escort Gerud Beer Covet Offer:
   conversation:
     - label 1:
-      - print(You decide to rest a little at the Los Gerudos Grand Hostel, and have a glass of Wine; you start drinking it. A few minutes later, a man sits next to you, at your left. He starts to talk:)
-      - print(“- Hey. Have I seen you at the Los Gerudos Prison in the sheriff's office? says the man)
-      - print(- Maybe, once I went there because I wanted to help him for some kind of missions; you respond.)
+      - print(You decide to rest a little at the Los Gerudos Grand Hostel, and have a glass of Wine; you start drinking it. A few minutes later, a man sits down next to you, at your left. He starts to talk:)
+      - print(“- Hey. Have I seen you at the Los Gerudos Prison in the sheriff's office? says the man.)
+      - print(- Maybe, once I went there because I wanted to help him for some kind of mission; you respond.)
       - print(- Well, the sheriff is looking for someone who's willing to take high risks for a mission. Are you interested?“)
       - choice():
         - create-choice(“Depends...could you tell me more about the mission?“, goto(label 2))
@@ -335,9 +335,9 @@ Escort Gerud Beer Covet Stopover:
       - "print(You approach of what seems to be the entrance of the building, but the door is one-way: only people from the inside can open or close it. You hear a man that seems to be speaking to you, and realize that he's in a small room built in the wall of the building and that he probably is the guy who's watching the entrance:)"
       - print(“- Hey my guy! Searching for the entry? says the man.)
       - print(- Hi. Well, I'm supposed to escort a covet 'till Los Gerudos; Joseph K. Baker's sending me, the assistant of the Los Gerudos sheriff. I can't find the covet, you respond to the man.)
-      - print(- You ain't searching at the right place! They're inside wait for you, at the warehouse. Enter! says the man before opening the entrance and letting you enter the building.“)
+      - print(- You ain't searching at the right place! They're inside waiting for you at the warehouse. Enter! says the man before opening the entrance and letting you enter the building.“)
       - "print(You then enter the building by the entrance and start walking through a bright corridor, which seems to last forever. You can't stop yourself from stopping every 20 feet: the corridor side walls are decorated of paintings. After walking about 160 feet, the corridor side walls now start to have doors. You keep walking until you see a door different from the others, with a sign saying “Warehouse - hall third entrance“. You open that door and enter what seems to be indeed a warehouse. You see a cart in the middle of the warehouse, and 3 men sitting on it.)"
-      - print(“- Hey man! We've been waitin' for you for 2 days! says the man who seems to be the boss of the covet.)
+      - print(“- Hey man! We've been waitin' for you for at least 2 days! says the man who seems to be the boss of the covet.)
       - print(- We gotta go now, night's comin' soon, and the undeads too! says the man laid down in the back of the cart.)
       - print(- And trust me, you don't wanna see any desert undeads at night, with the Gerud beers we're carrying! Let's go! says the third man, who's petting one of the two horses.“)
       - goto(label 2)
@@ -373,10 +373,10 @@ Escort Gerud Beer Covet Fail:
 Escort Gerud Beer Covet Complete:
   conversation:
     - label 1:
-      - print(You arrive to the destination, at the Los Gerudos Warehouse, after encountering many orks and undeads on the travel. The cart men congratulate and welcome you for the help:)
-      - print(“Nice work dude! Don't esitate working with us on other missions again! say the three men.)
+      - print(You arrive to the destination, at the Los Gerudos Warehouse, after encountering many orcs and undeads on the travel. The cart men congratulate and thank you for the help:)
+      - print(“Nice work dude! Don't be late working with us on other missions again! say the three men.)
       - print(I'd be glad to! you say.“)
-      - print(They give you two gold ingots, worth 125 gold coins.)
+      - print(They give you two gold ingots, worth a total of 125 gold coins.)
   use actions: true
   actions:
     add to diary:
