@@ -64,7 +64,7 @@ flatpak install org.kde.Platform
 * then, you want to install the tool used for building flatpak apps: [flatpak-builder](https://github.com/flatpak/flatpak-builder), that you can install from dnf, apt or flatpak:
 ```bash
 dnf install flatpak-builder
-flatpak install flatpak install flathub org.flatpak.Builder
+flatpak install flathub org.flatpak.Builder
 ```
 * you can then compile the program using [flatpak-builder](https://github.com/flatpak/flatpak-builder):
 ```bash
