@@ -25,8 +25,8 @@ Deliver Raw Wood To Jacky Completed:
       - print(You arrive to the house of your friend Jack. You knock on his doors...)
       - wait(4)
       - print(The doors finally opens, and you greet Jacky.)
-      - print(“- Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered me. You say.)
-      - print(- Hi! Thanks for the delivery! How much gold do you want me to pay you?" Jacky asks.)
+      - print(“- "Hey Jacky! I'm here to deliver you the 2 bags of raw wood you've ordered from me," you say.)
+      - print(- "Hi! Thanks for the delivery! How much gold do you want me to pay you?" Jacky asks.)
       - goto(label 2)
     - label 2:
       - choice():
@@ -35,16 +35,16 @@ Deliver Raw Wood To Jacky Completed:
         - create-choice(25 gold coins, goto(label 5))
         - create-choice(45 gold coins, goto(label 6))
     - label 3:
-      - print(“- 10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins.”)
+      - print(“- "10 gold coins? Thanks, I'm really grateful! Here's 10 gold coins."”)
       - create-variable(gold_augmentation, 10)
     - label 4:
-      - print(“- 20 gold coins? What a nice price, thanks! Here's 20 gold coins.”)
+      - print(“- "20 gold coins? What a nice price, thanks! Here's 20 gold coins."”)
       - create-variable(gold_augmentation, 20)
     - label 5:
-      - print(“- 25 gold coins? Seems fair. Here's 25 gold coins.”)
+      - print(“- "25 gold coins? Seems fair. Here's 25 gold coins."”)
       - create-variable(gold_augmentation, 25)
     - label 6:
-      - print(“- 45 gold coins?! Are you crazy?! I'm not paying 45 gold coins for 2 bags of raw wood!”)
+      - print(“- "45 gold coins?! Are you crazy?! I'm not paying 45 gold coins for 2 bags of raw wood!"”)
       - goto(label 2)
   use actions: true
   actions:
