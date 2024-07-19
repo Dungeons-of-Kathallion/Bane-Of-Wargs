@@ -44,7 +44,7 @@ Deliver Raw Wood To Jacky Completed:
       - print(“- 25 gold coins? Seems fair. Here's 25 gold coins.”)
       - create-variable(gold_augmentation, 25)
     - label 6:
-      - print(“- 45 gold coins?! Are you crazy?! I'm not paying 45 gold coins for 2 bags of raw wood!”)
+      - print(“- 45 gold coins?! Are you insane?! I'm not paying 45 gold coins for 2 bags of raw wood!”)
       - goto(label 2)
   use actions: true
   actions:
@@ -91,7 +91,7 @@ Cut Wood And Get Back Home Complete:
 Heard Someone Shouting In The Woods:
   conversation:
     - label 1:
-      - print(You're walking in the woods when you hear some noise around you. The sound seems to come from the south.)
+      - print(You're walking in the woods when you hear some shout around you. The shout seems to come from the south.)
       - wait(2)
       - print(You listen and you can hear “HELP!!!”, “HELP!!!”. You should help the man!)
   use actions: true
@@ -111,7 +111,7 @@ Encounter Warg Attacking A Guy:
 Saved The Guy In The Woods:
   conversation:
     - label 1:
-      - print(“- Thanks man! You saved my life! How could I thank you?”)
+      - print(“- Thank you! You saved my life! How could I thank you?”)
       - choice():
         - create-choice(“Have you got any gold on you?“, goto(label 2))
         - create-choice(“Have you got any valuable item on you?“, goto(label 3))
@@ -153,10 +153,10 @@ Gerud Ancient Dungeon Reward:
 Found Dog Mitchell:
   conversation:
     - label 1:
-      - print(While you walk into the Los Gerudos grand avenue, and admire the sea, visible from a long distance, you hear a noise, coming from behind you. You slowly turn behind. You find a dog; he must have followed you since you've left that little jewelry store. He must have been lost by his dear owners!)
+      - print(While you down the Los Gerudos grand avenue, and admire the sea, visible from a long distance, you hear a bark, coming from behind you. You slowly turn behind. You find a dog; it must have followed you since you've left that little jewelry store. He must have been lost by his dear owners!)
       - print(You decide to take a look...)
       - wait(2)
-      - "print(You find a golden collar on his neck, with inscribed letters on it. It says: “Mitchell - property of the Coopers; Please return this dog if you find him at the 13 Yasward Drive, Los Gerudos“. The dog looks at you with big eyes, seeming like he wants you to take him back to its owners.\n)"
+      - "print(You find a golden collar on his neck, with graved inscriptions on it. It says: “Mitchell - property of the Coopers; Please return this dog if you find him at the 13 Yasward Drive, Los Gerudos“. The dog looks at you with big eyes, seeming like it wants you to take him back to its owners.\n)"
   use actions: true
   actions:
     add to diary:
@@ -166,28 +166,28 @@ Found Dog Mitchell:
 Given Back Dog Mitchell:
   conversation:
     - label 1:
-      - print(You finally arrive to the 13 Yasward Drive, Los Gerudos, the village of the Coopers. You knock at the door.)
+      - print(You finally arrive to the 13 Yasward Drive, Los Gerudos, the villa of the Coopers. You knock at the door.)
       - wait(2)
-      - print(A butler finally opens the great doors, and greets you, before asking who you are and what do you want. You explain to him everything, before showing him the dog. Suddenly, the bulter shouts:)
+      - print(A butler finally opens the great doors, and greets you, before asking who you are and what you want. You explain him everything, before showing him the dog. Suddenly, the butler shouts:)
       - print(“- Mrs. Cooper! Mitchell is back!“\n)
       - wait(1)
       - print(A chubby lady suddenly goes down the main stairs, running toward the opened doors.)
       - print(“- Mitchell! Oh my goodness! Finally! You're here! Where did you find him butler?, says the chubby lady.)
-      - print(- Actually it's me who found him, in the grand avenue. I read his collar and then I came here,, you respond to her.)
-      - print(- What is your name? I'm so grateful, and I couldn't be more.)
+      - print(- Actually it's me who found him, in the grand avenue. I read his collar and then I came here, you respond to her.)
+      - print(- What's your name? I'm so grateful.)
       - print(- My name is $name, and I'm from the Ayar Town, in the far Forlindon Woods. But I'm pretty sure you haven't heard of this place before.)
-      - print(- The Forlindon Woods? That is where I used to live, when I was a little girl! But then my dad bought a ranch here. What can I do for you? Is there anything you'd like to have? the lady asks.)
+      - print(- The Forlindon Woods? That's where I used to live, when I was a little girl! But then my dad bought a ranch here. What can I do for you? Is there anything you'd like to have? the lady asks.)
       - print(- Please, I didn't do much.)
       - print(- You didn't do much? You've saved my dear love! Please, accept these two ingots.“)
-      - print(She holds in her hands two gold ingots that must be worth 1,000 gold coins. It'd be difficult to refuse that.\n)
+      - print(She holds in her hands two gold ingots that must be worth 1,000 gold coins. It would be difficult to refuse that. It could be consider rude.\n)
       - choice():
         - create-choice(Accept the payment., goto(label 2))
         - create-choice(Refuse the payment., goto(label 3))
     - label 2:
-      - print(You take the two ingots and store them into your bag. The chubby lady then hugs and kisses you before you leave.)
+      - print(You take the two ingots and put them in your bag. The chubby lady then hugs and kisses you before you leave.)
       - create-variable(gold_payment, 1025)
     - label 3:
-      - print(You kiss the chubby lady's hand, before leaving.)
+      - print(You kiss the chubby lady's hand, before leaving. She seems a bit upset.)
       - create-variable(gold_payment, 0)
   use actions: true
   actions:
@@ -199,19 +199,19 @@ Given Back Dog Mitchell:
 Wanted Bandit Introduction:
   conversation:
     - label 1:
-      - print(As you walk next to the grand avenue, you see the Los Gerudos Prison a few dozen of feet away. You can see sheets on a wall, with inscriptions on them. They seem interesting, maybe it's for some paid job?)
+      - print(As you walk down the grand avenue, you see the Los Gerudos Prison a few dozen feet away. You perceive sheets on a wall, with inscriptions on them. They seem interesting, maybe it's for some paid job?)
       - choice():
         - create-choice(Walk toward the sheets, goto(label 2))
         - create-choice(Ignore them and continue walking, wait(0))
     - label 2:
-      - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscription reads: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
-      - print(You decide to go to the sheriff and ask him about the job. He first gives you a little more information about it:)
-      - print(“- A bandit known as 'The Dagger' has murdered one of the Los Gerudos princes 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two days ago, he found a way to dig a hole in his cell's walls and he escaped the prison. Some citizens said having seen him going near the south-western Los Gerudos at the Gerud Forges.“)
+      - "print(You then decide to approach the sheets. You walk a few feet long and arrive to the wall. One of the sheets' inscriptions read: “WANTED -- 'The Dagger' -- Dead or alive; 465 gold units“.)"
+      - print(You decide to go to the sheriff's office to ask him about that job. He then gives you a little more information about that job:)
+      - print(“- A bandit known as 'The Dagger' has murdered one of the Los Gerudos chancellors 2 months ago. I arrested him and placed him in the Los Gerudos prison. Two days ago, he found a way to dig a hole in his cell's walls and then escaped the prison. Some citizens said seeing him near the south-western Los Gerudos, somewhat next to the Gerud Forges.“)
       - choice():
         - create-choice(“Why can't you do it yourself?“, goto(label 3))
         - create-choice(“Can I take care of this mission?“, goto(label 4))
     - label 3:
-      - print(“- As a sheriff of the Los Gerudos city, I've got plenty of missions who're more important than this 'Dagger'! Now get the hell outta here if you're trying to mess with me!“)
+      - print(“- As a sheriff of the Los Gerudos city, I've got plenty of missions who're more important than this 'Dagger'! Now get the hell outta here if you're messing with me!“)
     - label 4:
       - print(“- Of course my guy! I'd really much appreciate your help! Come back here when you've found him! Good luck!“)
   use actions: true
@@ -256,17 +256,17 @@ Wendy Escort Offer:
       - "print(- So this beer comes from around the island: the wheat grains are high-quality grains coming from the far Stall Fields and the special spice ingredient from the arid Badlands. I can now understand why it's so expensive compared to a regular beer.“)"
       - goto(label 2)
     - label 4:
-      - "print(“- Yes, it's quite tough to bring every ingredient to the distillery in the Badlands and then smuggle the beer to the Los Gerudos city. The wheat grains are coming from the Stall Fields, and they travel through the Goro Mounts and the Gerud Desert to get to the Badlands, but that's the pretty easy part: the only hurdle is weather and the rough terrain; but smuggling the beer from the distillery located in the Badlands to Los Gerudos, that's the big problem. Our beer must take a longer path to avoid possible South Pillagers and their Mumakils, that brings the smuggling covet to rough regions and arid weather. Bringing 50 of our beers to Los Gerudos costs to us about 1,850 gold, with everything.)"
+      - "print(“- Yes, it's quite tough to bring every ingredient to the distillery in the Badlands and then smuggle the beer to the Los Gerudos city. The wheat grains are coming from the Stall Fields, and they travel through the Goro Mounts and the Gerud Desert to get to the Badlands, but that's the pretty easy part: the only hurdle is weather and the rough terrain; but smuggling the beer from the distillery located in the Badlands to Los Gerudos, that's the big problem. Our beer must take a longer path to avoid possible South Pillagers and their Mumakils, that brings the smuggling convoy to rough regions and arid weather. Bringing 50 of our beers to Los Gerudos costs to us about 1,850 gold, with everything.)"
       - print(- I didn't think it was that much difficulty... I guess I now understand why these beers are so expensive compared to regular ones. Your beers are really unique!“)
       - goto(label 2)
     - label 5:
       - print(You decide to play some games at the poolroom. You ask as young woman who's near if she'd like to have a fun game of billards with you:)
       - print(“- Hi! Wanna play billards? And maybe bet some money? you say.)
       - print(- Sorry, but I ain't really in the mood right now... says the young woman, as she starts to shed some tears.)
-      - print(- What's happening? Did I say somethin' wrong?)
-      - print(- No, you're kind. and she starts to cry.)
-      - print(- What's your name and how can I help you in any way? Somethin's wrong?)
-      - print(- I'm Wendy. Wendy Tucker. I received a letter from the mayor of the Cocorico Village, it's a small town in the Stall Fields. The letter said that my dad got hurt really bad while farming, and that he's in a really bad situation. But I can't afford the travel... And I'm staying here while my dad's probably dying... and she starts to cry even more.)
+      - print(- What's the worry? Did I say something wrong?)
+      - print(- No. Nothin'. and she starts to cry.)
+      - print(- What's your name and how can I help you in any way? Is something wrong?)
+      - print(- I'm Wendy. Wendy Tucker. I received a letter from the mayor of the Cocorico Village, it's a small town in the Stall Fields. The letter said that my dad got hurt while farming .he's in a really bad situation. I can't afford the travel... And I'm staying here while my dad's probably dying... and she starts to cry even more.)
       - "print(You move a chair and sit on her right, next to her and start to recomfort her. You're thinking: should I escort her to the Cocorico Village or not?)"
   use actions: true
   actions:
@@ -287,7 +287,7 @@ Wendy Escort Complete:
     use drink:
     - Whisky
 
-Escort Gerud Beer Covet Offer:
+Escort Gerud Beer Convoy Offer:
   conversation:
     - label 1:
       - print(You decide to rest a little at the Los Gerudos Grand Hostel, and have a glass of Wine; you start drinking it. A few minutes later, a man sits down next to you, at your left. He starts to talk:)
@@ -299,7 +299,7 @@ Escort Gerud Beer Covet Offer:
         - create-choice(“Maybe...what is it?“, goto(label 2))
         - create-choice(“Yeah I'm not really sure about that...“, goto(label 3))
     - label 2:
-      - "print(“- Okay, here's further info about the mission: it consists in first travelling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling covet 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
+      - "print(“- Okay, here's further info about the mission: it consists in first traveling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling convoy 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
       - print(- This seems interesting... But how can I be sure you're not messing with me right now? you respond to the man.)
       - print(- My name is Joseph K. Baker, and I'm a Los Gerudos Law Enforcement officer, here's my badge.“)
       - print(The man seems to not be lying.)
@@ -307,7 +307,7 @@ Escort Gerud Beer Covet Offer:
     - label 3:
       - print(“- Let me at least give you some more information about the mission! says the man.)
       - print(- I guess..., you respond to him.)
-      - "print(- Okay, here's further info about the mission: it consists in first travelling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling covet 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
+      - "print(- Okay, here's further info about the mission: it consists in first traveling through the Gerud Desert and the Badlands to get to a distillery located in the northern east coast of the Badlands, and then escorting a smuggling convoy 'till Los Gerudos, without getting caught by any south pillager raid camp; adds the man.)"
       - print(- This seems interesting... But how can I be sure you're not messing with me right now? you respond to the man.)
       - print(- My name is Joseph K. Baker, and I'm a Los Gerudos Law Enforcement officer, here's my badge.“)
       - print(The man seems to not lie.)
@@ -325,19 +325,19 @@ Escort Gerud Beer Covet Offer:
     use drink:
     - Wine
 
-Escort Gerud Beer Covet Stopover:
+Escort Gerud Beer Convoy Stopover:
   to display:
     has missions active:
-    - Escort Gerud Beer Covet
+    - Escort Gerud Beer Convoy
   conversation:
     - label 1:
-      - print(You finally arrive to the location Joseph Baker indicated to you. You realize that this is the location of a distillery; you can't see the covet you were supposed to escort, so you decide to enter the distillery and search for it.)
+      - print(You finally arrive to the location Joseph Baker indicated to you. You realize that this is the location of a distillery; you can't see the convoy you were supposed to escort, so you decide to enter the distillery and search for it.)
       - "print(You approach of what seems to be the entrance of the building, but the door is one-way: only people from the inside can open or close it. You hear a man that seems to be speaking to you, and realize that he's in a small room built in the wall of the building and that he probably is the guy who's watching the entrance:)"
       - print(“- Hey my guy! Searching for the entry? says the man.)
-      - print(- Hi. Well, I'm supposed to escort a covet 'till Los Gerudos; Joseph K. Baker's sending me, the assistant of the Los Gerudos sheriff. I can't find the covet, you respond to the man.)
+      - print(- Hi. Well, I'm supposed to escort a convoy 'till Los Gerudos; Joseph K. Baker's sending me, the assistant of the Los Gerudos sheriff. I can't find the convoy, you respond to the man.)
       - print(- You ain't searching at the right place! They're inside waiting for you at the warehouse. Enter! says the man before opening the entrance and letting you enter the building.“)
       - "print(You then enter the building by the entrance and start walking through a bright corridor, which seems to last forever. You can't stop yourself from stopping every 20 feet: the corridor side walls are decorated of paintings. After walking about 160 feet, the corridor side walls now start to have doors. You keep walking until you see a door different from the others, with a sign saying “Warehouse - hall third entrance“. You open that door and enter what seems to be indeed a warehouse. You see a cart in the middle of the warehouse, and 3 men sitting on it.)"
-      - print(“- Hey man! We've been waitin' for you for at least 2 days! says the man who seems to be the boss of the covet.)
+      - print(“- Hey man! We've been waitin' for you for at least 2 days! says the man who seems to be the boss of the convoy.)
       - print(- We gotta go now, night's comin' soon, and the undeads too! says the man laid down in the back of the cart.)
       - print(- And trust me, you don't wanna see any desert undeads at night, with the Gerud beers we're carrying! Let's go! says the third man, who's petting one of the two horses.“)
       - goto(label 2)
@@ -347,7 +347,7 @@ Escort Gerud Beer Covet Stopover:
         - create-choice(“Gerud beers? What are these?“, goto(label 4))
         - create-choice(“Alright! Let's get going!“, goto(label 5))
     - label 3:
-      - print(“They're monsters who've been wanderin' in large groups in different places of the Stall Island for centuries. But you also ain't wanna encounter any south pillager campment, or we're done.“ says the man already sat on the cart and ready to go.)
+      - print(“They're monsters who've been wanderin' in large groups in different places of the Stall Island for centuries. But you also ain't wanna encounter any south pillager encampment, or we're done.“ says the man already sat on the cart and ready to go.)
       - goto(label 2)
     - label 4:
       - print(“These are the special beers the Los Gerudos Grand Hostel sells, that are only sold there. Its fermentation's strict and the only place where it can be, is the Badlands. Now get on the road and let's go!“ says the man petting the horse.)
@@ -362,15 +362,15 @@ Escort Gerud Beer Covet Stopover:
         - player
         script name: turn_night.py
     add attributes:
-    - escort gerud beer covet started escorting
+    - escort gerud beer convoy started escorting
 
-Escort Gerud Beer Covet Fail:
+Escort Gerud Beer Convoy Fail:
   conversation:
     - label 1:
-      - print(Suddenly, a South Pillager campment semms to appear behind the hill you're going toward, you and the covet. A South Pillager patrol who's making rounds around the campment sees you and starts chasing you! You better run fast! You flee from the covet and run far away. You've left 65 gold coins there.)
+      - print(Suddenly, a South Pillager encampment seems to appear behind the hill you're going toward, you and the convoy. A South Pillager patrol who's making rounds around the encampment sees you and starts chasing you! You better run fast! You flee from the convoy and run far away. You've left 65 gold coins there.)
   use actions: false
 
-Escort Gerud Beer Covet Complete:
+Escort Gerud Beer Convoy Complete:
   conversation:
     - label 1:
       - print(You arrive to the destination, at the Los Gerudos Warehouse, after encountering many orcs and undeads on the travel. The cart men congratulate and thank you for the help:)
@@ -390,7 +390,7 @@ Collect Humanitarian Resources Offer:
     - label 1:
       - "print(You walk in the avenue of the harbor dock, and admire the different boats you see docked: you notice a nice-looking boat, painted in red with blue lines on the top of the hull. It seems to be a fishing boat. A dozen of feet away from the fishing boat, you notice an outstanding boat, that must be 45 feet high with its sail and 20 feet long. The boat has a particular design, kinda a futuristic design, with red sails and white hull. You continue walking for a few hundred feet, until you stop to admire another beautiful boat. Its wooden hull shines, and its sail reflects the light of the bright sun of Los Gerudos. It's a ship of the Los Gerudos Defense Vessels, whose roles are to patrol, and defend the coast from pirates, pillagers, and other unwanted creatures. The boat is humongous, with its 150 feet long hull and its 200 feet long sails. It's the famous)
       - print(“Gemini - Intrepid“. You see someone in the crowd, and feel like you've met him before. You walk toward him and before you can react, he turns toward you and greets you:)"
-      - print(“- Hey man! Remember me? I'm William June, we were in an covet escortin' mission a while ago. says the smiley man.)
+      - print(“- Hey man! Remember me? I'm William June, we were in an convoy escortin' mission a while ago. says the smiley man.)
       - print(- Of course! What are you doing here?)
       - print(- You may not know but a hurricane recently destroyed a small coast island that's actually a part of Los Gerudos. The Los Gerudos Defense Vessels City Department offered their help by transporting humanitarian resources with this boat, the 'Gemini - Intrepid'. Right now, the Los Gerudos Humanitarian City Department is collecting these resources before the boat goes to the island. I'm a part of the mission!“)
       - choice():

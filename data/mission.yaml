@@ -82,7 +82,7 @@ Bring A Lost Dog To Yasward Drive:
 Wanted Bandit:
   name: "Wanted Bandit"
   description: >
-    A wanted bandit known as “The Dagger“, who's been taken to prison for murdering a Los Gerudos prince,
+    A wanted bandit known as “The Dagger“, who's been taken to prison for murdering a Los Gerudos chancellor,
     has escaped the Los Gerudos Prison ($destination) and is researched in the whole region. Find him for a payment of
     $payment gold coins by the Los Gerudos sheriff. Some citizens have told seen him going near the south-western Los Gerudos,
     near the Gerud Forges, in order to escape the town.
@@ -125,10 +125,10 @@ Escort Wendy To Cocorico Village:
     payment: 125
     exp addition: 25
 
-Escort Gerud Beer Covet:
-  name: "Escort Gerud Beer Covet"
+Escort Gerud Beer Convoy:
+  name: "Escort Gerud Beer Convoy"
   description: >
-    Go to $stopovers, to meet up with the Gerud Beer covet, and the escort them through the Badlands and the
+    Go to $stopovers, to meet up with the Gerud Beer convoy, and the escort them through the Badlands and the
     Gerud Desert to the Los Gerudos Warehouse ($destination). They'll pay you $payment gold.
     P.S. Make sure to not encounter any South Pillager camp on your way.
   source: 6990
@@ -140,9 +140,9 @@ Escort Gerud Beer Covet:
   to offer:
     random: .1
   on offer:
-    dialog: Escort Gerud Beer Covet Offer
+    dialog: Escort Gerud Beer Convoy Offer
   on complete:
-    dialog: Escort Gerud Beer Covet Complete
+    dialog: Escort Gerud Beer Convoy Complete
     payment: 125
     exp addition: 15
 
@@ -160,7 +160,7 @@ Collect Humanitarian Resources:
   - 6862  # Los Gerudos Warehouse
   - 7120  # Los Gerudos Grocery
   to offer:
-    known npcs:  # check if the player has completed `Escort Gerud Beer Covet` mission
+    known npcs:  # check if the player has completed `Escort Gerud Beer Convoy` mission
     - William June
     random: .1
   on offer:

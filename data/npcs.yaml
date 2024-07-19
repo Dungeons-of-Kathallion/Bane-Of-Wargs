@@ -84,7 +84,7 @@ Los Gerudos Sheriff:
     - None
   description: >
     This man has been handling the Los Gerudos crimes since he was 25. You helped
-    him to catch 'The Dagger', a bandint who killed one of the Los Gerudos prince.
+    him to catch 'The Dagger', a bandint who killed one of the Los Gerudos chancellor.
     His real name is Mark Hanson.
 
 Wendy Tucker:
@@ -120,7 +120,7 @@ Joseph Baker:
     - None
   description: >
     Joseph Baker is one of the most dedicaded Los Gerudos Law Enforcement officer, whose boss is the sheriff
-    Mark Hanson. He offered to you a special mission about escorting a smuggling covet through the whole
+    Mark Hanson. He offered to you a special mission about escorting a smuggling convoy through the whole
     Gerud Desert and Badlands without getting caught by any south pillager raid camp.
 
 Jerry Owen:
@@ -137,7 +137,7 @@ Jerry Owen:
     items:
     - None
   description: >
-    You escorted his covet through the Badlands and the Gerud Desert and valleys. He works as a salesman at the
+    You escorted his convoy through the Badlands and the Gerud Desert and valleys. He works as a salesman at the
     Los Gerudos Warehouse, but he sometimes participate in special missions, as he's also an adventurer.
 
 Aaron Kyro:
@@ -154,7 +154,7 @@ Aaron Kyro:
     items:
     - None
   description: >
-    You escorted his covet through the Badlands and the Gerud Desert and valleys. He works for the Los Gerudos Law
+    You escorted his convoy through the Badlands and the Gerud Desert and valleys. He works for the Los Gerudos Law
     Inforcement north department, and often executes missions from the seriff.
 
 William June:
@@ -171,6 +171,6 @@ William June:
     items:
     - None
   description: >
-    You escorted his covet through the Badlands and the Gerud Desert and valleys. He is an adventurer who often
+    You escorted his convoy through the Badlands and the Gerud Desert and valleys. He is an adventurer who often
     takes part in different missions across the Stall Island. He says he once participated in a mission that
     consisted in escort an elf king through the whole island, but no one believes him...

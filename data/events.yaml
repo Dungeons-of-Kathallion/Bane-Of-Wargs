@@ -17,14 +17,14 @@ Enters South Pillager Raid Camp:
     map zone:
     - South Pillager Raid Camp
     player attributes:
-    - escort gerud beer covet started escorting
+    - escort gerud beer convoy started escorting
     has missions active:
-    - Escort Gerud Beer Covet
+    - Escort Gerud Beer Convoy
     random: .5
   actions:
-    run dialog: Escort Gerud Beer Covet Fail
+    run dialog: Escort Gerud Beer Convoy Fail
     fail mission:
-    - Escort Gerud Beer Covet
+    - Escort Gerud Beer Convoy
     player gold: -65
 
 Collect Humanitarian Resources Stopover:
