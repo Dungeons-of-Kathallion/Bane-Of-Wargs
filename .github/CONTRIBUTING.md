@@ -16,6 +16,7 @@
     - [inflow control](#inflow-control)
   - [Naming conventions](#naming-conventions)
   - [Code Style](#code-style)
+  - [In-Game Dialogs Style](#in-game-dialogs-style)
   - [Merging Pull Requests](#merging-pull-requests)
 
 # Issues
@@ -125,6 +126,10 @@ Here are the main code style conventions:
 - **For python files (in the `source/` directory)**:
   - We use default python [pycodestyle](https://pypi.org/project/pycodestyle/) module checks with a maximum line length of 130 characters
   - You shouldn't worry about that checks too much
+
+## In-Game Dialogs Style
+
+When reviewing a pull request, you also must check if the data in it is coherent to the [game's world](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Vanilla-World).
 
 ## Merging Pull Requests
 When you merge a pull request, please `Squash Merge`, remove commit listing, use the [naming convention](#naming-conventions), and add extra details if necessary. You do not have to use the name of a PR in the commit name. Note that before merging, every github action checks must be passing. If the PR you're merging updates the `GAME_SOURCE_CODE_VERSION` and `GAME_DATA_VERSION` constants in the `main.py` class, please specify it in the commit description.
