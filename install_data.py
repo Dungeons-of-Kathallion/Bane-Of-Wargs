@@ -22,5 +22,7 @@ try:
     data_files = os.listdir("scripts")
     for f in data_files:
         shutil.copy2(os.path.join("scripts",f), program_dir + "/game/scripts")
+    print("Installing credits file...")
+    shutil.copy2("credits.txt", program_dir + "/game/docs")
 except Exception as e:
     print(e)
