@@ -11,6 +11,12 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+## MAIN STORYLINE MISSIONS SET
+## - Deliver Raw Wood To Jacky
+## - Cut Wood And Get Back Home
+## - Save Someone In The Woods
+## - Go Check The Shaman
+
 Deliver Raw Wood To Jacky:
   name: "Deliver Raw Wood To Jacky"
   description: "Deliver 2 bags of raw wood to your friend jacky at $destination. He promised you to pay you 15 gold coins."
@@ -61,6 +67,26 @@ Save Someone In The Woods:
       enemy category: warg raids
       location: 1165
       dialog: "Saved The Guy In The Woods"
+
+Check The Shaman:
+  name: "Check The Shaman"
+  description: "Go check the Ayar Town's shaman at $destination to learn about the Stall Island and the outer world."
+  source: 906
+  destination: 647
+  invisible: false
+  force accept: true
+  to offer:
+    player attributes:
+    - shown map to sheriff
+  on complete:
+    dialog: Shaman Talk
+
+## LOS GERUDOS MISSIONS SET
+## - Bring A Lost Dog To Yasward Drive
+## - Wanted Bandit
+## - Escort Wendy To Cocorico Village
+## - Escort Gerud Beer Convoy
+## - Collect Humanitarian Resources
 
 Bring A Lost Dog To Yasward Drive:
   name: "Bring A Lost Dog To Yasward Drive"

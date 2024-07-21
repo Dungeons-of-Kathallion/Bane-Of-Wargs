@@ -129,6 +129,9 @@ Saved The Guy In The Woods:
     - Forlindon Woods Map
     gold modification:
       augmentation: $payment
+    add to diary:
+      known npcs:
+      - Jacky
 
 Goro Mounts Mines Dungeon Reward:
   conversation:
@@ -422,3 +425,43 @@ Collect Humanitarian Resources Complete:
     - label 1:
       - print(You approach the dock of the Gerud Harbor, and the Gemini navy boat. You depose the resources you've collected and leave with a payment of 85 gold.)
   use actions: false
+
+Forlindon Map Shown To Sheriff:
+  conversation:
+    - label 1:
+      - print(You decide to go to the sheriff's office, and tell him about the recent Warg attack. That man you rescued could have been killed!)
+      - print(“- Hey $name! What can I do for ya? says the sheriff as you walk in his office.)
+      - print(- I'd like to inform you about the situation in the woods, you say. Last day, as I was wandering down the western forest, near the frontier, I heard a shout. So I decided to check it out. It turned out to be a man's shout, that was under attack by a Warg! a Warg here, in the Forlindon Woods! Hopefully I was able to defend the man from the Warg, and defeated the creature.)
+      - print(- I see, says the sheriff. It must be the barrier at the frontier of the Forlindon Woods that must have been breached. I'll send patrols to protect the village from Wargs, and possibly find a breach.)
+      - print(- Thanks! We don't want the village to be soon under attack by a Warg horde or some kind of other evil creatures.)
+      - print(- Indeed. I'll inform the village about the danger so they stay safe in their homes.)
+      - "print(- I've got another question for you: the man gave me a map of the Forlindon Woods, which's pretty interesting. This map has got something that bothers me: there is an inscription 'Californ Woods', on the forest after the Forlindon Woods. I've never heard of a Californ county.)"
+      - print(- Oh... Yes. The Californ Woods is the biggest forest of the Stall Island, the island we're in. It's said to be about 560 square miles, but we're not sure at all. It is a very hostile forest. But the Shaman will probably give you more information about that.)
+      - print(- Alright! Thanks for your help. I'll check the shaman.“)
+      - print(You leave the sheriff's office and go off to see the shaman.)
+  use actions: true
+  actions:
+    add attributes:
+    - shown map to sheriff
+
+Shaman Talk:
+  conversation:
+    - label 1:
+      - print(You approach the shaman's tipi. Like if she knew you were coming, she tells you to enter. You enter the tipi and sit on the couch, in front of the shaman's desk. She says:)
+      - print(“- Hi $name... What is your worry?...)
+      - print(- Shaman, I must ask you about the 'outer world', you ask.)
+      - print(- I see... You recently found a map of the Forlindon Woods... that was also showing the Californ Woods... Hmm... I sense in you and explorer... and adventurer... and a brave...“)
+      - wait(2)
+      - "print(She continues: “- It has been 63 years than a citizen from the Ayar Town did not asked me about the outer world... Hmm... You see, I was born in this tipi... Never left this tipi.. Will die in this tipi... It is how a shaman must live. But each shaman transmit its wiseness and its knowledge to the following one before passing away... In my crystal sphere and my mind, 25,015 years of knowledge there is... Here is what I will tell you...“)"
+      - print(Still listening carefully, you observe the shaman exchanging with her crystal sphere. It seems like she's looking for something. Finally, she continues her speech:)
+      - print(“We are here in the Kathallion Archipelago, the land of men, elves, dwarfs... and orks and goblins... Hmm... The Kathallion Archipelago is three islands... The Stall Island - where we are -, land of woods, fields, silver mounts, swamps, and desert... - she marks a small pause - The Shire Island, land of great elves, great forges, and deadly mountains... Finally, the Rhun Island; land of dragons, wastelands, and lost dwarf mounts... Hmm... Am I forgetting an island... Hmm...)
+      - wait(2)
+      - print(Ooooh... I almost forgot... Hmm... The archipelago is home for many species... The elves, the highest species, in our world for millenniums... immortal beings... The dwarfs, hiding in their mines, in the highest mount of our world... greedy beings... masters of blacksmithing and forging... The men; us... selfish creatures... Hmm... They worked in the past with the evil... Hmm... But good can be sensed in their souls, fighting their evil side...)
+      - wait(2)
+      - print(And the koreth... live in trees that they cherish... Korath is the name they gave to themselves... Hmm... Extincted beings... Ooh... And the ents, creatures searching for the entwives... they now wander in today's woods; and sometimes turn corrupted... Hmm... And the dragons; greatest creation of the evil, breeding in the arid lands of the Rhun Island.“)
+      - print(It seems like she finished. You thank her for the help, as she signals you to leave. This conversation was a lot of information...)
+  use actions: true
+  actions:
+    add to diary:
+      known npcs:
+      - Ayar Town Shaman

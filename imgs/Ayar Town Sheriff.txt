@@ -1,0 +1,17 @@
+$SILVER               .-----.
+$SILVER              / '. ' .\
+$SILVER              |_.__'_.|}
+$TAN             (=(_)^(_)=)
+$BROWN              ;,$TAN  >  $BROWN,; 
+$BROWN              ;;;$TAN~~~$BROWN;;;
+$DARK_BROWN           ___.'$BROWN;;;;;$DARK_BROWN'.__ 
+$DARK_BROWN         /'`\  `\   /`  /`'\
+$DARK_BROWN        /   |   |   |   |   \
+$DARK_BROWN       (    |   |\_/|   |    )
+$DARK_BROWN       |    |   |   |   |    |
+$DARK_BROWN       |   /|   |   |   |\   |
+$DARK_BROWN       \   ||   |   |   ||   /
+$DARK_BROWN       (   ||   |   |   ||   )
+$DARK_BROWN        |  ||   |___|   ||   |
+$DARK_BROWN        \  ||___|[_]|___O|  /
+$DARK_BROWN         | | /         \O| |$WHITE

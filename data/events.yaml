@@ -37,3 +37,16 @@ Collect Humanitarian Resources Stopover:
     - Collect Humanitarian Resources
   actions:
     run dialog: Collect Humanitarian Resources Stopover
+
+Show The Map To The Sheriff:
+  repeat: false
+  source:
+    map point:
+    - 906
+    has items:
+    - Forlindon Woods Map
+  actions:
+    run dialog: Forlindon Map Shown To Sheriff
+    add to diary:
+      known npcs:
+      - Ayar Town Sheriff
