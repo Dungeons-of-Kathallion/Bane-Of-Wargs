@@ -253,7 +253,8 @@ def execute_triggers(
     mission_data, player, which_key, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs,
     start_player, lists, zone, mission, mounts, start_time,
-    map, save_file, player_damage_coefficient
+    map, save_file, player_damage_coefficient,
+    enemies_damage_coefficient, previous_player
 ):
     # If which_key input is invalid, quit
     # the game and output the error to the
@@ -349,7 +350,7 @@ def offer_mission(
                         execute_triggers(
                             data, player, 'on accept', dialog, preferences, text_replacements_generic, drinks, item, enemy,
                             npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file,
-                            player_damage_coefficient
+                            player_damage_coefficient, enemies_damage_coefficient, previous_player
                         )
                         cout(
                             COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL
@@ -370,7 +371,8 @@ def offer_mission(
             player["active missions"].append(mission_id)
             execute_triggers(
                 data, player, 'on accept', dialog, preferences, text_replacements_generic, drinks, item, enemy,
-                npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file, player_damage_coefficient
+                npcs, start_player, lists, zone, mission, mounts, start_time, map, save_file, player_damage_coefficient,
+                enemies_damage_coefficient, previous_player
             )
             cout(COLOR_CYAN + COLOR_STYLE_BRIGHT + "You obtained mission '" + data["name"] + "'" + COLOR_RESET_ALL)
         logger_sys.log_message(f"INFO: Finished triggering mission '{mission_id}' 'on offer' triggers")
@@ -380,7 +382,7 @@ def mission_completing_checks(
     mission_id, missions_data, player, dialog, preferences,
     text_replacements_generic, drinks, item, enemy, npcs, start_player,
     lists, zone, mission, mounts, start_time, save_file,
-    player_damage_coefficient
+    player_damage_coefficient, enemies_damage_coefficient, previous_player
 ):
     # Load mission data and check if the
     # required attributes to complete the
@@ -413,7 +415,8 @@ def mission_completing_checks(
             mission_data, player, 'on complete', dialog, preferences,
             text_replacements_generic, drinks, item, enemy, npcs,
             start_player, lists, zone, mission, mounts, start_time,
-            map, save_file, player_damage_coefficient
+            map, save_file, player_damage_coefficient,
+            enemies_damage_coefficient, previous_player
         )
 
         logger_sys.log_message(f"INFO: Set mission '{mission_id}' as done")

@@ -189,7 +189,7 @@ def trigger_event(
                     mission[i], player, 'on fail', dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs,
                     start_player, lists, zone, mission, mounts, start_time, map,
-                    save_file
+                    save_file, player_damage_coefficient, enemies_damage_coefficient, previous_player
                 )
                 cout(
                     COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" +

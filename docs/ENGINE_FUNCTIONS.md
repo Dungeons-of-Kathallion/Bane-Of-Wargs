@@ -1,26 +1,27 @@
-* [battle.py](#battlepy)
-* [check_yaml.py](#check_yamlpy)
-* [consumable_handling.py](#consumable_handlingpy)
-* [data_handling.py](#data_handlingpy)
-* [dialog_handling.py](#dialog_handlingpy)
-* [dungeon.py](#dungeonpy)
-* [enemy_handling.py](#enemy_handlingpy)
-* [event_handling.py](#event_handlingpy)
-* [item_handling.py](#item_handlingpy)
-* [logger_sys.py](#logger_syspy)
-* [main.py](#mainpy)
-* [mission_handling.py](#mission_handlingpy)
-* [npc_handling.py](#npc_handlingpy)
-* [player_handling.py](#player_handlingpy)
-* [script_handling.py](#script_handlingpy)
-* [terminal_handling.py](#terminal_handlingpy)
-* [text_handling.py](#text_handlingpy)
-* [time_handling.py](#time_handlingpy)
-* [train.py](#trainpy)
-* [uuid_handling.py](#uuid_handlingpy)
-* [weapon_upgrade_handling.py](#weapon_upgrade_handlingpy)
-* [yaml_handling.py](#yaml_handlingpy)
-* [zone_handling.py](#zone_handlingpy)
+- [battle.py](#battlepy)
+- [check\_yaml.py](#check_yamlpy)
+- [colors.py](#colorspy)
+- [consumable\_handling.py](#consumable_handlingpy)
+- [data\_handling.py](#data_handlingpy)
+- [dialog\_handling.py](#dialog_handlingpy)
+- [dungeon.py](#dungeonpy)
+- [enemy\_handling.py](#enemy_handlingpy)
+- [event\_handling.py](#event_handlingpy)
+- [item\_handling.py](#item_handlingpy)
+- [logger\_sys.py](#logger_syspy)
+- [main.py](#mainpy)
+- [mission\_handling.py](#mission_handlingpy)
+- [npc\_handling.py](#npc_handlingpy)
+- [player\_handling.py](#player_handlingpy)
+- [script\_handling.py](#script_handlingpy)
+- [terminal\_handling.py](#terminal_handlingpy)
+- [text\_handling.py](#text_handlingpy)
+- [time\_handling.py](#time_handlingpy)
+- [train.py](#trainpy)
+- [uuid\_handling.py](#uuid_handlingpy)
+- [weapon\_upgrade\_handling.py](#weapon_upgrade_handlingpy)
+- [yaml\_handling.py](#yaml_handlingpy)
+- [zone\_handling.py](#zone_handlingpy)
 
 _Note that it's recommended to check each wiki page, before reading this document, as it's advanced in the game engine documentation._
 _https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki_
@@ -131,7 +132,7 @@ The [`mission_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wa
 | get_mission_id_from_name()  | `mission_name`, `mission_data`                                                                                                                                                                                                                                                                         | Returns the id of a mission named `mission_name`, by going through the mission data file data `mission_data`                     |
 | print_description()         | `mission_data`, `map`                                                                                                                                                                                                                                                                                  | Outputs a mission description (the one in the diary), from its data `mission_data`                                               |
 | mission_checks()            | `mission_data`, `player`, `which_key`                                                                                                                                                                                                                                                                  | Return a boolean value, to tell if a mission condition `which_key` is completed, from its data `mission_data`                   |
-| execute_triggers()          | `mission_data`, `player`, `which_key`, `dialog`, `preferences`, `text_replacements_generic`, `drinks`, `item`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `mission`, `mounts`, `start_time`, `map`, `save_file`, `player_damage_coefficient`                                                    | Executes a mission trigger `which_key` from its data `mission_data`                                                              |
+| execute_triggers()          | `mission_data`, `player`, `which_key`, `dialog`, `preferences`, `text_replacements_generic`, `drinks`, `item`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `mission`, `mounts`, `start_time`, `map`, `save_file`, `player_damage_coefficient`, `enemies_damage_coefficient`, `previous_player`                                                    | Executes a mission trigger `which_key` from its data `mission_data`                                                              |
 | offer_mission()             | `mission_id`, `player`, `missions_data`, `dialog`, `preferences`, `text_replacements_generic`, `drinks`, `item`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `mission`, `mounts`, `start_time`, `map`, `save_file`, `player_damage_coefficient`, `enemies_damage_coefficient`, `previous_player` | Initiates the mission offering UI of mission id `mission_id`                                                                     |
 | mission_completing_checks() | `mission_id`, `missions_data`, `player`, `dialog`, `preferences`, `text_replacements_generic`, `drinks`, `item`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `mission`, `mounts`, `start_time`, `save_file`, `player_damage_coefficient`                                                         | Checks if mission id `mission_id` can be completed. If it can, mark it as completed and run its completing triggers if there are |
 

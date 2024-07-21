@@ -1970,7 +1970,8 @@ def run(play):
                 mission_handling.mission_completing_checks(
                     str(player["active missions"][count]), mission, player, dialog, preferences,
                     text_replacements_generic, drinks, item, enemy, npcs, start_player,
-                    lists, zone, mission, mounts, start_time, save_file, player_damage_coefficient
+                    lists, zone, mission, mounts, start_time, save_file, player_damage_coefficient,
+                    enemies_damage_coefficient, previous_player
                 )
 
             count += 1
@@ -1996,7 +1997,8 @@ def run(play):
                         current_mission_data, player, 'on fail', dialog, preferences,
                         text_replacements_generic, drinks, item, enemy, npcs,
                         start_player, lists, zone, mission, mounts, start_time, map,
-                        save_file
+                        save_file, player_damage_coefficient, enemies_damage_coefficient,
+                        previous_player
                     )
                     cout(
                         COLOR_RED + COLOR_STYLE_BRIGHT + "You failed mission '" +
@@ -2927,7 +2929,8 @@ def run(play):
                             mission_handling.execute_triggers(
                                 mission[mission_id], player, "on abort", dialog, preferences,
                                 text_replacements_generic, drinks, item, enemy, npcs, start_player,
-                                lists, zone, mission, mounts, start_time, map, save_file
+                                lists, zone, mission, mounts, start_time, map, save_file,
+                                player_damage_coefficient, enemies_damage_coefficient, previous_player
                             )
                 else:
                     cout("")
