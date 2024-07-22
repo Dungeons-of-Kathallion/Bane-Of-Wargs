@@ -672,6 +672,46 @@ Dagger:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Lumberjack Axe:
+  display name: "Lumberjack Axe"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 4
+  defend: 2
+  agility: .065
+  gold: 15.36
+  critical hit chance: .25
+  description: "A generic lumberjack axe. It may cut wood nicely, but not really for orks."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║          ,  /\  .          ║
+    ║         //`-||-'\\         ║
+    ║        (| -=||=- |)        ║
+    ║         \\,-||-.//         ║
+    ║          `  ||  '          ║
+    ║             ||             ║
+    ║             ||             ║
+    ║             ||             ║
+    ║             ||             ║
+    ║             ||             ║
+    ║             ()             ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║          $GRAY,  /\  .          $WHITE║
+    ║         $GRAY//`-$BROWN||$GRAY-'\\         $WHITE║
+    ║        $GRAY(| -$CYAN=$BROWN||$CYAN=$GRAY- |)        $WHITE║
+    ║         $GRAY\\,-$BROWN||$GRAY-.//         $WHITE║
+    ║          $GRAY`  $BROWN||  $GRAY'          $WHITE║
+    ║             $BROWN||             $WHITE║
+    ║             $BROWN||             $WHITE║
+    ║             $BROWN||             $WHITE║
+    ║             $BROWN||             $WHITE║
+    ║             $BROWN||             $WHITE║
+    ║             $GREEN()             $WHITE║
+    ╚════════════════════════════╝
 Dwarf Axe: &dwarf_axe
   display name: "Dwarf Axe"
   upgrade tier: 0

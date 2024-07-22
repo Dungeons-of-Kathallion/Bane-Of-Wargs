@@ -17,7 +17,7 @@ armor protection: .95
 current mount: ' '
 agility: .8
 gold: 45
-held item: " "
+held item: Lumberjack Axe
 held chestplate: Leather Jacket
 held boots: Leather Boots
 held leggings: Old Pants
@@ -60,8 +60,7 @@ inventory:
 - Leather Jacket
 - Leather Boots
 - Old Pants
-- Beef
-- Bread
+- Lumberjack Axe
 - Bread
 - Stretched Bag
 - Raw Wood

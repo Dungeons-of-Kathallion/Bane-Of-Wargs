@@ -465,3 +465,45 @@ Shaman Talk:
     add to diary:
       known npcs:
       - Ayar Town Shaman
+
+Help The Sheriff With The Wargs Offer:
+  conversation:
+    - label 1:
+      - print(You go check the sheriff for the advancement in the 'warg affair'. You knock on his office's door.)
+      - wait(2)
+      - print(“- Enter, says the sheriff.)
+      - print(- Hi, it's me, $name again.)
+      - print(- Hey! What brings you there? responds the sheriff.)
+      - print(- I'm checking for the advancement about that 'warg affair', you ask.)
+      - print(- Oh! Right. We did found the breach in the barrier, and fixed it. But we're aware that a horde of wargs are still in the forest. I've got officers hunting for them in the woods. We cannot allow them to breed any further. It'd be devastating.)
+      - print(- I see, you say.“)
+      - choice():
+        - create-choice(“Can I take part in this mission?“, goto(label 2))
+        - create-choice(“How can I help?“, goto(label 3))
+    - label 2:
+      - print(“- Of course! Any help is, well, helpful! The horde was seen on the locations x:-60,y:55.)
+      - print(- Alright! you say.)
+      - print(- Wait! I'm gonna get you some proper equipment. You can't fight a horde of wargs with a Lumberjack Axe. I'll give you a sword and shield.“)
+    - label 3:
+      - print(“- You could go check the location x:-60,y:55 and see if the horde is there. You'd need proper equipment though. I'll giv you a sword and shield.)
+      - print(- Okay, I'll do that, you say.“)
+  use actions: true
+  actions:
+    give item:
+    - Sword
+    - Shield
+
+Help The Sheriff With The Wargs Completion:
+  conversation:
+    - label 1:
+      - print(You go back to the sheriff's office, with some scars with that fight with the warg horde. He's smoking his pipe on the cantina. You go sit next to him:)
+      - print(“- Hey! I'm back! you say)
+      - print(- I guess you found that horde, by seeing all these scars on you, responds the sheriff.)
+      - print(- Yeah, I found it. The problem's now solved.)
+      - print(- You did a great job here! Let's celebrate this with some champagne; I'm paying.“)
+      - print(You stay a few hours with the sheriff, talking about different stuff... He gave you 35 gold coins.)
+      - wait(5)
+  use actions: true
+  actions:
+    use drink:
+    - Champagne

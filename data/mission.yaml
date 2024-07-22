@@ -15,7 +15,8 @@
 ## - Deliver Raw Wood To Jacky
 ## - Cut Wood And Get Back Home
 ## - Save Someone In The Woods
-## - Go Check The Shaman
+## - Check The Shaman
+## - Help The Sheriff With The Wargs
 
 Deliver Raw Wood To Jacky:
   name: "Deliver Raw Wood To Jacky"
@@ -80,6 +81,30 @@ Check The Shaman:
     - shown map to sheriff
   on complete:
     dialog: Shaman Talk
+
+Help The Sheriff With The Wargs:
+  name: "Help The Sheriff With The Wargs"
+  description: "An horde of warg was seen at $stopovers. Go there to be sure of that."
+  source: 906
+  destination: 906
+  stopovers:
+  - 1165
+  invisible: false
+  force accept: true
+  to offer:
+    player attributes:
+    - shown map to sheriff
+    random: .25
+  on offer:
+    dialog: "Help The Sheriff With The Wargs Offer"
+  on complete:
+    dialog: "Help The Sheriff With The Wargs Completion"
+    payment: 35
+  enemies:
+    warg horde:
+      enemy number: 1
+      enemy category: warg raids
+      location: 1165
 
 ## LOS GERUDOS MISSIONS SET
 ## - Bring A Lost Dog To Yasward Drive
