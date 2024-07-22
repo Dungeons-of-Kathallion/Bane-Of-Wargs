@@ -3299,14 +3299,6 @@ def verify_data(
                         COLOR_RESET_ALL
                     )
                     text_handling.exit_game()
-                if "dialog" not in current_enemy:
-                    print(
-                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
-                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
-                        f"key `dialog` is missing" +
-                        COLOR_RESET_ALL
-                    )
-                    text_handling.exit_game()
 
                 if type(current_enemy["enemy category"]) is not type(""):
                     print(
@@ -3324,14 +3316,15 @@ def verify_data(
                         COLOR_RESET_ALL
                     )
                     text_handling.exit_game()
-                if type(current_enemy["dialog"]) is not type(""):
-                    print(
-                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
-                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
-                        f"key `dialog` should be a string" +
-                        COLOR_RESET_ALL
-                    )
-                    text_handling.exit_game()
+                if "dialog" in current_enemy:
+                    if type(current_enemy["dialog"]) is not type(""):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                            f"key `dialog` should be a string" +
+                            COLOR_RESET_ALL
+                        )
+                        text_handling.exit_game()
 
                 if current_enemy["enemy category"] not in list(lists):
                     print(
@@ -3351,15 +3344,16 @@ def verify_data(
                         COLOR_RESET_ALL
                     )
                     text_handling.exit_game()
-                if current_enemy["dialog"] not in list(dialog):
-                    print(
-                        COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
-                        f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
-                        f"dialog '{current_enemy['dialog']}' in key `dialog`" +
-                        "doesn't exist" +
-                        COLOR_RESET_ALL
-                    )
-                    text_handling.exit_game()
+                if "dialog" in current_enemy:
+                    if current_enemy["dialog"] not in list(dialog):
+                        print(
+                            COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                            f"enemy id '{i}' in mission id '{current_id}' isn't valid --> " +
+                            f"dialog '{current_enemy['dialog']}' in key `dialog`" +
+                            "doesn't exist" +
+                            COLOR_RESET_ALL
+                        )
+                        text_handling.exit_game()
 
                 for condition in ["to spawn", "to despawn"]:
                     if condition in current_enemy:
