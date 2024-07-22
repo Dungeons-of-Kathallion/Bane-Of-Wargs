@@ -1,0 +1,9 @@
+$YELLOW                 `_ ,
+$TAN       $PURPLE|        $YELLOW-(_)-
+$TAN      $YELLOW\$CYAN|$ORANGE/        $YELLOW,  `        $BROWN_________            __________
+$TAN       ^       $GREEN()  ()       $BROWN/$ORANGEXXXXXXXXX$BROWN\          /$ORANGEXXXXXXXXXX$BROWN\
+$TAN      / \    $GREEN()  $BROWN| | $GREEN()    $BROWN/--\_____/--\     $BROWN/----|_O______|
+$TAN     /   \    $GREEN() $BROWN| |$GREEN()        $BROWN|   O |        $BROWN|O   |     () |
+$TAN    / $PURPLE/$YELLOW|$TAN  \ $GREEN() ()$BROWN| |          | ()  $BROWN|       _|__-_|__-__[]_|___
+$TAN   / /\$CYAN|$TAN   \    $GREEN() $BROWN|     ___'_|_[]__|_-____/$GREEN-_-_-_-_-_-_-_-_-_-
+$GREEN_-$TAN/_/ _\7___\$GREEN_-_-$BROWN| |$GREEN-_-_$BROWN/$GREEN-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_$WHITE

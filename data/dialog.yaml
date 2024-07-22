@@ -447,6 +447,7 @@ Forlindon Map Shown To Sheriff:
 Shaman Talk:
   conversation:
     - label 1:
+      - display-scene(Ayar Town Shaman Tipi)
       - print(You approach the shaman's tipi. Like if she knew you were coming, she tells you to enter. You enter the tipi and sit on the couch, in front of the shaman's desk. She says:)
       - print(“- Hi $name... What is your worry?...)
       - print(- Shaman, I must ask you about the 'outer world', you ask.)
