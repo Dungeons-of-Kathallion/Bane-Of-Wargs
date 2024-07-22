@@ -331,8 +331,7 @@ def offer_mission(
                     data["on offer"]["dialog"], dialog, preferences, text_replacements_generic, player, drinks,
                     item, enemy, npcs, start_player, lists, zone,
                     mission, mounts, start_time, map, save_file, player_damage_coefficient,
-                    enemies_damage_coefficient, enemies_damage_coefficient,
-                    previous_player, mission_offered=mission_id
+                    enemies_damage_coefficient, previous_player, mission_offered=mission_id
                 )
                 if not action_done:
                     if "force accept" in list(data):
