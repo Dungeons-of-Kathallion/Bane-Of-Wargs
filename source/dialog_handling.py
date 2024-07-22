@@ -345,7 +345,7 @@ def load_conversation_label(
             scene = current_function.replace('display-scene(', '')
             scene = scene.replace(')', '')
             logger_sys.log_message(
-                f"INFO: Printing dialog '{current_dialog_name}' conversation scene at " +
+                f"INFO: Printing dialog '{current_dialog}' conversation scene at " +
                 f"'{program_dir}/temp/imgs/{scene}.txt'"
             )
             with open(f"{program_dir}/temp/imgs/{scene}.txt") as f:

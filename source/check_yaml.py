@@ -175,7 +175,7 @@ def check_dialog_conversations(dialog_data, dialog_name):
         possible_functions = [
             'print(', 'ask-input(', 'goto(', 'wait(', 'ask-confirmation(', 'if(',
             'choice(', 'create-variable(', 'accept(', 'decline(', 'defer(', 'die(',
-            'display-scen('
+            'display-scene('
         ]
 
         count2 = 0
