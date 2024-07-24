@@ -601,7 +601,7 @@ Knife:
   agility: .25
   gold: 9.85
   critical hit chance: .15
-  description: "A simple knife. Fast and easy to use. Most goblins uses this weapon."
+  description: "A simple knife. Fast and easy to use. Most goblins use this weapon."
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
