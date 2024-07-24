@@ -32,6 +32,8 @@ Artwork
   BP (GPL-3+)
   Chev (GPL-3+)
   Cromha (GPL-3+)
+  dwb (GPL-3+)
+  ejm (GPL-3+)
   I-Am-The-Evil-Guy-Who-Wil-Destroy-The-World-Now (GPL-3+)
   Ironwing (GPL-3+)
   Joan G. Stark (GPL-3+)
