@@ -684,33 +684,33 @@ Lumberjack Axe:
   description: "A generic lumberjack axe. It may cut wood nicely, but not really for orks."
   thumbnail raw: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║          ,  /\  .          ║
-    ║         //`-||-'\\         ║
-    ║        (| -=||=- |)        ║
-    ║         \\,-||-.//         ║
-    ║          `  ||  '          ║
-    ║             ||             ║
-    ║             ||             ║
-    ║             ||             ║
-    ║             ||             ║
-    ║             ||             ║
-    ║             ()             ║
+    ║              A             ║
+    ║             /!\            ║
+    ║            / ! \           ║
+    ║     /\     )___(           ║
+    ║    (  `.____(_)_________   ║
+    ║    |           __..--##    ║
+    ║    (       _.-|            ║
+    ║     \    ,' | |            ║
+    ║      \  /   | |            ║
+    ║       \(    | |            ║
+    ║        `    | |            ║
+    ║             | |            ║
     ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
-    ║                            ║
-    ║          $GRAY,  /\  .          $WHITE║
-    ║         $GRAY//`-$BROWN||$GRAY-'\\         $WHITE║
-    ║        $GRAY(| -$CYAN=$BROWN||$CYAN=$GRAY- |)        $WHITE║
-    ║         $GRAY\\,-$BROWN||$GRAY-.//         $WHITE║
-    ║          $GRAY`  $BROWN||  $GRAY'          $WHITE║
-    ║             $BROWN||             $WHITE║
-    ║             $BROWN||             $WHITE║
-    ║             $BROWN||             $WHITE║
-    ║             $BROWN||             $WHITE║
-    ║             $BROWN||             $WHITE║
-    ║             $GREEN()             $WHITE║
+    ║              $REDA             $WHITE║
+    ║             $LIGHT_GRAY/$SILVER!$LIGHT_GRAY\            $WHITE║
+    ║            $LIGHT_GRAY/$SILVER !$LIGHT_GRAY \           $WHITE║
+    ║$SILVER     /\     $LIGHT_GRAY)$SILVER___$LIGHT_GRAY(           $WHITE║
+    ║$SILVER    (  `.____$LIGHT_GRAY(_)$SILVER_________   $WHITE║
+    ║$SILVER    |           __..--##    $WHITE║
+    ║$SILVER    (       _$$DARK_BROWN.-|            $WHITE║
+    ║$SILVER     \    ,' $DARK_BROWN| |            $WHITE║
+    ║$SILVER      \  /   $DARK_BROWN| |            $WHITE║
+    ║$SILVER       \(    $DARK_BROWN| |            $WHITE║
+    ║$SILVER        `    $DARK_BROWN| |            $WHITE║
+    ║             $DARK_BROWN| |            $WHITE║
     ╚════════════════════════════╝
 Dwarf Axe: &dwarf_axe
   display name: "Dwarf Axe"
