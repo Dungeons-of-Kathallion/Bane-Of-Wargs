@@ -3470,6 +3470,17 @@ def run(play):
                 text_handling.print_separator('=')
                 play = 0
             continued_command = True
+        elif command.lower().startswith('$help$'):
+            logger_sys.log_message("INFO: Displaying admin commands help")
+            cout("1 $player$data$ : check or edit the player's internal data save file permanently")
+            cout("2 $game$data$ : check out the game data files in raw mode")
+            cout("3 $spawn$enemy$ : trigger a fight between you and a selected enemy")
+            cout("4 $teleport$zone$ : teleport to a selected zone's closest map point")
+            cout("5 $find$point$ : find a map point's id by its X and Y coordinates")
+            cout("5 $teleport$point$ : teleport to a selected X and Y coordinates")
+            cout("6 $run$dialog$ : trigger a selected dialog and its actions with it")
+            cinput()
+            continued_command = True
         elif command.lower().startswith('$player$data$'):
             logger_sys.log_message("INFO: Displaying player data in a pager mode")
             choice = terminal_handling.show_menu(['Check', 'Edit'], length=12)
