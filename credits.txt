@@ -54,6 +54,7 @@ Artwork
   nic (GPL-3+)
   sk (GPL-3+)
   valkyrie (GPL-3+)
+  Veronica Karlsson (GPL-3+)
 
 For a full list of attributions,
 see the "copyright" file.

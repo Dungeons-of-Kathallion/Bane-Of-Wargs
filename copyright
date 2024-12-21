@@ -1,23 +1,23 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: bane-of-wargs
-Upstream-Contact: Cromha <angelo.longo13@outlook.com>
+Upstream-Contact: Cromha (@OcelotWalrus on github)
 Source: https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs
 Comment: N.M.I. == No More Information (about)
 
 Files: *
-Copyright: Cromha <angelo.longo13@outlook.com>
+Copyright: Cromha (@OcelotWalrus on github)
            bane-of-wargs contributors (see credits.txt)
 License: GPL-3+
 
 Files: data/*
-Copyright: Cromha <angelo.longo13@outlook.com>
+Copyright: Cromha (@OcelotWalrus on github)
            the code is Cromha's own, but some ascii art in the zone.yaml
            file are inspired from Ork Slayer Gamedev's game 'Bane Of Orks'
            (https://orkslayergamedev.itch.io/bane-of-orks)
 License: GPL-3+
 
 Files: imgs/*
-Copyright: Cromha <angelo.longo13@outlook.com>
+Copyright: Cromha (@OcelotWalrus on github)
            for the most part, taken from ASCII Art Archive (https://asciiart.eu),
            and then edited with color codes. Some others have been generated using
            https://manytools.org/hacker-tools/convert-images-to-ascii-art/. Others
@@ -38,6 +38,7 @@ Copyright:
  AoS (N.M.I.)
  cf (N.M.I.)
  mga (N.M.I.)
+ Veronica Karlsson
 License: GPL-3+
 Comment: Items thumbnails are the ASCII art taken from various artists.
          Some are edited and slightly modified
