@@ -1409,35 +1409,48 @@ def run(play):
         # coefficient, depending on the player
         # elapsed time in game-days
         #
-        # Here's the calculation settings:
-        # x < 25days  => .85
-        # x < 45days  => .95
-        # x < 50days  => 1
-        # x < 80days  => 1.15
-        # x < 100days => 1.25
-        # x < 150days => 1.35
-        # x < 220days => 1.45
-        # x < 300days => 1.5
+        # Here's the calculation setting:
+        # x < 5days  => .6
+        # x < 10days  => .7
+        # x < 15days  => .95
+        # x < 25days  => 1
+        # x < 45days => 1.2
+        # x < 50days => 1.3
+        # x < 80days => 1.4
+        # x < 100days => 1.525
+        # x < 130days => 1.775
+        # x < 150days => 1.975
+        # x < 180days => 1.99
+        # x < 220days => 2
+        # x > 220days => 2.225
         global enemies_damage_coefficient
         enemies_damage_coefficient = 1  # placeholder
-        if player["elapsed time game days"] < 25:
-            enemies_damage_coefficient = .85
-        elif player["elapsed time game days"] < 45:
+        if player["elapsed time game days"] < 5:
+            enemies_damage_coefficient = .6
+        elif player["elapsed time game days"] < 10:
+            enemies_damage_coefficient = .7
+        elif player["elapsed time game days"] < 15:
             enemies_damage_coefficient = .95
-        elif player["elapsed time game days"] < 50:
+        elif player["elapsed time game days"] < 25:
             enemies_damage_coefficient = 1
+        elif player["elapsed time game days"] < 45:
+            enemies_damage_coefficient = 1.2
+        elif player["elapsed time game days"] < 50:
+            enemies_damage_coefficient = 1.3
         elif player["elapsed time game days"] < 80:
-            enemies_damage_coefficient = 1.15
+            enemies_damage_coefficient = 1.4
         elif player["elapsed time game days"] < 100:
-            enemies_damage_coefficient = 1.25
+            enemies_damage_coefficient = 1.525
+        elif player["elapsed time game days"] < 130:
+            enemies_damage_coefficient = 1.775
         elif player["elapsed time game days"] < 150:
-            enemies_damage_coefficient = 1.35
+            enemies_damage_coefficient = 1.975
+        elif player["elapsed time game days"] < 180:
+            enemies_damage_coefficient = 1.99
         elif player["elapsed time game days"] < 220:
-            enemies_damage_coefficient = 1.45
-        elif player["elapsed time game days"] < 300:
-            enemies_damage_coefficient = 1.5
+            enemies_damage_coefficient = 2
         else:
-            enemies_damage_coefficient = 1.5
+            enemies_damage_coefficient = 2.225
 
         # Calculating traveling coefficient, depending
         # on the player inventory size and its mounts
