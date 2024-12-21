@@ -31,10 +31,18 @@ Vodka:
   gold: 3.8
   healing level: 4
   description: "A drink invented by orks and goblins."
+Rum:
+  gold: 4.1
+  healing level: 6
+  description: "A drink invented by orks and goblins."
 Champagne:
   gold: 4.2
   healing level: 11
   description: "A famous drink."
+Hard Cider:
+  gold: 3.2
+  healing level: 9
+  description: "Tasty drink made out of fermented apple juice."
 Suspicious Cocktail:
   gold: 2.8
   healing level: 6
@@ -51,6 +59,10 @@ Suspicious Stew:
   gold: 12.5
   healing level: 16
   description: "Why not try to drink this?"
+Tea:
+  gold: 8.3
+  healing level: 5
+  description: "A warm coffee never hurts."
 Coffee:
   gold: 7.4
   healing level: 7
