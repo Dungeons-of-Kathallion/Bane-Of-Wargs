@@ -282,13 +282,13 @@ Wendy Escort Offer:
 Wendy Escort Complete:
   conversation:
     - label 1:
-      - print(You successfully deposit Wendy to the Woodstack Hostel and let her go see her dad. You decide to have a whisky at the Woodstack Hostel...)
+      - print(You successfully deposit Wendy to the Woodstack Hostel and let her go see her dad. You decide to have a whiskey at the Woodstack Hostel...)
       - wait(5)
       - print(A few minutes later, Wendy comes back with tears on her face, and express to you how she is grateful to you. She gives you 125 gold.)
   use actions: true
   actions:
     use drink:
-    - Whisky
+    - Whiskey
 
 Escort Gerud Beer Convoy Offer:
   conversation:

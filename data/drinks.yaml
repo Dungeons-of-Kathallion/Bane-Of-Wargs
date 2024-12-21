@@ -19,10 +19,10 @@ Los Gerudos Beer:
   gold: 5.1
   healing level: 15
   description: "A beer that can only be found in the Los Gerudos Grand Hostel."
-Whisky:
+Whiskey:
   gold: 3.5
   healing level: 11
-  description: "A good old bottle of whisky. Great to relax and restore health."
+  description: "A good old bottle of whiskey. Great to relax and restore health."
 Wine:
   gold: 3.4
   healing level: 11

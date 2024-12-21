@@ -429,7 +429,7 @@ Los Gerudos Hostel:
     drinks:
     - Los Gerudos Beer
     - Beer
-    - Whisky
+    - Whiskey
     - Wine
     - Champagne
     - Suspicious Cocktail
@@ -491,7 +491,7 @@ Kathal Horses:
       - Donkey
       drinks:
       - Beer
-      - Whisky
+      - Whiskey
       - Suspicious Stew
       items:
       - Wheat
@@ -623,7 +623,7 @@ Seaside Hostels:
   sells:
     drinks:
     - Beer
-    - Whisky
+    - Whiskey
     - Wine
     - Champagne
     - Purple Elixir
