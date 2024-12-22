@@ -53,6 +53,7 @@ Artwork
   jah (GPL-3+)
   jrei (GPL-3+)
   mga (GPL-3+)
+  mfj (GPL-3+)
   nic (GPL-3+)
   sk (GPL-3+)
   valkyrie (GPL-3+)

@@ -2217,38 +2217,80 @@ def run(play):
                 f.write(dumped)
             logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
 
+        # If the player's mount's health is at 0%, it dies (T-T)
+        # ELSE:
         # Warn the player about its current mount's health status at:
         # below 50%, below 25%, below 10%, below 5%
         if player["current mount"] in player["mounts"]:
             current_mount_data = player["mounts"][str(player["current mount"])]
             current_mount_type = str(current_mount_data["mount"])
 
-            if (
-                100 * current_mount_data["current health"] / current_mount_data["health"]
-            ) <= 5:
+            if current_mount_data["current health"] <= 0:
                 cout(
                     COLOR_STYLE_BRIGHT + COLOR_BACK_BLACK + COLOR_RED +
-                    "Warning: your current mount's health is below 5% !" + COLOR_RESET_ALL
+                    "Warning: your current mount died ! (T-T)" + COLOR_RESET_ALL
                 )
-                cout("Deposit your mount for it to recover health")
-            elif (
-                100 * current_mount_data["current health"] / current_mount_data["health"]
-            ) <= 10:
+                cout(COLOR_BLUE + "R.I.P " + current_mount_data["name"] + COLOR_RESET_ALL)
+                cout("""                                 _____  _____
+                                <     `/     |
+                                 >          (
+                                |   _     _  |
+                                |  |_) | |_) |
+                                |  | \\ | |   |
+                                |            |
+                 ______.______%_|            |__________  _____
+               _/                                       \\|     |""")
+
                 cout(
-                    COLOR_STYLE_BRIGHT + COLOR_RED + "Warning: your current mount's health is below 10% !"
-                    + COLOR_RESET_ALL
+                    " " * 14 + "|" + int(48 / 2 - len(current_mount_data["name"]) / 2) * " " +
+                    current_mount_data["name"].upper() +
+                    int(48 / 2 - len(current_mount_data["name"]) / 2) * " " + "<"
                 )
-                cout("Deposit your mount for it to recover health")
-            elif (
-                100 * current_mount_data["current health"] / current_mount_data["health"]
-            ) <= 25:
-                cout(COLOR_ORANGE_5 + "Warning: your current mount's health is below 25% !" + COLOR_RESET_ALL)
-                cout("Deposit your mount for it to recover health")
-            elif (
-                100 * current_mount_data["current health"] / current_mount_data["health"]
-            ) <= 50:
-                cout(COLOR_YELLOW + "Warning: your current mount's health is below 50% !" + COLOR_RESET_ALL)
-                cout("Deposit your mount for it to recover health")
+
+                cout("""              |_____.-._________              ____/|___________|
+                                | * you'll   |
+                                | be rememb- |
+                                |   -ered    |
+                                |            |
+                                |   _        <
+                                |__/         |
+                                 / `--.      |
+                               %|            |%
+                           |/.%%|          -< @%%%
+                           `\\%`@|     v      |@@%@%%
+                         .%%%@@@|%    |    % @@@%%@%%%%
+                    _.%%%%%%@@@@@@%%_/%\\_%@@%%@@@@@@@%%%%%%""")
+                logger_sys.log_message(f"INFO: Player mount '{str(player["current mount"])}' died")
+                player["mounts"].pop(str(player["current mount"]))
+                player["current mount"] = " "
+            else:
+                if (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 5:
+                    cout(
+                        COLOR_STYLE_BRIGHT + COLOR_BACK_BLACK + COLOR_RED +
+                        "Warning: your current mount's health is below 5% !" + COLOR_RESET_ALL
+                    )
+                    cout("Deposit your mount for it to recover health")
+                elif (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 10:
+                    cout(
+                        COLOR_STYLE_BRIGHT + COLOR_RED + "Warning: your current mount's health is below 10% !"
+                        + COLOR_RESET_ALL
+                    )
+                    cout("Deposit your mount for it to recover health")
+                elif (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 25:
+                    cout(COLOR_ORANGE_5 + "Warning: your current mount's health is below 25% !" + COLOR_RESET_ALL)
+                    cout("Deposit your mount for it to recover health")
+                elif (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 50:
+                    cout(COLOR_YELLOW + "Warning: your current mount's health is below 50% !" + COLOR_RESET_ALL)
+                    cout("Deposit your mount for it to recover health")
+
 
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
