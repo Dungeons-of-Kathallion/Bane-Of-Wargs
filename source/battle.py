@@ -15,6 +15,7 @@
 # source imports
 import text_handling
 import item_handling
+import logger_sys
 from colors import *
 from terminal_handling import cout, cinput
 # external imports
@@ -805,6 +806,19 @@ def fight(
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
                     cout(f"You killed {text_handling.a_an_check(enemy_singular)}!")
+                    if player["current mount"] != " ":
+                        current_mount = str(player["current mount"])
+                        current_mount_type = str(player["mounts"][current_mount]["mount"])
+                        player["mounts"][current_mount]["last day health automatically reduced"] = round(
+                            player["elapsed time game days"], 2
+                        )
+                        to_be_removed = round(
+                            mounts[current_mount_type]["feed"]["feed needs"] * 1.75
+                        )
+                        player["mounts"][current_mount]["current health"] -= to_be_removed
+                        logger_sys.log_message(
+                            f"INFO: removed {to_be_removed} health points from player current mount {current_mount}"
+                        )
                     time.sleep(2)
                     still_playing = False
                     turn = True

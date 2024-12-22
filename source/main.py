@@ -1089,33 +1089,119 @@ def run(play):
                 player["mounts"][str(player["current mount"])]["level"] = mounts[current_mount_type]["levels"]["max level"]
 
         logger_sys.log_message("INFO: Updating player ridden mount stats following its level")
-        # update player current mount stats following its level
-        if player["current mount"] in player["mounts"]:
-            current_mount_data = player["mounts"][str(player["current mount"])]
+        # update every player's mounts stats following its level
+        for current_mount in player["mounts"]:
+            current_mount_data = player["mounts"][current_mount]
             current_mount_type = str(current_mount_data["mount"])
-            if current_mount_data["level"] >= 1:
+            player["mounts"][
+                current_mount
+            ]["stats"]["agility addition"] = round(
+                mounts[current_mount_type]["stats"]["agility addition"] +
+                (mounts[current_mount_type]["levels"][
+                    "level stat additions"
+                ]["agility addition"] * (round(current_mount_data["level"]) - 1)), 3
+            )
+            player["mounts"][
+                current_mount
+            ]["stats"]["resistance addition"] = round(
+                mounts[current_mount_type]["stats"]["resistance addition"] +
+                (mounts[current_mount_type]["levels"][
+                    "level stat additions"
+                ]["resistance addition"] * (round(current_mount_data["level"]) - 1)), 3
+            )
+            player["mounts"][
+                current_mount
+            ]["mph"] = (
+                mounts[current_mount_type]["mph"] + mounts[current_mount_type]["levels"][
+                    "level stat additions"
+                ]["mph addition"] * round(current_mount_data["level"] - 1)
+            )
+            player["mounts"][
+                current_mount
+            ]["health"] = (
+                round(mounts[current_mount_type]["stats"]["health"] + mounts[current_mount_type]["levels"][
+                    "level stat additions"
+                ]["health addition"] * round(current_mount_data["level"] - 1))
+            )
+            # Transition from version 0.24-alpha to 0.25-alpha, where new stats were added
+            if "current health" not in player["mounts"][current_mount]:
                 player["mounts"][
-                    str(player["current mount"])
-                ]["stats"]["agility addition"] = round(
-                    mounts[current_mount_type]["stats"]["agility addition"] +
-                    (mounts[current_mount_type]["levels"][
+                    current_mount
+                ]["current health"] = (
+                    round(mounts[current_mount_type]["stats"]["health"] + mounts[current_mount_type]["levels"][
                         "level stat additions"
-                    ]["agility addition"] * (round(current_mount_data["level"]) - 1)), 3
+                    ]["health addition"] * round(current_mount_data["level"] - 1))
                 )
-                player["mounts"][
-                    str(player["current mount"])
-                ]["stats"]["resistance addition"] = round(
-                    mounts[current_mount_type]["stats"]["resistance addition"] +
-                    (mounts[current_mount_type]["levels"][
-                        "level stat additions"
-                    ]["resistance addition"] * (round(current_mount_data["level"]) - 1)), 3
+                logger_sys.log_message(
+                    f"WARNING: Transitioning mount '{current_mount}' stats `current health` to new version"
                 )
+            if "last day health automatically reduced" not in player["mounts"][current_mount]:
                 player["mounts"][
-                    str(player["current mount"])
-                ]["mph"] = (
-                    mounts[current_mount_type]["mph"] + mounts[current_mount_type]["levels"][
-                        "level stat additions"
-                    ]["mph addition"] * round(current_mount_data["level"] - 1)
+                    current_mount
+                ]["last day health automatically reduced"] = round(player["elapsed time game days"], 2)
+                logger_sys.log_message(
+                    f"WARNING: Transitioning mount '{current_mount}' stats `current health` to new version"
+                )
+            if "last day health recovered" not in player["mounts"][current_mount]:
+                player["mounts"][
+                    current_mount
+                ]["last day health recovered"] = round(player["elapsed time game days"], 2)
+                logger_sys.log_message(
+                    f"WARNING: Transitioning mount '{current_mount}' stats `current health` to new version"
+                )
+
+            # Make sure the mount's health isn't over its max health
+            if (
+                player["mounts"][current_mount]["current health"] >
+                player["mounts"][current_mount]["health"]
+            ):
+                player["mounts"][
+                    current_mount
+                ]["current health"] = player["mounts"][current_mount]["health"]
+
+            # If the mount isn't deposited, and a day has just passed,
+            # remove some of that mount's health
+            if (
+                not player["mounts"][current_mount]["is deposited"] and
+                (
+                    round(player["elapsed time game days"], 2) -
+                    player["mounts"][current_mount]["last day health automatically reduced"]
+                ) >= 1
+            ):
+                player["mounts"][current_mount]["last day health automatically reduced"] = round(
+                    player["elapsed time game days"], 2
+                )
+                to_be_removed = round(
+                    mounts[current_mount_type]["feed"]["feed needs"] * 2.15
+                )
+                player["mounts"][current_mount]["current health"] -= to_be_removed
+                logger_sys.log_message(
+                    f"INFO: Removed {to_be_removed} health points to mount '{current_mount}' because a new day passed"
+                )
+            # If the mount is deposited, and its current health is not
+            # at its max, and a quarter of a day has just passed,
+            # recover 15% of its max health.
+            if (
+                player["mounts"][current_mount]["is deposited"] and
+                (
+                    round(player["elapsed time game days"], 2) -
+                    player["mounts"][current_mount]["last day health recovered"]
+                ) >= .25 and
+                (
+                    player["mounts"][current_mount]["current health"]
+                    < player["mounts"][current_mount]["health"]
+                )
+            ):
+                player["mounts"][current_mount]["last day health recovered"] = round(
+                    player["elapsed time game days"], 2
+                )
+                to_be_added = round(
+                    player["mounts"][current_mount]["health"] * .15
+                )
+                player["mounts"][current_mount]["current health"] += to_be_added
+                logger_sys.log_message(
+                    f"INFO: Recovered {to_be_added} health points to mount '{current_mount}' " +
+                    "because it rested for a quarter of a day at a stable"
                 )
 
         logger_sys.log_message("INFO: Verifying player equipped equipment is in the player's inventory")
@@ -2148,6 +2234,78 @@ def run(play):
             with open(program_dir + '/preferences.yaml', 'w') as f:
                 f.write(dumped)
             logger_sys.log_message(f"INFO: Dumping player preferences to file '" + program_dir + "/preferences.yaml'")
+
+        # If the player's mount's health is at 0%, it dies (T-T)
+        # ELSE:
+        # Warn the player about its current mount's health status at:
+        # below 50%, below 25%, below 10%, below 5%
+        if player["current mount"] in player["mounts"]:
+            current_mount_data = player["mounts"][str(player["current mount"])]
+            current_mount_type = str(current_mount_data["mount"])
+
+            if current_mount_data["current health"] <= 0:
+                cout(
+                    COLOR_STYLE_BRIGHT + COLOR_BACK_BLACK + COLOR_RED +
+                    "Warning: your current mount died ! (T-T)" + COLOR_RESET_ALL
+                )
+                cout(COLOR_BLUE + "R.I.P " + current_mount_data["name"] + COLOR_RESET_ALL)
+                cout("""                                 _____  _____
+                                <     `/     |
+                                 >          (
+                                |   _     _  |
+                                |  |_) | |_) |
+                                |  | \\ | |   |
+                                |            |
+                 ______.______%_|            |__________  _____
+               _/                                       \\|     |""")
+                cout(
+                    " " * 14 + "|" + int(48 / 2 - len(current_mount_data["name"]) / 2) * " " +
+                    current_mount_data["name"].upper() +
+                    int(48 / 2 - len(current_mount_data["name"]) / 2) * " " + "<"
+                )
+                cout("""              |_____.-._________              ____/|___________|
+                                | * you'll   |
+                                | be rememb- |
+                                |   -ered    |
+                                |            |
+                                |   _        <
+                                |__/         |
+                                 / `--.      |
+                               %|            |%
+                           |/.%%|          -< @%%%
+                           `\\%`@|     v      |@@%@%%
+                         .%%%@@@|%    |    % @@@%%@%%%%
+                    _.%%%%%%@@@@@@%%_/%\\_%@@%%@@@@@@@%%%%%%""")
+                logger_sys.log_message(f"INFO: Player mount '{str(player["current mount"])}' died")
+                player["mounts"].pop(str(player["current mount"]))
+                player["current mount"] = " "
+            else:
+                if (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 5:
+                    cout(
+                        COLOR_STYLE_BRIGHT + COLOR_BACK_BLACK + COLOR_RED +
+                        "Warning: your current mount's health is below 5% !" + COLOR_RESET_ALL
+                    )
+                    cout("Deposit your mount for it to recover health")
+                elif (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 10:
+                    cout(
+                        COLOR_STYLE_BRIGHT + COLOR_RED + "Warning: your current mount's health is below 10% !"
+                        + COLOR_RESET_ALL
+                    )
+                    cout("Deposit your mount for it to recover health")
+                elif (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 25:
+                    cout(COLOR_ORANGE_5 + "Warning: your current mount's health is below 25% !" + COLOR_RESET_ALL)
+                    cout("Deposit your mount for it to recover health")
+                elif (
+                    100 * current_mount_data["current health"] / current_mount_data["health"]
+                ) <= 50:
+                    cout(COLOR_YELLOW + "Warning: your current mount's health is below 50% !" + COLOR_RESET_ALL)
+                    cout("Deposit your mount for it to recover health")
 
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
@@ -3286,6 +3444,29 @@ def run(play):
                     cout("GIVEN NAME: " + which_mount_data["name"])
                     cout("MOUNT: " + mounts[which_mount_data["mount"]]["name"])
                     cout("PLURAL: " + mounts[which_mount_data["mount"]]["plural"])
+                    cout(" ")
+
+                    mount_max = which_mount_data["health"]
+                    mount_health = which_mount_data["current health"]
+                    remaining_health_bars = round(mount_health / mount_max * 20)
+                    lost_health_bars = 20 - remaining_health_bars
+
+                    if remaining_health_bars > 20:
+                        remaining_health_bars = 20
+
+                    if mount_health > .66 * mount_max:
+                        health_color = COLOR_BLUE
+                    elif mount_health > .33 * mount_max:
+                        health_color = COLOR_CYAN
+                    else:
+                        health_color = COLOR_MAGENTA
+
+                    cout(f"HEALTH of {which_mount_data["name"]}: {mount_health} / {mount_max}")
+                    cout(
+                        f"|{health_color}{remaining_health_bars * "█"}" +
+                        f"{lost_health_bars * "_"}{COLOR_RESET}|"
+                    )
+
                     cout(" ")
 
                     which_mount_location = (

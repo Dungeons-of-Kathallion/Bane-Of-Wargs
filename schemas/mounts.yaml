@@ -11,10 +11,12 @@ stable:
 stats:
   agility addition: num()
   resistance addition: num()
+  health: int()
 levels:
   max level: int()
   level stat additions:
     agility addition: num()
     resistance addition: num()
     mph addition: num()
+    health addition: int()
 description: str()
