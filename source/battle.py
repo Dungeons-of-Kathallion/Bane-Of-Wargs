@@ -811,8 +811,12 @@ def fight(
                         player["mounts"][current_mount]["last day health automatically reduced"] = round(
                             player["elapsed time game days"], 2
                         )
-                        player["mounts"][current_mount]["current health"] -= round(
+                        to_be_removed = round(
                             mounts[current_mount_type]["feed"]["feed needs"] * 1.75
+                        )
+                        player["mounts"][current_mount]["current health"] -= to_be_removed
+                        logger_sys.log_message(
+                            f"INFO: removed {to_be_removed} health points from player current mount {current_mount}"
                         )
                     time.sleep(2)
                     still_playing = False

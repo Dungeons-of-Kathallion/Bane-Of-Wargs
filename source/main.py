@@ -1132,14 +1132,23 @@ def run(play):
                         "level stat additions"
                     ]["health addition"] * round(current_mount_data["level"] - 1))
                 )
+                logger_sys.log_message(
+                    f"WARNING: Transitioning mount '{current_mount}' stats `current health` to new version"
+                )
             if "last day health automatically reduced" not in player["mounts"][current_mount]:
                 player["mounts"][
                     current_mount
                 ]["last day health automatically reduced"] = round(player["elapsed time game days"], 2)
+                logger_sys.log_message(
+                    f"WARNING: Transitioning mount '{current_mount}' stats `current health` to new version"
+                )
             if "last day health recovered" not in player["mounts"][current_mount]:
                 player["mounts"][
                     current_mount
                 ]["last day health recovered"] = round(player["elapsed time game days"], 2)
+                logger_sys.log_message(
+                    f"WARNING: Transitioning mount '{current_mount}' stats `current health` to new version"
+                )
 
             # Make sure the mount's health isn't over its max health
             if (
@@ -1162,8 +1171,12 @@ def run(play):
                 player["mounts"][current_mount]["last day health automatically reduced"] = round(
                     player["elapsed time game days"], 2
                 )
-                player["mounts"][current_mount]["current health"] -= round(
+                to_be_removed = round(
                     mounts[current_mount_type]["feed"]["feed needs"] * 2.15
+                )
+                player["mounts"][current_mount]["current health"] -= to_be_removed
+                logger_sys.log_message(
+                    f"INFO: Removed {to_be_removed} health points to mount '{current_mount}' because a new day passed"
                 )
             # If the mount is deposited, and its current health is not
             # at its max, and a quarter of a day has just passed,
@@ -1182,8 +1195,13 @@ def run(play):
                 player["mounts"][current_mount]["last day health recovered"] = round(
                     player["elapsed time game days"], 2
                 )
-                player["mounts"][current_mount]["current health"] += round(
+                to_be_added = round(
                     player["mounts"][current_mount]["health"] * .15
+                )
+                player["mounts"][current_mount]["current health"] += to_be_added
+                logger_sys.log_message(
+                    f"INFO: Recovered {to_be_added} health points to mount '{current_mount}' " +
+                    "because it rested for a quarter of a day at a stable"
                 )
 
         logger_sys.log_message("INFO: Verifying player equipped equipment is in the player's inventory")
@@ -2240,13 +2258,11 @@ def run(play):
                                 |            |
                  ______.______%_|            |__________  _____
                _/                                       \\|     |""")
-
                 cout(
                     " " * 14 + "|" + int(48 / 2 - len(current_mount_data["name"]) / 2) * " " +
                     current_mount_data["name"].upper() +
                     int(48 / 2 - len(current_mount_data["name"]) / 2) * " " + "<"
                 )
-
                 cout("""              |_____.-._________              ____/|___________|
                                 | * you'll   |
                                 | be rememb- |
@@ -2290,7 +2306,6 @@ def run(play):
                 ) <= 50:
                     cout(COLOR_YELLOW + "Warning: your current mount's health is below 50% !" + COLOR_RESET_ALL)
                     cout("Deposit your mount for it to recover health")
-
 
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")

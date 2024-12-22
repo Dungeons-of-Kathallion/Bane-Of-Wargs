@@ -809,8 +809,13 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     player["mounts"][current_mount_uuid]["last day health automatically reduced"] = round(
                         player["elapsed time game days"], 2
                     )
-                    player["mounts"][current_mount_uuid]["current health"] -= round(
+                    to_be_removed = round(
                         mounts[current_mount_type]["feed"]["feed needs"] * 1.015
+                    )
+                    player["mounts"][current_mount_uuid]["current health"] -= to_be_removed
+                    logger_sys.log_message(
+                        f"INFO: Removed {to_be_removed} health points to mount '{current_mount_uuid}' " +
+                        "because it's finished training"
                     )
                 else:
                     logger_sys.log_message(
