@@ -219,6 +219,8 @@ while menu:
         check_yaml.examine(program_dir + '/preferences.yaml')
     text_handling.clear_prompt()
     text_handling.print_title(preferences)
+    cout(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Current code version: " + COLOR_RESET_ALL + "v" + str(SOURCE_CODE_VERSION))
+    cout(COLOR_GREEN + COLOR_STYLE_BRIGHT + "Current data version: " + COLOR_RESET_ALL + "v" + str(GAME_DATA_VERSION))
 
     options = ['Play Game', 'Manage Saves', 'Preferences', 'Gameplay Guide', 'Check Logs', 'Credits', 'Quit']
     choice = terminal_handling.show_menu(options)
