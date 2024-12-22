@@ -772,7 +772,7 @@ def fight(
                             cout("Your enemy dealt a critical hit!")
                         elif round(random.uniform(.30, player_agility), 2) > enemy_agility / 1.15 and random.uniform(0, 1) > .65:
                             player_dodged = True
-                            cout("You dodged your enemy attack!")
+                            cout("You dodged your enemy's attack!")
                         if damage > 0 and not player_dodged:
                             if enemy_critical_hit:
                                 damage = enemy_max_damage * 2
