@@ -11,7 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Seas and lakes
+## COMMON
+## MAP ZONES
+
 Stall Seas:
   name: "Stall Seas"
   description: "The great seas near the Stall Island."
@@ -51,6 +53,31 @@ Stall Seas Bay:
       |≈≈≈≈≈/|≈≈≈|
       |≈≈≈≈≈≈≈≈≈≈|
       x__________x
+
+Canyon:
+  name: "Canyon"
+  description: "This is a generic canyon."
+  type: plains canyon
+  map:
+    map full: |
+      x__________x
+      |$BLACKXXXXXXXXXX$WHITE|
+      |$BLACKXXXXXXXXXX$WHITE|
+      |$BLACKXXXXXXXXXX$WHITE|
+      |$BLACKXXXXXXXXXX$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |XXXXXXXXXX|
+      |XXXXXXXXXX|
+      |XXXXXXXXXX|
+      |XXXXXXXXXX|
+      x__________x
+
+## STALL ISLAND
+## MAP ZONES
+
+# SEAS AND LAKES
 
 Forlindon Lake:
   name: "Forlindon Lake"
@@ -132,7 +159,8 @@ Gerud Lakes:
       |≈≈≈≈≈≈≈≈≈≈|
       x__________x
 
-# Civilizations
+# CIVILIZATIONS
+
 Cocorico Village:
   name: "Cocorico Village"
   description: "The village in the Stall Fields. It offers tranquility and safeness."
@@ -1322,6 +1350,10 @@ Gerud Harbor:
       destination: 6608
       travel time: 5
       cost: 17.3
+    Shire Island:
+      destination: 8294
+      travel time: 45
+      cost: 215
   discounts:
     time space: 18
     chance: .3
@@ -1458,7 +1490,8 @@ South Pillager Raid Camp:
       |;/ / {}  \|
       x__________x
 
-# Lands
+# LANDS
+
 The Edge Of Goro Mounts:
   name: "The Edge Of Goro Mounts"
   type: low mountains
@@ -1705,7 +1738,7 @@ Los Gerudos Paradise Island:
       |;;;;;;;;;;|
       x__________x
 
-# Dungeons
+# DUNGEONS
 
 Goro Mounts Mines Dungeon:
   name: "Goro Mounts Mines Dungeon"
@@ -1897,3 +1930,1332 @@ Gerud Ancient Dungeon:
           gold reward: 45
           item reward:
           - Mumakil Tusk
+
+## SHIRE ISLAND
+## MAP ZONES
+
+# SEAS AND LAKES
+
+Boston Lake:
+  name: "Boston Lake"
+  description: "The beautiful lake of Boston."
+  type: lake
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+Eldin Bay:
+  name: "Eldin Bay"
+  description: "The beautiful bay of Eldin."
+  type: lake
+  map:
+    map full: |
+      x__________x
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈≈≈≈≈≈|
+      x__________x
+
+# CIVILIZATIONS
+
+Peregrine Town:
+  name: "Peregrine Town"
+  description: "One of the greatest human towns of the Archipelago. It's known for its forges and blacksmiths."
+  type: village
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |.-. _____||
+      ||=|/ /   \|
+      || |_|_""_||
+      ||_|_|____||
+      x__________x
+    map full: |
+      x__________x
+      |$BROWN.$ORANGE-$BROWN. $ORANGE_____|$WHITE|
+      |$DARK_BROWN|$LIGHT_GRAY=$DARK_BROWN|$ORANGE/ /   \$WHITE|
+      |$DARK_BROWN| $DARK_BROWN|$ORANGE_|_$LIGHT_GRAY""$ORANGE_|$WHITE|
+      |$DARK_BROWN|$BROWN_$DARK_BROWN|$ORANGE_|____|$WHITE|
+      x__________x
+  content:
+    hostels:
+    - The Prancing Poney
+    blacksmiths:
+    - Astrali Blacksmith
+    forges:
+    - Astrali Forge
+    stables:
+    - None
+    churches:
+    - Peregrine Chapel
+    groceries:
+    - Peregrine Grocery
+    harbors:
+    - Peregrine Harbor
+
+The Prancing Poney:
+  name: "The Prancing Poney"
+  type: hostel
+  cost value: 1.65
+  sleep gold: 10
+  description: "The Prancing Poney is a small tavern, yet luxurious but affordable to almost every foreigner and adventurer."
+  news:
+  - "..."
+  sells:
+    drinks:
+    - Beer
+    - Whiskey
+    - Vodka
+    - Green Elixir
+    items:
+    - Porkchop
+    - Beef
+    - Chicken
+    - Tissue Bag
+    - Healing Potion
+  buys:
+    items:
+    - None
+  map:
+    map raw: |
+      x__________x
+      | ///////\ |
+      |///////  \|
+      ||¯¯_¯¯|¯¯||
+      || | | |[]||
+      x__________x
+    map full: |
+      x__________x
+      |$ORANGE ///////\ $WHITE|
+      |$ORANGE///////  \$WHITE|
+      |$BROWN|$DARK_BROWN¯¯_¯¯$BROWN|$DARK_BROWN¯¯$BROWN|$WHITE|
+      |$BROWN| $DARK_BROWN| | $BROWN|$GRAY[]$BROWN|$WHITE|
+      x__________x
+  discounts:
+    time space: 9
+    chance: .35
+    discount:
+      max dropoff: .75
+      min dropoff: .15
+
+Peregrine Harbor:
+  name: "Peregrine Harbor"
+  type: harbor
+  description: >
+    The Peregrine Harbor. Greatest harbor of men. It can take you to any island of the Kathallion Archipelago. It's been renovated
+    many times. The prices are expensive though.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$CYAN≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$ORANGE\\\$CYAN≈≈≈≈≈≈≈$WHITE|
+      |$DARK_BROWN¯¯$BROWN|$SILVER_______$WHITE|
+      |  $BROWN|$LIGHT_GRAY .  *  $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |\\\≈≈≈≈≈≈≈|
+      |¯¯|_______|
+      |  | .  *  |
+      x__________x
+  travels:
+    Northern Goro Mounts:
+      destination: 1179
+      travel time: 10
+      cost: 34.6
+    Los Gerudos:
+      destination: 7767
+      travel time: 35
+      cost: 225
+    Eldin:
+      destination: 12436
+      travel time: 7
+      cost: 27.89
+  discounts:
+    time space: 17
+    chance: .35
+    discount:
+      max dropoff: .5
+      min dropoff: .30
+
+Peregrine Chapel:
+  name: "Cocorico Church"
+  type: church
+  description: >
+    A small yet but beautiful chapel, where many foreigners visit when
+    passing by the Peregrine Town.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |          |
+      |    A_    |
+      |   /\-\   |
+      |¯-_||"|___|
+      x__________x
+    map full: |
+      x__________x
+      |          $WHITE|
+      |    $REDA$BROWN_    $WHITE|
+      |$BROWN   /\-\   $WHITE|
+      |$LIGHT_GRAY¯-_$BROWN||$DARK_BROWN"$BROWN|$LIGHT_GRAY___$WHITE|
+      x__________x
+  rest hp restoring percentage: .45
+  exp exchange max health percentage: .015
+
+Astrali Forge:
+  name: "Astrali Forge"
+  type: forge
+  cost value: 1.25
+  description: >
+    The famous forge of the Peregrine Town. Known among every forgeman of the archipelago. Their raw stock
+    comes from the Goro Mounts dwarf mines.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |*  *  <>  |
+      |{¯¯¯¯¯¯¯¯}|
+      |{ ___ () }|
+      |{|░░░|() }|
+      x__________x
+    map full: |
+      x__________x
+      |$GRAY*  *  $DARK_BROWN<>  $WHITE|
+      |$SILVER{$DARK_BROWN¯¯¯¯¯¯¯¯$SILVER}$WHITE|
+      |$SILVER{ $TAN___ $KHAKI() $SILVER}$WHITE|
+      |$SILVER{$TAN|$ORANGE░░░$TAN|$KHAKI() $SILVER}$WHITE|
+      x__________x
+  forge:
+    buys:
+    - None
+    sells:
+    - Raw Iron
+    - Raw Copper
+    - Raw Silver
+    - Raw Aluminum
+    - Raw Lead
+    - Raw Bronze
+    - Steel
+    - Refined Steel
+    - Flexible Steel
+  discounts:
+    time space: 23
+    chance: .75
+    discount:
+      max dropoff: .60
+      min dropoff: .25
+
+Astrali Blacksmith:
+  name: "Astrali Blacksmith"
+  type: blacksmith
+  cost value: 1.15
+  description: >
+    The famous armorer of the Peregrine Town. Known among every blacksmith of the archipelago. Ran
+    by a dwarf family. They are probably the best blacksmith making time.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |*  *  <>  |
+      |{¯¯¯¯¯¯¯¯}|
+      |{ ___ () }|
+      |{|░░░|() }|
+      x__________x
+    map full: |
+      x__________x
+      |$GRAY*  *  $DARK_BROWN<>  $WHITE|
+      |$SILVER{$DARK_BROWN¯¯¯¯¯¯¯¯$SILVER}$WHITE|
+      |$SILVER{ $TAN___ $KHAKI() $SILVER}$WHITE|
+      |$SILVER{$TAN|$ORANGE░░░$TAN|$KHAKI() $SILVER}$WHITE|
+      x__________x
+  blacksmith:
+    buys:
+    - Sword
+    - Broadsword
+    - Chuckle Sword
+    - Rapier
+    - Long Sword
+    - Dagger
+    - Dwarf Axe
+    - Throwing Axe
+    - Spear
+    - Bow
+    - Elf Bow
+    orders:
+      Sword:
+        gold: 17.56
+        time needed: 1.6
+        needed materials:
+        - Raw Iron
+        - Steel
+      Broadsword:
+        gold: 31.28
+        time needed: 2.3
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Raw Silver
+        - Raw Lead
+        - Refined Steel
+      Chuckle Sword:
+        gold: 69.28
+        time needed: 3.5
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Raw Silver
+        - Raw Silver
+        - Raw Copper
+        - Raw lead
+        - Refined Steel
+        - Refined Steel
+      Rapier:
+        gold: 21.05
+        time needed: 2.1
+        needed materials:
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw lead
+        - Flexible Steel
+        - Flexible Steel
+      Long Sword:
+        gold: 27.26
+        time needed: 2.8
+        needed materials:
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Steel
+        - Refined Steel
+        - Flexible Steel
+      Dagger:
+        gold: 7.10
+        time needed: .3
+        needed materials:
+        - Raw Silver
+        - Raw Lead
+        - Steel
+      Dwarf Axe:
+        gold: 28.34
+        time needed: 2.2
+        needed materials:
+        - Raw Lead
+        - Raw Lead
+        - Steel
+        - Steel
+        - Steel
+      Throwing Axe:
+        gold: 46.25
+        time needed: 4.2
+        needed materials:
+        - Raw Bronze
+        - Raw Lead
+        - Raw Lead
+        - Raw Silver
+        - Refined Steel
+        - Refined Steel
+        - Refined Steel
+      Spear:
+        gold: 23.43
+        time needed: 2.3
+        needed materials:
+        - Raw Lead
+        - Raw Lead
+        - Steel
+        - Flexible Steel
+        - Refined Steel
+      Bow:
+        gold: 15.72
+        time needed: 0.35
+        needed materials:
+        - Raw Wood
+        - Raw Wood
+        - Bow String
+        - Bow String
+      Elf Bow:
+        gold: 37.62
+        time needed: 2.1
+        needed materials:
+        - Raw Wood
+        - Raw Wood
+        - Raw Wood
+        - Flexible String
+        - Flexible String
+        - Strong String
+        - Strong String
+  discounts:
+    time space: 21
+    chance: .35
+    discount:
+      max dropoff: .10
+      min dropoff: .35
+
+Peregrine Grocery:
+  name: "Peregrine Grocery"
+  type: grocery
+  description: "The grocery that owns the market of the Peregrine Town. Affordable for most."
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$GREEN (  $BROWN _____$WHITE|
+      |$GREEN( ) $BROWN/$RED-----$WHITE|
+      |$GREEN ( ($BROWN|     $WHITE|
+      |$GREEN,,$YELLOW| $BROWN|  $KHAKI() $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | (   _____|
+      |( ) /-----|
+      | ( (|     |
+      |,,| |  () |
+      x__________x
+  cost value: .96
+  items sold:
+  - Dagger
+  - Wolf Fur
+  - Old Pants
+  - Broken Shield
+  - Tissue Bag
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Hay Bale
+  - Raw Salmon
+  - Cactus
+  - Tree Log
+  - Slime
+  - Raw Wood
+  - Raw Aluminum
+  - Knight Beverage
+  discounts:
+    time space: 18
+    chance: .3
+    discount:
+      max dropoff: .5
+      min dropoff: .15
+
+Boston Outpost:
+  name: "Boston Outpost"
+  description: "This men outpost is here to protect the Shire County from orks and goblins."
+  type: village
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  _   @   |
+      | / \-     |
+      | |¯|    * |
+      | | |  |**||
+      x__________x
+    map full: |
+      x__________x
+      |$DARK_BROWN  _   $YELLOW@   $WHITE|
+      |$DARK_BROWN $ORANGE/|\$GRAY-     $WHITE|
+      |$DARK_BROWN |$GRAY¯$DARK_BROWN|    $KHAKI* $WHITE|
+      |$DARK_BROWN | |  $BROWN|$KHAKI**$BROWN|$WHITE|
+      x__________x
+  content:
+    hostels:
+    - Flori Tavern
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - Flori Stables
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
+Flori Tavern:
+  name: "Flori Tavern"
+  type: hostel
+  cost value: .8
+  sleep gold: 5
+  description: >
+    A small tavern. Very welcoming to adventurers who dare to approach that close to the Wasted Lands Of Kirgon.
+    Their sold items are of poor quality though.
+  news:
+  - "..."
+  sells:
+    drinks:
+    - Vodka
+    - Green Elixir
+    - Purple Elixir
+    - Suspicious Stew
+    - Suspicious Cocktail
+    items:
+    - Stretched Bag
+    - Rotten Flesh
+    - Raw Salmon
+    - Bread
+    - Apple
+    - Carrot
+  buys:
+    items:
+    - None
+  map:
+    map raw: |
+      x__________x
+      |   ____   |
+      |  ////\\  |
+      | ////  \\ |
+      |////[]  \\|
+      x__________x
+    map full: |
+      x__________x
+      |$DARK_BROWN   ____   $WHITE|
+      |$YELLOW  ////\\  $WHITE|
+      |$YELLOW ////  $YELLOW\\ $WHITE|
+      |$YELLOW////$BROWN[]  $YELLOW\\$WHITE|
+      x__________x
+  discounts:
+    time space: 25
+    chance: .25
+    discount:
+      max dropoff: .35
+      min dropoff: .05
+
+Flori Stables:
+  name: "Flori Stables"
+  description: >
+    A small stable to keep the outpost keepers's steeds. They don't sell any mount there.
+  type: stable
+  cost value: .78
+  training gold: 7
+  deposit gold: 1.7
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |    $BROWN___   $WHITE|
+      |   $BROWN/$DARK_BROWN¯¯¯$BROWN\  $WHITE|
+      |   $BROWN|$TAN/¯\$BROWN|  $WHITE|
+      |$GREEN_--$BROWN|$TAN| |$BROWN|$YELLOW,$GREEN_$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |    ___   |
+      |   /¯¯¯\  |
+      |   |/¯\|  |
+      |_--|| ||,_|
+      x__________x
+  stable:
+    sells:
+      mounts:
+      - None
+      drinks:
+      - None
+      items:
+      - None
+    stables:
+    - Horse Stable
+  discounts:
+    time space: 22
+    chance: .35
+    discount:
+      max dropoff: .5
+      min dropoff: .15
+
+Oldon Village:
+  name: "Oldon Village"
+  description: A small village, to allow elf to defend their lands on the south, from ships. A friendly town.
+  type: village
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  _   @   |
+      | / \-     |
+      | |¯|    * |
+      | | |  |**||
+      x__________x
+    map full: |
+      x__________x
+      |$DARK_BROWN  _   $YELLOW@   $WHITE|
+      |$DARK_BROWN $ORANGE/|\$GRAY-     $WHITE|
+      |$DARK_BROWN |$GRAY¯$DARK_BROWN|    $KHAKI* $WHITE|
+      |$DARK_BROWN | |  $BROWN|$KHAKI**$BROWN|$WHITE|
+      x__________x
+  content:
+    hostels:
+    - Oldon Tavern
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
+Oldon Tavern:
+  name: "Oldon Tavern"
+  type: hostel
+  cost value: 1.1
+  sleep gold: 7.8
+  description: >
+    A small tavern. Small but yet luxurious tavern, where you can find great adventure partners.
+  news:
+  - "..."
+  sells:
+    drinks:
+    - Beer
+    - Wine
+    - Champagne
+    - Green Elixir
+    - Coffee
+    - Hot Chocolate
+    items:
+    - Tissue Bag
+    - Bread
+    - Porkchop
+    - Beef
+    - Apple
+    - Carrot
+  buys:
+    items:
+    - Apple
+    - Carrot
+  map:
+    map raw: |
+      x__________x
+      |*  *      |
+      |  ____ *  |
+      | /__  \|| |
+      |/ {}  |¯¯\|
+      x__________x
+    map full: |
+      x__________x
+      |$GRAY*  *      $WHITE|
+      |$TAN  ____ $GRAY*  $WHITE|
+      |$TAN /$DARK_BROWN__  $TAN\$ORANGE|| $WHITE|
+      |$TAN/ $BROWN{}  $TAN|$DARK_BROWN¯¯$TAN\$WHITE|
+      x__________x
+  discounts:
+    time space: 18
+    chance: .35
+    discount:
+      max dropoff: .35
+      min dropoff: .15
+
+Flori Outpost:
+  name: "Flori Outpost"
+  description: "A small elf outpost, which is here to protect the elfs lands from the goblins and orks of the Wasted Lands Of Kirgon."
+  type: village
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  _   @   |
+      | / \-     |
+      | |¯|    * |
+      | | |  |**||
+      x__________x
+    map full: |
+      x__________x
+      |$DARK_BROWN  _   $YELLOW@   $WHITE|
+      |$DARK_BROWN $ORANGE/|\$GRAY-     $WHITE|
+      |$DARK_BROWN |$GRAY¯$DARK_BROWN|    $KHAKI* $WHITE|
+      |$DARK_BROWN | |  $BROWN|$KHAKI**$BROWN|$WHITE|
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
+Eldin:
+  name: "Eldin"
+  description: >
+    A great elf city. Luxurious and rich, many visitors come here. The city is known for its
+    great forges, who make beautiful jewelry. It's also known for his marble buildings.
+  type: village
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  _   @   |
+      | / \-     |
+      | |¯|    * |
+      | | |  |**||
+      x__________x
+    map full: |
+      x__________x
+      |$DARK_BROWN  _   $YELLOW@   $WHITE|
+      |$DARK_BROWN $ORANGE/|\$GRAY-     $WHITE|
+      |$DARK_BROWN |$GRAY¯$DARK_BROWN|    $KHAKI* $WHITE|
+      |$DARK_BROWN | |  $BROWN|$KHAKI**$BROWN|$WHITE|
+      x__________x
+  content:
+    hostels:
+    - Eldin Grand Hostel
+    blacksmiths:
+    - Eldin Blacksmith
+    forges:
+    - Eldin Forge
+    stables:
+    - Elif Stablings
+    churches:
+    - Edlin Church
+    groceries:
+    - Eldin Market
+    harbors:
+    - Eldin Harbor
+
+Eldin Church:
+  name: "Eldin Church"
+  type: church
+  description: >
+    The Eldin church has been around for millinials now,
+    and it's never been so much visited from people
+    all around the world.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  ____±_  |
+      | /    U \ |
+      |;| <>   |;|
+      |;| <>   |;|
+      x__________x
+    map full: |
+      x__________x
+      |$KHAKI  ____±_  $WHITE|
+      |$KHAKI /    U \ $WHITE|
+      |$YELLOW;$KHAKI| $DARK_BROWN<>   $KHAKI|$YELLOW;$WHITE|
+      |$YELLOW;$KHAKI| $DARK_BROWN<>   $KHAKI|$YELLOW;$WHITE|
+      x__________x
+  rest hp restoring percentage: .50
+  exp exchange max health percentage: .75
+
+Eldin Treasury House:
+  name: "Eldin Treasury House"
+  description: >
+    The Eldin Treasury House, where the world's greatest treasuries
+    are safely kept.
+  type: village
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  _/\     |
+      | /   \__  |
+      | |  XXX \ |
+      | |[]     ||
+      x__________x
+    map full: |
+      x__________x
+      |$SILVER  _/\     $WHITE|
+      |$SILVER /   \__  $WHITE|
+      |$SILVER |  $CYANXXX$SILVER \ $WHITE|
+      |$SILVER |$DARK_BROWN[]$SILVER     |$WHITE|
+      x__________x
+  content:
+    hostels:
+    - None
+    blacksmiths:
+    - None
+    forges:
+    - None
+    stables:
+    - None
+    churches:
+    - None
+    groceries:
+    - None
+    harbors:
+    - None
+
+Eldin Grand Hostel:
+  name: "Eldin Grand Hostel"
+  type: hostel
+  cost value: 2.1
+  sleep gold: 15.3
+  description: >
+    The great hostel of the Eldin city. Probably the most expensive hostel of the archipelago.
+    You'll find exquisite and exotic meals there. They sell pretty much every existent alcohol drink.
+  news:
+  - "..."
+  sells:
+    drinks:
+    - Tea
+    - Coffee
+    - Hot Chocolate
+    - Beer
+    - Whiskey
+    - Vodka
+    - Rum
+    - Wine
+    - Champagne
+    - Hard Cider
+    items:
+    - None
+  buys:
+    items:
+    - None
+  map:
+    map raw: |
+      x__________x
+      | _____    |
+      ||¯¯¯¯¯|   |
+      ||   XX|__ |
+      ||[]   |¯¯\|
+      x__________x
+    map full: |
+      x__________x
+      |$TAN _____    $WHITE|
+      |$TAN|$DARK_BROWN¯¯¯¯¯$TAN|   $WHITE|
+      |$TAN|   $LIGHT_GRAYXX$TAN|__ $WHITE|
+      |$TAN|$ORANGE[]   $TAN|$CYAN¯¯$TAN\$WHITE|
+      x__________x
+  discounts:
+    time space: 18
+    chance: .35
+    discount:
+      max dropoff: .35
+      min dropoff: .15
+
+Eldin Blacksmith:
+  name: "Eldin Blacksmith"
+  type: blacksmith
+  cost value: 1.45
+  description: >
+    This blacksmith is twinned with Astrali's Blacksmith, in the Peregrine Town. It is why
+    their building is similar. Their stocks are more expensive though.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |*  *  <>  |
+      |{¯¯¯¯¯¯¯¯}|
+      |{ ___ () }|
+      |{|░░░|() }|
+      x__________x
+    map full: |
+      x__________x
+      |$GRAY*  *  $DARK_BROWN<>  $WHITE|
+      |$SILVER{$DARK_BROWN¯¯¯¯¯¯¯¯$SILVER}$WHITE|
+      |$SILVER{ $TAN___ $KHAKI() $SILVER}$WHITE|
+      |$SILVER{$TAN|$ORANGE░░░$TAN|$KHAKI() $SILVER}$WHITE|
+      x__________x
+  blacksmith:
+    buys:
+    - Sword
+    - Broadsword
+    - Chuckle Sword
+    - Rapier
+    - Long Sword
+    - Dagger
+    - Dwarf Axe
+    - Throwing Axe
+    - Spear
+    - Bow
+    - Elf Bow
+    orders:
+      Sword:
+        gold: 17.56
+        time needed: 1.6
+        needed materials:
+        - Raw Iron
+        - Steel
+      Broadsword:
+        gold: 31.28
+        time needed: 2.3
+        needed materials:
+        - Raw Iron
+        - Raw Iron
+        - Raw Silver
+        - Raw Lead
+        - Refined Steel
+      Rapier:
+        gold: 21.05
+        time needed: 2.1
+        needed materials:
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw lead
+        - Flexible Steel
+        - Flexible Steel
+      Long Sword:
+        gold: 27.26
+        time needed: 2.8
+        needed materials:
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Steel
+        - Refined Steel
+        - Flexible Steel
+      Dagger:
+        gold: 7.10
+        time needed: .3
+        needed materials:
+        - Raw Silver
+        - Raw Lead
+        - Steel
+      Bow:
+        gold: 15.72
+        time needed: 0.35
+        needed materials:
+        - Raw Wood
+        - Raw Wood
+        - Bow String
+        - Bow String
+      Elf Bow:
+        gold: 37.62
+        time needed: 2.1
+        needed materials:
+        - Raw Wood
+        - Raw Wood
+        - Raw Wood
+        - Flexible String
+        - Flexible String
+        - Strong String
+        - Strong String
+  discounts:
+    time space: 25
+    chance: .45
+    discount:
+      max dropoff: .10
+      min dropoff: .45
+
+Eldin Forge:
+  name: "Eldin Forge"
+  type: forge
+  cost value: 1.25
+  description: >
+    Ran by the owner of the Eldin Blacksmith, this forge is well known by every forgeman in
+    the archipelago. They everything you could think of, and offer full refund. They even keep their
+    prices low. Its building has a pretty unique look.
+  news:
+  - "..."
+  map:
+    map raw: |
+      x__________x
+      |  ____ * *|
+      | |---|\   |
+      |/    |\\  |
+      ||[]  |\\\ |
+      x__________x
+    map full: |
+      x__________x
+      |$TAN  ____ $SILVER* *$WHITE|
+      |$TAN |$DARK_BROWN---$TAN|$YELLOW\   $WHITE|
+      |$TAN/    $TAN|$YELLOW\\  $WHITE|
+      |$TAN|$ORANGE[]  $TAN|$YELLOW\\\ $WHITE|
+      x__________x
+  forge:
+    buys:
+    - Raw Iron
+    - Raw Copper
+    - Raw Silver
+    - Raw Aluminum
+    - Raw Lead
+    - Raw Bronze
+    - Steel
+    - Refined Steel
+    - Flexible Steel
+    sells:
+    - Raw Iron
+    - Raw Copper
+    - Raw Silver
+    - Raw Aluminum
+    - Raw Lead
+    - Raw Bronze
+    - Steel
+    - Refined Steel
+    - Flexible Steel
+  discounts:
+    time space: 23
+    chance: .75
+    discount:
+      max dropoff: .60
+      min dropoff: .25
+
+Elif Stablings:
+  name: "Elif Stablings"
+  description: >
+    This stable is owned by the same elf family for centuries. It offers the best
+    stabling experience in the archipelago. It even has an annex for dwarf mounts.
+  type: stable
+  cost value: 1.45
+  training gold: 23
+  deposit gold: 5.1
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$DARK_BROWN __  __  _$WHITE|
+      |$ORANGE//\\//\\//$WHITE|
+      |$DARK_BROWN|$SILVER¯¯$DARK_BROWN||$SILVER¯¯$DARK_BROWN||$SILVER¯$WHITE|
+      |$DARK_BROWN|  $DARK_BROWN||  $DARK_BROWN|| $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | __  __  _|
+      |//\\//\\//|
+      ||¯¯||¯¯||¯|
+      ||  ||  || |
+      x__________x
+  stable:
+    sells:
+      mounts:
+      - Horse
+      - Friesian Horse
+      - Shire Horse
+      - Camel
+      - Donkey
+      - Dwarf Boar
+      - Goat Steed
+      - Bear
+      drinks:
+      - Beer
+      - Whiskey
+      - Tea
+      items:
+      - Wheat
+      - Hay Bale
+      - Bread
+      - Apple
+      - Carrot
+      - Beef
+      - Porkchop
+      - Tissue Bag
+    stables:
+    - Horse Stable
+    - Camel Stable
+    - Dwarf Stable
+  discounts:
+    time space: 22
+    chance: .35
+    discount:
+      max dropoff: .5
+      min dropoff: .25
+
+Eldin Market:
+  name: "Eldin Market"
+  type: grocery
+  description: >
+    The Eldin Market is well-known from all around the isle, but
+    also the archipelago. It's known for its various sources
+    of beverages.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |          $WHITE|
+      |$YELLOW///\\\    $WHITE|
+      |$BROWN|$SILVER____$BROWN| $SILVER<$GRAY==$WHITE|
+      |$BROWN|    |  $DARK_BROWN||$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |          |
+      |///\\\    |
+      ||____| <==|
+      ||    |  |||
+      x__________x
+  cost value: 1.25
+  items sold:
+  - Knight Beverage
+  - Gerud Mercenary Beverage
+  - Healing Potion
+  - Resistance Potion
+  - Strength Potion
+  - Agility Potion
+  - Tissue Bag
+  - Apple
+  - Chicken
+  - Beef
+  - Carrot
+  - Wheat
+  - Raw Salmon
+  - Tree Log
+  discounts:
+    time space: 25
+    chance: .45
+    discount:
+      max dropoff: .15
+      min dropoff: .35
+
+Eldin Harbor:
+  name: "Eldin Harbor"
+  type: harbor
+  description: >
+    This harbor was first an elf military harbor, built to defend the Shire Isle from
+    evil forces given with boats by evil men. It's now a public harbor.
+  news:
+  - "..."
+  map:
+    map full: |
+      x__________x
+      |$DARK_BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$SILVER--\$DARK_BLUE≈≈≈≈≈≈≈$WHITE|
+      |$SILVER   \------$WHITE|
+      |          $WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |--\≈≈≈≈≈≈≈|
+      |   \------|
+      |          |
+      x__________x
+  travels:
+    Los Gerudos:
+      destination: 7767
+      travel time: 55
+      cost: 354.9
+    Peregrine Town:
+      destination: 8294
+      travel time: 5
+      cost: 55.6
+  discounts:
+    time space: 17
+    chance: .35
+    discount:
+      max dropoff: .5
+      min dropoff: .30
+
+# LANDS
+
+The Shire:
+  name: "The Shire"
+  description: "The great hills of The Shire."
+  type: hills
+  enemy spawning: shire hills
+  map:
+    map full: |
+      x__________x
+      |$GREEN,,,,$KHAKI____$GREEN,,$WHITE|
+      |$GREEN$KHAKI___/$GREEN,$YELLOW0$GREEN,,$KHAKI\$GREEN,$WHITE|
+      |$GREEN,,$YELLOW0$GREEN,o,,,o$KHAKI\$WHITE|
+      |$GREEN,o,,,,$YELLOW0$GREEN,,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |,,,,____,,|
+      |___/,0,,\,|
+      |,,0,o,,,o\|
+      |,o,,,,0,,,|
+      x__________x
+
+Sandy Beaches:
+  name: "Sandy Beaches"
+  description: "Beautiful beaches, mostly at the western coast but also at the northern of the Shire Island."
+  type: beach
+  enemy spawning: shire beaches
+  map:
+    map full: |
+      x__________x
+      |$LIGHT_BLUE≈≈≈≈≈≈≈≈≈≈$WHITE|
+      |$LIGHT_BLUE≈≈≈≈≈$ORANGE##$LIGHT_BLUE≈≈≈$WHITE|
+      |$LIGHT_BLUE≈≈≈$ORANGE######$LIGHT_BLUE≈$WHITE|
+      |$ORANGE##########$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |≈≈≈≈≈≈≈≈≈≈|
+      |≈≈≈≈≈##≈≈≈|
+      |≈≈≈######≈|
+      |##########|
+      x__________x
+
+Elf Lands:
+  name: "Elf Lands"
+  description: "The luxurious flatlands of the Shire Island. Elves have inhabited this place for about 1,725 years now."
+  type: flatlands
+  enemy spawning: none
+  map:
+    map full: |
+      x__________x
+      |$LIGHT_GRAY--$SILVER_$LIGHT_GRAY-$SILVER____$LIGHT_GRAY-$SILVER_$WHITE|
+      |$SILVER_____$LIGHT_GRAY---$SILVER__$WHITE|
+      |$LIGHT_GRAY--$SILVER___$LIGHT_GRAY--$SILVER___$WHITE|
+      |$LIGHT_GRAY---$SILVER_____$LIGHT_GRAY-$SILVER_$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |--_-____-_|
+      |_____---__|
+      |--___--___|
+      |---_____-_|
+      x__________x
+
+Wasted Lands Of Kirgon:
+  name: "Wasted Lands Of Kirgon"
+  description: >
+    The lands were once inhabited by an elf king, and its subjects. But now, probably due to some dragon,
+    these lands are inhabited by orks and goblins.
+  type: fields
+  enemy spawning: kirgon raids
+  map:
+    map full: |
+      x__________x
+      |$GREEN,,_,,,,$YELLOWo$GREEN_,$WHITE|
+      |$LIGHT_GRAY__________$WHITE|
+      |$SILVER#&&%#$BLACK@@$GRAY&#%$WHITE|
+      |$SILVER#&%#$GRAY#@#%$BLACK&&$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |,,_,,,,o_,|
+      |__________|
+      |#&&%#@@&#%|
+      |#&%##@#%&&|
+      x__________x
+
+Desert Of Kirgon:
+  name: "Desert Of Kirgon"
+  description: >
+    The Desert Of Kirgon takes place in the southwestern coast of the Shire Island, at the frontier
+    between the Stall Seas and the Wasted Lands. Some people say they inhabit an ork harbor.
+  type: desert
+  enemy spawning: kirgon raids desert
+  map:
+    map full: |
+      x__________x
+      |$ORANGE,,,,,$DARK_BROWN_$ORANGE,,,,$WHITE|
+      |$ORANGE,,$DARK_BROWN||/$ORANGE,,,,,$WHITE|
+      |$ORANGE,,$DARK_BROWN||$ORANGE,,,,,,$WHITE|
+      |$ORANGE,,,,,,,,,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |,,,,,_,,,,|
+      |,,||/,,,,,|
+      |,,||,,,,,,|
+      |,,,,,,,,,,|
+      x__________x
+
+Death Mountain:
+  name: "Death Mountain"
+  description: >
+    A great fort for the evil forces, a place where goblins, orks and wargs breed and multiply. It hasn't
+    been named like this for no reason.
+  type: black rocky mountains
+  enemy spawning: kirgon raids
+  map:
+    map full: |
+      x__________x
+      |$CYAN*  $WHITE__$CYAN  * *$WHITE|
+      | $CYAN*$WHITE/$CYAN* $WHITE\__$CYAN* $WHITE|
+      | /$CYAN~~$WHITE/$CYAN~~~$WHITE\$CYAN*$WHITE|
+      |$CYAN/  /*  \ \$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |*  __  * *|
+      | */* \__* |
+      | /~~/~~~\*|
+      |/  /*  \ \|
+      x__________x
+
+Flori Canyon:
+  name: "Flori Canyon"
+  description: >
+    A recently found canyon. Probably a work of the evil forces again. Some people think this
+    goes straight to hell.
+  type: fields
+  enemy spawning: kirgon raids
+  map:
+    map full: |
+      x__________x
+      |$YELLOW_____/$BLACK###$YELLOW\$WHITE|
+      |$BLACK##########$WHITE|
+      |$YELLOW____$BLACK###$YELLOW___$WHITE|
+      |$ORANGE,,,,$YELLOW\_/$ORANGE,,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |_____/###\|
+      |##########|
+      |____###___|
+      |,,,,\_/,,,|
+      x__________x
+
+Valleys Of Flori:
+  name: "Valleys Of Flori"
+  description: >
+    These valleys may be the only place in the Wasted Lands where the orks haven't destroyed
+    everything. Inaccessible by men or elves.
+  type: valleys
+  enemy spawning: kirgon raids
+  map:
+    map full: |
+      x__________x
+      |$GREEN,,$YELLOW_$GREEN,,,,$YELLOWo_$GREEN,$WHITE|
+      |$GREEN,,$YELLOWo__$GREEN,,$YELLOW_$GREEN,,$WHITE|
+      |$GREEN,,,$YELLOW_$GREEN,,$YELLOWo$GREEN,$YELLOW_$GREEN,$WHITE|
+      |$YELLOWo_$GREEN,,,$YELLOW_$GREEN,,,,$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      |,,_,,,,o_,|
+      |,,o__,,_,,|
+      |,,,_,,o,_,|
+      |o_,,,_,,,,|
+      x__________x

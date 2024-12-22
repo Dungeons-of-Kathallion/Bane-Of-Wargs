@@ -379,3 +379,149 @@ fellbeast mid-boss:
     enemies spawns:
       Fellbeast: 1
       Dark Marksman: 1
+
+shire hills:
+  Goblin Raid:
+    name: "You find a group of Goblins on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 3}
+      normal: {"min": 1, "max": 5}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Goblin: 1
+  Ork Raid:
+    name: "You find a group of Orks on your way!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Ork: .6
+      Ork Archer: .4
+  Mix Ork Raid:
+    name: "You find a group of Orks on your way!"
+    chance: .25
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 4}
+      hard: {"min": 2, "max": 5}
+    enemies spawns:
+      Ork: .55
+      Ork Archer: .25
+      Goblin: .2
+  Slime Raid:
+    name: "You find a group of Slimes on your way!"
+    chance: .45
+    enemies rate:
+      easy: {"min": 2, "max": 4}
+      normal: {"min": 3, "max": 6}
+      hard: {"min": 4, "max": 8}
+    enemies spawns:
+      Slime: 1
+
+shire beaches:
+  Undeads Raid:
+    name: "A swarm of undeads awaken from the sandy beaches!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 3, "max": 6}
+      normal: {"min": 4, "max": 7}
+      hard: {"min": 3, "max": 10}
+    enemies spawns:
+      Desert Undead: 1
+  Dark Creatures:
+    name: "A group of dark creatures were summoned upon you..."
+    chance: .15
+    enemies rate:
+      easy: {"min": 1, "max": 3}
+      normal: {"min": 2, "max": 3}
+      hard: {"min": 3, "max": 5}
+    enemies spawns:
+      Doomoed Horror: .7
+      Dark Marksman: .5
+      Dark Ork: 1
+
+none:
+  none:
+    name: "none"
+    chance: .0
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 1, "max": 1}
+    enemies spawns:
+      Slime: .0
+
+kirgon raids:
+  Dark Creatures:
+    name: "A group of dark creatures were summoned upon you..."
+    chance: .35
+    enemies rate:
+      easy: {"min": 1, "max": 3}
+      normal: {"min": 2, "max": 3}
+      hard: {"min": 3, "max": 5}
+    enemies spawns:
+      Doomoed Horror: .7
+      Dark Marksman: .5
+      Dark Ork: 1
+  Undeads Raid:
+    name: "A swarm of undeads awaken from the sandy beaches!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 3, "max": 6}
+      normal: {"min": 4, "max": 7}
+      hard: {"min": 3, "max": 10}
+    enemies spawns:
+      Mangrove Undead: 1
+  Woods Creatures:
+    name: "Some weird-looking creatures get out of the darkness of a tree..."
+    chance: .35
+    enemies rate:
+      easy: {"min": 2, "max": 3}
+      normal: {"min": 2, "max": 4}
+      hard: {"min": 3, "max": 5}
+    enemies spawns:
+      Corrupted Ent: .5
+      Giant Spider: 1
+
+kirgon raids desert:
+  Dark Creatures:
+    name: "A group of dark creatures were summoned upon you..."
+    chance: .35
+    enemies rate:
+      easy: {"min": 1, "max": 3}
+      normal: {"min": 2, "max": 3}
+      hard: {"min": 3, "max": 5}
+    enemies spawns:
+      Doomoed Horror: .7
+      Dark Marksman: .5
+      Dark Ork: 1
+  Undeads Raid:
+    name: "A swarm of undeads awaken from the sandy beaches!"
+    chance: .35
+    enemies rate:
+      easy: {"min": 3, "max": 6}
+      normal: {"min": 4, "max": 7}
+      hard: {"min": 3, "max": 10}
+    enemies spawns:
+      Mangrove Undead: 1
+  Mumakil:
+    name: "Suddenly, you hear the sound of a Mumakil."
+    chance: .1
+    enemies rate:
+      easy: {"min": 1, "max": 1}
+      normal: {"min": 1, "max": 1}
+      hard: {"min": 1, "max": 2}
+    enemies spawns:
+      Mumakil: 1
+  Troll:
+    name: "A group of Desert Trolls seek for breakfast."
+    chance: .3
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      Desert Troll: 1

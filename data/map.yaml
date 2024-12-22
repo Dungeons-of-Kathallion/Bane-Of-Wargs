@@ -1,7 +1,7 @@
 # Copyright (c) 2024 by @Cromha
 #
 # This file was generated with the Bane Of Wargs Map Editor
-# https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs-Map-Edito
+# https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs-Map-Editor
 #
 # Bane Of Wargs Editor is free software: you can redistribute it and/or modify it under the
 # terms of the GNU General Public License as published by the Free Software
@@ -701,13 +701,13 @@ point10097:
 point10098:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -27
   y: -14
 point10099:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -14
 point101:
@@ -725,61 +725,61 @@ point1010:
 point10100:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -14
 point10101:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -14
 point10102:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -14
 point10103:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -14
 point10104:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -14
 point10105:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -14
 point10106:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -14
 point10107:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -14
 point10108:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -14
 point10109:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -14
 point1011:
@@ -791,37 +791,37 @@ point1011:
 point10110:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -14
 point10111:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -14
 point10112:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -14
 point10113:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -14
 point10114:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -14
 point10115:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: -14
 point10116:
@@ -1565,19 +1565,19 @@ point10226:
 point10227:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -27
   y: -15
 point10228:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -15
 point10229:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -15
 point1023:
@@ -1589,61 +1589,61 @@ point1023:
 point10230:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -15
 point10231:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -15
 point10232:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -15
 point10233:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -15
 point10234:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -15
 point10235:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -15
 point10236:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -15
 point10237:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -15
 point10238:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -15
 point10239:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -15
 point1024:
@@ -1655,31 +1655,31 @@ point1024:
 point10240:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -15
 point10241:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -15
 point10242:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -15
 point10243:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -15
 point10244:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: -15
 point10245:
@@ -2427,25 +2427,25 @@ point10355:
 point10356:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -27
   y: -16
 point10357:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -16
 point10358:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -16
 point10359:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -16
 point1036:
@@ -2459,61 +2459,61 @@ point1036:
 point10360:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -16
 point10361:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -16
 point10362:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -16
 point10363:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -16
 point10364:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -16
 point10365:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -16
 point10366:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -16
 point10367:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -16
 point10368:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -16
 point10369:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Treasury House
   x: -14
   y: -16
 point1037:
@@ -2527,25 +2527,25 @@ point1037:
 point10370:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Treasury House
   x: -13
   y: -16
 point10371:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -16
 point10372:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -16
 point10373:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: -16
 point10374:
@@ -3285,37 +3285,37 @@ point10483:
 point10484:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -28
   y: -17
 point10485:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -17
 point10486:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -17
 point10487:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -17
 point10488:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -17
 point10489:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -17
 point1049:
@@ -3327,61 +3327,61 @@ point1049:
 point10490:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -17
 point10491:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -17
 point10492:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -17
 point10493:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -17
 point10494:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -17
 point10495:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -17
 point10496:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -17
 point10497:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -17
 point10498:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Treasury House
   x: -14
   y: -17
 point10499:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Treasury House
   x: -13
   y: -17
 point105:
@@ -3399,13 +3399,13 @@ point1050:
 point10500:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -17
 point10501:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -17
 point10502:
@@ -4149,43 +4149,43 @@ point10612:
 point10613:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -28
   y: -18
 point10614:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -18
 point10615:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -18
 point10616:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -18
 point10617:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -18
 point10618:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -18
 point10619:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -18
 point1062:
@@ -4197,61 +4197,61 @@ point1062:
 point10620:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -18
 point10621:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -18
 point10622:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -18
 point10623:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -18
 point10624:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -18
 point10625:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -18
 point10626:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -18
 point10627:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -14
   y: -18
 point10628:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -13
   y: -18
 point10629:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -18
 point1063:
@@ -4263,7 +4263,7 @@ point1063:
 point10630:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elif Stablings
   x: -11
   y: -18
 point10631:
@@ -5007,49 +5007,49 @@ point10741:
 point10742:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -28
   y: -19
 point10743:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -27
   y: -19
 point10744:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -19
 point10745:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -19
 point10746:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -19
 point10747:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -19
 point10748:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -19
 point10749:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -19
 point1075:
@@ -5061,61 +5061,61 @@ point1075:
 point10750:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -19
 point10751:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -19
 point10752:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -19
 point10753:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -19
 point10754:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -19
 point10755:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -19
 point10756:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -19
 point10757:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -19
 point10758:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elif Stablings
   x: -12
   y: -19
 point10759:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elif Stablings
   x: -11
   y: -19
 point1076:
@@ -5865,55 +5865,55 @@ point10870:
 point10871:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -28
   y: -20
 point10872:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -27
   y: -20
 point10873:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -20
 point10874:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -20
 point10875:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -20
 point10876:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -20
 point10877:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -20
 point10878:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -20
 point10879:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -20
 point1088:
@@ -5925,55 +5925,55 @@ point1088:
 point10880:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -20
 point10881:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -20
 point10882:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -20
 point10883:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -20
 point10884:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -20
 point10885:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -20
 point10886:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -20
 point10887:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -20
 point10888:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -20
 point10889:
@@ -6735,61 +6735,61 @@ point1100:
 point11000:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -28
   y: -21
 point11001:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -21
 point11002:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -21
 point11003:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -21
 point11004:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -21
 point11005:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -21
 point11006:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -21
 point11007:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -21
 point11008:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -21
 point11009:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -21
 point1101:
@@ -6801,49 +6801,49 @@ point1101:
 point11010:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -21
 point11011:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -21
 point11012:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -21
 point11013:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -21
 point11014:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -14
   y: -21
 point11015:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -13
   y: -21
 point11016:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -21
 point11017:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -21
 point11018:
@@ -7569,13 +7569,13 @@ point11125:
 point11126:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -31
   y: -22
 point11127:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -30
   y: -22
 point11128:
@@ -7587,7 +7587,7 @@ point11128:
 point11129:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -22
 point1113:
@@ -7599,61 +7599,61 @@ point1113:
 point11130:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -22
 point11131:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -26
   y: -22
 point11132:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -25
   y: -22
 point11133:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -22
 point11134:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -22
 point11135:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -22
 point11136:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -22
 point11137:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -22
 point11138:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -22
 point11139:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -22
 point1114:
@@ -7665,43 +7665,43 @@ point1114:
 point11140:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -22
 point11141:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -22
 point11142:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -22
 point11143:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -14
   y: -22
 point11144:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -13
   y: -22
 point11145:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -22
 point11146:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -22
 point11147:
@@ -8427,13 +8427,13 @@ point11254:
 point11255:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -31
   y: -23
 point11256:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -30
   y: -23
 point11257:
@@ -8445,13 +8445,13 @@ point11257:
 point11258:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -23
 point11259:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -23
 point1126:
@@ -8463,61 +8463,61 @@ point1126:
 point11260:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -26
   y: -23
 point11261:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Tavern
   x: -25
   y: -23
 point11262:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -23
 point11263:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -23
 point11264:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -23
 point11265:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -23
 point11266:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -23
 point11267:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -23
 point11268:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -23
 point11269:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -23
 point1127:
@@ -8529,37 +8529,37 @@ point1127:
 point11270:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -23
 point11271:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -23
 point11272:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -14
   y: -23
 point11273:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Church
   x: -13
   y: -23
 point11274:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -23
 point11275:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -23
 point11276:
@@ -9285,13 +9285,13 @@ point11383:
 point11384:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -31
   y: -24
 point11385:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -30
   y: -24
 point11386:
@@ -9303,19 +9303,19 @@ point11386:
 point11387:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -24
 point11388:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Stables
   x: -27
   y: -24
 point11389:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -26
   y: -24
 point1139:
@@ -9327,61 +9327,61 @@ point1139:
 point11390:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -24
 point11391:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -24
 point11392:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -24
 point11393:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -24
 point11394:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -24
 point11395:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -24
 point11396:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -24
 point11397:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -24
 point11398:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -24
 point11399:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -24
 point114:
@@ -9399,31 +9399,31 @@ point1140:
 point11400:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elif Stablings
   x: -15
   y: -24
 point11401:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -24
 point11402:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -24
 point11403:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -24
 point11404:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Grand Hostel
   x: -11
   y: -24
 point11405:
@@ -10143,49 +10143,49 @@ point11511:
 point11512:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -32
   y: -25
 point11513:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -25
 point11514:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -30
   y: -25
 point11515:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -29
   y: -25
 point11516:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -25
 point11517:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -27
   y: -25
 point11518:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -26
   y: -25
 point11519:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -25
 point1152:
@@ -10197,61 +10197,61 @@ point1152:
 point11520:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -25
 point11521:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -25
 point11522:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -25
 point11523:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -25
 point11524:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -20
   y: -25
 point11525:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -19
   y: -25
 point11526:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -25
 point11527:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -25
 point11528:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -25
 point11529:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elif Stablings
   x: -15
   y: -25
 point1153:
@@ -10263,31 +10263,31 @@ point1153:
 point11530:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -25
 point11531:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -25
 point11532:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -25
 point11533:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -25
 point11534:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -10
   y: -25
 point11535:
@@ -11002,55 +11002,55 @@ point11640:
 point11641:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -32
   y: -26
 point11642:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -26
 point11643:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -30
   y: -26
 point11644:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -29
   y: -26
 point11645:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -26
 point11646:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -26
 point11647:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -26
   y: -26
 point11648:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -25
   y: -26
 point11649:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -26
 point1165:
@@ -11065,61 +11065,61 @@ point1165:
 point11650:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -26
 point11651:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -26
 point11652:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -26
 point11653:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -20
   y: -26
 point11654:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -19
   y: -26
 point11655:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -26
 point11656:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -26
 point11657:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -26
 point11658:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elif Stablings
   x: -15
   y: -26
 point11659:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -26
 point1166:
@@ -11132,25 +11132,25 @@ point1166:
 point11660:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -13
   y: -26
 point11661:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -26
 point11662:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -26
 point11663:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -10
   y: -26
 point11664:
@@ -11874,61 +11874,61 @@ point1177:
 point11770:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -32
   y: -27
 point11771:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -27
 point11772:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -27
 point11773:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -27
 point11774:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -27
 point11775:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -27
 point11776:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Outpost
   x: -26
   y: -27
 point11777:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -27
 point11778:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -27
 point11779:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -27
 point1178:
@@ -11942,61 +11942,61 @@ point1178:
 point11780:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -27
 point11781:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -27
 point11782:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -20
   y: -27
 point11783:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -19
   y: -27
 point11784:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -18
   y: -27
 point11785:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -27
 point11786:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -27
 point11787:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -15
   y: -27
 point11788:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -14
   y: -27
 point11789:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -13
   y: -27
 point1179:
@@ -12010,19 +12010,19 @@ point1179:
 point11790:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -12
   y: -27
 point11791:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -27
 point11792:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Market
   x: -10
   y: -27
 point11793:
@@ -12744,7 +12744,7 @@ point11898:
 point11899:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -32
   y: -28
 point119:
@@ -12762,61 +12762,61 @@ point1190:
 point11900:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -28
 point11901:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -28
 point11902:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -28
 point11903:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -28
   y: -28
 point11904:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -28
 point11905:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -28
 point11906:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -28
 point11907:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -28
 point11908:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -28
 point11909:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -28
 point1191:
@@ -12828,61 +12828,61 @@ point1191:
 point11910:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -28
 point11911:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -28
 point11912:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -28
 point11913:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -18
   y: -28
 point11914:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -28
 point11915:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -28
 point11916:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -28
 point11917:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -14
   y: -28
 point11918:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Blacksmith
   x: -13
   y: -28
 point11919:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Blacksmith
   x: -12
   y: -28
 point1192:
@@ -12894,13 +12894,13 @@ point1192:
 point11920:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -28
 point11921:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Market
   x: -10
   y: -28
 point11922:
@@ -13614,13 +13614,13 @@ point12027:
 point12028:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -32
   y: -29
 point12029:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -29
 point1203:
@@ -13632,61 +13632,61 @@ point1203:
 point12030:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -29
 point12031:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -29
 point12032:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -29
 point12033:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -29
 point12034:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -29
 point12035:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -29
 point12036:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -29
 point12037:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -29
 point12038:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -29
 point12039:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -29
 point1204:
@@ -13698,61 +13698,61 @@ point1204:
 point12040:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -29
 point12041:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -29
 point12042:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -18
   y: -29
 point12043:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -29
 point12044:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -29
 point12045:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -15
   y: -29
 point12046:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -14
   y: -29
 point12047:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -13
   y: -29
 point12048:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Forge
   x: -12
   y: -29
 point12049:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -29
 point1205:
@@ -13764,7 +13764,7 @@ point1205:
 point12050:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -10
   y: -29
 point12051:
@@ -14472,19 +14472,19 @@ point12156:
 point12157:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -32
   y: -30
 point12158:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -30
 point12159:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -30
 point1216:
@@ -14496,61 +14496,61 @@ point1216:
 point12160:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -30
 point12161:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -30
 point12162:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -27
   y: -30
 point12163:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -30
 point12164:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -30
 point12165:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -30
 point12166:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -30
 point12167:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -30
 point12168:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -30
 point12169:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -30
 point1217:
@@ -14562,55 +14562,55 @@ point1217:
 point12170:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -30
 point12171:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -18
   y: -30
 point12172:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -30
 point12173:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -30
 point12174:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -15
   y: -30
 point12175:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -14
   y: -30
 point12176:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -13
   y: -30
 point12177:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Forge
   x: -12
   y: -30
 point12178:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -30
 point12179:
@@ -15336,19 +15336,19 @@ point12286:
 point12287:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -31
 point12288:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -31
 point12289:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -31
 point1229:
@@ -15360,61 +15360,61 @@ point1229:
 point12290:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -31
 point12291:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -31
 point12292:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -31
 point12293:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -31
 point12294:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -31
 point12295:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -31
 point12296:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -31
 point12297:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -31
 point12298:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -31
 point12299:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -31
 point123:
@@ -15432,49 +15432,49 @@ point1230:
 point12300:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -18
   y: -31
 point12301:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -31
 point12302:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -31
 point12303:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -15
   y: -31
 point12304:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -14
   y: -31
 point12305:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -13
   y: -31
 point12306:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -12
   y: -31
 point12307:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin
   x: -11
   y: -31
 point12308:
@@ -16200,25 +16200,25 @@ point12415:
 point12416:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -32
 point12417:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -32
 point12418:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -32
 point12419:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -32
 point1242:
@@ -16230,61 +16230,61 @@ point1242:
 point12420:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -32
 point12421:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -32
 point12422:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -32
 point12423:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -32
 point12424:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -32
 point12425:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -32
 point12426:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -32
 point12427:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -32
 point12428:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -32
 point12429:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -18
   y: -32
 point1243:
@@ -16296,19 +16296,19 @@ point1243:
 point12430:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Outpost
   x: -17
   y: -32
 point12431:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Outpost
   x: -16
   y: -32
 point12432:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -15
   y: -32
 point12433:
@@ -16326,13 +16326,13 @@ point12434:
 point12435:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Bay
   x: -12
   y: -32
 point12436:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Harbor
   x: -11
   y: -32
 point12437:
@@ -17058,31 +17058,31 @@ point12544:
 point12545:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -33
 point12546:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -33
 point12547:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -33
 point12548:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -33
 point12549:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -33
 point1255:
@@ -17094,61 +17094,61 @@ point1255:
 point12550:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -33
 point12551:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -33
 point12552:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -33
 point12553:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -33
 point12554:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -33
 point12555:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -33
 point12556:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -33
 point12557:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -33
 point12558:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -18
   y: -33
 point12559:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -17
   y: -33
 point1256:
@@ -17160,13 +17160,13 @@ point1256:
 point12560:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Outpost
   x: -16
   y: -33
 point12561:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Outpost
   x: -15
   y: -33
 point12562:
@@ -17190,7 +17190,7 @@ point12564:
 point12565:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Harbor
   x: -11
   y: -33
 point12566:
@@ -17916,37 +17916,37 @@ point12673:
 point12674:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -31
   y: -34
 point12675:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -34
 point12676:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -34
 point12677:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -34
 point12678:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -34
 point12679:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -34
 point1268:
@@ -17958,61 +17958,61 @@ point1268:
 point12680:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -34
 point12681:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -34
 point12682:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -34
 point12683:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -34
 point12684:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -34
 point12685:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -34
 point12686:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -34
 point12687:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -18
   y: -34
 point12688:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -17
   y: -34
 point12689:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Outpost
   x: -16
   y: -34
 point1269:
@@ -18024,7 +18024,7 @@ point1269:
 point12690:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Outpost
   x: -15
   y: -34
 point12691:
@@ -18048,7 +18048,7 @@ point12693:
 point12694:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Eldin Harbor
   x: -11
   y: -34
 point12695:
@@ -18780,43 +18780,43 @@ point12802:
 point12803:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -31
   y: -35
 point12804:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -35
 point12805:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -35
 point12806:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -35
 point12807:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -35
 point12808:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -35
 point12809:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -35
 point1281:
@@ -18828,49 +18828,49 @@ point1281:
 point12810:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -35
 point12811:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -35
 point12812:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -35
 point12813:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -35
 point12814:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -35
 point12815:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -35
 point12816:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -18
   y: -35
 point12817:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -17
   y: -35
 point12818:
@@ -19640,49 +19640,49 @@ point12931:
 point12932:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -31
   y: -36
 point12933:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -36
 point12934:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -36
 point12935:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -36
 point12936:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -36
 point12937:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -36
 point12938:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -36
 point12939:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -36
 point1294:
@@ -19698,37 +19698,37 @@ point1294:
 point12940:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -36
 point12941:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -36
 point12942:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -36
 point12943:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -36
 point12944:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -36
 point12945:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -18
   y: -36
 point12946:
@@ -20514,55 +20514,55 @@ point13060:
 point13061:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -31
   y: -37
 point13062:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -37
 point13063:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -37
 point13064:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -37
 point13065:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -37
 point13066:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -37
 point13067:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -37
 point13068:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -37
 point13069:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -37
 point1307:
@@ -20574,31 +20574,31 @@ point1307:
 point13070:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -37
 point13071:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -37
 point13072:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -37
 point13073:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -37
 point13074:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -18
   y: -37
 point13075:
@@ -21385,61 +21385,61 @@ point1319:
 point13190:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -31
   y: -38
 point13191:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -30
   y: -38
 point13192:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -29
   y: -38
 point13193:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -38
 point13194:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -38
 point13195:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -38
 point13196:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -38
 point13197:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -24
   y: -38
 point13198:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -23
   y: -38
 point13199:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -22
   y: -38
 point132:
@@ -21457,25 +21457,25 @@ point1320:
 point13200:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -21
   y: -38
 point13201:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -20
   y: -38
 point13202:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -38
 point13203:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -18
   y: -38
 point13204:
@@ -22243,7 +22243,7 @@ point13318:
 point13319:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -31
   y: -39
 point1332:
@@ -22255,7 +22255,7 @@ point1332:
 point13320:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -39
 point13321:
@@ -22267,49 +22267,49 @@ point13321:
 point13322:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -39
 point13323:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -27
   y: -39
 point13324:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -39
 point13325:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -39
 point13326:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -24
   y: -39
 point13327:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -39
 point13328:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -39
 point13329:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -39
 point1333:
@@ -22321,19 +22321,19 @@ point1333:
 point13330:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -20
   y: -39
 point13331:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -19
   y: -39
 point13332:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -18
   y: -39
 point13333:
@@ -23101,13 +23101,13 @@ point13447:
 point13448:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -31
   y: -40
 point13449:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -40
 point1345:
@@ -23125,55 +23125,55 @@ point13450:
 point13451:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -40
 point13452:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -27
   y: -40
 point13453:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -40
 point13454:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -40
 point13455:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -24
   y: -40
 point13456:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -23
   y: -40
 point13457:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -40
 point13458:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -21
   y: -40
 point13459:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -20
   y: -40
 point1346:
@@ -23185,13 +23185,13 @@ point1346:
 point13460:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -19
   y: -40
 point13461:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -18
   y: -40
 point13462:
@@ -23983,61 +23983,61 @@ point1358:
 point13580:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -41
 point13581:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -41
 point13582:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -41
 point13583:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -41
 point13584:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -24
   y: -41
 point13585:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -41
 point13586:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -41
 point13587:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -21
   y: -41
 point13588:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -20
   y: -41
 point13589:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -19
   y: -41
 point1359:
@@ -24049,7 +24049,7 @@ point1359:
 point13590:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -18
   y: -41
 point13591:
@@ -24841,7 +24841,7 @@ point13708:
 point13709:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -42
 point1371:
@@ -24853,49 +24853,49 @@ point1371:
 point13710:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -27
   y: -42
 point13711:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -42
 point13712:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -42
 point13713:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -24
   y: -42
 point13714:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -42
 point13715:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -42
 point13716:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -42
 point13717:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -20
   y: -42
 point13718:
@@ -25699,13 +25699,13 @@ point13837:
 point13838:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -43
 point13839:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -27
   y: -43
 point1384:
@@ -25717,43 +25717,43 @@ point1384:
 point13840:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -43
 point13841:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -43
 point13842:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -43
 point13843:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -43
 point13844:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -43
 point13845:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -43
 point13846:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -43
 point13847:
@@ -26545,31 +26545,31 @@ point13964:
 point13965:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -44
 point13966:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -29
   y: -44
 point13967:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -44
 point13968:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -44
 point13969:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -44
 point1397:
@@ -26581,37 +26581,37 @@ point1397:
 point13970:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -44
 point13971:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -44
 point13972:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -44
 point13973:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -44
 point13974:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -44
 point13975:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -44
 point13976:
@@ -27421,25 +27421,25 @@ point14095:
 point14096:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -45
 point14097:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -45
 point14098:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -26
   y: -45
 point14099:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Death Mountain
   x: -25
   y: -45
 point141:
@@ -27457,31 +27457,31 @@ point1410:
 point14100:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -45
 point14101:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -45
 point14102:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -45
 point14103:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -45
 point14104:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -45
 point14105:
@@ -28287,31 +28287,31 @@ point14224:
 point14225:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -46
 point14226:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -46
 point14227:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -46
 point14228:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -46
 point14229:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -46
 point1423:
@@ -28325,25 +28325,25 @@ point1423:
 point14230:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -46
 point14231:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -46
 point14232:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -46
 point14233:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -46
 point14234:
@@ -29150,37 +29150,37 @@ point14353:
 point14354:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -28
   y: -47
 point14355:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -47
 point14356:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -47
 point14357:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -47
 point14358:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -47
 point14359:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -47
 point1436:
@@ -29192,19 +29192,19 @@ point1436:
 point14360:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -47
 point14361:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -47
 point14362:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -47
 point14363:
@@ -30012,43 +30012,43 @@ point14482:
 point14483:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -48
 point14484:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -48
 point14485:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -48
 point14486:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -48
 point14487:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -48
 point14488:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -48
 point14489:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -22
   y: -48
 point1449:
@@ -30060,13 +30060,13 @@ point1449:
 point14490:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -48
 point14491:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -48
 point14492:
@@ -30864,61 +30864,61 @@ point1461:
 point14610:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -49
 point14611:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -29
   y: -49
 point14612:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -49
 point14613:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -49
 point14614:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -49
 point14615:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -49
 point14616:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -49
 point14617:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -49
 point14618:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -49
 point14619:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -21
   y: -49
 point1462:
@@ -30930,7 +30930,7 @@ point1462:
 point14620:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -49
 point14621:
@@ -31716,7 +31716,7 @@ point14738:
 point14739:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -50
 point1474:
@@ -31728,61 +31728,61 @@ point1474:
 point14740:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -29
   y: -50
 point14741:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -50
 point14742:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -50
 point14743:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -50
 point14744:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -25
   y: -50
 point14745:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -50
 point14746:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -50
 point14747:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -50
 point14748:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -21
   y: -50
 point14749:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -20
   y: -50
 point1475:
@@ -32574,13 +32574,13 @@ point14867:
 point14868:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -51
 point14869:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -51
 point1487:
@@ -32592,43 +32592,43 @@ point1487:
 point14870:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -51
 point14871:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -51
 point14872:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -51
 point14873:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -25
   y: -51
 point14874:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -24
   y: -51
 point14875:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -23
   y: -51
 point14876:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -51
 point14877:
@@ -33432,19 +33432,19 @@ point14996:
 point14997:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Desert Of Kirgon
   x: -30
   y: -52
 point14998:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -29
   y: -52
 point14999:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -52
 point15:
@@ -33468,37 +33468,37 @@ point1500:
 point15000:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -52
 point15001:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -52
 point15002:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -25
   y: -52
 point15003:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -24
   y: -52
 point15004:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -52
 point15005:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -22
   y: -52
 point15006:
@@ -34314,13 +34314,13 @@ point15127:
 point15128:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -53
 point15129:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -53
 point1513:
@@ -34332,31 +34332,31 @@ point1513:
 point15130:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -53
 point15131:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -25
   y: -53
 point15132:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -24
   y: -53
 point15133:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -53
 point15134:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -22
   y: -53
 point15135:
@@ -35172,19 +35172,19 @@ point15256:
 point15257:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -54
 point15258:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -54
 point15259:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -54
 point1526:
@@ -35196,25 +35196,25 @@ point1526:
 point15260:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -25
   y: -54
 point15261:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Canyon
   x: -24
   y: -54
 point15262:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -54
 point15263:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -22
   y: -54
 point15264:
@@ -36030,25 +36030,25 @@ point15385:
 point15386:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -28
   y: -55
 point15387:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -27
   y: -55
 point15388:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -55
 point15389:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -25
   y: -55
 point1539:
@@ -36060,19 +36060,19 @@ point1539:
 point15390:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -24
   y: -55
 point15391:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Flori Canyon
   x: -23
   y: -55
 point15392:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -22
   y: -55
 point15393:
@@ -36908,19 +36908,19 @@ point15516:
 point15517:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -56
 point15518:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -56
 point15519:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -56
 point1552:
@@ -36935,7 +36935,7 @@ point1552:
 point15520:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -23
   y: -56
 point15521:
@@ -37771,25 +37771,25 @@ point15645:
 point15646:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -26
   y: -57
 point15647:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -57
 point15648:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -57
 point15649:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -23
   y: -57
 point1565:
@@ -38637,25 +38637,25 @@ point15774:
 point15775:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -26
   y: -58
 point15776:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -58
 point15777:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -58
 point15778:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -23
   y: -58
 point15779:
@@ -39501,25 +39501,25 @@ point15903:
 point15904:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -26
   y: -59
 point15905:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -25
   y: -59
 point15906:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Wasted Lands Of Kirgon
   x: -24
   y: -59
 point15907:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -23
   y: -59
 point15908:
@@ -40365,25 +40365,25 @@ point16032:
 point16033:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -26
   y: -60
 point16034:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -25
   y: -60
 point16035:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -24
   y: -60
 point16036:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -23
   y: -60
 point16037:
@@ -41235,7 +41235,7 @@ point16163:
 point16164:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -24
   y: -61
 point16165:
@@ -42093,7 +42093,7 @@ point16292:
 point16293:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -24
   y: -62
 point16294:
@@ -42957,7 +42957,7 @@ point16421:
 point16422:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Valleys Of Flori
   x: -24
   y: -63
 point16423:
@@ -59477,7 +59477,7 @@ point3899:
   - East
   - South-East
   - North-East
-  dialog: Escort Gerud Beer Convoy Stopover
+  dialog: Escort Gerud Beer Convey Stopover
   map zone: Los Gerudos Distillery
   x: -34
   y: 34
@@ -80444,19 +80444,19 @@ point7003:
 point7004:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 10
 point7005:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -24
   y: 10
 point7006:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -23
   y: 10
 point7007:
@@ -80474,7 +80474,7 @@ point7008:
 point7009:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -20
   y: 10
 point701:
@@ -80486,7 +80486,7 @@ point701:
 point7010:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -19
   y: 10
 point7011:
@@ -80516,31 +80516,31 @@ point7014:
 point7015:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -14
   y: 10
 point7016:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -13
   y: 10
 point7017:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -12
   y: 10
 point7018:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -11
   y: 10
 point7019:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -10
   y: 10
 point702:
@@ -81313,19 +81313,19 @@ point7132:
 point7133:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 9
 point7134:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -24
   y: 9
 point7135:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -23
   y: 9
 point7136:
@@ -81343,13 +81343,13 @@ point7137:
 point7138:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -20
   y: 9
 point7139:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -19
   y: 9
 point714:
@@ -81403,13 +81403,13 @@ point7146:
 point7147:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -11
   y: 9
 point7148:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -10
   y: 9
 point7149:
@@ -82183,19 +82183,19 @@ point7261:
 point7262:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 8
 point7263:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: 8
 point7264:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -23
   y: 8
 point7265:
@@ -82213,13 +82213,13 @@ point7266:
 point7267:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -20
   y: 8
 point7268:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -19
   y: 8
 point7269:
@@ -82273,13 +82273,13 @@ point7275:
 point7276:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 8
 point7277:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -10
   y: 8
 point7278:
@@ -83052,19 +83052,19 @@ point7390:
 point7391:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 7
 point7392:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: 7
 point7393:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -23
   y: 7
 point7394:
@@ -83082,13 +83082,13 @@ point7395:
 point7396:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -20
   y: 7
 point7397:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 7
 point7398:
@@ -83148,13 +83148,13 @@ point7404:
 point7405:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 7
 point7406:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: 7
 point7407:
@@ -83929,19 +83929,19 @@ point752:
 point7520:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 6
 point7521:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: 6
 point7522:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -23
   y: 6
 point7523:
@@ -83959,31 +83959,31 @@ point7524:
 point7525:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -20
   y: 6
 point7526:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 6
 point7527:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -18
   y: 6
 point7528:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -17
   y: 6
 point7529:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -16
   y: 6
 point753:
@@ -83995,37 +83995,37 @@ point753:
 point7530:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -15
   y: 6
 point7531:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -14
   y: 6
 point7532:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 6
 point7533:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 6
 point7534:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 6
 point7535:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: 6
 point7536:
@@ -84792,7 +84792,7 @@ point7648:
 point7649:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 5
 point765:
@@ -84804,61 +84804,61 @@ point765:
 point7650:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: 5
 point7651:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: 5
 point7652:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -22
   y: 5
 point7653:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -21
   y: 5
 point7654:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: 5
 point7655:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 5
 point7656:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: 5
 point7657:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -17
   y: 5
 point7658:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -16
   y: 5
 point7659:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -15
   y: 5
 point766:
@@ -84870,31 +84870,31 @@ point766:
 point7660:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -14
   y: 5
 point7661:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 5
 point7662:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 5
 point7663:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 5
 point7664:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: 5
 point7665:
@@ -85659,13 +85659,13 @@ point7777:
 point7778:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 4
 point7779:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -24
   y: 4
 point778:
@@ -85679,61 +85679,61 @@ point778:
 point7780:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: 4
 point7781:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: 4
 point7782:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -21
   y: 4
 point7783:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: 4
 point7784:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 4
 point7785:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: 4
 point7786:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -17
   y: 4
 point7787:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -16
   y: 4
 point7788:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: 4
 point7789:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: 4
 point779:
@@ -85749,19 +85749,19 @@ point779:
 point7790:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 4
 point7791:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 4
 point7792:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 4
 point7793:
@@ -86547,19 +86547,19 @@ point7906:
 point7907:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 3
 point7908:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -24
   y: 3
 point7909:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: 3
 point791:
@@ -86571,61 +86571,61 @@ point791:
 point7910:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: 3
 point7911:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: 3
 point7912:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: 3
 point7913:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 3
 point7914:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: 3
 point7915:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -17
   y: 3
 point7916:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -16
   y: 3
 point7917:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: 3
 point7918:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: 3
 point7919:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 3
 point792:
@@ -86637,13 +86637,13 @@ point792:
 point7920:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 3
 point7921:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 3
 point7922:
@@ -87421,25 +87421,25 @@ point8035:
 point8036:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 2
 point8037:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -24
   y: 2
 point8038:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: 2
 point8039:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: 2
 point804:
@@ -87451,61 +87451,61 @@ point804:
 point8040:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: 2
 point8041:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: 2
 point8042:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 2
 point8043:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: 2
 point8044:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -17
   y: 2
 point8045:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -16
   y: 2
 point8046:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: 2
 point8047:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: 2
 point8048:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 2
 point8049:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 2
 point805:
@@ -87517,7 +87517,7 @@ point805:
 point8050:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 2
 point8051:
@@ -88291,31 +88291,31 @@ point8164:
 point8165:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: 1
 point8166:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: 1
 point8167:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: 1
 point8168:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: 1
 point8169:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: 1
 point817:
@@ -88327,61 +88327,61 @@ point817:
 point8170:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: 1
 point8171:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 1
 point8172:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: 1
 point8173:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -17
   y: 1
 point8174:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: 1
 point8175:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: 1
 point8176:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: 1
 point8177:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 1
 point8178:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 1
 point8179:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 1
 point818:
@@ -89161,37 +89161,37 @@ point8293:
 point8294:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Harbor
   x: -25
   y: 0
 point8295:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: 0
 point8296:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -23
   y: 0
 point8297:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Astrali Blacksmith
   x: -22
   y: 0
 point8298:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: 0
 point8299:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: 0
 point83:
@@ -89209,55 +89209,55 @@ point830:
 point8300:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: 0
 point8301:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: 0
 point8302:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -17
   y: 0
 point8303:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: 0
 point8304:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -15
   y: 0
 point8305:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: 0
 point8306:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: 0
 point8307:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: 0
 point8308:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: 0
 point8309:
@@ -90044,43 +90044,43 @@ point8422:
 point8423:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Harbor
   x: -25
   y: -1
 point8424:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: -1
 point8425:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Astrali Forge
   x: -23
   y: -1
 point8426:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -1
 point8427:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -1
 point8428:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -20
   y: -1
 point8429:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -19
   y: -1
 point843:
@@ -90092,49 +90092,49 @@ point843:
 point8430:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -18
   y: -1
 point8431:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -1
 point8432:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -1
 point8433:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -15
   y: -1
 point8434:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -1
 point8435:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -1
 point8436:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -1
 point8437:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -1
 point8438:
@@ -90907,55 +90907,55 @@ point8550:
 point8551:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Harbor
   x: -26
   y: -2
 point8552:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -25
   y: -2
 point8553:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: -2
 point8554:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -2
 point8555:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -2
 point8556:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -2
 point8557:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -2
 point8558:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -2
 point8559:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -18
   y: -2
 point856:
@@ -90967,43 +90967,43 @@ point856:
 point8560:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -2
 point8561:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -2
 point8562:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -15
   y: -2
 point8563:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -14
   y: -2
 point8564:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -2
 point8565:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -2
 point8566:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -2
 point8567:
@@ -91781,61 +91781,61 @@ point868:
 point8680:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Harbor
   x: -26
   y: -3
 point8681:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -25
   y: -3
 point8682:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: -3
 point8683:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -3
 point8684:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -3
 point8685:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -3
 point8686:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -3
 point8687:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -3
 point8688:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -18
   y: -3
 point8689:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -3
 point869:
@@ -91847,37 +91847,37 @@ point869:
 point8690:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -16
   y: -3
 point8691:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Tavern
   x: -15
   y: -3
 point8692:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -14
   y: -3
 point8693:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -13
   y: -3
 point8694:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -3
 point8695:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -3
 point8696:
@@ -92658,7 +92658,7 @@ point8808:
 point8809:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -26
   y: -4
 point881:
@@ -92670,61 +92670,61 @@ point881:
 point8810:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -4
 point8811:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: -4
 point8812:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -23
   y: -4
 point8813:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -4
 point8814:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -4
 point8815:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -4
 point8816:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -4
 point8817:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -4
 point8818:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -4
 point8819:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -4
 point882:
@@ -92736,25 +92736,25 @@ point882:
 point8820:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -15
   y: -4
 point8821:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -4
 point8822:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -13
   y: -4
 point8823:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -4
 point8824:
@@ -93519,13 +93519,13 @@ point8937:
 point8938:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -26
   y: -5
 point8939:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -5
 point894:
@@ -93537,61 +93537,61 @@ point894:
 point8940:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: -5
 point8941:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Chapel
   x: -23
   y: -5
 point8942:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -5
 point8943:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -5
 point8944:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -5
 point8945:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -5
 point8946:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -5
 point8947:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -5
 point8948:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -5
 point8949:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Oldon Village
   x: -15
   y: -5
 point895:
@@ -93603,19 +93603,19 @@ point895:
 point8950:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -5
 point8951:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -5
 point8952:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -5
 point8953:
@@ -94389,19 +94389,19 @@ point9066:
 point9067:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -26
   y: -6
 point9068:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: -6
 point9069:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -6
 point907:
@@ -94415,61 +94415,61 @@ point907:
 point9070:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -6
 point9071:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -6
 point9072:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -6
 point9073:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -6
 point9074:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -6
 point9075:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -6
 point9076:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -6
 point9077:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -6
 point9078:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -6
 point9079:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -6
 point908:
@@ -94483,13 +94483,13 @@ point908:
 point9080:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -6
 point9081:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -6
 point9082:
@@ -95256,25 +95256,25 @@ point9195:
 point9196:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -26
   y: -7
 point9197:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -25
   y: -7
 point9198:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -7
 point9199:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -7
 point92:
@@ -95292,61 +95292,61 @@ point920:
 point9200:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -7
 point9201:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -7
 point9202:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -7
 point9203:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -7
 point9204:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -7
 point9205:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -7
 point9206:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -7
 point9207:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -7
 point9208:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -7
 point9209:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -7
 point921:
@@ -95358,7 +95358,7 @@ point921:
 point9210:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -7
 point9211:
@@ -96124,31 +96124,31 @@ point9324:
 point9325:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -26
   y: -8
 point9326:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Grocery
   x: -25
   y: -8
 point9327:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Peregrine Town
   x: -24
   y: -8
 point9328:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -8
 point9329:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -8
 point933:
@@ -96160,61 +96160,61 @@ point933:
 point9330:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -8
 point9331:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -8
 point9332:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -8
 point9333:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -8
 point9334:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -8
 point9335:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -8
 point9336:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -8
 point9337:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -8
 point9338:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -8
 point9339:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -8
 point934:
@@ -96986,37 +96986,37 @@ point9453:
 point9454:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -26
   y: -9
 point9455:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -25
   y: -9
 point9456:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -9
 point9457:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -9
 point9458:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -9
 point9459:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -9
 point946:
@@ -97028,55 +97028,55 @@ point946:
 point9460:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -9
 point9461:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -9
 point9462:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -9
 point9463:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -9
 point9464:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -9
 point9465:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -9
 point9466:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -9
 point9467:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -9
 point9468:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -9
 point9469:
@@ -97848,43 +97848,43 @@ point9582:
 point9583:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -26
   y: -10
 point9584:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -10
 point9585:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -10
 point9586:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -23
   y: -10
 point9587:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -22
   y: -10
 point9588:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -21
   y: -10
 point9589:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -10
 point959:
@@ -97896,49 +97896,49 @@ point959:
 point9590:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -10
 point9591:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -10
 point9592:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -10
 point9593:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -10
 point9594:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -10
 point9595:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -10
 point9596:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -10
 point9597:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -10
 point9598:
@@ -98716,49 +98716,49 @@ point9711:
 point9712:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Prancing Poney
   x: -26
   y: -11
 point9713:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -11
 point9714:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -11
 point9715:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -11
 point9716:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -11
 point9717:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -11
 point9718:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -11
 point9719:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -11
 point972:
@@ -98770,49 +98770,49 @@ point972:
 point9720:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -11
 point9721:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -11
 point9722:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -11
 point9723:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -11
 point9724:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -11
 point9725:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -11
 point9726:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -11
 point9727:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -11
 point9728:
@@ -99578,55 +99578,55 @@ point9840:
 point9841:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -26
   y: -12
 point9842:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -12
 point9843:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -24
   y: -12
 point9844:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -12
 point9845:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -12
 point9846:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -12
 point9847:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -12
 point9848:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -12
 point9849:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -12
 point985:
@@ -99638,49 +99638,49 @@ point985:
 point9850:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -17
   y: -12
 point9851:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -12
 point9852:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -12
 point9853:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -12
 point9854:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -12
 point9855:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -12
 point9856:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -12
 point9857:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: -12
 point9858:
@@ -100428,7 +100428,7 @@ point9968:
 point9969:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Sandy Beaches
   x: -27
   y: -13
 point997:
@@ -100440,61 +100440,61 @@ point997:
 point9970:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -26
   y: -13
 point9971:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -25
   y: -13
 point9972:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: The Shire
   x: -24
   y: -13
 point9973:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -23
   y: -13
 point9974:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -22
   y: -13
 point9975:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -21
   y: -13
 point9976:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -20
   y: -13
 point9977:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -19
   y: -13
 point9978:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Boston Lake
   x: -18
   y: -13
 point9979:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -17
   y: -13
 point998:
@@ -100506,43 +100506,43 @@ point998:
 point9980:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -16
   y: -13
 point9981:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -15
   y: -13
 point9982:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -14
   y: -13
 point9983:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -13
   y: -13
 point9984:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -12
   y: -13
 point9985:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -11
   y: -13
 point9986:
   blocked:
   - None
-  map zone: Stall Seas
+  map zone: Elf Lands
   x: -10
   y: -13
 point9987:
