@@ -28,12 +28,14 @@ Warg:
   stats:
     agility addition: .35
     resistance addition: .15
+    health: 200
   levels:
     max level: 25
     level stat additions:
       agility addition: .025
       resistance addition: .015
       mph addition: .25
+      health addition: 12
   description: "Wargs are at first Orks mounts but they can be tamed and then used to fight against Orks. Wargs are fast and agile mounts."
 White Warg:
   name: White Warg
@@ -52,12 +54,14 @@ White Warg:
   stats:
     agility addition: .27
     resistance addition: .24
+    health: 250
   levels:
     max level: 55
     level stat additions:
       agility addition: .015
       resistance addition: .01
       mph addition: .2
+      health addition: 6
   description: "Wargs are at first Orks mounts but they can be tamed and then used to fight against Ork. Wargs are fast and agile mounts."
 Bear:
   name: Bear
@@ -75,12 +79,14 @@ Bear:
   stats:
     agility addition: -0.15
     resistance addition: .25
+    health: 300
   levels:
     max level: 8
     level stat additions:
       agility addition: .015
       resistance addition: .15
       mph addition: .2
+      health addition: 25
   description: "Bears are very big and powerful animals that are very hard to train; they required lot of work."
 Goat Steed:
   name: Goat Steed
@@ -100,6 +106,7 @@ Goat Steed:
   stats:
     agility addition: .15
     resistance addition: .15
+    health:
   levels:
     max level: 17
     level stat additions:
