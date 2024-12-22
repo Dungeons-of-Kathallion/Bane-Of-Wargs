@@ -2944,6 +2944,59 @@ Mumakil Tusk:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Giant Meat Ball:
+  type: "Misc"
+  gold: 13450.7777777
+  description: "A giant meat ball. What more to say? Oh yeah, you can find some ketchup on it."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║$DARK_BROWN          ########          $WHITE║
+    ║$DARK_BROWN       ##############       $WHITE║
+    ║$DARK_BROWN      #############$RED###$DARK_BROWN      $WHITE║
+    ║$DARK_BROWN     ########$RED######$DARK_BROWN####     $WHITE║
+    ║$DARK_BROWN    ###########$RED##$DARK_BROWN#######    $WHITE║
+    ║$DARK_BROWN    ##########$RED##$DARK_BROWN########    $WHITE║
+    ║$DARK_BROWN     ##########$RED###$DARK_BROWN#####     $WHITE║
+    ║$DARK_BROWN      ################      $WHITE║
+    ║$DARK_BROWN       ##############       $WHITE║
+    ║$DARK_BROWN          ########          $WHITE║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║          ########          ║
+    ║       ##############       ║
+    ║      ################      ║
+    ║     ##################     ║
+    ║    ####################    ║
+    ║    ####################    ║
+    ║     ##################     ║
+    ║      ################      ║
+    ║       ##############       ║
+    ║          ########          ║
+    ║                            ║
+    ╚════════════════════════════╝
+30-yard Long Spaghetti:
+  type: "Misc"
+  gold: -13450.7777777
+  description: "This 30-yard long spaghetti coming to save you from your sins. Or for your hunger, who knows?"
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 # Keys
 Warg Key:
   type: "Key"

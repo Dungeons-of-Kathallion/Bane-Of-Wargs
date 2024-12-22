@@ -529,3 +529,21 @@ Fellbeast:
   description: >
     Fellbeasts may look like dragons, they do not have the power of breathing fire, but they have huge clawed hands.
     They are often used by the evil forces wizards.
+# Jokes
+Flying Spaghetti Monster:
+  plural: "Flying Spaghetti Monsters"
+  damage:
+    min damage: 29
+    max damage: 145
+    critical chance: .65
+  health:
+    min spawning health: 750
+    max spawning health: 1250
+    max health level: 1250
+  agility: .35
+  inventory:
+  - Giant Meat Ball
+  - 30-yard Long Spaghetti
+  description: >
+    Coming straight from America, the Flying Spaghetti Monster is coming to prevent intelligent design teaching from
+    being used in public schools in the Kathallion Archipelago. R'amen. Why not try reading the Gospel of the Flying Monster?
