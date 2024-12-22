@@ -805,6 +805,15 @@ def fight(
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
                     cout(f"You killed {text_handling.a_an_check(enemy_singular)}!")
+                    if player["current mount"] != " ":
+                        current_mount = str(player["current mount"])
+                        current_mount_type = str(player["mounts"][current_mount]["mount"])
+                        player["mounts"][current_mount]["last day health automatically reduced"] = round(
+                            player["elapsed time game days"], 2
+                        )
+                        player["mounts"][current_mount]["current health"] -= round(
+                            mounts[current_mount_type]["feed"]["feed needs"] * 1.75
+                        )
                     time.sleep(2)
                     still_playing = False
                     turn = True

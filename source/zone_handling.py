@@ -741,7 +741,11 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                             "mount": str(which_mount),
                             "name": str(new_mount_name),
                             "stats": mount_stats,
-                            "mph": mounts[which_mount]["mph"]
+                            "mph": mounts[which_mount]["mph"],
+                            "health": mounts[which_mount]["stats"]["health"],
+                            "current health": mounts[which_mount]["stats"]["health"],
+                            "last day health automatically reduced": round(player["elapsed time game days"], 2),
+                            "last day health recovered": round(player["elapsed time game days"], 2)
                         }
                         logger_sys.log_message(f"INFO: Created new mount stats: '{mount_dict}'")
                         player["mounts"][generated_mount_uuid] = mount_dict
@@ -801,6 +805,12 @@ def interaction_stable(map_zone, zone, player, item, drinks, mounts, map_locatio
                     logger_sys.log_message("INFO: Starting mount training of mount '{current_mount_uuid}'")
                     train.training_loop(
                         current_mount_uuid, player, item, mounts, zone[map_zone], time_elapsing_coefficient, dropoff
+                    )
+                    player["mounts"][current_mount_uuid]["last day health automatically reduced"] = round(
+                        player["elapsed time game days"], 2
+                    )
+                    player["mounts"][current_mount_uuid]["current health"] -= round(
+                        mounts[current_mount_type]["feed"]["feed needs"] * 1.015
                     )
                 else:
                     logger_sys.log_message(
