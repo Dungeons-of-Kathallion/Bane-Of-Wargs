@@ -439,9 +439,9 @@ shire beaches:
       normal: {"min": 2, "max": 3}
       hard: {"min": 3, "max": 5}
     enemies spawns:
-      Doomoed Horror: .7
+      Doomed Horror: .7
       Dark Marksman: .5
-      Dark Ork: 1
+      Black Ork: 1
 
 none:
   none:
@@ -463,9 +463,9 @@ kirgon raids:
       normal: {"min": 2, "max": 3}
       hard: {"min": 3, "max": 5}
     enemies spawns:
-      Doomoed Horror: .7
+      Doomed Horror: .7
       Dark Marksman: .5
-      Dark Ork: 1
+      Black Ork: 1
   Undeads Raid:
     name: "A swarm of undeads awaken from the sandy beaches!"
     chance: .35
@@ -495,9 +495,9 @@ kirgon raids desert:
       normal: {"min": 2, "max": 3}
       hard: {"min": 3, "max": 5}
     enemies spawns:
-      Doomoed Horror: .7
+      Doomed Horror: .7
       Dark Marksman: .5
-      Dark Ork: 1
+      Black Ork: 1
   Undeads Raid:
     name: "A swarm of undeads awaken from the sandy beaches!"
     chance: .35

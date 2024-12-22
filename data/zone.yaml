@@ -2235,7 +2235,7 @@ Astrali Blacksmith:
         - Raw Silver
         - Raw Silver
         - Raw Copper
-        - Raw lead
+        - Raw Lead
         - Refined Steel
         - Refined Steel
       Rapier:
@@ -2245,7 +2245,7 @@ Astrali Blacksmith:
         - Raw Silver
         - Raw Silver
         - Raw Silver
-        - Raw lead
+        - Raw Lead
         - Flexible Steel
         - Flexible Steel
       Long Sword:
@@ -2653,7 +2653,7 @@ Eldin:
     stables:
     - Elif Stablings
     churches:
-    - Edlin Church
+    - Eldin Church
     groceries:
     - Eldin Market
     harbors:
@@ -2834,7 +2834,7 @@ Eldin Blacksmith:
         - Raw Silver
         - Raw Silver
         - Raw Silver
-        - Raw lead
+        - Raw Lead
         - Flexible Steel
         - Flexible Steel
       Long Sword:
