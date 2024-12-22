@@ -3492,6 +3492,7 @@ def run(play):
             cout("5 $find$point$ : find a map point's id by its X and Y coordinates")
             cout("5 $teleport$point$ : teleport to a selected X and Y coordinates")
             cout("6 $run$dialog$ : trigger a selected dialog and its actions with it")
+            cout("7 $run$script$ : trigger a selected script and its actions with it")
             cinput()
             continued_command = True
         elif command.lower().startswith('$player$data$'):
@@ -3634,6 +3635,24 @@ def run(play):
                 save_file, player_damage_coefficient, enemies_damage_coefficient, previous_player
             )
             cinput("$END$\n")
+            continued_command = True
+        elif command.lower().startswith('$run$script$'):
+            plugin = False
+            if preferences["latest preset"]["type"] == 'plugin':
+                plugin = True
+            chosen_script = terminal_handling.show_menu(os.listdir(program_dir + '/temp/scripts/'))
+            script_handling.load_script(
+                {"script name": str(chosen_script), "arguments": [
+                    "player", "map", "item", "drinks", "enemy", "npcs",
+                    "start_player", "lists", "zone", "dialog", "mission",
+                    "mounts", "start_time", "generic_text_replacements",
+                    "preferences", "map_location", "save_file", "previous_player",
+                    "player_damage_coefficient", "enemies_damage_coefficient"
+                ]}, preferences, player, map, item, drinks, enemy, npcs, start_player,
+                lists, zone, dialog, mission, mounts, start_time, text_replacements_generic,
+                save_file, player_damage_coefficient, enemies_damage_coefficient,
+                previous_player, plugin
+            )
             continued_command = True
         else:
             continued_utility = False
