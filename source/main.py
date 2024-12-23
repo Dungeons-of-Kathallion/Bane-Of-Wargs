@@ -1690,6 +1690,29 @@ def run(play):
         cout("DIRECTIONS: " + "          ACTIONS:")
 
         blocked_locations = map["point" + str(map_location)]["blocked"]
+        x_point = map["point" + str(map_location)]["x"]
+        y_point = map["point" + str(map_location)]["y"]
+
+        # check if possible destinations are lakes or seas map zone type
+        # if yes, add these destinations to the blocked locations
+        blocked_zones = ["sea", "lake", "plains canyon", "desert canyons", "black rocky canyons", "rocky canyons"]
+        if zone[map["point" + str(search(x_point + 1, y_point))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["East"]
+        if zone[map["point" + str(search(x_point + 1, y_point - 1))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["South-East"]
+        if zone[map["point" + str(search(x_point, y_point - 1))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["South"]
+        if zone[map["point" + str(search(x_point - 1, y_point - 1))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["South-West"]
+        if zone[map["point" + str(search(x_point - 1, y_point))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["West"]
+        if zone[map["point" + str(search(x_point - 1, y_point + 1))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["North-West"]
+        if zone[map["point" + str(search(x_point, y_point + 1))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["North"]
+        if zone[map["point" + str(search(x_point + 1, y_point + 1))]["map zone"]]["type"] in blocked_zones:
+            blocked_locations += ["North-East"]
+
         if "North" not in blocked_locations:
             cout("Can go North ⬆    " + "    " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "I: " + COLOR_RESET_ALL + "View items")
         else:
