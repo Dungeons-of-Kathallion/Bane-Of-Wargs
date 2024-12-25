@@ -3785,7 +3785,7 @@ def run(play):
             cout("Select an enemy to spawn")
             enemy_to_spawn = terminal_handling.show_menu(list(enemy))
             cout("How many enemies you want to be spawned?")
-            number_of_enemies = int(terminal_handling.show_menu(['1', '2', '3', '4', '6', '8', '12'], length=7))
+            number_of_enemies = int(terminal_handling.show_menu(['1', '2', '3', '4', '6', '8', '12', '20', '30', '50', '100'], length=8))
             number_temp = {"min": number_of_enemies, "max": number_of_enemies}
             lists["$temp$enemy$spawn$"] = {}
             lists["$temp$enemy$spawn$"]["$enemy$"] = {
