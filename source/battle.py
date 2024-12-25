@@ -15,6 +15,7 @@
 # source imports
 import text_handling
 import item_handling
+import terminal_handling
 import logger_sys
 from colors import *
 from terminal_handling import cout, cinput
@@ -671,8 +672,10 @@ def fight(
             cout("  - [U]se Item")
             text_handling.print_separator('=')
             cout("")
-            global skip_attacks
+            global skip_attacks, enemy_ran_away, not_ran_away_yet
             skip_attacks = False
+            enemy_ran_away = False
+            not_ran_away_yet = True
             while turn:
                 # display
 
@@ -758,7 +761,33 @@ def fight(
             while not turn:
                 # if enemy is still alive
                 if enemy_health > 0:
-                    if not skip_attacks:
+                    # there is some chance that the enemies 'get scared' of the player
+                    # and try to run away
+
+                    if (
+                        (enemy_health / player["health"]) < .3
+                        and not not_ran_away_yet and random.randint(0, 100) > 65
+                    ):
+                        not_ran_away_yet = False
+                        time.sleep(1)
+                        cout("Your enemy is trying to escape from you!")
+                        time.sleep(1)
+                        cout("Do you want to let him run away?")
+                        choice = terminal_handling.show_menu(["Yes", "No"])
+                        if choice == "Yes":
+                            enemy_ran_away = True
+                            enemy_health = 0
+                        elif (
+                            enemy_agility / round(random.uniform(1.10, 1.25), 2)
+                        ) < player["agility"]:
+                            cout("You were able to catch up your enemy!")
+                            time.sleep(1)
+                            cout("Seems like he won't be able to run away no more.")
+                        else:
+                            enemy_ran_away = True
+                            enemy_health = 0
+                            cout("You weren't able to catch up your enemy.")
+                    if not skip_attacks and not enemy_ran_away:
                         damage = random.randint(
                             enemy_min_damage, enemy_max_damage
                         ) * enemies_damage_coefficient - defend * (
@@ -781,7 +810,7 @@ def fight(
                             cout("The enemy dealt " + str(damage) + " points of damage.")
                         cout(" ")
                     turn = True
-                else:
+                if enemy_ran_away or enemy_health <= 0:
                     cout(" ")
                     # check if any health is negative
                     if player["health"] < 0:
@@ -805,7 +834,8 @@ def fight(
                         player["mounts"][player["current mount"]]["level"] += round(random.uniform(.05, .20), 3)
                     player["health"] += random.randint(0, 3)
                     enemies_remaining -= 1
-                    cout(f"You killed {text_handling.a_an_check(enemy_singular)}!")
+                    if not enemy_ran_away:
+                        cout(f"You killed {text_handling.a_an_check(enemy_singular)}!")
                     if player["current mount"] != " ":
                         current_mount = str(player["current mount"])
                         current_mount_type = str(player["mounts"][current_mount]["mount"])
@@ -820,11 +850,7 @@ def fight(
                             f"INFO: removed {to_be_removed} health points from player current mount {current_mount}"
                         )
                     time.sleep(2)
-                    still_playing = False
                     turn = True
                     return
             time.sleep(2)
         return
-
-
-still_playing = True
