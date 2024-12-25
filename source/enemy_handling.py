@@ -87,42 +87,56 @@ def spawn_enemy(
     text_replacements_generic, start_time, previous_player, save_file,
     enemies_damage_coefficient, no_run_away=False
 ):
-    already_encountered = False
     logger_sys.log_message(f"INFO: Choosing random enemies from the list '{list_enemies}'")
     enemies, entry_data = generate_enemies_from_list(lists, list_enemies, player)
     enemies_remaining = len(enemies)
+
+    # Determine which item will be dropped using
+    # all enemies' different inventories
+    enemies_total_inventory = []
+    for entry in enemies:
+        if entry not in player["enemies list"]:
+            player["enemies list"] += [entry]
+        entry = enemy[entry]["inventory"]
+        for i in entry:
+            enemies_total_inventory += [i]
+
+    enemies_items_number = len(enemies_total_inventory)
+    logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
+    chosen_item = enemies_total_inventory[random.randint(0, enemies_items_number - 1)]
+
+    # Determine what are the different enemy types
+    # in the current enemy list
+    enemy_types = []
+    enemy_types2 = {}
+    for chosen_enemy in enemies:
+        if chosen_enemy not in enemy_types:
+            enemy_types.append(chosen_enemy)
+
+    for chosen_enemy in enemy_types:
+        enemy_types2[chosen_enemy] = enemy_types.count(chosen_enemy)
+
+    # Calculate the battle risk for the player once
+    logger_sys.log_message("INFO: Calculating battle risk for the player")
+    risk = 0
+    for chosen_enemy in enemy_types:
+        risk += battle.calculate_player_risk(
+            player, item, enemies_remaining, enemy[chosen_enemy], enemy, player_damage_coefficient,
+            enemies_damage_coefficient
+        ) * enemy_types2[chosen_enemy]
+    risk = int(risk / len(enemies))
+
+    # Display the encountering text
+    logger_sys.log_message("INFO: Display enemy encounter text")
+    battle.encounter_text_show(
+        player, item, enemy, map, map_location, enemies_remaining, lists,
+        risk, preferences, drinks, npcs, zone, mounts, mission,
+        start_player, dialog, text_replacements_generic, player_damage_coefficient,
+        previous_player, save_file, start_time, enemies_damage_coefficient,
+        entry_data, enemies, no_run_away
+    )
+
     while enemies_remaining > 0:
-
-        enemies_total_inventory = []
-        for entry in enemies:
-            if entry not in player["enemies list"]:
-                player["enemies list"] += [entry]
-            entry = enemy[entry]["inventory"]
-            for i in entry:
-                enemies_total_inventory += [i]
-
-        enemies_items_number = len(enemies_total_inventory)
-        logger_sys.log_message("INFO: Choosing randomly the item that will drop from the enemies")
-        chosen_item = enemies_total_inventory[random.randint(0, enemies_items_number - 1)]
-
-        logger_sys.log_message("INFO: Calculating battle risk for the player")
-        risk = 0
-        for chosen_enemy in enemies:
-            risk += battle.calculate_player_risk(
-                player, item, enemies_remaining, enemy[chosen_enemy], enemy, player_damage_coefficient,
-                enemies_damage_coefficient
-            )
-        risk = int(risk / len(enemies))
-        if not already_encountered:
-            logger_sys.log_message("INFO: Display enemy encounter text")
-            battle.encounter_text_show(
-                player, item, enemy, map, map_location, enemies_remaining, lists,
-                risk, preferences, drinks, npcs, zone, mounts, mission,
-                start_player, dialog, text_replacements_generic, player_damage_coefficient,
-                previous_player, save_file, start_time, enemies_damage_coefficient,
-                entry_data, enemies, no_run_away
-            )
-            already_encountered = True
         logger_sys.log_message("INFO: Starting the fight")
         battle.fight(
             player, item, enemy, map, map_location, enemies_remaining, lists,
@@ -133,6 +147,11 @@ def spawn_enemy(
         )
         enemies_remaining -= 1
 
+    # When the fight is over:
+    # if the player has no more health, kill him
+    # if he still has health, propose him to
+    # collect gold or an item depending on the
+    # situation
     if player["health"] > 0:
 
         if random.randint(0, 3) >= 2.5:
