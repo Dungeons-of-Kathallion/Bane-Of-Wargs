@@ -27,7 +27,7 @@ $ _
 
 Bane Of Wargs is a python text-game engine with pre-built plots and the ability to create custom plugins/mods that completely change the game content. The game is very customizable and you will find many in-game features: equipment upgrading, items orders, mounts training over time, xp gaining, hp gaining, etc. This provides a very customizable and enjoyable python terminal-text based RPG.
 
-You will have to fight monsters and bosses to get keys to unlock new areas on the map. The map is divided into points, determined by x and y coordinates, allowing maps up to 128x128 wide (so up to 16,384 places to explore), and more will be available as the engine progresses.
+You will have to fight monsters and bosses to get keys to unlock new areas on the map. The map is divided into points, determined by x and y coordinates, allowing maps up to 128x128 wide (so up to 16,384 places to explore), and more will be available as the engine progresses. Heavily inspired by The Lord Of The Rings, and the Zelda Franchise (particularly Skyward Sword and Twilight Princess), you'll find amusing to spot all the references and such!
 
 See the [Gameplay Guide](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Gameplay-Guide) wiki page or check or the [Creating Mod](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Creating-Mods) wiki page if you're interested in modding the game. Check [The World Of Bane Of Wargs](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/wiki/Vanilla-World) wiki page to know more about the world of Bane Of Wargs.
 
