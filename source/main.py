@@ -574,11 +574,9 @@ while menu:
             check = cinput("Are you sure you want to delete the following save (y/n)")
             if check.lower().startswith('y'):
                 logger_sys.log_message(
-                    f"WARNING: Deleting save file '{program_dir}/saves/save_{open_save}.yaml'" +
-                    f" and save file backup '{program_dir}/saves/~0 save_{open_save}.yaml'"
+                    f"WARNING: Deleting save file '{program_dir}/saves/save_{open_save}.yaml'"
                 )
                 os.remove(program_dir + "/saves/save_" + open_save + ".yaml")
-                os.remove(program_dir + "/saves/~0 save_" + open_save + ".yaml")
     elif choice == 'Preferences':
         cout("Which type of editing do you want to use to update your preferences?")
         which_type = terminal_handling.show_menu(['GUI Editing', 'Manual Editing'])
