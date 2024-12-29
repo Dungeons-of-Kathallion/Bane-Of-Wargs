@@ -193,7 +193,7 @@ def apply_yaml_data_color_code(to_print):
     to_print = to_print.replace('$CYAN', '\033[0;36m')
     to_print = to_print.replace('$WHITE', COLOR_RESET_ALL)
     to_print = to_print.replace('$BLACK', '\033[0;30m')
-    to_print = to_print.replace('$LIGHT_BLACK', '\033[38;2;46;46;46')
+    to_print = to_print.replace('$LIGHT_BLACK', '\033[38;2;46;46;46m')
     to_print = to_print.replace('$BROWN', '\033[38;2;244;164;96m')
     to_print = to_print.replace('$TAN', '\033[38;2;210;180;140m')
     to_print = to_print.replace('$DARK_BROWN', '\033[38;2;139;69;19m')
