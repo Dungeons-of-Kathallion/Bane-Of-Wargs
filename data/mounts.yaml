@@ -278,3 +278,28 @@ Donkey:
   description: >
     Donkeys are not from the Stall Island, but some explorer brought them a few centuries ago and they're now often used by
     merchants that want to cross the difficult Goro Mounts or the wild Mangrove Wastes.
+Fellbeast:
+  name: Fellbeast
+  plural: Fellbeasts
+  gold: 1245.27
+  mph: 45
+  feed:
+    food:
+    - Lyzalfos Flesh
+    feed needs: 13
+  stable:
+    required stable: Dragon Stable
+    stable slot usage: 3
+  stats:
+    agility addition: .32
+    resistance addition: .30
+    health: 750
+  levels:
+    max level: 250
+    level stat additions:
+      agility addition: .0125
+      resistance addition: .0085
+      mph addition: .175
+      health addition: 5
+  description: >
+    Only the bravest hero could tame a stray fellbeast and come to mount it.

@@ -1,0 +1,13 @@
+$LIGHT_BLACK      ____ $SILVER((($CYAN+$SILVER))) $LIGHT_BLACK____
+$LIGHT_BLACK     /.--.\  .-.  /.  .\
+$LIGHT_BLACK    /.,   \\($CYAN0$SILVER.$CYAN0$LIGHT_BLACK)//    \\
+$LIGHT_BLACK   /;`";/\ \\|$SILVERm$LIGHT_BLACK|// /\   ;\
+$LIGHT_BLACK   |:   \ \__`:`__/ /   :|
+$LIGHT_BLACK   |:    \__ \$DARK_REDT$LIGHT_BLACK/ __/     |
+$LIGHT_BLACK   |:    _/|     |\_\/  :|
+$LIGHT_BLACK   |:   /  |     |  \   :|
+$LIGHT_BLACK   |'  /   |     |   \  '|
+$LIGHT_BLACK    \_/    |     |    \_/
+$LIGHT_BLACK           |     |
+$LIGHT_BLACK           |$SILVER_____$LIGHT_BLACK|
+$LIGHT_BLACK           |$SILVER_____$LIGHT_BLACK|$WHITE
