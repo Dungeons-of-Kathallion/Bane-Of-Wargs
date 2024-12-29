@@ -334,7 +334,7 @@ def dungeon_loop(
             start_time -= pause_end - pause_start
             logger_sys.log_message(f"INFO: Finished pausing game --> game pause have lasted {pause_end - pause_start} seconds")
         elif action.startswith('e') and not current_dungeon["dungeon"]["no escape"]:
-            cout("Are you sure you want to qui the dungeon?")
+            cout("Are you sure you want to quit the dungeon?")
             ask = cinput("All your progress here will be reset (y/n) ").lower()
             if ask.startswith('y'):
                 logger_sys.log_message("INFO: Exiting dungeon and resetting progress")
