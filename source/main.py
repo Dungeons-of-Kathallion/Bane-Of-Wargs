@@ -3209,6 +3209,7 @@ def run(play):
                 else:
                     cout("NAME: " + which_item)
                 cout("TYPE: " + item[which_item]["type"])
+                cout("ESTIMATED VALUE: " + str(round(item[which_item]["gold"])))
                 text = "DESCRIPTION: " + item[which_item]["description"]
                 text_handling.print_long_string(text)
                 if (
