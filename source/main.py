@@ -2968,7 +2968,11 @@ def run(play):
                     )
 
                     # drops
-                    enemy_drops = str(enemy[which_enemy]["inventory"])
+                    enemy_drops = []
+                    for i in enemy[which_enemy]["inventory"]:
+                        if i not in enemy_drops:
+                            enemy_drops += [i]
+                    enemy_drops = str(enemy_drops)
                     enemy_drops = enemy_drops.replace('[', '')
                     enemy_drops = enemy_drops.replace(']', '')
                     enemy_drops = enemy_drops.replace("'", '')
