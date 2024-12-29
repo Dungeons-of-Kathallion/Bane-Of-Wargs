@@ -1,4 +1,5 @@
 - [battle.py](#battlepy)
+- [camp.py](#camppy)
 - [check\_yaml.py](#check_yamlpy)
 - [colors.py](#colorspy)
 - [consumable\_handling.py](#consumable_handlingpy)
@@ -35,6 +36,14 @@ The [`battle.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/m
 | calculate_player_risk() | `player`, `item`, `enemies_remaining`, `chosen_enemy`, `enemy`, `player_damage_coefficient`, `enemies_damage_coefficient`                                                                                                                                                                                                                                                     | Simulate a fight with `enemies_remaining` `enemy` enemies, to return the risk percentage of the player |
 | encounter_text_show()   | `player`, `item`, `enemy`, `map`, `map_location`, `enemies_remaining`, `lists`, `defeat_percentage`, `preferences`, `drinks`, `npcs`, `zone`, `mounts`, `mission`, `start_player`, `dialog`, `text_replacements_generic`, `player_damage_coefficient`, `previous_player`, `save_file`, `start_time`, `enemies_damage_coefficient`, `entry_data`, `enemies`, `no_run_away`=False | Displays the encountering text of enemy pool list `entry_data`                                          |
 | fight()                 | `player`, `item`, `enemy`, `map`, `map_location`, `enemies_remaining`, `lists`, `preferences`, `drinks`, `npcs`, `start_player`, `zone`, `dialog`, `mission`, `mounts`, `player_damage_coefficient`, `start_time`, `text_replacements_generic`,  `previous_player`, `save_file`, `enemies_damage_coefficient`, `defeat_percentage`, `entry_data`, `enemies`                   | Starts fight of enemy pool list `entry_data`                                                            |
+
+## camp.py
+
+The [`camp.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/camp.py) class handles all of the game camping UI. Here are all of its functions:
+
+| Name                    | Arguments                                                                                                                                                                                                                                                                                                                                                                     | Description                                                                                            |
+|-------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| camp_loop() | `player`, `save_file`, `map_zone`, `zone`, `time_elapsing_coefficient` | Ignites the camping loop UI. `map_zone` is the id of the player's current map zone. |
 
 ## check_yaml.py
 

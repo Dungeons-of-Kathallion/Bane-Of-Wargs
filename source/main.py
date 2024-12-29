@@ -31,6 +31,7 @@ import item_handling
 import time_handling
 import logger_sys
 import yaml_handling
+import camp
 from colors import *
 from time_handling import *
 from consumable_handling import *
@@ -1018,6 +1019,7 @@ def run(play):
             COLOR_RESET_ALL
         )
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "C: " + COLOR_RESET_ALL + "Settle a camp")
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Save game")
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
@@ -1759,6 +1761,7 @@ def run(play):
             cout("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         else:
             cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
+        cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "C: " + COLOR_RESET_ALL + "Settle a camp")
 
         text = '='
         text_handling.print_separator(text)
@@ -3621,6 +3624,10 @@ def run(play):
 
             text_handling.print_separator('=')
             cinput()
+            continued_command = True
+        elif command.lower().startswith('c'):
+            # Start the camp UI
+            camp.camp_loop(player, save_file, map_zone, zone, time_elapsing_coefficient)
             continued_command = True
         elif command.lower().startswith('k'):
             if player["difficulty mode"] == 2:
