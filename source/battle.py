@@ -409,6 +409,21 @@ def fight(
     else:
         enemy_critic_coefficient = 1
 
+    # check if the enemy has the `never run away: true` attribute or not
+    current_enemy = enemies[len(enemies) - enemies_remaining]
+    global disable_run_away
+    if "never run away" in enemy[current_enemy]:
+        disable_run_away = enemy[current_enemy]["never run away"]
+    else:
+        disable_run_away
+
+    # check if this is a one-shot enemy
+    global one_shot_enemy
+    if "one shot" in enemy[current_enemy]["damage"]:
+        one_shot_enemy = enemy[current_enemy]["damage"]["one shot"]
+    else:
+        one_shot_enemy = False
+
     # while the player is still fighting (for run away)
 
     while fighting:
@@ -423,7 +438,6 @@ def fight(
         health_color_enemy = color_blue
 
         # Enemy stats
-        current_enemy = enemies[len(enemies) - enemies_remaining]
         enemy_singular = current_enemy
         enemy_plural = enemy[current_enemy]["plural"]
         enemy_health = random.randint(
@@ -767,6 +781,7 @@ def fight(
                     if (
                         (enemy_health / player["health"]) < .3
                         and not not_ran_away_yet and random.randint(0, 100) > 65
+                        and not disable_run_away
                     ):
                         not_ran_away_yet = False
                         time.sleep(1)
@@ -808,6 +823,9 @@ def fight(
                                 damage = enemy_max_damage * 2
                             player["health"] -= damage
                             cout("The enemy dealt " + str(damage) + " points of damage.")
+                            if one_shot_enemy:
+                                cout("The enemy died after attacking you.")
+                                enemy_health = 0
                         cout(" ")
                     turn = True
                 if enemy_ran_away or enemy_health <= 0:

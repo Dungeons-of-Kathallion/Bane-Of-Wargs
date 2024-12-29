@@ -1,8 +1,10 @@
 plural: str()
+never run away: bool(required=False)
 damage:
   min damage: int()
   max damage: int()
   critical chance: num()
+  one shot: bool(required=False)
 health:
   min spawning health: int()
   max spawning health: int()
