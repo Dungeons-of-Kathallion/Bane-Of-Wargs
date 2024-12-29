@@ -23,6 +23,7 @@ Copyright: Cromha <enderman.quickly@gmail.com>
            and then edited with color codes. Some others have been generated using
            https://manytools.org/hacker-tools/convert-images-to-ascii-art/. Others
            come from https://www.oocities.org/spunk1111/.
+           TitleX.txt files were created using https://patorjk.com/software/taag/.
 License: GPL-3+
 
 Files: data/items.yaml

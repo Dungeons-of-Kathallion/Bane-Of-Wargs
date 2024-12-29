@@ -600,12 +600,12 @@ while menu:
                     ]
                     preferences["theme"] = terminal_handling.show_menu(choices)
                 elif choice == 'Title Style':
-                    choices = ['Vanilla Style', 'Alternative Style']
-                    style = terminal_handling.show_menu(choices)
-                    if style == choices[0]:
-                        preferences["title style"] = 1
-                    else:
-                        preferences["title style"] = 2
+                    choices = [
+                        'Vanilla Style', 'Stylish Style', 'Big Money Style', 'Cat -ish Style',
+                        'Blurry Style', 'Chiseled Style', 'Boogie Style'
+                    ]
+                    style = str(terminal_handling.show_menu(choices))
+                    preferences["title style"] = choices.index(style) + 1
                 elif choice == 'Game Speed':
                     choices = ['Normal Speed', 'Faster Speed']
                     speed = terminal_handling.show_menu(choices)
