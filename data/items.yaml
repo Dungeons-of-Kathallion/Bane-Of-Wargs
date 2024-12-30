@@ -2616,7 +2616,7 @@ Tropical Fish:
     ║$RED   \$ORANGE'-._.'-'$RED\ / _\$ORANGE-($DARK_REDX$ORANGE)_:    $WHITE║
     ║$RED    \$ORANGE $RED(__\/_ \ $ORANGE'.$RED_)  _\     $WHITE║
     ║$RED    /$ORANGE.' $RED(_$ORANGE.'----''.$RED/$ORANGE'       $WHITE║
-    ║                  '         $WHITE║
+    ║$ORANGE                  '         $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2630,7 +2630,7 @@ Sea Horse:
     Sea horses are clearly non-conventional fish but some people still
     like them as meals.
   thumbnail raw: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║             \/)/)          ║
@@ -2643,7 +2643,7 @@ Sea Horse:
     ║           (  (,.           ║
     ║            '-.-'           ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
   thumbnail: |
     $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
     ║                            ║
@@ -2672,14 +2672,14 @@ Greengill:
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║           /`·_,            ║
-    ║          /,___,`:·         ║
-    ║      ,_·´  ,   `·_,_·´)    ║
-    ║     : X ):´,      ,  {     ║
-    ║      `·_, `·  ,_·´\`·,)    ║
-    ║          `\\´´\,_·´        ║
+    ║           _______          ║
+    ║          /      /          ║
+    ║         /'''''\/ _         ║
+    ║        / X  _  \/ |        ║
+    ║        >   <_)    |        ║
+    ║        \       /\_|        ║
+    ║         \...../\           ║
+    ║          \\____/           ║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2687,14 +2687,14 @@ Greengill:
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║$RED           /`·_,            $WHITE║
-    ║$RED          /,___,`:·         $WHITE║
-    ║$SILVER      ,_·$RED´  ,   `·_,_·´)    $WHITE║
-    ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
-    ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
-    ║$RED          `\\´´\,_·´        $WHITE║
+    ║$GREEN           _______          $WHITE║
+    ║$GREEN          /      /          $WHITE║
+    ║$DARK_GREEN         /$GREEN'''''$DARK_GREEN\$GREEN/ _         $WHITE║
+    ║$DARK_GREEN        / $DARK_REDX  $GREEN_$DARK_GREEN  \/ |        $WHITE║
+    ║$DARK_GREEN        >   $GREEN<_$DARK_GREEN)    |        $WHITE║
+    ║$DARK_GREEN        \       /\_|        $WHITE║
+    ║$DARK_GREEN         \$GREEN.....$DARK_GREEN/$GREEN\           $WHITE║
+    ║$GREEN          \\____/           $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2704,19 +2704,19 @@ Kathallion Bass:
   healing level: 7
   gold: 9.34
   fishing weight: .425
-  description: This type of bass is commonly found in pretty much every lake of the archipelago.
+  description: "This type of bass is commonly found in pretty much every lake of the archipelago."
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║           /`·_,            ║
-    ║          /,___,`:·         ║
-    ║      ,_·´  ,   `·_,_·´)    ║
-    ║     : X ):´,      ,  {     ║
-    ║      `·_, `·  ,_·´\`·,)    ║
-    ║          `\\´´\,_·´        ║
+    ║             __             ║
+    ║            /  ;            ║
+    ║        _.--"""-..   _.     ║
+    ║       /X         `-'  [    ║
+    ║      ]  ,    ,    ,    ;   ║
+    ║       '--L__J_.-"" ',_;    ║
+    ║           '-._J            ║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2725,13 +2725,13 @@ Kathallion Bass:
     ║                            ║
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║$RED           /`·_,            $WHITE║
-    ║$RED          /,___,`:·         $WHITE║
-    ║$SILVER      ,_·$RED´  ,   `·_,_·´)    $WHITE║
-    ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
-    ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
-    ║$RED          `\\´´\,_·´        $WHITE║
+    ║$GREEN             __             $WHITE║
+    ║$GREEN            /  ;            $WHITE║
+    ║$DARK_GREEN        _.--$GREEN"""$DARK_GREEN-..   _.     $WHITE║
+    ║$DARK_GREEN       /$DARK_REDX         $DARK_GREEN`-'  [    $WHITE║
+    ║$GREEN      ]  $DARK_GREEN,    ,    ,    ;   $WHITE║
+    ║$DARK_GREEN       '--L__J_.-$GREEN"" $DARK_GREEN',_;    $WHITE║
+    ║$GREEN           '-._J            $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2748,32 +2748,32 @@ Kathallion Loach:
   thumbnail raw: |
     ╔════════════════════════════╗
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║           /`·_,            ║
-    ║          /,___,`:·         ║
-    ║      ,_·´  ,   `·_,_·´)    ║
-    ║     : X ):´,      ,  {     ║
-    ║      `·_, `·  ,_·´\`·,)    ║
-    ║          `\\´´\,_·´        ║
-    ║                            ║
-    ║                            ║
+    ║                  __,       ║
+    ║               .-'_-'`      ║
+    ║             .' {`          ║
+    ║         .-'````'-.         ║
+    ║       .'(X)       '._      ║
+    ║      }     '. ))    _<`    ║
+    ║       `-.,\'.\_,.-\`       ║
+    ║            )  )            ║
+    ║           ( ' (            ║
+    ║            '.  )           ║
+    ║              )/            ║
     ╚════════════════════════════╝
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║                            ║
-    ║$RED           /`·_,            $WHITE║
-    ║$RED          /,___,`:·         $WHITE║
-    ║$SILVER      ,_·$RED´  ,   `·_,_·´)    $WHITE║
-    ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
-    ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
-    ║$RED          `\\´´\,_·´        $WHITE║
-    ║                            ║
-    ║                            ║
+    ║$CYAN                  __,       $WHITE║
+    ║$CYAN               .-'_-'`      $WHITE║
+    ║$CYAN             .' {`          $WHITE║
+    ║$PINK         .-'````'-.         $WHITE║
+    ║$PINK       .'$LIGHT_BLUE($DARK_REDX$LIGHT_BLUE)       '._      $WHITE║
+    ║$PURPLE      }     $PINK'. $PURPLE))$PINK    _<`    $WHITE║
+    ║$PINK       `-.,$CYAN\$PINK'.$CYAN\$PINK_,.-\`       $WHITE║
+    ║$CYAN            )  )            $WHITE║
+    ║$CYAN           ( ' (            $WHITE║
+    ║$CYAN            '.  )           $WHITE║
+    ║$CYAN              )/            $WHITE║
     ╚════════════════════════════╝
 Kathallion Pike:
   type: "Food"
@@ -2791,12 +2791,12 @@ Kathallion Pike:
     ║                            ║
     ║                            ║
     ║                            ║
-    ║           /`·_,            ║
-    ║          /,___,`:·         ║
-    ║      ,_·´  ,   `·_,_·´)    ║
-    ║     : X ):´,      ,  {     ║
-    ║      `·_, `·  ,_·´\`·,)    ║
-    ║          `\\´´\,_·´        ║
+    ║          /"*._         _   ║
+    ║      .-*'`    `*-.._.-'/   ║
+    ║    < x ))     ,       (    ║
+    ║      `*-._`._(__.--*"`.\   ║
+    ║                            ║
+    ║                            ║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2806,12 +2806,12 @@ Kathallion Pike:
     ║                            ║
     ║                            ║
     ║                            ║
-    ║$RED           /`·_,            $WHITE║
-    ║$RED          /,___,`:·         $WHITE║
-    ║$SILVER      ,_·$RED´  ,   `·_,_·´)    $WHITE║
-    ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
-    ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
-    ║$RED          `\\´´\,_·´        $WHITE║
+    ║$TAN          /"*._         _   $WHITE║
+    ║$TAN      .-*'`    `*-.._.-'/   $WHITE║
+    ║$TAN    < $DARK_REDx $YELLOW))$TAN     ,       (    $WHITE║
+    ║$TAN      `*-._`._(__.--*"`.\   $WHITE║
+    ║                            ║
+    ║                            ║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2820,7 +2820,7 @@ Reekfish:
   max bonus: 0
   healing level: -5
   gold: 56.25
-  fishing weight: .725
+  fishing weight: .5525
   description: >
     Reekfishes are probably the most disgusting type of fishes,
     with their terrible odor and feed on coral. Its only use is
@@ -2829,14 +2829,14 @@ Reekfish:
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║           /`·_,            ║
-    ║          /,___,`:·         ║
-    ║      ,_·´  ,   `·_,_·´)    ║
-    ║     : X ):´,      ,  {     ║
-    ║      `·_, `·  ,_·´\`·,)    ║
-    ║          `\\´´\,_·´        ║
+    ║             ,              ║
+    ║            /|              ║
+    ║           /_|  ,           ║
+    ║          /x  \/|           ║
+    ║          \<__/\|           ║
+    ║           \ |  `           ║
+    ║            \|              ║
+    ║             `              ║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2844,14 +2844,14 @@ Reekfish:
     ╔════════════════════════════╗
     ║                            ║
     ║                            ║
-    ║                            ║
-    ║                            ║
-    ║$RED           /`·_,            $WHITE║
-    ║$RED          /,___,`:·         $WHITE║
-    ║$SILVER      ,_·$RED´  ,   `·_,_·´)    $WHITE║
-    ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
-    ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
-    ║$RED          `\\´´\,_·´        $WHITE║
+    ║$DARK_RED             ,              $WHITE║
+    ║$DARK_RED            /|              $WHITE║
+    ║$DARK_RED           /_|  ,           $WHITE║
+    ║$DARK_RED          /$REDx  $DARK_RED\/|           $WHITE║
+    ║$DARK_RED          \<__/\|           $WHITE║
+    ║$DARK_RED           \ |  `           $WHITE║
+    ║$DARK_RED            \|              $WHITE║
+    ║$DARK_RED             `              $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝

@@ -3217,6 +3217,11 @@ def run(play):
                     "ESTIMATED VALUE: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[which_item]["gold"]))
                     + COLOR_RESET_ALL
                 )
+                if "fishing weight" in item[which_item]:
+                    cout(
+                        "FISHING WEIGHT: " + COLOR_BACK_YELLOW + COLOR_STYLE_BRIGHT +
+                        str(round(item[which_item]["fishing weight"] * 100)) + "lbs" + COLOR_RESET_ALL
+                    )
                 text = "DESCRIPTION: " + item[which_item]["description"]
                 text_handling.print_long_string(text)
                 if (
@@ -3296,19 +3301,25 @@ def run(play):
                         cout(" -None")
                 elif item[which_item]["type"] == "Fishing Rod":
                     cout("")
+                    speed_coefficient = round(item[which_item]["speed coefficient"] * 100 - 100)
+                    if speed_coefficient >= 0:
+                        speed_coefficient = "+" + str(speed_coefficient) + "%"
                     cout(
                         "SPEED COEFFICIENT: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
-                        str(round(item[which_item]["speed coefficient"] * 100)) + COLOR_RESET_ALL
+                        speed_coefficient + COLOR_RESET_ALL
                     )
                     cout(
                         "STRENGTH: " + COLOR_BACK_GREEN + COLOR_STYLE_BRIGHT +
-                        str(round(item[which_item]["strength"] * 100)) + COLOR_RESET_ALL
+                        str(round(item[which_item]["rod strength"] * 100)) + "lbs" + COLOR_RESET_ALL
                     )
                 elif item[which_item]["type"] == "Lure":
                     cout("")
+                    speed_coefficient = round(item[which_item]["speed coefficient"] * 100 - 100)
+                    if speed_coefficient >= 0:
+                        speed_coefficient = "+" + str(speed_coefficient) + "%"
                     cout(
                         "SPEED COEFFICIENT: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
-                        str(round(item[which_item]["speed coefficient"] * 100)) + COLOR_RESET_ALL
+                        speed_coefficient + COLOR_RESET_ALL
                     )
 
                     # preferred catches
@@ -3321,6 +3332,7 @@ def run(play):
                     preferred_catches = preferred_catches.replace(']', '')
                     preferred_catches = preferred_catches.replace("'", '')
                     text = "PREFERRED CATCHES: " + str(preferred_catches)
+                    cout(text)
                 text = '='
                 text_handling.print_separator(text)
                 if str(
