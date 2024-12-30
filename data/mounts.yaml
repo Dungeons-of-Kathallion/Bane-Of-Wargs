@@ -72,6 +72,7 @@ Bear:
     food:
     - Beef
     - Porkchop
+    - Reekfish
     feed needs: 3
   stable:
     required stable: Dwarf Stable
@@ -99,6 +100,7 @@ Goat Steed:
     - Hay Bale
     - Carrot
     - Apple
+    - Reekfish
     feed needs: 1.8
   stable:
     required stable: Dwarf Stable
@@ -128,6 +130,7 @@ Dwarf Boar:
     - Hay Bale
     - Carrot
     - Apple
+    - Reekfish
     feed needs: 2.3
   stable:
     required stable: Dwarf Stable

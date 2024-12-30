@@ -3240,18 +3240,18 @@ def run(play):
                         "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["armor protection"], 2)) + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Metal":
+                elif item[which_item]["type"] == "Metal":
                     text = (
                         "              Metals are items that you buy in village " +
                         "forges that you often use to order weapons in blacksmith."
                     )
-                if item[which_item]["type"] == "Primary Material":
+                elif item[which_item]["type"] == "Primary Material":
                     text = (
                         "              Primary materials are items that you " +
                         "can find naturally but that you can also buy from many villages shops."
                     )
                     text_handling.print_long_string(text)
-                if item[which_item]["type"] == "Weapon":
+                elif item[which_item]["type"] == "Weapon":
                     item_next_upgrade = weapon_upgrade_handling.detect_weapon_next_upgrade_items(which_item, item)
                     cout(
                         "UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
@@ -3265,7 +3265,7 @@ def run(play):
                         "CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Food":
+                elif item[which_item]["type"] == "Food":
                     cout(
                         "HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW +
                         str(item[which_item]["max bonus"]) + COLOR_RESET_ALL
@@ -3277,7 +3277,7 @@ def run(play):
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                         healing_level + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Consumable":
+                elif item[which_item]["type"] == "Consumable":
                     cout("")
                     cout("EFFECTS:")
                     logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
@@ -3294,6 +3294,33 @@ def run(play):
                             count += 1
                     else:
                         cout(" -None")
+                elif item[which_item]["type"] == "Fishing Rod":
+                    cout("")
+                    cout(
+                        "SPEED COEFFICIENT: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
+                        str(round(item[which_item]["speed coefficient"] * 100)) + COLOR_RESET_ALL
+                    )
+                    cout(
+                        "STRENGTH: " + COLOR_BACK_GREEN + COLOR_STYLE_BRIGHT +
+                        str(round(item[which_item]["strength"] * 100)) + COLOR_RESET_ALL
+                    )
+                elif item[which_item]["type"] == "Lure":
+                    cout("")
+                    cout(
+                        "SPEED COEFFICIENT: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
+                        str(round(item[which_item]["speed coefficient"] * 100)) + COLOR_RESET_ALL
+                    )
+
+                    # preferred catches
+                    preferred_catches = []
+                    for i in item[which_item]["preferred types"]:
+                        if i not in preferred_catches:
+                            preferred_catches += [i]
+                    preferred_catches = str(preferred_catches)
+                    preferred_catches = preferred_catches.replace('[', '')
+                    preferred_catches = preferred_catches.replace(']', '')
+                    preferred_catches = preferred_catches.replace("'", '')
+                    text = "PREFERRED CATCHES: " + str(preferred_catches)
                 text = '='
                 text_handling.print_separator(text)
                 if str(

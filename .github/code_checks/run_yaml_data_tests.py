@@ -708,7 +708,7 @@ def verify_data(
                     )
                     exit_game()
 
-        # Specific checks for the item dictionary
+        # Specific checks for the `item` dictionary
         # The checks are:
         # EVERY TYPE
         # - check if every requires keys are valid
@@ -734,6 +734,8 @@ def verify_data(
         # - check if every key i the right class (bool, str, float...)
         # MAPS:
         # - checks for the inventory slots keys
+        # LURES:
+        # - check if the preferred types list contains existing items
         for current in list(item):
             item_data = item[current]
 
@@ -1201,11 +1203,23 @@ def verify_data(
                         )
                         exit_game()
 
+                elif item_data["type"] == "Lure":
+                    for i in item_data["preferred types"]:
+                        if i not in item:
+                            print(
+                                COLOR_RED + "ERROR: " + COLOR_STYLE_BRIGHT +
+                                f"item id '{current}' isn't valid --> "
+                                f"entry `{i}` in `preferred types is not an"
+                                + "existing item" +
+                                COLOR_RESET_ALL
+                            )
+                            exit_game()
+
             item_types = [
                 "Weapon", "Armor Piece: Chestplate", "Armor Piece: Leggings",
                 "Armor Piece: Boots", "Consumable", "Utility", "Bag", "Food",
                 "Key", "Note", "Map", "Metal", "Primary Material", "Misc",
-                "Armor Piece: Shield"
+                "Armor Piece: Shield", "Fishing Rod", "Lure"
             ]
 
             if item_data["type"] not in item_types:
@@ -1220,9 +1234,10 @@ def verify_data(
             # Verify game main commands
             existing_keys = [
                 "n", "e", "w", "s", "sw", "se", "ne", "nw",
-                "d", "i", "z", "y", "x", "p", "q", "k",
+                "d", "i", "z", "y", "x", "p", "q", "k", "c"
                 "$player$data$", "$game$data$", "$spawn$enemy$",
-                "$teleport$zone$", "$find$point$", "$teleport$point$"
+                "$teleport$zone$", "$find$point$", "$teleport$point$",
+                "$help$", "$run$dialog$", "$run$script$"
             ]
             for current in list(item):
                 if item[current]["type"] == "Utility":
