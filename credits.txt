@@ -28,6 +28,7 @@ Storyline & Plot Authors
 
 Artwork
   AF (GPL-3+)
+  Andreas Freise (GPL-3+)
   AoS (GPL-3+)
   BP (GPL-3+)
   Chev (GPL-3+)
@@ -57,6 +58,7 @@ Artwork
   mga (GPL-3+)
   Morfina (GPL-3+)
   nic (GPL-3+)
+  Sanne Jabs (GPL-3+)
   sk (GPL-3+)
   valkyrie (GPL-3+)
   Veronica Karlsson (GPL-3+)

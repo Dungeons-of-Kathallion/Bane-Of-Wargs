@@ -2938,6 +2938,7 @@ Elif Stablings:
   description: >
     This stable is owned by the same elf family for centuries. It offers the best
     stabling experience in the archipelago. It even has an annex for dwarf mounts.
+    This is the only stable that has a dragon stable in the whole archipelago.
   type: stable
   cost value: 1.45
   training gold: 23
@@ -2970,6 +2971,7 @@ Elif Stablings:
       - Dwarf Boar
       - Goat Steed
       - Bear
+      - Fellbeast
       drinks:
       - Beer
       - Whiskey
@@ -2983,10 +2985,12 @@ Elif Stablings:
       - Beef
       - Porkchop
       - Tissue Bag
+      - Lyzalfos Flesh
     stables:
     - Horse Stable
     - Camel Stable
     - Dwarf Stable
+    - Dragon Stable
   discounts:
     time space: 22
     chance: .35
@@ -3259,3 +3263,72 @@ Valleys Of Flori:
       |,,,_,,o,_,|
       |o_,,,_,,,,|
       x__________x
+
+# DUNGEONS
+
+Palace Of Drought:
+  name: "Palace Of Drought"
+  description: >
+    The dungeon of drought, settled upon the dangerous Death Mountain, leaks an
+    undescribable energy, as well as fear. Most knights wouldn't dare entering
+    the master room, where lays the Shire beast. Only a real hero would be
+    fool enough to awaken the beast. Even orks don't dare to approach the entrance.
+  type: dungeon
+  enemy spawning: none
+  map:
+    map full: |
+      x__________x
+      | $TAN________ $WHITE|
+      | $TAN|  $GRAY||  $TAN| $WHITE|
+      | $TAN/ $YELLOW/$GRAY||$YELLOW\ $TAN\ $WHITE|
+      |$TAN/ $YELLOW/ $GRAY|| $YELLOW\ $TAN\$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ________ |
+      | |  ||  | |
+      | / /||\ \ |
+      |/ / || \ \|
+      x__________x
+  dungeon:
+    name: "Palace Of Drought"
+    rooms number: 5
+    reward dialog: Place Of Drought Reward
+    no escape: true
+    rooms:
+      Entrance Room:
+        room type: enigma
+        room digit: 1
+        room enigma data:
+          script name: palace_of_drought_entrance.py
+          arguments:
+          - preferences
+      Fountain Guardians:
+        room type: fight
+        room digit: 2
+        room fight data:
+          enemy list spawn: palace of drought fountain guardians
+          no run away: true
+          item reward:
+          - Ork Talisman
+          gold reward: 35
+      Sand Factory Fight:
+        room type: fight
+        room digit: 3
+        room fight data:
+          enemy list spawn: palace of drought undeads swarm
+          no run away: true
+          gold reward: 50
+      Levers Enigma:
+        room type: enigma
+        room digit: 4
+        room enigma data:
+          script name: levers_enigma.py
+      Warg Stable Room:
+        room type: boss-fight
+        room digit: 5
+        room fight data:
+          enemy list spawn: place of drought wargs stable
+          no run away: true
+          gold reward: 150
+
