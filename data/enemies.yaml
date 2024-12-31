@@ -23,7 +23,7 @@ Slime:
     max spawning health: 7
     max health level: 7
   agility: .87
-  inventory:
+  inventory: # Wooden Stick: 50%, Slime: 50%
   - Wooden Stick
   - Slime
   description: "Slimes are agile and annoying monsters."
@@ -38,7 +38,7 @@ Goblin:
     max spawning health: 8
     max health level: 8
   agility: .7
-  inventory:
+  inventory: # Everything: 12.5%
   - Knife
   - Beef
   - Chicken
@@ -59,7 +59,7 @@ Ork:
     max spawning health: 6
     max health level: 6
   agility: .95
-  inventory:
+  inventory: # Everything: 12.5%
   - Knife
   - Raw Salmon
   - Bone
@@ -80,7 +80,7 @@ Ork Archer:
     max spawning health: 7
     max health level: 7
   agility: .85
-  inventory:
+  inventory: # Everything: 10%
   - Knife
   - Raw Salmon
   - Bone
@@ -103,7 +103,7 @@ Warg:
     max spawning health: 9
     max health level: 9
   agility: 1.05
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Bone
   - Porkchop
@@ -122,7 +122,7 @@ White Warg:
     max spawning health: 11
     max health level: 11
   agility: 1.08
-  inventory:
+  inventory: # Everything: 20%
   - Porkchop
   - Bone
   - Wolf Skin
@@ -142,7 +142,7 @@ Bomskit:
     max spawning health: 5
     max health level: 5
   agility: 1.25
-  inventory:
+  inventory: # Rotten Flesh: 25%, Slime: 25%, Gunpowder: 50%
   - Rotten Flesh
   - Slime
   - Gunpowder
@@ -164,7 +164,7 @@ Cavern Troll:
     max spawning health: 11
     max health level: 11
   agility: .35
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -183,7 +183,7 @@ Woods Troll:
     max spawning health: 10
     max health level: 10
   agility: .43
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -205,7 +205,7 @@ Desert Troll:
     max spawning health: 20
     max health level: 20
   agility: .32
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -227,7 +227,7 @@ Mines Troll:
     max spawning health: 17
     max health level: 17
   agility: .34
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -247,7 +247,7 @@ Black Ork:
     max spawning health: 9
     max health level: 9
   agility: .58
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -267,7 +267,7 @@ Dark Marksman:
     max spawning health: 8
     max health level: 8
   agility: .68
-  inventory:
+  inventory: # Everything: 15%
   - Porkchop
   - Raw Salmon
   - Bone
@@ -286,7 +286,7 @@ Doomed Horror:
     max spawning health: 11
     max health level: 11
   agility: .35
-  inventory:
+  inventory: # Wooden Stick: 100%
   - Wooden Stick
   description: "Doomed Horrors were once men, which are now cursed to anguish in the evil places, roaming them to strike all enemies. They are slow and deal low damages but they have high health."
 Poe:
@@ -300,7 +300,7 @@ Poe:
     max spawning health: 25
     max health level: 25
   agility: .45
-  inventory:
+  inventory: # Raw Aluminum: 50%, Tissue Bag: 50%
   - Raw Aluminum
   - Tissue Bag
   description: >
@@ -319,7 +319,7 @@ Corrupted Ent:
     max spawning health: 16
     max health level: 16
   agility: .32
-  inventory:
+  inventory: # Everything: 20%
   - Wooden Stick
   - Raw Wood
   - Apple
@@ -339,7 +339,7 @@ Mumakil:
     max spawning health: 56
     max health level: 56
   agility: .35
-  inventory:
+  inventory: # Bone: 75%, Mumakil Tusk: 15%
   - Bone
   - Bone
   - Bone
@@ -358,7 +358,7 @@ Desert Worm:
     max spawning health: 110
     max health level: 110
   agility: .38
-  inventory:
+  inventory: # Bone: 65%, Desert Worm Tooth: 18%, Desert Worm Scale: 18%
   - Bone
   - Bone
   - Bone
@@ -367,7 +367,7 @@ Desert Worm:
   - Desert Worm Scale
   description: >
     These humongous worms have been wandering in the deserts of the world for a long time.
-    Some people say that theylive in far into the ground, miles away down from the ground,
+    Some people say that they live in far into the ground, miles away down from the ground,
     and that they go back at the surface when men are doing troubles to the world.
 Giant Spider:
   plural: "Giant Spiders"
@@ -380,7 +380,7 @@ Giant Spider:
     max spawning health: 23
     max health level: 23
   agility: .65
-  inventory:
+  inventory: # Bone: 25%, Strong String: 25%, Flexible String: 50%
   - Bone
   - Strong String
   - Flexible String
@@ -398,7 +398,7 @@ South Pillager:
     max spawning health: 20
     max health level: 20
   agility: .5
-  inventory:
+  inventory: # Everything: 8%
   - Sword
   - Bow
   - Spear
@@ -425,7 +425,7 @@ South Pillager Rider:
     max spawning health: 24
     max health level: 24
   agility: .65
-  inventory:
+  inventory: # Everything: 7.5%
   - Horse Saddle
   - Sword
   - Bow
@@ -452,7 +452,7 @@ The Dagger:
     max spawning health: 25
     max health level: 25
   agility: .65
-  inventory:
+  inventory: # Everything: 15%
   - Dagger
   - Healing Potion
   - Gerud Mercenary Beverage
@@ -473,7 +473,7 @@ Mangrove Undead:
     max spawning health: 15
     max health level: 15
   agility: .35
-  inventory:
+  inventory: # Bone: 30%, Rotten Flesh: 30%, Beef: 13%, Porkchop: 13%, Wooden Stick: 13%
   - Bone
   - Bone
   - Bone
@@ -497,7 +497,7 @@ Desert Undead:
     max spawning health: 18
     max health level: 18
   agility: .45
-  inventory:
+  inventory: # Bone: 30%, Rotten Flesh: 30%, Beef: 13%, Porkchop: 13%, Wooden Stick: 13%
   - Bone
   - Bone
   - Bone
@@ -522,7 +522,7 @@ Balrog:
     max spawning health: 165
     max health level: 165
   agility: .25
-  inventory:
+  inventory: # Balrog Horn: 75%, Flaming Whip: 15%
   - Balrog Horn
   - Balrog Horn
   - Balrog Horn
@@ -541,7 +541,7 @@ Shire Flying Beast:
     max spawning health: 115
     max health level: 115
   agility: .32
-  inventory:
+  inventory: # Dragon Tooth: 60%, Green Dragon Scale: 40%
   - Dragon Tooth
   - Dragon Tooth
   - Dragon Tooth
@@ -562,7 +562,7 @@ Fellbeast:
     max spawning health: 30
     max health level: 30
   agility: .38
-  inventory:
+  inventory: # Dragon Tooth: 25%, Bone: 50%, Beef: 25%
   - Dragon Tooth
   - Bone
   - Bone
@@ -581,7 +581,7 @@ Phantom Rider:
     max spawning health: 30
     max health level: 30
   agility: 1.08
-  inventory:
+  inventory: # Long Sword: 100%
   - Long Sword
   description: >
     Phantom riders are summoned creatures present in many dungeons across the Kathallion Archipelago. They don't do
@@ -598,7 +598,7 @@ Death Sword:
     max spawning health: 70
     max health level: 70
   agility: .35
-  inventory:
+  inventory: # Chuckle Sword (4): 100%
   - Chuckle Sword (4)
   description: >
     This frightening spirit uses a gigantic and powerful chuckle sword. His horns on his head could
@@ -615,7 +615,7 @@ Flying Spaghetti Monster:
     max spawning health: 1250
     max health level: 1250
   agility: .35
-  inventory:
+  inventory: # Everything: 50%
   - Giant Meat Ball
   - 30-yard Long Spaghetti
   description: >
@@ -633,7 +633,7 @@ Dry Ork:
     max spawning health: 15
     max health level: 15
   agility: .65
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -655,7 +655,7 @@ Lyzalfos:
     max spawning health: 20
     max health level: 20
   agility: .725
-  inventory:
+  inventory: # Everything: 20%
   - Porkchop
   - Raw Salmon
   - Bone

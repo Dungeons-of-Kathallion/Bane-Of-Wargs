@@ -18,6 +18,16 @@ Stall Seas:
   name: "Stall Seas"
   description: "The great seas near the Stall Island."
   type: sea
+  fishing: # Raw Salmon: 30%, Catfish: 20%, Greengill: 20%, Kathallion Bass: 10%, Sea Horse: 10%
+  - Raw Salmon
+  - Raw Salmon
+  - Raw Salmon
+  - Catfish
+  - Catfish
+  - Greengill
+  - Greengill
+  - Kathallion Bass
+  - Sea Horse
   map:
     map full: |
       x__________x
@@ -38,6 +48,14 @@ Stall Seas Bay:
   name: "Stall Seas Bay"
   description: "The great bay of the Stall Seas."
   type: sea
+  fishing: # Raw Salmon: 15%, Catfish: 15%, Greengill: 30%, Kathallion Bass: 15%, Kathallion Loach: 15%, Leather Boots: 15%
+  - Raw Salmon
+  - Catfish
+  - Greengill
+  - Greengill
+  - Kathallion Bass
+  - Kathallion Loach
+  - Leather Boots
   map:
     map full: |
       x__________x
@@ -83,6 +101,14 @@ Forlindon Lake:
   name: "Forlindon Lake"
   description: "The small lake in between the Forlindon Woods and the Californ Woods."
   type: lake
+  fishing: # Raw Salmon: 15%, Catfish: 15%, Greengill: 40%, Reekfish: 15%, Wet Tree Log: 15%
+  - Raw Salmon
+  - Catfish
+  - Greengill
+  - Greengill
+  - Greengill
+  - Reekfish
+  - Wet Tree Log
   map:
     map full: |
       x__________x
@@ -103,6 +129,17 @@ Magrove Wastes Waters:
   name: "Magrove Wastes Waters"
   description: "The water areas in the Mangrove Wastes."
   type: lake
+  fishing: # Catfish: 10%, Greengill: 10%, Tropical Fish: 10%, Reekfish: 20%, Wet Tree Log: 20%, Leather Boots: 10%, Old Pants: 10%, Bone: 10%
+  - Catfish
+  - Greengill
+  - Tropical Fish
+  - Reekfish
+  - Reekfish
+  - Wet Tree Log
+  - Wet Tree Log
+  - Leather Boots
+  - Old Pants
+  - Bone
   map:
     map full: |
       x__________x
@@ -123,6 +160,25 @@ Middle Area Lakes:
   name: "Middle Area Lakes"
   description: "The lakes that are approximately at the middle point of the Stall Island. They are in between the Goro Mounts, the Californ Woods, the Mangrove Wastes and the Gerud Desert."
   type: lake
+  fishing: # Tropical Fish: 15%, Catfish: 15%, Raw Salmon: 20%, Greengill: 20%, Kathallion Bass: 10%, Kathallion Loach: 5%, Kathallion Pike: 5%
+  - Tropical Fish
+  - Tropical Fish
+  - Tropical Fish
+  - Catfish
+  - Catfish
+  - Catfish
+  - Raw Salmon
+  - Raw Salmon
+  - Raw Salmon
+  - Raw Salmon
+  - Greengill
+  - Greengill
+  - Greengill
+  - Greengill
+  - Kathallion Bass
+  - Kathallion Bass
+  - Kathallion Loach
+  - Kathallion Pike
   map:
     map full: |
       x__________x
@@ -143,6 +199,17 @@ Gerud Lakes:
   name: "Gerud Lakes"
   description: "The lakes of the Gerud Desert."
   type: lake
+  fishing: # Tropical Fish: 30%, Sea Horse: 10%, Catfish: 20%, Kathallion Pike: 10%, Kathallion Loach: 10%, Bone: 20%
+  - Tropical Fish
+  - Tropical Fish
+  - Tropical Fish
+  - Sea Horse
+  - Catfish
+  - Catfish
+  - Kathallion Pike
+  - Kathallion Loach
+  - Bone
+  - Bone
   map:
     map full: |
       x__________x
@@ -1940,6 +2007,16 @@ Boston Lake:
   name: "Boston Lake"
   description: "The beautiful lake of Boston."
   type: lake
+  fishing: # Catfish: 30%, Kathallion Bass: 20%, Reekfish: 10%, Bone: 10%, Wet Tree Log: 10%, Old Pants: 10%
+  - Catfish
+  - Catfish
+  - Catfish
+  - Kathallion Bass
+  - Kathallion Bass
+  - Reekfish
+  - Bone
+  - Wet Tree Log
+  - Old Pants
   map:
     map full: |
       x__________x
@@ -1960,6 +2037,17 @@ Eldin Bay:
   name: "Eldin Bay"
   description: "The beautiful bay of Eldin."
   type: lake
+  fishing: # Tropical Fish: 30%, Kathallion Bass: 10%, Kathallion Loach: 10%, Kathallion Pike: 20%, Greengill: 20%, Wet Tree Log: 10%
+  - Tropical Fish
+  - Tropical Fish
+  - Tropical Fish
+  - Kathallion Bass
+  - Kathallion Loach
+  - Kathallion Pike
+  - Kathallion Pike
+  - Greengill
+  - Greengill
+  - Wet Tree Log
   map:
     map full: |
       x__________x

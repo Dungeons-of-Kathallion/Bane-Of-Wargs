@@ -117,9 +117,11 @@ def healing_effect(effect_data, player):
 
             if health_changes >= 999:
                 player["health"] = player["max health"]
+                player["health recovered"] += player["max health"]
             else:
                 player["health"] += health_changes
                 player["max health"] += max_health_changes
+                player["health recovered"] += health_changes
 
 
 def protection_effect(effect_data, player):
@@ -343,8 +345,10 @@ def consume_consumable(
     if consumable_data["type"] == "Food":
         if consumable_data["healing level"] == 999:
             player["health"] = player["max health"]
+            player["recovered health"] += player["max health"]
         else:
             player["health"] += consumable_data["healing level"]
+            player["recovered health"] += consumable_data["healing level"]
         player["max health"] += consumable_data["max bonus"]
     else:
 

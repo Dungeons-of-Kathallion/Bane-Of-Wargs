@@ -3805,7 +3805,7 @@ Surf Rod:
   type: "Fishing Rod"
   gold: 75.3
   speed coefficient: 1.25
-  rod strength: 1
+  rod strength: 1.15
   description: >
     Surf rods are built to handle the challenges of casting heavy baits
     or lures into the surf and battling large fish that inhabit the coastal
