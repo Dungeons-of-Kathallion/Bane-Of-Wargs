@@ -8,6 +8,7 @@
 - [dungeon.py](#dungeonpy)
 - [enemy\_handling.py](#enemy_handlingpy)
 - [event\_handling.py](#event_handlingpy)
+- [fishing.py](#fishingpy)
 - [item\_handling.py](#item_handlingpy)
 - [logger\_sys.py](#logger_syspy)
 - [main.py](#mainpy)
@@ -109,6 +110,14 @@ The [`event_handling.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Warg
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
 | event_triggering_checks() | `event_id`, `event`, `player`, `map`, `zone`                                                                                                                                                                                                                                                                 | Return a boolean value that tells if the event id `event_id` can be triggered at the current player circumstances  |
 | trigger_event()           | `event_id`, `event`, `player`, `mission`, `dialog`, `preferences`, `text_replacements_generic`, `drinks`, `item`, `enemy`, `npcs`, `start_player`, `lists`, `zone`, `mounts`, `start_time`, `map`, `save_file`, `player_damage_coefficient`, `enemies_damage_coefficient`, `previous_player` | Triggers event id `event_id` triggers                                                                               |
+
+## fishing.py
+
+The [`fishing.py`](https://github.com/Dungeons-of-Kathallion/Bane-Of-Wargs/blob/master/source/fishing.py) class handles the fishing UI:
+
+| Name                      | Arguments                                                                                                                                                                                                                                                                                                    | Description                                                                                                        |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|
+| fishing_loop() | `fishing_location`, `player`, `save_file`, `map_zone`, `zone`, `time_elapsing_coefficient`, `item`                                                                                                                                                                                                                                                                 | Starts the fishing loop, where **`fishing_location` is the map zone id of the fishing map zone, and `map_zone` the map zone id the player is on**.  |
 
 ## item_handling.py
 
