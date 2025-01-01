@@ -3421,7 +3421,7 @@ Palace Of Drought:
   dungeon:
     name: "Palace Of Drought"
     rooms number: 5
-    reward dialog: Place Of Drought Reward
+    reward dialog: Goro Mounts Mines Dungeon Reward  # placeholder for the checks to be happy
     no escape: true
     rooms:
       Entrance Room:
