@@ -370,7 +370,7 @@ def fishing_loop(fishing_location, player, save_file, map_zone, zone, time_elaps
                 exp_added = random.uniform(1, 6)
                 player["xp"] += exp_added
                 logger_sys.log_message(f"INFO: Added {exp_added} exp points to player for fishing")
-                cout(f"You gained {exp_added} experience points for fishing!")
+                cout(f"You gained {round(exp_added, 2)} experience points for fishing!")
                 time.sleep(2)
         elif choice.startswith('e'):
             still_fishing = False
