@@ -540,6 +540,10 @@ Los Gerudos Hostel:
     - Carrot
     - Slime
     - Tissue Bag
+    - Spinning Rod
+    - Casting Rod
+    - Swimmer Lure
+    - Frog Lure
   buys:
     items:
     - Wolf Skull
@@ -649,6 +653,9 @@ Humil Dwarf Stable:
       - Carrot
       - Slime
       - Stretched Bag
+      - Casting Rod
+      - Popper Lure
+      - Swimmer Lure
     stables:
     - Dwarf Stable
     - Horse Stable
@@ -682,6 +689,8 @@ Woodstack Hostel:
     - Raw Salmon
     - Beef
     - Bread
+    - Spinning Rod
+    - Swimmer Lure
   buys:
     items:
     - None
@@ -733,6 +742,11 @@ Seaside Hostels:
     - Chicken
     - Tissue Bag
     - Healing Potion
+    - Spinning Rod
+    - Casting Rod
+    - Surf Rod
+    - Popper Lure
+    - Frog Lure
   buys:
     items:
     - Tissue Bag
@@ -1255,6 +1269,11 @@ Los Gerudos Grocery Store:
   - Slime
   - Raw Wood
   - Raw Aluminum
+  - Simmer Lure
+  - Surf Rod
+  - Spinning Rod
+  - Sea Horse Lure
+  - Frog Lure
   discounts:
     time space: 18
     chance: .3
@@ -1303,6 +1322,10 @@ Lorrys Grocery Store:
   - Slime
   - Raw Wood
   - Raw Aluminum
+  - Swimmer Lure
+  - Popper Lure
+  - Casting Rod
+  - Spinning Rod
   discounts:
     time space: 18
     chance: .3
@@ -1374,6 +1397,13 @@ Target Grocery:
   - Rock Paper Scissors
   - Time Elapsing Potion
   - Raw Aluminum
+  - Spinning Rod
+  - Casting Rod
+  - Surf Rod
+  - Swimmer Lure
+  - Popper Lure
+  - Frog Lure
+  - Seahorse Lure
   discounts:
     time space: 18
     chance: .3
@@ -2449,6 +2479,9 @@ Peregrine Grocery:
   - Raw Wood
   - Raw Aluminum
   - Knight Beverage
+  - Casting Rod
+  - Popper Lure
+  - Frog Lure
   discounts:
     time space: 18
     chance: .3
@@ -2645,6 +2678,8 @@ Oldon Tavern:
     - Beef
     - Apple
     - Carrot
+    - Spinning Rod
+    - Swimmer Lure
   buys:
     items:
     - Apple
@@ -3126,6 +3161,11 @@ Eldin Market:
   - Wheat
   - Raw Salmon
   - Tree Log
+  - Spinning Rod
+  - Casting Rod
+  - Swimmer Lure
+  - Frog Lure
+  - Popper Lure
   discounts:
     time space: 25
     chance: .45
