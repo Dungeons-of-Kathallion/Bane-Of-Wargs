@@ -3456,7 +3456,7 @@ Palace Of Drought:
         room type: boss-fight
         room digit: 5
         room fight data:
-          enemy list spawn: place of drought wargs stable
+          enemy list spawn: palace of drought wargs stable
           no run away: true
           gold reward: 150
 
