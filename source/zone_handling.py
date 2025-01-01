@@ -435,7 +435,7 @@ def print_harbor_information(map_zone, zone, map, player):
                 time_handling.return_game_day_from_seconds(current_harbor['travels'][travel]['travel time'], 1) * 24, 1
             )) + "hrs"
         )
-       travels += [
+        travels += [
             f" -{list(current_harbor['travels'])[count]} {destination}" +
             f" {COLOR_YELLOW}{get_cost(round(current_harbor['travels'][travel]['cost'], 2), dropoff)}{COLOR_RESET_ALL}" +
             f" - {COLOR_CYAN}{time}{COLOR_RESET_ALL}"
