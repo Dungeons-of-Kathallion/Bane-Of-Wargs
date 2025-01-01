@@ -29,6 +29,7 @@ from terminal_handling import cout, cinput, cinput_int
 import random
 import time
 import appdirs
+import math
 
 
 program_dir = str(appdirs.user_config_dir(appname='Bane-Of-Wargs'))
@@ -1615,19 +1616,17 @@ def interaction_dungeon(
 
 
 def get_map_point_distance_from_player(map, player, current_map_point):
-    point_x, point_y = map[current_map_point]["x"], map[current_map_point]["y"]
-    point_x, point_y = text_handling.transform_negative_number_to_positive(
-        point_x
-    ), text_handling.transform_negative_number_to_positive(point_y)
-    player_x, player_y = player["x"], player["y"]
-    player_x, player_y = text_handling.transform_negative_number_to_positive(
-        player_x
-    ), text_handling.transform_negative_number_to_positive(player_y)
+    # First, get the map point's X and Y coordinates, then,
+    # the player's X and Y coordinates.
+    # After that, we apply the Pythagorean theorem as
+    # d=√((x_2-x_1)²+(y_2-y_1)²) to find the distance
+    # between two points. Note: we make sure that the
+    # result that's getting "square rooted" is positive
 
-    point_distance_from_player = (point_x - player_x) + (point_y - player_y)
-    point_distance_from_player = text_handling.transform_negative_number_to_positive(
-        point_distance_from_player
-    )
+    point_x, point_y = map[current_map_point]["x"], map[current_map_point]["y"]
+    player_x, player_y = player["x"], player["y"]
+
+    point_distance_from_player = round(math.dist([point_x, point_y], [player_x, player_y]))
     return point_distance_from_player
 
 
