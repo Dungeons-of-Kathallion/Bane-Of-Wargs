@@ -49,3 +49,4 @@ This save file can be used to test these changes:
 {{If this PR is adding any artwork (ASCII art), that is yours or not, update the `copyright` file.}}
 {{If this PR is adding any new attribute to a data type, please update the corresponding `schemas/` and data checks (check_yaml.py class and yaml data test workflow script).}}
 {{If this PR drastically changes or adds any functions (by changing its parameters or its use) to the game engine (or a new class), please update the game engine's documentation at docs/ENGINE_FUNCTIONS.md}}
+{{If this PR adds a new main command (or changes an existing one's key), make sure to update the `existing_keys` variable in both `.github/code_checks/run_yaml_data_tests.py` and `source/check_yaml.py` classes}}
