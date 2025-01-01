@@ -281,13 +281,12 @@ def examine_item(data):
         if data_type == "Consumable":
             examine_consumable(data_real)
     except Exception as error:
-        return
-    #    cout(
-    #        COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
-    #        "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
-    #    )
-    #    logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
-    #    text_handling.exit_game()
+        cout(
+            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+        )
+        logger_sys.log_message(f"ERROR: A parsing error in a yaml file has been detected:\n{error}")
+        text_handling.exit_game()
 
 
 def examine_drink(data):

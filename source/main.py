@@ -4182,4 +4182,3 @@ if player["difficulty mode"] != 2:
 
 text_handling.clear_prompt()
 logger_sys.log_message(f"INFO: PROGRAM RUN END")
-
