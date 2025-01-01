@@ -415,7 +415,7 @@ def fight(
     if "never run away" in enemy[current_enemy]:
         disable_run_away = enemy[current_enemy]["never run away"]
     else:
-        disable_run_away
+        disable_run_away = False
 
     # check if this is a one-shot enemy
     global one_shot_enemy
