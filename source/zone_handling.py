@@ -1227,6 +1227,10 @@ def interaction_forge(map_zone, zone, player, item):
             which_metal = cinput("Which metal do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen metal '{which_metal}' to sell")
             if which_metal in current_forge["forge"]["buys"]:
+                cout(
+                    f"You currently own {COLOR_CYAN}{player["inventory"].count(which_metal)}" +
+                    f"{COLOR_RESET_ALL} of this metal."
+                )
                 metal_count = cinput_int("How many count of this metal you want to sell? ")
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{metal_count}' of the metal '{which_metal}'")
                 if player["inventory"].count(which_metal) >= metal_count:
@@ -1436,6 +1440,10 @@ def interaction_grocery(map_zone, zone, player, item):
             which_item = cinput("Which item do you want to sell? ")
             logger_sys.log_message(f"INFO: Player has chosen item '{which_item}' to sell")
             if which_item in player["inventory"]:
+                cout(
+                    f"You currently own {COLOR_CYAN}{player["inventory"].count(which_item)}" +
+                    f"{COLOR_RESET_ALL} of this item."
+                )
                 item_number = cinput_int("How many items of that type do you want to sell? ")
                 logger_sys.log_message(f"INFO: Player has chosen to sell '{item_number}' of the item '{which_item}'")
                 if player["inventory"].count(which_item) >= item_number:
