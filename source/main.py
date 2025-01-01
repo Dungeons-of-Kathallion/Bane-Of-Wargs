@@ -3283,13 +3283,13 @@ def run(play):
                 "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                 str(round(player["armor protection"], 2)) + COLOR_RESET_ALL + COLOR_RED +
                 COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
-                "More it's higher, the less you'll take damages in fights" + COLOR_RED +
+                "The higher it is, the less you'll take damages in fights" + COLOR_RED +
                 COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
             cout(
                 "AGILITY: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(round(player["agility"], 2)) +
                 COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
-                " (" + COLOR_RESET_ALL + "More it's higher, the more you'll have a chance to dodge attacks" +
+                " (" + COLOR_RESET_ALL + "The higher it is, the more you'll have a chance to dodge attacks" +
                 COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
             )
             if player["held item"] != " ":
@@ -3297,7 +3297,7 @@ def run(play):
                     "CRITICAL HIT CHANCE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
                     str(round(player["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL +
                     COLOR_RED + COLOR_STYLE_BRIGHT + " (" + COLOR_RESET_ALL +
-                    "More it's higher, the more you'll have a chance to deal critical attacks" +
+                    "The higher it is, the more you'll have a chance to deal critical attacks" +
                     COLOR_RED + COLOR_STYLE_BRIGHT + ")" + COLOR_RESET_ALL
                 )
             cout(" ")

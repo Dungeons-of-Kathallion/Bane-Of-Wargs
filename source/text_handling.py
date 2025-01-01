@@ -229,15 +229,15 @@ def print_zone_map(zone_name, zone, player, preferences):
     logger_sys.log_message("INFO: Printing UI")
     for line in to_print.splitlines():
         if count == 0:
-            cout(line + " NAME: " + preferences["latest preset"]["save"])
+            print(line + " NAME: " + preferences["latest preset"]["save"])
         if count == 1:
-            cout(
+            print(
                 line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
                 str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT +
                 COLOR_BLUE + str(player["max health"]) + COLOR_RESET_ALL
             )
         if count == 2:
-            cout(
+            print(
                 line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
                 str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" +
                 COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
@@ -246,33 +246,33 @@ def print_zone_map(zone_name, zone, player, preferences):
             date = time_handling.date_prettifier(
                 time_handling.addition_to_date(player["starting date"], int(player["elapsed time game days"]))
             )
-            cout(
+            print(
                 line + " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(date) + COLOR_RESET_ALL
             )
         if count == 4:
-            cout(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
+            print(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
         if count == 5:
-            cout(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
+            print(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
         count += 1
 
 
 def print_zone_map_alone(zone_name, zone):
     logger_sys.log_message(f"INFO: Printing zone map '{zone_name}' ascii art")
     to_print = zone[zone_name]["map"]["map full"]
-    cout(apply_yaml_data_color_code(to_print))
+    print(apply_yaml_data_color_code(to_print))
 
 
 def print_npc_thumbnail(npc, preferences):
     logger_sys.log_message(f"INFO: Printing NPC '{npc}' thumbnail")
     with open(program_dir + '/temp/imgs/' + npc + ".txt") as f:
-        cout(apply_yaml_data_color_code(f.read()))
+        print(apply_yaml_data_color_code(f.read()))
 
 
 def print_enemy_thumbnail(enemy, preferences):
     logger_sys.log_message(f"INFO: Printing enemy '{enemy}' thumbnail")
     with open(program_dir + '/temp/imgs/' + enemy + ".txt") as f:
-        to_print = cout(apply_yaml_data_color_code(f.read()))
+        to_print = print(apply_yaml_data_color_code(f.read()))
 
 
 def a_an_check(word):
@@ -291,7 +291,7 @@ def a_an_check(word):
 
 
 def print_item_thumbnail(to_print):
-    cout(apply_yaml_data_color_code(to_print))
+    print(apply_yaml_data_color_code(to_print))
     return to_print
 
 
@@ -339,7 +339,7 @@ def print_map_art(item_data):
         line = line.replace('≈', '\033[38;2;250;223;199m' + "≈" + '\033[38;2;255;208;166m')
         for character in human_civilizations:
             line = line.replace(character, '\033[38;2;255;195;141m' + character + '\033[38;2;255;208;166m')
-        cout("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
+        print("║" + '\033[38;2;255;208;166m' + line.replace('\n', '') + COLOR_RESET_ALL + "║")
     return art
 
 
