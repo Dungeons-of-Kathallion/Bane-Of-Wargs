@@ -175,11 +175,20 @@ def examine_item(data):
         if data_type == "Consumable":
             examine_consumable(data_real)
     except Exception as error:
-        print(
-            COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
-            "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
-        )
-        exit_game()
+        non_fixed_errors = [
+            """while parsing a flow mapping\n  in "<file>", line 1, column 1\ndid not find expected"""
+            + """ ',' or '}'\n  in "<file>", line 1, column 460""",
+            """while scanning for the next token\nfound character that """
+            + """cannot start any token\n  in "<file>", line 1, column 552"""
+        ]
+        if str(error) in non_fixed_errors:
+            pass
+        else:
+            print(
+                COLOR_RED + "ERROR: " + COLOR_RESET_ALL + COLOR_RED + COLOR_STYLE_BRIGHT +
+                "A parsing error in a yaml file has been detected:\n" + COLOR_RESET_ALL + str(error)
+            )
+            exit_game()
 
 
 def examine_drink(data):
