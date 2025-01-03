@@ -54,6 +54,7 @@ def generate_enemies_from_list(lists, list_enemies, player):
         count += 1
         if count > len(list(list_enemies)) - 1:  # forces to choose
             chosen_entry = entry
+            finished = True
 
     if player["difficulty mode"] == 0:
         difficulty = "easy"
