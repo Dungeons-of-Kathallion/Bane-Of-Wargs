@@ -331,7 +331,7 @@ def fishing_loop(fishing_location, player, save_file, map_zone, zone, time_elaps
                     elif choice2.startswith('g'):
                         still_fishing2 = False
                     else:
-                        cout(f"\nCommand '{choice}' isn't valid")
+                        cout(f"\nCommand '{choice2}' isn't valid")
                     time.sleep(2)
 
                     # Determine if the player has won or lost the battle
@@ -375,7 +375,7 @@ def fishing_loop(fishing_location, player, save_file, map_zone, zone, time_elaps
         elif choice.startswith('e'):
             still_fishing = False
         else:
-            cout(f"\nCommand '{choice2}' isn't valid")
+            cout(f"\nCommand '{choice}' isn't valid")
         time.sleep(2)
 
         # get end time
