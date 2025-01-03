@@ -419,6 +419,538 @@ Katana (2):
   - Flexible Steel
   - Flexible Steel
   - Raw Silver
+Gerud Saber: &gerud_saber
+  display name: "Gerud Saber"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 8
+  defend: 6.5
+  agility: .09
+  gold: 245.2
+  critical hit chance: .45
+  description: >
+    The Gerud Saber is the classic weapon used by all the guards and
+    policemen of the great city of Los Gerudos. It has a perfect grip
+    and long enough to defend well, while still being pretty light-weight
+    for a sword of this shape.
+  thumbnail raw: |
+    @════════════════════════════@
+    ║              |             ║
+    ║              ║             ║
+    ║              ║\            ║
+    ║              ║║            ║
+    ║              ║║            ║
+    ║              ║║            ║
+    ║           ~  ║║  _         ║
+    ║           \\{@@}//         ║
+    ║              XX            ║
+    ║              XX            ║
+    ║             /XX\           ║
+    ║             (())           ║
+    @════════════════════════════@
+  thumbnail: |
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+    ║              |             ║
+    ║              ║             ║
+    ║              ║\            ║
+    ║              ║║            ║
+    ║              ║║            ║
+    ║              ║║            ║
+    ║$ORANGE           ~  $WHITE║║  $YELLOW_         $WHITE║
+    ║$DARK_BROWN           \\$BROWN{$YELLOW@@$BROWN}$DARK_BROWN//         $WHITE║
+    ║$RED              XX            $WHITE║
+    ║$RED              XX            $WHITE║
+    ║$ORANGE             /$REDXX$ORANGE\           $WHITE║
+    ║$YELLOW             ($ORANGE()$YELLOW)           $WHITE║
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+Gerud Saber (1):
+  <<: *gerud_saber
+  upgrade tier: 1
+  damage: 8.5
+  defend: 7
+  agility: .095
+  critical hit chance: .55
+  for this upgrade:
+  - Raw Wood
+  - Raw Wood
+  - Raw Bronze
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+Gerud Saber (2):
+  <<: *gerud_saber
+  upgrade tier: 2
+  damage: 9.25
+  defend: 7.85
+  agility: .1025
+  critical hit chance: .675
+  for this upgrade:
+  - Raw Bronze
+  - Raw Bronze
+  - Raw Bronze
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+Gerud Saber (3):
+  <<: *gerud_saber
+  upgrade tier: 3
+  damage: 9.25
+  defend: 8
+  agility: .975
+  critical hit chance: .725
+  for this upgrade:
+  - Raw Lead
+  - Raw Lead
+  - Raw Lead
+  - Raw Lead
+Eldin Saber: &eldin_saber
+  display name: "Eldin Saber"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 6.5
+  defend: 9
+  agility: .105
+  gold: 765.27
+  critical hit chance: .75
+  description: "This Elf saber is the work of hours of forging and perfect balancing."
+  thumbnail raw: |
+    @════════════════════════════@
+    ║              |\            ║
+    ║              ║║            ║
+    ║              ║║            ║
+    ║              ║║            ║
+    ║              ╠╣            ║
+    ║              ╠╣            ║
+    ║              ╠╣            ║
+    ║            ±{≡≡}±          ║
+    ║              §§            ║
+    ║              §§            ║
+    ║              §§            ║
+    ║              ╚╝            ║
+    @════════════════════════════@
+  thumbnail: |
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+    ║$TAN              |\            $WHITE║
+    ║$TAN              ║║            $WHITE║
+    ║$TAN              ║║            $WHITE║
+    ║$TAN              ║║            $WHITE║
+    ║$TAN              ╠╣            $WHITE║
+    ║$TAN              ╠╣            $WHITE║
+    ║$TAN              ╠╣            $WHITE║
+    ║$CYAN            ±$PINK{$DARK_RED≡≡$PINK}$CYAN±          $WHITE║
+    ║$BLUE              §$PURPLE§            $WHITE║
+    ║$PURPLE              §$BLUE§            $WHITE║
+    ║$BLUE              §$PURPLE§            $WHITE║
+    ║$PINK              ╚╝            $WHITE║
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+Eldin Saber (1):
+  <<: *eldin_saber
+  upgrade tier: 1
+  damage: 7.25
+  defend: 9.75
+  agility: .125
+  critical hit chance: .775
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Raw Wood
+  - Raw Wood
+  - Raw Wood
+Eldin Saber (2):
+  <<: *eldin_saber
+  upgrade tier: 2
+  damage: 7.75
+  defend: 10.525
+  agility: .175
+  critical hit chance: .815
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+  - Flexible Steel
+  - Raw Wood
+  - Raw Wood
+Eldin Saber (3):
+  <<: *eldin_saber
+  upgrade tier: 3
+  damage: 8.75
+  defend: 12.25
+  agility: .195
+  critical hit chance: .825
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Flexible Steel
+  - Flexible Steel
+  - Raw Lead
+  - Raw Lead
+  - Raw Lead
+Pillager Falcata: &pillager_falcata
+  display name: "Pillager Falcata"
+  upgrade tier: 0
+  type: "Weapon"
+  gold: 76.78
+  damage: 8.25
+  defend: 7.5
+  agility: .225
+  critical hit chance: .35
+  description: >
+    This light saber is often used among South Pillagers of the Gerud Desert to fight against Desert Worms.
+    Though, they sometimes use it when attacking convoys.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║             /|             ║
+    ║            |\|             ║
+    ║            |||             ║
+    ║            |||             ║
+    ║            |||             ║
+    ║            |||             ║
+    ║            |||             ║
+    ║            |||             ║
+    ║         ~-[{o}]-~          ║
+    ║            |/|             ║
+    ║            |/|             ║
+    ║            `0'             ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║             /|             $WHITE║
+    ║            |$YELLOW\$WHITE|             ║
+    ║            |$YELLOW|$WHITE|             ║
+    ║            |$YELLOW|$WHITE|             ║
+    ║            |$YELLOW|$WHITE|             ║
+    ║            |$YELLOW|$WHITE|             ║
+    ║            |$YELLOW|$WHITE|             ║
+    ║            |$YELLOW|$WHITE|             ║
+    ║$GRAY         ~$SILVER-$YELLOW[$RED{$ORANGEo$RED}$YELLOW]$SILVER-$GRAY~          $WHITE║
+    ║$DARK_BROWN            |$DARK_RED/$DARK_BROWN|             $WHITE║
+    ║$DARK_BROWN            |$DARK_RED/$DARK_BROWN|             $WHITE║
+    ║            $YELLOW`$ORANGE0$YELLOW'             $WHITE║
+    ╚════════════════════════════╝
+Pillager Claymore: &pillager_claymore
+  display name: "Pillager Claymore"
+  upgrade tier: 0
+  type: "Weapon"
+  gold: 278.1
+  damage: 10.25
+  defend: 11.75
+  agility: .175
+  critical hit chance: .575
+  description: >
+    Claymores are South Pillagers' favorite weapon, forged in their secret furnaces hidden
+    in the Badlands, underground. Claymores are medium-weight, powerful weapons. Though,
+    they cannot be upgraded in any way, due to the special materials used to forge it first.
+  thumbnail raw: |
+    @════════════════════════════@
+    ║            {{@}}           ║
+    ║             8@8            ║
+    ║             8@8            ║
+    ║        _    )8(    _       ║
+    ║        `~"-=):(=-"~`       ║
+    ║             |.|            ║
+    ║             |S|            ║
+    ║             |N|            ║
+    ║             |`|            ║
+    ║             |.|            ║
+    ║             |K|            ║
+    ║             |`|            ║
+    ║             \ /            ║
+    ║              ^             ║
+    @════════════════════════════@
+  thumbnail: |
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+    ║$TAN            {{$PURPLE@$TAN}}           $WHITE║
+    ║$ORANGE             8$YELLOW@$ORANGE8            $WHITE║
+    ║$YELLOW             8$ORANGE@$YELLOW8            $WHITE║
+    ║$LIGHT_GRAY        _    )$YELLOW8$LIGHT_GRAY(    _       $WHITE║
+    ║$RED        `~"-$LIGHT_GRAY=):(=-$RED"~`       $WHITE║
+    ║$SILVER             |$WHITE.$SILVER|            $WHITE║
+    ║$SILVER             |$WHITEX$SILVER|            $WHITE║
+    ║$SILVER             |$WHITEI$SILVER|            $WHITE║
+    ║$SILVER             |$WHITE`$SILVER|            $WHITE║
+    ║$SILVER             |$WHITE.$SILVER|            $WHITE║
+    ║$SILVER             |$WHITEL$SILVER|            $WHITE║
+    ║$SILVER             |$WHITE`$SILVER|            $WHITE║
+    ║$SILVER             \ /            $WHITE║
+    ║$WHITE              ^             ║
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+Cutlass: &cutlass
+  display name: "Cutlass"
+  upgrade tier: 0
+  type: "Weapon"
+  gold: 123.4
+  damage: 6.5
+  defend: 8.25
+  agility: .215
+  critical hit chance: .75
+  description: >
+    The Cutlass is a short one-handed weapon, used by many guards in the Los Gerudos city,
+    but also by day-to-day citizens to protect themselves. It's quite cheap for most of the
+    Los Gerudos' inhabitants. It can be upgraded many times to up its powers.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║              o             ║
+    ║              X             ║
+    ║              X             ║
+    ║         |===[O]===|        ║
+    ║             |||            ║
+    ║             |||            ║
+    ║             |||            ║
+    ║             |||            ║
+    ║             |||            ║
+    ║             |^|            ║
+    ║             \ /            ║
+    ║              `             ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║$YELLOW              o             $WHITE║
+    ║$BROWN              X             $WHITE║
+    ║$BROWN              X             $WHITE║
+    ║$SILVER         |$WHITE===$SILVER[$ORANGEO$SILVER]$WHITE===$SILVER|        $WHITE║
+    ║$GRAY             |$SILVER|$GRAY|            $WHITE║
+    ║$GRAY             |$SILVER|$GRAY|            $WHITE║
+    ║$GRAY             |$SILVER|$GRAY|            $WHITE║
+    ║$GRAY             |$SILVER|$GRAY|            $WHITE║
+    ║$GRAY             |$SILVER|$GRAY|            $WHITE║
+    ║$GRAY             |$SILVER^$GRAY|            $WHITE║
+    ║$GRAY             \ /            $WHITE║
+    ║$GRAY              `             $WHITE║
+    ╚════════════════════════════╝
+Cutlass (1):
+  <<: *cutlass
+  upgrade tier: 1
+  damage: 6.75
+  defend: 8.75
+  agility: .2
+  critical hit chance: .7
+  for this upgrade:
+  - Raw Lead
+  - Raw Lead
+  - Raw Silver
+Cutlass (2):
+  <<: *cutlass
+  upgrade tier: 2
+  damage: 7.25
+  defend: 9
+  agility: .1925
+  critical hit chance: .675
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Raw Aluminum
+Cutlass (3):
+  <<: *cutlass
+  upgrade tier: 3
+  damage: 8
+  defend: 9.525
+  agility: .1875
+  critical hit chance: .625
+  for this upgrade:
+  - Steel
+  - Steel
+  - Steel
+  - Raw Wood
+Cutlass (4):
+  <<: *cutlass
+  upgrade tier: 4
+  damage: 8.25
+  defend: 9.75
+  agility: .1825
+  critical hit chance: .6
+  for this upgrade:
+  - Refined Steel
+  - Refined Steel
+  - Raw Aluminum
+  - Raw Aluminum
+Cutlass (5):
+  <<: *cutlass
+  upgrade tier: 5
+  damage: 8.75
+  defend: 10
+  agility: .1775
+  critical hit chance: .6
+  for this upgrade:
+  - Raw Silver
+  - Raw Silver
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Raw Lead
+  - Raw Bronze
+Cutlass (6):
+  <<: *cutlass
+  upgrade tier: 6
+  damage: 9
+  defend: 10.5
+  agility: .1725
+  critical hit chance: .6
+  for this upgrade:
+  - Raw Bronze
+  - Raw Bronze
+  - Raw Lead
+  - Raw Lead
+  - Raw Lead
+  - Refined Steel
+  - Refined Steel
+Cutlass (7):
+  <<: *cutlass
+  upgrade tier: 7
+  damage: 9.75
+  defend: 10.75
+  agility: .2
+  critical hit chance: .7
+  for this upgrade:
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Raw Aluminum
+  - Raw Aluminum
+  - Raw Aluminum
+  - Raw Aluminum
+Dwarf Saber: &dwarf_saber
+  display name: "Dwarf Saber"
+  upgrade tier: 0
+  type: "Weapon"
+  gold: 214.4
+  damage: 7
+  defend: 4.8
+  agility: .125
+  critical hit chance: .8
+  description: >
+    Dwarf Sabers are quite unknown among knights and heros, though it's one of the
+    great dwarf-forged weapons of the archipelago. Once fully upgraded, it's
+    probably one of the most powerful saber ever made.
+  thumbnail raw: |
+    @════════════════════════════@
+    ║             /^\            ║
+    ║            |\ /|           ║
+    ║            | | |           ║
+    ║            | | |           ║
+    ║            | | |           ║
+    ║             |||            ║
+    ║             |||            ║
+    ║         ..  |||  ..        ║
+    ║         `\\=====//'        ║
+    ║             (=)            ║
+    ║             (=)            ║
+    ║             \U/            ║
+    @════════════════════════════@
+  thumbnail: |
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+    ║$SILVER             /$LIGHT_GRAY^$SILVER\            $WHITE║
+    ║$SILVER            |$LIGHT_GRAY\ /$SILVER|           $WHITE║
+    ║$SILVER            | $LIGHT_GRAY| $SILVER|           $WHITE║
+    ║$SILVER            | $LIGHT_GRAY| $SILVER|           $WHITE║
+    ║$SILVER            | $LIGHT_GRAY| $SILVER|           $WHITE║
+    ║$SILVER             |$LIGHT_GRAY|$SILVER|            $WHITE║
+    ║$SILVER             |$LIGHT_GRAY|$SILVER|            $WHITE║
+    ║$LIGHT_GRAY         ..  $SILVER|$LIGHT_GRAY|$SILVER|  $LIGHT_GRAY..        $WHITE║
+    ║$LIGHT_GRAY         `\\$BROWN=====$LIGHT_GRAY//'        $WHITE║
+    ║$DARK_BROWN             ($BROWN=$DARK_BROWN)            $WHITE║
+    ║$DARK_BROWN             ($BROWN=$DARK_BROWN)            $WHITE║
+    ║$YELLOW             \$REDU$YELLOW/            $WHITE║
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+Dwarf Saber (1):
+  <<: *dwarf_saber
+  upgrade tier: 1
+  damage: 7.5
+  defend: 5.25
+  agility: .15
+  critical hit chance: .75
+  for this upgrade:
+  - Refined Steel
+  - Refined Steel
+  - Steel
+  - Raw Silver
+  - Raw Silver
+Dwarf Saber (2):
+  <<: *dwarf_saber
+  upgrade tier: 2
+  damage: 8
+  defend: 6.75
+  agility: .215
+  critical hit chance: .85
+  for this upgrade:
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Refined Steel
+  - Steel
+  - Steel
+  - Steel
+  - Steel
+  - Steel
+  - Steel
+  - Steel
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+  - Raw Silver
+Falchion: &falchion
+  display name: "Falchion"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 5.25
+  defend: 6.25
+  agility: .25
+  gold: 35.59
+  critical hit chance: .45
+  description: "A generic sword."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║              ^             ║
+    ║             | |            ║
+    ║             |\|            ║
+    ║             | |            ║
+    ║             | |            ║
+    ║             |\|            ║
+    ║             | |            ║
+    ║          /=======\         ║
+    ║             &%&            ║
+    ║             %&%            ║
+    ║             &%&            ║
+    ║             {&}            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║$LIGHT_BLACK              ^             $WHITE║
+    ║$LIGHT_BLACK             | |            $WHITE║
+    ║$LIGHT_BLACK             |$SILVER\$LIGHT_BLACK|            $WHITE║
+    ║$LIGHT_BLACK             | |            $WHITE║
+    ║$LIGHT_BLACK             | |            $WHITE║
+    ║$LIGHT_BLACK             |$SILVER\$LIGHT_BLACK|            $WHITE║
+    ║$LIGHT_BLACK             | |            $WHITE║
+    ║          $BROWN/$DARK_BROWN=======$BROWN\         $WHITE║
+    ║$BLUE             &$CYAN%$BLUE&            $WHITE║
+    ║$CYAN             $CYAN%$BLUE&$CYAN%            $WHITE║
+    ║$BLUE             &$CYAN%$BLUE&            $WHITE║
+    ║             $DARK_BROWN{$BLUE&$DARK_BROWN}            $WHITE║
+    ╚════════════════════════════╝
 Bow: &generic_bow
   display name: "Bow"
   upgrade tier: 0
@@ -719,7 +1251,7 @@ Dwarf Axe: &dwarf_axe
   damage: 7
   defend: 5
   agility: .05
-  gold: 25.36
+  gold: 54.36
   critical hit chance: .6
   description: "A generic dwarf axe used by the Dwarfs. A slow but deadly weapon."
   thumbnail raw: |
@@ -771,7 +1303,7 @@ Throwing Axe: &throwing_axe
   damage: 8
   defend: 2
   agility: .09
-  gold: 31.56
+  gold: 68.56
   critical hit chance: .4
   description: >
     The Throwing Axe is at first a dwarf weapon, but nowadays, it's used by many humans and it is recognized to be a powerful weapon.

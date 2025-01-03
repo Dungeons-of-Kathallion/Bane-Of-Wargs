@@ -398,7 +398,7 @@ South Pillager:
     max spawning health: 20
     max health level: 20
   agility: .5
-  inventory: # Everything: 8%
+  inventory: # Everything: 7%
   - Sword
   - Bow
   - Spear
@@ -411,6 +411,8 @@ South Pillager:
   - Strength Potion
   - Knight Boots
   - Gerud Desert Map
+  - Pillager Falcata
+  - Pillager Claymore
   description: >
     South Pillagers, who're also known as 'South Men' are cowards, and dangerous enemies, that you'll eventually encounter if you
     travel in the Gerud Desert or in the Badlands of the Stall Island.
@@ -425,7 +427,7 @@ South Pillager Rider:
     max spawning health: 24
     max health level: 24
   agility: .65
-  inventory: # Everything: 7.5%
+  inventory: # Everything: 6.5%
   - Horse Saddle
   - Sword
   - Bow
@@ -439,6 +441,8 @@ South Pillager Rider:
   - Strength Potion
   - Knight Boots
   - Gerud Desert Map
+  - Pillager Falcata
+  - Pillager Claymore
   description: >
     These South Pillagers ride tall horses, making them even more dangerous: they are fast and powerful enemies, in addition of a decent health.
 The Dagger:

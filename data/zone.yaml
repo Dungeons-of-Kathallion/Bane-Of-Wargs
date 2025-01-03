@@ -656,6 +656,10 @@ Humil Dwarf Stable:
       - Casting Rod
       - Popper Lure
       - Swimmer Lure
+      - Dwarf Silver Chestplate
+      - Throwing Axe
+      - Dwarf Axe
+      - Dwarf Saber
     stables:
     - Dwarf Stable
     - Horse Stable
@@ -932,6 +936,17 @@ James Blacksmith:
         - Raw Bronze
         gold: 72.1
         time needed: 12.4
+      Cutlass:
+        needed materials:
+        - Flexible Steel
+        - Refined Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Iron
+        - Raw Lead
+        - Raw Bronze
+        gold: 125.34
+        time needed: 8.25
   discounts:
     time space: 18
     chance: .3
@@ -1085,6 +1100,36 @@ Gerud Armorer:
         - Raw Silver
         - Raw Iron
         - Raw Iron
+        - Raw Bronze
+      Gerud Saber:
+        gold: 286.75
+        time needed: 14
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw Lead
+        - Raw Bronze
+        - Raw Bronze
+        - Raw Bronze
+        - Raw Wood
+        - Raw Wood
+      Cutlass:
+        gold: 78.75
+        time needed: 1.25
+        needed materials:
+        - Flexible Steel
+        - Refined Steel
+        - Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Aluminum
+        - Raw Wood
+        - Raw Lead
         - Raw Bronze
   discounts:
     time space: 18
@@ -2996,6 +3041,27 @@ Eldin Blacksmith:
         - Flexible String
         - Strong String
         - Strong String
+      Eldin Saber:
+        gold: 829.36
+        time needed: 22.75
+        needed materials:
+        - Flexible Steel
+        - Flexible Steel
+        - Flexible Steel
+        - Flexible Steel
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw Silver
+        - Raw Lead
+        - Raw Lead
+        - Raw Lead
+        - Raw Bronze
+        - Raw Bronze
+        - Raw Wood
+        - Raw Wood
+        - Raw Wood
+        - Wet Tree Log
   discounts:
     time space: 25
     chance: .45
