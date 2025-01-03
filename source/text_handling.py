@@ -232,13 +232,15 @@ def print_zone_map(zone_name, zone, player, preferences):
             print(line + " NAME: " + preferences["latest preset"]["save"])
         if count == 1:
             print(line, end="")
-            cout(" HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
+            cout(
+                " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
                 str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT +
                 COLOR_BLUE + str(player["max health"]) + COLOR_RESET_ALL
             )
         if count == 2:
             print(line, end="")
-            cout(" INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
+            cout(
+                " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
                 str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" +
                 COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
             )
@@ -247,7 +249,8 @@ def print_zone_map(zone_name, zone, player, preferences):
                 time_handling.addition_to_date(player["starting date"], int(player["elapsed time game days"]))
             )
             print(line, end="")
-            cout(" DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
+            cout(
+                " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(date) + COLOR_RESET_ALL
             )
         if count == 4:
