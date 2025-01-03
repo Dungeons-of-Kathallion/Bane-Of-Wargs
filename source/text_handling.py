@@ -231,14 +231,14 @@ def print_zone_map(zone_name, zone, player, preferences):
         if count == 0:
             print(line + " NAME: " + preferences["latest preset"]["save"])
         if count == 1:
-            print(
-                line + " HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
+            print(line, end="")
+            cout(" HEALTH: " + COLOR_STYLE_BRIGHT + COLOR_BLUE +
                 str(player["health"]) + COLOR_RESET_ALL + "/" + COLOR_STYLE_BRIGHT +
                 COLOR_BLUE + str(player["max health"]) + COLOR_RESET_ALL
             )
         if count == 2:
-            print(
-                line + " INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
+            print(line, end="")
+            cout(" INVENTORY: " + COLOR_STYLE_BRIGHT + COLOR_CYAN +
                 str(len(player["inventory"]) + 1) + COLOR_RESET_ALL + "/" +
                 COLOR_STYLE_BRIGHT + COLOR_CYAN + str(player["inventory slots"]) + COLOR_RESET_ALL
             )
@@ -246,14 +246,16 @@ def print_zone_map(zone_name, zone, player, preferences):
             date = time_handling.date_prettifier(
                 time_handling.addition_to_date(player["starting date"], int(player["elapsed time game days"]))
             )
-            print(
-                line + " DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
+            print(line, end="")
+            cout(" DATE: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                 str(date) + COLOR_RESET_ALL
             )
         if count == 4:
-            print(line + " EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
+            print(line, end="")
+            cout(" EXP: " + COLOR_STYLE_BRIGHT + COLOR_GREEN + str(round(player["xp"], 2)) + COLOR_RESET_ALL)
         if count == 5:
-            print(line + " GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
+            print(line, end="")
+            cout(" GOLD: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW + str(round(player["gold"], 2)) + COLOR_RESET_ALL)
         count += 1
 
 
