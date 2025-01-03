@@ -23,7 +23,7 @@ Slime:
     max spawning health: 7
     max health level: 7
   agility: .87
-  inventory:
+  inventory: # Wooden Stick: 50%, Slime: 50%
   - Wooden Stick
   - Slime
   description: "Slimes are agile and annoying monsters."
@@ -38,7 +38,7 @@ Goblin:
     max spawning health: 8
     max health level: 8
   agility: .7
-  inventory:
+  inventory: # Everything: 12.5%
   - Knife
   - Beef
   - Chicken
@@ -59,7 +59,7 @@ Ork:
     max spawning health: 6
     max health level: 6
   agility: .95
-  inventory:
+  inventory: # Everything: 12.5%
   - Knife
   - Raw Salmon
   - Bone
@@ -80,7 +80,7 @@ Ork Archer:
     max spawning health: 7
     max health level: 7
   agility: .85
-  inventory:
+  inventory: # Everything: 10%
   - Knife
   - Raw Salmon
   - Bone
@@ -103,7 +103,7 @@ Warg:
     max spawning health: 9
     max health level: 9
   agility: 1.05
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Bone
   - Porkchop
@@ -122,13 +122,36 @@ White Warg:
     max spawning health: 11
     max health level: 11
   agility: 1.08
-  inventory:
+  inventory: # Everything: 20%
   - Porkchop
   - Bone
   - Wolf Skin
   - Wolf Skull
   - Beef
   description: "White Wargs are even bigger Wolves than came from Snowy Peaks. They are captains of the Wargs."
+Bomskit:
+  plural: "Bomskits"
+  never run away: true
+  damage:
+    min damage: 10
+    max damage: 15
+    critical chance: .725
+    one shot: true
+  health:
+    min spawning health: 3
+    max spawning health: 5
+    max health level: 5
+  agility: 1.25
+  inventory: # Rotten Flesh: 25%, Slime: 25%, Gunpowder: 50%
+  - Rotten Flesh
+  - Slime
+  - Gunpowder
+  - Gunpowder
+  description: >
+    Bomskits are small, insect-like creatures. Even though they have low health, they can overcome the
+    not prepared adventurer in larger groups, by their attack: they explode as they hit you. They
+    can easily be taken out with any weapon. They are commonly found in dungeons around the
+    Kathallion Archipelago, but also in certain wheat fields.
 # Troll enemies
 Cavern Troll:
   plural: "Cavern Trolls"
@@ -141,7 +164,7 @@ Cavern Troll:
     max spawning health: 11
     max health level: 11
   agility: .35
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -160,7 +183,7 @@ Woods Troll:
     max spawning health: 10
     max health level: 10
   agility: .43
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -182,7 +205,7 @@ Desert Troll:
     max spawning health: 20
     max health level: 20
   agility: .32
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -204,7 +227,7 @@ Mines Troll:
     max spawning health: 17
     max health level: 17
   agility: .34
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -224,7 +247,7 @@ Black Ork:
     max spawning health: 9
     max health level: 9
   agility: .58
-  inventory:
+  inventory: # Everything: 15%
   - Beef
   - Porkchop
   - Bone
@@ -244,7 +267,7 @@ Dark Marksman:
     max spawning health: 8
     max health level: 8
   agility: .68
-  inventory:
+  inventory: # Everything: 15%
   - Porkchop
   - Raw Salmon
   - Bone
@@ -263,9 +286,27 @@ Doomed Horror:
     max spawning health: 11
     max health level: 11
   agility: .35
-  inventory:
+  inventory: # Wooden Stick: 100%
   - Wooden Stick
   description: "Doomed Horrors were once men, which are now cursed to anguish in the evil places, roaming them to strike all enemies. They are slow and deal low damages but they have high health."
+Poe:
+  plural: "Poes"
+  damage:
+    min damage: 5
+    max damage: 13
+    critical chance: .25
+  health:
+    min spawning health: 10
+    max spawning health: 25
+    max health level: 25
+  agility: .45
+  inventory: # Raw Aluminum: 50%, Tissue Bag: 50%
+  - Raw Aluminum
+  - Tissue Bag
+  description: >
+    These cloaked spirits freely roam graveyards and other haunted locales on the Shire Island. They carry a lantern with them
+    that serves as the container for their own soul and the ones they conquered. Many people think that they're spirits of deads
+    that became monsters because of an unresolved attachment to the mortal world.
 # Creatures enemies
 Corrupted Ent:
   plural: Corrupted Ents
@@ -278,7 +319,7 @@ Corrupted Ent:
     max spawning health: 16
     max health level: 16
   agility: .32
-  inventory:
+  inventory: # Everything: 20%
   - Wooden Stick
   - Raw Wood
   - Apple
@@ -298,7 +339,7 @@ Mumakil:
     max spawning health: 56
     max health level: 56
   agility: .35
-  inventory:
+  inventory: # Bone: 75%, Mumakil Tusk: 15%
   - Bone
   - Bone
   - Bone
@@ -317,7 +358,7 @@ Desert Worm:
     max spawning health: 110
     max health level: 110
   agility: .38
-  inventory:
+  inventory: # Bone: 65%, Desert Worm Tooth: 18%, Desert Worm Scale: 18%
   - Bone
   - Bone
   - Bone
@@ -326,7 +367,7 @@ Desert Worm:
   - Desert Worm Scale
   description: >
     These humongous worms have been wandering in the deserts of the world for a long time.
-    Some people say that theylive in far into the ground, miles away down from the ground,
+    Some people say that they live in far into the ground, miles away down from the ground,
     and that they go back at the surface when men are doing troubles to the world.
 Giant Spider:
   plural: "Giant Spiders"
@@ -339,7 +380,7 @@ Giant Spider:
     max spawning health: 23
     max health level: 23
   agility: .65
-  inventory:
+  inventory: # Bone: 25%, Strong String: 25%, Flexible String: 50%
   - Bone
   - Strong String
   - Flexible String
@@ -357,7 +398,7 @@ South Pillager:
     max spawning health: 20
     max health level: 20
   agility: .5
-  inventory:
+  inventory: # Everything: 8%
   - Sword
   - Bow
   - Spear
@@ -384,7 +425,7 @@ South Pillager Rider:
     max spawning health: 24
     max health level: 24
   agility: .65
-  inventory:
+  inventory: # Everything: 7.5%
   - Horse Saddle
   - Sword
   - Bow
@@ -411,7 +452,7 @@ The Dagger:
     max spawning health: 25
     max health level: 25
   agility: .65
-  inventory:
+  inventory: # Everything: 15%
   - Dagger
   - Healing Potion
   - Gerud Mercenary Beverage
@@ -432,7 +473,7 @@ Mangrove Undead:
     max spawning health: 15
     max health level: 15
   agility: .35
-  inventory:
+  inventory: # Bone: 30%, Rotten Flesh: 30%, Beef: 13%, Porkchop: 13%, Wooden Stick: 13%
   - Bone
   - Bone
   - Bone
@@ -456,7 +497,7 @@ Desert Undead:
     max spawning health: 18
     max health level: 18
   agility: .45
-  inventory:
+  inventory: # Bone: 30%, Rotten Flesh: 30%, Beef: 13%, Porkchop: 13%, Wooden Stick: 13%
   - Bone
   - Bone
   - Bone
@@ -469,7 +510,7 @@ Desert Undead:
   description: >
     These monsters have been wandering in the Stall Island for a long time. So long that depending on the place you're, it's a different
     species that you'll have to slay. Desert undeads are known to be the most dangerous one, often coming in large groups.
-# Dragon bosses
+# Bosses
 Balrog:
   plural: "Balrogs"
   damage:
@@ -481,7 +522,7 @@ Balrog:
     max spawning health: 165
     max health level: 165
   agility: .25
-  inventory:
+  inventory: # Balrog Horn: 75%, Flaming Whip: 15%
   - Balrog Horn
   - Balrog Horn
   - Balrog Horn
@@ -500,7 +541,7 @@ Shire Flying Beast:
     max spawning health: 115
     max health level: 115
   agility: .32
-  inventory:
+  inventory: # Dragon Tooth: 60%, Green Dragon Scale: 40%
   - Dragon Tooth
   - Dragon Tooth
   - Dragon Tooth
@@ -521,7 +562,7 @@ Fellbeast:
     max spawning health: 30
     max health level: 30
   agility: .38
-  inventory:
+  inventory: # Dragon Tooth: 25%, Bone: 50%, Beef: 25%
   - Dragon Tooth
   - Bone
   - Bone
@@ -529,6 +570,39 @@ Fellbeast:
   description: >
     Fellbeasts may look like dragons, they do not have the power of breathing fire, but they have huge clawed hands.
     They are often used by the evil forces wizards.
+Phantom Rider:
+  plural: "Phantom Riders"
+  damage:
+    min damage: 8
+    max damage: 15
+    critical chance: .425
+  health:
+    min spawning health: 10
+    max spawning health: 30
+    max health level: 30
+  agility: 1.08
+  inventory: # Long Sword: 100%
+  - Long Sword
+  description: >
+    Phantom riders are summoned creatures present in many dungeons across the Kathallion Archipelago. They don't do
+    much damage for advanced fighters but they're swift and it's hard to dodged their hits. Their long sword allows
+    them to reach you from a long distance.
+Death Sword:
+  plural: "Death Swords"
+  damage:
+    min damage: 10
+    max damage: 25
+    critical chance: .625
+  health:
+    min spawning health: 30
+    max spawning health: 70
+    max health level: 70
+  agility: .35
+  inventory: # Chuckle Sword (4): 100%
+  - Chuckle Sword (4)
+  description: >
+    This frightening spirit uses a gigantic and powerful chuckle sword. His horns on his head could
+    qualify him as the devil. Half of your hits seem to go through his phantom body.
 # Jokes
 Flying Spaghetti Monster:
   plural: "Flying Spaghetti Monsters"
@@ -541,9 +615,50 @@ Flying Spaghetti Monster:
     max spawning health: 1250
     max health level: 1250
   agility: .35
-  inventory:
+  inventory: # Everything: 50%
   - Giant Meat Ball
   - 30-yard Long Spaghetti
   description: >
     Coming straight from America, the Flying Spaghetti Monster is coming to prevent intelligent design teaching from
     being used in public schools in the Kathallion Archipelago. R'amen. Why not try reading the Gospel of the Flying Monster?
+# Kirgon enemies
+Dry Ork:
+  plural: "Dry Orks"
+  damage:
+    min damage: 6
+    max damage: 13
+    critical chance: .45
+  health:
+    min spawning health: 8
+    max spawning health: 15
+    max health level: 15
+  agility: .65
+  inventory: # Everything: 15%
+  - Beef
+  - Porkchop
+  - Bone
+  - Spear
+  - Ork Shredded Chestplate
+  - Ork Bag
+  - Warg Fur Shield
+  description: >
+    Dry Orks are extremely dangerous Orks you only find in the wasted lands of Kirgon and its surroundings. They're
+    generally swifter, more resistant and stronger than any other Ork you'll find.
+Lyzalfos:
+  plural: "Lyzalfi"
+  damage:
+    min damage: 7
+    max damage: 11
+    critical chance: .75
+  health:
+    min spawning health: 9
+    max spawning health: 20
+    max health level: 20
+  agility: .725
+  inventory: # Everything: 20%
+  - Porkchop
+  - Raw Salmon
+  - Bone
+  - Lyzalfos Bracer
+  - Lyzalfos Flesh
+  description: "Lyzalfi are powerful dragon-like creatures, generally armed with a bracer made out of stone, intended to be used to take hits on opponents. You mostly find Lyzalfi in dungeons and not in the wild, as they serve dragons."

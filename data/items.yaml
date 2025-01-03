@@ -955,6 +955,35 @@ Flaming Whip:
     ║ $YELLOW~   $BROWNXX         $ORANGE\$ORANGE\$ORANGE\$ORANGE\$ORANGE\$ORANGE$RED\        $WHITE║
     ║     $BROWNXX    $YELLOW~$RED~~$ORANGE~               $WHITE║
     $CYAN@$WHITE══════════════════════════════$CYAN@$WHITE
+Lyzalfos Bracer:
+  display name: "Lyzalfos Bracer"
+  upgrade tier: 0
+  type: "Weapon"
+  damage: 10
+  defend: 11
+  agility: .35
+  gold: 78.15
+  critical hit chance: .725
+  description: >
+    This type of bracer is typically used by Lyzalfi, even though you can find
+    some knights or heroes using it, as it's a terrible close-combat weapon. It
+    may be a bracer, usually used by archers, but this one is mode out of hard-rock
+    stone and is used to hit opponents.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 # Consumables
 Knight Beverage:
   type: "Consumable"
@@ -2481,6 +2510,7 @@ Raw Salmon:
   max bonus: 0
   healing level: 2
   gold: 5.2
+  fishing weight: .15
   description: "A raw salmon may not be the best thing to eat but it's always better than nothing."
   thumbnail raw: |
     ╔════════════════════════════╗
@@ -2509,6 +2539,319 @@ Raw Salmon:
     ║$SILVER     : $YELLOWX$SILVER )$RED:´,      ,  {     $WHITE║
     ║$SILVER      `·_,$RED `·  ,_·´\`·,)    $WHITE║
     ║$RED          `\\´´\,_·´        $WHITE║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Catfish:
+  type: "Food"
+  max bonus: 0
+  healing level: 6
+  gold: 23.4
+  fishing weight: .55
+  description: >
+    Catfishes are bottom feeders, meaning that you'll most of the time find them in the bottom
+    of lakes. They are of medium weight.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║           /`-._            ║
+    ║          /_,.._`:-         ║
+    ║      ,.-'  ,   `-:..-')    ║
+    ║     : x ):';      _  {     ║
+    ║      `-._ `'__,.-'\`-.)    ║
+    ║          `\\  \,.-'`       ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║$BLUE           /`-._            $WHITE║
+    ║$BLUE          /$PURPLE_,.._$BLUE`:-         $WHITE║
+    ║$PURPLE      ,.-'  ,   `-:..$BLUE-')    $WHITE║
+    ║$PURPLE     : $REDx $PURPLE):$BLUE';      _  {     $WHITE║
+    ║$PURPLE      `-._ `'__,.-'$BLUE\`-.)    $WHITE║
+    ║$BLUE          `\\  \,.-'`       $WHITE║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Tropical Fish:
+  type: "Food"
+  max bonus: 0
+  healing level: 3
+  gold: 34.2
+  fishing weight: .25
+  description: >
+    Tropical fish are very colored fish that you'll mostly find
+    on tropical zones and hot lakes.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║               ___          ║
+    ║            _ / __)_        ║
+    ║   _      .'_'-'\ /-'-.     ║
+    ║   \'-._.'-'\ / _\-(X)_:    ║
+    ║    \ (__\/_ \ '._)  _\     ║
+    ║    /.' (_.'----''./'       ║
+    ║                  '         ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║$RED               ___          $WHITE║
+    ║$ORANGE            _ $RED/ __)_        $WHITE║
+    ║$RED   _      $ORANGE.'_'-'$RED\ /$ORANGE-'-.     $WHITE║
+    ║$RED   \$ORANGE'-._.'-'$RED\ / _\$ORANGE-($DARK_REDX$ORANGE)_:    $WHITE║
+    ║$RED    \$ORANGE $RED(__\/_ \ $ORANGE'.$RED_)  _\     $WHITE║
+    ║$RED    /$ORANGE.' $RED(_$ORANGE.'----''.$RED/$ORANGE'       $WHITE║
+    ║$ORANGE                  '         $WHITE║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Sea Horse:
+  type: "Food"
+  max bonus: 0
+  healing level: 30
+  gold: 375.7
+  fishing weight: .65
+  description: >
+    Sea horses are clearly non-conventional fish but some people still
+    like them as meals.
+  thumbnail raw: |
+    @════════════════════════════@
+    ║                            ║
+    ║                            ║
+    ║             \/)/)          ║
+    ║           _'  xx(_.-.      ║
+    ║         /'.     .---'      ║
+    ║       /'-./    (           ║
+    ║       )     ; __\          ║
+    ║       \_.'\ : __|          ║
+    ║            )  _/           ║
+    ║           (  (,.           ║
+    ║            '-.-'           ║
+    ║                            ║
+    @════════════════════════════@
+  thumbnail: |
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+    ║                            ║
+    ║                            ║
+    ║$YELLOW             \/)/)          $WHITE║
+    ║$ORANGE           _'  $DARK_REDxx$ORANGE(_.-.      $WHITE║
+    ║$ORANGE         /'.     .$YELLOW---$ORANGE'      $WHITE║
+    ║$ORANGE       /'-./    (           $WHITE║
+    ║$ORANGE       )     ; $YELLOW__$ORANGE\          $WHITE║
+    ║$ORANGE       \_.'\ : $YELLOW__$ORANGE|          $WHITE║
+    ║$ORANGE            )  $YELLOW_$ORANGE/           $WHITE║
+    ║$ORANGE           (  (,.           $WHITE║
+    ║$ORANGE            '-.-'           $WHITE║
+    ║                            ║
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+Greengill:
+  type: "Food"
+  max bonus: 0
+  healing level: 2
+  gold: 15.9
+  fishing weight: .2
+  description: >
+    Greengills are very light fish, sometime referred as sunfishes. You'll find them
+    in pretty much every lake or sea around the archipelago.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║           _______          ║
+    ║          /      /          ║
+    ║         /'''''\/ _         ║
+    ║        / X  _  \/ |        ║
+    ║        >   <_)    |        ║
+    ║        \       /\_|        ║
+    ║         \...../\           ║
+    ║          \\____/           ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║$GREEN           _______          $WHITE║
+    ║$GREEN          /      /          $WHITE║
+    ║$DARK_GREEN         /$GREEN'''''$DARK_GREEN\$GREEN/ _         $WHITE║
+    ║$DARK_GREEN        / $DARK_REDX  $GREEN_$DARK_GREEN  \/ |        $WHITE║
+    ║$DARK_GREEN        >   $GREEN<_$DARK_GREEN)    |        $WHITE║
+    ║$DARK_GREEN        \       /\_|        $WHITE║
+    ║$DARK_GREEN         \$GREEN.....$DARK_GREEN/$GREEN\           $WHITE║
+    ║$GREEN          \\____/           $WHITE║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Kathallion Bass:
+  type: "Food"
+  max bonus: 0
+  healing level: 7
+  gold: 9.34
+  fishing weight: .425
+  description: "This type of bass is commonly found in pretty much every lake of the archipelago."
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║             __             ║
+    ║            /  ;            ║
+    ║        _.--"""-..   _.     ║
+    ║       /X         `-'  [    ║
+    ║      ]  ,    ,    ,    ;   ║
+    ║       '--L__J_.-"" ',_;    ║
+    ║           '-._J            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║$GREEN             __             $WHITE║
+    ║$GREEN            /  ;            $WHITE║
+    ║$DARK_GREEN        _.--$GREEN"""$DARK_GREEN-..   _.     $WHITE║
+    ║$DARK_GREEN       /$DARK_REDX         $DARK_GREEN`-'  [    $WHITE║
+    ║$GREEN      ]  $DARK_GREEN,    ,    ,    ;   $WHITE║
+    ║$DARK_GREEN       '--L__J_.-$GREEN"" $DARK_GREEN',_;    $WHITE║
+    ║$GREEN           '-._J            $WHITE║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Kathallion Loach:
+  type: "Food"
+  max bonus: 0
+  healing level: 25
+  gold: 325.2
+  fishing weight: 1.125
+  description: >
+    The Kathallion Loach is very famous among fishers of the Kathallion Archipelago. With its average
+    length of 18 in and average weight of 100 lbs, it's the rarest and hardest-to-catch fish of the
+    world, probably.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                  __,       ║
+    ║               .-'_-'`      ║
+    ║             .' {`          ║
+    ║         .-'````'-.         ║
+    ║       .'(X)       '._      ║
+    ║      }     '. ))    _<`    ║
+    ║       `-.,\'.\_,.-\`       ║
+    ║            )  )            ║
+    ║           ( ' (            ║
+    ║            '.  )           ║
+    ║              )/            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║$CYAN                  __,       $WHITE║
+    ║$CYAN               .-'_-'`      $WHITE║
+    ║$CYAN             .' {`          $WHITE║
+    ║$PINK         .-'````'-.         $WHITE║
+    ║$PINK       .'$LIGHT_BLUE($DARK_REDX$LIGHT_BLUE)       '._      $WHITE║
+    ║$PURPLE      }     $PINK'. $PURPLE))$PINK    _<`    $WHITE║
+    ║$PINK       `-.,$CYAN\$PINK'.$CYAN\$PINK_,.-\`       $WHITE║
+    ║$CYAN            )  )            $WHITE║
+    ║$CYAN           ( ' (            $WHITE║
+    ║$CYAN            '.  )           $WHITE║
+    ║$CYAN              )/            $WHITE║
+    ╚════════════════════════════╝
+Kathallion Pike:
+  type: "Food"
+  max bonus: 0
+  healing level: 15
+  gold: 115.2
+  fishing weight: .925
+  description: >
+    Less famous than the Kathallion Loach, the Kathallion Pike is still a very famous fish
+    among fishers. It's clearly lighter than the loach with its 60 lbs, but it's actually
+    longer, with its 22 in of average length.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║          /"*._         _   ║
+    ║      .-*'`    `*-.._.-'/   ║
+    ║    < x ))     ,       (    ║
+    ║      `*-._`._(__.--*"`.\   ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║$TAN          /"*._         _   $WHITE║
+    ║$TAN      .-*'`    `*-.._.-'/   $WHITE║
+    ║$TAN    < $DARK_REDx $YELLOW))$TAN     ,       (    $WHITE║
+    ║$TAN      `*-._`._(__.--*"`.\   $WHITE║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Reekfish:
+  type: "Food"
+  max bonus: 0
+  healing level: -5
+  gold: 56.25
+  fishing weight: .5525
+  description: >
+    Reekfishes are probably the most disgusting type of fishes,
+    with their terrible odor and feed on coral. Its only use is
+    to feed dwarf steeds, that enjoys them as meals.
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║             ,              ║
+    ║            /|              ║
+    ║           /_|  ,           ║
+    ║          /x  \/|           ║
+    ║          \<__/\|           ║
+    ║           \ |  `           ║
+    ║            \|              ║
+    ║             `              ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║$DARK_RED             ,              $WHITE║
+    ║$DARK_RED            /|              $WHITE║
+    ║$DARK_RED           /_|  ,           $WHITE║
+    ║$DARK_RED          /$REDx  $DARK_RED\/|           $WHITE║
+    ║$DARK_RED          \<__/\|           $WHITE║
+    ║$DARK_RED           \ |  `           $WHITE║
+    ║$DARK_RED            \|              $WHITE║
+    ║$DARK_RED             `              $WHITE║
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
@@ -2830,12 +3173,31 @@ Wheat:
     ║                            ║
     ║                            ║
     ╚════════════════════════════╝
+Gunpowder:
+  type: "Misc"
+  gold: 31.78
+  description: "Gunpowder is a mid-value item around the Kathallion Archipelago: it's not cheap, but not expensive easier."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
 Balrog Horn:
   type: "Misc"
   gold: 325.21
   description: "Balrog Horns are very hard to get and very expensive on the market."
   thumbnail: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2848,13 +3210,13 @@ Balrog Horn:
     ║                            ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 Dragon Tooth:
   type: "Misc"
   gold: 234.1
   description: "Dragon Teeth are very hard to get and very expensive on the market."
   thumbnail: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2867,13 +3229,13 @@ Dragon Tooth:
     ║                            ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 Green Dragon Scale:
   type: "Misc"
   gold: 314
   description: "Green Dragon Scales are very hard to get and very expensive on the market."
   thumbnail: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2886,13 +3248,13 @@ Green Dragon Scale:
     ║                            ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 Desert Worm Tooth:
   type: "Misc"
   gold: 256.2
   description: "Desert Worm Teeth are very hard to get and very expensive on the market."
   thumbnail: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2905,13 +3267,13 @@ Desert Worm Tooth:
     ║                            ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 Desert Worm Scale:
   type: "Misc"
   gold: 314
   description: "Desert Worm Scales are very hard to get and very expensive on the market."
   thumbnail: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2924,13 +3286,13 @@ Desert Worm Scale:
     ║                            ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 Mumakil Tusk:
   type: "Misc"
   gold: 125.21
   description: "Mumakil Tusks are very hard to get and very expensive on the market."
   thumbnail: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║                            ║
     ║                            ║
@@ -2943,13 +3305,13 @@ Mumakil Tusk:
     ║                            ║
     ║                            ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 Giant Meat Ball:
   type: "Misc"
   gold: 13450.7777777
   description: "A giant meat ball. What more to say? Oh yeah, you can find some ketchup on it."
   thumbnail: |
-    ╔════════════════════════════╗
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
     ║                            ║
     ║$DARK_BROWN          ########          $WHITE║
     ║$DARK_BROWN       ##############       $WHITE║
@@ -2962,9 +3324,9 @@ Giant Meat Ball:
     ║$DARK_BROWN       ##############       $WHITE║
     ║$DARK_BROWN          ########          $WHITE║
     ║                            ║
-    ╚════════════════════════════╝
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
   thumbnail raw: |
-    ╔════════════════════════════╗
+    @════════════════════════════@
     ║                            ║
     ║          ########          ║
     ║       ##############       ║
@@ -2977,11 +3339,68 @@ Giant Meat Ball:
     ║       ##############       ║
     ║          ########          ║
     ║                            ║
-    ╚════════════════════════════╝
+    @════════════════════════════@
 30-yard Long Spaghetti:
   type: "Misc"
   gold: -13450.7777777
   description: "This 30-yard long spaghetti coming to save you from your sins. Or for your hunger, who knows?"
+  thumbnail: |
+    @════════════════════════════@
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    @════════════════════════════@
+Ork Talisman:
+  type: "Misc"
+  gold: 17.8
+  description: >
+    This talisman seems old and rusted, but at the same time fresh new, with bright
+    reflections of light. A mysterious energy is shedded by this object.
+  thumbnail: |
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+    ║                            ║
+    ║$SILVER               \|/          $WHITE║
+    ║$SILVER               -$YELLOWo$SILVER-          $WHITE║
+    ║$YELLOW             /\$SILVER/|\          $WHITE║
+    ║$YELLOW         ___/__\___         $WHITE║
+    ║$YELLOW         `-/.  ,\-'         $WHITE║
+    ║$YELLOW          /,-''-,\          $WHITE║
+    ║$YELLOW         /'      `\         $WHITE║
+    ║                            $WHITE║
+    ║                            $WHITE║
+    ║                            $WHITE║
+    ║                            $WHITE║
+    $CYAN@$WHITE════════════════════════════$CYAN@$WHITE
+  thumbnail raw: |
+    @════════════════════════════@
+    ║                            ║
+    ║               \|/          ║
+    ║               -o-          ║
+    ║             /\/|\          ║
+    ║         ___/__\___         ║
+    ║         `-/.  ,\-'         ║
+    ║          /,-''-,\          ║
+    ║         /'      `\         ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    @════════════════════════════@
+Lyzalfos Flesh:
+  type: "Misc"
+  gold: 57
+  description: >
+    This rotten flesh of Lyzalfos probably represents well the smell of death. Though,
+    it's got a pretty high price on the market for its powers in healing and medicine.
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║
@@ -3290,6 +3709,228 @@ Flexible String:
   type: "Primary Material"
   gold: 8.99
   description: "A generic solid string used for making high-range bows."
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+# Fishing gear
+Spinning Rod:
+  type: "Fishing Rod"
+  gold: 11.7
+  speed coefficient: 1
+  rod strength: .4
+  description: >
+    The most generic fishing rod you can find pretty much everywhere. Very easy to use and also
+    versatile,it's prefect for both rookies and intermediate fishermen and fisherwomen.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║$DARK_BROWN           \                $WHITE║
+    ║           $SILVERo$DARK_BROWN\               $WHITE║
+    ║$DARK_BROWN             \              $WHITE║
+    ║             $SILVERo$DARK_BROWN\             $WHITE║
+    ║$DARK_BROWN               \            $WHITE║
+    ║               $SILVERo$DARK_BROWN\           $WHITE║
+    ║$DARK_BROWN                 \          $WHITE║
+    ║                $SILVER7$GRAY@$DARK_BROWN|         $WHITE║
+    ║                  $DARK_RED\\        $WHITE║
+    ║                   $DARK_RED\\       $WHITE║
+    ║                    $DARK_BROWN^^      $WHITE║
+    ╚════════════════════════════╝
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║           \                ║
+    ║           o\               ║
+    ║             \              ║
+    ║             o\             ║
+    ║               \            ║
+    ║               o\           ║
+    ║                 \          ║
+    ║                7@|         ║
+    ║                  \\        ║
+    ║                   \\       ║
+    ║                    ^^      ║
+    ╚════════════════════════════╝
+Casting Rod:
+  type: "Fishing Rod"
+  gold: 23.25
+  speed coefficient: 1.15
+  rod strength: .625
+  description: >
+    Casting rods are in every way similar to spinning rods, though they're more
+    durable and have been enhanced to handle heavier fish.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║$DARK_BROWN           \                $WHITE║
+    ║           $SILVERo$DARK_BROWN\               $WHITE║
+    ║$DARK_BROWN             \              $WHITE║
+    ║             $SILVERo$DARK_BROWN\             $WHITE║
+    ║$DARK_BROWN               \            $WHITE║
+    ║               $SILVERo$DARK_BROWN\           $WHITE║
+    ║$DARK_BROWN                 \          $WHITE║
+    ║                $SILVER7$GRAY@$DARK_BROWN|         $WHITE║
+    ║                  $DARK_RED\\        $WHITE║
+    ║                   $DARK_RED\\       $WHITE║
+    ║                    $DARK_BROWN^^      $WHITE║
+    ╚════════════════════════════╝
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║           \                ║
+    ║           o\               ║
+    ║             \              ║
+    ║             o\             ║
+    ║               \            ║
+    ║               o\           ║
+    ║                 \          ║
+    ║                7@|         ║
+    ║                  \\        ║
+    ║                   \\       ║
+    ║                    ^^      ║
+    ╚════════════════════════════╝
+Surf Rod:
+  type: "Fishing Rod"
+  gold: 75.3
+  speed coefficient: 1.25
+  rod strength: 1.15
+  description: >
+    Surf rods are built to handle the challenges of casting heavy baits
+    or lures into the surf and battling large fish that inhabit the coastal
+    waters. They're the heaviest and longest type of rod that exists.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║         $LIGHT_GRAY0$DARK_BROWN\\                $WHITE║
+    ║           $DARK_BROWN\\               $WHITE║
+    ║           $GRAYo$DARK_BROWN\\              $WHITE║
+    ║             $DARK_BROWN\\             $WHITE║
+    ║             $LIGHT_GRAY0$DARK_BROWN\\            $WHITE║
+    ║               $DARK_BROWN\\           $WHITE║
+    ║               $GRAYo$DARK_BROWN\\          $WHITE║
+    ║                 $DARK_BROWN\\         $WHITE║
+    ║                $GRAY7$SILVER@$DARK_BROWN||        $WHITE║
+    ║                 $SILVER@$DARK_RED\\\       $WHITE║
+    ║$DARK_RED                   \\\      $WHITE║
+    ║                    $YELLOW^^^     $WHITE║
+    ╚════════════════════════════╝
+  thumbnail raw: |
+    ╔════════════════════════════╗
+    ║         0\\                ║
+    ║           \\               ║
+    ║           o\\              ║
+    ║             \\             ║
+    ║             0\\            ║
+    ║               \\           ║
+    ║               o\\          ║
+    ║                 \\         ║
+    ║                7@||        ║
+    ║                 @\\\       ║
+    ║                   \\\      ║
+    ║                    ^^^     ║
+    ╚════════════════════════════╝
+Swimmer Lure:
+  type: "Lure"
+  gold: 10.5
+  speed coefficient: .925
+  preferred types:
+  - Raw Salmon
+  - Tropical Fish
+  - Greengill
+  description: >
+    This is the most common lure used by fishers. It's light-weight but however
+    it can't attract deep-water dwelling fish.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Popper Lure:
+  type: "Lure"
+  gold: 27.82
+  speed coefficient: 1.125
+  preferred types:
+  - Tropical Fish
+  - Greengill
+  - Reekfish
+  - Kathallion Bass
+  description: >
+    The popper is an enhanced version of the swimmer lure, that allows the
+    catch of deeper-water dwelling fish.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Frog Lure:
+  type: "Lure"
+  gold: 52.15
+  speed coefficient: 1.225
+  preferred types:
+  - Reekfish
+  - Kathallion Bass
+  - Catfish
+  description: >
+    The frog lure is the most common lure used among advanced and expert fishers. It's
+    quite light-weight and allows the catch of heavy and deep-water dwelling fish,
+    that are often more valuable than other ones.
+  thumbnail: |
+    ╔════════════════════════════╗
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ║                            ║
+    ╚════════════════════════════╝
+Seahorse Lure:
+  type: "Lure"
+  gold: 86.34
+  speed coefficient: 1.35
+  preferred types:
+  - Catfish
+  - Kathallion Bass
+  - Kathallion Pike
+  - Kathallion Loach
+  description: >
+    This expensive lure is made for fishers searching for the rarest fishes.
   thumbnail: |
     ╔════════════════════════════╗
     ║                            ║

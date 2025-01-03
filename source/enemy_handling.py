@@ -154,6 +154,8 @@ def spawn_enemy(
     # situation
     if player["health"] > 0:
 
+        player["number of combats"] += 1
+
         if random.randint(0, 3) >= 2.5:
             chosen_item = "Gold"
 

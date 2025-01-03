@@ -1,6 +1,6 @@
 type: str()
-max bonus: int()
-healing level: int()
+speed coefficient: num()
+preferred types: list(str())
 gold: num()
 description: str()
 thumbnail: str()

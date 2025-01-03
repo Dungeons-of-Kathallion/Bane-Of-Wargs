@@ -32,6 +32,7 @@ import time_handling
 import logger_sys
 import yaml_handling
 import camp
+import fishing
 from colors import *
 from time_handling import *
 from consumable_handling import *
@@ -1019,6 +1020,7 @@ def run(play):
             COLOR_RESET_ALL
         )
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "Z: " + COLOR_RESET_ALL + "Access to nearest hostel, stable or church.")
+        cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "F: " + COLOR_RESET_ALL + "Start fishing")
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "C: " + COLOR_RESET_ALL + "Settle a camp")
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "P: " + COLOR_RESET_ALL + "Pause game")
         cout(COLOR_BLUE + COLOR_STYLE_BRIGHT + "K: " + COLOR_RESET_ALL + "Save game")
@@ -1761,6 +1763,7 @@ def run(play):
             cout("Can go South-West ⬋" + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
         else:
             cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "Q: " + COLOR_RESET_ALL + "Quit & save game")
+        cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "F: " + COLOR_RESET_ALL + "Start fishing")
         cout("                   " + "   " + COLOR_BLUE + COLOR_STYLE_BRIGHT + "C: " + COLOR_RESET_ALL + "Settle a camp")
 
         text = '='
@@ -2333,6 +2336,32 @@ def run(play):
                     cout(COLOR_YELLOW + "Warning: your current mount's health is below 50% !" + COLOR_RESET_ALL)
                     cout("Deposit your mount for it to recover health")
 
+        # Update the player's save data to add a new attribute if the save
+        # is from an older version than 0.26-alpha where it was introduced
+        if "caught fishes" not in list(player):
+            player["caught fishes"] = {
+                "$stats$": {
+                    "number of fish caught": 0,
+                    "number of fish encountered": 0,
+                    "seas and lakes went fishing": [],
+                    "fish caught worth in gold": 0
+                }
+            }
+            logger_sys.log_message("INFO: Added new player save attribute `caught fishes`")
+
+        if "number of combats" not in list(player):
+            player["number of combats"] = 0
+            logger_sys.log_message("INFO: Added new player save attribute `number of combats`")
+        if "damage dealt" not in list(player):
+            player["damage dealt"] = 0
+            logger_sys.log_message("INFO: Added new player save attribute `damage dealt`")
+        if "damage taken" not in list(player):
+            player["damage taken"] = 0
+            logger_sys.log_message("INFO: Added new player save attribute `damage taken`")
+        if "health recovered" not in list(player):
+            player["health recovered"] = 0
+            logger_sys.log_message("INFO: Added new player save attribute `health recovered`")
+
         command = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
         cout(" ")
 
@@ -2513,10 +2542,11 @@ def run(play):
             )
             text = '='
             text_handling.print_separator(text)
-            options = ['Visited Places', 'Encountered Monsters', 'Encountered People', 'Tasks']
+            options = ['Visited Places', 'Enemies', 'People', 'Tasks', 'Fishing']
             choice = terminal_handling.show_menu(options)
             logger_sys.log_message(f"INFO: Playing has chosen option '{choice}'")
             if choice == 'Visited Places':
+                text_handling.print_separator("=")
                 cout("VISITED PLACES: ")
                 zones_list = str(player["visited zones"])
                 logger_sys.log_message(f"INFO: Printing player visited places '{zones_list}'")
@@ -2880,7 +2910,29 @@ def run(play):
                     cout(COLOR_YELLOW + "You don't know about that place" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player has chosen '{which_zone}', which he doesn't know about --> canceling")
                 cinput()
-            elif choice == 'Encountered Monsters':
+            elif choice == 'Enemies':
+                text_handling.print_separator("=")
+                cout(
+                    "NUMBER OF KNOWN ENEMY SPECIES: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(len(player["enemies list"]))
+                    + COLOR_RESET_ALL
+                )
+                cout(
+                    "NUMBER OF COMBATS: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT + str(player["number of combats"])
+                    + COLOR_RESET_ALL
+                )
+                cout(
+                    "AMOUNT OF DAMAGE DEALT: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(player["damage dealt"])
+                    + COLOR_RESET_ALL
+                )
+                cout(
+                    "AMOUNT OF DAMAGE TAKEN: " + COLOR_RED + COLOR_STYLE_BRIGHT + str(player["damage taken"])
+                    + COLOR_RESET_ALL
+                )
+                cout(
+                    "AMOUNT OF HEALTH RECOVERED: " + COLOR_GREEN + COLOR_STYLE_BRIGHT + str(player["health recovered"])
+                    + COLOR_RESET_ALL
+                )
+                text_handling.print_separator("=")
                 cout("ENCOUNTERED MONSTERS: ")
                 enemies_list = str(player["enemies list"])
                 logger_sys.log_message(f"INFO: Printing player known enemies: '{enemies_list}'")
@@ -2989,7 +3041,13 @@ def run(play):
                     cout(" ")
                     cout(COLOR_YELLOW + "You don't know about that enemy." + COLOR_RESET_ALL)
                     time.sleep(1.5)
-            elif choice == 'Encountered People':
+            elif choice == 'People':
+                text_handling.print_separator("=")
+                cout(
+                    "NUMBER OF KNOWN PEOPLE: " + COLOR_CYAN + COLOR_STYLE_BRIGHT + str(len(player["met npcs names"]))
+                    + COLOR_RESET_ALL
+                )
+                text_handling.print_separator("=")
                 cout("ENCOUNTERED PEOPLE: ")
                 enemies_list = str(player["met npcs names"])
                 logger_sys.log_message(f"INFO: Printing player encounter people: '{enemies_list}'")
@@ -3055,6 +3113,21 @@ def run(play):
                     logger_sys.log_message(f"INFO: Player doesn't know about npc '{which_npc}' --> canceling")
                     time.sleep(1.5)
             elif choice == 'Tasks':
+                text_handling.print_separator("=")
+                cout(
+                    "NUMBER OF MISSIONS OFFERED: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
+                    str(len(player["offered missions"])) + COLOR_RESET_ALL
+                )
+                cout(
+                    "NUMBER OF MISSIONS COMPLETED: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
+                    str(len(player["done missions"])) + COLOR_RESET_ALL
+                )
+                cout(
+                    "NUMBER OF MISSIONS FAILED: " + COLOR_YELLOW + str(
+                        len(player["offered missions"]) - len(player["done missions"])
+                    ) + COLOR_RESET_ALL
+                )
+                text_handling.print_separator("=")
                 cout("ACTIVE TASKS:")
                 tasks_list = player["active missions"]
                 if tasks_list is None:
@@ -3138,6 +3211,69 @@ def run(play):
                     cout(COLOR_YELLOW + "You do not currently have a mission named like that" + COLOR_RESET_ALL)
                     logger_sys.log_message(f"INFO: Player doesn't know about mission '{which_task}' --> canceling")
                     time.sleep(1.5)
+            elif choice == "Fishing":
+                text_handling.print_separator("=")
+                cout(
+                    "NUMBER OF FISH CAUGHT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
+                    str(player["caught fishes"]["$stats$"]["number of fish caught"]) + COLOR_RESET_ALL
+                )
+                cout(
+                    "NUMBER OF FISH MISSED: " + COLOR_ORANGE_4 + COLOR_STYLE_BRIGHT +
+                    str(
+                        player["caught fishes"]["$stats$"]["number of fish encountered"] -
+                        player["caught fishes"]["$stats$"]["number of fish caught"]
+                    ) + COLOR_RESET_ALL
+                )
+                cout(
+                    "NUMBER OF FISH ENCOUNTERED: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
+                    str(player["caught fishes"]["$stats$"]["number of fish encountered"]) + COLOR_RESET_ALL
+                )
+                cout(
+                    "FISH CAUGHT WORTH IN GOLD: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT +
+                    str(round(player["caught fishes"]["$stats$"]["fish caught worth in gold"], 2)) + COLOR_RESET_ALL
+                )
+                cout("KNOWN FISHING LOCATIONS: ")
+                for fishing_location in player["caught fishes"]["$stats$"]["seas and lakes went fishing"]:
+                    cout(f" -{COLOR_GREEN}{COLOR_STYLE_BRIGHT}{fishing_location}{COLOR_RESET_ALL}")
+                text_handling.print_separator("=")
+                cout("FISHES CAUGHT: {")
+                for i in list(player["caught fishes"]):
+                    if i != "$stats$":
+                        cout(f" -{COLOR_CYAN}{i}{COLOR_RESET_ALL}")
+                text_handling.print_separator("=")
+                chosen_fish = cinput(COLOR_GREEN + COLOR_STYLE_BRIGHT + "> " + COLOR_RESET_ALL)
+                if chosen_fish in list(player["caught fishes"]) and chosen_fish != "$stats$":
+                    text_handling.print_separator("=")
+                    text_handling.print_item_thumbnail(item[chosen_fish]["thumbnail"])
+                    text_handling.print_separator("-")
+                    cout(
+                        "SPECIES: " + COLOR_STYLE_BRIGHT + player["caught fishes"][chosen_fish]["species"]
+                        + COLOR_RESET_ALL
+                    )
+                    cout(
+                        "ESTIMATED VALUE: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[chosen_fish]["gold"]))
+                        + COLOR_RESET_ALL
+                    )
+                    cout(
+                        "NUMBER OF TIMES ENCOUNTERED: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
+                        str(player["caught fishes"][chosen_fish]["number of occurrences"]) + COLOR_RESET_ALL
+                    )
+                    cout(
+                        "NUMBER OF TIMES CAUGHT: " + COLOR_CYAN + COLOR_STYLE_BRIGHT +
+                        str(player["caught fishes"][chosen_fish]["number of catches"]) + COLOR_RESET_ALL
+                    )
+                    cout(
+                        "NUMBER OF TIMES MISSED: " + COLOR_ORANGE_4 + COLOR_STYLE_BRIGHT +
+                        str(
+                            player["caught fishes"][chosen_fish]["number of occurrences"] -
+                            player["caught fishes"][chosen_fish]["number of catches"]
+                        ) + COLOR_RESET_ALL
+                    )
+                    text_handling.print_separator("=")
+                    cinput()
+                else:
+                    cout(COLOR_YELLOW + f"You never caught a fish bearing the name of '{chosen_fish}'!" + COLOR_RESET_ALL)
+                    time.sleep(2)
             continued_command = True
         elif command.lower().startswith('i'):
             text = '='
@@ -3217,6 +3353,11 @@ def run(play):
                     "ESTIMATED VALUE: " + COLOR_YELLOW + COLOR_STYLE_BRIGHT + str(round(item[which_item]["gold"]))
                     + COLOR_RESET_ALL
                 )
+                if "fishing weight" in item[which_item]:
+                    cout(
+                        "FISHING WEIGHT: " + COLOR_BACK_YELLOW + COLOR_STYLE_BRIGHT +
+                        str(round(item[which_item]["fishing weight"] * 100)) + "lbs" + COLOR_RESET_ALL
+                    )
                 text = "DESCRIPTION: " + item[which_item]["description"]
                 text_handling.print_long_string(text)
                 if (
@@ -3240,18 +3381,18 @@ def run(play):
                         "ARMOR PROTECTION: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["armor protection"], 2)) + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Metal":
+                elif item[which_item]["type"] == "Metal":
                     text = (
                         "              Metals are items that you buy in village " +
                         "forges that you often use to order weapons in blacksmith."
                     )
-                if item[which_item]["type"] == "Primary Material":
+                elif item[which_item]["type"] == "Primary Material":
                     text = (
                         "              Primary materials are items that you " +
                         "can find naturally but that you can also buy from many villages shops."
                     )
                     text_handling.print_long_string(text)
-                if item[which_item]["type"] == "Weapon":
+                elif item[which_item]["type"] == "Weapon":
                     item_next_upgrade = weapon_upgrade_handling.detect_weapon_next_upgrade_items(which_item, item)
                     cout(
                         "UPGRADE TIER: " + COLOR_GREEN + COLOR_STYLE_BRIGHT +
@@ -3265,7 +3406,7 @@ def run(play):
                         "CRITICAL HIT CHANCE: " + COLOR_MAGENTA + COLOR_STYLE_BRIGHT +
                         str(round(item[which_item]["critical hit chance"] * 100, 2)) + "%" + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Food":
+                elif item[which_item]["type"] == "Food":
                     cout(
                         "HEALTH BONUS: " + COLOR_STYLE_BRIGHT + COLOR_YELLOW +
                         str(item[which_item]["max bonus"]) + COLOR_RESET_ALL
@@ -3277,7 +3418,7 @@ def run(play):
                         "HEALING: " + COLOR_STYLE_BRIGHT + COLOR_MAGENTA +
                         healing_level + COLOR_RESET_ALL
                     )
-                if item[which_item]["type"] == "Consumable":
+                elif item[which_item]["type"] == "Consumable":
                     cout("")
                     cout("EFFECTS:")
                     logger_sys.log_message(f"INFO: Getting consumable '{which_item}' effects")
@@ -3294,6 +3435,40 @@ def run(play):
                             count += 1
                     else:
                         cout(" -None")
+                elif item[which_item]["type"] == "Fishing Rod":
+                    cout("")
+                    speed_coefficient = round(item[which_item]["speed coefficient"] * 100 - 100)
+                    if speed_coefficient >= 0:
+                        speed_coefficient = "+" + str(speed_coefficient) + "%"
+                    cout(
+                        "SPEED COEFFICIENT: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
+                        speed_coefficient + COLOR_RESET_ALL
+                    )
+                    cout(
+                        "STRENGTH: " + COLOR_BACK_GREEN + COLOR_STYLE_BRIGHT +
+                        str(round(item[which_item]["rod strength"] * 100)) + "lbs" + COLOR_RESET_ALL
+                    )
+                elif item[which_item]["type"] == "Lure":
+                    cout("")
+                    speed_coefficient = round(item[which_item]["speed coefficient"] * 100 - 100)
+                    if speed_coefficient >= 0:
+                        speed_coefficient = "+" + str(speed_coefficient) + "%"
+                    cout(
+                        "SPEED COEFFICIENT: " + COLOR_BACK_BLUE + COLOR_STYLE_BRIGHT +
+                        speed_coefficient + COLOR_RESET_ALL
+                    )
+
+                    # preferred catches
+                    preferred_catches = []
+                    for i in item[which_item]["preferred types"]:
+                        if i not in preferred_catches:
+                            preferred_catches += [i]
+                    preferred_catches = str(preferred_catches)
+                    preferred_catches = preferred_catches.replace('[', '')
+                    preferred_catches = preferred_catches.replace(']', '')
+                    preferred_catches = preferred_catches.replace("'", '')
+                    text = "PREFERRED CATCHES: " + str(preferred_catches)
+                    cout(text)
                 text = '='
                 text_handling.print_separator(text)
                 if str(
@@ -3636,6 +3811,52 @@ def run(play):
         elif command.lower().startswith('c'):
             # Start the camp UI
             camp.camp_loop(player, save_file, map_zone, zone, time_elapsing_coefficient)
+            continued_command = True
+        elif command.lower().startswith('f'):
+            # Check if any 1-map-point distant map point is of zone type sea or lake
+            fishing_types = ["sea", "lake"]
+            fishing_locations = []
+            can_fish = False
+            if zone[map["point" + str(search(x_point + 1, y_point))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point + 1, y_point))]["map zone"]]
+            if zone[map["point" + str(search(x_point + 1, y_point - 1))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point + 1, y_point - 1))]["map zone"]]
+            if zone[map["point" + str(search(x_point, y_point - 1))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point, y_point - 1))]["map zone"]]
+            if zone[map["point" + str(search(x_point - 1, y_point - 1))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point - 1, y_point - 1))]["map zone"]]
+            if zone[map["point" + str(search(x_point - 1, y_point))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point - 1, y_point))]["map zone"]]
+            if zone[map["point" + str(search(x_point - 1, y_point + 1))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point - 1, y_point + 1))]["map zone"]]
+            if zone[map["point" + str(search(x_point, y_point + 1))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point, y_point + 1))]["map zone"]]
+            if zone[map["point" + str(search(x_point + 1, y_point + 1))]["map zone"]]["type"] in fishing_types:
+                can_fish = True
+                fishing_locations += [map["point" + str(search(x_point + 1, y_point + 1))]["map zone"]]
+
+            if not can_fish:
+                cout(
+                    COLOR_YELLOW + "There isn't in location near you where you can fish. Try to find a sea " +
+                    "or a lake and try fishing when at 1-map-point distant of it." + COLOR_RESET_ALL
+                )
+                time.sleep(2)
+            else:
+                # Remove duplicated items in fishing_locations
+                fishing_locations = list(dict.fromkeys(fishing_locations))
+
+                cout("In which fishing location do you wanna fish in?")
+                chosen_fishing_location = terminal_handling.show_menu(fishing_locations)
+
+                # Start the fishing UI
+                fishing.fishing_loop(chosen_fishing_location, player, save_file, map_zone, zone, time_elapsing_coefficient, item)
             continued_command = True
         elif command.lower().startswith('k'):
             if player["difficulty mode"] == 2:

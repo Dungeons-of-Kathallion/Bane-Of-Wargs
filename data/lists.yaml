@@ -420,6 +420,15 @@ shire hills:
       hard: {"min": 4, "max": 8}
     enemies spawns:
       Slime: 1
+  Bomskit Raid:
+    name: "You find a group of Bomskits on your way!"
+    chance: .325
+    enemies rate:
+      easy: {"min": 2, "max": 4}
+      normal: {"min": 3, "max": 6}
+      hard: {"min": 4, "max": 8}
+    enemies spawns:
+      Bomskit: 1
 
 shire beaches:
   Undeads Raid:
@@ -496,8 +505,8 @@ kirgon raids desert:
       hard: {"min": 3, "max": 5}
     enemies spawns:
       Doomed Horror: .7
-      Dark Marksman: .5
-      Black Ork: 1
+      Lyzalfos: .5
+      Dry Ork: .8
   Undeads Raid:
     name: "A swarm of undeads awaken from the sandy beaches!"
     chance: .35
@@ -525,3 +534,58 @@ kirgon raids desert:
       hard: {"min": 2, "max": 4}
     enemies spawns:
       Desert Troll: 1
+  Poes:
+    name: "Dark souls are seeking for human souls..."
+    chance: .225
+    enemies rate:
+      easy: {"min": 1, "max": 2}
+      normal: {"min": 1, "max": 3}
+      hard: {"min": 2, "max": 4}
+    enemies spawns:
+      Poe: 1
+
+palace of drought fountain guardians:
+  Guardians:
+    name: >
+      You enter the room and see a great and beautiful fountain on its center. The room
+      seems to have no roof, though no sky can be seen. Some creatures were waiting for you it seems...
+    chance: 1
+    enemies rate:
+      easy: {"min": 6, "max": 10}
+      normal: {"min": 6, "max": 13}
+      hard: {"min": 13, "max": 20}
+    enemies spawns:
+      Lyzalfos: .5
+      Dry Ork: .7
+      Mines Troll: .4
+      Doomed Horror: .1
+
+palace of drought undeads swarm:
+  Undeads Swarm:
+    name: >
+      You enter the new room. This new room is even bigger than the previous one, and seems to be some
+      kind of sand refinery. You can observe many rolling carpets transporting blocks of compact sand
+      to metal boxes, with glass coming out of it. You've never seen such kind of factory. You tread on
+      one of the rolling carpet and suddenly a creature emerge from a block of sand, and then another one,
+      and two other ones, and ten other ones! It seems you've waked up a whole swarm of undeads!
+    chance: 1
+    enemies rate:
+      easy: {"min": 20, "max": 35}
+      normal: {"min": 20, "max": 45}
+      hard: {"min": 45, "max": 75}
+    enemies spawns:
+      Desert Undead: 1
+
+palace of drought wargs stable:
+  Wargs:
+    name: >
+      It seems this room is an Ork warg stable! As soon as you've entered, all the wargs stood and stared
+      at you. There's no solution but to fight...
+    chance: 1
+    enemies rate:
+      easy: {"min": 5, "max": 10}
+      normal: {"min": 5, "max": 20}
+      hard: {"min": 20, "max": 25}
+    enemies spawns:
+      Warg: 1
+      White Warg: .3

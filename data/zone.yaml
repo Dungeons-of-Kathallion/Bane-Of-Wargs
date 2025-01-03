@@ -18,6 +18,16 @@ Stall Seas:
   name: "Stall Seas"
   description: "The great seas near the Stall Island."
   type: sea
+  fishing: # Raw Salmon: 30%, Catfish: 20%, Greengill: 20%, Kathallion Bass: 10%, Sea Horse: 10%
+  - Raw Salmon
+  - Raw Salmon
+  - Raw Salmon
+  - Catfish
+  - Catfish
+  - Greengill
+  - Greengill
+  - Kathallion Bass
+  - Sea Horse
   map:
     map full: |
       x__________x
@@ -38,6 +48,14 @@ Stall Seas Bay:
   name: "Stall Seas Bay"
   description: "The great bay of the Stall Seas."
   type: sea
+  fishing: # Raw Salmon: 15%, Catfish: 15%, Greengill: 30%, Kathallion Bass: 15%, Kathallion Loach: 15%, Leather Boots: 15%
+  - Raw Salmon
+  - Catfish
+  - Greengill
+  - Greengill
+  - Kathallion Bass
+  - Kathallion Loach
+  - Leather Boots
   map:
     map full: |
       x__________x
@@ -83,6 +101,14 @@ Forlindon Lake:
   name: "Forlindon Lake"
   description: "The small lake in between the Forlindon Woods and the Californ Woods."
   type: lake
+  fishing: # Raw Salmon: 15%, Catfish: 15%, Greengill: 40%, Reekfish: 15%, Wet Tree Log: 15%
+  - Raw Salmon
+  - Catfish
+  - Greengill
+  - Greengill
+  - Greengill
+  - Reekfish
+  - Wet Tree Log
   map:
     map full: |
       x__________x
@@ -103,6 +129,17 @@ Magrove Wastes Waters:
   name: "Magrove Wastes Waters"
   description: "The water areas in the Mangrove Wastes."
   type: lake
+  fishing: # Catfish: 10%, Greengill: 10%, Tropical Fish: 10%, Reekfish: 20%, Wet Tree Log: 20%, Leather Boots: 10%, Old Pants: 10%, Bone: 10%
+  - Catfish
+  - Greengill
+  - Tropical Fish
+  - Reekfish
+  - Reekfish
+  - Wet Tree Log
+  - Wet Tree Log
+  - Leather Boots
+  - Old Pants
+  - Bone
   map:
     map full: |
       x__________x
@@ -123,6 +160,25 @@ Middle Area Lakes:
   name: "Middle Area Lakes"
   description: "The lakes that are approximately at the middle point of the Stall Island. They are in between the Goro Mounts, the Californ Woods, the Mangrove Wastes and the Gerud Desert."
   type: lake
+  fishing: # Tropical Fish: 15%, Catfish: 15%, Raw Salmon: 20%, Greengill: 20%, Kathallion Bass: 10%, Kathallion Loach: 5%, Kathallion Pike: 5%
+  - Tropical Fish
+  - Tropical Fish
+  - Tropical Fish
+  - Catfish
+  - Catfish
+  - Catfish
+  - Raw Salmon
+  - Raw Salmon
+  - Raw Salmon
+  - Raw Salmon
+  - Greengill
+  - Greengill
+  - Greengill
+  - Greengill
+  - Kathallion Bass
+  - Kathallion Bass
+  - Kathallion Loach
+  - Kathallion Pike
   map:
     map full: |
       x__________x
@@ -143,6 +199,17 @@ Gerud Lakes:
   name: "Gerud Lakes"
   description: "The lakes of the Gerud Desert."
   type: lake
+  fishing: # Tropical Fish: 30%, Sea Horse: 10%, Catfish: 20%, Kathallion Pike: 10%, Kathallion Loach: 10%, Bone: 20%
+  - Tropical Fish
+  - Tropical Fish
+  - Tropical Fish
+  - Sea Horse
+  - Catfish
+  - Catfish
+  - Kathallion Pike
+  - Kathallion Loach
+  - Bone
+  - Bone
   map:
     map full: |
       x__________x
@@ -473,6 +540,10 @@ Los Gerudos Hostel:
     - Carrot
     - Slime
     - Tissue Bag
+    - Spinning Rod
+    - Casting Rod
+    - Swimmer Lure
+    - Frog Lure
   buys:
     items:
     - Wolf Skull
@@ -582,6 +653,9 @@ Humil Dwarf Stable:
       - Carrot
       - Slime
       - Stretched Bag
+      - Casting Rod
+      - Popper Lure
+      - Swimmer Lure
     stables:
     - Dwarf Stable
     - Horse Stable
@@ -615,6 +689,8 @@ Woodstack Hostel:
     - Raw Salmon
     - Beef
     - Bread
+    - Spinning Rod
+    - Swimmer Lure
   buys:
     items:
     - None
@@ -666,6 +742,11 @@ Seaside Hostels:
     - Chicken
     - Tissue Bag
     - Healing Potion
+    - Spinning Rod
+    - Casting Rod
+    - Surf Rod
+    - Popper Lure
+    - Frog Lure
   buys:
     items:
     - Tissue Bag
@@ -1188,6 +1269,11 @@ Los Gerudos Grocery Store:
   - Slime
   - Raw Wood
   - Raw Aluminum
+  - Swimmer Lure
+  - Surf Rod
+  - Spinning Rod
+  - Seahorse Lure
+  - Frog Lure
   discounts:
     time space: 18
     chance: .3
@@ -1236,6 +1322,10 @@ Lorrys Grocery Store:
   - Slime
   - Raw Wood
   - Raw Aluminum
+  - Swimmer Lure
+  - Popper Lure
+  - Casting Rod
+  - Spinning Rod
   discounts:
     time space: 18
     chance: .3
@@ -1307,6 +1397,13 @@ Target Grocery:
   - Rock Paper Scissors
   - Time Elapsing Potion
   - Raw Aluminum
+  - Spinning Rod
+  - Casting Rod
+  - Surf Rod
+  - Swimmer Lure
+  - Popper Lure
+  - Frog Lure
+  - Seahorse Lure
   discounts:
     time space: 18
     chance: .3
@@ -1940,6 +2037,16 @@ Boston Lake:
   name: "Boston Lake"
   description: "The beautiful lake of Boston."
   type: lake
+  fishing: # Catfish: 30%, Kathallion Bass: 20%, Reekfish: 10%, Bone: 10%, Wet Tree Log: 10%, Old Pants: 10%
+  - Catfish
+  - Catfish
+  - Catfish
+  - Kathallion Bass
+  - Kathallion Bass
+  - Reekfish
+  - Bone
+  - Wet Tree Log
+  - Old Pants
   map:
     map full: |
       x__________x
@@ -1960,6 +2067,17 @@ Eldin Bay:
   name: "Eldin Bay"
   description: "The beautiful bay of Eldin."
   type: lake
+  fishing: # Tropical Fish: 30%, Kathallion Bass: 10%, Kathallion Loach: 10%, Kathallion Pike: 20%, Greengill: 20%, Wet Tree Log: 10%
+  - Tropical Fish
+  - Tropical Fish
+  - Tropical Fish
+  - Kathallion Bass
+  - Kathallion Loach
+  - Kathallion Pike
+  - Kathallion Pike
+  - Greengill
+  - Greengill
+  - Wet Tree Log
   map:
     map full: |
       x__________x
@@ -2361,6 +2479,9 @@ Peregrine Grocery:
   - Raw Wood
   - Raw Aluminum
   - Knight Beverage
+  - Casting Rod
+  - Popper Lure
+  - Frog Lure
   discounts:
     time space: 18
     chance: .3
@@ -2557,6 +2678,8 @@ Oldon Tavern:
     - Beef
     - Apple
     - Carrot
+    - Spinning Rod
+    - Swimmer Lure
   buys:
     items:
     - Apple
@@ -2938,6 +3061,7 @@ Elif Stablings:
   description: >
     This stable is owned by the same elf family for centuries. It offers the best
     stabling experience in the archipelago. It even has an annex for dwarf mounts.
+    This is the only stable that has a dragon stable in the whole archipelago.
   type: stable
   cost value: 1.45
   training gold: 23
@@ -2970,6 +3094,7 @@ Elif Stablings:
       - Dwarf Boar
       - Goat Steed
       - Bear
+      - Fellbeast
       drinks:
       - Beer
       - Whiskey
@@ -2983,10 +3108,12 @@ Elif Stablings:
       - Beef
       - Porkchop
       - Tissue Bag
+      - Lyzalfos Flesh
     stables:
     - Horse Stable
     - Camel Stable
     - Dwarf Stable
+    - Dragon Stable
   discounts:
     time space: 22
     chance: .35
@@ -3034,6 +3161,11 @@ Eldin Market:
   - Wheat
   - Raw Salmon
   - Tree Log
+  - Spinning Rod
+  - Casting Rod
+  - Swimmer Lure
+  - Frog Lure
+  - Popper Lure
   discounts:
     time space: 25
     chance: .45
@@ -3259,3 +3391,72 @@ Valleys Of Flori:
       |,,,_,,o,_,|
       |o_,,,_,,,,|
       x__________x
+
+# DUNGEONS
+
+Palace Of Drought:
+  name: "Palace Of Drought"
+  description: >
+    The dungeon of drought, settled upon the dangerous Death Mountain, leaks an
+    undescribable energy, as well as fear. Most knights wouldn't dare entering
+    the master room, where lays the Shire beast. Only a real hero would be
+    fool enough to awaken the beast. Even orks don't dare to approach the entrance.
+  type: dungeon
+  enemy spawning: none
+  map:
+    map full: |
+      x__________x
+      | $TAN________ $WHITE|
+      | $TAN|  $GRAY||  $TAN| $WHITE|
+      | $TAN/ $YELLOW/$GRAY||$YELLOW\ $TAN\ $WHITE|
+      |$TAN/ $YELLOW/ $GRAY|| $YELLOW\ $TAN\$WHITE|
+      x__________x
+    map raw: |
+      x__________x
+      | ________ |
+      | |  ||  | |
+      | / /||\ \ |
+      |/ / || \ \|
+      x__________x
+  dungeon:
+    name: "Palace Of Drought"
+    rooms number: 5
+    reward dialog: Goro Mounts Mines Dungeon Reward  # placeholder for the checks to be happy
+    no escape: true
+    rooms:
+      Entrance Room:
+        room type: enigma
+        room digit: 1
+        room enigma data:
+          script name: palace_of_drought_entrance.py
+          arguments:
+          - preferences
+      Fountain Guardians:
+        room type: fight
+        room digit: 2
+        room fight data:
+          enemy list spawn: palace of drought fountain guardians
+          no run away: true
+          item reward:
+          - Ork Talisman
+          gold reward: 35
+      Sand Factory Fight:
+        room type: fight
+        room digit: 3
+        room fight data:
+          enemy list spawn: palace of drought undeads swarm
+          no run away: true
+          gold reward: 50
+      Levers Enigma:
+        room type: enigma
+        room digit: 4
+        room enigma data:
+          script name: levers_enigma.py
+      Warg Stable Room:
+        room type: boss-fight
+        room digit: 5
+        room fight data:
+          enemy list spawn: palace of drought wargs stable
+          no run away: true
+          gold reward: 150
+

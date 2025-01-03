@@ -8,6 +8,7 @@ Files: *
 Copyright: Cromha <enderman.quickly@gmail.com>
            bane-of-wargs contributors (see credits.txt)
            R.I.P. ASCII art of mount death was made by mfj.
+           Hieroglyph design in scripts/place_of_drought_entrance.py made by Sanne Jabs
 License: GPL-3+
 
 Files: data/*
@@ -39,8 +40,11 @@ Copyright:
  I-Am-The-Evil-Guy-Who-Wil-Destroy-The-World-Now
  AoS (N.M.I.)
  cf (N.M.I.)
+ Max Strandberg
  mga (N.M.I.)
+ Morfina (N.M.I.)
  Veronica Karlsson
+ fsc (N.M.I.)
 License: GPL-3+
 Comment: Items thumbnails are the ASCII art taken from various artists.
          Some are edited and slightly modified
@@ -66,6 +70,8 @@ Files:
  imgs/Ayar?Town?Shaman.txt
  imgs/Jacky.txt
  imgs/Ayar?Town?Sheriff.txt
+ imgs/Death?Sword.txt
+ imgs/Poe.txt
 Copyright: Joan G. Stark
 License: GPL-3+
 
@@ -131,6 +137,10 @@ License: GPL-3+
 
 Files: imgs/Fellbeast.txt
 Copyright: Ironwing
+License: GPL-3+
+
+Files: imgs/Lyzalfos.txt
+Copyright: Andreas Freise
 License: GPL-3+
 
 Files: imgs/Ayar?Town?Shaman?Tipi.txt

@@ -1,0 +1,18 @@
+$SILVER           |]\
+$SILVER           |$DARK_RED║$SILVER|\
+$SILVER           |$DARK_RED║$SILVER||
+$SILVER           |$DARK_RED║$SILVER||
+$SILVER           |$DARK_RED║$SILVER||   $LIGHT_BLACK___
+$BROWN          [$YELLOW-$CYAN+$YELLOW-$BROWN]  $LIGHT_BLACK/-. \
+            $RED0$LIGHT_BLACK\/\_|$DARK_RED"$LIGHT_BLACK|  |
+            $RED0$LIGHT_BLACK \ |;$DARK_RED-$LIGHT_BLACK|  ;
+$LIGHT_BLACK              / \| |_/ \
+              )/\/      \
+              ( '|  \   |
+                 \_ /   \
+                 /  \_.--\
+                 |    ($GRAY|\`
+$LIGHT_BLACK                 |     \
+                 |      '.
+                /         \
+                \.__.__.-._)$WHITE

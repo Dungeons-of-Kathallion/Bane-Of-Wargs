@@ -415,7 +415,7 @@ def fight(
     if "never run away" in enemy[current_enemy]:
         disable_run_away = enemy[current_enemy]["never run away"]
     else:
-        disable_run_away
+        disable_run_away = False
 
     # check if this is a one-shot enemy
     global one_shot_enemy
@@ -720,6 +720,7 @@ def fight(
                             player_damage = player_damage * 2
                         enemy_health -= player_damage
                         cout("You dealt " + str(player_damage) + " damage to your enemy.")
+                        player["damage dealt"] += player_damage
                     turn = False
 
                 # if player defend
@@ -822,6 +823,7 @@ def fight(
                             if enemy_critical_hit:
                                 damage = enemy_max_damage * 2
                             player["health"] -= damage
+                            player["damage taken"] += damage
                             cout("The enemy dealt " + str(damage) + " points of damage.")
                             if one_shot_enemy:
                                 cout("The enemy died after attacking you.")
